@@ -2,27 +2,29 @@ import Image from 'next/image';
 import { ReactSVGElement } from 'react';
 
 type SectionProps = {
+	name: string;
 	icon?: ReactSVGElement;
-	sectionTitle?: string;
-	sectionDesc?: string;
-	sectionLink?: string;
+	description?: string;
+	url?: string;
 };
 
 const Section = ({
+	name,
 	icon,
-	sectionTitle,
-	sectionDesc,
-	sectionLink,
+	description,
+	url,
 }: SectionProps): JSX.Element => {
 	return (
 		<div className="section">
 			<section>
 				<h4>
-					icon: {icon} title: {sectionTitle}
+					icon: {icon} name: {name}
 				</h4>
-				<p>description: {sectionDesc}</p>
-				<a href={sectionLink}>link</a>
+				<p>description: {description}</p>
+				<a href={url}>Link</a>
 			</section>
 		</div>
 	);
 };
+
+export default Section;

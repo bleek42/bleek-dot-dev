@@ -1,22 +1,18 @@
-import { Fragment, ReactSVGElement, useState } from 'react';
+import { useRouter } from 'next/dist/client/router';
+import { ReactSVGElement, useState } from 'react';
 
 type NavMenuProps = {
-	title: string;
+	name: string;
 	path: string;
 	icon: ReactSVGElement;
-	className: string;
 };
 
-const NavMenu = ({
-	title,
-	path,
-	icon,
-	className,
-}: NavMenuProps): JSX.Element => {
+const NavMenu = ({ name, path, icon }: NavMenuProps): JSX.Element => {
 	const [toggle, setToggle] = useState<boolean>(false);
+	const router = useRouter();
 
 	return (
-		<Fragment>
+		<div className="nav-menu">
 			<form className="toggle">
 				<label htmlFor="toggle-btn">
 					<input
@@ -27,17 +23,22 @@ const NavMenu = ({
 						{toggle ? 'open' : 'close'}
 					</input>
 				</label>
-				<nav className={toggle ? 'nav-open' : 'nav-close'}>
+				<nav
+					className={toggle ? 'nav-open' : 'nav-close'}
+					onMouseLeave={() => setToggle(!!toggle)}
+				>
 					<ul>
-						<li className={className}>
+						<li>
 							<a href={path}>
 								<span>{icon}</span>
-								<span>{title}</span>
+								<span>{name}</span>
 							</a>
 						</li>
 					</ul>
 				</nav>
 			</form>
-		</Fragment>
+		</div>
 	);
 };
+
+export default NavMenu;

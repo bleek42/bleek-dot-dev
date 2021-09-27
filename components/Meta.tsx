@@ -1,9 +1,9 @@
-import Head from "next/head";
+import Head from 'next/head';
 
 type MetaProps = {
-	title?: string;
-	description?: string;
-	keywords?: string;
+	title: string;
+	description: string;
+	keywords: string;
 	image?: string | undefined;
 };
 
@@ -27,9 +27,11 @@ const Meta = ({
 };
 
 Meta.defaultProps = {
-	title: "bleek.tech",
-	description: "Brandon Leek - Full Stack Web Dev",
+	title: 'bleek.tech',
+	description: 'Brandon Leek - Full Stack Web Dev',
 	keywords:
-		"web development, application development, software, programming, react, node, sql, typescript",
+		'web development, application development, software, programming, react, node, sql, typescript',
 	image: undefined,
 };
+
+export default Meta;

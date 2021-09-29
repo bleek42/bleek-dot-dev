@@ -1,4 +1,4 @@
-import { useRouter } from 'next/dist/client/router';
+import { useRouter } from 'next/router';
 import { ReactSVGElement, useState } from 'react';
 
 type NavMenuProps = {

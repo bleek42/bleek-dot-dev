@@ -1,0 +1,23 @@
+@import '../styles/variables';
+
+.container {
+	display: grid;
+	grid-template-areas: 'intro intro intro' '. . img' 'dismiss . .';
+	grid-template-rows: 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-gap: 15px;
+
+	.intro {
+		border: 5px solid black;
+		grid-area: intro;
+	}
+
+	.img {
+		grid-area: img;
+		max-width: 140px;
+	}
+	.dismiss {
+		grid-area: dismiss;
+		border: 5px solid black;
+	}
+}

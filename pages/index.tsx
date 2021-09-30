@@ -4,6 +4,7 @@ import Link from 'next/link';
 
 import Meta from '../components/Meta';
 import styles from '../styles/LandingPage.module.scss';
+import hero from '../public/brandon-mask.png';
 
 const LandingPage: NextPage = (): JSX.Element => {
 	return (
@@ -16,7 +17,7 @@ const LandingPage: NextPage = (): JSX.Element => {
 			</div>
 			<div className={styles.img}>
 				<p>img placeholder</p>
-				{/* <Image src="some/path/to/my/image" alt="my-image" /> */}
+				<Image src={hero} alt="hero-img" />
 			</div>
 			<div className={styles.dismiss}>
 				<Link href="/home">

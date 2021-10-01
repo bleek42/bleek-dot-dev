@@ -1,8 +1,12 @@
-import Section from '../../components/Section';
+import Section from '../components/Section';
+import NavMenu from '../components/NavMenu';
 
 const About = (): JSX.Element => {
 	return (
-		<div className="about">
+    <div className="container">
+      <div className="menu">
+        <NavMenu />
+        </div>
 			<Section name="about" />
 		</div>
 	);

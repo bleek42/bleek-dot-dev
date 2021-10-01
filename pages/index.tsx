@@ -5,11 +5,15 @@ import Link from 'next/link';
 import Meta from '../components/Meta';
 import styles from '../styles/LandingPage.module.scss';
 import hero from '../public/brandon-mask.png';
+import NavMenu from '../components/NavMenu';
 
 const LandingPage: NextPage = (): JSX.Element => {
 	return (
 		<div className={styles.container}>
 			<Meta />
+			<div>
+				<NavMenu />
+			</div>
 			<div className={styles.intro}>
 				<h3>Brandon C. Leek</h3>
 				<h4>Full Stack Web Developer & Mobile Tech Expert</h4>

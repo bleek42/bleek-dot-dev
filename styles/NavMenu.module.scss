@@ -1,0 +1,47 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.container {
+	@include menu-flex;
+
+	.toggle {
+		margin: 0;
+		text-shadow: 3px 2px black;
+
+		.label {
+			display: block;
+			color: $color-1;
+
+			font-size: 30px;
+			font-weight: bolder;
+			letter-spacing: 2px;
+
+			.btn {
+				background: $bg-color-2;
+				border: $def-border;
+				width: 273px;
+				height: 30px;
+				transition: filter 500ms;
+
+				&:hover {
+					filter: brightness(3);
+					color: #440744;
+				}
+			}
+		}
+
+		.close {
+			@include menu-flex;
+			background: $bg-color-1;
+			position: fixed;
+			bottom: -100%;
+		}
+
+		.open {
+			@include menu-flex;
+			background: $bg-color-1;
+			top: 65px;
+			letter-spacing: 3px;
+		}
+	}
+}

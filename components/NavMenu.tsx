@@ -1,13 +1,9 @@
 import { useRouter } from 'next/router';
-import { ReactSVGElement, useState } from 'react';
+import { useState } from 'react';
 
-type NavMenuProps = {
-	name: string;
-	path: string;
-	icon: ReactSVGElement;
-};
+import { menuData } from '../utils/menuData';
 
-const NavMenu = ({ name, path, icon }: NavMenuProps): JSX.Element => {
+const NavMenu = (): JSX.Element => {
 	const [toggle, setToggle] = useState<boolean>(false);
 	const router = useRouter();
 
@@ -28,12 +24,16 @@ const NavMenu = ({ name, path, icon }: NavMenuProps): JSX.Element => {
 					onMouseLeave={() => setToggle(!!toggle)}
 				>
 					<ul>
-						<li>
-							<a href={path}>
-								<span>{icon}</span>
-								<span>{name}</span>
-							</a>
-						</li>
+						{menuData.map((item, idx) => {
+							return (
+								<li key={idx}>
+									<a href={item.path}>
+										<span>{item.icon}</span>
+										<span>{item.title}</span>
+									</a>
+								</li>
+							);
+						})}
 					</ul>
 				</nav>
 			</form>

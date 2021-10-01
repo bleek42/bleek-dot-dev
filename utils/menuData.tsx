@@ -1,19 +1,32 @@
-import { ReactSVGElement } from 'react';
 import { IconType } from 'react-icons/lib';
 import { RiBracesFill } from 'react-icons/ri';
+import { VscSymbolArray, VscCode, VscCommentDiscussion } from 'react-icons/vsc';
 
-interface IMenuData {
-	[index: number]: {
-		name: string;
-		path: string;
-		icon: IconType;
-	};
+interface INavMenuItem {
+	title: string;
+	path: string;
+	icon: IconType | any;
 }
 
-export const MenuData: IMenuData = [
+export const menuData: INavMenuItem[] = [
 	{
-		name: 'Home',
+		title: 'Home',
 		path: '/home',
 		icon: <RiBracesFill />,
+	},
+	{
+		title: 'About',
+		path: '/about',
+		icon: <VscSymbolArray />,
+	},
+	{
+		title: 'Contact',
+		path: '/contact',
+		icon: <VscCommentDiscussion />,
+	},
+	{
+		title: 'Projects',
+		path: '/projects',
+		icon: <VscCode />,
 	},
 ];

@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { MouseEvent, useState } from 'react';
 
@@ -7,7 +6,6 @@ import styles from '../styles/NavMenu.module.scss';
 
 const NavMenu = (): JSX.Element => {
 	const [toggle, setToggle] = useState<boolean>(false);
-	const router = useRouter();
 
 	const handleClick = (ev: MouseEvent<HTMLButtonElement>): void => {
 		ev.preventDefault();

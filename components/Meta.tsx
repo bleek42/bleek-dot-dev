@@ -8,12 +8,7 @@ type MetaProps = {
 	image?: string | undefined;
 };
 
-const Meta = ({
-	title,
-	description,
-	keywords,
-	image,
-}: MetaProps): JSX.Element => {
+const Meta = ({ title, description, keywords, image }: MetaProps): JSX.Element => {
 	return (
 		<Head>
 			<title>{title}</title>
@@ -29,9 +24,9 @@ const Meta = ({
 
 Meta.defaultProps = {
 	title: 'bleek.tech',
-	description: 'Brandon Leek - Full Stack Web Dev',
+	description: 'Brandon Leek - Full Stack Developer',
 	keywords:
-		'web development, application development, software, programming, react, node, sql, typescript',
+		'web development, application development, software, programming, html, css, javascript, react, node.js, sql, typescript',
 	image: undefined,
 };
 

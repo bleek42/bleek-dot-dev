@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 
 import Meta from '../components/Meta';
+import NavMenu from '../components/NavMenu';
 
-const Home: NextPage = () => {
+const Home: NextPage = (): JSX.Element => {
 	return (
 		<div className="container">
 			<Meta
@@ -11,6 +11,7 @@ const Home: NextPage = () => {
 				description="Brandon Leek's portfolio website home page"
 				keywords="brandon, leek, bleek, web development, portfolio, portfolio home page, next.js, SCSS, enzyme.js, react, node.js, javascript, full stack"
 			/>
+			<NavMenu />
 			<main className="home">
 				<header>
 					<h1>Brandon Leek</h1>
@@ -55,3 +56,5 @@ const Home: NextPage = () => {
 		</div>
 	);
 };
+
+export default Home;

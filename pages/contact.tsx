@@ -11,6 +11,7 @@ const Contact: NextPage = () => {
 			<Meta />
 			<NavMenu />
 			<Header />
+			<Section name="Contact" />
 		</>
 	);
 };

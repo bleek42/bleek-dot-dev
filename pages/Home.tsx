@@ -19,10 +19,9 @@ const Home: NextPage = (): JSX.Element => {
 				</header>
 				<section>
 					<p>
-						Welcome to bleek.tech! This site was created with Next.js, TypeScript, React
-						functional components with state hooks, server-side rendering, an integrated
-						API using Prisma & PostgreSQL, the GitHub API, React Icons, SCSS
-						stylesheets, and unit testing with Jest & Enzyme.
+						Welcome to bleek.tech! This site was created with Next.js, TypeScript, React functional components with
+						state hooks, server-side rendering, an integrated API using Mongoose, MongoDB, GraphQL, the GitHub API,
+						React Icons, SCSS stylesheets, and unit testing with Jest & Enzyme.
 					</p>
 					<div className="dwn-icon">
 						<span>icon goes here</span>

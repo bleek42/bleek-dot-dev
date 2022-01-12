@@ -2,16 +2,16 @@ import { ReactSVGElement } from 'react';
 
 type HeaderProps = {
 	icon?: ReactSVGElement;
-	headerTitle?: string;
-	headerDesc?: string;
+	title?: string;
+	description?: string;
 };
 
-const Header = ({ headerTitle, headerDesc }: HeaderProps): JSX.Element => {
+const Header = ({ icon, title, description }: HeaderProps): JSX.Element => {
 	return (
 		<div className="header">
 			<header>
-				<h4>Header: {headerTitle} </h4>
-				<p>Description: {headerDesc} </p>
+				<h4>Header: {title} </h4>
+				<p>Description: {description} </p>
 			</header>
 		</div>
 	);

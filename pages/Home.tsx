@@ -2,10 +2,11 @@ import type { NextPage } from 'next';
 
 import Meta from '../components/Meta';
 import NavMenu from '../components/NavMenu';
+import Header from '../components/Header';
 
 const Home: NextPage = (): JSX.Element => {
 	return (
-		<div className="container">
+		<div>
 			<Meta
 				title="Home - bleek.tech"
 				description="Brandon Leek's portfolio website home page"
@@ -13,15 +14,13 @@ const Home: NextPage = (): JSX.Element => {
 			/>
 			<NavMenu />
 			<main className="home">
-				<header>
-					<h1>Brandon Leek</h1>
-					<h2>Full-Stack React & Node.js Developer</h2>
-				</header>
+				<Header title="Home" description="Brandon Leek - Full Stack Web Developer" />
 				<section>
 					<p>
-						Welcome to bleek.tech! This site was created with Next.js, TypeScript, React functional components with
-						state hooks, server-side rendering, an integrated API using Mongoose, MongoDB, GraphQL, the GitHub API,
-						React Icons, SCSS stylesheets, and unit testing with Jest & Enzyme.
+						Welcome to bleek.tech! This site was created with Next.js, TypeScript, React
+						functional components with state hooks, server-side rendering, an integrated
+						API using Mongoose, MongoDB, GraphQL, the GitHub API, React Icons, SCSS
+						stylesheets, and unit testing with Jest & Enzyme.
 					</p>
 					<div className="dwn-icon">
 						<span>icon goes here</span>

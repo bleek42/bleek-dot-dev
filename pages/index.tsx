@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import Meta from '../components/Meta';
-import Home from './Home';
 
 import styles from '../styles/LandingPage.module.scss';
 import hero from '../public/brandon-mask.png';

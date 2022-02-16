@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 import Link from 'next/link';
-import { MouseEvent, useState } from 'react';
+import { useState } from 'react';
 
 import { menuData } from '../utils/menuData';
 import styles from '../styles/NavMenu.module.scss';
@@ -8,20 +8,16 @@ import styles from '../styles/NavMenu.module.scss';
 const NavMenu: NextPage = (): JSX.Element => {
 	const [toggle, setToggle] = useState<boolean>(false);
 
-	const handleClick = (ev: MouseEvent<HTMLButtonElement>): void => {
-		ev.preventDefault();
-		setToggle(!toggle);
-	};
-
 	return (
 		<div className={styles.container}>
-			<form className={styles.toggle} onMouseLeave={() => setToggle(false)}>
+			<form className={styles.toggle} onMouseOver={() => setToggle(true)}>
 				<label className={styles.label} htmlFor="btn">
-					<button className={styles.btn} onClick={handleClick}>
-						{toggle ? 'open' : 'close'}
-					</button>
+					<button className={styles.btn}>Menu</button>
 				</label>
-				<nav className={toggle ? styles.open : styles.close} onMouseLeave={() => setToggle(false)}>
+				<nav
+					className={toggle ? styles.open : styles.close}
+					onMouseLeave={() => setToggle(false)}
+				>
 					<ul>
 						{menuData.map((item, idx) => {
 							return (

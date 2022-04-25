@@ -1,15 +1,25 @@
-import { Document, ObjectId } from 'mongoose';
+import { Model, Types } from 'mongoose';
 
-interface IUrl {
-	url: string;
+enum TechType {
+  FRONTEND = 'frontend',
+  BACKEND = 'backend',
+  DATABASE = 'database',
+  TOOLS = 'tools',
 }
 
-export interface IProject extends Document {
-	title: string;
-	description: string;
-	link: string;
-	sourceCode: IUrl[];
-	screenShots: IUrl[];
-	createdAt: Date;
-	updatedAt?: Date;
+interface ITech {
+  name: string;
+  techCategory: TechType;
+}
+
+export interface IProject {
+  readonly _id: Types.ObjectId;
+  title: string;
+  description: string;
+  link: URL;
+  sourceCode: URL[];
+  screenShots: URL[];
+  techStack: ITech[];
+  createdAt: Date;
+  updatedAt?: Date;
 }

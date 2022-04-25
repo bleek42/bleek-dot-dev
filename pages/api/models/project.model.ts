@@ -1,17 +1,16 @@
 import { IProject } from '../../../types/project';
-import { Schema, model, models } from 'mongoose';
+import { Schema, model, Model, models } from 'mongoose';
 
-const ProjectSchema: Schema = new Schema({
-	title: String,
-	desription: String,
-	link: String,
-	sourceCode: [String],
-	screenShots: [String],
-	createdAt: {
-		type: Date,
-		default: Date.now(),
-	},
-	updatedAt: Date,
+const ProjectSchema: Schema<IProject> = new Schema({
+  title: String,
+  description: String,
+  link: String,
+  techStack: [String],
+  sourceCode: [String],
+  screenShots: [String],
+  createdAt: Date,
+  updatedAt: Date,
 });
 
-export const Project = model<IProject>('project', ProjectSchema);
+export const Project: Model<IProject> =
+  models['projects'] || model('projects', ProjectSchema);

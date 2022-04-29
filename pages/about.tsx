@@ -7,15 +7,15 @@ import Section from '../components/Section';
 import NavMenu from '../components/NavMenu';
 
 const About: NextPage = (): JSX.Element => {
-	return (
-		<Fragment>
-			<Meta />
-			<Header />
-			<NavMenu />
-			<Header headerTitle="About" headerDesc="this is the about me page" />
-			<Section name="about" />
-		</Fragment>
-	);
+  return (
+    <Fragment>
+      <Meta />
+      <Header />
+      <NavMenu />
+      <Header title="About" description="this is the about me page" />
+      <Section title="about" />
+    </Fragment>
+  );
 };
 
 export default About;

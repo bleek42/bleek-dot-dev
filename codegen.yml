@@ -1,15 +1,16 @@
 overwrite: true
-schema: 'http://localhost:3000/api/graphql'
-documents: 'graphql/**/*.graphql'
+schema: 'https://api-us-east-1.graphcms.com/v2/cl2jezykc0li901yx24p50f8f/master'
+documents: '**/*.graphql'
 generates:
-  generated/graphql-backend.ts:
+  generated/gql-frontend.ts:
+    hooks:
+      afterAllFileWrite:
+        - prettier --write
     plugins:
       - 'typescript'
-      - 'typescript-resolvers'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
     config:
       useIndexSignature: true
-  # generated/graphql-frontend.ts:
-  #   plugins:
-  #     - 'typescript'
-  #     - 'typescript-operations'
-  #     - 'typescript-react-apollo'
+      withHOC: false
+      withHooks: true

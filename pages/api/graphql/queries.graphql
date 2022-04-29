@@ -1,0 +1,16 @@
+query AllProjects {
+  projects {
+    id
+    title
+    description
+    link
+    techStack
+    sourceCode
+    screenShots {
+      id
+    }
+    dateReleased
+    dateUpdated
+    version
+  }
+}

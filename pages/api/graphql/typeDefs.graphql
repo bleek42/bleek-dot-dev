@@ -1,17 +1,36 @@
 scalar Date
 scalar JSON
 scalar URL
-scalar Asset
+scalar DateTime
 
 type Project {
   id: ID!
   title: String!
   description: String!
   link: URL!
-  techStack: [JSON!]!
+  techStack: TechStack!
   sourceCode: [URL!]!
   screenShots: [Asset]
   dateReleased: Date!
   dateUpdated: Date
   version: Float!
+}
+
+type TechStack {
+  frontEnd: [String]!
+  backEnd: [String]!
+  dataBase: [String]!
+  tools: [String]!
+}
+
+type Asset {
+  id: Number!
+  fileName: String!
+  handle: String!
+  mimeType: String
+  size: Float
+  width: Float
+  height: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }

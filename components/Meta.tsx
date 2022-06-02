@@ -1,19 +1,9 @@
-import Head from "next/head";
-import { Fragment } from "react";
+import type { MetaProps } from '../types/props/meta.props';
+import type { FC } from 'react';
 
-type MetaProps = {
-  title: string;
-  description: string;
-  keywords: string;
-  image?: string | undefined;
-};
+import Head from 'next/head';
 
-const Meta = ({
-  title,
-  description,
-  keywords,
-  image,
-}: MetaProps): JSX.Element => {
+const Meta: FC<MetaProps> = ({ title, description, keywords, image }: MetaProps): JSX.Element => {
   return (
     <Head>
       <title>{title}</title>
@@ -28,10 +18,10 @@ const Meta = ({
 };
 
 Meta.defaultProps = {
-  title: "bleek.tech",
-  description: "Brandon Leek - Full Stack Developer",
+  title: 'bleek.tech',
+  description: 'Brandon Leek - Full Stack Developer',
   keywords:
-    "web development, application development, software, programming, html, css, javascript, react, node.js, sql, typescript",
+    'web development, application development, software, programming, html, css, javascript, react, node.js, sql, typescript',
   image: undefined,
 };
 

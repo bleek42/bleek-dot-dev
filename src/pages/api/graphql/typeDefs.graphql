@@ -8,7 +8,7 @@ type Project {
   title: String!
   description: String!
   link: URL!
-  techStack: TechStack!
+  tech: string;
   sourceCode: [URL!]!
   screenShots: [Asset]
   dateReleased: Date!
@@ -16,12 +16,12 @@ type Project {
   version: Float!
 }
 
-type TechStack {
-  frontEnd: [String]!
-  backEnd: [String]!
-  dataBase: [String]!
-  tools: [String]!
-}
+# type TechStack {
+#   frontEnd: [String]!
+#   backEnd: [String]!
+#   dataBase: [String]!
+#   tools: [String]!
+# }
 
 type Asset {
   id: Number!

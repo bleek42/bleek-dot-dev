@@ -1,29 +1,17 @@
-import Image from "next/image";
-import { ReactSVGElement } from "react";
+import type { SectionProps } from '../types/props/section.props';
+import Image from 'next/image';
+import { FC } from 'react';
+import { ProjectItem } from '../types/ProjectItem';
+import SectionDetails from './SectionDetails';
 
-type SectionProps = {
-  title: string;
-  icon?: ReactSVGElement;
-  description?: string;
-  url?: string;
-};
-
-const Section = ({
-  title,
-  icon,
-  description,
-  url,
-}: SectionProps): JSX.Element => {
+const Section: FC<SectionProps> = ({ key, name, item, icon }: SectionProps): JSX.Element => {
   return (
-    <div className="section">
-      <section>
-        <h4>
-          icon: {icon} title: {title}
-        </h4>
-        <p>description: {description}</p>
-        <a href={url}>Link</a>
-      </section>
-    </div>
+    <section className={item?.title ? item.title : 'unknown-section'}>
+      <span>{icon ? icon : null}</span>
+      <h3>{item?.title || 'some title'}</h3>
+      <p>{item?.description}</p>
+      <SectionDetails key={item?.id} screenShots={item?.screenShots} />
+    </section>
   );
 };
 

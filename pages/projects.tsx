@@ -1,44 +1,47 @@
 import { AggregateError } from '@graphql-tools/utils';
 import { GraphQLError } from 'graphql';
-import type { NextPage } from 'next';
-import { Fragment, useState } from 'react';
+import type { GetStaticProps, NextPage } from 'next';
+import { AppInitialProps } from 'next/app';
+import Error from 'next/error';
+import React, { Fragment, useState } from 'react';
 
 import Header from '../components/Header';
 import Meta from '../components/Meta';
 import NavMenu from '../components/NavMenu';
 import Section from '../components/Section';
 import SectionDetails from '../components/SectionDetails';
+import { ProjectItem } from '../types/ProjectItem';
 
 import { GraphCMS } from './api/lib/graphcms.client';
 
-const Projects: NextPage = ({ projects }): JSX.Element => {
+type ProjectsPageProps = {
+  items: ProjectItem[];
+  loading: boolean;
+  error: {
+    hasError?: boolean;
+    message?: Error | string;
+  };
+};
+
+const Projects: NextPage<ProjectsPageProps> = ({ items, loading, error }: ProjectsPageProps) => {
   return (
     <div>
       <ul>
         <li>No preview...</li>
-        {projects.map((project) => (
-          <li key={project.id}>{project.title}</li>
+        {items.map((item, idx) => (
+          <Section key={item.id} item={item} name="project-item" />
         ))}
       </ul>
     </div>
   );
 };
 
-export const getStaticProps = async ({ params = '', preview = false }) => {
-  const projects = await GraphCMS.AllProjects();
-  console.log(projects);
-  if (!preview || !projects) {
-    return {
-      props: {
-        message: 'no preview',
-      },
-    };
-  }
-  console.log(projects);
+export const getStaticProps: GetStaticProps = async ({ params = '', preview = false }) => {
+  const items = await GraphCMS.AllProjects();
+  console.log(items);
   return {
     props: {
-      preview,
-      ...projects,
+      items,
     },
   };
 };

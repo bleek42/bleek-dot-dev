@@ -3,7 +3,7 @@ input ProjectCreateInput {
   title: String!
   description: String!
   link: URL!
-  techStack: TechStack
+  tech: JSON!
   sourceCode: [URL]!
   dateReleased: Date!
   dateUpdated: Date

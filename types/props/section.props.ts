@@ -1,9 +1,9 @@
-import { ReactNodeArray } from 'react';
-import { ProjectItem } from '../ProjectItem';
+import type { IconType } from 'react-icons';
+import { ProjectItem } from '../interfaces/ProjectItem';
 
 export type SectionProps = {
   key: number;
-  item?: ProjectItem;
-  icon?: ReactNodeArray;
   name: string;
+  icon?: IconType;
+  item?: ProjectItem;
 };

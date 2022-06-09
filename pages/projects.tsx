@@ -9,8 +9,7 @@ import Header from '../components/Header';
 import Meta from '../components/Meta';
 import NavMenu from '../components/NavMenu';
 import Section from '../components/Section';
-import SectionDetails from '../components/SectionDetails';
-import { ProjectItem } from '../types/ProjectItem';
+import { ProjectItem } from '../types/interfaces/ProjectItem';
 
 import { GraphCMS } from './api/lib/graphcms.client';
 

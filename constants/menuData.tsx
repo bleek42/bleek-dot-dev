@@ -1,32 +1,27 @@
-import { IconType } from "react-icons/lib";
-import { RiBracesFill } from "react-icons/ri";
-import { VscSymbolArray, VscCode, VscCommentDiscussion } from "react-icons/vsc";
+import { RiBracesFill } from 'react-icons/ri';
+import { VscSymbolArray, VscCode, VscCommentDiscussion } from 'react-icons/vsc';
 
-interface INavMenuItem {
-  title: string;
-  path: string;
-  icon: IconType | any;
-}
+import { NavMenuItem } from '../types/interfaces/NavMenuItem';
 
-export const menuData: INavMenuItem[] = [
+export const menuData: NavMenuItem[] = [
   {
-    title: "Home",
-    path: "/home",
+    title: 'Home',
+    path: '/home',
     icon: <RiBracesFill />,
   },
   {
-    title: "About",
-    path: "/about",
+    title: 'About',
+    path: '/about',
     icon: <VscSymbolArray />,
   },
   {
-    title: "Contact",
-    path: "/contact",
+    title: 'Contact',
+    path: '/contact',
     icon: <VscCommentDiscussion />,
   },
   {
-    title: "Projects",
-    path: "/projects",
+    title: 'Projects',
+    path: '/projects',
     icon: <VscCode />,
   },
 ];

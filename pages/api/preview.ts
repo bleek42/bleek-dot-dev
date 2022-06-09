@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
-import type { QueryProjectsArgs, QueryProjectArgs } from '../../generated/frontend/typeDefs';
 
 export default async function handler<NextApiHandler>(
   req: NextApiRequest,
@@ -7,14 +6,13 @@ export default async function handler<NextApiHandler>(
 ): Promise<void> {
   const { title } = req.body;
   try {
-    if (req.method !== 'GET') {
+    if (req.headers.authorization !== process.env.GRAPHCMS_URI && req.method !== 'POST') {
       res.status(401).send('Unauthorized Request.');
     }
-    res.status(200).json({ message: 'happy path!' });
-    res.status(200).send({ message: 'OK' });
+    res.status(200).json({ message: 'Successful request to GraphCMS URI!' });
   } catch {
     res.status(500).send({ message: 'Internal Server Error!' });
   } finally {
-    console.log('Pinged Next API Route!');
+    console.info(`Pinged Next.js API route with title preview: ${title}`);
   }
 }

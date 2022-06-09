@@ -1,18 +1,14 @@
 import Image from 'next/image';
-import { Fragment } from 'react';
+import { FC, Fragment } from 'react';
 
-type SectionDetailsProps = {
-  screenShots?: Array<URL | string>;
-};
-
-const SectionDetails = ({ screenShots }: SectionDetailsProps): JSX.Element => {
+const SectionDetails: FC = (): JSX.Element => {
   return (
     <Fragment>
       <details>
         <summary>Click to view screenshots</summary>
-        {screenShots?.map((slug) => (
-          <Image key={slug} src={slug} alt="some-img" />
-        ))}
+        {/* {screenShots?.map((key) => (
+          <Image key={key} alt="some-img" />
+        ))} */}
       </details>
     </Fragment>
   );

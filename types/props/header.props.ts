@@ -1,7 +1,8 @@
-import type { ReactSVGElement } from 'react';
+import type { IconType } from 'react-icons';
 
 export type HeaderProps = {
-  icon?: ReactSVGElement;
-  name?: string;
-  info?: string;
+  key: number;
+  name: string;
+  info: string;
+  icon?: IconType;
 };

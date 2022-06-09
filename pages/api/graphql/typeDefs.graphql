@@ -1,14 +1,18 @@
 scalar Date
-scalar JSON
-scalar URL
 scalar DateTime
+scalar URL
+scalar JSON
 
-type Project {
+interface Node {
+  id: ID!
+}
+
+type Project implements Node {
   id: ID!
   title: String!
   description: String!
   link: URL!
-  tech: string;
+  techStack: JSON!
   sourceCode: [URL!]!
   screenShots: [Asset]
   dateReleased: Date!
@@ -16,15 +20,8 @@ type Project {
   version: Float!
 }
 
-# type TechStack {
-#   frontEnd: [String]!
-#   backEnd: [String]!
-#   dataBase: [String]!
-#   tools: [String]!
-# }
-
-type Asset {
-  id: Number!
+type Asset implements Node {
+  id: ID!
   fileName: String!
   handle: String!
   mimeType: String
@@ -33,4 +30,9 @@ type Asset {
   height: Float
   createdAt: DateTime!
   updatedAt: DateTime!
+}
+
+type Query {
+  allProjects: [Project]
+  project(id: ID!): Project
 }

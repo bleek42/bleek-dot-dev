@@ -1,5 +1,45 @@
 {
-  "extends": "next/core-web-vitals",
-  "plugins": []
+  "env": {
+    "browser": true,
+    "es2022": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "project": "bleek-dot-tech/tsconfig.json",
+    "tsconfigRootDir": "./",
+    "settings": {
+      "react": {
+        "version": "detect"
+      },
+      "next": {
+        "version": "detect"
+      }
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "next",
+    "next/core-web-vitals",
+    "plugin:prettier/recommended"
+  ],
+  // plugins bring in special rules, prettierrc rules you set
+  "plugins": ["@typescript-eslint", "prettier"],
+  "rules": {
+    // it's just formatting, so let's leave it at warn and not error
+    "prettier/prettier": "warn",
+    // the next 2 MUST be off to play nice with prettier/eslint
+    "@typescript-eslint/arrow-body-style": "off",
+    "@typescript-eslint/prefer-arrow-callback": "off",
+    "camelcase": "warn",
+    "no-console": "warn",
+    "@typescript-eslint/brace-style": ["error", "stroustrup"]
+  }
 }
 

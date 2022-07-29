@@ -39,6 +39,7 @@
     "@typescript-eslint/prefer-arrow-callback": "off",
     "camelcase": "warn",
     "no-console": "warn",
+    "no-unused-vars": "off",
     "@typescript-eslint/brace-style": ["error", "stroustrup"]
   }
 }

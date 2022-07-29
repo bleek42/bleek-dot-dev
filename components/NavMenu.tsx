@@ -1,9 +1,10 @@
-import type { NextPage } from "next";
-import Link from "next/link";
-import { useState } from "react";
+import type { NextPage } from 'next';
+import Link from 'next/link';
+import { useState } from 'react';
 
-import { menuData } from "../constants/menuData";
-import styles from "../styles/NavMenu.module.scss";
+import { navMenuData } from '../constants/navMenuData;';
+import styles from '../styles/NavMenu.module.scss';
+import { NavMenuItem } from '../types/interfaces/NavMenuItem';
 
 const NavMenu: NextPage = (): JSX.Element => {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -14,17 +15,14 @@ const NavMenu: NextPage = (): JSX.Element => {
         <label className={styles.label} htmlFor="btn">
           <button className={styles.btn}>Menu</button>
         </label>
-        <nav
-          className={toggle ? styles.open : styles.close}
-          onMouseLeave={() => setToggle(false)}
-        >
+        <nav className={toggle ? styles.open : styles.close} onMouseLeave={() => setToggle(false)}>
           <ul>
-            {menuData.map((item, idx) => {
+            {navMenuData.map(({ title, path, icon }: NavMenuItem, idx: number) => {
               return (
                 <li key={idx}>
-                  <Link href={item.path}>
+                  <Link href={path}>
                     <a>
-                      {item.icon} {item.title}
+                      {icon} {title}
                     </a>
                   </Link>
                 </li>

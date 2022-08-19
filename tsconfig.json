@@ -1,7 +1,31 @@
 {
   "compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@components/*": ["components/*"],
+			"@constants/*": ["constants/*"],
+			"@pages/*": ["pages/*"],
+			"@api/*": ["pages/api/*"],
+			"@styles/*": ["styles/*"],
+			"@public/*": ["public/*"],
+			"@types/*": ["types/*.type.ts"],
+			"@props/*": ["types/interfaces/*.props.ts"],
+			"@generated/*": ["generated/*"]
+		},
+		"rootDirs": [
+			"components",
+			"constants",
+			"pages",
+			"pages/api",
+			"public",
+			"styles",
+			"types",
+			"types/interfaces",
+			"generated"
+		],
     "target": "esnext",
     "lib": [
+			"ES6",
       "dom",
       "dom.iterable",
       "esnext"
@@ -21,8 +45,15 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+		"next.config.js",
+    "components/*.tsx",
+		"constants/*.ts",
+		"pages/*.tsx",
+		"pages/api/**/*.ts",
+		"public/",
+		"styles/*.scss",
+		"types/*.type{.ts,.tsx}",
+		"types/interfaces/*.props.ts",
   ],
   "exclude": [
     "node_modules"

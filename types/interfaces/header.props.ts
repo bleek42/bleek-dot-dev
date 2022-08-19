@@ -1,8 +1,8 @@
 import type { IconType } from 'react-icons';
 
-export type HeaderProps = {
+export interface HeaderProps {
   key: number;
-  name: string;
-  info: string;
+  title: string;
+  info?: string;
   icon?: IconType;
 };

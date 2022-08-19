@@ -1,10 +1,13 @@
 import type { NextPage } from 'next';
+
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { navMenuData } from '../constants/navMenuData;';
-import styles from '../styles/NavMenu.module.scss';
-import { NavMenuItem } from '../types/interfaces/NavMenuItem';
+
+import navList from '@constants/navList';
+import styles from '@styles/NavMenu.module.scss';
+
+import type { NavItem } from '@types/NavItem';
 
 const NavMenu: NextPage = (): JSX.Element => {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -13,14 +16,14 @@ const NavMenu: NextPage = (): JSX.Element => {
     <div className={styles.container}>
       <form className={styles.toggle} onMouseOver={() => setToggle(true)}>
         <label className={styles.label} htmlFor="btn">
-          <button className={styles.btn}>Menu</button>
+          <input className={styles.btn} name="btn" type="button">Menu</input>
         </label>
         <nav className={toggle ? styles.open : styles.close} onMouseLeave={() => setToggle(false)}>
           <ul>
-            {navMenuData.map(({ title, path, icon }: NavMenuItem, idx: number) => {
+            {navList.map(({ id, title, path, icon, url }: NavItem) => {
               return (
-                <li key={idx}>
-                  <Link href={path}>
+                <li key={id}>
+                  <Link  href={path}>
                     <a>
                       {icon} {title}
                     </a>

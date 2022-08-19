@@ -1,16 +1,18 @@
 import type { FC } from 'react';
-import type { HeaderProps } from '../types/props/header.props';
 
-import styles from '../styles/Header.module.scss';
+import type { HeaderProps } from '@/types/interfaces/header.props';
 
-const Header: FC<HeaderProps> = ({ title, info, icon }: HeaderProps): JSX.Element => {
+const Heading: FC<HeaderProps> = ({ key, title, info, icon }: HeaderProps): JSX.Element => {
   return (
-    <div className={styles.container}>
-      <span>{undefined}</span>
-      <h2>{title ? title : 'some title'}</h2>
-      <h3>{info ? info : 'some info'}</h3>
-    </div>
+    <header key={key} id={`${title}-heading`} className={`heading ${title}`}>
+      <span className="icon-span heading">{icon ?? icon}</span>
+      <h2 className="heading">{title}</h2>
+      <h4 className={info ? `info-${title} heading` : 'hidden'}>{info ? info : null}</h4>
+    </header>
   );
-};
+}
 
-export default Header;
+
+
+
+export default Heading;

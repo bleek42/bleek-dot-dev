@@ -1,8 +1,8 @@
-export interface ProjectItem {
+export type ProjectItem = {
   readonly id: number;
   readonly title: string;
   description: string;
-  link: Array<URL | string>;
+  externalLinks: Array<URL | string>;
   tech: string;
   sourceCode: Array<URL | string | null>;
   screenShots?: Array<URL | string>;

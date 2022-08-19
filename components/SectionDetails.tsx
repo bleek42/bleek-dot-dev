@@ -1,17 +1,20 @@
 import Image from 'next/image';
-import { FC, Fragment } from 'react';
+import { Fragment } from 'react';
 
-const SectionDetails: FC = (): JSX.Element => {
-  return (
-    <Fragment>
-      <details>
-        <summary>Click to view screenshots</summary>
-        {/* {screenShots?.map((key) => (
-          <Image key={key} alt="some-img" />
-        ))} */}
-      </details>
-    </Fragment>
-  );
+interface DetailsProps {
+  index: number;
+	img: string;
 };
 
-export default SectionDetails;
+const Details = ({ img, index }: DetailsProps): JSX.Element => {
+	return (
+		<Fragment key={index}>
+			<details>
+				<summary>Click to view screenshots</summary>
+				<Image src={img} alt={`${img}-details`} />
+			</details>
+		</Fragment>
+	);
+};
+
+export default Details;

@@ -2,7 +2,7 @@ import { ReactSVGElement } from 'react';
 
 import styles from '../styles/Header.module.scss';
 
-type HeaderProps = {
+interface HeaderProps {
 	icon?: ReactSVGElement;
 	title?: string;
 	description?: string;
@@ -10,11 +10,11 @@ type HeaderProps = {
 
 const Header = ({ icon, title, description }: HeaderProps): JSX.Element => {
 	return (
-		<div className={styles.container}>
+		<header className={`${title}-header`}>
 			<span>{icon}</span>
 			<h2>{title}</h2>
 			<h3>{description}</h3>
-		</div>
+		</header>
 	);
 };
 

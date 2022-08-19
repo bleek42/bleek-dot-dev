@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { Fragment } from 'react';
 
-type ImageDropdownProps = {
+type DetailsProps = {
 	img: string;
 };
 
-const SectionDetails = ({ img }: ImageDropdownProps): JSX.Element => {
+const Details = ({ img }: DetailsProps): JSX.Element => {
 	return (
 		<Fragment>
 			<details>

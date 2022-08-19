@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
 
-type MetaProps = {
+interface MetaProps {
 	title: string;
 	description: string;
 	keywords: string;

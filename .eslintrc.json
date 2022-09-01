@@ -27,10 +27,12 @@
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "next",
     "next/core-web-vitals",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:prettier/react",
+    "plugin:prettier/@typescript-eslint"
   ],
   // plugins bring in special rules, prettierrc rules you set
-  "plugins": ["@typescript-eslint", "prettier"],
+  "plugins": ["@typescript-eslint", "react", "prettier"],
   "rules": {
     // it's just formatting, so let's leave it at warn and not error
     "prettier/prettier": "warn",

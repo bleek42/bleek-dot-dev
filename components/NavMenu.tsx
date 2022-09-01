@@ -1,12 +1,11 @@
-import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
+import type { NavMenuProps } from '../types/props/navMenu.props';
 
-import { navMenuData } from '../constants/navMenuData;';
 import styles from '../styles/NavMenu.module.scss';
 import { NavMenuItem } from '../types/interfaces/NavMenuItem';
 
-const NavMenu: NextPage = (): JSX.Element => {
+export default function NavMenu({ items }: NavMenuProps) {
   const [toggle, setToggle] = useState<boolean>(false);
 
   return (
@@ -33,6 +32,4 @@ const NavMenu: NextPage = (): JSX.Element => {
       </form>
     </div>
   );
-};
-
-export default NavMenu;
+}

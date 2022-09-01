@@ -1,8 +1,5 @@
 import { RiBracesFill } from 'react-icons/ri';
 import { VscArchive, VscCode, VscCommentDiscussion, VscSymbolArray } from 'react-icons/vsc';
-
-import { NavMenuItem } from '../types/interfaces/NavMenuItem';
-
 // export class NavMenuData implements NavMenuItem {
 //   public title: string;
 //   public path: string;
@@ -14,7 +11,7 @@ import { NavMenuItem } from '../types/interfaces/NavMenuItem';
 //   }
 // }
 
-export const navMenuData: Array<NavMenuItem> = [
+export const navMenuData = [
   {
     title: 'Home',
     path: '/home',

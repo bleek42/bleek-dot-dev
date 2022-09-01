@@ -1,15 +1,8 @@
-import { AggregateError } from '@graphql-tools/utils';
-import { GraphQLError } from 'graphql';
 import type { GetStaticProps, NextPage } from 'next';
-import { AppInitialProps } from 'next/app';
 import Error from 'next/error';
-import React, { Fragment, useState } from 'react';
 
-import Header from '../components/Header';
-import Meta from '../components/Meta';
-import NavMenu from '../components/NavMenu';
-import Section from '../components/Section';
-import { ProjectItem } from '../types/interfaces/ProjectItem';
+import Section from '@components/Section';
+import type { ProjectItem } from '@types/ProjectItem';
 
 import { GraphCMS } from './api/lib/graphcms.client';
 

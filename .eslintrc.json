@@ -16,7 +16,15 @@
       },
       "next": {
         "version": "detect"
-      }
+      },
+			"nodejs": {
+				"version": "18.7.0"
+			},
+			"import/resolver": {
+				"node": {
+					"extensions": [".ts", ".tsx"]
+				}
+			}
     },
     "ecmaVersion": 12,
     "sourceType": "module"
@@ -27,21 +35,42 @@
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "next",
     "next/core-web-vitals",
+		"import",
+		"unused-imports",
     "plugin:prettier/recommended",
-    "plugin:prettier/react",
-    "plugin:prettier/@typescript-eslint"
+		"plugin:prettier/@typescript-eslint"
   ],
   // plugins bring in special rules, prettierrc rules you set
-  "plugins": ["@typescript-eslint", "react", "prettier"],
+  "plugins": ["import", "unused-imports", "react", "@typescript-eslint", "prettier"],
   "rules": {
     // it's just formatting, so let's leave it at warn and not error
     "prettier/prettier": "warn",
     // the next 2 MUST be off to play nice with prettier/eslint
     "@typescript-eslint/arrow-body-style": "off",
     "@typescript-eslint/prefer-arrow-callback": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-inferrable-types": "off",
+		"no-use-before-define": "off",
+		"@typescript-eslint/no-use-before-define": "off",
+		"@next/next/no-img-element": "off",
     "camelcase": "warn",
     "no-console": "warn",
-    "no-unused-vars": "off",
-    "@typescript-eslint/brace-style": ["error", "stroustrup"]
+    "no-unused-vars": "warn",
+		"brace-style": ["error", "stroustrup"],
+    "@typescript-eslint/brace-style": ["error", "stroustrup"],
+		"unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ],
+
+    "no-eq-null": "warn",
+    "complexity": "warn"
   }
 }

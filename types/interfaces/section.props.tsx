@@ -1,11 +1,10 @@
 import type { IconType } from 'react-icons';
-import { ProjectItem } from '../interfaces/ProjectItem';
+import { ProjectItem } from '../ProjectItem.type';
 
-export type SectionProps<IconBaseProps> = {
+export interface SectionProps<IconBaseProps> {
   key: number;
   name: string;
-  title: string;
-  description: string;
+  content?: string;
   icon?: (props: IconBaseProps) => IconType;
   item?: ProjectItem;
 };

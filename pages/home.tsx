@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 
 import Header from "@components/Header";
+import NavMenu from "@components/Heading\";";
 import Meta from "@components/Meta";
-import NavMenu from "@components/NavMenu";
 
 const Home: NextPage = (): JSX.Element => {
   return (

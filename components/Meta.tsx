@@ -1,6 +1,10 @@
-import type { MetaProps } from '@props/meta.props';
+import type { BaseProps } from '@interfaces/BaseProps';
 
 import Head from 'next/head';
+
+type MetaProps = BaseProps & {
+	image?: string | null;
+}
 
 const Meta = ({ title, description, keywords, image }: MetaProps): JSX.Element => {
 	return (

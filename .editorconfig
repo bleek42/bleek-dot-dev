@@ -8,10 +8,15 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 
 # 2 space indentation
-[*.{js,ts,json}]
+[*.{js,ts,jsx,tsx}]
 charset = utf-8
 indent_style = tab
 indent_size = 2
+
+[.json]
+charset = utf-8
+indent_size = 4
+indent_style = tab
 
 [*.scss]
 charset = utf-8
@@ -19,6 +24,11 @@ indent_style = tab
 indent_size = 2
 
 [*.md]
+charset = utf-8
+indent_style = tab
+indent_size = 4
+
+[*.{graphql,gql}]
 charset = utf-8
 indent_style = tab
 indent_size = 4

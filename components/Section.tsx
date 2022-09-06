@@ -1,32 +1,38 @@
 import type { FC } from 'react';
-import type { IconBaseProps } from 'react-icons';
 
 import { Fragment } from 'react';
 
-import type { SectionProps } from '@/types/interfaces/section.props';
+import { Maybe } from '@graphql-tools/utils/types';
+import type { BaseProps } from '@interfaces/BaseProps';
+import type { Project } from '@interfaces/Project';
 
-const Section: FC<SectionProps<IconBaseProps>> = ({
+type SectionProps = BaseProps & Maybe<Project>
+
+const Section: FC<SectionProps> = ({
   key,
-  name,
-  content,
+  title,
+  description,
+  keywords,
   icon,
-  item,
-}: SectionProps<IconBaseProps>): JSX.Element => {
+  items
+}: SectionProps) => {
   return (
-    <section key={key} className={`${name}-section`}>
-      {icon && (
+    <section key={key} className={`${title}-section`}>
+      <h3>{title}</h3>
+      {keywords && (
         <span>
-          {icon}
+          {keywords}
         </span>
       )}
-      {content && (
+      {description && (
         <article>
-          <p>{content}</p>
+          <p>{description}</p>
         </article>
       )}
-      {item && Array.isArray(item) && (
-        <Fragment key={item?.id}>
-          <article>
+      {items && Array.isArray(items) && (
+        items.map((item, idx) => (
+        <Fragment >
+          <article key={item?.id || idx}>
             <h3>{item?.title}</h3>
             <p>{item?.description}</p>
             <p>{item?.tech}</p>
@@ -39,6 +45,7 @@ const Section: FC<SectionProps<IconBaseProps>> = ({
             {item?.externalLinks.map((url, idx) => <a key={idx} href={url as string} target="_blank" />)}
           </aside>
         </Fragment>
+        ))
       )}
     </section>
   );

@@ -8,9 +8,10 @@
 			"@api/*": ["pages/api/*"],
 			"@styles/*": ["styles/*"],
 			"@public/*": ["public/*"],
-			"@types/*": ["types/*.type.ts"],
-			"@props/*": ["types/interfaces/*.props.ts"],
-			"@generated/*": ["generated/*"]
+			"@interfaces/*": ["interfaces/*"],
+			"@generated/*": ["generated/*"],
+			"@hooks/*": ["hooks/*"],
+			"@context/": ["@context/*"]
 		},
 		"rootDirs": [
 			"components",

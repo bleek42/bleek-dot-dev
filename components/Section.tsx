@@ -12,19 +12,19 @@ interface SectionProps {
 
 const Section = ({ title, icon, description, url }: SectionProps): JSX.Element => {
 	return (
-		<div className={`${title}-section`}>
-			<section>
-				<h4>
-					icon: {icon} title: {title}
-				</h4>
-				<p>description: {description}</p>
-				<a href={url}>Link</a>
-				<aside>
-					<SectionDetails />
-				</aside>
-			</section>
-		</div>
-	);
+    <div className={`${title}-section`}>
+      <section>
+        <h4>
+          icon: {icon} title: {title}
+        </h4>
+        <p>description: {description}</p>
+        <a href={url}>Link</a>
+        <aside>
+          <SectionDetails img={} />
+        </aside>
+      </section>
+    </div>
+  );
 };
 
 export default Section;

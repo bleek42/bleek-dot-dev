@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Link from 'next/link';
 import { useState } from 'react';
 
-import { menuData } from '../utils/menuData';
+import { menuData } from '../utils/navListItems';
 import styles from '../styles/NavMenu.module.scss';
 
 const NavMenu: NextPage = (): JSX.Element => {

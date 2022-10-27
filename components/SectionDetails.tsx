@@ -5,15 +5,16 @@ type DetailsProps = {
 	img: string;
 };
 
-const Details = ({ img }: DetailsProps): JSX.Element => {
-	return (
-		<Fragment>
-			<details>
-				<summary>Click to view screenshots</summary>
-				<Image src={img} alt="some-img" />
-			</details>
-		</Fragment>
-	);
+const SectionDetails = ({ img }: DetailsProps): JSX.Element => {
+  return (
+    <details>
+      <summary>Click to view screenshots</summary>
+      <Image
+        src={img}
+        alt="some-img"
+      />
+    </details>
+  );
 };
 
 export default SectionDetails;

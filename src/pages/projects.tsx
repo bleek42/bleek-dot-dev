@@ -123,6 +123,7 @@ export const getStaticProps = async ({ params = '', preview = false }) => {
 	};
 };
 
+<<<<<<< HEAD
 {
 	/* <section
 				className="project"
@@ -366,3 +367,6 @@ export const getStaticProps = async ({ params = '', preview = false }) => {
 				</details>
 			</section> */
 }
+=======
+export default Projects;
+>>>>>>> 0aac855 (huge overhaul: brought in components, new styles from original bleekdottech repo; refaftored types, modified configs, fixed typing issue across component props mostly with JSX.IntrinsicElems, etc...)

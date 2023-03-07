@@ -1,11 +1,11 @@
-import { useId, Fragment } from "react";
-import { CgCornerRightDown } from "react-icons/cg";
+import { useId, Fragment } from 'react';
+import { CgCornerRightDown } from 'react-icons/cg';
 
-import Header from "../components/Header";
-import Section from "../components/Section";
-import Footer from "../components/Footer";
-import React from "react";
-import Meta from "../components/Meta";
+import Header from '../components/Header';
+import Section from '../components/Section';
+import Footer from '../components/Footer';
+import React from 'react';
+import Meta from '../components/Meta';
 
 export default function Home() {
 	const pageId = useId();
@@ -13,12 +13,7 @@ export default function Home() {
 	return (
 		<Fragment>
 			<Meta />
-			<Header
-				id={`home-header-${pageId}`}
-				name="Home"
-				content=""
-				icon={null}
-			/>
+			<Header id={`home-header-${pageId}`} name="Home" content="" icon={null} />
 			<main>
 				<Section
 					id="home-sect-1"
@@ -28,7 +23,7 @@ export default function Home() {
 					icon={null}
 				/>
 			</main>
-			<Footer id={""} name={`home-footer-${pageId}`} icon={null} />
+			<Footer id={''} name={`home-footer-${pageId}`} icon={null} />
 		</Fragment>
 	);
 }

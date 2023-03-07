@@ -1,40 +1,41 @@
+import React from 'react';
+import { VscCommentDiscussion, VscCode, VscSymbolArray } from 'react-icons/vsc';
 import { RiBracesFill } from 'react-icons/ri';
-import { VscArchive, VscCode, VscCommentDiscussion, VscSymbolArray } from 'react-icons/vsc';
-// export class NavMenuData implements NavMenuItem {
-//   public title: string;
-//   public path: string;
-//   public icon: IconType | ReactSVGElement;
-//   constructor(title, path, icon) {
+
+// class NavLink {
+//   constructor(id, title, path, icon) {
+//     this.id = id;
 //     this.title = title;
 //     this.path = path;
 //     this.icon = icon;
 //   }
 // }
 
-export const navMenuData = [
+// const home = new NavLink(1, 'Home', '/', <RiBracesFill />);
+
+export const navLinks = [
   {
+    id: 1,
     title: 'Home',
-    path: '/home',
+    path: '/',
     icon: <RiBracesFill />,
   },
   {
+    id: 2,
     title: 'About',
     path: '/about',
     icon: <VscSymbolArray />,
   },
   {
+    id: 3,
     title: 'Contact',
     path: '/contact',
     icon: <VscCommentDiscussion />,
   },
   {
+    id: 4,
     title: 'Projects',
     path: '/projects',
     icon: <VscCode />,
-  },
-  {
-    title: 'Blog',
-    path: '/blog',
-    icon: <VscArchive />,
   },
 ];

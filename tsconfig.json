@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-		"baseUrl": ".",
+		"baseUrl": "./src",
 		"paths": {
 			"@components/*": ["components/*"],
 			"@constants/*": ["constants/*"],
@@ -8,22 +8,13 @@
 			"@api/*": ["pages/api/*"],
 			"@styles/*": ["styles/*"],
 			"@public/*": ["public/*"],
-			"@interfaces/*": ["interfaces/*"],
+			"@interfaces/*": [
+				"src/types/interfaces/*"
+			],
 			"@generated/*": ["generated/*"],
 			"@hooks/*": ["hooks/*"],
 			"@context/": ["@context/*"]
 		},
-		"rootDirs": [
-			"components",
-			"constants",
-			"pages",
-			"pages/api",
-			"public",
-			"styles",
-			"types",
-			"types/interfaces",
-			"generated"
-		],
     "target": "esnext",
     "lib": [
       "dom",
@@ -42,8 +33,16 @@
   },
   "include": [
     "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+		"next.config.js",
+    "components/*.tsx",
+		"constants/*.ts",
+		"pages/*.tsx",
+		"pages/api/**/*.ts",
+		"public/",
+		"styles/*.scss",
+		"types/*.type{.ts,.tsx}",
+		"types/interfaces/*.props.ts",
+		"src/pages/api/preview.ts",
   ],
   "exclude": [
     "node_modules"

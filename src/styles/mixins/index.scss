@@ -29,7 +29,10 @@
   flex-flow: row wrap;
 }
 
-@mixin nav-bar {
+@mixin nav-menu {
+	display: flex;
+	flex-direction: row;
+	align-items: flex-start;
   position: fixed;
   padding-left: 20px;
   width: 400px;

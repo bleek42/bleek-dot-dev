@@ -4,7 +4,7 @@
 @import './mixins/index.scss';
 
 nav {
-	@include flex-row;
+	@include nav-menu;
 	font-family: $Oxanium;
 	font-size: 20px;
 
@@ -35,13 +35,13 @@ nav {
 	}
 
 	.nav-close {
-		@include nav-bar;
+		@include nav-menu;
 		font-family: $birdman;
 		bottom: -100%;
 	}
 
 	.nav-open {
-		@include flex-row;
+		@include flex-inline;
 		background: map.get($bgcolors, "blue");
 		position: absolute;
 		top: 65px;

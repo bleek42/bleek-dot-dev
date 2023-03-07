@@ -1,3 +1,6 @@
-import { IconContext } from "react-icons";
+import { createContext } from 'react';
+import { IconContext } from 'react-icons';
 
-const IconCtx = React.createContext({})
+const IconCtx = createContext({});
+
+export default IconCtx;

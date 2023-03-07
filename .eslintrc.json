@@ -1,10 +1,13 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "es2022": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 13,
     "ecmaFeatures": {
       "jsx": true
     },
@@ -25,9 +28,7 @@
 					"extensions": [".ts", ".tsx"]
 				}
 			}
-    },
-    "ecmaVersion": 12,
-    "sourceType": "module"
+    }
   },
   "extends": [
     "eslint:recommended",

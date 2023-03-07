@@ -9,7 +9,7 @@
       "jsx": true
     },
     "project": "bleek-dot-tech/tsconfig.json",
-    "tsconfigRootDir": "./",
+    "tsconfigRootDir": ".",
     "settings": {
       "react": {
         "version": "detect"
@@ -18,7 +18,7 @@
         "version": "detect"
       },
 			"nodejs": {
-				"version": "18.7.0"
+        "version": "detect"
 			},
 			"import/resolver": {
 				"node": {
@@ -31,34 +31,31 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "next",
     "next/core-web-vitals",
-		"import",
-		"unused-imports",
-    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    // "import",
+    // "unused-imports",
+    // "prettier",
 		"plugin:prettier/@typescript-eslint"
   ],
   // plugins bring in special rules, prettierrc rules you set
   "plugins": ["import", "unused-imports", "react", "@typescript-eslint", "prettier"],
   "rules": {
-    // it's just formatting, so let's leave it at warn and not error
+    "react/react-in-jsx-scope": "off",
     "prettier/prettier": "warn",
-    // the next 2 MUST be off to play nice with prettier/eslint
     "@typescript-eslint/arrow-body-style": "off",
     "@typescript-eslint/prefer-arrow-callback": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-inferrable-types": "off",
-		"no-use-before-define": "off",
 		"@typescript-eslint/no-use-before-define": "off",
 		"@next/next/no-img-element": "off",
-    "camelcase": "warn",
-    "no-console": "warn",
-    "no-unused-vars": "warn",
-		"brace-style": ["error", "stroustrup"],
-    "@typescript-eslint/brace-style": ["error", "stroustrup"],
+    "@typescript-eslint/brace-style": [
+      "error",
+      "stroustrup"
+    ],
 		"unused-imports/no-unused-imports": "error",
     "unused-imports/no-unused-vars": [
       "warn",
@@ -69,8 +66,18 @@
         "argsIgnorePattern": "^_"
       }
     ],
-
-    "no-eq-null": "warn",
-    "complexity": "warn"
+    "no-console": "warn",
+    "no-unused-vars": "warn",
+    "brace-style": [
+      "error",
+      "stroustrup"
+    ],
+    "prefer-const": "warn",
+    "no-use-before-define": "off",
+    "camelcase": "warn",
+    "quotes": [
+      "warn",
+      "single"
+    ]
   }
 }

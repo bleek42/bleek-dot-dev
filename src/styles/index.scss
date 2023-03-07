@@ -1,0 +1,17 @@
+@import "./SASS_config";
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: radial-gradient(#263349 24%, #5f48a0 36%);
+  font-family: "'ProFontWindows NF', 'CodeNewRoman', 'CaskaydiaCove NF'";
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}

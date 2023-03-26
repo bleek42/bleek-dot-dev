@@ -104,6 +104,25 @@ export default function Projects() {
 	);
 }
 
+export const getStaticProps = async ({ params = '', preview = false }) => {
+	const projects = {};
+	console.log(projects);
+	if (!preview || !projects) {
+		return {
+			props: {
+				message: 'no preview',
+			},
+		};
+	}
+	console.log(projects);
+	return {
+		props: {
+			preview,
+			...projects,
+		},
+	};
+};
+
 {
 	/* <section
 				className="project"

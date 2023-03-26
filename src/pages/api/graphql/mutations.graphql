@@ -3,12 +3,13 @@ input ProjectCreateInput {
   title: String!
   description: String!
   link: URL!
-  techStack: [JSON!]!
+  techStack: TechStack
   sourceCode: [URL]!
   dateReleased: Date!
   dateUpdated: Date
   version: Float!
 }
+
 mutation ProjectCreate($input: ProjectCreateInput!) {
   createProject(data: $input) {
     id

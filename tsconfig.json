@@ -1,14 +1,35 @@
 {
   "compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@components/*": ["components/*"],
+			"@constants/*": ["constants/*"],
+			"@pages/*": ["pages/*"],
+			"@api/*": ["pages/api/*"],
+			"@styles/*": ["styles/*"],
+			"@public/*": ["public/*"],
+			"@interfaces/*": ["interfaces/*"],
+			"@generated/*": ["generated/*"],
+			"@hooks/*": ["hooks/*"],
+			"@context/": ["@context/*"]
+		},
+		"rootDirs": [
+			"components",
+			"constants",
+			"pages",
+			"pages/api",
+			"public",
+			"styles",
+			"types",
+			"types/interfaces",
+			"generated"
+		],
     "target": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,

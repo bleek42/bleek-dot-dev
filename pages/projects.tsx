@@ -13,8 +13,8 @@ import { ProjectItem } from '../types/interfaces/ProjectItem';
 
 import { GraphCMS } from './api/lib/graphcms.client';
 
-type ProjectsPageProps = {
-  items: ProjectItem[];
+type ProjectsPageProps = BaseProps & {
+  items: Project[];
   loading: boolean;
   error: {
     hasError?: boolean;
@@ -28,7 +28,7 @@ const Projects: NextPage<ProjectsPageProps> = ({ items, loading, error }: Projec
       <ul>
         <li>No preview...</li>
         {items.map((item, idx) => (
-          <Section key={item.id} item={item} name="project-item" />
+          <Section key={item.id} items={item} name="project-item" />
         ))}
       </ul>
     </div>

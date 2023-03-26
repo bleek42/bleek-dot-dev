@@ -1,0 +1,50 @@
+# input ProjectCreateInput {
+# 	id: ID!
+# 	title: String!
+# 	description: String!
+# 	link: URL!
+# 	tech: JSON!
+# 	sourceCode: [URL]!
+# 	dateReleased: Date!
+# 	dateUpdated: Date
+# 	version: Float!
+# }
+
+# input CreateAssetOnProjectInput {
+#     "filename": String!
+#     "handle": String!
+#     "mimeType": String!
+#     "width": String
+#     "height": String
+#     "screenShotsProject": {
+#       "id": ID!
+#       "title": String!
+#     }
+# }
+
+# mutation ProjectCreate($input: ProjectCreateInput!) {
+# 	createProject(data: $input) {
+# 		id
+# 		title
+# 		description
+# 		link
+# 		techStack
+# 		sourceCode
+# 		dateReleased
+# 		dateUpdated
+# 		version
+# 	}
+# }
+
+# mutation AddAssetOnProject($input: CreateAssetOnProjectInput!) {
+#   createAsset(input: $input} {
+#     id
+#     fileName
+#     handle
+#     mimeType
+#     height
+#     screenShotsProject {
+#       id
+#       title
+#     }
+# }

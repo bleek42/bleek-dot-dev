@@ -1,5 +1,3 @@
-import { Model, Types } from 'mongoose';
-
 enum TechType {
   FRONTEND = 'frontend',
   BACKEND = 'backend',

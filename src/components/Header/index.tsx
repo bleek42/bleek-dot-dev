@@ -1,7 +1,7 @@
 import Navbar from '../Navbar';
 import { navLinks, NavLink } from '../../constants/nav-links';
 import { Wrapper } from './Header';
-import { BlkMd, CyLg } from '../global';
+import { BlkMd, CyLg } from "../../global";
 import { NavItem } from '../Navbar/Navbar';
 
 type HeaderProps = JSX.IntrinsicElements['header'] & {

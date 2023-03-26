@@ -1,0 +1,24 @@
+input ProjectCreateInput {
+  id: ID!
+  title: String!
+  description: String!
+  link: URL!
+  techStack: [JSON!]!
+  sourceCode: [URL]!
+  dateReleased: Date!
+  dateUpdated: Date
+  version: Float!
+}
+mutation ProjectCreate($input: ProjectCreateInput!) {
+  createProject(data: $input) {
+    id
+    title
+    description
+    link
+    techStack
+    sourceCode
+    dateReleased
+    dateUpdated
+    version
+  }
+}

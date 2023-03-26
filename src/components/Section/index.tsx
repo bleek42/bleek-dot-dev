@@ -2,7 +2,7 @@
 import { useId } from 'react';
 
 import { Wrapper, Article } from './Section';
-import { StlLg, BlkTxt, CyTxt } from '../global/index';
+import { StlLg, BlkTxt, CyTxt } from "../../global/index";
 
 export default function Section({ id, name, content, icon }) {
 	const sectionId = useId();

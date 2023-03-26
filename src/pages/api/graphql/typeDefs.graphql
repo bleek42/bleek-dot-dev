@@ -1,0 +1,17 @@
+scalar Date
+scalar JSON
+scalar URL
+scalar Asset
+
+type Project {
+  id: ID!
+  title: String!
+  description: String!
+  link: URL!
+  techStack: [JSON!]!
+  sourceCode: [URL!]!
+  screenShots: [Asset]
+  dateReleased: Date!
+  dateUpdated: Date
+  version: Float!
+}

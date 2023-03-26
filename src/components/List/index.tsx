@@ -1,6 +1,6 @@
 import { Wrapper } from '../Section/Section';
 import { Item } from './List';
-import { BlkTxt } from '../global/index';
+import { BlkTxt } from "../../global/index";
 type ListProps = JSX.IntrinsicElements['ul'] & {
 	items?: any[];
 };

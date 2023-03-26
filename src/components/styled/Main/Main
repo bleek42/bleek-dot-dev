@@ -1,0 +1,7 @@
+import styled from 'styled-components';
+
+export const Wrapper = styled.main`
+  height: 800px;
+  background-color: rgb(24, 24, 0);
+  border: 5px solid blue;
+`;

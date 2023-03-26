@@ -1,0 +1,16 @@
+// import { Wrapper } from './Main';
+// import ReactNode from 'react';
+// import type {
+// 	StyledComponent,
+// 	StyledComponentProps,
+// 	StyledComponentPropsWithRef,
+// } from 'styled-components';
+
+// export default function Main({
+// 	children,
+// }: StyledComponent<
+// 	JSX.IntrinsicElements['main'],
+// 	StyledComponentPropsWithRef<React.ComponentType>
+// >) {
+// 	return <Wrapper>{...children}</Wrapper>;
+// }

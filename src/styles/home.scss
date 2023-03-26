@@ -1,0 +1,68 @@
+// @import './SASS_config';
+
+// .home {
+// 	@include flex;
+// 	@include marg(4px, 4px, 4px, 4px);
+// 	@include pad(5px, 2px, 2px, 5px);
+
+// 	header {
+// 		background-color: #159b9bb0;
+//     display: inline-flex;
+// 		font-family: $head-font;
+// 		border: $def-bord;
+// 		border-radius: $def-radi;
+// 		font-size: 25px;
+// 		@include pad(4px, 2px, 2px, 4px);
+// 		@include marg(2px, 2px, 2px, 2px);
+
+// 		h1,
+// 		h2 {
+// 			color: $color-1;
+// 			text-align: center;
+// 			letter-spacing: 2px;
+// 			text-shadow: 3px 2px black;
+// 			@include pad(4px, 2px, 2px, 4px);
+// 		}
+// 	}
+
+// 	section {
+// 		@include flex-row-wrap;
+// 		@include marg(30px, 2px, 2px, 4px);
+// 		@include pad(4px, 3px, 3px, 4px);
+// 		font-family: $body-font;
+// 		border: $def-bord;
+// 		border-radius: $sec-radi;
+// 		background-color: $bg-color-1;
+
+// 		p {
+// 			color: black;
+// 			text-align: start;
+
+// 			.dwn-icn {
+// 				font-size: 32px;
+// 				align-items: center;
+// 			}
+// 		}
+
+// 		ul {
+// 			list-style: none;
+
+// 			li {
+// 				transition: filter 500ms;
+
+// 				&:before {
+// 					color: blue;
+// 				}
+
+// 				&:hover {
+// 					filter: brightness(3);
+// 					color: #831b83;
+// 				}
+
+// 				&:after {
+// 					color: #831b83;
+// 				}
+// 			}
+// 		}
+// 	}
+// }

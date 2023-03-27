@@ -5,7 +5,7 @@ import Section from "../components/Section";
 import Footer from "../components/Footer";
 
 // import { useRequest } from '../hooks/useRequest';
-import Meta from "../components/Meta";
+import Meta from '../components/global/Meta';
 import List from "../components/List";
 
 export default function Contact() {

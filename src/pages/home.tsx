@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Section from '../components/Section';
 import Footer from '../components/Footer';
 import React from 'react';
-import Meta from '../components/Meta';
+import Meta from '../components/global/Meta';
 
 export default function Home() {
 	const pageId = useId();

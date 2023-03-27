@@ -1,16 +1,25 @@
-<<<<<<<< HEAD:types/interfaces/ProjectItem.ts
-export interface ProjectItem {
-========
+enum TechStackCategories {
+  FRONTEND = 'frontend',
+  BACKEND = 'backend',
+  DATABASE = 'database',
+  TOOLS = 'tools',
+}
+
+interface TechStack {
+  name: string;
+  techCategory: TechStackCategories;
+}
+
 export interface Project {
->>>>>>>> ece49da (working on react query codegen from hygraph with axios fetcher):interfaces/Project.ts
   readonly id: number;
   readonly title: string;
   description: string;
-  link: Array<URL | string>;
-  tech: string;
-  sourceCode: Array<URL | string | null>;
-  screenShots?: Array<URL | string>;
-  readonly dateReleased: Date;
-  dateUpdated: Date;
+  link: URL;
+  sourceCode: Array<URL | string> | URL | string;
+  screenShots?: Array<URL | string> | URL | string;
+  techStack: TechStack[] | TechStack;
   version: number;
+  readonly latestReleaseDate: Date;
+  createdAt: Date;
+  updatedAt?: Date;
 }

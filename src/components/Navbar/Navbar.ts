@@ -1,9 +1,6 @@
-import type { StyledComponentProps } from 'styled-components';
-import styled from 'styled-components';
+import type { NavBarProps } from 'types/props/navbar.props';
 
-type ToggleProps = StyledComponentProps<'span', any, any, never> & {
-  isToggled: boolean;
-};
+import styled from 'styled-components';
 
 export const Nav = styled.nav`
   display: flex;
@@ -16,12 +13,12 @@ export const Nav = styled.nav`
   animation: slide-open 0.6s forwards;
 `;
 
-export const Toggle = styled.span<ToggleProps>`
-  position: ${(props) => (props.isToggled ? 'absolute' : 'fixed')};
-  bottom: ${(props) => (props.isToggled ? '0%' : '-100%')};
-  top: ${(props) => (props.isToggled ? '65px' : '0px')};
-  left: ${(props) => (props.isToggled ? '0%' : '-100%')};
-  width: ${(props) => (props.isToggled ? '400px' : '100px')};
+export const Toggle = styled.span<NavBarProps>`
+  position: ${(props) => (props.toggled ? 'absolute' : 'fixed')};
+  bottom: ${(props) => (props.toggled ? '0%' : '-100%')};
+  top: ${(props) => (props.toggled ? '65px' : '0px')};
+  left: ${(props) => (props.toggled ? '0%' : '-100%')};
+  width: ${(props) => (props.toggled ? '400px' : '100px')};
   display: inline-flex;
   flex-flow: row wrap;
   justify-content: flex-start;
@@ -35,11 +32,11 @@ export const Toggle = styled.span<ToggleProps>`
 `;
 
 export const ToggleTxt = styled.label`
-font - size: 30px;
-font - weight: 450;
-letter - spacing: 2px;
-border: 1px solid rgb(0, 0, 0);
-background - color: rgb(12, 95, 151);
+  font-size: 30px;
+  font-weight: 450;
+  letter-spacing: 2px;
+  border: 1px solid rgb(0, 0, 0);
+  background-color: rgb(12, 95, 151);
 `;
 
 export const ToggleBtn = styled.button`

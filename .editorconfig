@@ -25,14 +25,13 @@ indent_size = 2
 [*.{jsx,tsx,json,html}]
 indent_style = tab
 indent_size = 4
-trim_trailing_whitespace = false
 
 [*.{graphql,gql}]
 indent_style = tab
 indent_size = 4
 
 # Ignore paths
-[{node_modules/,generated/}**]
+[{node_modules/,src/generated/}**]
 charset = unset
 insert_final_newline = unset
 trim_trailing_whitespace = unset

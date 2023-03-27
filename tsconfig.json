@@ -1,50 +1,31 @@
 {
-  "compilerOptions": {
+	"compilerOptions": {
+		"target": "esnext",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"outDir": "build/",
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "react-jsx",
+		"incremental": true,
 		"baseUrl": "./src",
 		"paths": {
-			"@components/*": ["components/*"],
-			"@constants/*": ["constants/*"],
-			"@pages/*": ["pages/*"],
-			"@api/*": ["pages/api/*"],
-			"@styles/*": ["styles/*"],
-			"@public/*": ["public/*"],
-			"@interfaces/*": [
-				"src/types/interfaces/*"
-			],
-			"@generated/*": ["generated/*"],
-			"@hooks/*": ["hooks/*"],
-			"@context/": ["@context/*"]
-		},
-    "target": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true
-  },
-  "include": [
-    "next-env.d.ts",
-		"next.config.js",
-    "components/*.tsx",
-		"constants/*.ts",
-		"pages/*.tsx",
-		"pages/api/**/*.ts",
-		"public/",
-		"styles/*.scss",
-		"types/*.type{.ts,.tsx}",
-		"types/interfaces/*.props.ts",
-		"src/pages/api/preview.ts",
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+			"@components/": ["components/*"],
+			"@constants/": ["constants/*"],
+			"@pages/": ["pages/*"],
+			"@api/": ["pages/api/*"],
+			"@styles/": ["styles/*"],
+			"@public/": ["public/*"],
+			"@interfaces/": ["src/types/interfaces/*"],
+			"@generated/": ["generated/*"],
+			"@hooks/": ["hooks/*"],
+			"@context/": ["context/*"]
+		}
+	},
+	"include": ["next-env.d.ts", "next.config.js", "/**/*.tsx", "public/"],
+	"exclude": ["node_modules/", "build/"]
 }

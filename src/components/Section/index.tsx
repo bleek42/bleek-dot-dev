@@ -1,16 +1,20 @@
 // import React from "react";
 import { useId } from 'react';
 
-import { Wrapper, Article } from './Section';
-import { StlLg, BlkTxt, CyTxt } from "../../global/index";
+import { Section as Wrapper, Article } from './Section';
+import { StlLg, BlkTxt, CyTxt } from '../global';
+import { ComponentProps } from 'types/props/component.props';
 
-export default function Section({ id, name, content, icon }) {
+type SectionProps = ComponentProps & {
+	content: string | string[];
+};
+
+
+export default function Section({ id, name, content, icon }: SectionProps) {
 	const sectionId = useId();
 
 	return (
-		<Wrapper
-			key={`sect-${id}` || `sect-${sectionId}`}
-			id={`sect-${id}` || 'sect-0'}>
+		<Wrapper key={`sect-${id}` || `sect-${sectionId}`} id={`sect-${id}` || 'sect-0'}>
 			<StlLg>{name || 'Unknown Section'}</StlLg>
 			<Article>
 				<BlkTxt>{content || 'no article content provided...'}</BlkTxt>

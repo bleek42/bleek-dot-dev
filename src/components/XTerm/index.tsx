@@ -23,7 +23,7 @@ interface XTermSize {
 	readonly area?: XTermArea;
 }
 
-type XTermProps = XTermSize;
+type XTermProps = JSX.IntrinsicElements['textarea'] & XTermSize;
 
 export default function XTerm({ cols = 80, rows = 100, area }: XTermProps) {
 	console.log(area, cols, rows);

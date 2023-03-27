@@ -1,85 +1,75 @@
 {
-  "env": {
-    "browser": true,
-    "node": true,
-    "es2022": true
-  },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 13,
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "project": "bleek-dot-tech/tsconfig.json",
-    "tsconfigRootDir": ".",
-    "settings": {
-      "react": {
-        "version": "detect"
-      },
-      "next": {
-        "version": "detect"
-      },
+	"env": {
+		"browser": true,
+		"node": true,
+		"es2022": true
+	},
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 13,
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"project": "bleek-dot-dev/tsconfig.json",
+		"tsconfigRootDir": ".",
+		"settings": {
+			"react": {
+				"version": "detect"
+			},
+			"next": {
+				"version": "detect"
+			},
 			"nodejs": {
-        "version": "detect"
+				"version": "detect"
 			},
 			"import/resolver": {
 				"node": {
 					"extensions": [".ts", ".tsx"]
 				}
 			}
-    }
-  },
-  "extends": [
-    "eslint:recommended",
-    "next",
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    // "import",
-    // "unused-imports",
-    // "prettier",
+		}
+	},
+	"extends": [
+		"eslint:recommended",
+		"next",
+		"next/core-web-vitals",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
+		// "import",
+		// "unused-imports",
+		// "prettier",
 		"plugin:prettier/@typescript-eslint"
-  ],
-  // plugins bring in special rules, prettierrc rules you set
-  "plugins": ["@typescript-eslint", "react", "prettier"],
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    "prettier/prettier": "warn",
-    "@typescript-eslint/arrow-body-style": "off",
-    "@typescript-eslint/prefer-arrow-callback": "off",
+	],
+	// plugins bring in special rules, prettierrc rules you set
+	"plugins": ["@typescript-eslint", "react", "prettier"],
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"prettier/prettier": "warn",
+		"@typescript-eslint/arrow-body-style": "off",
+		"@typescript-eslint/prefer-arrow-callback": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-inferrable-types": "off",
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"@typescript-eslint/no-inferrable-types": "off",
 		"@typescript-eslint/no-use-before-define": "off",
 		"@next/next/no-img-element": "off",
-    "@typescript-eslint/brace-style": [
-      "error",
-      "stroustrup"
-    ],
+		"@typescript-eslint/brace-style": ["error", "stroustrup"],
 		"unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "no-console": "warn",
-    "no-unused-vars": "warn",
-    "brace-style": [
-      "error",
-      "stroustrup"
-    ],
-    "prefer-const": "warn",
-    "no-use-before-define": "off",
-    "camelcase": "warn",
-    "quotes": [
-      "warn",
-      "single"
-    ]
-  }
+		"unused-imports/no-unused-vars": [
+			"warn",
+			{
+				"vars": "all",
+				"varsIgnorePattern": "^_",
+				"args": "after-used",
+				"argsIgnorePattern": "^_"
+			}
+		],
+		"no-console": "warn",
+		"no-unused-vars": "warn",
+		"brace-style": ["error", "stroustrup"],
+		"prefer-const": "warn",
+		"no-use-before-define": "off",
+		"camelcase": "warn",
+		"quotes": ["warn", "single"]
+	}
 }
-

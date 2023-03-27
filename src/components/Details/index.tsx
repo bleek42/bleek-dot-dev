@@ -1,4 +1,5 @@
-import { Wrapper, Summary } from './Details';
+import { Details as Wrapper, Summary } from './Details';
+import { BlkTxt } from '../global';
 
 type DetailsProps = JSX.IntrinsicElements['details'] & {
 	id: number | string;
@@ -13,7 +14,7 @@ export default function Details({ id, name, content, icon }: DetailsProps) {
 	return (
 		<Wrapper>
 			<Summary>
-				<Text>Details Component: Summary Text</Text>
+				<BlkTxt>Details Component: Summary BlkTxt</BlkTxt>
 			</Summary>
 		</Wrapper>
 	);

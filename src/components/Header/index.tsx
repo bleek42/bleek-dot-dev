@@ -1,7 +1,7 @@
 import Navbar from '../Navbar';
-import { navLinks, NavLink } from '../../constants/nav-links';
-import { Wrapper } from './Header';
-import { BlkMd, CyLg } from "../../global";
+import { pageLinks } from 'constants/page-links';
+import { Header as Wrapper } from './Header';
+import { BlkMd, CyLg } from '../../global';
 import { NavItem } from '../Navbar/Navbar';
 
 type HeaderProps = JSX.IntrinsicElements['header'] & {
@@ -19,7 +19,7 @@ export default function Header({ id, name, content, icon }: HeaderProps) {
 			<CyLg>Brandon Leek</CyLg>
 			<BlkMd>bleek.dev</BlkMd>
 			{icon && <i>{icon}</i>}
-			<Navbar links={navLinks} />
+			<Navbar pageLinks={pageLinks} />
 		</Wrapper>
 	);
 }

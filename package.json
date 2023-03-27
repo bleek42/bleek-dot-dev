@@ -1,8 +1,7 @@
 {
-	"name": "bleek-dot-tech",
+	"name": "bleek-dot-dev",
 	"version": "0.1.0",
 	"private": true,
-	"main": "./src",
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",

@@ -1,51 +1,34 @@
+import type { StyledComponentProps } from 'styled-components';
+import type { PageLink } from 'types/interfaces/PageLink';
+import type { NavBarProps, ToggleProps } from 'types/props/navbar.props';
+
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-// import { VscMenu, VscFoldUp } from 'react-icons/vsc';
+import Link from 'next';
 
-import {
-	Nav,
-	Toggle,
-	ToggleBtn,
-	ToggleTxt,
-	NavList,
-	NavItem,
-} from './Navbar';
-import { navLinks } from '../../constants/nav-links';
+import { Nav, Toggle, ToggleBtn, ToggleTxt, NavList, NavItem } from './Navbar';
 
-type ToggleProps = JSX.IntrinsicElements['span'] & {
-	isToggled: boolean;
-}
-
-export default function Navbar({ links = navLinks }) {
+export default function Navbar({ pageLinks }: NavBarProps) {
 	const [toggle, setToggle] = useState(false);
 
 	const toggleMenu = () => setToggle(!!toggle);
 
 	return (
 		<Nav onMouseLeave={toggleMenu}>
-			<Toggle>
-				<ToggleTxt>Menu</ToggleTxt>
-				<ToggleBtn
-					onMouseOver={toggleMenu}
-					onClick={toggleMenu}
-					>
-
-					{toggle ? <VscFoldUp /> : <VscMenu />}
-				</ToggleBtn>
-			</Toggle>
 			<NavList>
-				<Toggle isToggled={toggle}>
-
-						{navLinks.map((link) => (
+				<ToggleTxt>Menu</ToggleTxt>
+				{toggle ? (
+					<Toggle toggled={toggle}>
+						{pageLinks.map((link) => (
 							<NavItem key={link.id}>
-								<Link to={link.path}>
-									<i>{link.icon}</i>
-									<pre title={link.title}>{link.title}</pre>
-								</Link>
+								<Link to={link.path}>{link.title}</Link>
 							</NavItem>
 						))}
-
-				</Toggle>
+					</Toggle>
+				) : (
+					<Toggle toggled={toggle}>
+						<ToggleBtn onMouseOver={toggleMenu} onClick={toggleMenu}></ToggleBtn>
+					</Toggle>
+				)}
 			</NavList>
 		</Nav>
 	);
@@ -53,7 +36,8 @@ export default function Navbar({ links = navLinks }) {
 // <nav>
 // </nav>
 
-{/* <div className={toggle ? 'nav-open' : 'nav-close'}>
+{
+	/* <div className={toggle ? 'nav-open' : 'nav-close'}>
 	<ul onMouseLeave={toggleMenu}>
 		{links.map((link, idx) => (
 			<li
@@ -63,4 +47,5 @@ export default function Navbar({ links = navLinks }) {
 			</li>
 		))}
 	</ul>
-</div> */}
+</div> */
+}

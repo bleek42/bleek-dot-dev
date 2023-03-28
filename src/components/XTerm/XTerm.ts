@@ -13,7 +13,7 @@ export const XTHeader = styled.header`
 
 export const XTShell = styled.section`
   height: 200px;
-  min-height: 80%
+  min-height: 80%;
   width: 1000px;
   min-width: 40%;
   background-color: rgb(0, 0, 0);

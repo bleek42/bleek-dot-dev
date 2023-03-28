@@ -1,51 +1,34 @@
-import type { StyledComponentProps } from 'styled-components';
-import type { PageLink } from 'types/interfaces/PageLink';
-import type { NavBarProps, ToggleProps } from 'types/props/navbar.props';
-
 import { useState } from 'react';
-import Link from 'next';
 
-import { Nav, Toggle, ToggleBtn, ToggleTxt, NavList, NavItem } from './Navbar';
+import type { NavBarProps } from '@props/navbar.props';
+import { Nav, Toggle, ToggleBtn, NavLink, NavList, NavItem } from './Navbar';
+import { CyLg } from '@components/global/Text';
 
 export default function Navbar({ pageLinks }: NavBarProps) {
-	const [toggle, setToggle] = useState(false);
+	const [toggle, setToggle] = useState<boolean>(false);
 
 	const toggleMenu = () => setToggle(!!toggle);
 
 	return (
 		<Nav onMouseLeave={toggleMenu}>
 			<NavList>
-				<ToggleTxt>Menu</ToggleTxt>
+				<CyLg>Menu</CyLg>
 				{toggle ? (
-					<Toggle toggled={toggle}>
-						{pageLinks.map((link) => (
+					<Toggle toggle={toggle}>
+						{pageLinks.map((link, idx) => (
 							<NavItem key={link.id}>
-								<Link to={link.path}>{link.title}</Link>
+								<NavLink key={idx} href={link.path} passHref>
+									{link.title}
+								</NavLink>
 							</NavItem>
 						))}
 					</Toggle>
 				) : (
-					<Toggle toggled={toggle}>
+					<Toggle toggle={toggle}>
 						<ToggleBtn onMouseOver={toggleMenu} onClick={toggleMenu}></ToggleBtn>
 					</Toggle>
 				)}
 			</NavList>
 		</Nav>
 	);
-}
-// <nav>
-// </nav>
-
-{
-	/* <div className={toggle ? 'nav-open' : 'nav-close'}>
-	<ul onMouseLeave={toggleMenu}>
-		{links.map((link, idx) => (
-			<li
-				key={link.id || idx}
-				id={`${link.title.toLowerCase()}-${link.id}`}
-				className="nav-link">
-			</li>
-		))}
-	</ul>
-</div> */
 }

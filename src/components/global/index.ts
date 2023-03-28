@@ -1,7 +1,4 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import { GrnTxt, BlkTxt, StlLg, BlkMd, GrnMd, NeonLg, CyLg, CyTxt } from './Text';
-
-export { GrnMd, GrnTxt, BlkTxt, BlkMd, StlLg, NeonLg, CyLg, CyTxt };
 
 export const Main = styled.main`
   height: 800px;
@@ -26,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 @font-face {
-	font-family: 'MonocraftNF';
+	font-family: 'Monocraft NF';
 	src: url('../../fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf');
 }
 
@@ -36,18 +33,19 @@ const GlobalStyle = createGlobalStyle`
   padding: 0;
 }
 
-html {
-  background: radial-gradient(#263349 24%, #5f48a0 36%);
-  font-family: "'ProFontWindows NF', 'CodeNewRoman NF', 'CaskaydiaCove NF'";
+body {
+  background: radial-gradient(rgb(0, 0, 0) 24%, rgb(35, 230, 45) 36%);
+  font-family: "'Monocraft NF',  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
 }
 
-code {
-  font-family: 'TerminessTTF NFM', Impact,  Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+code, i {
+  font-weight: 800;
+  font-size: 12px;
 }
 
 main {
-  height: 800px;
-  min-height: 40%;
+  height: 100vh;
+  min-height: 50%;
 }
 `;
 

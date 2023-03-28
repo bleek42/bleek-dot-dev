@@ -13,14 +13,13 @@ import {
 	Shebang,
 } from './XTerm';
 
-type XTermCols = 120 | 100 | 80 | 60 | 40 | 0;
-type XTermRows = 100 | 90 | 80 | 70 | 60 | 50 | 40;
-type XTermArea = (cols: XTermCols, rows: XTermRows) => number;
+type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
+type XTermRows = 100 | 90 | 80 | 70 | 60 | 50 | 40 | 0;
 
 interface XTermSize {
-	readonly cols?: XTermCols;
-	readonly rows?: XTermRows;
-	readonly area?: XTermArea;
+	cols?: XTermCols;
+	rows?: XTermRows;
+	area?: (cols: XTermCols, rows: XTermRows) => number;
 }
 
 type XTermProps = JSX.IntrinsicElements['textarea'] & XTermSize;

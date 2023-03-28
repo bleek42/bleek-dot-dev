@@ -1,14 +1,9 @@
-// import React from "react";
 import { useId } from 'react';
 
+import type { SectionProps } from '@props/section.props';
+
 import { Section as Wrapper, Article } from './Section';
-import { StlLg, BlkTxt, CyTxt } from '../global';
-import { ComponentProps } from 'types/props/component.props';
-
-type SectionProps = ComponentProps & {
-	content: string | string[];
-};
-
+import { StlLg, BlkTxt, CyTxt } from '@global/Text';
 
 export default function Section({ id, name, content, icon }: SectionProps) {
 	const sectionId = useId();

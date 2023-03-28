@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from "react";
 
-import Meta from "../components/Meta";
-import XTerm from "../components/XTerm";
+import Meta from '@global/Meta';
+import XTerm from '@components/XTerm';
 
 import hero from "../public/brandon-mask.png";
 

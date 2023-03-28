@@ -1,4 +1,4 @@
-.next
-dist
+.next/
+build/
 node_modules/
-generated/
+src/generated/

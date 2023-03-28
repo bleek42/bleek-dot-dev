@@ -1,15 +1,10 @@
-import Navbar from '../Navbar';
-import { pageLinks } from 'constants/page-links';
-import { Header as Wrapper } from './Header';
-import { BlkMd, CyLg } from '../../global';
-import { NavItem } from '../Navbar/Navbar';
+import type { PageLink } from '@interfaces/PageLink';
+import type { HeaderProps } from '@props/header.props';
 
-type HeaderProps = JSX.IntrinsicElements['header'] & {
-	id: number | string;
-	name: string;
-	content: string | Array<string>;
-	icon?: '\ue456' | '\ue677' | null;
-};
+import Navbar from '@components/Navbar';
+import { pageLinks } from '@constants/page-links';
+import { Header as Wrapper } from './Header';
+import { BlkMd, CyLg } from '@global/Text';
 
 export default function Header({ id, name, content, icon }: HeaderProps) {
 	console.log('Header component:', id, name, content, icon);
@@ -19,18 +14,7 @@ export default function Header({ id, name, content, icon }: HeaderProps) {
 			<CyLg>Brandon Leek</CyLg>
 			<BlkMd>bleek.dev</BlkMd>
 			{icon && <i>{icon}</i>}
-			<Navbar pageLinks={pageLinks} />
+			<Navbar pageLinks={pageLinks} toggle={false} />
 		</Wrapper>
 	);
 }
-
-{
-	/* <h1>Brandon Leek</h1>
-<h2>bleek.dev</h2> */
-}
-// <span className="NavItem-header">
-// 	<h6>{name || 'unknown header'}</h6>
-// 	<p>{content || 'no header content'} </p>
-// </span>
-// <header id={id ? `hedr-${id}` : 'hedr-0'}>
-// </header>

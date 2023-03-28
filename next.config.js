@@ -1,14 +1,18 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
-  basePath: './src',
-  typescript: './tsconfig.json',
-  env: {},
+  typescript: {
+    tsconfigPath: './tsconfig.json',
+  },
+  swcMinify: true,
   compiler: {
     styledComponents: {
+      displayName: true,
       ssr: true,
+      cssProp: true,
     },
   },
+
   eslint: {
     dirs: ['pages/**/*.tsx', 'components/**/*.tsx', 'constants/**/*.tsx', 'context/**/*.tsx'],
   },

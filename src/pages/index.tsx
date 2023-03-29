@@ -1,32 +1,18 @@
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Fragment } from "react";
 
-import Meta from '../components/Meta';
+import Meta from '@global/Meta';
+import XTerm from '@components/XTerm';
 
-import styles from '../styles/LandingPage.module.scss';
-import hero from '../public/brandon-mask.png';
+import hero from "../public/brandon-mask.png";
 
-const LandingPage: NextPage = (): JSX.Element => {
+export default function LandingPage() {
 	return (
-		<div className={styles.container}>
+		<>
 			<Meta />
-			<div className={styles.intro}>
-				<h3>Brandon C. Leek</h3>
-				<h4>Full Stack Web Developer & Mobile Tech Expert</h4>
-				<p>some info about me...</p>
-			</div>
-			<div className={styles.img}>
-				<p>img placeholder</p>
-				<Image src={hero} alt="hero-img" />
-			</div>
-			<div className={styles.dismiss}>
-				<Link href="/home">
-					<a>Click to continue</a>
-				</Link>
-			</div>
-		</div>
+			<XTerm cols={100} rows={100} />
+		</>
 	);
 };
-
-export default LandingPage;

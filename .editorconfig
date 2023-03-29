@@ -5,25 +5,34 @@ root = true
 
 # Unix-style newlines with a newline ending every file
 [*]
+charset = utf-8
 end_of_line = lf
+trim_trailing_whitespace = true
 insert_final_newline = true
 trim_trailing_whitespace = true
 
 # 4 space indentation
-[*.{js,ts,json}]
-charset = utf-8
+[*.md]
 indent_style = tab
+indent_size = 4
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+[*.{js,ts}]
+indent_style = space
 indent_size = 2
 
-[*.md]
-charset = utf-8
+[*.{jsx,tsx,json,html}]
+indent_style = tab
+indent_size = 4
+
+[*.{graphql,gql}]
 indent_style = tab
 indent_size = 4
 
 # Ignore paths
-[node_modules/**]
+[{node_modules/,src/generated/}**]
 charset = unset
-end_of_line = unset
 insert_final_newline = unset
 trim_trailing_whitespace = unset
 indent_style = unset

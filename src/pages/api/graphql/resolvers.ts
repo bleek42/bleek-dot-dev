@@ -1,5 +1,3 @@
-import { models } from 'mongoose';
-import { ApolloError } from 'apollo-server-micro';
 import { IResolvers } from '@graphql-tools/utils';
 import {
   DateResolver,
@@ -7,9 +5,6 @@ import {
   ObjectIDResolver,
   URLResolver,
 } from 'graphql-scalars';
-
-import { IProject } from '../../../types/project';
-import { Project } from '../models/project.model';
 
 export const resolvers: IResolvers = {
   ObjectID: ObjectIDResolver,
@@ -24,37 +19,31 @@ export const resolvers: IResolvers = {
   },
 
   Query: {
-    async projects(_parent, _args, _ctx): Promise<IProject[]> {
-      const projects = await Project.find({});
-      return projects;
+
+    async projects(_parent, _args, _ctx): Promise<void> {
+      console.log('all projects query')
     },
+
   },
 
   Mutation: {
+
     async createProject(
       _parent: any,
       {
-        _id,
+        id,
         title,
         description,
         link,
         techStack,
         sourceCode,
         screenShots,
-      }: Partial<IProject>,
+      }: unknown,
       _ctx: any
-    ): Promise<IProject> {
-      const project = new Project({
-        _id: GraphQLObjectID,
-        title,
-        description,
-        link,
-        techStack,
-        sourceCode,
-        screenShots,
-      });
-
-      return await project.save();
+    ): Promise<any> {
+     console.log('all projects query')
     },
+
   },
+
 };

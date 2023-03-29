@@ -8,11 +8,11 @@ import XTerm from '@components/XTerm';
 
 import hero from "../public/brandon-mask.png";
 
-export default function LandingPage<NextPage>() {
+export default function LandingPage() {
 	return (
-		<Fragment>
+		<>
 			<Meta />
 			<XTerm cols={100} rows={100} />
-		</Fragment>
+		</>
 	);
 };

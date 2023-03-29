@@ -1,17 +1,17 @@
 import styled from 'styled-components';
 
-export const XTerminal = styled.div`
+export const XTMain = styled.main`
   display: flex;
+  width: 120px;
+  min-width: 50%;
+  height: 500px;
+  min-height: 50%;
   background-color: rgb(0, 0, 0);
 `;
 
-export const XTHeader = styled.header`
+export const XTerminal = styled.form`
   display: flex;
-  background-color: rgb(10, 10, 10);
   border: 2px solid blue;
-`;
-
-export const XTShell = styled.section`
   height: 200px;
   min-height: 80%;
   width: 1000px;
@@ -19,37 +19,54 @@ export const XTShell = styled.section`
   background-color: rgb(0, 0, 0);
 `;
 
-export const XTSpan = styled.span`
-  display: inline-flex;
-  flex-flow: row nowrap;
+export const XTLabel = styled.label`
+  color: rgb(12, 205, 165);
+  background-color: rgb(66, 66, 66);
 `;
 
-export const Shebang = styled.code`
-  color: rgb(160, 85, 132);
+export const XTInput = styled.input`
+  background-color: rgb(0, 0, 0);
+
+  &:active {
+    border: 1px solid rgb(136, 255, 0);
+    cursor: text;
+  }
+`;
+
+export const XTCode = styled.code`
   font-size: 28px;
   font-weight: 650;
+  color: rgb(160, 85, 132);
   text-align: left;
   text-decoration: underline;
-  text-decoration-color: ;
+  text-decoration-color: rgb(225, 75, 15);
 `;
 
-export const XTBtns = styled.span`
-  color: rgb(0, 0, 0);
-  border: 1px solid rgb(0, 0, 0);
+export const XTBtns = styled.label`
+  color: rgb(66, 66, 66);
+  background-color: rgb(0, 0, 0);
+  border: 2px solid rgb(175, 175, 165);
 `;
 
-export const ClsBtn = styled.button`
-  background-color: red;
+export const Close = styled.button`
+  background-color: rgb(215, 30, 30);
 `;
 
-export const MaxBtn = styled.button`
-  background-color: blue;
+export const Maxmz = styled.button`
+  background-color: rgb(15, 95, 150);
 `;
 
-export const MinBtn = styled.button`
+export const Minmz = styled.button`
   background-color: yellow;
 `;
 
-export const XTScreen = styled.textarea`
+export const XTPrompt = styled.label`
+  color: rgb(11, 205, 163);
+`;
+
+export const XTxtArea = styled.textarea`
   background-color: rgb(0, 0, 0);
+  display: inline-flex;
+  flex-flow: column wrap;
+  cursor: text;
 `;

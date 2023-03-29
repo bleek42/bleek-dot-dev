@@ -1,10 +1,5 @@
-import styled, { createGlobalStyle } from 'styled-components';
-
-export const Main = styled.main`
-  height: 800px;
-  background-color: rgb(24, 24, 0);
-  border: 5px solid blue;
-`;
+import { createGlobalStyle } from 'styled-components';
+import theme from '@global/theme';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -24,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
 
 @font-face {
 	font-family: 'Monocraft NF';
-	src: url('../../fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf');
+	src: url('../../fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
 }
 
 * {
@@ -34,19 +29,26 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  background: radial-gradient(rgb(0, 0, 0) 24%, rgb(35, 230, 45) 36%);
-  font-family: "'Monocraft NF',  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
-}
-
-code, i {
-  font-weight: 800;
-  font-size: 12px;
+  background-color: rgb(5, 5, 5);
 }
 
 main {
+  background: radial-gradient(rgb(0, 0, 0) 24%, rgb(35, 230, 45) 36%);
   height: 100vh;
   min-height: 50%;
+  width: 25vh;
 }
+
+code, i {
+  font-family: "'Monocraft NF',  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
+  font-weight: 800;
+  font-size: 15px;
+}
+
+/* main {
+  height: 100vh;
+  min-height: 50%;
+} */
 `;
 
 export default GlobalStyle;

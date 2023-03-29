@@ -1,4 +1,4 @@
-const prettierrc = require('.prettierrc.json');
+const prettierrc = require('./.prettierrc');
 
 module.exports = {
   env: {
@@ -63,7 +63,7 @@ module.exports = {
     'react-hooks/exhaustive-deps': 0,
     'prettier/prettier': ['warn', prettierrc],
     '@next/next/no-img-element': 'off',
-    'import/no-unresolved': ['error', { commonjs: true, amd: true }],
+    'import/no-unresolved': ['warn', { commonjs: true, amd: true }],
     'import/default': 'off',
     'import/namespace': 'off',
     'import/default': 'off',

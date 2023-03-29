@@ -1,12 +1,16 @@
 import type { ComponentType } from 'react';
-import type { StyledComponent } from 'styled-components';
+import type { DefaultTheme, StyledComponentProps } from 'styled-components';
 
-export type HeaderProps = StyledComponent<keyof JSX.IntrinsicElements | ComponentType<any>, {}> & {
+export type HeaderProps = StyledComponentProps<
+  'header' | ComponentType<any>,
+  DefaultTheme,
+  {},
+  string | number | symbol
+> & {
   id: number | string;
   name: string;
-  title?: string;
+  title: string;
   content?: string | string[];
-  keywords?: string;
   icon?: string;
   image?: Array<URL | string> | URL | string;
 };

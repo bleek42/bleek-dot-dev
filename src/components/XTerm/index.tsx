@@ -1,16 +1,17 @@
 import { useState } from 'react';
 
 import {
+	XTMain,
 	XTerminal,
-	XTHeader,
-	XTShell,
-	XTSpan,
+	XTLabel,
+	XTInput,
+	XTCode,
 	XTBtns,
-	ClsBtn,
-	MaxBtn,
-	MinBtn,
-	XTScreen,
-	Shebang,
+	Close,
+	Minmz,
+	Maxmz,
+	XTPrompt,
+	XTxtArea,
 } from './XTerm';
 
 type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
@@ -27,59 +28,51 @@ type XTermProps = JSX.IntrinsicElements['textarea'] & XTermSize;
 export default function XTerm({ cols = 80, rows = 100, area }: XTermProps) {
 	console.log(area, cols, rows);
 	return (
-		<main>
+		<XTMain>
 			<XTerminal>
-				<XTHeader>
-					<XTBtns id="xterm-btns">
-						<ClsBtn
-							id="xterm-close"
-							type="reset"
-							onClick={(evt) =>
-								console.info('xterm-close clicked', evt.target)
-							}>
-							{'[X]'}
-						</ClsBtn>
-						<MaxBtn
-							id="xterm-maxmz"
-							type="button"
-							onClick={(evt) =>
-								console.info('xterm-maxmz clicked', evt.target)
-							}>
-							{'[O]'}
-						</MaxBtn>
-						<MinBtn
-							id="xterm-minmz"
-							type="button"
-							onClick={(evt) =>
-								console.info('xterm-minmz clicked', evt.target)
-							}>
-							{'[_]'}
-						</MinBtn>
-					</XTBtns>
-					<span>
-						<code>Area: {area?.toString()} </code>
-					</span>
-				</XTHeader>
-				<XTShell>
-					<XTSpan>
-						<Shebang />
-					</XTSpan>
-					<XTScreen
-						name="xterm-txt"
-						id="xterm-txt"
-						cols={cols}
-						rows={rows}
-						autoCapitalize="off"
-						autoCorrect="off"
-						spellCheck={false}
-						onSubmitCapture={(evt) =>
-							console.info('xterm-txt submit capture', evt.target)
-						}
-						onChange={(evt) => console.info('xterm-txt changed', evt.target)}
-					/>
-				</XTShell>
+				<XTBtns id="xterm-btns">
+					<Close
+						id="xterm-close"
+						type="reset"
+						onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
+						{'[X]'}
+					</Close>
+					<Maxmz
+						id="xterm-maxmz"
+						type="button"
+						onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
+						{'[O]'}
+					</Maxmz>
+					<Minmz
+						id="xterm-minmz"
+						type="button"
+						onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
+						{'[_]'}
+					</Minmz>
+				</XTBtns>
+				<span>
+					<code>Area: {area?.toString()} </code>
+				</span>
+				<XTLabel htmlFor="xt-1">
+					<XTInput type="text" name="xt-1" placeholder="https://bleek.dev" />
+				</XTLabel>
+				<XTLabel htmlFor="shebang">
+					`"${'SHELL'}":` <XTCode> #!/usr/bin/env bleek42</XTCode>
+					<XTInput type="text" name="shebang" placeholder={'press enter to continue'} />
+				</XTLabel>
+				<XTxtArea
+					name="xterm-txt"
+					id="xterm-txt"
+					cols={cols}
+					rows={rows}
+					autoCapitalize="off"
+					autoCorrect="off"
+					spellCheck={false}
+					onSubmitCapture={(evt) => console.info('xterm-txt submit capture', evt.target)}
+					onChange={(evt) => console.info('xterm-txt changed', evt.target)}
+				/>
 			</XTerminal>
-		</main>
+		</XTMain>
 	);
 }
 

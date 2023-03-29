@@ -14,17 +14,13 @@ export default function About() {
 			<Meta />
 			<Header
 				id={`about-header-${pageId}`}
-				name="About"
-				content={["content 1...", "content 2...", "content 3..."]}
-				icon={"\ue456"}
+				name="about"
+				title="About"
+				content={['content 1...', 'content 2...', 'content 3...']}
+				icon={'\ue456'}
 			/>
 			<main>
-				<Section
-					id="about-sect-1"
-					name="about_section"
-					content=""
-					icon={null}
-				/>
+				<Section id="about-sect-1" name="about_section" content="" icon={null} />
 			</main>
 			<Footer id={`about-footer-${pageId}`} name="About" icon={null} />
 		</Fragment>

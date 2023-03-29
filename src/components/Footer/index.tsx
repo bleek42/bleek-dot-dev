@@ -1,5 +1,5 @@
 import { Footer as Wrapper } from './Footer';
-import { BlkTxt } from '../global';
+import { BlkTxt } from '../global/style';
 import type { ComponentProps } from '../../types/props/component.props';
 
 type FooterProps = ComponentProps;

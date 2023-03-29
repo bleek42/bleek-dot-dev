@@ -1,5 +1,4 @@
 import { useId, Fragment } from 'react';
-import { CgCornerRightDown } from 'react-icons/cg';
 
 import Header from '../components/Header';
 import Section from '../components/Section';
@@ -13,7 +12,7 @@ export default function Home() {
 	return (
 		<Fragment>
 			<Meta />
-			<Header id={`home-header-${pageId}`} name="Home" content="" icon={null} />
+			<Header id={`home-header-${pageId}`} name="home" title="Home" content="" icon={null} />
 			<main>
 				<Section
 					id="home-sect-1"

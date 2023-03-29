@@ -1,8 +1,9 @@
+import GlobalStyle from '@global/style';
 import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
 import { Fragment } from 'react';
 import { ServerStyleSheet } from 'styled-components';
 
-export default class StyledDocument extends Document {
+export default class MyDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
 		const sheet = new ServerStyleSheet();
 		const originalRenderPage = ctx.renderPage;
@@ -11,6 +12,8 @@ export default class StyledDocument extends Document {
 			ctx.renderPage = () =>
 				originalRenderPage({
 					enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+
+					enhanceComponent: (Component) => Component,
 				});
 
 			const initialProps = await Document.getInitialProps(ctx);
@@ -18,17 +21,13 @@ export default class StyledDocument extends Document {
 			return {
 				...initialProps,
 				styles: (
-					<Fragment>
+					<>
 						{initialProps.styles}
 						{sheet.getStyleElement()}
-					</Fragment>
+					</>
 				),
 			};
-		} 
-		catch (err) {
-			console.error('Error loading server-side StyledDocument:', err?.toString());
-		} 
-		finally {
+		} finally {
 			sheet.seal();
 		}
 	}

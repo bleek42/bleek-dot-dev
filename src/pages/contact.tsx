@@ -1,32 +1,27 @@
 import React, { Fragment, useId } from "react";
 
-import Header from "../components/Header";
-import Section from "../components/Section";
-import Footer from "../components/Footer";
+import Header from '@components/Header';
+import Section from '@components/Section';
+import Footer from '@components/Footer';
 
 // import { useRequest } from '../hooks/useRequest';
-import Meta from '../components/global/Meta';
-import List from "../components/List";
+import Meta from '@global/Meta';
+import List from '@components/List';
 
 export default function Contact() {
 	// const { profile, loading, error, msg } = useRequest();
 	const pageId = useId();
 
-	const linkedInIcon = " \uf08c ";
-	const commentIcon = " \udb80\udd7b ";
-	const githubIcon = " \uf092 ";
+	const linkedInIcon = ' \uf08c ';
+	const commentIcon = ' \udb80\udd7b ';
+	const githubIcon = ' \uf092 ';
 
 	return (
 		<Fragment>
 			<Meta />
-			<Header
-				id={`contact-header-${pageId}`}
-				name="Contact"
-				content={["some", "contact", "header", "content"]}
-				icon={null}
-			/>
+			<Header id={`contact-header-${pageId}`} name="contact" title="Contact" />
 			<main>
-				{loading && (
+				{/* {loading && (
 					<div className="loading">
 						<progress>loading...</progress>
 					</div>
@@ -35,17 +30,13 @@ export default function Contact() {
 				{error && (
 					<div className="error">
 						<p>
-							Error fetching profile data:{" "}
-							{msg?.toString() || "an unknown error occurred..."}
+							Error fetching profile data:{' '}
+							{msg?.toString() || 'an unknown error occurred...'}
 						</p>
 					</div>
-				)}
+				)} */}
 			</main>
-			<Footer
-				id={`contact-footer-${pageId}`}
-				name="Contact"
-				icon={null}
-			/>
+			<Footer id={`contact-footer-${pageId}`} name="Contact" icon={null} />
 		</Fragment>
 	);
 }

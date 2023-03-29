@@ -1,6 +1,6 @@
 {
 	"$schema": "https://json.schemastore.org/prettierrc",
-	"editorconfig": true,
+	" editorconfig": true,
 	"bracketSameLine": true,
 	"arrowParens": "always",
 	"bracketSpacing": true,

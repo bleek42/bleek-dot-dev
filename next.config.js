@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
@@ -9,11 +9,16 @@ module.exports = {
     styledComponents: {
       displayName: true,
       ssr: true,
-      cssProp: true,
     },
   },
 
   eslint: {
-    dirs: ['pages/**/*.tsx', 'components/**/*.tsx', 'constants/**/*.tsx', 'context/**/*.tsx'],
+    dirs: [
+      'src/pages/**/*.{tsx,ts}',
+      'src/components/**/*.{tsx,ts}',
+      'src/constants/**/*.ts',
+      'src/context/**/*.tsx',
+      'src/types/**/*.ts',
+    ],
   },
 };

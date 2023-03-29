@@ -1,13 +1,15 @@
-import GlobalStyle from '@components/global';
 import type { AppProps } from 'next/app';
-import { Fragment } from 'react';
+import { ThemeProvider } from 'styled-components';
 
-function App({ Component, pageProps }: AppProps) {
+import theme from '@global/theme';
+import GlobalStyle from '@global/style';
+
+function MyApp({ Component, pageProps }: AppProps) {
 	return (
-		<Fragment>
+		<ThemeProvider theme={theme}>
 			<GlobalStyle />
 			<Component {...pageProps} />
-		</Fragment>
+		</ThemeProvider>
 	);
 }
-export default App;
+export default MyApp;

@@ -1,5 +1,5 @@
 import { Details as Wrapper, Summary } from './Details';
-import { BlkTxt } from '../global';
+import { BlkTxt } from '../global/style';
 
 type DetailsProps = JSX.IntrinsicElements['details'] & {
 	id: number | string;

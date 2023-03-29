@@ -5,7 +5,7 @@ import type { SectionProps } from '@props/section.props';
 import { Section as Wrapper, Article } from './Section';
 import { StlLg, BlkTxt, CyTxt } from '@global/Text';
 
-export default function Section({ id, name, content, icon }: SectionProps) {
+export default function Section({ id, name, title, content, icon }: SectionProps) {
 	const sectionId = useId();
 
 	return (

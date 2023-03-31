@@ -35,7 +35,7 @@ export default function XTerm({ cols = 80, rows = 100, area }: XTermProps) {
 						id="xterm-close"
 						type="reset"
 						onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
-						{'[X]'}
+						{'[\ueb99]'}
 					</Close>
 					<Maxmz
 						id="xterm-maxmz"

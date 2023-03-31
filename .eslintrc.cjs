@@ -13,8 +13,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    project: 'bleek-dot-dev/tsconfig.json',
-    tsconfigRootDir: '.',
+    tsconfigRootDir: './tsconfig.json',
     settings: {
       react: {
         version: 'detect',
@@ -29,7 +28,6 @@ module.exports = {
     },
   },
   extends: [
-    'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
     'plugin:@typescript-eslint/recommended',
@@ -38,11 +36,10 @@ module.exports = {
     'next/core-web-vitals',
     'plugin:import/recommended',
     'plugin:import/typescript',
-    'plugin:prettier/@typescript-eslint',
     'prettier',
   ],
   // plugins bring in special rules, prettierrc rules you set
-  plugins: ['@typescript-eslint', 'react', 'import', 'prettier'],
+  plugins: ['@typescript-eslint', 'react', 'import'],
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/display-name': 0,

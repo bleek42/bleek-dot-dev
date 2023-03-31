@@ -5,21 +5,21 @@ const GlobalStyle = createGlobalStyle`
 
 @font-face {
 	font-family: 'Birdman';
-	src: url('../../fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
+	src: url('/src/fonts/birdman/Monocraft-nerd-fonts-patched.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Oxanium';
-  src: url('fonts/Oxanium/Oxanium-Light.ttf') format('truetype'),
-    url('fonts/Oxanium/Oxanium-Medium.ttf') format('truetype'),
-    url('fonts/Oxanium/Oxanium-Regular.ttf') format('truetype'),
-    url('fonts/Oxanium/Oxanium-SemiBold.ttf') format('truetype'),
-    url('fonts/Oxanium/Oxanium-Bold.ttf') format('truetype');
+  src: url('/src/fonts/Oxanium/Oxanium-Light.ttf') format('truetype'),
+    url('/src/fonts/Oxanium/Oxanium-Medium.ttf') format('truetype'),
+    url('/src/fonts/Oxanium/Oxanium-Regular.ttf') format('truetype'),
+    url('/src/fonts/Oxanium/Oxanium-SemiBold.ttf') format('truetype'),
+    url('/src/fonts/Oxanium/Oxanium-Bold.ttf') format('truetype');
 }
 
 @font-face {
 	font-family: 'Monocraft NF';
-	src: url('../../fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
+	src: url('/src/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
 }
 
 * {

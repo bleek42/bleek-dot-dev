@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const XTMain = styled.main`
-  display: flex;
   width: 120px;
   min-width: 50%;
   height: 500px;
@@ -10,7 +9,6 @@ export const XTMain = styled.main`
 `;
 
 export const XTerminal = styled.form`
-  display: flex;
   border: 2px solid blue;
   height: 200px;
   min-height: 80%;
@@ -38,25 +36,38 @@ export const XTCode = styled.code`
   font-weight: 650;
   color: rgb(160, 85, 132);
   text-align: left;
+  font-family: 'Courier New', Courier, monospace;
   text-decoration: underline;
   text-decoration-color: rgb(225, 75, 15);
 `;
 
 export const XTBtns = styled.label`
+  display: flex;
+  flex-flow: row wrap;
+  font-family: 'Monocraft NF';
   color: rgb(66, 66, 66);
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(66, 66, 66);
   border: 2px solid rgb(175, 175, 165);
 `;
 
 export const Close = styled.button`
+  width: 5vh;
+  height: 5vh;
+  font-size: 24px;
   background-color: rgb(215, 30, 30);
 `;
 
 export const Maxmz = styled.button`
+  width: 5vh;
+  height: 5vh;
+  font-size: 24px;
   background-color: rgb(15, 95, 150);
 `;
 
 export const Minmz = styled.button`
+  width: 5vh;
+  height: 5vh;
+  font-size: 24px;
   background-color: yellow;
 `;
 

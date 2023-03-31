@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "esnext",
+	"target": "ES2020",
     "lib": [
       "dom",
       "dom.iterable",
@@ -8,9 +8,9 @@
     ],
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "outDir": "build/",
+	"outDir": ".next/",
     "esModuleInterop": true,
-    "module": "esnext",
+	"module": "ES2020",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,

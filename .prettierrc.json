@@ -1,11 +1,13 @@
 {
 	"$schema": "https://json.schemastore.org/prettierrc",
+	"parser": "typescript",
 	" editorconfig": true,
 	"bracketSameLine": true,
 	"arrowParens": "always",
 	"bracketSpacing": true,
 	"endOfLine": "lf",
 	"printWidth": 100,
+	"jsxSingleQuote": false,
 	"trailingComma": "es5",
 	"semi": true,
 	"singleQuote": true

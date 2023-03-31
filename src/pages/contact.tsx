@@ -6,7 +6,6 @@ import Footer from '@components/Footer';
 
 // import { useRequest } from '../hooks/useRequest';
 import Meta from '@global/Meta';
-import List from '@components/List';
 
 export default function Contact() {
 	// const { profile, loading, error, msg } = useRequest();

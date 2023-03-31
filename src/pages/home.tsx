@@ -22,7 +22,7 @@ export default function Home() {
 					icon={null}
 				/>
 			</main>
-			<Footer id={''} name={`home-footer-${pageId}`} icon={null} />
+			<Footer id={`home-footer-${pageId}`} name="home" icon={null} />
 		</Fragment>
 	);
 }

@@ -32,11 +32,12 @@ export const XTInput = styled.input`
 `;
 
 export const XTCode = styled.code`
+  font-family: 'Monocraft NF';
   font-size: 28px;
   font-weight: 650;
   color: rgb(160, 85, 132);
   text-align: left;
-  font-family: 'Courier New', Courier, monospace;
+  /* font-family: 'Courier New', Courier, monospace; */
   text-decoration: underline;
   text-decoration-color: rgb(225, 75, 15);
 `;
@@ -53,6 +54,7 @@ export const XTBtns = styled.label`
 export const Close = styled.button`
   width: 5vh;
   height: 5vh;
+  font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: rgb(215, 30, 30);
 `;
@@ -60,6 +62,7 @@ export const Close = styled.button`
 export const Maxmz = styled.button`
   width: 5vh;
   height: 5vh;
+  font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: rgb(15, 95, 150);
 `;
@@ -67,6 +70,7 @@ export const Maxmz = styled.button`
 export const Minmz = styled.button`
   width: 5vh;
   height: 5vh;
+  font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: yellow;
 `;

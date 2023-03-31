@@ -5,21 +5,20 @@ const GlobalStyle = createGlobalStyle`
 
 @font-face {
 	font-family: 'Birdman';
-	src: url('/src/fonts/birdman/Monocraft-nerd-fonts-patched.ttf') format('truetype');
+	src: url('/fonts/birdman/BIRDMAN_.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Oxanium';
-  src: url('/src/fonts/Oxanium/Oxanium-Light.ttf') format('truetype'),
-    url('/src/fonts/Oxanium/Oxanium-Medium.ttf') format('truetype'),
-    url('/src/fonts/Oxanium/Oxanium-Regular.ttf') format('truetype'),
-    url('/src/fonts/Oxanium/Oxanium-SemiBold.ttf') format('truetype'),
-    url('/src/fonts/Oxanium/Oxanium-Bold.ttf') format('truetype');
+  src: url('/fonts/Oxanium/Oxanium-Regular.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
 	font-family: 'Monocraft NF';
-	src: url('/src/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
+	src: url('/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
+  font-display: swap;
 }
 
 * {
@@ -37,18 +36,15 @@ main {
   height: 100vh;
   min-height: 50%;
   width: 25vh;
+  font-family: Oxanium, Arial, Helvetica, sans-serif;
 }
 
 code, i {
-  font-family: "'Monocraft NF',  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif";
+  font-family: 'Monocraft NF',  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: 800;
   font-size: 15px;
 }
 
-/* main {
-  height: 100vh;
-  min-height: 50%;
-} */
 `;
 
 export default GlobalStyle;

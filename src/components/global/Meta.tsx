@@ -12,6 +12,27 @@ export default function Meta({ title, description, keywords, image }: MetaProps)
 			<meta name="description" content={description} />
 			<meta property="og:title" content={title} />
 			<meta property="og:image" content={image ?? image} />
+			<link
+				rel="preload"
+				href="/fonts/birdman/BIRDMAN_.TTF"
+				as="font"
+				type="font/ttf"
+				crossOrigin=""
+			/>
+			<link
+				rel="preload"
+				href="/fonts/Oxanium/Oxanium-Regular.ttf"
+				as="font"
+				type="font/ttf"
+				crossOrigin=""
+			/>
+			<link
+				rel="preload"
+				href="/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf"
+				as="font"
+				type="font/ttf"
+				crossOrigin=""
+			/>
 		</Head>
 	);
 }

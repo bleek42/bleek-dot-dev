@@ -12,7 +12,7 @@ export default function LandingPage() {
 	return (
 		<>
 			<Meta />
-			<XTerm cols={100} rows={100} />
+			<XTerm />
 		</>
 	);
 };

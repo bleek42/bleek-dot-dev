@@ -1,19 +1,17 @@
 import styled from 'styled-components';
 
 export const XTMain = styled.main`
-  width: 120px;
+  width: 120vh;
   min-width: 50%;
-  height: 500px;
+  height: 100vh;
   min-height: 50%;
   background-color: rgb(0, 0, 0);
 `;
 
 export const XTerminal = styled.form`
+  display: flex;
   border: 2px solid blue;
-  height: 200px;
-  min-height: 80%;
-  width: 1000px;
-  min-width: 40%;
+  border-radius: 20% 20% / 20% 20%;
   background-color: rgb(0, 0, 0);
 `;
 
@@ -43,7 +41,6 @@ export const XTCode = styled.code`
 `;
 
 export const XTBtns = styled.label`
-  display: flex;
   flex-flow: row wrap;
   font-family: 'Monocraft NF';
   color: rgb(66, 66, 66);
@@ -52,24 +49,21 @@ export const XTBtns = styled.label`
 `;
 
 export const Close = styled.button`
-  width: 5vh;
-  height: 5vh;
+  flex: 5vh 1vh;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: rgb(215, 30, 30);
 `;
 
 export const Maxmz = styled.button`
-  width: 5vh;
-  height: 5vh;
+  flex: 5vh 1vh;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: rgb(15, 95, 150);
 `;
 
 export const Minmz = styled.button`
-  width: 5vh;
-  height: 5vh;
+  flex: 5vh 1vh;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: yellow;
@@ -81,7 +75,7 @@ export const XTPrompt = styled.label`
 
 export const XTxtArea = styled.textarea`
   background-color: rgb(0, 0, 0);
-  display: inline-flex;
+  display: flex;
   flex-flow: column wrap;
   cursor: text;
 `;

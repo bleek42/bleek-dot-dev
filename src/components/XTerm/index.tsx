@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 
 import {
 	XTMain,
@@ -14,57 +14,70 @@ import {
 	XTxtArea,
 } from './XTerm';
 
-type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
-type XTermRows = 100 | 90 | 80 | 70 | 60 | 50 | 40 | 0;
+// type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
+// type XTermRows = 100 | 90 | 80 | 70 | 60 | 50 | 40 | 0;
 
 interface XTermSize {
-	cols?: XTermCols;
-	rows?: XTermRows;
-	area?: (cols: XTermCols, rows: XTermRows) => number;
+	cols: number;
+	rows: number;
+	area?: (cols: number, rows: number) => number;
 }
 
-type XTermProps = JSX.IntrinsicElements['textarea'] & XTermSize;
+type XTermState = JSX.IntrinsicElements['textarea'] & XTermSize;
 
-export default function XTerm({ cols = 80, rows = 100, area }: XTermProps) {
-	console.log(area, cols, rows);
+export default function XTerm() {
+	const xtRef = useRef(null);
+	const [observable, setObservable] = useState({});
+	const [ref, setRef] = useState(null);
+
+	const observe = useCallback(() => {
+		console.log('observing...');
+		xtRef.current = new ResizeObserver(([entry]) => setObservable(entry));
+
+		if (ref) xtRef.current.observe(ref);
+	}, [ref]);
+
+	const disconnect = useCallback(() => xtRef.current?.disconnect(), []);
+
+	useEffect(() => {
+		observe();
+		return () => disconnect();
+	}, [observe, disconnect]);
+
+	console.log(ref, observable);
 	return (
 		<XTMain>
-			<XTerminal>
+			<XTerminal ref={xtRef}>
 				<XTBtns id="xterm-btns">
 					<Close
 						id="xterm-close"
 						type="reset"
 						onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
-						{'[\ueb99]'}
+						{'[\uf00d]'}
 					</Close>
 					<Maxmz
 						id="xterm-maxmz"
 						type="button"
 						onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
-						{'[O]'}
+						{'\ueb95'}
 					</Maxmz>
 					<Minmz
 						id="xterm-minmz"
 						type="button"
 						onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
-						{'[_]'}
+						{'\uf2d1'}
 					</Minmz>
 				</XTBtns>
-				<span>
+				{/* <span>
 					<code>Area: {area?.toString()} </code>
-				</span>
-				<XTLabel htmlFor="xt-1">
-					<XTInput type="text" name="xt-1" placeholder="https://bleek.dev" />
-				</XTLabel>
-				<XTLabel htmlFor="shebang">
-					`"${'SHELL'}":` <XTCode> #!/usr/bin/env bleek42</XTCode>
-					<XTInput type="text" name="shebang" placeholder={'press enter to continue'} />
-				</XTLabel>
+				</span> */}
+				<XTCode>[#!/usr/bin/env bleek]</XTCode>
+				<XTLabel htmlFor="shebang">(visitor@https://bleek.dev){'->'}</XTLabel>
+				<XTInput type="text" name="shebang" placeholder={'press enter to continue'} />
 				<XTxtArea
 					name="xterm-txt"
 					id="xterm-txt"
-					cols={cols}
-					rows={rows}
+					ref={xtRef}
 					autoCapitalize="off"
 					autoCorrect="off"
 					spellCheck={false}

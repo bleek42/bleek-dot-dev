@@ -27,9 +27,9 @@ interface XTermDimensions {
 }
 
 type XTermState = StyledComponentProps<
-	'form' | 'textarea' | ComponentType<any>,
+	'form' | 'textarea',
 	DefaultTheme,
-	{},
+	ComponentType<unknown>,
 	never
 > &
 	XTermDimensions;

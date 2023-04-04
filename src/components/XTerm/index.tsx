@@ -1,3 +1,6 @@
+import type { StyledComponentProps, DefaultTheme } from 'styled-components';
+import type { ComponentType } from 'react';
+
 import { useRef, useState, useEffect, useCallback } from 'react';
 
 import {
@@ -17,37 +20,26 @@ import {
 // type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
 // type XTermRows = 100 | 90 | 80 | 70 | 60 | 50 | 40 | 0;
 
-interface XTermSize {
+interface XTermDimensions {
 	cols: number;
 	rows: number;
 	area?: (cols: number, rows: number) => number;
 }
 
-type XTermState = JSX.IntrinsicElements['textarea'] & XTermSize;
-
+type XTermState = StyledComponentProps<
+	'form' | 'textarea' | ComponentType<any>,
+	DefaultTheme,
+	{},
+	never
+> &
+	XTermDimensions;
 export default function XTerm() {
-	const xtRef = useRef(null);
-	const [observable, setObservable] = useState({});
-	const [ref, setRef] = useState(null);
+	const ref = useRef(null);
 
-	const observe = useCallback(() => {
-		console.log('observing...');
-		xtRef.current = new ResizeObserver(([entry]) => setObservable(entry));
-
-		if (ref) xtRef.current.observe(ref);
-	}, [ref]);
-
-	const disconnect = useCallback(() => xtRef.current?.disconnect(), []);
-
-	useEffect(() => {
-		observe();
-		return () => disconnect();
-	}, [observe, disconnect]);
-
-	console.log(ref, observable);
+	console.log(ref);
 	return (
 		<XTMain>
-			<XTerminal ref={xtRef}>
+			<XTerminal>
 				<XTBtns id="xterm-btns">
 					<Close
 						id="xterm-close"
@@ -77,7 +69,9 @@ export default function XTerm() {
 				<XTxtArea
 					name="xterm-txt"
 					id="xterm-txt"
-					ref={xtRef}
+					ref={ref}
+					cols={dimensions.cols}
+					rows={dimensions.rows}
 					autoCapitalize="off"
 					autoCorrect="off"
 					spellCheck={false}

@@ -16,6 +16,7 @@ import {
 	XTPrompt,
 	XTxtArea,
 } from './XTerm';
+import useResizeObserver from '@hooks/useResizeObserver';
 
 // type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
 // type XTermRows = 100 | 90 | 80 | 70 | 60 | 50 | 40 | 0;
@@ -35,6 +36,7 @@ type XTermState = StyledComponentProps<
 	XTermDimensions;
 export default function XTerm() {
 	const ref = useRef(null);
+	const { dimensions, setDimensions } = useResizeObserver(ref);
 
 	console.log(ref);
 	return (

@@ -28,11 +28,11 @@ const GlobalStyle = createGlobalStyle`
 }
 
 body {
-  background-color: rgb(5, 5, 5);
+    background: linear-gradient(rgb(5, 5, 5) 25%, rgb(35, 230, 45) 75%)
 }
 
 main {
-  background: radial-gradient(rgb(0, 0, 0) 24%, rgb(35, 230, 45) 36%);
+  background-color: radial-gradient(rgb(10, 15, 15) 64%, rgb(35, 230, 45) 36%);
   height: 100vh;
   min-height: 50%;
   width: 25vh;

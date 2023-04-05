@@ -10,23 +10,38 @@ export const XTMain = styled.main`
 
 export const XTerminal = styled.form`
   display: flex;
+  flex-flow: column wrap;
   border: 2px solid blue;
-  border-radius: 20% 20% / 20% 20%;
-  background-color: rgb(0, 0, 0);
+  margin: 10px 4px 4px 10px;
+  padding: 8px 8px 8px 8px;
+  /* border-radius: 20% 20% / 20% 20%; */
+  background-color: rgb(5, 5, 5);
 `;
 
 export const XTLabel = styled.label`
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 26px;
   color: rgb(12, 205, 165);
-  background-color: rgb(66, 66, 66);
+  background-color: rgb(0, 0, 0);
+  &:hover {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: text;
+  }
+  &:active {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: text;
+  }
 `;
 
 export const XTInput = styled.input`
   background-color: rgb(0, 0, 0);
-
-  &:active {
-    border: 1px solid rgb(136, 255, 0);
-    cursor: text;
-  }
+  color: rgb(35, 230, 45);
+  font-size: 18px;
+  padding: 4px 4px;
+  flex: 1 auto;
+  font-family: 'Monocraft NF';
 `;
 
 export const XTCode = styled.code`
@@ -41,7 +56,7 @@ export const XTCode = styled.code`
 `;
 
 export const XTBtns = styled.label`
-  flex-flow: row wrap;
+  display: inline-flex;
   font-family: 'Monocraft NF';
   color: rgb(66, 66, 66);
   background-color: rgb(66, 66, 66);
@@ -49,33 +64,37 @@ export const XTBtns = styled.label`
 `;
 
 export const Close = styled.button`
-  flex: 5vh 1vh;
+  flex: 0 2 10%;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: rgb(215, 30, 30);
 `;
 
 export const Maxmz = styled.button`
-  flex: 5vh 1vh;
+  flex: 0 2 10%;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: rgb(15, 95, 150);
 `;
 
 export const Minmz = styled.button`
-  flex: 5vh 1vh;
+  flex: 0 2 10%;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: yellow;
 `;
 
-export const XTPrompt = styled.label`
-  color: rgb(11, 205, 163);
-`;
-
 export const XTxtArea = styled.textarea`
   background-color: rgb(0, 0, 0);
-  display: flex;
-  flex-flow: column wrap;
-  cursor: text;
+  font-family: 'Monocraft NF';
+  color: rgb(15, 95, 150);
+  font-size: 18px;
+  &:hover {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: text;
+  }
+  &:active {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: text;
+  }
 `;

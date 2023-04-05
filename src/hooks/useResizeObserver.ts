@@ -1,23 +1,28 @@
-import { useCallback, useEffect, useState } from 'react';
+// import type { ReactComponentElement, RefObject } from 'react';
+// import { useCallback, useEffect, useState, useRef } from 'react';
 
-export default function useResizeObserver(ref) {
-  const [dimensions, setDimensions] = useState({ cols: 0, rows: 0, area: null });
+// // target: RefObject<T> | T | null,
+// //   cb: (entry: ResizeObserverEntry, observer: ResizeObserver) => any
 
-  const handleResize = useCallback(
-    (entry: ResizeObserverEntry) => {
-      console.log(entry);
-      ref?.current ?? new ResizeObserver(([entry]) => console.log(entry));
-    },
-    [dimensions]
-  );
+// export default function useResizeObserver() {
+//   const [dimensions, setDimensions] = useState({ cols: 0, rows: 0, area: null });
+//   const ref = useRef<ResizeObserver>(new ResizeObserver(([entry]) => console.log(entry)));
 
-  const disconnect = useCallback(() => ref?.current.disconnect(), []);
+//   const handleResize = useCallback(() => {
+//     console.log(ref.current);
+//   }, [ref.current]);
 
-  useEffect(() => {
-    if (!ref.current) handleResize(ref);
+//   const disconnect = useCallback(() => {
+//     ref.current.disconnect();
+//   }, [ref.current]);
 
-    return () => disconnect();
-  }, [ref]);
+//   useEffect(() => {
+//     if (!ref.current) handleResize();
 
-  return { dimensions, setDimensions };
-}
+//     return () => {
+//       disconnect();
+//     };
+//   }, [ref.current]);
+
+//   return { dimensions, ref };
+// }

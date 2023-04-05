@@ -1,5 +1,5 @@
-import type { StyledComponentProps, DefaultTheme } from 'styled-components';
-import type { ComponentType } from 'react';
+import type { StyledComponentProps, DefaultTheme, StyledComponent } from 'styled-components';
+import type { ChangeEvent, ComponentType } from 'react';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 
@@ -13,10 +13,9 @@ import {
 	Close,
 	Minmz,
 	Maxmz,
-	XTPrompt,
 	XTxtArea,
 } from './XTerm';
-import useResizeObserver from '@hooks/useResizeObserver';
+// import useResizeObserver from '@hooks/useResizeObserver';
 
 // type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
 // type XTermRows = 100 | 90 | 80 | 70 | 60 | 50 | 40 | 0;
@@ -35,10 +34,13 @@ type XTermState = StyledComponentProps<
 > &
 	XTermDimensions;
 export default function XTerm() {
-	const ref = useRef(null);
-	const { dimensions, setDimensions } = useResizeObserver(ref);
+	const [values, setValues] = useState({ 'xt-textarea': '', 'xt-prompt': '' });
 
-	console.log(ref);
+	const handleChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+		const { name, value } = evt.currentTarget;
+		setValues({ ...values, [name]: value });
+	};
+
 	return (
 		<XTMain>
 			<XTerminal>
@@ -53,33 +55,44 @@ export default function XTerm() {
 						id="xterm-maxmz"
 						type="button"
 						onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
-						{'\ueb95'}
+						{'[\ueb95]'}
 					</Maxmz>
 					<Minmz
 						id="xterm-minmz"
 						type="button"
 						onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
-						{'\uf2d1'}
+						{'[ \uf2d1 ]'}
 					</Minmz>
 				</XTBtns>
 				{/* <span>
 					<code>Area: {area?.toString()} </code>
 				</span> */}
-				<XTCode>[#!/usr/bin/env bleek]</XTCode>
-				<XTLabel htmlFor="shebang">(visitor@https://bleek.dev){'->'}</XTLabel>
-				<XTInput type="text" name="shebang" placeholder={'press enter to continue'} />
+				<XTCode>[#!/usr/bin/bleek]</XTCode>
 				<XTxtArea
-					name="xterm-txt"
-					id="xterm-txt"
-					ref={ref}
-					cols={dimensions.cols}
-					rows={dimensions.rows}
+					id="xt-textarea"
+					name="xt-textarea"
+					value={values['xt-textarea']}
+					cols={30}
+					rows={30}
 					autoCapitalize="off"
 					autoCorrect="off"
 					spellCheck={false}
 					onSubmitCapture={(evt) => console.info('xterm-txt submit capture', evt.target)}
-					onChange={(evt) => console.info('xterm-txt changed', evt.target)}
+					onChange={handleChange}
 				/>
+				<XTLabel
+					htmlFor="xt-prompt"
+					onSubmitCapture={(evt) => console.info('xterm-txt submit capture', evt.target)}>
+					{'[visitor@https://bleek.dev-$>'}
+					<XTInput
+						type="text"
+						id="xt-prompt"
+						name="xt-prompt"
+						value={values['xt-prompt']}
+						onChange={handleChange}
+						placeholder={'press enter to continue'}
+					/>
+				</XTLabel>
 			</XTerminal>
 		</XTMain>
 	);

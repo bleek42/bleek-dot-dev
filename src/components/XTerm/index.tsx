@@ -15,6 +15,7 @@ import {
 	Maxmz,
 	XTxtArea,
 } from './XTerm';
+import useResizeObserver from '@hooks/useResizeObserver';
 // import useResizeObserver from '@hooks/useResizeObserver';
 
 // type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
@@ -35,6 +36,12 @@ type XTermState = StyledComponentProps<
 	XTermDimensions;
 export default function XTerm() {
 	const [values, setValues] = useState({ 'xt-textarea': '', 'xt-prompt': '' });
+
+	const handleResize = useCallback((target: Element) => {
+		console.log(target);
+	}, []);
+
+	const ref = useResizeObserver(handleResize);
 
 	const handleChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
 		const { name, value } = evt.currentTarget;
@@ -69,6 +76,7 @@ export default function XTerm() {
 				</span> */}
 				<XTCode>[#!/usr/bin/bleek]</XTCode>
 				<XTxtArea
+					ref={ref}
 					id="xt-textarea"
 					name="xt-textarea"
 					value={values['xt-textarea']}

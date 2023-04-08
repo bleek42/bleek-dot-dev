@@ -10,19 +10,20 @@ export default function useResizeObserver<T extends Element>(
   const ref = useRef<T>(null);
 
   useEffect(() => {
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        console.log(entry);
-      }
+    const observer = new ResizeObserver(([entry]) => {
+      console.log(entry);
+      setDimensions((prev) => ({ ...prev, ...entry.contentRect }));
+      if (cb) cb(ref?.current, entry);
       if (!cb) return;
     });
-    console.log(ref);
 
     observer.observe(ref?.current);
+    console.log(observer);
+    // console.log(ref, observer);
     return () => {
       observer.disconnect();
     };
-  }, [ref, cb]);
+  }, []);
 
-  return ref;
+  return { ref };
 }

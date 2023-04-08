@@ -11,6 +11,8 @@ export const XTMain = styled.main`
 export const XTerminal = styled.form`
   display: flex;
   flex-flow: column wrap;
+  align-items: center;
+  box-shadow: 3em 3em rgb(66, 166, 66);
   border: 2px solid blue;
   margin: 10px 4px 4px 10px;
   padding: 8px 8px 8px 8px;
@@ -19,9 +21,9 @@ export const XTerminal = styled.form`
 `;
 
 export const XTLabel = styled.label`
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: center;
+  /* display: inline-flex;
+  justify-content: flex-start; */
+
   font-size: 26px;
   color: rgb(12, 205, 165);
   background-color: rgb(0, 0, 0);
@@ -56,7 +58,11 @@ export const XTCode = styled.code`
 `;
 
 export const XTBtns = styled.label`
-  display: inline-flex;
+  /* display: inline-flex; */
+  flex: 2 2 50px;
+  margin: 2px 4px 4px 2px;
+  padding: 8px 4px 4px 8px;
+  width: 100vh;
   font-family: 'Monocraft NF';
   color: rgb(66, 66, 66);
   background-color: rgb(66, 66, 66);
@@ -64,25 +70,39 @@ export const XTBtns = styled.label`
 `;
 
 export const Close = styled.button`
-  flex: 0 2 10%;
+  /* flex: 0 2 10%; */
+  width: 10vh;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: rgb(215, 30, 30);
 `;
 
 export const Maxmz = styled.button`
-  flex: 0 2 10%;
+  /* flex: 0 2 10%; */
+  width: 10vh;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: rgb(15, 95, 150);
 `;
 
 export const Minmz = styled.button`
-  flex: 0 2 10%;
+  /* flex: 0 2 10%; */
+  width: 10vh;
   font-family: 'Monocraft NF';
   font-size: 24px;
   background-color: yellow;
 `;
+
+// export const XTBtn = styled.button`
+//   background-color: ${(props) =>
+//     props?.close
+//       ? 'rgb(215, 30, 30)'
+//       : props?.max
+//       ? 'rgb(15, 95, 150)'
+//       : props?.min
+//       ? 'yellow'
+//       : 'grey'};
+// `;
 
 export const XTxtArea = styled.textarea`
   background-color: rgb(0, 0, 0);

@@ -1,5 +1,5 @@
 import type { StyledComponentProps, DefaultTheme, StyledComponent } from 'styled-components';
-import type { ChangeEvent, ComponentType } from 'react';
+import type { ChangeEvent, ComponentType, RefObject } from 'react';
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 
@@ -14,6 +14,7 @@ import {
 	Minmz,
 	Maxmz,
 	XTxtArea,
+	XTBtn,
 } from './XTerm';
 import useResizeObserver from '@hooks/useResizeObserver';
 // import useResizeObserver from '@hooks/useResizeObserver';
@@ -36,22 +37,29 @@ type XTermState = StyledComponentProps<
 	XTermDimensions;
 export default function XTerm() {
 	const [values, setValues] = useState({ 'xt-textarea': '', 'xt-prompt': '' });
+	const [dimensions, setDimensions] = useState({});
 
-	const handleResize = useCallback((target: Element) => {
-		console.log(target);
-	}, []);
+	const handleResize = useCallback(
+		(target: Element, entry: ResizeObserverEntry) => {
+			console.log('resize target:', target, entry);
+			setDimensions((prev) => ({ ...prev, ...entry }));
+		},
+		[dimensions]
+	);
 
-	const ref = useResizeObserver(handleResize);
+	const { ref } = useResizeObserver(handleResize);
 
+	console.log(ref, dimensions);
 	const handleChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
 		const { name, value } = evt.currentTarget;
 		setValues({ ...values, [name]: value });
 	};
 
 	return (
-		<XTMain>
+		<XTMain ref={ref as RefObject<HTMLElement>}>
 			<XTerminal>
 				<XTBtns id="xterm-btns">
+					<XTBtn close>test</XTBtn>
 					<Close
 						id="xterm-close"
 						type="reset"
@@ -76,7 +84,6 @@ export default function XTerm() {
 				</span> */}
 				<XTCode>[#!/usr/bin/bleek]</XTCode>
 				<XTxtArea
-					ref={ref}
 					id="xt-textarea"
 					name="xt-textarea"
 					value={values['xt-textarea']}

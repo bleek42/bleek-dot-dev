@@ -12,9 +12,9 @@ export default function useResizeObserver<T extends Element>(
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) => {
       console.log(entry);
-      setDimensions((prev) => ({ ...prev, ...entry.contentRect }));
-      if (cb) cb(ref?.current, entry);
       if (!cb) return;
+
+      cb(ref?.current, entry);
     });
 
     observer.observe(ref?.current);

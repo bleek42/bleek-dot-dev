@@ -18,6 +18,7 @@ import {
 } from './XTerm';
 
 interface XTermDimensions {
+	currentEntry: ResizeObserverEntry;
 	width: number;
 	height: number;
 	cols: number;
@@ -38,30 +39,50 @@ type XTermState = XTermDimensions;
 
 export default function XTerm() {
 	const [values, setValues] = useState({ 'xt-textarea': '', 'xt-prompt': '' });
-	const [dimensions, setDimensions] = useState<XTermState>({
-		width: 0,
-		height: 0,
-		cols: 0,
-		rows: 0,
-	});
+	const [dimensions, setDimensions] = useState<ResizeObserverEntry>();
 
 	const handleResize = useCallback(
 		(target: T, entry: ResizeObserverEntry) => {
-			console.log('resize target:', target);
-			console.log(entry.contentRect.width);
 			const { width, height } = entry.contentRect;
+			let cols: number;
+			let rows: number;
+
 			if (width <= 480) {
-				setDimensions((prev) => ({ ...prev, width, height, cols: 20, rows: 20 }));
+				cols = 20;
+				rows = 20;
+				setDimensions((prev) => ({
+					...prev,
+					...entry,
+					cols,
+					rows,
+					arear: (cols, rows) => cols * rows,
+				}));
 			}
 
 			if (width >= 480 || width <= 1024) {
-				setDimensions((prev) => ({ ...prev, width, height, cols: 60, rows: 60 }));
+				cols = 60;
+				rows = 60;
+				setDimensions((prev) => ({
+					...prev,
+					...entry,
+					cols,
+					rows,
+					area: (cols, rows) => cols * rows,
+				}));
 			}
 			if (width > 1024) {
-				setDimensions((prev) => ({ ...prev, width, height, cols: 80, rows: 36 }));
+				cols = 80;
+				rows = 36;
+				setDimensions((prev) => ({
+					...prev,
+					...entry,
+					cols,
+					rows,
+					area: (cols, rows) => cols * rows,
+				}));
 			}
 		},
-		[dimensions.width, dimensions.height]
+		[dimensions]
 	);
 
 	const { ref } = useResizeObserver(handleResize);

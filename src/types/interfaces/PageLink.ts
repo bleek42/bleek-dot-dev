@@ -1,9 +1,9 @@
-import { LinkProps } from 'next/link';
+import type { LinkProps } from 'next/link';
 
-export type PageId = 1 | 2 | 3 | 4 | 5 | number;
-export type PageTitle = 'Home' | 'About' | 'Contact' | 'Projects' | 'Resume' | string;
-export type PagePath = '/' | '/home' | '/about' | '/contact' | '/projects' | '/resume' | string;
-export type PageIcon =
+export type PageID = 1 | 2 | 3 | 4 | 5 | number;
+export type Title = 'Home' | 'About' | 'Contact' | 'Projects' | 'Resume';
+export type Href = '/' | '/home' | '/about' | '/contact' | '/projects' | '/resume';
+export type Icon =
   | ' \udb83\udd84 '
   | ' \udb84\udcf6 '
   | ' \udb84\udcdc '
@@ -13,8 +13,8 @@ export type PageIcon =
   | null;
 
 export interface PageLink extends LinkProps {
-  id: PageId;
-  title: PageTitle;
-  path: PagePath;
-  icon?: PageIcon;
+  id: PageID;
+  title: Title | string;
+  href: Href | string;
+  icon?: Icon | string;
 }

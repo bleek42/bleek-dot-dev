@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-	"target": "ES2020",
+    "target": "ES2020",
     "lib": [
       "dom",
       "dom.iterable",
@@ -8,15 +8,16 @@
     ],
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-	"outDir": ".next/",
     "esModuleInterop": true,
-	"module": "ES2020",
+    "module": "ES2020",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
     "baseUrl": "./src",
+    "allowImportingTsExtensions": true,
+    "allowUmdGlobalAccess": true,
     "paths": {
       "@components/*": [
         "components/*"
@@ -60,7 +61,8 @@
     "next-env.d.ts",
     "styled.d.ts",
     "next.config.js",
-    "/**/*.tsx",
+    "src/**/*.tsx",
+    "src/**/*.ts",
     "public/"
   ],
   "exclude": [

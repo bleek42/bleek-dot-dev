@@ -1,78 +1,152 @@
-import { useState } from 'react';
+import type { StyledComponentProps, DefaultTheme, StyledComponent } from 'styled-components';
+import type { ChangeEvent, ComponentType, RefObject } from 'react';
 
-import {
-	XTMain,
-	XTerminal,
-	XTLabel,
-	XTInput,
-	XTCode,
-	XTBtns,
-	Close,
-	Minmz,
-	Maxmz,
-	XTPrompt,
-	XTxtArea,
-} from './XTerm';
+import { useState, useCallback } from 'react';
 
-type XTermCols = 120 | 100 | 80 | 60 | 40 | 20 | 0;
-type XTermRows = 100 | 90 | 80 | 70 | 60 | 50 | 40 | 0;
+import useResizeObserver from '@hooks/useResizeObserver';
+import { XTMain, XTerminal, XTLabel, XTBtnLabel, XTBtn, XTInput, XTCode, XTxtArea } from './XTerm';
 
-interface XTermSize {
-	cols?: XTermCols;
-	rows?: XTermRows;
-	area?: (cols: XTermCols, rows: XTermRows) => number;
+interface XTermDimensions {
+	width?: number | null;
+	height?: number | null;
+	cols?: number;
+	rows?: number;
+	area?: (cols: number, rows: number) => number;
+	currentEntry?: ResizeObserverEntry;
 }
 
-type XTermProps = JSX.IntrinsicElements['textarea'] & XTermSize;
+type T = Element;
 
-export default function XTerm({ cols = 80, rows = 100, area }: XTermProps) {
-	console.log(area, cols, rows);
+type XTermComponentProps = StyledComponentProps<
+	'form' | 'textarea',
+	DefaultTheme,
+	ComponentType<any>,
+	never
+> &
+	XTermDimensions;
+
+type XTermState = XTermDimensions;
+
+export default function XTerm() {
+	const [values, setValues] = useState({ 'xt-textarea': '', 'xt-prompt': '' });
+	const [dimensions, setDimensions] = useState<XTermState>({});
+
+	const handleResize = useCallback(
+		(target: T, entry: ResizeObserverEntry) => {
+			const { width, height } = entry.contentRect;
+			let cols: number;
+			let rows: number;
+			if (width <= 480) {
+				cols = 20;
+				rows = 20;
+				setDimensions((prev) => ({
+					...prev,
+					...entry,
+					cols,
+					rows,
+					arear: (cols, rows) => cols * rows,
+				}));
+			}
+
+			if (width >= 480 || width <= 1024) {
+				cols = 60;
+				rows = 60;
+				setDimensions((prev) => ({
+					...prev,
+					...entry,
+					cols,
+					rows,
+					area: (cols, rows) => cols * rows,
+				}));
+			}
+			if (width > 1024) {
+				cols = 80;
+				rows = 36;
+				setDimensions((prev) => ({
+					...prev,
+					...entry,
+					cols,
+					rows,
+					area: (cols, rows) => cols * rows,
+				}));
+			}
+			console.warn('resizing:', entry.borderBoxSize);
+		},
+		[dimensions]
+	);
+
+	const { ref } = useResizeObserver(handleResize);
+
+	// eslint-disable-next-line no-console
+	console.info('curr xt-dims. state:', dimensions);
+	// eslint-disable-next-line no-console
+	console.info('ref+curr:', ref, ref?.current);
+	const handleChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+		const { name, value } = evt.currentTarget;
+		setValues({ ...values, [name]: value });
+	};
+
 	return (
-		<XTMain>
-			<XTerminal>
-				<XTBtns id="xterm-btns">
-					<Close
-						id="xterm-close"
-						type="reset"
-						onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
-						{'[\ueb99]'}
-					</Close>
-					<Maxmz
-						id="xterm-maxmz"
-						type="button"
-						onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
-						{'[O]'}
-					</Maxmz>
-					<Minmz
-						id="xterm-minmz"
-						type="button"
-						onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
-						{'[_]'}
-					</Minmz>
-				</XTBtns>
-				<span>
+		<XTerminal ref={ref as RefObject<HTMLFormElement>}>
+			<XTBtnLabel id="xt-btns">
+				<XTBtn
+					id="xt-close"
+					type="reset"
+					color={'rgb(195, 15, 155)'}
+					// eslint-disable-next-line no-console
+					onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
+					{'[\uf00d]'}
+				</XTBtn>
+				<XTBtn
+					id="xt-maxmz"
+					type="button"
+					color={'rgb(25, 180, 220)'}
+					// eslint-disable-next-line no-console
+					onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
+					{'[\ueb95]'}
+				</XTBtn>
+				<XTBtn
+					id="xt-minmz"
+					type="button"
+					color={'rgb(215, 220, 25)'}
+					// eslint-disable-next-line no-console
+					onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
+					{'[ \uf2d1 ]'}
+				</XTBtn>
+			</XTBtnLabel>
+			{/* <span>
 					<code>Area: {area?.toString()} </code>
-				</span>
-				<XTLabel htmlFor="xt-1">
-					<XTInput type="text" name="xt-1" placeholder="https://bleek.dev" />
-				</XTLabel>
-				<XTLabel htmlFor="shebang">
-					`"${'SHELL'}":` <XTCode> #!/usr/bin/env bleek42</XTCode>
-					<XTInput type="text" name="shebang" placeholder={'press enter to continue'} />
-				</XTLabel>
-				<XTxtArea
-					name="xterm-txt"
-					id="xterm-txt"
-					cols={cols}
-					rows={rows}
-					autoCapitalize="off"
-					autoCorrect="off"
-					spellCheck={false}
-					onSubmitCapture={(evt) => console.info('xterm-txt submit capture', evt.target)}
-					onChange={(evt) => console.info('xterm-txt changed', evt.target)}
+				</span> */}
+			<XTCode>[#!/usr/bin/bleek]</XTCode>
+			<XTxtArea
+				id="xt-textarea"
+				name="xt-textarea"
+				value={values['xt-textarea']}
+				cols={dimensions.cols}
+				rows={dimensions.rows}
+				autoCapitalize="off"
+				autoCorrect="off"
+				spellCheck={false}
+				placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
+				// eslint-disable-next-line no-console
+				onSubmitCapture={(evt) => console.info('xterm-txt submit capture', evt.target)}
+				onChange={handleChange}
+			/>
+			<XTLabel
+				htmlFor="xt-prompt"
+				// eslint-disable-next-line no-console
+				onSubmitCapture={(evt) => console.info('xterm-txt submit capture', evt.target)}>
+				{'[visitor@https://bleek.dev-$>'}
+				<XTInput
+					type="text"
+					id="xt-prompt"
+					name="xt-prompt"
+					value={values['xt-prompt']}
+					onChange={handleChange}
+					placeholder={'press enter to continue'}
 				/>
-			</XTerminal>
-		</XTMain>
+			</XTLabel>
+		</XTerminal>
 	);
 }
 

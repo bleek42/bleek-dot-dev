@@ -1,7 +1,13 @@
-import GlobalStyle from '@global/style';
-import Document, { DocumentContext, DocumentInitialProps } from 'next/document';
-import { Fragment } from 'react';
+import Document, {
+	DocumentContext,
+	DocumentInitialProps,
+	Html,
+	Main,
+	NextScript,
+} from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+
+import Meta from '@components/global/Meta';
 
 export default class MyDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -13,7 +19,7 @@ export default class MyDocument extends Document {
 				originalRenderPage({
 					enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
 
-					enhanceComponent: (Component) => Component,
+					// enhanceComponent: (Component) => Component,
 				});
 
 			const initialProps = await Document.getInitialProps(ctx);
@@ -31,4 +37,16 @@ export default class MyDocument extends Document {
 			sheet.seal();
 		}
 	}
+
+	// render() {
+	// 	return (
+	// 		<Html lang="en">
+	// 			<Meta />
+	// 			<body>
+	// 				<Main />
+	// 				<NextScript />
+	// 			</body>
+	// 		</Html>
+	// 	);
+	// }
 }

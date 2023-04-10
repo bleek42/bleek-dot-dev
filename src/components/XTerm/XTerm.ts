@@ -1,14 +1,6 @@
 import styled from 'styled-components';
 
-export const XTMain = styled.main`
-  width: 120vh;
-  min-width: 50%;
-  height: 100vh;
-  min-height: 50%;
-  background-color: rgb(0, 0, 0);
-`;
-
-export const XTerminal = styled.form`
+export const XTForm = styled.form`
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -23,10 +15,10 @@ export const XTerminal = styled.form`
 export const XTLabel = styled.label`
   /* display: inline-flex;
   justify-content: flex-start; */
-
   font-size: 26px;
   color: rgb(12, 205, 165);
   background-color: rgb(0, 0, 0);
+
   &:hover {
     border: 2px solid rgb(136, 255, 0);
     cursor: text;
@@ -47,12 +39,12 @@ export const XTInput = styled.input`
 `;
 
 export const XTCode = styled.code`
+  /* font-family: 'Courier New', Courier, monospace; */
   font-family: 'Monocraft NF';
   font-size: 28px;
   font-weight: 650;
   color: rgb(160, 85, 132);
   text-align: left;
-  /* font-family: 'Courier New', Courier, monospace; */
   text-decoration: underline;
   text-decoration-color: rgb(225, 75, 15);
 `;
@@ -69,47 +61,56 @@ export const XTBtnLabel = styled.label`
   border: 2px solid rgb(175, 175, 165);
 `;
 
-export const XTBtn = styled.button`
+enum BTNS {
+  'close',
+  'max',
+  'min',
+  'default',
+}
+
+export const XTBtn = styled.button.attrs((props) => ({
+  btnType: BTNS['close'] | BTNS['max'] | BTNS['min'] | BTNS['default'],
+}))`
   color: ${(props) =>
-    props.color === 'rgb(215, 220, 25)'
-      ? 'rgb(215, 220, 25)'
-      : props.color === 'rgb(195, 15, 155)'
-      ? 'rgb(195, 15, 155)'
-      : props.color === 'rgb(25, 180, 220)'
-      ? 'rgb(25, 180, 220)'
-      : 'rgb(19, 174, 32)'};
+    props.btnType['max']
+      ? props.theme.palette.primary.cyan
+      : props.btnType['min']
+      ? props.theme.palette.primary.yellow
+      : props.btnType['close']
+      ? props.theme.palette.primary.orange
+      : props.theme.palette.primary.neon};
+  background-color: ${({ theme }) => theme.palette.primary.gray};
   width: 10vh;
   font-family: 'Monocraft NF';
   font-size: 24px;
-  background-color: rgb(215, 30, 30);
 `;
 
-export const Maxmz = styled.button`
-  /* flex: 0 2 10%; */
-  width: 10vh;
-  font-family: 'Monocraft NF';
-  font-size: 24px;
-  background-color: rgb(15, 95, 150);
-`;
 
-export const Minmz = styled.button`
-  /* flex: 0 2 10%; */
-  width: 10vh;
-  font-family: 'Monocraft NF';
-  font-size: 24px;
-  background-color: yellow;
-`;
-
-// export const XTBtn = styled.button`
-//   background-color: ${(props) =>
-//     props?.close
-//       ? 'rgb(215, 30, 30)'
-//       : props?.max
-//       ? 'rgb(15, 95, 150)'
-//       : props?.min
-//       ? 'yellow'
-//       : 'grey'};
+//   /* flex: 0 2 10%; */
+//   width: 10vh;
+//   font-family: 'Monocraft NF';
+//   font-size: 24px;
+//   background-color: rgb(15, 95, 150);
 // `;
+
+// export const Minmz = styled.button`
+//   /* flex: 0 2 10%; */
+//   width: 10vh;
+//   font-family: 'Monocraft NF';
+//   font-size: 24px;
+//   background-color: yellow;
+// `;
+
+// // export const XTBtn = styled.button`
+// //   background-color: ${(props) =>
+// //     props?.close
+// //       ? 'rgb(215, 30, 30)'
+// //       : props?.max
+// //       ? 'rgb(15, 95, 150)'
+// //       : props?.min
+// //       ? 'yellow'
+// //       : 'grey'};
+// // `;
 
 export const XTxtArea = styled.textarea`
   background-color: rgb(0, 0, 0);

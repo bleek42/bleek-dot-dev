@@ -1,10 +1,20 @@
 import 'styled-components';
 
 interface Colors {
-  fg: string;
-  bg: string;
-  trim: string;
-  hl: string;
+  red: string;
+  orange: string;
+  blue: string;
+  cyan: string;
+  green: string;
+  drab: string;
+  steel: string;
+  tan: string;
+  gray: string;
+  teal: string;
+  neon: string;
+  yellow: string;
+  linear?: string;
+  radial?: string;
 }
 
 declare module 'styled-components' {
@@ -21,6 +31,7 @@ declare module 'styled-components' {
 
       primary: Colors;
       secondary: Colors;
+      ternary: Colors;
     };
   }
 }

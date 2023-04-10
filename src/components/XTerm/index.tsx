@@ -4,7 +4,7 @@ import type { ChangeEvent, ComponentType, RefObject } from 'react';
 import { useState, useCallback } from 'react';
 
 import useResizeObserver from '@hooks/useResizeObserver';
-import { XTMain, XTerminal, XTLabel, XTBtnLabel, XTBtn, XTInput, XTCode, XTxtArea } from './XTerm';
+import { XTForm, XTLabel, XTBtnLabel, XTBtn, XTInput, XTCode, XTxtArea } from './XTerm';
 
 interface XTermDimensions {
 	width?: number | null;
@@ -18,7 +18,7 @@ interface XTermDimensions {
 type T = Element;
 
 type XTermComponentProps = StyledComponentProps<
-	'form' | 'textarea',
+	'form' | 'input' | 'textarea' | 'button',
 	DefaultTheme,
 	ComponentType<any>,
 	never
@@ -33,6 +33,8 @@ export default function XTerm() {
 
 	const handleResize = useCallback(
 		(target: T, entry: ResizeObserverEntry) => {
+			console.info('target:', target);
+			console.info(entry);
 			const { width, height } = entry.contentRect;
 			let cols: number;
 			let rows: number;
@@ -87,12 +89,11 @@ export default function XTerm() {
 	};
 
 	return (
-		<XTerminal ref={ref as RefObject<HTMLFormElement>}>
+		<XTForm ref={ref as RefObject<HTMLFormElement>}>
 			<XTBtnLabel id="xt-btns">
 				<XTBtn
 					id="xt-close"
 					type="reset"
-					color={'rgb(195, 15, 155)'}
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
 					{'[\uf00d]'}
@@ -100,7 +101,6 @@ export default function XTerm() {
 				<XTBtn
 					id="xt-maxmz"
 					type="button"
-					color={'rgb(25, 180, 220)'}
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
 					{'[\ueb95]'}
@@ -108,7 +108,6 @@ export default function XTerm() {
 				<XTBtn
 					id="xt-minmz"
 					type="button"
-					color={'rgb(215, 220, 25)'}
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
 					{'[ \uf2d1 ]'}
@@ -146,7 +145,7 @@ export default function XTerm() {
 					placeholder={'press enter to continue'}
 				/>
 			</XTLabel>
-		</XTerminal>
+		</XTForm>
 	);
 }
 

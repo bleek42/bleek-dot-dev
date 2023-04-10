@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import theme from '@global/theme';
 
 const GlobalStyle = createGlobalStyle`
@@ -48,3 +48,11 @@ code, i {
 `;
 
 export default GlobalStyle;
+
+export const MainBG = styled.main`
+  width: 120vh;
+  min-width: 50%;
+  height: 100vh;
+  min-height: 50%;
+  background-color: ${({ theme }) => theme.palette.secondary.linear ?? 'rgb(5, 5, 5)'};
+`;

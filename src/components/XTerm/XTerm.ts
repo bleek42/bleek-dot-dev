@@ -57,7 +57,7 @@ export const XTCode = styled.code`
   text-decoration-color: rgb(225, 75, 15);
 `;
 
-export const XTBtns = styled.label`
+export const XTBtnLabel = styled.label`
   /* display: inline-flex; */
   flex: 2 2 50px;
   margin: 2px 4px 4px 2px;
@@ -69,8 +69,15 @@ export const XTBtns = styled.label`
   border: 2px solid rgb(175, 175, 165);
 `;
 
-export const Close = styled.button`
-  /* flex: 0 2 10%; */
+export const XTBtn = styled.button`
+  color: ${(props) =>
+    props.color === 'rgb(215, 220, 25)'
+      ? 'rgb(215, 220, 25)'
+      : props.color === 'rgb(195, 15, 155)'
+      ? 'rgb(195, 15, 155)'
+      : props.color === 'rgb(25, 180, 220)'
+      ? 'rgb(25, 180, 220)'
+      : 'rgb(19, 174, 32)'};
   width: 10vh;
   font-family: 'Monocraft NF';
   font-size: 24px;

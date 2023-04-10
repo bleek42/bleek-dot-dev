@@ -23,7 +23,7 @@ main {
 
     #xterm-top {
       @include flex-inline;
-      width: 100%;
+      width: 10vh;
       height: 30px;
       padding: 0 10px;
       background-color: map.get($bgcolors, "black-steel");

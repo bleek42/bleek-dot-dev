@@ -49,7 +49,7 @@ export const XTCode = styled.code`
   text-decoration-color: rgb(225, 75, 15);
 `;
 
-export const XTBtnLabel = styled.label`
+export const XTBtns = styled.label`
   /* display: inline-flex; */
   flex: 2 2 50px;
   margin: 2px 4px 4px 2px;
@@ -61,31 +61,20 @@ export const XTBtnLabel = styled.label`
   border: 2px solid rgb(175, 175, 165);
 `;
 
-enum BTNS {
-  'close',
-  'max',
-  'min',
-  'default',
-}
-
-export const XTBtn = styled.button.attrs((props) => ({
-  btnType: BTNS['close'] | BTNS['max'] | BTNS['min'] | BTNS['default'],
-}))`
-  color: ${(props) =>
-    props.btnType['max']
-      ? props.theme.palette.primary.cyan
-      : props.btnType['min']
-      ? props.theme.palette.primary.yellow
-      : props.btnType['close']
-      ? props.theme.palette.primary.orange
-      : props.theme.palette.primary.neon};
-  background-color: ${({ theme }) => theme.palette.primary.gray};
-  width: 10vh;
+export const XTxtArea = styled.textarea`
+  background-color: rgb(0, 0, 0);
   font-family: 'Monocraft NF';
-  font-size: 24px;
+  color: rgb(15, 95, 150);
+  font-size: 18px;
+  &:hover {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: text;
+  }
+  &:active {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: text;
+  }
 `;
-
-
 //   /* flex: 0 2 10%; */
 //   width: 10vh;
 //   font-family: 'Monocraft NF';
@@ -112,17 +101,3 @@ export const XTBtn = styled.button.attrs((props) => ({
 // //       : 'grey'};
 // // `;
 
-export const XTxtArea = styled.textarea`
-  background-color: rgb(0, 0, 0);
-  font-family: 'Monocraft NF';
-  color: rgb(15, 95, 150);
-  font-size: 18px;
-  &:hover {
-    border: 2px solid rgb(136, 255, 0);
-    cursor: text;
-  }
-  &:active {
-    border: 2px solid rgb(136, 255, 0);
-    cursor: text;
-  }
-`;

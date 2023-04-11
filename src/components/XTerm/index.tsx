@@ -4,15 +4,21 @@ import type { ChangeEvent, ComponentType, RefObject } from 'react';
 import { useState, useCallback } from 'react';
 
 import useResizeObserver from '@hooks/useResizeObserver';
-import { XTForm, XTLabel, XTBtnLabel, XTBtn, XTInput, XTCode, XTxtArea } from './XTerm';
+import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
+import { Btn } from '@global/Button';
 
 interface XTermDimensions {
-	width?: number | null;
-	height?: number | null;
 	cols?: number;
 	rows?: number;
-	area?: (cols: number, rows: number) => number;
-	currentEntry?: ResizeObserverEntry;
+	area?: number;
+	width?: number;
+	height?: number;
+	top?: number;
+	bottom?: number;
+	left?: number;
+	right?: number;
+	x?: number;
+	y?: number;
 }
 
 type T = Element;
@@ -29,52 +35,72 @@ type XTermState = XTermDimensions;
 
 export default function XTerm() {
 	const [values, setValues] = useState({ 'xt-textarea': '', 'xt-prompt': '' });
-	const [dimensions, setDimensions] = useState<XTermState>({});
+	const [dimensions, setDimensions] = useState<XTermState>({ cols: 20, rows: 20, area: 20 * 20 });
 
 	const handleResize = useCallback(
 		(target: T, entry: ResizeObserverEntry) => {
 			console.info('target:', target);
 			console.info(entry);
-			const { width, height } = entry.contentRect;
-			let cols: number;
-			let rows: number;
-			if (width <= 480) {
-				cols = 20;
-				rows = 20;
+			const { borderBoxSize, contentRect, contentBoxSize, devicePixelContentBoxSize } = entry;
+			const { width, height, top, bottom, left, right, x, y } = contentRect;
+			// let cols: number;
+			// let rows: number;
+			// let area: number;
+
+			const currentWidth = Math.round(width);
+			const currentHeight = Math.round(height);
+			console.log(currentWidth, currentHeight);
+
+			if (currentWidth < 481) {
 				setDimensions((prev) => ({
 					...prev,
-					...entry,
-					cols,
-					rows,
-					arear: (cols, rows) => cols * rows,
+					width: currentWidth,
+					height: currentHeight,
+					top,
+					bottom,
+					left,
+					right,
+					x,
+					y,
+				}));
+			}
+			if (currentWidth < 1024 && currentWidth > 480) {
+				setDimensions((prev) => ({
+					...prev,
+					cols: 60,
+					rows: 60,
+					area: 60 * 60,
+					width: currentWidth,
+					height: currentHeight,
+					top,
+					bottom,
+					left,
+					right,
+					x,
+					y,
 				}));
 			}
 
-			if (width >= 480 || width <= 1024) {
-				cols = 60;
-				rows = 60;
+			if (currentWidth >= 1024) {
 				setDimensions((prev) => ({
 					...prev,
-					...entry,
-					cols,
-					rows,
-					area: (cols, rows) => cols * rows,
+					cols: 80,
+					rows: 36,
+					area: 80 * 36,
+					width: currentWidth,
+					height: currentHeight,
+					top,
+					bottom,
+					left,
+					right,
+					x,
+					y,
 				}));
 			}
-			if (width > 1024) {
-				cols = 80;
-				rows = 36;
-				setDimensions((prev) => ({
-					...prev,
-					...entry,
-					cols,
-					rows,
-					area: (cols, rows) => cols * rows,
-				}));
-			}
-			console.warn('resizing:', entry.borderBoxSize);
+
+			console.warn('resizing:', contentRect);
 		},
-		[dimensions]
+		[dimensions.cols, dimensions.rows, dimensions.area, dimensions.width]
 	);
 
 	const { ref } = useResizeObserver(handleResize);
@@ -90,29 +116,29 @@ export default function XTerm() {
 
 	return (
 		<XTForm ref={ref as RefObject<HTMLFormElement>}>
-			<XTBtnLabel id="xt-btns">
-				<XTBtn
+			<XTBtns id="xt-btns">
+				<Btn
 					id="xt-close"
 					type="reset"
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
 					{'[\uf00d]'}
-				</XTBtn>
-				<XTBtn
+				</Btn>
+				<Btn
 					id="xt-maxmz"
 					type="button"
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
 					{'[\ueb95]'}
-				</XTBtn>
-				<XTBtn
+				</Btn>
+				<Btn
 					id="xt-minmz"
 					type="button"
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
 					{'[ \uf2d1 ]'}
-				</XTBtn>
-			</XTBtnLabel>
+				</Btn>
+			</XTBtns>
 			{/* <span>
 					<code>Area: {area?.toString()} </code>
 				</span> */}

@@ -1,8 +1,11 @@
-import { List as Wrapper, Item } from './List';
-import { BlkTxt } from 'components/global';
+import type { BaseComponentProps } from '@props/base.component.props';
 
-type ListProps = JSX.IntrinsicElements['ul'] & {
-	items?: any[];
+import { BlkTxt } from '@global/Text';
+
+import { List as Wrapper, Item } from './List';
+
+type ListProps = BaseComponentProps & {
+	items?: Array<string | Record<string, unknown>>;
 };
 
 export default function List(props: ListProps) {

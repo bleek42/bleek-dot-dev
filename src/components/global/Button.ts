@@ -1,25 +1,21 @@
 import styled from 'styled-components';
 
-enum BTNS {
-  'default',
-  'close',
-  'max',
-  'min',
-}
-
-export const Btn = styled.button.attrs((props) => ({
-  btnType: BTNS['close'] | BTNS['max'] | BTNS['min'] | BTNS['default'],
-}))`
-  color: ${(props) =>
-    props.btnType['max']
-      ? props.theme.palette.primary.cyan
-      : props.btnType['min']
-      ? props.theme.palette.primary.yellow
-      : props.btnType['close']
-      ? props.theme.palette.primary.orange
-      : props.theme.palette.primary.neon};
+export const Btn = styled.button`
+  color: ${({ theme }) => theme.palette.primary.neon};
   background-color: ${({ theme }) => theme.palette.primary.gray};
   width: 10vh;
   font-family: 'Monocraft NF';
   font-size: 24px;
+`;
+
+export const BtnClose = styled(Btn)`
+  color: ${({ theme }) => theme.palette.primary.orange};
+`;
+
+export const BtnMax = styled(Btn)`
+  color: ${({ theme }) => theme.palette.primary.cyan};
+`;
+
+export const BtnMin = styled(Btn)`
+  color: ${({ theme }) => theme.palette.primary.yellow};
 `;

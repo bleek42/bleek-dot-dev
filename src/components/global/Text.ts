@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+export const MdTxt = styled.h2.attrs((props) => ({
+  font: 'Monocraft NF' || 'Oxanium' || 'Birdman',
+}))`
+  color: ${({ theme }) => theme.palette.primary.neon};
+  font-family: ${(props) => props.font};
+  font-weight: 650;
+  text-align: center;
+  text-shadow: rgb(0, 0, 0) 1px 1px 1px;
+  text-decoration: underline;
+  text-decoration-color: rgb(0, 0, 0);
+  text-decoration-style: double;
+`;
+
 export const StlLg = styled.h2`
   color: rgb(66, 66, 66);
   font-family: Birdman;
@@ -32,9 +45,20 @@ export const NeonLg = styled.h2`
   text-decoration-style: double;
 `;
 
+export const NeonTxt = styled.p`
+  color: rgb(135, 255, 0);
+  font-family: 'Monocraft NF';
+  font-weight: 650;
+  text-align: center;
+  text-shadow: rgb(38, 136, 60) 1px 0 1px;
+  text-decoration: underline;
+  text-decoration-color: rgb(135, 255, 0);
+  text-decoration-style: double;
+`;
+
 export const GrnMd = styled.h5`
   color: rgb(45, 230, 35);
-  font-family: MonocraftNF;
+  font-family: 'Oxanium';
   font-weight: 650;
   text-align: center;
   text-shadow: rgb(12, 95, 151) 1px;
@@ -45,7 +69,7 @@ export const GrnMd = styled.h5`
 
 export const BlkMd = styled.h5`
   color: rgb(0, 0, 0);
-  font-family: Oxanium;
+  font-family: 'Oxanium';
   font-weight: 650;
   text-align: center;
   text-shadow: rgb(66, 66, 66) 1px 1px 0;
@@ -55,7 +79,7 @@ export const BlkMd = styled.h5`
 `;
 
 export const BlkTxt = styled.p`
-  font-family: MonocraftNF;
+  font-family: 'MonocraftNF';
   font-weight: 450;
   color: rgb(0, 0, 0);
   text-shadow: rgb(12, 95, 151) 1px 1px o;

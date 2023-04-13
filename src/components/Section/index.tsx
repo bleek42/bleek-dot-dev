@@ -1,9 +1,9 @@
-import { useId } from 'react';
-
 import type { SectionProps } from '@props/section.props';
 
+import { useId } from 'react';
+
+import { StlLg, BlkTxt, CyTxt, MdTxt } from '@global/Text';
 import { Section as Wrapper, Article } from './Section';
-import { StlLg, BlkTxt, CyTxt } from '@global/Text';
 
 export default function Section({ id, name, title, content, icon }: SectionProps) {
 	const sectionId = useId();
@@ -13,6 +13,9 @@ export default function Section({ id, name, title, content, icon }: SectionProps
 			<StlLg>{name || 'Unknown Section'}</StlLg>
 			<Article>
 				<BlkTxt>{content || 'no article content provided...'}</BlkTxt>
+			</Article>
+			<Article>
+				<MdTxt>Test MDTXT</MdTxt>
 			</Article>
 		</Wrapper>
 	);

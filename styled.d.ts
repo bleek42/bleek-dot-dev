@@ -19,7 +19,8 @@ interface Colors {
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    name: string;
+    name: 'DefaultTheme' | string;
+    fonts: string | 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
     borderRadius: string;
     bodyColor: string;
     textColor: string;

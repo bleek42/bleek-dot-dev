@@ -22,7 +22,7 @@ const theme: DefaultTheme = {
 			teal: 'rgb(54, 213, 181)',
 			neon: 'rgb(0, 255, 30)',
 			yellow: 'rgb(222, 210, 76)',
-			linear: 'linear-gradient(123deg, rgba(43, 230, 33, 0.798), rgb(0, 238, 255))',
+			linear: 'linear-gradient(123deg, rgba(43, 230, 33, 0.798), rgb(0, 42, 255))',
 		},
 		secondary: {
 			red: 'rgb(214, 30, 30)',
@@ -37,7 +37,7 @@ const theme: DefaultTheme = {
 			teal: 'rgb(40, 171, 145)',
 			neon: 'rgb(89, 255, 0)',
 			yellow: 'rgb(225, 255, 0)',
-			linear: 'linear-gradient(165deg, rgba(0, 128, 248, 0.793), rgba(60, 122, 108, 0.829))',
+			linear: 'linear-gradient(165deg, rgba(0, 128, 248, 0.793), rgba(23, 240, 193, 0.829))',
 		},
 		ternary: {
 			red: 'rgb(214, 30, 30)',
@@ -52,7 +52,7 @@ const theme: DefaultTheme = {
 			teal: 'rgb(11, 205, 165)',
 			neon: 'rgb(135, 255, 0)',
 			yellow: 'rgb(252, 231, 0)',
-			linear: 'linear-gradient(102deg, rgba(0, 255, 247, 0.937), rgba(11, 108, 227, 0.849))',
+			linear: 'linear-gradient(102deg, rgba(132, 255, 0, 0.937), rgba(75, 17, 209, 0.849))',
 		},
 	},
 };

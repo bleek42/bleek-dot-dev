@@ -1,10 +1,17 @@
+// ? types
+import type { NextPage } from 'next';
+
+// ? NPM deps, libs, pkgs, etc...
 import { useId, Fragment } from 'react';
 
-import Header from '../components/Header';
-import Section from '../components/Section';
-import Footer from '../components/Footer';
-import React from 'react';
-import Meta from '../components/global/Meta';
+// ? global Meta, Main Background components
+import Meta from '@global/Meta';
+import { Main } from '@global/Main';
+
+// ? custom styled components
+import Header from '@components/Header';
+import Section from '@components/Section';
+import Footer from '@components/Footer';
 
 export default function Home() {
 	const pageId = useId();
@@ -12,8 +19,14 @@ export default function Home() {
 	return (
 		<Fragment>
 			<Meta />
-			<Header id={`home-header-${pageId}`} name="home" title="Home" content="" icon={null} />
-			<main>
+			<Header
+				id={`home-header-${pageId}`}
+				name="home"
+				title="Home"
+				content="bleekDotDev"
+				icon={null}
+			/>
+			<Main>
 				<Section
 					id="home-sect-1"
 					name="home"
@@ -21,7 +34,7 @@ export default function Home() {
 			web developer & tech enthusiast. This site is built with React.js in conjunction with other modern solutions including (but never limited to!) custom state management hooks, React Router, React Icons, Syntactically Awesome Style Sheets (SASS/SCSS), and test suites written with Jest & Enzyme."
 					icon={null}
 				/>
-			</main>
+			</Main>
 			<Footer id={`home-footer-${pageId}`} name="home" icon={null} />
 		</Fragment>
 	);

@@ -1,8 +1,9 @@
 import { Footer as Wrapper } from './Footer';
-import { BlkTxt } from '../global/style';
-import type { ComponentProps } from '../../types/props/component.props';
+import { BlkTxt } from '@global/Text';
 
-type FooterProps = ComponentProps;
+import type { BaseComponentProps } from '@props/base.component.props';
+
+type FooterProps = BaseComponentProps;
 
 export default function Footer({ id, name, icon }: FooterProps) {
 	console.log('Footer:', id, name, icon);

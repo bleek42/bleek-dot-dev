@@ -5,12 +5,12 @@ import { useState, useCallback } from 'react';
 
 import useResizeObserver from '@hooks/useResizeObserver';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
-import { Btn } from '@global/Button';
+import { Btn, BtnClose, BtnMax, BtnMin } from '@global/Button';
 
 interface XTermDimensions {
-	cols?: number;
-	rows?: number;
-	area?: number;
+	cols: number;
+	rows: number;
+	area: number;
 	width?: number;
 	height?: number;
 	top?: number;
@@ -43,9 +43,6 @@ export default function XTerm() {
 			console.info(entry);
 			const { borderBoxSize, contentRect, contentBoxSize, devicePixelContentBoxSize } = entry;
 			const { width, height, top, bottom, left, right, x, y } = contentRect;
-			// let cols: number;
-			// let rows: number;
-			// let area: number;
 
 			const currentWidth = Math.round(width);
 			const currentHeight = Math.round(height);
@@ -100,7 +97,7 @@ export default function XTerm() {
 
 			console.warn('resizing:', contentRect);
 		},
-		[dimensions.cols, dimensions.rows, dimensions.area, dimensions.width]
+		[dimensions.width]
 	);
 
 	const { ref } = useResizeObserver(handleResize);
@@ -117,27 +114,28 @@ export default function XTerm() {
 	return (
 		<XTForm ref={ref as RefObject<HTMLFormElement>}>
 			<XTBtns id="xt-btns">
-				<Btn
+				<BtnClose
+					btnType="close"
 					id="xt-close"
 					type="reset"
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
 					{'[\uf00d]'}
-				</Btn>
-				<Btn
+				</BtnClose>
+				<BtnMax
 					id="xt-maxmz"
 					type="button"
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
 					{'[\ueb95]'}
-				</Btn>
-				<Btn
+				</BtnMax>
+				<BtnMin
 					id="xt-minmz"
 					type="button"
 					// eslint-disable-next-line no-console
 					onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
 					{'[ \uf2d1 ]'}
-				</Btn>
+				</BtnMin>
 			</XTBtns>
 			{/* <span>
 					<code>Area: {area?.toString()} </code>

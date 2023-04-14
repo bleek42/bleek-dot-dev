@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-import type { NavBarProps } from '@props/navbar.props';
+import type { NavBarProps } from '@prop-types/navbar.props';
 import { Nav, Toggle, ToggleBtn, NavLink, NavList, NavItem } from './Navbar';
 import { LgTxt } from '@components/global/Text';
 
-export default function Navbar({ pageLinks }: NavBarProps) {
+export default function Navbar({ pageLinks }) {
 	const [toggle, setToggle] = useState<boolean>(false);
 
 	const toggleMenu = () => setToggle(!!toggle);
@@ -17,7 +17,7 @@ export default function Navbar({ pageLinks }: NavBarProps) {
 				</LgTxt>
 				{toggle ? (
 					<Toggle toggle={toggle}>
-						{pageLinks.map((link, idx) => (
+						{pageLinks.map((link, idx: number) => (
 							<NavItem key={link.id}>
 								<NavLink key={idx} href={link.href} passHref>
 									{link.title}

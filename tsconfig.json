@@ -31,17 +31,14 @@
 			"@pages/*": [
 				"pages/*"
 			],
-			"@api/*": [
+			"@api/pages*": [
 				"pages/api/*"
 			],
 			"@interfaces/*": [
 				"types/interfaces/*"
 			],
-			"@props/*": [
+			"@prop-types/*": [
 				"types/props/*"
-			],
-			"@generated/*": [
-				"generated/*"
 			],
 			"@hooks/*": [
 				"hooks/*"
@@ -54,6 +51,9 @@
 			],
 			"@server/*": [
 				"server/*"
+			],
+			"@routers/*": [
+				"server/routers/*"
 			]
 		},
 		"allowJs": true,

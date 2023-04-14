@@ -1,4 +1,4 @@
-import type { MetaProps } from '@props/meta.props';
+import type { MetaProps } from '@prop-types/meta.props';
 
 import Head from 'next/head';
 

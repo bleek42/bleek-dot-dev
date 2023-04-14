@@ -7,7 +7,7 @@ type TextProps = StyledComponentProps<
   keyof JSX.IntrinsicElements | ComponentType<unknown>,
   DefaultTheme,
   Record<string, unknown>,
-  never
+  string | number | symbol
 > & {
   font: string;
   color: keyof Colors;

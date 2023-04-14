@@ -1,7 +1,7 @@
 import { Footer as Wrapper } from './Footer';
 import { SmTxt } from '@global/Text';
 
-import type { BaseComponentProps } from '@props/base.component.props';
+import type { BaseComponentProps } from '@prop-types/base.component.props';
 
 type FooterProps = BaseComponentProps;
 

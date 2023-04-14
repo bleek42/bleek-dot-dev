@@ -1,6 +1,6 @@
-import type { ToggleProps } from '@props/navbar.props';
+import type { NavBarProps, ToggleProps } from '@prop-types/navbar.props';
 
-import styled from 'styled-components';
+import styled, { DefaultTheme, ThemedStyledProps } from 'styled-components';
 import Link from 'next/link';
 
 export const Nav = styled.nav`
@@ -14,22 +14,6 @@ export const Nav = styled.nav`
   z-index: 200;
   left: -100%;
   animation: slide-open 0.6s forwards;
-`;
-
-export const Toggle = styled.span<ToggleProps>`
-  position: ${(props) => (props.toggle ? 'absolute' : 'fixed')};
-  bottom: ${(props) => (props.toggle ? '0%' : '-100%')};
-  top: ${(props) => (props.toggle ? '65px' : '0px')};
-  left: ${(props) => (props.toggle ? '0%' : '-100%')};
-  width: ${(props) => (props.toggle ? '400px' : '100px')};
-  display: inline-flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-  z-index: 200;
-  margin: 0;
-  padding-left: 20px;
-  // animation: slide-open 0.6s forwards;
 `;
 
 export const ToggleBtn = styled.button`
@@ -55,19 +39,24 @@ export const NavItem = styled.li`
   margin: 10px, 3px, 3px, 10px;
   padding: 6px, 5px, 5px, 6px;
   border-top: 2px solid rgb(0, 0, 0);
-  color: rgb(135, 255, 0);
+  color: rgb(11, 211, 11);
   transition: filter 400ms;
-
-  &:hover {
-    filter: brightness(2.6);
-    color: rgb(12, 205, 160);
-  }
 `;
 
-export const NavLink = styled(Link)`
-  font-family: 'MonocraftNF', 'Courier New', Courier, monospace;
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-  text-shadow: rgb(45, 230, 35) 1px 1px 1px;
+export const Toggle = styled.span.attrs<ToggleProps>((props) => ({
+  toggle: props.toggle ? 'absolute' : 'fixed',
+}))<ToggleProps>`
+  position: ${(props) => props.toggle};
+  bottom: ${(props) => (props.toggle ? '0%' : '-100%')};
+  top: ${(props) => (props.toggle ? '65px' : '0px')};
+  left: ${(props) => (props.toggle ? '0%' : '-100%')};
+  width: ${(props) => (props.toggle ? '400px' : '100px')};
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 200;
+  margin: 0;
+  padding-left: 20px;
+  // animation: slide-open 0.6s forwards;
 `;

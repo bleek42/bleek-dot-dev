@@ -1,4 +1,4 @@
-// import type { AppRouter } from '../server/routers/_app';
+// import type { AppRouter } from '@routers/_app';
 // import { httpBatchLink } from '@trpc/client';
 // import { createTRPCNext } from '@trpc/next';
 // function getBaseUrl() {

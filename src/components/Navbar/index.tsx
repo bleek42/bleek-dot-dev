@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import type { NavBarProps } from '@props/navbar.props';
 import { Nav, Toggle, ToggleBtn, NavLink, NavList, NavItem } from './Navbar';
-import { CyLg } from '@components/global/Text';
+import { LgTxt } from '@components/global/Text';
 
 export default function Navbar({ pageLinks }: NavBarProps) {
 	const [toggle, setToggle] = useState<boolean>(false);
@@ -12,7 +12,9 @@ export default function Navbar({ pageLinks }: NavBarProps) {
 	return (
 		<Nav onMouseLeave={toggleMenu}>
 			<NavList>
-				<CyLg>Menu</CyLg>
+				<LgTxt font="Birdman" color="neon" shadow="steel">
+					Menu
+				</LgTxt>
 				{toggle ? (
 					<Toggle toggle={toggle}>
 						{pageLinks.map((link, idx) => (

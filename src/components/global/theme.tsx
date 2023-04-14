@@ -1,15 +1,9 @@
-import type { DefaultTheme, Fonts } from 'styled-components';
+import type { DefaultTheme } from 'styled-components';
 
 const theme: DefaultTheme = {
 	name: 'Default',
 	borderRadius: '24% 16% / 16% 24%',
-	fonts: [
-		'Birdman',
-		'Oxanium',
-		'MonocraftNF',
-		'Impact, Haettenschweiler, "Arial Narrow Bold", Arial, Helvetica, sans-serif',
-	],
-
+	fonts: ['Birdman', 'Oxanium', 'MonocraftNF'],
 	palette: {
 		common: {
 			black: 'rgb(0, 0, 0)',

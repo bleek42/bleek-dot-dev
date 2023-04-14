@@ -1,14 +1,12 @@
 import 'styled-components';
 
 declare module 'styled-components' {
-  export const fonts = [
-    'Birdman',
-    'Oxanium',
-    'MonocraftNF',
-    'Impact, Haettenschweiler, "Arial Narrow Bold", Arial, Helvetica, sans-serif',
-  ] as const;
+  export interface CommonColors {
+    black?: string;
+    white?: string;
+  }
 
-  export interface Colors {
+  export interface Colors extends CommonColors {
     red: string;
     orange: string;
     blue: string;
@@ -27,13 +25,10 @@ declare module 'styled-components' {
 
   export interface DefaultTheme {
     name: 'Default' | string;
-    fonts: Fonts | string[] | string;
+    fonts: string[] | string;
     borderRadius: string;
     palette: {
-      common: {
-        black: string;
-        white: string;
-      };
+      common: CommonColors;
 
       primary: Colors;
       secondary: Colors;

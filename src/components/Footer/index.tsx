@@ -1,5 +1,5 @@
 import { Footer as Wrapper } from './Footer';
-import { BlkTxt } from '@global/Text';
+import { SmTxt } from '@global/Text';
 
 import type { BaseComponentProps } from '@props/base.component.props';
 
@@ -11,7 +11,7 @@ export default function Footer({ id, name, icon }: FooterProps) {
 	return (
 		<Wrapper>
 			<i>{'<NoIcon />'}</i>
-			<BlkTxt>version 0.4.4 by bleek42</BlkTxt>
+			<SmTxt>version 0.4.4 by bleek42</SmTxt>
 		</Wrapper>
 	);
 }

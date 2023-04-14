@@ -2,7 +2,7 @@ import type { BaseComponentProps } from '@props/base.component.props';
 
 import { useId } from 'react';
 
-import { StlLg, BlkTxt, CyTxt, MdTxt } from '@global/Text';
+import { LgTxt, MdTxt, SmTxt } from '@global/Text';
 import { Section as Wrapper, Article } from './Section';
 
 type SectionProps = BaseComponentProps;
@@ -12,12 +12,14 @@ export default function Section({ id, name, title, content, icon }: SectionProps
 
 	return (
 		<Wrapper key={`sect-${id}` || `sect-${sectionId}`} id={`sect-${id}` || `sect-${sectionId}`}>
-			<StlLg>{title || 'Section Title'}</StlLg>
+			<LgTxt>{title || 'Section Title'}</LgTxt>
 			<Article>
-				<BlkTxt>{content || 'no article content provided...'}</BlkTxt>
+				<SmTxt font="MonocraftNF" color="neon">
+					{content || 'no article content provided...'}
+				</SmTxt>
 			</Article>
 			<Article>
-				<MdTxt color="cyan" font="MonocraftNF">
+				<MdTxt font="Oxanium" color="cyan">
 					Test MDTXT
 				</MdTxt>
 			</Article>

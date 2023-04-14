@@ -17,7 +17,7 @@ export default function Navbar({ pageLinks }: NavBarProps) {
 					<Toggle toggle={toggle}>
 						{pageLinks.map((link, idx) => (
 							<NavItem key={link.id}>
-								<NavLink key={idx} href={link.path} passHref>
+								<NavLink key={idx} href={link.href} passHref>
 									{link.title}
 								</NavLink>
 							</NavItem>

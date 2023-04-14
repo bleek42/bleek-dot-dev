@@ -39,14 +39,13 @@ export default function XTerm() {
 
 	const handleResize = useCallback(
 		(target: T, entry: ResizeObserverEntry) => {
-			console.info('target:', target);
-			console.info(entry);
-			const { borderBoxSize, contentRect, contentBoxSize, devicePixelContentBoxSize } = entry;
-			const { width, height, top, bottom, left, right, x, y } = contentRect;
+			console.info('Target:', target);
+			console.info('RO Entry:', entry);
+
+			const { width, height, top, bottom, left, right, x, y } = entry.contentRect;
 
 			const currentWidth = Math.round(width);
 			const currentHeight = Math.round(height);
-			console.log(currentWidth, currentHeight);
 
 			if (currentWidth < 481) {
 				setDimensions((prev) => ({
@@ -95,7 +94,12 @@ export default function XTerm() {
 				}));
 			}
 
-			console.warn('resizing:', contentRect);
+			console.warn('resizing:', currentWidth, currentHeight);
+			console.table(entry.borderBoxSize);
+			console.table(entry.contentRect);
+			console.table(entry.contentBoxSize);
+			console.table(entry.devicePixelContentBoxSize);
+			console.table(entry.target);
 		},
 		[dimensions.width]
 	);
@@ -115,7 +119,6 @@ export default function XTerm() {
 		<XTForm ref={ref as RefObject<HTMLFormElement>}>
 			<XTBtns id="xt-btns">
 				<BtnClose
-					btnType="close"
 					id="xt-close"
 					type="reset"
 					// eslint-disable-next-line no-console

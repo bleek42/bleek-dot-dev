@@ -35,12 +35,12 @@ export const XTInput = styled.input`
   font-size: 18px;
   padding: 4px 4px;
   flex: 1 auto;
-  font-family: 'Monocraft NF';
+  font-family: 'MonocraftNF';
 `;
 
 export const XTCode = styled.code`
   /* font-family: 'Courier New', Courier, monospace; */
-  font-family: 'Monocraft NF';
+  font-family: 'MonocraftNF';
   font-size: 28px;
   font-weight: 650;
   color: rgb(160, 85, 132);
@@ -55,7 +55,7 @@ export const XTBtns = styled.label`
   margin: 2px 4px 4px 2px;
   padding: 8px 4px 4px 8px;
   width: 100vh;
-  font-family: 'Monocraft NF';
+  font-family: 'MonocraftNF';
   color: rgb(66, 66, 66);
   background-color: rgb(66, 66, 66);
   border: 2px solid rgb(175, 175, 165);
@@ -63,7 +63,7 @@ export const XTBtns = styled.label`
 
 export const XTxtArea = styled.textarea`
   background-color: rgb(0, 0, 0);
-  font-family: 'Monocraft NF';
+  font-family: 'MonocraftNF';
   color: rgb(15, 95, 150);
   font-size: 18px;
   &:hover {
@@ -77,7 +77,7 @@ export const XTxtArea = styled.textarea`
 `;
 //   /* flex: 0 2 10%; */
 //   width: 10vh;
-//   font-family: 'Monocraft NF';
+//   font-family: 'MonocraftNF';
 //   font-size: 24px;
 //   background-color: rgb(15, 95, 150);
 // `;
@@ -85,7 +85,7 @@ export const XTxtArea = styled.textarea`
 // export const Minmz = styled.button`
 //   /* flex: 0 2 10%; */
 //   width: 10vh;
-//   font-family: 'Monocraft NF';
+//   font-family: 'MonocraftNF';
 //   font-size: 24px;
 //   background-color: yellow;
 // `;

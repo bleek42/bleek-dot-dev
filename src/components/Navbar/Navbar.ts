@@ -65,7 +65,7 @@ export const NavItem = styled.li`
 `;
 
 export const NavLink = styled(Link)`
-  font-family: 'Monocraft NF', 'Courier New', Courier, monospace;
+  font-family: 'MonocraftNF', 'Courier New', Courier, monospace;
   font-size: 14px;
   font-weight: 500;
   text-align: center;

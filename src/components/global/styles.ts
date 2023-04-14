@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
 }
 
 @font-face {
-	font-family: 'Monocraft NF';
+	font-family: 'MonocraftNF';
 	src: url('/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
   font-display: swap;
 }
@@ -39,7 +39,7 @@ main {
 }
 
 code, i {
-  font-family: 'Monocraft NF',  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: 'MonocraftNF',  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   font-weight: 800;
   font-size: 15px;
 }

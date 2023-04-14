@@ -1,9 +1,15 @@
-import type { DefaultTheme } from 'styled-components';
+import type { DefaultTheme, Fonts } from 'styled-components';
+
 const theme: DefaultTheme = {
-	name: 'default',
+	name: 'Default',
 	borderRadius: '24% 16% / 16% 24%',
-	bodyColor: 'rgb(5, 5, 5)',
-	textColor: 'rgb(136, 214, 99)',
+	fonts: [
+		'Birdman',
+		'Oxanium',
+		'MonocraftNF',
+		'Impact, Haettenschweiler, "Arial Narrow Bold", Arial, Helvetica, sans-serif',
+	],
+
 	palette: {
 		common: {
 			black: 'rgb(0, 0, 0)',
@@ -39,7 +45,7 @@ const theme: DefaultTheme = {
 			yellow: 'rgb(225, 255, 0)',
 			linear: 'linear-gradient(165deg, rgba(0, 128, 248, 0.793), rgba(23, 240, 193, 0.829))',
 		},
-		ternary: {
+		tertiary: {
 			red: 'rgb(214, 30, 30)',
 			blue: 'rgb(0, 55, 207)',
 			orange: 'rgb(200, 45, 45)',

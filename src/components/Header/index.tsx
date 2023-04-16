@@ -1,7 +1,7 @@
 import type { BaseComponentProps } from '@prop-types/base.component.props';
 
 import Navbar from '@components/Navbar';
-import { pageLinks } from '@constants/page-links';
+
 import { Header as Wrapper } from './Header';
 import { LgTxt, MdTxt } from '@global/Text';
 
@@ -21,7 +21,7 @@ export default function Header({ id, name, title }: HeaderProps) {
 			<MdTxt font="Birdman" color="red" shadow="steel">
 				{title}
 			</MdTxt>
-			<Navbar pageLinks={pageLinks} />
+			<Navbar />
 		</Wrapper>
 	);
 }

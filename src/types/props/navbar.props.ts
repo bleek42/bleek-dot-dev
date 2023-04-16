@@ -5,7 +5,9 @@ import type {
   ThemedStyledFunction,
   ThemedStyledProps,
 } from 'styled-components';
-import type { ComponentType } from 'react';
+import type { ComponentType, Key } from 'react';
+// import type { PageLink, PageTitle } from '@interfaces/PageLink';
+
 // import type { PageLink, PageTitle } from '@interfaces/PageLink';
 import type Link from 'next/link';
 import type { LinkProps } from 'next/link';
@@ -22,17 +24,32 @@ export type Icon =
   | ' \ue601 '
   | null;
 
-export interface ToggleProps {
-  toggle: boolean;
-}
-
-export type NavLinkProps<LinkProps> = {
-  [Property in keyof LinkProps]: Property;
-};
-
-export type NavBarProps = StyledComponentProps<
-  AnyStyledComponent,
+export type ToggleProps = StyledComponentProps<
+  typeof Link | AnyStyledComponent,
   DefaultTheme,
-  ToggleProps,
+  { toggle: boolean },
   string | number | symbol
 >;
+
+// type NavLinkComponentBase = StyledComponentBase<AnyStyledComponent | typeof Link>;
+
+export type NextLinkProps = StyledComponentProps<
+  typeof Link | AnyStyledComponent,
+  DefaultTheme,
+  LinkProps,
+  string | number | symbol
+>;
+
+// export type StyledNextLinkProps<NextLinkProps> = {
+//   id: Key | string | number | symbol;
+//   icon: string | null
+//   NextLinkProps,
+//   className?: string;
+// };
+
+// export type StyledNextLinkProps = StyledComponentProps<
+//   typeof Link | AnyStyledComponent,
+//   DefaultTheme,
+//   ToggleProps,
+//   string | number | symbol
+// >;

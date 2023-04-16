@@ -1,20 +1,22 @@
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
-import type { QueryProjectsArgs, QueryProjectArgs } from '../../generated/frontend/typeDefs';
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export default async function handler<NextApiHandler>(
   req: NextApiRequest,
   res: NextApiResponse
-): Promise<void> {
-  const { title } = req.body;
+): Promise<NextApiHandler | void> {
   try {
     if (req.method !== 'GET') {
       res.status(401).send('Unauthorized Request.');
     }
     res.status(200).json({ message: 'happy path!' });
-    res.status(200).send({ message: 'OK' });
-  } catch {
+    // eslint-disable-next-line prettier/prettier
+  } 
+  catch {
     res.status(500).send({ message: 'Internal Server Error!' });
-  } finally {
+    // eslint-disable-next-line prettier/prettier
+  } 
+  finally {
     console.log('Pinged Next API Route!');
   }
 }

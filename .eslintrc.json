@@ -91,6 +91,7 @@
 			"error",
 			"stroustrup"
 		],
+		"@typescript-eslint/restrict-template-expressions": "off",
 		"no-console": "warn",
 		"no-unused-vars": "warn",
 		"no-else-return": "error",

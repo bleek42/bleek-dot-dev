@@ -1,4 +1,4 @@
-import type { BaseComponentProps } from '@props/base.component.props';
+import type { BaseComponentProps } from '@prop-types/base.component.props';
 
 import { BlkTxt } from '@global/Text';
 

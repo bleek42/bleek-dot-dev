@@ -4,7 +4,7 @@ export const Btn = styled.button`
   color: ${({ theme }) => theme.palette.primary.neon};
   background-color: ${({ theme }) => theme.palette.primary.gray};
   width: 10vh;
-  font-family: 'Monocraft NF';
+  font-family: 'MonocraftNF';
   font-size: 24px;
 `;
 

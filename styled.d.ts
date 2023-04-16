@@ -1,38 +1,38 @@
 import 'styled-components';
 
-interface Colors {
-  red: string;
-  orange: string;
-  blue: string;
-  cyan: string;
-  green: string;
-  drab: string;
-  steel: string;
-  tan: string;
-  gray: string;
-  teal: string;
-  neon: string;
-  yellow: string;
-  linear?: string;
-  radial?: string;
-}
-
 declare module 'styled-components' {
+  export interface CommonColors {
+    black?: string;
+    white?: string;
+  }
+
+  export interface Colors extends CommonColors {
+    red: string;
+    orange: string;
+    blue: string;
+    cyan: string;
+    green: string;
+    drab: string;
+    steel: string;
+    tan: string;
+    gray: string;
+    teal: string;
+    neon: string;
+    yellow: string;
+    linear?: string;
+    radial?: string;
+  }
+
   export interface DefaultTheme {
-    name: 'DefaultTheme' | string;
-    fonts: string | 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif';
+    name: 'Default' | string;
+    fonts: string[] | string;
     borderRadius: string;
-    bodyColor: string;
-    textColor: string;
     palette: {
-      common: {
-        black: string;
-        white: string;
-      };
+      common: CommonColors;
 
       primary: Colors;
       secondary: Colors;
-      ternary: Colors;
+      tertiary: Colors;
     };
   }
 }

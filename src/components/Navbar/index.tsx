@@ -1,10 +1,11 @@
+import type { NextLinkProps } from '@prop-types/navbar.props';
+
 import { useState } from 'react';
 
-import type { NavBarProps } from '@props/navbar.props';
-import { Nav, Toggle, ToggleBtn, NavLink, NavList, NavItem } from './Navbar';
-import { CyLg } from '@components/global/Text';
+import { Nav, Toggle, ToggleBtn, NavList, NavItem, NextLink, Icon } from './Navbar';
+import { LgTxt } from '@global/Text';
 
-export default function Navbar({ pageLinks }: NavBarProps) {
+export default function Navbar() {
 	const [toggle, setToggle] = useState<boolean>(false);
 
 	const toggleMenu = () => setToggle(!!toggle);
@@ -12,16 +13,36 @@ export default function Navbar({ pageLinks }: NavBarProps) {
 	return (
 		<Nav onMouseLeave={toggleMenu}>
 			<NavList>
-				<CyLg>Menu</CyLg>
+				<LgTxt font="Birdman" color="neon" shadow="steel">
+					Menu
+				</LgTxt>
 				{toggle ? (
 					<Toggle toggle={toggle}>
-						{pageLinks.map((link, idx) => (
-							<NavItem key={link.id}>
-								<NavLink key={idx} href={link.path} passHref>
-									{link.title}
-								</NavLink>
+						<NavItem>
+							<Icon>
+								{'\udb83\udd84'}
+								<NextLink href="/home">Home</NextLink>
+							</Icon>
+							<Icon>
+								{'\udb84\udcf6'}
+								<NextLink href="/about">About</NextLink>
+							</Icon>
+							<Icon>
+								{'\udb84\udcdc'}
+								<NextLink href="/projects">Projects</NextLink>
+							</Icon>
+							<Icon>
+								{'\udb84\udcd6'}
+								<NextLink href="/contact">Contact</NextLink>
+							</Icon>
+						</NavItem>
+						{/* {NextpageLinks.map((Nextlink, idx: number) => (
+							<NavItem key={Nextlink.id}>
+								<NextNavLink key={idx} href={Nextlink.href} passHref>
+									{Nextlink.title}
+								</NextNavLink>
 							</NavItem>
-						))}
+						))} */}
 					</Toggle>
 				) : (
 					<Toggle toggle={toggle}>

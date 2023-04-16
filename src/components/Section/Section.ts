@@ -1,35 +1,5 @@
 import styled from 'styled-components';
 
-const foreground = {
-  green: 'rgb(43, 230, 33)',
-  red: 'rgb(214, 30, 30)',
-  orange: 'rgb(222, 76, 18)',
-  purple: 'rgb(161, 85, 233)',
-  blue: 'rgb(12, 95, 151)',
-  cyan: 'rgb(11, 205, 163)',
-  drab: 'rgb(38, 136, 59)',
-  steel: 'rgb(69, 66, 66)',
-  tan: 'rgb(177, 177, 165)',
-  black: 'rgb(0, 0, 0)',
-  neon: 'rgb(136, 255, 0)',
-};
-
-const background = {
-  cyan: 'rgb(11, 205, 163)',
-  blue: 'rgb(12, 95, 151)',
-  green: 'rgb(43, 230, 33)',
-  drab: 'rgb(38, 136, 59)',
-  steel: 'rgb(69, 66, 66)',
-  black: 'rgb(0, 0, 0)',
-  steelBlue: 'linear-gradient(65deg, rgb(69, 66, 66), rgb(12, 95, 151))',
-  greenCyan: 'linear-gradient(65deg, rgb(43, 230, 33), rgb(11, 205, 163))',
-  blackSteel: 'linear-gradient(65deg, rgb(0, 0, 0), rgb(69, 66, 66))',
-};
-
-const fgColors = new Map(Object.entries(foreground));
-const bgColors = new Map(Object.entries(background));
-console.log(fgColors, bgColors);
-
 export const Section = styled.section`
   display: flex;
   flex-flow: column wrap;

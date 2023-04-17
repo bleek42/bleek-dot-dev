@@ -1,16 +1,18 @@
+import type { BaseComponent } from '@interfaces/BaseComponent';
+import type { ResizerDimensions } from '@interfaces/ResizerDimensions';
 import type { ComponentType } from 'react';
-import type { DefaultTheme, StyledComponentProps } from 'styled-components';
+import type { DefaultTheme, StyledComponentProps, AnyStyledComponent } from 'styled-components';
 
 export type BaseComponentProps = StyledComponentProps<
-  keyof JSX.IntrinsicElements | ComponentType<unknown>,
+  AnyStyledComponent | keyof JSX.IntrinsicElements,
   DefaultTheme,
-  Record<string, unknown>,
+  BaseComponent,
   string | number | symbol
-> & {
-  id: string | number;
-  name: string;
-  title?: string;
-  content?: string | string[];
-  icon?: string | null;
-  image?: Array<URL | string> | URL | string;
-};
+>;
+
+export type XTermComponentProps = StyledComponentProps<
+  AnyStyledComponent | keyof JSX.IntrinsicElements,
+  DefaultTheme,
+  ResizerDimensions,
+  string | number | symbol
+>;

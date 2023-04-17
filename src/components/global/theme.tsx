@@ -1,5 +1,7 @@
 import type { DefaultTheme } from 'styled-components';
 
+import { createGlobalStyle } from 'styled-components';
+
 const theme: DefaultTheme = {
 	name: 'Default',
 	borderRadius: '24% 16% / 16% 24%',
@@ -22,7 +24,7 @@ const theme: DefaultTheme = {
 			teal: 'rgb(54, 213, 181)',
 			neon: 'rgb(0, 255, 30)',
 			yellow: 'rgb(222, 210, 76)',
-			linear: 'linear-gradient(45deg,rgb(43, 230, 33) 0 45%, rgb(0, 42, 255) 35% 65%)',
+			linear: 'linear-gradient(45deg, rgb(43, 230, 33) 50%, rgb(0, 42, 255) 75%)',
 		},
 		secondary: {
 			red: 'rgb(214, 30, 30)',
@@ -37,7 +39,7 @@ const theme: DefaultTheme = {
 			teal: 'rgb(40, 171, 145)',
 			neon: 'rgb(89, 255, 0)',
 			yellow: 'rgb(225, 255, 0)',
-			linear: 'linear-gradient(55deg, rgb(45, 147, 243) 10% 75%,  rgb(23, 240, 193) 25% 95%)',
+			linear: 'linear-gradient(45deg, rgb(45, 147, 243) 30%, rgb(23, 240, 193) 75%)',
 		},
 		tertiary: {
 			red: 'rgb(214, 30, 30)',
@@ -52,9 +54,47 @@ const theme: DefaultTheme = {
 			teal: 'rgb(11, 205, 165)',
 			neon: 'rgb(135, 255, 0)',
 			yellow: 'rgb(252, 231, 0)',
-			linear: 'linear-gradient(30deg rgb(132, 255, 0) 5% 35%, rgb(22, 247, 135)) 5% 35%',
+			linear: 'linear-gradient(45deg, rgb(132, 255, 0) 35%, rgb(22, 247, 135) 35%)',
 		},
 	},
 };
+
+export const GlobalStyle = createGlobalStyle`
+
+@font-face {
+	font-family: 'Birdman';
+	src: url('/fonts/birdman/BIRDMAN_.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Oxanium';
+  src: url('/fonts/Oxanium/Oxanium-Regular.ttf') format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+	font-family: 'MonocraftNF';
+	src: url('/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(45deg, rgb(35, 230, 45) 45%, rgb(5, 5, 5) 55%);
+}
+
+code, i {
+  font-family: 'MonocraftNF',  Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+`;
 
 export default theme;

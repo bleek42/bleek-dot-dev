@@ -6,7 +6,8 @@ import Link from 'next/link';
 export const Nav = styled.nav`
   display: flex;
   flex-flow: row wrap;
-  align-items: flex-start;
+  justify-content: flex-start;
+
   /* padding-left: 20px; */
 
   user-select: none;

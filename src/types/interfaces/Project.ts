@@ -1,13 +1,14 @@
-enum TechStackCategories {
+export enum TechStackCategories {
   FRONTEND = 'frontend',
   BACKEND = 'backend',
   DATABASE = 'database',
   TOOLS = 'tools',
 }
 
-interface TechStack {
+type K = keyof typeof TechStackCategories;
+interface TechStack<K> {
   name: string;
-  techCategory: TechStackCategories;
+  techCategory: Array<K>;
 }
 
 export interface Project {
@@ -17,7 +18,7 @@ export interface Project {
   link: URL;
   sourceCode: Array<URL | string> | URL | string;
   screenShots?: Array<URL | string> | URL | string;
-  techStack: TechStack[] | TechStack;
+  techStack: TechStack<K>[] | TechStack<K>;
   version: number;
   readonly latestReleaseDate: Date;
   createdAt: Date;

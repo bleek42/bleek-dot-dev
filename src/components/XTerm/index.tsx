@@ -1,4 +1,10 @@
-import type { StyledComponentProps, DefaultTheme, StyledComponent } from 'styled-components';
+import type {
+	StyledComponentProps,
+	DefaultTheme,
+	StyledComponent,
+	AnyStyledComponent,
+} from 'styled-components';
+import type { ResizerDimensions } from '@interfaces/ResizerDimensions';
 import type { ChangeEvent, ComponentType, RefObject } from 'react';
 
 import { useState, useCallback } from 'react';
@@ -7,35 +13,16 @@ import useResizeObserver from '@hooks/useResizeObserver';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { Btn, BtnClose, BtnMax, BtnMin } from '@global/Button';
 
-interface XTermDimensions {
-	cols: number;
-	rows: number;
-	area: number;
-	width?: number;
-	height?: number;
-	top?: number;
-	bottom?: number;
-	left?: number;
-	right?: number;
-	x?: number;
-	y?: number;
-}
-
-type T = Element;
-
-type XTermComponentProps = StyledComponentProps<
-	'form' | 'input' | 'textarea' | 'button',
-	DefaultTheme,
-	ComponentType<any>,
-	never
-> &
-	XTermDimensions;
-
-type XTermState = XTermDimensions;
+type XTermDimensionState = ResizerDimensions;
+type T = Element | AnyStyledComponent;
 
 export default function XTerm() {
-	const [values, setValues] = useState({ 'xt-textarea': '', 'xt-prompt': '' });
-	const [dimensions, setDimensions] = useState<XTermState>({ cols: 20, rows: 20, area: 20 * 20 });
+	const [values, setValues] = useState({ name: '' });
+	const [dimensions, setDimensions] = useState<XTermDimensionState>({
+		cols: 20,
+		rows: 20,
+		area: 20 * 20,
+	});
 
 	const handleResize = useCallback(
 		(target: T, entry: ResizeObserverEntry) => {
@@ -147,7 +134,7 @@ export default function XTerm() {
 			<XTxtArea
 				id="xt-textarea"
 				name="xt-textarea"
-				value={values['xt-textarea']}
+				value={values.name}
 				cols={dimensions.cols}
 				rows={dimensions.rows}
 				autoCapitalize="off"
@@ -167,7 +154,7 @@ export default function XTerm() {
 					type="text"
 					id="xt-prompt"
 					name="xt-prompt"
-					value={values['xt-prompt']}
+					value={values.name}
 					onChange={handleChange}
 					placeholder={'press enter to continue'}
 				/>

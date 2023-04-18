@@ -25,7 +25,7 @@ declare module 'styled-components' {
 
   export interface DefaultTheme {
     name: 'Default' | string;
-    fonts: string[] | string;
+    fonts: string[];
     borderRadius: string;
     palette: {
       common: CommonColors;

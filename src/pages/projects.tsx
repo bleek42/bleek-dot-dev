@@ -1,9 +1,9 @@
 import { Fragment, useId } from "react";
 
-import Header from "../components/Header";
-import Section from "../components/Section";
-import Footer from "../components/Footer";
-import Meta from "../components/global/Meta";
+import Header from '@components/Header';
+import Section from '@components/Section';
+import Footer from '@components/Footer';
+import Meta from '@components/global/Meta';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
@@ -18,12 +18,7 @@ export default function Projects() {
 	return (
 		<Fragment>
 			<Meta />
-			<Header
-				id={`projects-hedr-${pageId}`}
-				name="About"
-				content=""
-				icon={null}
-			/>
+			<Header id={`projects-${pageId}`} name="About" content="" icon={null} />
 			<main>
 				<Section
 					id="projects-sect-1"
@@ -95,11 +90,7 @@ export default function Projects() {
 					icon={null}
 				/>
 			</main>
-			<Footer
-				id={`projects-footer-${pageId}`}
-				name="Projects"
-				icon={null}
-			/>
+			<Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
 		</Fragment>
 	);
 }
@@ -115,15 +106,16 @@ export const getStaticProps = async ({ params = '', preview = false }) => {
 		};
 	}
 	console.log(projects);
-	return {
-		props: {
-			preview,
-			...projects,
-		},
-	};
+	return await new Promise((res, _rej) =>
+		res({
+			props: {
+				preview,
+				...projects,
+			},
+		})
+	);
 };
 
-<<<<<<< HEAD
 {
 	/* <section
 				className="project"
@@ -367,6 +359,4 @@ export const getStaticProps = async ({ params = '', preview = false }) => {
 				</details>
 			</section> */
 }
-=======
-export default Projects;
->>>>>>> 0aac855 (huge overhaul: brought in components, new styles from original bleekdottech repo; refaftored types, modified configs, fixed typing issue across component props mostly with JSX.IntrinsicElems, etc...)
+

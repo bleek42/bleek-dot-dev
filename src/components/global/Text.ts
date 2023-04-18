@@ -1,41 +1,49 @@
-import type { ComponentType } from 'react';
-import type { Colors, CommonColors, DefaultTheme, StyledComponentProps } from 'styled-components';
+import type {
+  AnyStyledComponent,
+  Colors,
+  DefaultTheme,
+  StyledComponentProps,
+} from 'styled-components';
 
 import styled from 'styled-components';
 
+interface TextOptions {
+  color: keyof Colors | null;
+  shadow?: keyof Colors | null;
+  font?: string | null;
+}
+
 type TextProps = StyledComponentProps<
-  keyof JSX.IntrinsicElements | ComponentType<unknown>,
+  AnyStyledComponent | keyof JSX.IntrinsicElements,
   DefaultTheme,
-  Record<string, unknown>,
+  TextOptions,
   string | number | symbol
-> & {
-  font: string;
-  color: keyof Colors;
-  shadow?: keyof Colors;
-};
+> &
+  TextOptions;
 
 export const SmTxt = styled.p<TextProps>`
   text-align: center;
   font-weight: 450;
   font-family: ${(props) =>
-    props.theme.fonts.includes(props.font)
-      ? props.font
-      : 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif'};
+    props?.font &&
+    props.theme.fonts.find(([font]) =>
+      props.font === font ? `${font}` : 'Verdana, Geneva, Tahoma, sans-serif'
+    )};
   color: ${(props) =>
-    props.color in props.theme.palette.primary
+    props?.color && props.color in props.theme.palette.primary
       ? props.theme.palette.primary[props.color]
-      : props.color in props.theme.palette.secondary
-      ? props.theme.palette.secondary[props.color]
-      : props.color in props.theme.palette.tertiary
+      : props?.color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.color]
+      : props?.color in props.theme.palette.tertiary
       ? props.theme.palette.tertiary[props.color]
       : props.theme.palette.common.black};
   text-shadow: ${(props) =>
-    props?.shadow && props.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.color]} 3px 1px 3px`
+    props?.shadow && props?.shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props?.color]} 3px 1px 3px`
       : props.color in props.theme.palette.secondary
-      ? `${props.theme.palette.secondary[props.color]} 3px 1px 3px`
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 3px 1px 3px`
       : props.color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.color]} 3px 1px 3px`
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 3px 1px 3px`
       : 'none'};
   /* text-decoration: underline;
   text-decoration-color: rgb(0, 0, 0);
@@ -44,27 +52,30 @@ export const SmTxt = styled.p<TextProps>`
 
 export const MdTxt = styled.h5<TextProps>`
   text-align: center;
-  font-weight: 550;
+  font-weight: 350;
   font-family: ${(props) =>
-    props.theme.fonts.includes(props.font)
-      ? props.font
-      : 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif'};
+    props?.font &&
+    props.theme.fonts.find(([font]) =>
+      props.font === font
+        ? `${font}`
+        : '"Arial Narrow Bold", Impact, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif'
+    )};
   color: ${(props) =>
-    props.color in props.theme.palette.primary
-      ? props.theme.palette.primary[props.color]
+    props?.color in props.theme.palette.primary
+      ? props.theme.palette.primary[props?.color]
       : props.color in props.theme.palette.secondary
-      ? props.theme.palette.secondary[props.color]
+      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
       : props.color in props.theme.palette.tertiary
-      ? props.theme.palette.tertiary[props.color]
+      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
       : props.theme.palette.common.white};
   text-shadow: ${(props) =>
-    props?.shadow && props.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.color]} 3px 1px 3px`
+    props?.shadow && props?.shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props?.shadow]} 2px 1px 2px`
       : props.color in props.theme.palette.secondary
-      ? `${props.theme.palette.secondary[props.color]} 3px 1px 3px`
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
       : props.color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.color]} 3px 1px 3px`
-      : null};
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
+      : 'none'};
   text-decoration: underline;
   text-decoration-color: ${({ theme }) => theme.palette.secondary.steel};
   text-decoration-style: solid;
@@ -72,29 +83,30 @@ export const MdTxt = styled.h5<TextProps>`
 
 export const LgTxt = styled.h2<TextProps>`
   text-align: center;
-  font-weight: 750;
+  font-weight: 450;
   font-family: ${(props) =>
-    props.theme.fonts.includes(props.font)
-      ? props.font
-      : 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif'};
+    props?.font &&
+    props.theme.fonts.find(([font]) =>
+      props.font === font ? `${font}` : '"Times New Roman", Times, Haettenschweiler, serif'
+    )};
   color: ${(props) =>
-    props.color in props.theme.palette.primary
-      ? props.theme.palette.primary[props.color]
+    props?.color in props.theme.palette.primary
+      ? props.theme.palette.primary[props?.color]
       : props.color in props.theme.palette.secondary
-      ? props.theme.palette.secondary[props.color]
+      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
       : props.color in props.theme.palette.tertiary
-      ? props.theme.palette.tertiary[props.color]
+      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
       : props.theme.palette.common.white};
   text-shadow: ${(props) =>
     props?.shadow && props.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.color]} 5px 3px 5px`
+      ? `${props.theme.palette.primary[props.shadow]} 2px 1px 2px`
       : props.color in props.theme.palette.secondary
-      ? `${props.theme.palette.secondary[props.color]} 5px 3px 5px`
+      ? `${props.theme.palette.secondary[props.shadow as keyof Colors]} 2px 1px 2px`
       : props.color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.color]} 5px 3px 5px`
-      : null};
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
+      : 'none'};
   text-decoration: underline;
-  text-decoration-color: ${({ theme }) => theme.palette.secondary.neon};
+  text-decoration-color: ${({ theme }) => theme.palette.secondary.green};
   text-decoration-style: solid;
 `;
 

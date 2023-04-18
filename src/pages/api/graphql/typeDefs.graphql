@@ -11,6 +11,7 @@ type Project implements Node {
   	id: ID!
   	title: String!
   	description: String!
+	active: Boolean!
   	link: URL!
   	techStack: JSON!
   	sourceCode: [URL!]!
@@ -47,5 +48,5 @@ input ProjectInput {
 type Query {
   	allProjects: [Project!]!
   	project(id: ID!): Project!
-  	createProject(input: P)
+  	createProject(input: ProjectInput!): Project!
 }

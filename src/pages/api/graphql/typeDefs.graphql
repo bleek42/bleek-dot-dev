@@ -10,15 +10,15 @@ interface Node {
 type Project implements Node {
   	id: ID!
   	title: String!
-  	description: String!
+  	description: [String!]
 	active: Boolean!
   	link: URL!
   	techStack: JSON!
-  	sourceCode: [URL!]!
-  	screenShots: [Asset]
-  	dateReleased: Date!
-  	dateUpdated: Date
+  	sourceCode: [URL!]
   	version: Float!
+  	screenShots: [Asset]
+  	createdAt: DateTime
+  	updatedAt: DateTime
 }
 
 type Asset implements Node {
@@ -29,24 +29,25 @@ type Asset implements Node {
   	size: Float
   	width: Float
   	height: Float
-  	createdAt: DateTime!
-  	updatedAt: DateTime!
+  	createdAt: DateTime
+  	updatedAt: DateTime
 }
 
 input ProjectInput {
 	title: String!
-  	description: String!
+  	description: [String!]
+	active: Boolean!
   	link: URL!
   	techStack: JSON!
-  	sourceCode: [URL!]!
-  	screenShots: [Asset]
-  	dateReleased: Date!
-  	dateUpdated: Date
+  	sourceCode: [URL!]
   	version: Float!
+  	screenShots: [Asset]
+	createdAt: DateTime
+  	updatedAt: DateTime
 }
 
 type Query {
   	allProjects: [Project!]!
   	project(id: ID!): Project!
-  	createProject(input: ProjectInput!): Project!
+  	createProject(newProject: ProjectInput!): Project!
 }

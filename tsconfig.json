@@ -63,6 +63,7 @@
 	"include": [
 		"next-env.d.ts",
 		"styled.d.ts",
+		"env.d.ts",
 		"next.config.js",
 		"src/**/*.tsx",
 		"src/**/*.ts",
@@ -70,6 +71,7 @@
 	],
 	"exclude": [
 		"node_modules/",
-		"build/"
+		"build/",
+		".next/"
 	]
 }

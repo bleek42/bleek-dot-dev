@@ -3,16 +3,19 @@ import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 export default async function handler<NextApiHandler>(
   req: NextApiRequest,
   res: NextApiResponse
-): Promise<void> {
-  const { title } = req.body;
+): Promise<void | NextApiHandler> {
+  console.log('preview:', { req, res });
   try {
-    if (req.headers.authorization !== process.env.GRAPHCMS_URI && req.method !== 'POST') {
+    if (req.headers['Authorization'] !== process.env.HYGRAPH_READONLY_API_KEY && req.method !== 'POST') {
       res.status(401).send('Unauthorized Request.');
     }
-    res.status(200).json({ message: 'Successful request to GraphCMS URI!' });
-  } catch {
+    await new Promise(() => res.status(200).json({ message: 'Successful request to GraphCMS URI!' }))
+  }// eslint-disable-next-line prettier/prettier
+  catch {
     res.status(500).send({ message: 'Internal Server Error!' });
-  } finally {
-    console.info(`Pinged Next.js API route with title preview: ${title}`);
+  // eslint-disable-next-line prettier/prettier
+  }
+  finally {
+    console.info(`Pinged Next.js API route with preview body: ${req.body}`);
   }
 }

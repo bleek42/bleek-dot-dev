@@ -43,8 +43,8 @@
 			"@utils/*": [
 				"utils/*"
 			],
-			"@server/*": [
-				"server/*"
+			"@graphql/*": [
+				"types/graphql/*"
 			],
 		},
 		"allowJs": true,
@@ -59,7 +59,9 @@
 		"src/**/*.tsx",
 		"src/**/*.ts",
 		"public/"
-	],
+,
+"codegen.ts"
+],
 	"exclude": [
 		"node_modules/",
 		"build/",

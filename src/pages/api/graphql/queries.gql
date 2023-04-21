@@ -1,0 +1,20 @@
+query AllProjectsQuery {
+  projects {
+    title
+    description
+    active
+    id
+    link
+    sourceCode
+    techStack
+    version
+    createdAt
+    updatedAt
+    screenShots {
+      fileName
+      id
+      mimeType
+      url
+    }
+  }
+}

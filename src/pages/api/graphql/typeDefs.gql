@@ -7,7 +7,7 @@ interface Node {
   id: ID!
 }
 
-type Project implements Node {
+type Project {
   	id: ID!
   	title: String!
   	description: [String!]
@@ -21,14 +21,14 @@ type Project implements Node {
   	updatedAt: DateTime
 }
 
-type Asset implements Node {
+type Asset {
   	id: ID!
   	fileName: String!
   	handle: String!
-  	mimeType: String
-  	size: Float
-  	width: Float
-  	height: Float
+  	mimeType: String!
+  	width: Float!
+  	height: Float!
+  	size: Float!
   	createdAt: DateTime
   	updatedAt: DateTime
 }
@@ -49,5 +49,8 @@ input ProjectInput {
 type Query {
   	allProjects: [Project!]!
   	project(id: ID!): Project!
-  	createProject(newProject: ProjectInput!): Project!
+}
+
+type Mutations {
+	createProject(newProject: ProjectInput!): Project!
 }

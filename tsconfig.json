@@ -6,11 +6,11 @@
 			"dom.iterable",
 			"esnext"
 		],
-		"forceConsistentCasingInFileNames": true,
+		"module": "node16",
+		"moduleResolution": "node16",
 		"noEmit": true,
+		"forceConsistentCasingInFileNames": true,
 		"esModuleInterop": true,
-		"module": "ES2020",
-		"moduleResolution": "node",
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
@@ -25,13 +25,10 @@
 			"@global/*": [
 				"components/global/*"
 			],
-			"@constants/*": [
-				"constants/*"
-			],
 			"@pages/*": [
 				"pages/*"
 			],
-			"@api/pages*": [
+			"@api/*": [
 				"pages/api/*"
 			],
 			"@interfaces/*": [
@@ -43,18 +40,12 @@
 			"@hooks/*": [
 				"hooks/*"
 			],
-			"@context/*": [
-				"context/*"
-			],
 			"@utils/*": [
 				"utils/*"
 			],
 			"@server/*": [
 				"server/*"
 			],
-			"@routers/*": [
-				"server/routers/*"
-			]
 		},
 		"allowJs": true,
 		"skipLibCheck": true,

@@ -52,7 +52,7 @@
 	],
 	"rules": {
 		"react/react-in-jsx-scope": "off",
-		"react/display-name": 0,
+		"react/display-name": "off",
 		"react/no-deprecated": "error",
 		"react/no-unsafe": [
 			"error",
@@ -75,6 +75,7 @@
 		"import/default": "off",
 		"import/export": "warn",
 		"import/namespace": "off",
+		"import/no-anonymous-default-export": "off",
 		"@typescript-eslint/arrow-body-style": "off",
 		"@typescript-eslint/prefer-arrow-callback": "off",
 		"@typescript-eslint/explicit-module-boundary-types": "off",

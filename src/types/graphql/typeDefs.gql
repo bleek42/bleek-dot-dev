@@ -1,24 +1,33 @@
 scalar Date
 scalar DateTime
 scalar URL
-scalar JSON
+scalar Json
+scalar Locale
+
+enum Stage {
+	DRAFT
+	PUBLISHED
+}
 
 interface Node {
   id: ID!
+  stage: Stage!
 }
 
-type Project {
+type Project implements Node {
   	id: ID!
+	stage: Stage!
   	title: String!
   	description: [String!]
 	active: Boolean!
   	link: URL!
-  	techStack: JSON!
+  	techStack: Json!
   	sourceCode: [URL!]
   	version: Float!
   	screenShots: [Asset]
   	createdAt: DateTime
   	updatedAt: DateTime
+	locale: Locale!
 }
 
 type Asset {
@@ -38,7 +47,7 @@ input ProjectInput {
   	description: [String!]
 	active: Boolean!
   	link: URL!
-  	techStack: JSON!
+  	techStack: Json!
   	sourceCode: [URL!]
   	version: Float!
   	screenShots: [Asset]

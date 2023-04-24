@@ -4,15 +4,15 @@ import * as path from 'path';
 
 dotenv.config({ path: path.join(process.cwd(), '.env.local'), encoding: 'UTF-8' });
 
-console.table({
-  NODE_ENV: process.env.NODE_ENV,
-  PORT: process.env.PORT,
-  HYGRAPH_READONLY_API_URL: process.env.HYGRAPH_READONLY_API_URL,
-  HYGRAPH_READONLY_API_KEY: process.env.HYGRAPH_READONLY_API_KEY,
-});
+// console.table({
+//   NODE_ENV: process.env.NODE_ENV,
+//   PORT: process.env.PORT,
+//   HYGRAPH_READONLY_API_URL: process.env.HYGRAPH_READONLY_API_URL,
+//   HYGRAPH_READONLY_API_KEY: process.env.HYGRAPH_READONLY_API_KEY,
+// });
 
 const config: CodegenConfig = {
-  documents: ['types/**/*.{gql,graphql,ts}', 'pages/**/*.tsx', 'components/**/*.tsx'],
+  documents: ['src/types/**/*.{gql,graphql}', 'src/pages/**/*.tsx', 'src/components/**/*.tsx'],
   ignoreNoDocuments: true,
   overwrite: true,
   require: ['ts-node/register'],
@@ -30,7 +30,7 @@ const config: CodegenConfig = {
       plugins: ['typescript'],
       config: {
         useTypeImports: true,
-        scalars: '/node_modules/graphql-scalars/esm/typeDefs.js',
+        scalars: 'graphql-scalars/typings/scalars',
         strictScalars: false,
         noNamespaces: true,
         futureProofUnions: true,
@@ -43,7 +43,7 @@ const config: CodegenConfig = {
       },
     },
 
-    './src/utils/gql-req-client.ts': {
+    './src/pages/api/': {
       plugins: ['typescript-operations', 'typed-document-node', 'typescript-graphql-request'],
       preset: 'near-operation-file',
       presetConfig: {
@@ -60,22 +60,21 @@ const config: CodegenConfig = {
         addUnderScoreToArgsType: true,
       },
     },
-
-    // './src/hooks/useHygraphQuery.ts': {
-    // preset: 'client-preset',
-    // presetConfig: {
-    // fragmentMasking: { unmaskFunctionName: 'getTypedFragment' },
-    // },
-    // config: {
-    // documentMode: 'string',
-    // withHooks: true,
-    // withHOC: false,
-    // withComponent: false,
-    // legacyMode: false,
-    // namingConvention: 'change-case-all#camelCase',
-    // exposeQueryKeys: true,
-    // },
-    // },
+    './src/hooks/useHygraphQuery.ts': {
+      plugins: ['typescript-operations', 'typed-document-node', 'typescript-graphql-request'],
+      preset: 'client',
+      presetConfig: {
+        fragmentMasking: { unmaskFunctionName: 'getTypedFragment' },
+      },
+      config: {
+        documentMode: 'string',
+        withHooks: true,
+        withHOC: false,
+        withComponent: false,
+        legacyMode: false,
+        exposeQueryKeys: true,
+      },
+    },
   },
   config: {
     exposeFetcher: true,

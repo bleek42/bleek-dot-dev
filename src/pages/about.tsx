@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment, useId } from "react";
+import React, { useState, useEffect, Fragment, useId } from 'react';
 
 import Meta from '@global/Meta';
 import Header from '@components/Header';
@@ -6,7 +6,7 @@ import Section from '@components/Section';
 import Footer from '@components/Footer';
 
 export default function About() {
-	console.log("about page:");
+	console.log('about page:');
 	const pageId = useId();
 
 	return (

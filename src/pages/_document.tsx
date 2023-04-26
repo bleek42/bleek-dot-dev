@@ -27,9 +27,8 @@ export default class MyDocument extends Document {
 					</>
 				),
 			};
-		// eslint-disable-next-line prettier/prettier
-		}
-		finally {
+			// eslint-disable-next-line prettier/prettier
+		} finally {
 			sheet.seal();
 		}
 	}

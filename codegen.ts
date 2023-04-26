@@ -12,13 +12,19 @@ dotenv.config({ path: path.join(process.cwd(), '.env.local'), encoding: 'UTF-8' 
 // });
 
 const config: CodegenConfig = {
-  documents: ['src/types/**/*.{gql,graphql}', 'src/pages/**/*.tsx', 'src/components/**/*.tsx'],
-  ignoreNoDocuments: true,
-  overwrite: true,
   require: ['ts-node/register'],
+  overwrite: true,
+  ignoreNoDocuments: true,
+  documents: [
+    'src/**/*.gql',
+    'src/**/*.graphql',
+    'src/types/graphql/*.ts',
+    'src/pages/**/*.tsx',
+    'src/components/**/*.tsx',
+  ],
   schema: [
     {
-      [process.env.HYGRAPH_READONLY_API_URL]: {
+      [`${process.env.HYGRAPH_READONLY_API_URL}`]: {
         headers: {
           Authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,
         },
@@ -29,13 +35,13 @@ const config: CodegenConfig = {
     './src/types/graphql/hygraph.types.ts': {
       plugins: ['typescript'],
       config: {
-        useTypeImports: true,
-        scalars: 'graphql-scalars/typings/scalars',
-        strictScalars: false,
         noNamespaces: true,
+        enumsAsTypes: true,
         futureProofUnions: true,
         futureProofEnums: true,
         useImplementingTypes: true,
+        maybeValue: 'T | null | undefined',
+        inputMaybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null',
         declarationKind: {
           type: 'interface',
           input: 'interface',
@@ -43,48 +49,130 @@ const config: CodegenConfig = {
       },
     },
 
-    './src/pages/api/': {
-      plugins: ['typescript-operations', 'typed-document-node', 'typescript-graphql-request'],
+    './src/types/graphql/ops/': {
+      plugins: ['typescript-operations'],
       preset: 'near-operation-file',
       presetConfig: {
-        baseTypesPath: 'src/types/graphql/hygraph.types.ts',
-        extension: '.request.ts',
-        fileName: 'src/pages/api/hygraph',
+        extension: '.operation.ts',
+        baseTypesPath: 'hygraph.types.ts',
       },
       config: {
-        documentMode: 'documentNode',
-        documentNodeImport: '@graphql-typed-document-node',
         documentVariableSuffix: 'TypedDocumentNode',
         fragmentVariableSuffix: 'TypedFragmentNode',
         optimizeDocumentNode: true,
         addUnderScoreToArgsType: true,
       },
     },
-    './src/hooks/useHygraphQuery.ts': {
-      plugins: ['typescript-operations', 'typed-document-node', 'typescript-graphql-request'],
-      preset: 'client',
+    './src/pages/api/': {
+      plugins: ['typescript-graphql-request'],
+      preset: 'client-preset',
       presetConfig: {
-        fragmentMasking: { unmaskFunctionName: 'getTypedFragment' },
+        fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
-        documentMode: 'string',
-        withHooks: true,
-        withHOC: false,
-        withComponent: false,
-        legacyMode: false,
-        exposeQueryKeys: true,
+        importOperationTypesFrom: './src/types/graphql/ops/*.operation.ts',
+        experimentalFragmentVariables: true, // ! experimental
       },
     },
   },
   config: {
-    exposeFetcher: true,
-    exposeDocument: true,
+    withHooks: true,
+    withHOC: false,
+    withComponent: false,
+    exposeQueryKeys: true,
     useTypeImports: true,
+    scalars: 'graphql-scalars/typings/scalars',
+    documentNodeImport: '@graphql-typed-document-node',
+    strictScalars: false,
+    exposeDocument: true,
+    legacyMode: false,
     emitLegacyCommonJSImports: false,
   },
   hooks: {
-    afterAllFileWrite: ['pnpm run format'],
+    afterAllFileWrite: ['prettier --write'],
   },
 };
 
 export default config;
+
+// const config: CodegenConfig = {
+//   require: ['ts-node/register'],
+//   overwrite: true,
+//   ignoreNoDocuments: true,
+//   documents: [
+//     'src/**/*.gql',
+//     'src/**/*.graphql',
+//     'src/types/graphql/*.ts',
+//     'src/pages/**/*.tsx',
+//     'src/components/**/*.tsx',
+//   ],
+//   schema: [
+//     {
+//       [`${process.env.HYGRAPH_READONLY_API_URL}`]: {
+//         headers: {
+//           Authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,
+//         },
+//       },
+//     },
+//   ],
+//   generates: {
+//     './src/types/graphql/hygraph.types.ts': {
+//       plugins: ['typescript'],
+//       config: {
+//         noNamespaces: true,
+//         enumsAsTypes: true,
+//         futureProofUnions: true,
+//         futureProofEnums: true,
+//         useImplementingTypes: true,
+//         maybeValue: 'T | null | undefined',
+//         inputMaybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null',
+//         declarationKind: {
+//           type: 'interface',
+//           input: 'interface',
+//         },
+//       },
+//     },
+
+//     './src/types/graphql/ops/': {
+//       plugins: ['typescript-operations'],
+//       preset: 'near-operation-file',
+//       presetConfig: {
+//         extension: '.operation.ts',
+//         baseTypesPath: 'hygraph.types.ts',
+//       },
+//       config: {
+//         documentNodeImport: '@graphql-typed-document-node',
+//         documentVariableSuffix: 'TypedDocumentNode',
+//         fragmentVariableSuffix: 'TypedFragmentNode',
+//         optimizeDocumentNode: true,
+//         addUnderScoreToArgsType: true,
+//       },
+//     },
+//     './src/pages/api/': {
+//       plugins: ['typescript-graphql-request'],
+//       preset: 'client-preset',
+//       presetConfig: {
+//         importOperationTypesFrom: './src/types/graphql/ops/',
+//         fragmentMasking: { unmaskFunctionName: 'getTypedFragment' },
+//       },
+//       // config: {},
+//     },
+//   },
+//   config: {
+//     withHooks: true,
+//     withHOC: false,
+//     withComponent: false,
+//     legacyMode: false,
+//     exposeQueryKeys: true,
+//     useTypeImports: true,
+//     scalars: 'graphql-scalars/typings/scalars',
+//     strictScalars: false,
+//     exposeDocument: true,
+//     emitLegacyCommonJSImports: false,
+//   },
+//   hooks: {
+//     afterAllFileWrite: ['pnpm run format'],
+//   },
+// };
+
+// export default config;

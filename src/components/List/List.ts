@@ -9,6 +9,6 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
-	display: inline-flex;
-	color: rgb(5, 5, 5);
+  display: inline-flex;
+  color: rgb(5, 5, 5);
 `;

@@ -1,4 +1,4 @@
-import { Fragment, useId } from "react";
+import { Fragment, useId } from 'react';
 
 import Header from '@components/Header';
 import Section from '@components/Section';
@@ -359,4 +359,3 @@ export const getStaticProps = async ({ params = '', preview = false }) => {
 				</details>
 			</section> */
 }
-

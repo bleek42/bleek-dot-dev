@@ -36,20 +36,11 @@ const config: CodegenConfig = {
       plugins: ['typescript'],
       config: {
         noNamespaces: true,
-        enumsAsTypes: true,
-        futureProofUnions: true,
-        futureProofEnums: true,
         useImplementingTypes: true,
-        maybeValue: 'T | null | undefined',
-        inputMaybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null',
-        declarationKind: {
-          type: 'interface',
-          input: 'interface',
-        },
       },
     },
 
-    './src/types/graphql/ops/': {
+    './src/types/graphql/': {
       plugins: ['typescript-operations'],
       preset: 'near-operation-file',
       presetConfig: {
@@ -57,8 +48,9 @@ const config: CodegenConfig = {
         baseTypesPath: 'hygraph.types.ts',
       },
       config: {
-        documentVariableSuffix: 'TypedDocumentNode',
-        fragmentVariableSuffix: 'TypedFragmentNode',
+        allowEnumStringTypes: true,
+        documentVariableSuffix: 'DocumentNode',
+        fragmentVariableSuffix: 'FragmentNode',
         optimizeDocumentNode: true,
         addUnderScoreToArgsType: true,
       },
@@ -70,7 +62,8 @@ const config: CodegenConfig = {
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
-        importOperationTypesFrom: './src/types/graphql/ops/*.operation.ts',
+        persistedDocuments: true,
+        importOperationTypesFrom: './src/types/graphql/',
         experimentalFragmentVariables: true, // ! experimental
       },
     },
@@ -81,10 +74,26 @@ const config: CodegenConfig = {
     withComponent: false,
     exposeQueryKeys: true,
     useTypeImports: true,
-    scalars: 'graphql-scalars/typings/scalars',
-    documentNodeImport: '@graphql-typed-document-node',
-    strictScalars: false,
+    preResolveTypes: false,
     exposeDocument: true,
+    documentNodeImport: '@graphql-typed-document-node',
+    scalars: {
+      Date: 'graphql-scalars#Date',
+      DateTime: '',
+      URL: '',
+      JSON: '',
+      Locale: '',
+    },
+    strictScalars: false,
+    enumsAsTypes: true,
+    futureProofUnions: true,
+    futureProofEnums: true,
+    declarationKind: {
+      type: 'interface',
+      input: 'interface',
+    },
+    maybeValue: 'T | null | undefined',
+    inputMaybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null',
     legacyMode: false,
     emitLegacyCommonJSImports: false,
   },

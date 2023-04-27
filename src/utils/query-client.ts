@@ -12,7 +12,7 @@ import { request } from 'graphql-request';
 export const createGraphQLClient = async (
   url: string,
   doc?: RequestDocument
-): Promise<void | Error | unknown> => {
+): Promise<unknown | Error> | Promise<void> | void => {
   const client: GraphQLClient = new GraphQLClient(url, {
     headers: {
       authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,

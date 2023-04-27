@@ -1,7 +1,7 @@
 scalar Date
 scalar DateTime
 scalar URL
-scalar Json
+scalar JSON
 scalar Locale
 
 enum Stage {
@@ -35,7 +35,7 @@ type Project implements Node {
   	description: [String!]
 	active: Boolean!
   	link: URL!
-  	techStack: Json!
+  	techStack: JSON!
   	sourceCode: [URL!]
   	version: Float!
   	screenShots: [Asset]
@@ -49,7 +49,7 @@ input ProjectInput {
   	description: [String!]
 	active: Boolean!
   	link: URL
-  	techStack: Json!
+  	techStack: JSON!
   	sourceCode: [URL!]
   	version: Float!
   	screenShots: [Asset]

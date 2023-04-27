@@ -55,6 +55,7 @@
 	"include": [
 		"src/**/*.tsx",
 		"src/**/*.ts",
+		"codegen.ts",
 		"next-env.d.ts",
 		"styled.d.ts",
 		"env.d.ts",

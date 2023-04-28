@@ -1,6 +1,15 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
-import * as dotenv from 'dotenv';
+
 import * as path from 'path';
+import * as dotenv from 'dotenv';
+
+import {
+  GraphQLJSON,
+  GraphQLURL,
+  GraphQLLocale,
+  GraphQLDate,
+  GraphQLDateTime,
+} from 'graphql-scalars';
 
 dotenv.config({ path: path.join(process.cwd(), '.env.local'), encoding: 'UTF-8' });
 
@@ -16,12 +25,13 @@ const config: CodegenConfig = {
   overwrite: true,
   ignoreNoDocuments: true,
   documents: [
-    'src/**/*.gql',
-    'src/**/*.graphql',
-    'src/types/graphql/*.ts',
+    'src/utils/gql-queries.ts',
     'src/pages/**/*.tsx',
     'src/components/**/*.tsx',
+    'src/types/graphql/**/*.{gql,graphql}',
+    '!src/types/graphql/**/*.ts',
   ],
+
   schema: [
     {
       [`${process.env.HYGRAPH_READONLY_API_URL}`]: {
@@ -31,40 +41,71 @@ const config: CodegenConfig = {
       },
     },
   ],
+
   generates: {
-    './src/types/graphql/hygraph.types.ts': {
-      plugins: ['typescript'],
-      config: {
-        noNamespaces: true,
-        useImplementingTypes: true,
-      },
-    },
+    // './src/types/graphql/hygraph.types.ts': {
+    //   plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
+    //   preset: 'import-types',
+    //   presetConfig: {
+    //     typesPath: 'hygraph.types.ts',
+    //   },
+    //   config: {},
+    // },
 
     './src/types/graphql/': {
-      plugins: ['typescript-operations'],
-      preset: 'near-operation-file',
-      presetConfig: {
-        extension: '.operation.ts',
-        baseTypesPath: 'hygraph.types.ts',
-      },
-      config: {
-        allowEnumStringTypes: true,
-        documentVariableSuffix: 'DocumentNode',
-        fragmentVariableSuffix: 'FragmentNode',
-        optimizeDocumentNode: true,
-        addUnderScoreToArgsType: true,
-      },
-    },
-    './src/pages/api/': {
-      plugins: ['typescript-graphql-request'],
+      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request'],
       preset: 'client-preset',
       presetConfig: {
+        persistedDocuments: true,
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
-        persistedDocuments: true,
-        importOperationTypesFrom: './src/types/graphql/',
-        experimentalFragmentVariables: true, // ! experimental
+        declarationKind: {
+          type: 'interface',
+          input: 'interface',
+        },
+        gqlImport: 'graphql-request#gql',
+        documentMode: 'documentNodeImportFragments',
+        documentNodeImport: '@graphql-typed-document-node/core',
+        exposeDocument: true,
+        scalars: [
+          {
+            scalar: 'JSON',
+            type: 'GraphQLJSONObject',
+            import: 'graphql-scalars/esm/scalars#GraphQLJSONObject',
+          },
+          {
+            scalar: 'Date',
+            type: 'GraphQLDate',
+            import: 'graphql-scalars/esm/scalars#GraphQLDate',
+          },
+          {
+            scalar: 'DateTime',
+            type: 'GraphQLDateTime',
+            import: 'graphql-scalars/esm/scalars#GraphQLDateTime',
+          },
+          {
+            scalar: 'URL',
+            type: 'GraphQLURL',
+            import: 'graphql-scalars/esm/scalars#GraphQLURL',
+          },
+          {
+            scalar: 'Locale',
+            type: 'GraphQLLocale',
+            import: 'graphql-scalars/esm/scalars#GraGraphQLLocalephQLLocale',
+          },
+        ],
+        strictScalars: false,
+        enumsAsTypes: true,
+        futureProofUnions: true,
+        futureProofEnums: true,
+        useImplementingTypes: true,
+        allowEnumStringTypes: true,
+        addUnderScoreToArgsType: true,
+        maybeValue: 'T | null | undefined',
+        inputMaybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null',
+        documentVariableSuffix: 'TypedDocumentNodeVar',
+        fragmentVariableSuffix: 'TypedFragmentNodeVar',
       },
     },
   },
@@ -75,25 +116,6 @@ const config: CodegenConfig = {
     exposeQueryKeys: true,
     useTypeImports: true,
     preResolveTypes: false,
-    exposeDocument: true,
-    documentNodeImport: '@graphql-typed-document-node',
-    scalars: {
-      Date: 'graphql-scalars#Date',
-      DateTime: '',
-      URL: '',
-      JSON: '',
-      Locale: '',
-    },
-    strictScalars: false,
-    enumsAsTypes: true,
-    futureProofUnions: true,
-    futureProofEnums: true,
-    declarationKind: {
-      type: 'interface',
-      input: 'interface',
-    },
-    maybeValue: 'T | null | undefined',
-    inputMaybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null',
     legacyMode: false,
     emitLegacyCommonJSImports: false,
   },

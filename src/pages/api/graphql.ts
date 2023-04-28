@@ -1,17 +1,4 @@
 /* eslint-disable */
-import type { ID } from 'graphql-scalars';
-import type { String } from 'graphql-scalars';
-import type { Boolean } from 'graphql-scalars';
-import type { Int } from 'graphql-scalars';
-import type { Float } from 'graphql-scalars';
-import type { Date } from 'graphql-scalars';
-import type { DateTime } from 'graphql-scalars';
-import type { Hex } from 'graphql-scalars';
-import type { Json } from 'graphql-scalars';
-import type { Long } from 'graphql-scalars';
-import type { RGBAHue } from 'graphql-scalars';
-import type { RGBATransparency } from 'graphql-scalars';
-import type { RichTextAST } from 'graphql-scalars';
 import type { GraphQLClient } from 'graphql-request';
 import type * as Dom from 'graphql-request/dist/types.dom';
 import gql from 'graphql-tag';
@@ -22,24 +9,24 @@ export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: 
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: ID;
-  String: String;
-  Boolean: Boolean;
-  Int: Int;
-  Float: Float;
+  ID: string;
+  String: string;
+  Boolean: boolean;
+  Int: number;
+  Float: number;
   /** A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard for representation of dates using the Gregorian calendar. */
-  Date: Date;
+  Date: any;
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the date-timeformat outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representationof dates and times using the Gregorian calendar. */
-  DateTime: DateTime;
-  Hex: Hex;
+  DateTime: any;
+  Hex: any;
   /** Raw JSON value */
-  Json: Json;
+  Json: any;
   /** The Long scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
-  Long: Long;
-  RGBAHue: RGBAHue;
-  RGBATransparency: RGBATransparency;
+  Long: any;
+  RGBAHue: any;
+  RGBATransparency: any;
   /** Slate-compatible RichText AST */
-  RichTextAST: RichTextAST;
+  RichTextAST: any;
 };
 
 export type Aggregate = {
@@ -339,27 +326,28 @@ export type AssetManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export type AssetOrderByInput =
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'fileName_ASC'
-  | 'fileName_DESC'
-  | 'handle_ASC'
-  | 'handle_DESC'
-  | 'height_ASC'
-  | 'height_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'mimeType_ASC'
-  | 'mimeType_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'size_ASC'
-  | 'size_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'width_ASC'
-  | 'width_DESC';
+export enum AssetOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  FileNameAsc = 'fileName_ASC',
+  FileNameDesc = 'fileName_DESC',
+  HandleAsc = 'handle_ASC',
+  HandleDesc = 'handle_DESC',
+  HeightAsc = 'height_ASC',
+  HeightDesc = 'height_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  MimeTypeAsc = 'mimeType_ASC',
+  MimeTypeDesc = 'mimeType_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  SizeAsc = 'size_ASC',
+  SizeDesc = 'size_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC',
+}
 
 /** Transformations for Assets */
 export type AssetTransformationInput = {
@@ -903,15 +891,16 @@ export type DemoComponentManyWhereInput = {
   title_starts_with?: InputMaybe<Scalars['String']>;
 };
 
-export type DemoComponentOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'slug_ASC'
-  | 'slug_DESC'
-  | 'subtitle_ASC'
-  | 'subtitle_DESC'
-  | 'title_ASC'
-  | 'title_DESC';
+export enum DemoComponentOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SubtitleAsc = 'subtitle_ASC',
+  SubtitleDesc = 'subtitle_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+}
 
 export type DemoComponentUpdateInput = {
   content?: InputMaybe<Scalars['RichTextAST']>;
@@ -1066,23 +1055,24 @@ export type DemoComponentWhereUniqueInput = {
   slug?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentFileTypes =
-  | 'doc'
-  | 'docx'
-  | 'html'
-  | 'jpg'
-  | 'odp'
-  | 'ods'
-  | 'odt'
-  | 'pdf'
-  | 'png'
-  | 'ppt'
-  | 'pptx'
-  | 'svg'
-  | 'txt'
-  | 'webp'
-  | 'xls'
-  | 'xlsx';
+export enum DocumentFileTypes {
+  Doc = 'doc',
+  Docx = 'docx',
+  Html = 'html',
+  Jpg = 'jpg',
+  Odp = 'odp',
+  Ods = 'ods',
+  Odt = 'odt',
+  Pdf = 'pdf',
+  Png = 'png',
+  Ppt = 'ppt',
+  Pptx = 'pptx',
+  Svg = 'svg',
+  Txt = 'txt',
+  Webp = 'webp',
+  Xls = 'xls',
+  Xlsx = 'xlsx',
+}
 
 export type DocumentOutputInput = {
   /**
@@ -1129,15 +1119,16 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
-export type ImageFit =
+export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
-  | 'clip'
+  Clip = 'clip',
   /** Resizes the image to fit the specified parameters exactly by removing any parts of the image that don't fit within the boundaries. */
-  | 'crop'
+  Crop = 'crop',
   /** Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size. */
-  | 'max'
+  Max = 'max',
   /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
-  | 'scale';
+  Scale = 'scale',
+}
 
 export type ImageResizeInput = {
   /** The default value for the fit parameter is fit:clip. */
@@ -1155,9 +1146,10 @@ export type ImageTransformationInput = {
 };
 
 /** Locale system enumeration */
-export type Locale =
+export enum Locale {
   /** System locale */
-  'en';
+  En = 'en',
+}
 
 /** Representing a geolocation point with latitude and longitude */
 export type Location = {
@@ -1934,27 +1926,28 @@ export type ProjectManyWhereInput = {
   version_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
 };
 
-export type ProjectOrderByInput =
-  | 'active_ASC'
-  | 'active_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'link_ASC'
-  | 'link_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'sourceCode_ASC'
-  | 'sourceCode_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'version_ASC'
-  | 'version_DESC';
+export enum ProjectOrderByInput {
+  ActiveAsc = 'active_ASC',
+  ActiveDesc = 'active_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  SourceCodeAsc = 'sourceCode_ASC',
+  SourceCodeDesc = 'sourceCode_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  VersionAsc = 'version_ASC',
+  VersionDesc = 'version_DESC',
+}
 
 export type ProjectUpdateInput = {
   /** active input for default locale (en) */
@@ -2779,29 +2772,31 @@ export type ScheduledOperationManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export type ScheduledOperationOrderByInput =
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'errorMessage_ASC'
-  | 'errorMessage_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'status_ASC'
-  | 'status_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC';
+export enum ScheduledOperationOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  ErrorMessageAsc = 'errorMessage_ASC',
+  ErrorMessageDesc = 'errorMessage_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  StatusAsc = 'status_ASC',
+  StatusDesc = 'status_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+}
 
 /** System Scheduled Operation Status */
-export type ScheduledOperationStatus =
-  | 'CANCELED'
-  | 'COMPLETED'
-  | 'FAILED'
-  | 'IN_PROGRESS'
-  | 'PENDING';
+export enum ScheduledOperationStatus {
+  Canceled = 'CANCELED',
+  Completed = 'COMPLETED',
+  Failed = 'FAILED',
+  InProgress = 'IN_PROGRESS',
+  Pending = 'PENDING',
+}
 
 export type ScheduledOperationUpdateManyInlineInput = {
   /** Connect multiple existing ScheduledOperation documents */
@@ -3252,32 +3247,38 @@ export type ScheduledReleaseManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export type ScheduledReleaseOrderByInput =
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'errorMessage_ASC'
-  | 'errorMessage_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'isActive_ASC'
-  | 'isActive_DESC'
-  | 'isImplicit_ASC'
-  | 'isImplicit_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'releaseAt_ASC'
-  | 'releaseAt_DESC'
-  | 'status_ASC'
-  | 'status_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC';
+export enum ScheduledReleaseOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  ErrorMessageAsc = 'errorMessage_ASC',
+  ErrorMessageDesc = 'errorMessage_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  IsActiveAsc = 'isActive_ASC',
+  IsActiveDesc = 'isActive_DESC',
+  IsImplicitAsc = 'isImplicit_ASC',
+  IsImplicitDesc = 'isImplicit_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  ReleaseAtAsc = 'releaseAt_ASC',
+  ReleaseAtDesc = 'releaseAt_DESC',
+  StatusAsc = 'status_ASC',
+  StatusDesc = 'status_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+}
 
 /** System Scheduled Release Status */
-export type ScheduledReleaseStatus = 'COMPLETED' | 'FAILED' | 'IN_PROGRESS' | 'PENDING';
+export enum ScheduledReleaseStatus {
+  Completed = 'COMPLETED',
+  Failed = 'FAILED',
+  InProgress = 'IN_PROGRESS',
+  Pending = 'PENDING',
+}
 
 export type ScheduledReleaseUpdateInput = {
   description?: InputMaybe<Scalars['String']>;
@@ -3528,16 +3529,26 @@ export type ScheduledReleaseWhereUniqueInput = {
 };
 
 /** Stage system enumeration */
-export type Stage =
+export enum Stage {
   /** The Draft is the default stage for all your content. */
-  | 'DRAFT'
+  Draft = 'DRAFT',
   /** The Published stage is where you can publish your content to. */
-  | 'PUBLISHED';
+  Published = 'PUBLISHED',
+}
 
-export type SystemDateTimeFieldVariation = 'BASE' | 'COMBINED' | 'LOCALIZATION';
+export enum SystemDateTimeFieldVariation {
+  Base = 'BASE',
+  Combined = 'COMBINED',
+  Localization = 'LOCALIZATION',
+}
 
 /** Different technical stack (or "tech-stack") categories that is used in creating or maintaining a software development project, including but not limited to, a library, package, database paradigm, or some other tool. */
-export type TechCategories = 'BACKEND' | 'DATABASE' | 'FRONTEND' | 'OTHER';
+export enum TechCategories {
+  Backend = 'BACKEND',
+  Database = 'DATABASE',
+  Frontend = 'FRONTEND',
+  Other = 'OTHER',
+}
 
 export type UnpublishLocaleInput = {
   /** Locales to unpublish */
@@ -3615,7 +3626,12 @@ export type UserEdge = {
 };
 
 /** System User Kind */
-export type UserKind = 'MEMBER' | 'PAT' | 'PUBLIC' | 'WEBHOOK';
+export enum UserKind {
+  Member = 'MEMBER',
+  Pat = 'PAT',
+  Public = 'PUBLIC',
+  Webhook = 'WEBHOOK',
+}
 
 /** Identifies documents */
 export type UserManyWhereInput = {
@@ -3744,23 +3760,24 @@ export type UserManyWhereInput = {
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
 };
 
-export type UserOrderByInput =
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'isActive_ASC'
-  | 'isActive_DESC'
-  | 'kind_ASC'
-  | 'kind_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'picture_ASC'
-  | 'picture_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC';
+export enum UserOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  IsActiveAsc = 'isActive_ASC',
+  IsActiveDesc = 'isActive_DESC',
+  KindAsc = 'kind_ASC',
+  KindDesc = 'kind_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PictureAsc = 'picture_ASC',
+  PictureDesc = 'picture_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+}
 
 export type UserUpdateManyInlineInput = {
   /** Connect multiple existing User documents */
@@ -3944,72 +3961,91 @@ export type VersionWhereInput = {
   stage: Stage;
 };
 
-export type _FilterKind =
-  | 'AND'
-  | 'NOT'
-  | 'OR'
-  | 'contains'
-  | 'contains_all'
-  | 'contains_none'
-  | 'contains_some'
-  | 'ends_with'
-  | 'eq'
-  | 'eq_not'
-  | 'gt'
-  | 'gte'
-  | 'in'
-  | 'json_path_exists'
-  | 'json_value_recursive'
-  | 'lt'
-  | 'lte'
-  | 'not_contains'
-  | 'not_ends_with'
-  | 'not_in'
-  | 'not_starts_with'
-  | 'relational_every'
-  | 'relational_none'
-  | 'relational_single'
-  | 'relational_some'
-  | 'search'
-  | 'starts_with'
-  | 'union_empty'
-  | 'union_every'
-  | 'union_none'
-  | 'union_single'
-  | 'union_some';
+export enum _FilterKind {
+  And = 'AND',
+  Not = 'NOT',
+  Or = 'OR',
+  Contains = 'contains',
+  ContainsAll = 'contains_all',
+  ContainsNone = 'contains_none',
+  ContainsSome = 'contains_some',
+  EndsWith = 'ends_with',
+  Eq = 'eq',
+  EqNot = 'eq_not',
+  Gt = 'gt',
+  Gte = 'gte',
+  In = 'in',
+  JsonPathExists = 'json_path_exists',
+  JsonValueRecursive = 'json_value_recursive',
+  Lt = 'lt',
+  Lte = 'lte',
+  NotContains = 'not_contains',
+  NotEndsWith = 'not_ends_with',
+  NotIn = 'not_in',
+  NotStartsWith = 'not_starts_with',
+  RelationalEvery = 'relational_every',
+  RelationalNone = 'relational_none',
+  RelationalSingle = 'relational_single',
+  RelationalSome = 'relational_some',
+  Search = 'search',
+  StartsWith = 'starts_with',
+  UnionEmpty = 'union_empty',
+  UnionEvery = 'union_every',
+  UnionNone = 'union_none',
+  UnionSingle = 'union_single',
+  UnionSome = 'union_some',
+}
 
-export type _MutationInputFieldKind =
-  | 'enum'
-  | 'relation'
-  | 'richText'
-  | 'richTextWithEmbeds'
-  | 'scalar'
-  | 'union'
-  | 'virtual';
+export enum _MutationInputFieldKind {
+  Enum = 'enum',
+  Relation = 'relation',
+  RichText = 'richText',
+  RichTextWithEmbeds = 'richTextWithEmbeds',
+  Scalar = 'scalar',
+  Union = 'union',
+  Virtual = 'virtual',
+}
 
-export type _MutationKind =
-  | 'create'
-  | 'delete'
-  | 'deleteMany'
-  | 'publish'
-  | 'publishMany'
-  | 'schedulePublish'
-  | 'scheduleUnpublish'
-  | 'unpublish'
-  | 'unpublishMany'
-  | 'update'
-  | 'updateMany'
-  | 'upsert';
+export enum _MutationKind {
+  Create = 'create',
+  Delete = 'delete',
+  DeleteMany = 'deleteMany',
+  Publish = 'publish',
+  PublishMany = 'publishMany',
+  SchedulePublish = 'schedulePublish',
+  ScheduleUnpublish = 'scheduleUnpublish',
+  Unpublish = 'unpublish',
+  UnpublishMany = 'unpublishMany',
+  Update = 'update',
+  UpdateMany = 'updateMany',
+  Upsert = 'upsert',
+}
 
-export type _OrderDirection = 'asc' | 'desc';
+export enum _OrderDirection {
+  Asc = 'asc',
+  Desc = 'desc',
+}
 
-export type _RelationInputCardinality = 'many' | 'one';
+export enum _RelationInputCardinality {
+  Many = 'many',
+  One = 'one',
+}
 
-export type _RelationInputKind = 'create' | 'update';
+export enum _RelationInputKind {
+  Create = 'create',
+  Update = 'update',
+}
 
-export type _RelationKind = 'regular' | 'union';
+export enum _RelationKind {
+  Regular = 'regular',
+  Union = 'union',
+}
 
-export type _SystemDateTimeFieldVariation = 'base' | 'combined' | 'localization';
+export enum _SystemDateTimeFieldVariation {
+  Base = 'base',
+  Combined = 'combined',
+  Localization = 'localization',
+}
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,

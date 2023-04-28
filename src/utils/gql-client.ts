@@ -1,8 +1,8 @@
 import type { RequestDocument } from 'graphql-request';
 
-import { GraphQLClient, request } from 'graphql-request';
+import { GraphQLClient } from 'graphql-request';
 
-const client: GraphQLClient = new GraphQLClient(process.env.HYGRAPH_READONLY_API_URL, {
+const graphqlClient: GraphQLClient = new GraphQLClient(process.env.HYGRAPH_READONLY_API_URL, {
   headers: {
     authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,
   },
@@ -22,4 +22,4 @@ const client: GraphQLClient = new GraphQLClient(process.env.HYGRAPH_READONLY_API
 //   }
 // };
 
-export default client;
+export default graphqlClient;

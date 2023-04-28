@@ -1,8 +1,8 @@
-overwrite: false
-schema: 'https://api-us-east-1.graphcms.com/v2/cl2jezykc0li901yx24p50f8f/master'
+overwrite: true
+schema: ${HYGRAPH_READONLY_API_URL}
 documents: 'pages/api/graphql/*.graphql'
 generates:
-  generated/graphCMS/typeDefs.ts:
+  generated/typeDefs.ts:
     hooks:
       afterAllFileWrite:
         - prettier --write

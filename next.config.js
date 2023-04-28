@@ -25,4 +25,13 @@ module.exports = {
       'src/types/**/*.ts',
     ],
   },
+
+  experimental: {
+    swcPlugins: [
+      [
+        '@graphql-codegen/client-preset-swc-plugin',
+        { artifactDirectory: './src/pages/api', gqlTagName: 'gql' },
+      ],
+    ],
+  },
 };

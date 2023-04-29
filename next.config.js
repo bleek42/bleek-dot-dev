@@ -30,8 +30,24 @@ module.exports = {
     swcPlugins: [
       [
         '@graphql-codegen/client-preset-swc-plugin',
-        { artifactDirectory: './src/pages/api', gqlTagName: 'gql' },
+        { artifactDirectory: './src/types/graphql/', gqlTagName: 'gql' },
       ],
     ],
+  },
+
+  async headers() {
+    return await new Promise((res) =>
+      res([
+        {
+          source: '/*',
+          headers: [
+            {
+              key: 'x-locale-date-time',
+              value: new Date().toLocaleDateString(),
+            },
+          ],
+        },
+      ])
+    );
   },
 };

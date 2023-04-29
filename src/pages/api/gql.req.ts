@@ -1,11 +1,9 @@
-import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { useQuery, type UseQueryResult } from '@tanstack/react-query';
-import { print, type ExecutionResult } from 'graphql';
+import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 import graphqlClient from '@utils/gql-client';
 
 /** Your custom fetcher function */
-async function gqlRequest<TResult, TVariables>(
+export async function gqlRequest<TResult, TVariables>(
   document: TypedDocumentNode<TResult, TVariables>,
   ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
 ): Promise<TResult> {
@@ -19,20 +17,15 @@ async function gqlRequest<TResult, TVariables>(
   //     variables,
   //   }),
   // });
-  const req = await graphqlClient.request<TResult>(document, [variables]);
-  console.log(req);
-  if (!req) throw new Error('gql req err...');
-  return req;
-}
+  try {
+    const req = await graphqlClient.request<TResult>(document, [variables]);
+    console.log(req);
+    if (!req) throw new Error('request err...');
 
-export function useGraphQLReq<TResult, TVariables>(
-  document: TypedDocumentNode<TResult, TVariables>,
-  ...[variables]: TVariables extends Record<string, never> ? [] : [TVariables]
-): UseQueryResult<ExecutionResult<TResult>> | void {
-  console.log(document, variables);
-  gqlRequest(document);
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  // return useQuery([(document?.definitions[0] as unknown)?.name?.value, variables], () =>
-  //   gqlClientRequest(document, variables)
-  // );
+    return req;
+  // eslint-disable-next-line prettier/prettier
+  } 
+  catch {
+    throw new Error('unknown err...');
+  }
 }

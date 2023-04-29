@@ -2,7 +2,7 @@ import { gql } from 'graphql-request';
 
 export const AllProjects = gql`
   query AllProjects {
-    allProjects {
+    projects {
       title
       description
       active
@@ -25,7 +25,7 @@ export const AllProjects = gql`
 
 export const ProjectById = gql`
   query ProjectById($id: ID!) {
-    projectById(id: $id) {
+    project(where: { id: $id }) {
       title
       description
       active

@@ -95,26 +95,16 @@ export default function Projects() {
 	);
 }
 
-export const getStaticProps = async ({ params = '', preview = false }) => {
-	const projects = {};
-	console.log(projects);
-	if (!preview || !projects) {
-		return {
-			props: {
-				message: 'no preview',
-			},
-		};
-	}
-	console.log(projects);
-	return await new Promise((res, _rej) =>
-		res({
-			props: {
-				preview,
-				...projects,
-			},
-		})
-	);
-};
+export async function getStaticProps() {
+	// console.log();
+
+	return {
+		props: {
+			message: 'no preview',
+		},
+	};
+}
+
 
 {
 	/* <section

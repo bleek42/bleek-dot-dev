@@ -9,26 +9,6 @@ import { request } from 'graphql-request';
 //   queryCache: {},
 // };
 
-export const createGraphQLClient = async (
-  url: string,
-  doc?: RequestDocument
-): Promise<unknown | Error> | Promise<void> | void => {
-  const client: GraphQLClient = new GraphQLClient(url, {
-    headers: {
-      authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,
-    },
-  });
-
-  try {
-    const req = await client.request(doc);
-    console.log(req);
-  } catch (err: unknown) {
-    console.error(err);
-    if (err) throw Error(err);
-    throw Error('unknown err creating gql request client');
-  }
-};
-
 const client: QueryClient = new QueryClient();
 
 export default client;

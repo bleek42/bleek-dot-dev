@@ -11,7 +11,7 @@ import {
   GraphQLDateTime,
 } from 'graphql-scalars';
 
-dotenv.config({ path: path.join(process.cwd(), '.env.local'), encoding: 'UTF-8' });
+dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
 
 // console.table({
 //   NODE_ENV: process.env.NODE_ENV,
@@ -23,14 +23,8 @@ dotenv.config({ path: path.join(process.cwd(), '.env.local'), encoding: 'UTF-8' 
 const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
-  ignoreNoDocuments: true,
-  documents: [
-    'src/utils/gql-queries.ts',
-    'src/pages/**/*.tsx',
-    'src/components/**/*.tsx',
-    'src/types/graphql/**/*.{gql,graphql}',
-    '!src/types/graphql/**/*.ts',
-  ],
+  // ignoreNoDocuments: true,
+  documents: ['src/types/graphql/hygraph.queries.ts'],
 
   schema: [
     {
@@ -53,71 +47,25 @@ const config: CodegenConfig = {
     // },
 
     './src/types/graphql/': {
-      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request'],
+      plugins: ['typescript-operations', 'typescript-graphql-request'],
       preset: 'client-preset',
       presetConfig: {
-        persistedDocuments: true,
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
+        withHooks: true,
+        withHOC: false,
+        withComponent: false,
+        exposeQueryKeys: true,
+        useTypeImports: true,
+        documentMode: 'string',
+        gqlImport: 'graphql-request#gql',
         declarationKind: {
           type: 'interface',
           input: 'interface',
         },
-        gqlImport: 'graphql-request#gql',
-        documentMode: 'documentNodeImportFragments',
-        documentNodeImport: '@graphql-typed-document-node/core',
-        exposeDocument: true,
-        scalars: [
-          {
-            scalar: 'JSON',
-            type: 'GraphQLJSONObject',
-            import: 'graphql-scalars/esm/scalars#GraphQLJSONObject',
-          },
-          {
-            scalar: 'Date',
-            type: 'GraphQLDate',
-            import: 'graphql-scalars/esm/scalars#GraphQLDate',
-          },
-          {
-            scalar: 'DateTime',
-            type: 'GraphQLDateTime',
-            import: 'graphql-scalars/esm/scalars#GraphQLDateTime',
-          },
-          {
-            scalar: 'URL',
-            type: 'GraphQLURL',
-            import: 'graphql-scalars/esm/scalars#GraphQLURL',
-          },
-          {
-            scalar: 'Locale',
-            type: 'GraphQLLocale',
-            import: 'graphql-scalars/esm/scalars#GraGraphQLLocalephQLLocale',
-          },
-        ],
-        strictScalars: false,
-        enumsAsTypes: true,
-        futureProofUnions: true,
-        futureProofEnums: true,
-        useImplementingTypes: true,
-        allowEnumStringTypes: true,
-        addUnderScoreToArgsType: true,
-        maybeValue: 'T | null | undefined',
-        inputMaybeValue: 'T extends PromiseLike<infer U> ? Promise<U | null> : T | null',
-        documentVariableSuffix: 'TypedDocumentNodeVar',
-        fragmentVariableSuffix: 'TypedFragmentNodeVar',
       },
     },
-  },
-  config: {
-    withHooks: true,
-    withHOC: false,
-    withComponent: false,
-    exposeQueryKeys: true,
-    useTypeImports: true,
-    preResolveTypes: false,
-    legacyMode: false,
-    emitLegacyCommonJSImports: false,
   },
   hooks: {
     afterAllFileWrite: ['prettier --write'],

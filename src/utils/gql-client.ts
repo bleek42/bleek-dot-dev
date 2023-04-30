@@ -15,18 +15,4 @@ const graphqlClient: GraphQLClient = new GraphQLClient(
   }
 );
 
-// export const createGraphQLReq = async (
-//   url: string,
-//   doc: RequestDocument
-// ): Promise<void | Error> => {
-//   try {
-//     const req = await request<any, {}>(url, doc);
-
-//     console.log(req);
-//   } catch (err: unknown) {
-//     console.error(err);
-//     throw Error('caught err creating gql request');
-//   }
-// };
-
 export default graphqlClient;

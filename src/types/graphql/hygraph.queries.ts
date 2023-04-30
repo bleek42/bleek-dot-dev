@@ -47,8 +47,8 @@ export const ProjectById = gql`
 `;
 
 export const CreateProject = gql`
-  mutation CreateProject($input: ProjectInput!) {
-    createProject(input: $input) {
+  mutation CreateProject($data: ProjectCreateInput!) {
+    createProject(data: $data) {
       title
       description
       active
@@ -69,48 +69,48 @@ export const CreateProject = gql`
   }
 `;
 
-export const UpdateProject = gql`
-  mutation UpdateProject($input: ProjectInput!) {
-    updateProject(input: $input) {
-      title
-      description
-      active
-      id
-      link
-      sourceCode
-      techStack
-      version
-      createdAt
-      updatedAt
-      screenShots {
-        fileName
-        id
-        mimeType
-        url
-      }
-    }
-  }
-`;
+// export const UpdateProject = gql`
+//   mutation UpdateProject($where: ProjectWhereUniqueInput!) {
+//     updateProject(where: $where) {
+//       title
+//       description
+//       active
+//       id
+//       link
+//       sourceCode
+//       techStack
+//       version
+//       createdAt
+//       updatedAt
+//       screenShots {
+//         fileName
+//         id
+//         mimeType
+//         url
+//       }
+//     }
+//   }
+// `;
 
-export const DeleteProject = gql`
-  mutation DeleteProject($input: ProjectInput!) {
-    deleteProject(input: $input) {
-      title
-      description
-      active
-      id
-      link
-      sourceCode
-      techStack
-      version
-      createdAt
-      updatedAt
-      screenShots {
-        fileName
-        id
-        mimeType
-        url
-      }
-    }
-  }
-`;
+// export const DeleteProject = gql`
+//   mutation DeleteProject($data: ProjectWhereInput!) {
+//     deleteProject(data: $data) {
+//       title
+//       description
+//       active
+//       id
+//       link
+//       sourceCode
+//       techStack
+//       version
+//       createdAt
+//       updatedAt
+//       screenShots {
+//         fileName
+//         id
+//         mimeType
+//         url
+//       }
+//     }
+//   }
+// `;

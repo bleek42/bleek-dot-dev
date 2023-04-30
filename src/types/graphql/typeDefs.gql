@@ -44,19 +44,6 @@ type Project implements Node {
 	locale: Locale!
 }
 
-input ProjectInput {
-	title: String!
-  	description: [String!]
-	active: Boolean!
-  	link: URL
-  	techStack: JSON!
-  	sourceCode: [URL!]
-  	version: Float!
-  	screenShots: [Asset]
-	createdAt: DateTime
-  	updatedAt: DateTime
-}
-
 type Query {
   	allProjects: [Project!]
   	projectById(id: ID!): Project!

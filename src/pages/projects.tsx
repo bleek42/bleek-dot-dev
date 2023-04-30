@@ -1,10 +1,17 @@
 import { Fragment, useId } from 'react';
 
+import Meta from '@components/global/Meta';
 import Header from '@components/Header';
 import Section from '@components/Section';
 import Footer from '@components/Footer';
-import Meta from '@components/global/Meta';
 
+import { graphql } from '../types/gen/gql';
+import { graphQLRequest } from '@api/gqlRequest';
+import { AllProjects } from '@graphql/hygraph.queries';
+import { useQuery } from '@tanstack/react-query';
+import graphqlClient from '@utils/gql-client';
+
+const queryAllProjects: TypedDocumentNode = graphql(AllProjects);
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
 // import screenshot3 from '../../images/bookmarks-app.png';
@@ -12,9 +19,12 @@ import Meta from '@components/global/Meta';
 // import screenshot5 from '../../images/sirilla-learning.jpg';
 // import screenshot6 from '../../images/trouvaille-1.jpg';
 // import screenshot7 from '../../images/trouvaille-2.jpg';
+import { AllProjectsQuery } from '../types/gen/graphql';
+import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 export default function Projects() {
 	const pageId = useId();
+	const { data } = useQuery(['projects'], async () => graphqlClient.request(queryAllProjects));
 	return (
 		<Fragment>
 			<Meta />

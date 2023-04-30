@@ -9,6 +9,7 @@ import {
   GraphQLLocale,
   GraphQLDate,
   GraphQLDateTime,
+  resolvers,
 } from 'graphql-scalars';
 
 dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
@@ -23,7 +24,7 @@ dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
 const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
-  // ignoreNoDocuments: true,
+  ignoreNoDocuments: true,
   documents: ['src/types/graphql/hygraph.queries.ts'],
 
   schema: [
@@ -46,24 +47,51 @@ const config: CodegenConfig = {
     //   config: {},
     // },
 
-    './src/types/graphql/': {
-      plugins: ['typescript-operations', 'typescript-graphql-request'],
+    './src/types/gen/': {
+      // plugins: ['typescript', 'typescript-operations'],
       preset: 'client-preset',
       presetConfig: {
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
+        fetcher: 'graphql-request',
+        exposeDocument: true,
+        pureMagicComment: true,
         withHooks: true,
-        withHOC: false,
-        withComponent: false,
         exposeQueryKeys: true,
+        exposeMutationKeys: true,
+        withComponent: false,
+        withHOC: false,
         useTypeImports: true,
-        documentMode: 'string',
-        gqlImport: 'graphql-request#gql',
+        enumsAsTypes: true,
+        useImplementingTypes: true,
+        addUnderscoreToArgsType: true,
+        futureProofUnions: true,
+        futureProofEnums: true,
         declarationKind: {
-          type: 'interface',
+          fragment: 'type',
           input: 'interface',
         },
+        // scalars: {
+        //   ID: 'graphql#GraphQLID',
+        //   String: 'graphql#GraphQLString',
+        //   Boolean: 'graphql#GraphQLBoolean',
+        //   Int: 'graphql#GraphQLInt',
+        //   Float: 'graphql#GraphQLFloat',
+        //   Date: 'graphql-scalars/typings#GraphQLDate',
+        //   DateTime: 'graphql-scalars/typings#GraphQLDateTime',
+        //   Hex: 'graphql-scalars/typings#GraphQLHexadecimal',
+        //   Json: 'graphql-scalars/typings#GraphQLJSON',
+        //   Long: 'graphql-scalars/typings#GraphQLLong',
+        //   RGBAHue: 'graphql-scalars/typings#GraphQLRGBA',
+        //   RGBATransparency: 'graphql-scalars/typings#GraphQLRGBA',
+        //   RichTextAST: 'graphql#GraphQLString',
+        // },
+        // strictScalars: true,
+        operationResultSuffix: 'Result',
+        legacyMode: false,
+        emitLegacyCommonJSImports: false,
+        experimentalFragmentVariables: true,
       },
     },
   },

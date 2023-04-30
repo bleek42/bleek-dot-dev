@@ -15,6 +15,7 @@
 	"dependencies": {
 		"@graphql-typed-document-node/core": "^3.2.0",
 		"@tanstack/react-query": "^4.29.5",
+		"@tanstack/react-query-devtools": "^4.29.6",
 		"dotenv": "^16.0.3",
 		"graphql": "^16.6.0",
 		"graphql-request": "~5.1.0",
@@ -32,8 +33,6 @@
 		"@graphql-codegen/typescript": "^3.0.4",
 		"@graphql-codegen/typescript-graphql-request": "^4.5.9",
 		"@graphql-codegen/typescript-operations": "^3.0.4",
-		"@graphql-tools/schema": "^9.0.19",
-		"@graphql-tools/utils": "^9.2.1",
 		"@types/node": "^18.15.12",
 		"@types/react": "^18.0.37",
 		"@types/react-dom": "^18.2.1",

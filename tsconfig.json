@@ -57,8 +57,10 @@
 		"src/**/*.tsx",
 		"codegen.ts",
 		"next-env.d.ts",
+		"node-env.d.ts",
+		"gql-scalars.d.ts",
 		"styled.d.ts",
-		"env.d.ts",
+		"node-env.d.ts",
 		"next.config.js",
 		"public/**/*"
 	],

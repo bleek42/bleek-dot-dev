@@ -1,6 +1,8 @@
-import { gql } from 'graphql-request';
+import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import { graphql } from '../../../types/gen/gql';
+import type { AllProjectsQuery } from 'types/gen/graphql';
 
-export const AllProjects = gql`
+export const allProjects: TypedDocumentNode<AllProjectsQuery, never> = graphql(`
   query AllProjects {
     projects {
       title
@@ -21,9 +23,9 @@ export const AllProjects = gql`
       }
     }
   }
-`;
+`);
 
-export const ProjectById = gql`
+export const projectById = graphql(`
   query ProjectById($id: ID!) {
     project(where: { id: $id }) {
       title
@@ -44,9 +46,9 @@ export const ProjectById = gql`
       }
     }
   }
-`;
+`);
 
-export const CreateProject = gql`
+export const createProject = graphql(`
   mutation CreateProject($data: ProjectCreateInput!) {
     createProject(data: $data) {
       title
@@ -67,9 +69,9 @@ export const CreateProject = gql`
       }
     }
   }
-`;
+`);
 
-// export const UpdateProject = gql`
+// export const updateProject = graphql(`
 //   mutation UpdateProject($where: ProjectWhereUniqueInput!) {
 //     updateProject(where: $where) {
 //       title
@@ -90,9 +92,9 @@ export const CreateProject = gql`
 //       }
 //     }
 //   }
-// `;
+// `);
 
-// export const DeleteProject = gql`
+// export const deleteProject = graphql(`
 //   mutation DeleteProject($data: ProjectWhereInput!) {
 //     deleteProject(data: $data) {
 //       title
@@ -113,4 +115,4 @@ export const CreateProject = gql`
 //       }
 //     }
 //   }
-// `;
+// `);

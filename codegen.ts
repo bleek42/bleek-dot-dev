@@ -25,7 +25,6 @@ const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
   ignoreNoDocuments: true,
-  documents: ['src/types/graphql/hygraph.queries.ts'],
 
   schema: [
     {
@@ -48,11 +47,11 @@ const config: CodegenConfig = {
     // },
 
     './src/types/gen/': {
-      // plugins: ['typescript', 'typescript-operations'],
       preset: 'client-preset',
       presetConfig: {
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
+      plugins: [],
       config: {
         fetcher: 'graphql-request',
         exposeDocument: true,

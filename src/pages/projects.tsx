@@ -1,35 +1,25 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { Fragment, useId } from 'react';
+import { dehydrate, useQuery, useQueryClient } from '@tanstack/react-query';
+
+import { Main } from '@components/global/Main';
 
 import Meta from '@components/global/Meta';
 import Header from '@components/Header';
 import Section from '@components/Section';
 import Footer from '@components/Footer';
 
-import { graphql } from '../types/gen/gql';
-import { graphQLRequest } from '@api/gqlRequest';
-import { AllProjects } from '@graphql/hygraph.queries';
-import { useQuery } from '@tanstack/react-query';
+import client from '@utils/query-client';
 import graphqlClient from '@utils/gql-client';
-
-const queryAllProjects: TypedDocumentNode = graphql(AllProjects);
-// import screenshot1 from '../../images/quiz-app.png';
-// import screenshot2 from '../../images/quiz-app2.png';
-// import screenshot3 from '../../images/bookmarks-app.png';
-// import screenshot4 from '../../images/covid19.jpg';
-// import screenshot5 from '../../images/sirilla-learning.jpg';
-// import screenshot6 from '../../images/trouvaille-1.jpg';
-// import screenshot7 from '../../images/trouvaille-2.jpg';
-import { AllProjectsQuery } from '../types/gen/graphql';
-import { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import { allProjects } from '@api/graphql/hygraph.queries.ts';
 
 export default function Projects() {
 	const pageId = useId();
-	const { data } = useQuery(['projects'], async () => graphqlClient.request(queryAllProjects));
 	return (
 		<Fragment>
 			<Meta />
 			<Header id={`projects-${pageId}`} name="About" content="" icon={null} />
-			<main>
+			<Main>
 				<Section
 					id="projects-sect-1"
 					name="projects_sect_1"
@@ -99,7 +89,7 @@ export default function Projects() {
 					Nodemailer, and an animated loading screen."
 					icon={null}
 				/>
-			</main>
+			</Main>
 			<Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
 		</Fragment>
 	);
@@ -108,13 +98,17 @@ export default function Projects() {
 export async function getStaticProps() {
 	// console.log();
 
+	// console.time('query start');
+	// console.info('loading:', isLoading);
+	// console.table(data ? { data } : error ? { error } : { err: 'unknown query error...' });
+	// console.timeEnd('query end');
+	// console.info('loading:', isLoading ?? isLoading);
 	return {
 		props: {
-			message: 'no preview',
+			projects: dehydrate(client),
 		},
 	};
 }
-
 
 {
 	/* <section

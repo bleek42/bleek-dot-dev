@@ -15,7 +15,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-		"jsx": "react-jsx",
+		"jsx": "preserve",
 		"incremental": true,
 		"allowImportingTsExtensions": true,
 		"allowUmdGlobalAccess": true,
@@ -47,15 +47,19 @@
 			"@utils/*": [
 				"utils/*"
 			],
-			"@graphql/*": [
-				"types/graphql/*"
+			"@images/*": [
+				"/public/images/*"
 			],
-		},
+			"@fonts/*": [
+				"/public/fonts/*"
+			]
+		}
 	},
 	"include": [
 		"src/**/*.ts",
 		"src/**/*.tsx",
 		"codegen.ts",
+		".graphqlrc.ts",
 		"next-env.d.ts",
 		"node-env.d.ts",
 		"gql-scalars.d.ts",

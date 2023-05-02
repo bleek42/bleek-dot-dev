@@ -12,7 +12,7 @@ const graphqlConfig: GQLConfig = {
           plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
           preset: 'graphql-modules',
           presetConfig: {
-            baseTypesPath: 'src/types/gen/types.ts',
+            baseTypesPath: 'src/types/graphql/types.ts',
             filename: 'hygraph.ts',
           },
           config: {
@@ -47,7 +47,7 @@ const graphqlConfig: GQLConfig = {
             operationResultSuffix: 'Result',
             legacyMode: false,
             emitLegacyCommonJSImports: false,
-            experimentalFragmentVariables: true,
+            // experimentalFragmentVariables: true,
           },
         },
       },

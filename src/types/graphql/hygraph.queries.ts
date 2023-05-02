@@ -1,29 +1,8 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { graphql } from '../../../types/gen/gql';
-import type { AllProjectsQuery } from 'types/gen/graphql';
+import { AllProjectsDocument, AllProjectsQuery } from 'types/gen/graphql';
 
-export const allProjects: TypedDocumentNode<AllProjectsQuery, never> = graphql(`
-  query AllProjects {
-    projects {
-      title
-      description
-      active
-      id
-      link
-      sourceCode
-      techStack
-      version
-      createdAt
-      updatedAt
-      screenShots {
-        fileName
-        id
-        mimeType
-        url
-      }
-    }
-  }
-`);
+export const allProjects: TypedDocumentNode<AllProjectsQuery, never> = graphql(AllProjectsDocument);
 
 export const projectById = graphql(`
   query ProjectById($id: ID!) {

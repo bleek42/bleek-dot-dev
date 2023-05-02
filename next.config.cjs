@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 /** @type {import('next').NextConfig} */
 
 module.exports = {
@@ -20,8 +19,9 @@ module.exports = {
     dirs: [
       'src/pages/**/*.{tsx,ts}',
       'src/components/**/*.{tsx,ts}',
-      'src/constants/**/*.ts',
+      'src/hooks/**/*.ts',
       'src/context/**/*.tsx',
+      'src/utils/*.ts',
       'src/types/**/*.ts',
     ],
   },
@@ -30,7 +30,7 @@ module.exports = {
     swcPlugins: [
       [
         '@graphql-codegen/client-preset-swc-plugin',
-        { artifactDirectory: './src/types/graphql/', gqlTagName: 'gql' },
+        { artifactDirectory: './src/types/graphql/gen/', gqlTagName: 'graphql' },
       ],
     ],
   },
@@ -42,7 +42,7 @@ module.exports = {
           source: '/*',
           headers: [
             {
-              key: 'x-locale-date-time',
+              key: 'x-origin-locale-datetime',
               value: new Date().toLocaleDateString(),
             },
           ],

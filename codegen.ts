@@ -25,15 +25,23 @@ const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
   ignoreNoDocuments: true,
-
   schema: [
     {
-      [`${process.env.HYGRAPH_READONLY_API_URL}`]: {
+      [`${process.env.HYGRAPH_READONLY_API_URL}/content/cl2jezykc0li901yx24p50f8f/master`]: {
         headers: {
           Authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,
         },
       },
     },
+  ],
+  documents: [
+    'src/**/*.gql',
+    'src/**/*.graphql',
+    'src/pages/**/*.ts',
+    'src/pages/**/*.tsx',
+    'src/components/**/*.ts',
+    'src/components/**/*.tsx',
+    '!src/types/graphql/gen/**/*.ts',
   ],
 
   generates: {
@@ -46,16 +54,15 @@ const config: CodegenConfig = {
     //   config: {},
     // },
 
-    './src/types/gen/': {
+    './src/types/graphql/gen/': {
       preset: 'client-preset',
       presetConfig: {
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
-      plugins: [],
+      plugins: ['typescript', 'typescript-operations', 'typescript-graphql-request'],
       config: {
-        fetcher: 'graphql-request',
         exposeDocument: true,
-        pureMagicComment: true,
+        fetcher: 'graphql-request',
         withHooks: true,
         exposeQueryKeys: true,
         exposeMutationKeys: true,
@@ -70,27 +77,28 @@ const config: CodegenConfig = {
         declarationKind: {
           fragment: 'type',
           input: 'interface',
+          scalars: 'class',
         },
-        // scalars: {
-        //   ID: 'graphql#GraphQLID',
-        //   String: 'graphql#GraphQLString',
-        //   Boolean: 'graphql#GraphQLBoolean',
-        //   Int: 'graphql#GraphQLInt',
-        //   Float: 'graphql#GraphQLFloat',
-        //   Date: 'graphql-scalars/typings#GraphQLDate',
-        //   DateTime: 'graphql-scalars/typings#GraphQLDateTime',
-        //   Hex: 'graphql-scalars/typings#GraphQLHexadecimal',
-        //   Json: 'graphql-scalars/typings#GraphQLJSON',
-        //   Long: 'graphql-scalars/typings#GraphQLLong',
-        //   RGBAHue: 'graphql-scalars/typings#GraphQLRGBA',
-        //   RGBATransparency: 'graphql-scalars/typings#GraphQLRGBA',
-        //   RichTextAST: 'graphql#GraphQLString',
-        // },
-        // strictScalars: true,
+        scalars: {
+          ID: 'graphql#GraphQLID',
+          String: 'graphql#GraphQLString',
+          Boolean: 'graphql#GraphQLBoolean',
+          Int: 'graphql#GraphQLInt',
+          Float: 'graphql#GraphQLFloat',
+          Date: 'DateScalar',
+          DateTime: 'DateTimeScalar',
+          Hex: 'HexScalar',
+          Json: 'JsonScalar',
+          Long: 'LongScalar',
+          RGBAHue: 'RGBAHueScalar',
+          RGBATransparency: 'RGBATransparencyScalar',
+          RichTextAST: 'graphql#GraphQLString',
+        },
+        strictScalars: true,
         operationResultSuffix: 'Result',
         legacyMode: false,
         emitLegacyCommonJSImports: false,
-        experimentalFragmentVariables: true,
+        // experimentalFragmentVariables: true,
       },
     },
   },

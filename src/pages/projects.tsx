@@ -1,17 +1,14 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { Fragment, useId } from 'react';
-import { dehydrate, useQuery, useQueryClient } from '@tanstack/react-query';
+import { dehydrate } from '@tanstack/react-query';
 
-import { Main } from '@components/global/Main';
+import useHygraphQuery from '@hooks/useHygraphQuery';
 
 import Meta from '@components/global/Meta';
 import Header from '@components/Header';
+import { Main } from '@components/global/Main';
 import Section from '@components/Section';
 import Footer from '@components/Footer';
-
-import client from '@utils/query-client';
-import graphqlClient from '@utils/gql-client';
-import { allProjects } from '@api/graphql/hygraph.queries.ts';
 
 export default function Projects() {
 	const pageId = useId();
@@ -98,6 +95,8 @@ export default function Projects() {
 export async function getStaticProps() {
 	// console.log();
 
+	const prefetchQuery = useHygraphQuery();
+	console.log(prefetchQuery);
 	// console.time('query start');
 	// console.info('loading:', isLoading);
 	// console.table(data ? { data } : error ? { error } : { err: 'unknown query error...' });
@@ -105,7 +104,7 @@ export async function getStaticProps() {
 	// console.info('loading:', isLoading ?? isLoading);
 	return {
 		props: {
-			projects: dehydrate(client),
+			projects: null,
 		},
 	};
 }

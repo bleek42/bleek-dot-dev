@@ -22,8 +22,8 @@ type XTIOState = XTermInputOutput;
 
 export default function XTerm<XTermComponentProps>() {
 	const xtInitState: XTIOState = {
-		id: 'dev/pts/tty0',
-		name: 'tty0',
+		id: 'tty0',
+		name: '/dev/pts/tty0',
 		prompt: '[visitor@bleek.dev(v0.7)->/tty0]/λ->',
 		exec: null
 	}
@@ -144,14 +144,14 @@ export default function XTerm<XTermComponentProps>() {
 			<XTCode>[#!/usr/bin/bleek]</XTCode>
 			<XTxtArea
 				id="xt-textarea"
-				name="xt-textarea"
-				value={xterm.name}
+				name={xterm.name.toString()}
+				// value={null}
 				cols={dimensions.cols}
 				rows={dimensions.rows}
 				autoCapitalize="off"
 				autoCorrect="off"
 				spellCheck={false}
-				placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
+				// placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
 				// eslint-disable-next-line no-console
 				onChange={handleChange}
 				onSubmit={(evt) => {
@@ -160,18 +160,18 @@ export default function XTerm<XTermComponentProps>() {
 						setXterm((vals) => ({ ...vals, exec: true }))
 					}}
 			>
-				<XTCode>{xterm.prompt}</XTCode>
 			</XTxtArea>
 			<XTLabel
 				htmlFor="xt-prompt"
 				// eslint-disable-next-line no-console
 				onSubmitCapture={(evt) => console.info('xterm-txt submit capture', evt.target)}>
-				{'[visitor@https://bleek.dev-$>'}
+				{/* {'[visitor@https://bleek.dev-$>'} */}
+				<XTCode>{xterm.prompt.toString()}</XTCode>
 				<XTInput
 					type="text"
 					id="xt-prompt"
 					name="xt-prompt"
-					value={valuesxt.name}
+					value={xterm.name}
 					onChange={handleChange}
 					placeholder={'press enter to continue'}
 				/>

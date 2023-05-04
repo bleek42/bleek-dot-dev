@@ -21,13 +21,16 @@ export default function useHygraphQuery<TD, VAR>(
       })
       .catch((err: unknown) => {
         console.error({ err });
-        throw new GraphQLError((err?.toString()) || 'graphql error');
+        throw new GraphQLError(err?.toString() || 'graphql error');
       });
   // queryKey: ['projects'] as QueryKey,
   // queryFn: async () => await graphqlClient.request<TD, VAR>(document, variables ?? variables),
   // initialData: async () => await client.refetchQueries(),
 
-  const projects = useQuery<TD, GraphQLError, TD, readonly ['projects']>({ queryKey: ['projects'], queryFn: async () => await queryAllProjects()  });
-  console.log('RESULT:', { projects })
-  return projects ?? projects
+  const projects = useQuery<TD, GraphQLError, TD, readonly ['projects']>({
+    queryKey: ['projects'],
+    queryFn: async () => await queryAllProjects(),
+  });
+  console.log('RESULT:', { projects });
+  return projects ?? projects;
 }

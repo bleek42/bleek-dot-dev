@@ -1,4 +1,4 @@
-export interface ResizerDimensions {
+export interface ResizeObserverDimensions {
   cols: number;
   rows: number;
   area: number;

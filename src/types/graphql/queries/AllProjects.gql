@@ -1,0 +1,16 @@
+query AllProjects {
+  projects {
+    title
+    description
+    activeTypedDocumentNode
+    version
+    createdAt
+    updatedAt
+    screenShots {
+      fileName
+      id
+      mimeType
+      url
+    }
+  }
+}`

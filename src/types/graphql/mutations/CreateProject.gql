@@ -1,6 +1,8 @@
-query AllProjects {
-	projects {
-	  title
+
+
+mutation CreateProject($data: ProjectCreateInput!) {
+    createProject(data: $data) {
+      title
       description
       active
       id
@@ -10,10 +12,6 @@ query AllProjects {
       version
       createdAt
       updatedAt
-
-
-
-
       screenShots {
         fileName
         id
@@ -22,8 +20,3 @@ query AllProjects {
       }
 	}
 }
-
-
-
-
-

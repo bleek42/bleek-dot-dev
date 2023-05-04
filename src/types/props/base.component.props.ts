@@ -1,7 +1,7 @@
-import type { BaseComponent } from '@interfaces/BaseComponent';
-import type { ResizerDimensions } from '@interfaces/ResizerDimensions';
 import type { ComponentType } from 'react';
 import type { DefaultTheme, StyledComponentProps, AnyStyledComponent } from 'styled-components';
+import type { BaseComponent, XTermInputOutput } from '@interfaces/BaseComponent';
+import type { ResizeObserverDimensions } from '@interfaces/ResizeObserverDimensions';
 
 export type BaseComponentProps = StyledComponentProps<
   AnyStyledComponent | keyof JSX.IntrinsicElements,
@@ -10,9 +10,11 @@ export type BaseComponentProps = StyledComponentProps<
   string | number | symbol
 >;
 
-export type XTermComponentProps = StyledComponentProps<
+// type XTState = XTermInputOutput & ResizeObserverDimensions
+
+export type XTermComponentProps<XTState extends object> = StyledComponentProps<
   AnyStyledComponent | keyof JSX.IntrinsicElements,
   DefaultTheme,
-  ResizerDimensions,
+  XTState,
   string | number | symbol
 >;

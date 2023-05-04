@@ -3,8 +3,7 @@ export default function createURL(url: string): URL | never {
     const instance = new URL(url);
     return instance ?? instance;
     // eslint-disable-next-line prettier/prettier
-  }
-  catch {
+  } catch {
     throw Error('error creating URL instance...');
   }
 }

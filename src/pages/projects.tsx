@@ -9,9 +9,14 @@ import Header from '@components/Header';
 import { Main } from '@components/global/Main';
 import Section from '@components/Section';
 import Footer from '@components/Footer';
+import { allProjectsDocument } from '@gql/gqlRequest';
+import { DocumentType } from '@gql/gen';
+import { AllProjectsQuery } from '@gql/gen/graphql';
 
 export default function Projects() {
 	const pageId = useId();
+	const projects = useHygraphQuery(allProjectsDocument, [])
+
 	return (
 		<Fragment>
 			<Meta />

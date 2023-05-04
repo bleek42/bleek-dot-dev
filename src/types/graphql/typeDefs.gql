@@ -1,6 +1,5 @@
 scalar Date
 scalar DateTime
-scalar URL
 scalar JSON
 scalar Locale
 
@@ -42,6 +41,18 @@ type Project implements Node {
   	createdAt: DateTime!
   	updatedAt: DateTime
 	locale: Locale!
+}
+
+input ProjectWhereInput {
+
+}
+
+input ProjectCreateInput {
+
+}
+
+input ProjectWhereUniqueInput {
+
 }
 
 type Query {

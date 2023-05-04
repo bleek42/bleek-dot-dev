@@ -41,6 +41,9 @@
 			"@prop-types/*": [
 				"types/props/*"
 			],
+			"@gql/*": [
+				"types/graphql/*"
+			],
 			"@hooks/*": [
 				"hooks/*"
 			],
@@ -58,10 +61,11 @@
 	"include": [
 		"src/**/*.ts",
 		"src/**/*.tsx",
-		"codegen.ts",
 		".graphqlrc.ts",
+		"codegen.ts",
 		"next-env.d.ts",
 		"node-env.d.ts",
+		"gql-scalars.d.ts",
 		"gql-scalars.d.ts",
 		"styled.d.ts",
 		"node-env.d.ts",

@@ -50,7 +50,7 @@
 		"@typescript-eslint",
 		"react",
 		"import",
-		"@tanstack/query"
+		"@tanstack/eslint-plugin-query"
 	],
 	"rules": {
 		"react/react-in-jsx-scope": "off",

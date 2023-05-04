@@ -18,6 +18,7 @@
 
 # misc
 .DS_Store
+.vscode/
 *.pem
 
 # debug
@@ -27,11 +28,9 @@ yarn-error.log*
 
 # local env files
 *.env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.local*
+.env.*.local*
+.env.production*
 !*.example.env
 # vercel
-.vercel
-.vscode
+.vercel/

@@ -1,0 +1,104 @@
+query AllProjects {
+	projects {
+	  title
+      description
+      active
+      id
+      link
+      sourceCode
+      techStack
+      version
+      createdAt
+      updatedAt
+      screenShots {
+        fileName
+        id
+        mimeType
+        url
+      }
+	}
+}
+
+# query ProjectById($id: ID!) {
+#     project(where: { id: $id }) {
+#       title
+#       description
+#       active
+#       id
+#       link
+#       sourceCode
+#       techStack
+#       version
+#       createdAt
+#       updatedAt
+#       screenShots {
+#         fileName
+#         id
+#         mimeType
+#         url
+#       }
+# 	}
+# }
+
+# mutation CreateProject($data: ProjectCreateInput!) {
+#     createProject(data: $data) {
+#       title
+#       description
+#       active
+#       id
+#       link
+#       sourceCode
+#       techStack
+#       version
+#       createdAt
+#       updatedAt
+#       screenShots {
+#         fileName
+#         id
+#         mimeType
+#         url
+#       }
+# 	}
+# }
+
+# mutation UpdateProject($data: ProjectUpdateInput!) {
+#   updateProject(where: $data) {
+#     title
+#     description
+#     active
+#     id
+#     link
+#     sourceCode
+#     techStack
+#     version
+#     createdAt
+#     updatedAt
+#     screenShots {
+#       fileName
+#       id
+#       mimeType
+#       url
+#     }
+#   }
+# }
+
+mutation DeleteProject($data: ProjectWhereUniqueInput!) {
+  deleteProject(where: $data) {
+    title
+    description
+    active
+    id
+    link
+    sourceCode
+    techStack
+    version
+    createdAt
+    updatedAt
+    screenShots {
+      fileName
+      id
+      mimeType
+      url
+    }
+  }
+}

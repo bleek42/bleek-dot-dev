@@ -1,42 +1,23 @@
-import { QueryClient, QueryClientConfig, QueryCache } from '@tanstack/react-query';
-import graphqlClient from './gql-client';
+// 'use client';
 
-import { type DocumentType, graphql } from '@gql/gen';
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { AllProjectsQuery, AllProjectsDocument } from '@gql/gen/graphql';
-// import { AllProjectsDocument, AllProjectsQuery } from './gen/graphql';
-const projects = graphql(`
-  query AllProjects {
-    projects {
-      title
-      description
-      active
-      id
-      link
-      sourceCode
-      techStack
-      version
-      createdAt
-      updatedAt
-      screenShots {
-        fileName
-        id
-        mimeType
-        url
-      }
-    }
-  }
-`) as TypedDocumentNode;
+import { type DocumentType, graphql } from '@gql/gen';
+import { QueryClient, QueryClientConfig, QueryCache } from '@tanstack/react-query';
 
-const config: QueryClientConfig = {
+import { MutableRefObject, cache } from 'react';
+import hygraphQuery from '@hooks/hygraphQuery';
+import { allProjectsDoc } from '@gql/docs';
+// import { AllProjectsDocument, AllProjectsQuery } from './gen/graphql';
+
+export const config: QueryClientConfig = {
   defaultOptions: {
     queries: {
       queryKey: ['projects'],
-      queryFn: async () => await graphqlClient.request(projects),
+      queryFn: () => hygraphQuery(allProjectsDoc),
+      initialData: hygraphQuery(allProjectsDoc),
+      staleTime: 6000,
     },
   },
 };
 
-const queryClient: QueryClient = new QueryClient(config);
-
-export default queryClient;
+// export const queryClient = cache(() => new QueryClient(config));

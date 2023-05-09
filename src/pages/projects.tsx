@@ -1,21 +1,31 @@
-/* eslint-disable react-hooks/rules-of-hooks */
+import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
+
 import { Fragment, useId } from 'react';
-import { dehydrate } from '@tanstack/react-query';
+import { QueryClient, dehydrate, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import useHygraphQuery from '@hooks/useHygraphQuery';
-
+import { Main } from '@components/global/Main';
 import Meta from '@components/global/Meta';
 import Header from '@components/Header';
-import { Main } from '@components/global/Main';
 import Section from '@components/Section';
 import Footer from '@components/Footer';
-import { allProjectsDocument } from '@gql/gqlRequest';
-import { DocumentType } from '@gql/gen';
-import { AllProjectsQuery } from '@gql/gen/graphql';
 
-export default function Projects() {
+import hygraphQuery from '@hooks/hygraphQuery';
+import { allProjectsDoc } from '@gql/docs';
+import { config } from '@utils/query-client';
+// import { DocumentType, graphql } from '@gql/gen';
+// import { AllProjectsQuery } from '@gql/gen/graphql';
+// import queryClient from '@utils/query-client';
+// import { allProjectsDocument } from '@gql/gqlRequest';
+
+export default function Projects(props) {
+	console.log(props);
 	const pageId = useId();
-	const projects = useHygraphQuery(allProjectsDocument, [])
+	const { data, isLoading, isError } = useQuery({
+		queryKey: ['projects'],
+		queryFn: () => hygraphQuery(allProjectsDoc),
+	});
+	console.log('RESULT:', { data });
+	console.log(data, isLoading, isError);
 
 	return (
 		<Fragment>
@@ -50,7 +60,7 @@ export default function Projects() {
 				<Section
 					id="projects-sect-3"
 					name="projects_sect_3"
-					content="Furthering my skills to full-stack programming with more modern
+					content="Furtheridocumentng my skills to full-stack programming with more modern
 					JavaScript tools, my third effort is an anonymous message board on the
 					subject of the COVID-19 outbreak in the United States. Using React.js
 					for client-side and Node.js for server-side, I created a small
@@ -98,10 +108,14 @@ export default function Projects() {
 }
 
 export async function getStaticProps() {
+	const client = new QueryClient(config);
+	await client.prefetchQuery({
+		queryKey: ['projects'],
+		queryFn: () => hygraphQuery(allProjectsDoc),
+	});
+	// const projects = await hygraphQuery(document)
 	// console.log();
-
-	const prefetchQuery = useHygraphQuery();
-	console.log(prefetchQuery);
+	// await client.prefetchQuery({ queryKey: ['projects'] });
 	// console.time('query start');
 	// console.info('loading:', isLoading);
 	// console.table(data ? { data } : error ? { error } : { err: 'unknown query error...' });
@@ -109,7 +123,7 @@ export async function getStaticProps() {
 	// console.info('loading:', isLoading ?? isLoading);
 	return {
 		props: {
-			projects: null,
+			dehydratedState: dehydrate(client),
 		},
 	};
 }

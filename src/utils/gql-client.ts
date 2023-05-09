@@ -9,11 +9,11 @@
 import { GraphQLClient, type RequestDocument } from 'graphql-request';
 
 const graphqlClient: GraphQLClient = new GraphQLClient(
-  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
+  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
   {
-    headers: {
-      // authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,
-    }
+    credentials: 'include',
+    cache: 'force-cache',
+    mode: 'cors',
   }
 );
 

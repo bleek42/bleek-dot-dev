@@ -1,0 +1,66 @@
+scalar Date
+scalar DateTime
+scalar URL
+scalar Json
+scalar Locale
+
+enum Stage {
+	DRAFT
+	PUBLISHED
+}
+
+interface Node {
+  id: ID!
+  stage: Stage!
+}
+
+type Project implements Node {
+  	id: ID!
+	stage: Stage!
+  	title: String!
+  	description: [String!]
+	active: Boolean!
+  	link: URL!
+  	techStack: Json!
+  	sourceCode: [URL!]
+  	version: Float!
+  	screenShots: [Asset]
+  	createdAt: DateTime
+  	updatedAt: DateTime
+	locale: Locale!
+}
+
+type Asset {
+  	id: ID!
+  	fileName: String!
+  	handle: String!
+  	mimeType: String!
+  	width: Float!
+  	height: Float!
+  	size: Float!
+  	createdAt: DateTime
+  	updatedAt: DateTime
+}
+
+input ProjectInput {
+	title: String!
+  	description: [String!]
+	active: Boolean!
+  	link: URL!
+  	techStack: Json!
+  	sourceCode: [URL!]
+  	version: Float!
+  	screenShots: [Asset]
+	createdAt: DateTime
+  	updatedAt: DateTime
+}
+
+type Query {
+  	allProjects: [Project!]!
+  	project(id: ID!): Project!
+}
+
+type Mutation {
+	createProject(newProject: ProjectInput!): Project!
+	updateProject()
+}

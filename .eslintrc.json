@@ -1,84 +1,111 @@
 {
-  "env": {
-    "browser": true,
-    "node": true,
-    "es2022": true
-  },
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "sourceType": "module",
-    "ecmaVersion": 13,
-    "ecmaFeatures": {
-      "jsx": true
-    },
-    "project": "bleek-dot-tech/tsconfig.json",
-    "tsconfigRootDir": ".",
-    "settings": {
-      "react": {
-        "version": "detect"
-      },
-      "next": {
-        "version": "detect"
-      },
-			"nodejs": {
-        "version": "detect"
+	"env": {
+		"browser": true,
+		"node": true,
+		"es2022": true
+	},
+	"globals": {
+		"react": "readonly"
+	},
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"sourceType": "module",
+		"ecmaVersion": 12,
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"project": "tsconfig.json",
+		"tsconfigRootDir": ".",
+		"settings": {
+			"react": {
+				"version": "detect"
 			},
-			"import/resolver": {
-				"node": {
-					"extensions": [".ts", ".tsx"]
-				}
+			"next": {
+				"version": "detect"
+			},
+			"node": {
+				"version": "18"
+			},
+			"import/extensions": [
+				".ts",
+				".tsx"
+			]
+		}
+	},
+	"extends": [
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended-requiring-type-checking",
+		"next/core-web-vitals",
+		"plugin:import/recommended",
+		"plugin:import/typescript",
+		"prettier",
+		"plugin:prettier/recommended"
+	],
+	// plugins bring in special rules, prettierrc rules you set
+	"plugins": [
+		"@typescript-eslint",
+		"react",
+		"import"
+	],
+	"rules": {
+		"react/react-in-jsx-scope": "off",
+		"react/display-name": "off",
+		"react/no-deprecated": "error",
+		"react/no-unsafe": [
+			"error",
+			{
+				"checkAliases": true
 			}
-    }
-  },
-  "extends": [
-    "eslint:recommended",
-    "next",
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    // "import",
-    // "unused-imports",
-    // "prettier",
-		"plugin:prettier/@typescript-eslint"
-  ],
-  // plugins bring in special rules, prettierrc rules you set
-  "plugins": ["import", "unused-imports", "react", "@typescript-eslint", "prettier"],
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    "prettier/prettier": "warn",
-    "@typescript-eslint/arrow-body-style": "off",
-    "@typescript-eslint/prefer-arrow-callback": "off",
-		"@typescript-eslint/explicit-module-boundary-types": "off",
-    "@typescript-eslint/no-non-null-assertion": "off",
-    "@typescript-eslint/no-inferrable-types": "off",
-		"@typescript-eslint/no-use-before-define": "off",
+		],
+		"react/jsx-sort-props": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": 0,
+		"prettier/prettier": "warn",
 		"@next/next/no-img-element": "off",
-    "@typescript-eslint/brace-style": [
-      "error",
-      "stroustrup"
-    ],
-		"unused-imports/no-unused-imports": "error",
-    "unused-imports/no-unused-vars": [
-      "warn",
-      {
-        "vars": "all",
-        "varsIgnorePattern": "^_",
-        "args": "after-used",
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "no-console": "warn",
-    "no-unused-vars": "warn",
-    "brace-style": [
-      "error",
-      "stroustrup"
-    ],
-    "prefer-const": "warn",
-    "no-use-before-define": "off",
-    "camelcase": "warn",
-    "quotes": [
-      "warn",
-      "single"
-    ]
-  }
+		"import/no-unresolved": [
+			"warn",
+			{
+				"commonjs": true,
+				"amd": true
+			}
+		],
+		"import/default": "off",
+		"import/export": "warn",
+		"import/namespace": "off",
+		"import/no-anonymous-default-export": "off",
+		"@typescript-eslint/arrow-body-style": "off",
+		"@typescript-eslint/prefer-arrow-callback": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"@typescript-eslint/no-inferrable-types": "off",
+		"@typescript-eslint/no-use-before-define": "off",
+		"@typescript-eslint/consistent-type-imports": [
+			"error",
+			{
+				"prefer": "type-imports"
+			}
+		],
+		"@typescript-eslint/brace-style": [
+			"error",
+			"stroustrup"
+		],
+		"@typescript-eslint/restrict-template-expressions": "off",
+		"no-console": "warn",
+		"no-unused-vars": "warn",
+		"no-else-return": "error",
+		"brace-style": [
+			"error",
+			"stroustrup"
+		],
+		"prefer-const": "warn",
+		"no-use-before-define": "off",
+		"camelcase": "warn",
+		"quotes": [
+			"warn",
+			"single"
+		]
+	}
 }

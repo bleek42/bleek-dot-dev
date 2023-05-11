@@ -9,34 +9,27 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-# 2 space indentation
+# 4 space indentation
+[*.md]
+indent_style = tab
+indent_size = 4
+insert_final_newline = false
+trim_trailing_whitespace = false
+
 [*.{js,ts}]
 indent_style = space
 indent_size = 2
 
-[*.{jsx,tsx}]
+[*.{jsx,tsx,json,html}]
 indent_style = tab
 indent_size = 4
-
-[.json]
-indent_size = 4
-indent_style = tab
-
-[*.scss]
-indent_style = tab
-indent_size = 2
-
-[*.md]
-indent_style = tab
-indent_size = 4
-trim_trailing_whitespace = false
 
 [*.{graphql,gql}]
 indent_style = tab
 indent_size = 4
 
 # Ignore paths
-[node_modules/**]
+[{node_modules/,src/generated/}**]
 charset = unset
 insert_final_newline = unset
 trim_trailing_whitespace = unset

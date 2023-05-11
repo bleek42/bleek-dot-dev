@@ -1,13 +1,15 @@
 {
-  "$schema": "https://json.schemastore.org/prettierrc",
-  "bracketSameLine": true,
-  "arrowParens": "always",
-  "bracketSpacing": true,
-  "endOfLine": "lf",
-  "printWidth": 90,
-  "tabWidth": 2,
-  "trailingComma": "es5",
-  "semi": true,
-  "singleQuote": true,
-	"jsxSingleQuote": true
+	"$schema": "https://json.schemastore.org/prettierrc",
+	"parser": "typescript",
+	"editorconfig": true,
+	"bracketSameLine": true,
+	"arrowParens": "always",
+	"bracketSpacing": true,
+	"endOfLine": "lf",
+	"printWidth": 100,
+	"jsxSingleQuote": false,
+	"trailingComma": "es5",
+	"semi": true,
+	"singleQuote": true,
+	"quoteProps": "consistent"
 }

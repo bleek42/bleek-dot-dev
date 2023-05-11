@@ -1,18 +1,22 @@
 import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export default async function handler<NextApiHandler>(
   req: NextApiRequest,
   res: NextApiResponse
-): Promise<void> {
-  const { title } = req.body;
+): Promise<NextApiHandler | void> {
   try {
-    if (req.headers.authorization !== process.env.GRAPHCMS_URI && req.method !== 'POST') {
+    if (req.method !== 'GET') {
       res.status(401).send('Unauthorized Request.');
     }
-    res.status(200).json({ message: 'Successful request to GraphCMS URI!' });
-  } catch {
+    res.status(200).json({ message: 'happy path!' });
+    // eslint-disable-next-line prettier/prettier
+  }
+  catch {
     res.status(500).send({ message: 'Internal Server Error!' });
-  } finally {
-    console.info(`Pinged Next.js API route with title preview: ${title}`);
+    // eslint-disable-next-line prettier/prettier
+  }
+  finally {
+    console.log('Pinged Next API Route!');
   }
 }

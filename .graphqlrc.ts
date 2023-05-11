@@ -24,7 +24,12 @@ dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
 
 const baseConfig: GQLConfig = {
   schema: `${process.env.HYGRAPH_READONLY_API_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
-  documents: ['src/**/*.gql', 'src/**/*.graphql', 'src/pages/api/*.ts', 'src/pages/*.tsx'],
+  documents: [
+    'src/**/*.gql',
+    'src/**/*.graphql',
+    'src/pages/api/*.ts',
+    'src/pages/*.tsx',
+  ],
   include: ['src/components/**/*.ts', 'src/components/**/*.tsx'],
   exclude: ['src/types/gen/*.ts', 'src/types/graphql/gen/*.ts'],
 
@@ -38,33 +43,33 @@ const baseConfig: GQLConfig = {
             baseTypesPath: 'src/types/graphql/types.ts',
             filename: 'hygraph.types.ts',
           },
-          },
-          config: {
-            fetcher: 'graphql-request',
-            futureProofUnions: true,
-            futureProofEnums: true,
+        },
+        'config': {
+          fetcher: 'graphql-request',
+          futureProofUnions: true,
+          futureProofEnums: true,
 
-            scalars: {
-              ID: 'graphql#GraphQLID',
-              String: 'graphql#GraphQLString',
-              Boolean: 'graphql#GraphQLBoolean',
-              Int: 'graphql#GraphQLInt',
-              Float: 'graphql#GraphQLFloat',
-              Date: 'graphql-scalars#GraphQLString',
-              DateTime: 'graphql-scalars#GraphQLString',
-              Hex: 'graphql-scalars#GraphQLString',
-              Json: 'graphql-scalars#GraphQLString',
-              Long: 'graphql-scalars#GraphQLNumber',
-              RGBAHue: 'graphql#GraphQLString',
-              RGBATransparency: 'graphql#GraphQLString',
-              RichTextAST: 'graphql#GraphQLString',
-            },
-            strictScalars: false,
+          scalars: {
+            ID: 'graphql#GraphQLID',
+            String: 'graphql#GraphQLString',
+            Boolean: 'graphql#GraphQLBoolean',
+            Int: 'graphql#GraphQLInt',
+            Float: 'graphql#GraphQLFloat',
+            Date: 'graphql#GraphQLString',
+            DateTime: 'graphql#GraphQLString',
+            Hex: 'graphql#GraphQLString',
+            Json: 'graphql#GraphQLString',
+            Long: 'graphql#GraphQLNumber',
+            RGBAHue: 'graphql#GraphQLString',
+            RGBATransparency: 'graphql#GraphQLString',
+            RichTextAST: 'graphql#GraphQLString',
+          },
+          strictScalars: false,
         },
       },
     },
   },
-}
+};
 
 export default baseConfig;
 

@@ -3,7 +3,6 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 
-
 dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
 
 const config: CodegenConfig = {
@@ -12,48 +11,45 @@ const config: CodegenConfig = {
   ignoreNoDocuments: true,
 
   documents: [
-    'src/types/graphql/queries.gql',
-    'src/pages/**/*.ts',
+    'src/pages/api/graphql/queries/*.gql',
+    'src/pages/api/graphql/mutations/*.gql',
     'src/pages/**/*.tsx',
-    'src/components/**/*.ts',
-    'src/components/**/*.tsx',
-    '!src/types/graphql/gen/**/*.ts',
+    'src/hooks/*.ts',
+    'src/utils/*.ts',
+    '!src/types/**/*.ts',
+    '!src/types/**/*.tsx',
   ],
+
   schema: [
     {
-      [`${process.env.HYGRAPH_READONLY_API_URL}/content/cl2jezykc0li901yx24p50f8f/master`]: {
-        headers: {
-          Authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,
+      [`${process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`]:
+        {
+          headers: {
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN}`,
+          },
         },
-      },
     },
   ],
 
   generates: {
-    './src/types/graphql/gen/': {
+    './src/pages/api/graphql/': {
       preset: 'client',
       presetConfig: {
         documentMode: 'string',
+        // optimizeDocumentNode: true,
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
-        fetcher: 'graphql-request',
-        useIndexSignature: true,
+        // fetcher: 'graphql-request',
+        // useIndexSignature: true,
         exposeQueryKeys: true,
         exposeMutationKeys: true,
         useTypeImports: true,
         enumsAsTypes: true,
+        futureProofTypes: true,
         useImplementingTypes: true,
         addUnderscoreToArgsType: true,
         operationResultSuffix: 'Result',
-        declarationKind: {
-          fragment: 'type',
-          scalars: 'interface',
-          input: 'interface',
-        },
-        legacyMode: false,
-        emitLegacyCommonJSImports: false,
-        experimentalFragmentVariables: true,
       },
     },
   },

@@ -21,34 +21,34 @@
 		"allowUmdGlobalAccess": true,
 		"allowJs": true,
 		"skipLibCheck": true,
-		"baseUrl": "./src",
+		"baseUrl": ".",
 		"paths": {
+			"@/src/*": [
+				"src/*"
+			],
 			"@components/*": [
-				"components/*"
+				"src/components/*"
 			],
 			"@global/*": [
-				"components/global/*"
+				"src/components/global/*"
 			],
 			"@pages/*": [
-				"pages/*"
+				"src/pages/*"
 			],
 			"@api/*": [
-				"pages/api/*"
+				"src/pages/api/*"
 			],
 			"@interfaces/*": [
-				"types/interfaces/*"
+				"src/types/interfaces/*"
 			],
 			"@prop-types/*": [
-				"types/props/*"
-			],
-			"@gql/*": [
-				"types/graphql/*"
+				"src/types/props/*"
 			],
 			"@hooks/*": [
-				"hooks/*"
+				"src/hooks/*"
 			],
 			"@utils/*": [
-				"utils/*"
+				"src/utils/*"
 			],
 			"@images/*": [
 				"/public/images/*"
@@ -56,7 +56,12 @@
 			"@fonts/*": [
 				"/public/fonts/*"
 			]
-		}
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		],
 	},
 	"include": [
 		"src/**/*.ts",

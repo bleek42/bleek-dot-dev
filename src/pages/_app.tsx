@@ -1,34 +1,44 @@
+// 'use client';
+
 import type { AppProps } from 'next/app';
-import { QueryClient } from '@tanstack/react-query';
+import {
+	type QueryClientConfig,
+	QueryClient,
+	QueryClientProvider,
+} from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GraphQLError } from 'graphql';
-import {
-	Hydrate,
-	HydrateProps,
-	QueryClientProvider,
-	dehydrate,
-} from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import theme, { GlobalStyle } from '@global/theme';
-import { config } from '@utils/query-client';
+import { hygraphClient } from '@utils/gql-client';
+import { allProjectsDoc } from '@gql/docs';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
 	const ref = useRef<QueryClient>();
-	if (!ref.current) ref.current = new QueryClient(config);
+	const config: QueryClientConfig = {
+		defaultOptions: {
+			queries: {
+				queryKey: ['projects'],
+				initialData: ref?.current?.prefetchQuery(['projects']),
+				cacheTime: 100000,
+				staleTime: 300000,
+			},
+		},
+	};
+	ref.current = new QueryClient(config);
+	console.log(ref);
 
 	return (
 		<QueryClientProvider client={ref.current}>
 			<ThemeProvider theme={theme}>
-				<Hydrate state={pageProps.dehydratedState}>
-					<GlobalStyle />
-					<Component {...pageProps} />
-				</Hydrate>
+				<GlobalStyle />
+				<Component {...pageProps} />
 			</ThemeProvider>
 			<ReactQueryDevtools initialIsOpen={false} position="top-left" />
 		</QueryClientProvider>
 	);
 }
-export default MyApp;
+export default App;

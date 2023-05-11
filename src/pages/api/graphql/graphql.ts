@@ -3,8 +3,12 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -4022,34 +4026,6 @@ export type AllProjectsQuery = {
   }>;
 };
 
-export type DeleteProjectMutationVariables = Exact<{
-  data: ProjectWhereUniqueInput;
-}>;
-
-export type DeleteProjectMutation = {
-  __typename?: 'Mutation';
-  deleteProject?: {
-    __typename?: 'Project';
-    title: string;
-    description: string;
-    active: boolean;
-    id: string;
-    link: string;
-    sourceCode: Array<string>;
-    techStack?: any | null;
-    version: number;
-    createdAt: any;
-    updatedAt: any;
-    screenShots: Array<{
-      __typename?: 'Asset';
-      fileName: string;
-      id: string;
-      mimeType?: string | null;
-      url: string;
-    }>;
-  } | null;
-};
-
 export const AllProjectsDocument = {
   kind: 'Document',
   definitions: [
@@ -4097,67 +4073,3 @@ export const AllProjectsDocument = {
     },
   ],
 } as unknown as DocumentNode<AllProjectsQuery, AllProjectsQueryVariables>;
-export const DeleteProjectDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'DeleteProject' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
-          type: {
-            kind: 'NonNullType',
-            type: { kind: 'NamedType', name: { kind: 'Name', value: 'ProjectWhereUniqueInput' } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'deleteProject' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'where' },
-                value: { kind: 'Variable', name: { kind: 'Name', value: 'data' } },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'title' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'description' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'active' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'link' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'sourceCode' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'techStack' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'version' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'screenShots' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'fileName' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'id' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'mimeType' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'url' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<DeleteProjectMutation, DeleteProjectMutationVariables>;

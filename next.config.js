@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
-
-module.exports = {
+export default {
   reactStrictMode: true,
   typescript: {
     tsconfigPath: './tsconfig.json',
@@ -30,24 +29,24 @@ module.exports = {
     swcPlugins: [
       [
         '@graphql-codegen/client-preset-swc-plugin',
-        { artifactDirectory: './src/types/graphql/gen', gqlTagName: 'graphql' },
+        { artifactDirectory: './src/pages/api/graphql', gqlTagName: 'graphql' },
       ],
     ],
   },
 
-  async headers() {
-    return await new Promise((res) =>
-      res([
-        {
-          source: '/*',
-          headers: [
-            {
-              key: 'x-origin-locale-datetime',
-              value: new Date().toLocaleDateString(),
-            },
-          ],
-        },
-      ])
-    );
-  },
+  // async headers() {
+  //   return await new Promise((res) =>
+  //     res([
+  //       {
+  //         source: '/*',
+  //         headers: [
+  //           {
+  //             key: 'x-origin-locale-datetime',
+  //             value: new Date().toLocaleDateString(),
+  //           },
+  //         ],
+  //       },
+  //     ])
+  //   );
+  // },
 };

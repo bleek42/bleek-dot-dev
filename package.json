@@ -9,17 +9,17 @@
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier --write",
-		"gen": "graphql-code-generator --config codegen.ts",
-		"gen:watch": "graphql-code-generator --config --watch codegen.ts",
-		"gen:rm": "rm -rf src/types/graphql/gen/*.ts"
+		"gen": "graphql-codegen --config codegen.ts",
+		"gen:watch": "graphql-codegen --config --watch codegen.ts",
+		"gen:rm": "rm -rf src/pages/api/graphql/*.ts"
 	},
 	"dependencies": {
-		"@tanstack/react-query": "^4.29.5",
-		"@tanstack/react-query-devtools": "^4.29.6",
+		"@tanstack/react-query": "4.29.5",
+		"@tanstack/react-query-devtools": "4.29.6",
 		"dotenv": "^16.0.3",
 		"graphql": "^16.6.0",
 		"graphql-config": "^4.5.0",
-		"graphql-request": "^5.1.0",
+		"graphql-request": "~5.1.0",
 		"next": "^13.3.4",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

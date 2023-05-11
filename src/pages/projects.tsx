@@ -1,7 +1,16 @@
+'use client';
+
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import type { Project, ImageAsset, ProjectQuery } from '@interfaces/Project';
 
 import { Fragment, useId } from 'react';
-import { QueryClient, dehydrate, useQuery, useQueryClient } from '@tanstack/react-query';
+import {
+	HydrateProps,
+	QueryClient,
+	dehydrate,
+	useQuery,
+	useQueryClient,
+} from '@tanstack/react-query';
 
 import { Main } from '@components/global/Main';
 import Meta from '@components/global/Meta';
@@ -9,23 +18,18 @@ import Header from '@components/Header';
 import Section from '@components/Section';
 import Footer from '@components/Footer';
 
-import hygraphQuery from '@hooks/hygraphQuery';
-import { allProjectsDoc } from '@gql/docs';
-import { config } from '@utils/query-client';
-// import { DocumentType, graphql } from '@gql/gen';
-// import { AllProjectsQuery } from '@gql/gen/graphql';
-// import queryClient from '@utils/query-client';
-// import { allProjectsDocument } from '@gql/gqlRequest';
+import allProjectsQuery from '@hooks/useProjectsQuery';
 
-export default function Projects(props) {
-	console.log(props);
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { Project } from '@interfaces/Project';
+
+export default function Projects({ projects, error }) {
 	const pageId = useId();
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ['projects'],
-		queryFn: () => hygraphQuery(allProjectsDoc),
+		queryFn: allProjectsQuery,
+		initialData: projects,
 	});
-	console.log('RESULT:', { data });
-	console.log(data, isLoading, isError);
 
 	return (
 		<Fragment>
@@ -107,23 +111,25 @@ export default function Projects(props) {
 	);
 }
 
-export async function getStaticProps() {
-	const client = new QueryClient(config);
-	await client.prefetchQuery({
-		queryKey: ['projects'],
-		queryFn: () => hygraphQuery(allProjectsDoc),
-	});
-	// const projects = await hygraphQuery(document)
-	// console.log();
-	// await client.prefetchQuery({ queryKey: ['projects'] });
-	// console.time('query start');
-	// console.info('loading:', isLoading);
-	// console.table(data ? { data } : error ? { error } : { err: 'unknown query error...' });
-	// console.timeEnd('query end');
-	// console.info('loading:', isLoading ?? isLoading);
+export async function getStaticProps(): Promise<
+	GetStaticProps<
+		{ props: { projects: Project[] | Project } } | { props: { error: boolean } }
+	>
+> {
+	const projects: Promise<Project | Project[]> = await allProjectsQuery();
+	console.log('RESULT:', { projects });
+
+	if (!projects) {
+		return {
+			props: {
+				error: true,
+			},
+		};
+	}
+
 	return {
 		props: {
-			dehydratedState: dehydrate(client),
+			projects,
 		},
 	};
 }
@@ -315,7 +321,9 @@ export async function getStaticProps() {
 					<summary>Click here to view screenshots</summary>
 					<img
 						className="screenshots"
-						id="screenshot-5"
+						id="{
+
+	}screenshot-5"
 						src={screenshot5}
 						alt="sirilla-1"
 					/>

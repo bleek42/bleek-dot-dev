@@ -5,10 +5,20 @@ export enum TechStackCategories {
   TOOLS = 'tools',
 }
 
-type K = keyof typeof TechStackCategories;
-interface TechStack<K> {
+type Category = keyof typeof TechStackCategories;
+interface TechStack<C extends Category> {
   name: string;
-  techCategory: Array<K>;
+  categories: Array<C> | C;
+}
+
+export interface ImageAsset {
+  id: string;
+  url: string;
+  fileName: string;
+  width?: number;
+  height?: number;
+  mimeType?: string | null;
+  __typename?: 'Asset';
 }
 
 export interface Project {
@@ -16,11 +26,17 @@ export interface Project {
   readonly title: string;
   description: string;
   link: URL;
+  active: boolean;
   sourceCode: Array<URL | string> | URL | string;
   screenShots?: Array<URL | string> | URL | string;
-  techStack: TechStack<K>[] | TechStack<K>;
+  techStack: TechStack<Category>;
   version: number;
-  readonly latestReleaseDate: Date;
-  createdAt: Date;
-  updatedAt?: Date;
+  screenshots?: ImageAsset[] | ImageAsset;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
+export interface ProjectQuery {
+  __typename?: 'Query';
+  projects: Array<Project> | Project | null | undefined;
 }

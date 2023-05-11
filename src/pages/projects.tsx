@@ -21,15 +21,20 @@ import Footer from '@components/Footer';
 import allProjectsQuery from '@hooks/useProjectsQuery';
 
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { Project } from '@interfaces/Project';
+// import {  } from '';
 
-export default function Projects({ projects, error }) {
+export default function Projects({
+	projects,
+	error,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
 	const pageId = useId();
 	const { data, isLoading, isError } = useQuery({
 		queryKey: ['projects'],
 		queryFn: allProjectsQuery,
-		initialData: projects,
+		initialData: { projects },
 	});
+
+	console.log(data);
 
 	return (
 		<Fragment>
@@ -111,12 +116,8 @@ export default function Projects({ projects, error }) {
 	);
 }
 
-export async function getStaticProps(): Promise<
-	GetStaticProps<
-		{ props: { projects: Project[] | Project } } | { props: { error: boolean } }
-	>
-> {
-	const projects: Promise<Project | Project[]> = await allProjectsQuery();
+export async function getStaticProps() {
+	const projects: Promise<Project | Project[] | unknown> = await allProjectsQuery();
 	console.log('RESULT:', { projects });
 
 	if (!projects) {

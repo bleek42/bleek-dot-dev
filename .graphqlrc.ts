@@ -18,12 +18,12 @@ dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
 // console.table({
 //   NODE_ENV: process.env.NODE_ENV,
 //   PORT: process.env.PORT,
-//   HYGRAPH_READONLY_API_URL: process.env.HYGRAPH_READONLY_API_URL,
+//   NEXT_PUBLIC_HYGRAPHCDN_BASE_URL: process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL,
 //   HYGRAPH_READONLY_API_KEY: process.env.HYGRAPH_READONLY_API_KEY,
 // });
 
 const baseConfig: GQLConfig = {
-  schema: `${process.env.HYGRAPH_READONLY_API_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
+  schema: `${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
   documents: [
     'src/**/*.gql',
     'src/**/*.graphql',
@@ -86,7 +86,7 @@ export default baseConfig;
 //   ],
 //   schema: [
 //     {
-//       [`${process.env.HYGRAPH_READONLY_API_URL}`]: {
+//       [`${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}`]: {
 //         headers: {
 //           Authorization: `Bearer ${process.env.HYGRAPH_READONLY_API_KEY}`,
 //         },

@@ -14,34 +14,34 @@ import { GraphQLError } from 'graphql';
 // dotenv.config({ path: envPath, encoding: 'UTF-8' });
 // console.log('NODE_ENV:', process.env.NODE_ENV);
 
-export async function hygraphClient<TDoc, TVars>(
+export async function createGraphQLClientRequest<TDoc, TVars>(
   document: TypedDocumentNode<TDoc>,
   ...[variables]: TVars extends Record<string | number | symbol, unknown>
     ? Record<string | number | symbol, unknown>
     : [TVars]
 ) {
   console.log(document, ...[variables]);
-  const hygraphOptions: PatchedRequestInit = {
+  const graphQLOptions: PatchedRequestInit = {
     credentials: 'include',
     cache: 'only-if-cached',
     mode: 'cors',
     headers: {
-      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN}`,
+      'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
       'content-type': 'application/json',
     },
   };
 
-  const hygraphClient: GraphQLClient = new GraphQLClient(
-    `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
-    hygraphOptions
+  const graphQLClient: GraphQLClient = new GraphQLClient(
+    `${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
+    graphQLOptions
   );
 
   try {
-    const res = await hygraphClient.request<TDoc>(document, variables);
+    const res = await graphQLClient.request<TDoc>(document, variables);
     console.log(res);
     return res;
   } catch {
-    throw new GraphQLError('GQL ERR: Hygraph request failed!');
+    throw new GraphQLError('GQL ERR: graphQL request failed!');
   }
 }
 

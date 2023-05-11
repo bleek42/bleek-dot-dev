@@ -14,6 +14,7 @@ interface State {
   loading: boolean;
   error: null | boolean | Awaited<unknown[] | unknown>;
   msg?: string;
+  debug?: unknown;
 }
 
 type ActionType = 'REQUEST' | 'SUCCESS' | 'ERROR';
@@ -25,7 +26,11 @@ type Actions<T = ActionType> = {
 
 // import { AllProjectsDocument, AllProjectsQuery } from './gen/graphql';
 
-export default function useHygraphQuery() {
+export default function useHTTPRequest({
+  method = 'GET',
+  body = { ping: 'pong' },
+  headers = { 'content-type': 'application/json' },
+}) {
   const initState: State = {
     data: [],
     loading: false,
@@ -39,8 +44,7 @@ export default function useHygraphQuery() {
         return {
           ...state,
           loading: true,
-          error: false,
-          msg: 'Sending request to server...',
+          msg: 'Sending HTTP request...',
         };
       case 'SUCCESS':
         return {
@@ -55,6 +59,7 @@ export default function useHygraphQuery() {
           loading: false,
           error: true,
           msg: 'ERROR: Unsuccessful Request!',
+          debug: action.payload,
         };
       default:
         return state;
@@ -64,45 +69,23 @@ export default function useHygraphQuery() {
   const [{ data, loading, error, msg }, dispatch] = useReducer(reducer, initState);
   useEffect(() => {
     let ignore = false;
-    const gqlClientQuery = async <TDoc, TVars>(
-      document: TypedDocumentNode<TDoc>,
-      ...[variables]: TVars extends Record<string | number | symbol, unknown>
-        ? Record<string | number | symbol, unknown>
-        : [TVars]
-    ) => {
-      console.log(document, ...[variables]);
-
-      const hygraphOptions: PatchedRequestInit = {
-        credentials: 'include',
-        cache: 'only-if-cached',
-        mode: 'cors',
-        headers: {
-          'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN}`,
-          'content-type': 'application/json',
-        },
-      };
-      const hygraphClient: GraphQLClient = new GraphQLClient(
-        `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
-        hygraphOptions
-      );
-
+    const url =
+      process.env.NEXT_PUBLIC_API_URL || 'https://jsonplaceholder.typicode.com/todos/1';
+    (async () => {
       try {
-        const payload = await hygraphClient.request(document, variables);
-        console.log(payload);
-        if (payload && !ignore) dispatch({ type: 'SUCCESS', payload });
-      } catch {
-        // throw new GraphQLError('GQL ERR: Hygraph request failed!');
-        dispatch({ type: 'ERROR', payload: 'Unknown useRequest Error' });
+        const res = await fetch(`${url}`);
+        if (!res.ok) dispatch({ type: 'ERROR', payload: { ...res } });
+        const data = await res.json();
+        dispatch({ type: 'SUCCESS', payload: data });
+      } catch (err) {
+        console.error(err);
       }
-    };
-
-    gqlClientQuery(allProjectsDoc, []);
-
+    })();
     return () => {
       ignore = true;
       // controller.abort();
     };
-  }, []);
+  }, [data, loading]);
 
   return { data, loading, error, msg };
 }

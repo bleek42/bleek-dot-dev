@@ -13,12 +13,11 @@ declare namespace NodeJS {
       | 'www.bleek.dev'
       | 'https://www.bleek.dev';
 
-    readonly NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN?: string | unknown;
-    readonly NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL?:
-      | SchemaPointer
-      | WithList<string>
+    readonly NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN?: string | unknown;
+    readonly NEXT_PUBLIC_HYGRAPHCDN_BASE_URL?:
       | string
-      | null
-      | unknown;
+      | SchemaPointer
+      | WithList<SchemaPointer | string>
+      | null;
   }
 }

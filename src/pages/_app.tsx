@@ -1,5 +1,3 @@
-// 'use client';
-
 import type { AppProps } from 'next/app';
 import {
 	type QueryClientConfig,
@@ -14,7 +12,6 @@ import { GraphQLError } from 'graphql';
 
 import theme, { GlobalStyle } from '@global/theme';
 import { hygraphClient } from '@utils/gql-client';
-import { allProjectsDoc } from '@gql/docs';
 
 function App({ Component, pageProps }: AppProps) {
 	const ref = useRef<QueryClient>();
@@ -28,8 +25,9 @@ function App({ Component, pageProps }: AppProps) {
 			},
 		},
 	};
-	ref.current = new QueryClient(config);
-	console.log(ref);
+
+	if (!ref.current) ref.current = new QueryClient(config);
+	console.log(ref.current);
 
 	return (
 		<QueryClientProvider client={ref.current}>

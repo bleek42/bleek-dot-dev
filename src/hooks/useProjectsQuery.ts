@@ -2,7 +2,7 @@
 // import * as dotenv from 'dotenv';
 // import * as path from 'path';
 import type { PatchedRequestInit } from 'graphql-request/dist/types';
-import type { Project, ImageAsset, ProjectQuery } from '../types/interfaces/Project';
+import type { Project, ImageAsset, ProjectQuery } from '@interfaces/Project';
 
 import { useReducer, useEffect } from 'react';
 import { GraphQLError } from 'graphql';
@@ -41,7 +41,7 @@ const allProjectsQuery = async () => {
   `;
 
   const headers: HeadersInit = {
-    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN}`,
+    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
     'content-type': 'application/json',
     'credentials': 'include',
     'cache': 'force-cache',
@@ -50,7 +50,7 @@ const allProjectsQuery = async () => {
 
   try {
     const res = await request(
-      `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
+      `${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
       query,
       [],
       headers

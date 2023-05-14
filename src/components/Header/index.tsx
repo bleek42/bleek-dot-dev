@@ -1,6 +1,6 @@
-import type { BaseComponentProps } from '@prop-types/base.component.props';
+import type { BaseComponentProps } from '@/props/base.component.props';
 
-import Navbar from '@components/Navbar';
+import Navbar from '@/components/Navbar';
 
 import { Header as Wrapper } from './Header';
 import { LgTxt, MdTxt } from '@global/Text';

@@ -26,34 +26,34 @@
 			"@/src/*": [
 				"src/*"
 			],
-			"@components/*": [
+			"@/components/*": [
 				"src/components/*"
 			],
-			"@global/*": [
+			"@/global/*": [
 				"src/components/global/*"
 			],
-			"@pages/*": [
-				"src/pages/*"
+			"@/app/*": [
+				"src/app/*"
 			],
-			"@api/*": [
-				"src/pages/api/*"
+			"@/layouts": [
+				"src/app/layouts/*"
 			],
-			"@interfaces/*": [
+			"@/interfaces/*": [
 				"src/types/interfaces/*"
 			],
-			"@prop-types/*": [
+			"@/props/*": [
 				"src/types/props/*"
 			],
-			"@hooks/*": [
+			"@/hooks/*": [
 				"src/hooks/*"
 			],
-			"@utils/*": [
+			"@/utils/*": [
 				"src/utils/*"
 			],
-			"@images/*": [
+			"@/images/*": [
 				"/public/images/*"
 			],
-			"@fonts/*": [
+			"@/fonts/*": [
 				"/public/fonts/*"
 			]
 		},

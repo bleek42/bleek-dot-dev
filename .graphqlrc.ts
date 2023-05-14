@@ -36,7 +36,7 @@ const baseConfig: GQLConfig = {
   extensions: {
     codegen: {
       generates: {
-        './src/types/gen/': {
+        './src/': {
           plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
           preset: 'import-modules',
           presetConfig: {

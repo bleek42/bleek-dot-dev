@@ -8,12 +8,12 @@ import type {
 	AnyStyledComponent,
 } from 'styled-components';
 
-import useResizeObserver from '@hooks/useResizeObserver';
-import type { ResizeObserverDimensions } from '@interfaces/ResizeObserverDimensions';
-import type { XTermComponentProps } from '@prop-types/base.component.props';
+import useResizeObserver from '@/hooks/useResizeObserver';
+import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
+import type { XTermComponentProps } from '@/props/base.component.props';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { Btn, BtnClose, BtnMax, BtnMin } from '@global/Button';
-import { XTermInputOutput } from '@interfaces/BaseComponent';
+import { XTermInputOutput } from '@/interfaces/BaseComponent';
 
 
 

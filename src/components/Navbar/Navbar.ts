@@ -1,4 +1,4 @@
-import type { NextLinkProps, ToggleProps } from '@prop-types/navbar.props';
+import type { NextLinkProps, ToggleProps } from '@/props/navbar.props';
 
 import styled, { DefaultTheme, ThemedStyledProps } from 'styled-components';
 import Link from 'next/link';

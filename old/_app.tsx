@@ -10,8 +10,8 @@ import { useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { GraphQLError } from 'graphql';
 
-import theme, { GlobalStyle } from '@global/theme';
-import { hygraphClient } from '@utils/gql-client';
+import theme, { GlobalStyle } from '@/global/theme';
+import { hygraphClient } from '@/utils/gql-client';
 
 function App({ Component, pageProps }: AppProps) {
 	const ref = useRef<QueryClient>();

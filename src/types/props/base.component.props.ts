@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react';
 import type { DefaultTheme, StyledComponentProps, AnyStyledComponent } from 'styled-components';
-import type { BaseComponent, XTermInputOutput } from '@interfaces/BaseComponent';
-import type { ResizeObserverDimensions } from '@interfaces/ResizeObserverDimensions';
+import type { BaseComponent, XTermInputOutput } from '@/interfaces/BaseComponent';
+import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 
 export type BaseComponentProps = StyledComponentProps<
   AnyStyledComponent | keyof JSX.IntrinsicElements,

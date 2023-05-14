@@ -1,7 +1,7 @@
 'use client';
 
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import type { Project, ImageAsset, ProjectQuery } from '@interfaces/Project';
+import type { Project, ImageAsset, ProjectQuery } from '@/interfaces/Project';
 
 import { Fragment, useId } from 'react';
 import {
@@ -12,13 +12,13 @@ import {
 	useQueryClient,
 } from '@tanstack/react-query';
 
-import { Main } from '@components/global/Main';
-import Meta from '@components/global/Meta';
-import Header from '@components/Header';
-import Section from '@components/Section';
-import Footer from '@components/Footer';
+import { Main } from '@/components/global/Main';
+import Meta from '@/components/global/Meta';
+import Header from '@/components/Header';
+import Section from '@/components/Section';
+import Footer from '@/components/Footer';
 
-import allProjectsQuery from '@hooks/useProjectsQuery';
+import allProjectsQuery from '@/hooks/useProjectsQuery';
 
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 // import {  } from '';

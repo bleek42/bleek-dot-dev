@@ -9,9 +9,9 @@ import Meta from '@global/Meta';
 import { Main } from '@global/Main';
 
 // ? custom styled components
-import Header from '@components/Header';
-import Section from '@components/Section';
-import Footer from '@components/Footer';
+import Header from '@/components/Header';
+import Section from '@/components/Section';
+import Footer from '@/components/Footer';
 
 export default function Home() {
 	const pageId = useId();

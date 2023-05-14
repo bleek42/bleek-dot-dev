@@ -1,11 +1,11 @@
 import React, { Fragment, useId } from 'react';
 
-import Header from '@components/Header';
-import Section from '@components/Section';
-import Footer from '@components/Footer';
+import Header from '@/components/Header';
+import Section from '@/components/Section';
+import Footer from '@/components/Footer';
 
 // import { useRequest } from '../hooks/useRequest';
-import Meta from '@global/Meta';
+import { Main } from '../../components/global/Main';
 
 export default function Contact() {
 	// const { profile, loading, error, msg } = useRequest();
@@ -17,9 +17,8 @@ export default function Contact() {
 
 	return (
 		<Fragment>
-			<Meta />
 			<Header id={`contact-header-${pageId}`} name="contact" title="Contact" />
-			<main>
+			<Main>
 				{/* {loading && (
 					<div className="loading">
 						<progress>loading...</progress>
@@ -34,7 +33,7 @@ export default function Contact() {
 						</p>
 					</div>
 				)} */}
-			</main>
+			</Main>
 			<Footer id={`contact-footer-${pageId}`} name="Contact" icon={null} />
 		</Fragment>
 	);

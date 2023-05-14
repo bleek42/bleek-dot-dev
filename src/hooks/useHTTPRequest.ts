@@ -7,7 +7,7 @@ import { GraphQLClient } from 'graphql-request';
 import { GraphQLError } from 'graphql';
 
 import { allProjectsDoc } from '@gql/docs';
-import { hygraphClient } from '@utils/gql-client';
+import { hygraphClient } from '@/utils/gql-client';
 
 interface State {
   data: Awaited<TypedDocumentNode[] | TypedDocumentNode> | unknown;

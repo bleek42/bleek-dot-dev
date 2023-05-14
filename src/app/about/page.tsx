@@ -1,50 +1,34 @@
-import type { BaseComponentProps } from '@/props/base.component.props';
+import React, { useState, useEffect, Fragment, useId } from 'react';
 
-import { useId } from 'react';
+import Meta from '@global/Meta';
+import Header from '@/components/Header';
+import { Main } from '@global/Main';
+import Section from '@/components/Section';
+import Footer from '@/components/Footer';
 
-import { LgTxt, MdTxt, SmTxt } from '@global/Text';
-import { Section as Wrapper, Article } from './Section';
-
-type SectionProps = BaseComponentProps;
-
-export default function Section({ id, name, title, content, icon }: SectionProps) {
-	const sectionId = useId();
+export default function About() {
+	console.log('about page:');
+	const pageId = useId();
 
 	return (
-		<Wrapper
-			key={`sect-${id}` || `sect-${sectionId}`}
-			id={`sect-${id}` || `sect-${sectionId}`}>
-			<LgTxt>{title || 'Section Title'}</LgTxt>
-			<Article>
-				<SmTxt font="MonocraftNF" color="neon">
-					{content || 'no article content provided...'}
-				</SmTxt>
-			</Article>
-			<Article>
-				<MdTxt font="Oxanium" color="cyan">
-					Test MDTXT
-				</MdTxt>
-			</Article>
-		</Wrapper>
+		<Fragment>
+			<Meta />
+			<Header
+				id={`about-header-${pageId}`}
+				name="about"
+				title="About"
+				content={['content 1...', 'content 2...', 'content 3...']}
+				icon={'\ue456'}
+			/>
+			<Main>
+				<Section id="about-sect-1" name="about_section" content="" icon={null} />
+			</Main>
+			<Footer id={`about-footer-${pageId}`} name="About" icon={null} />
+		</Fragment>
 	);
 }
-// <section id={`sect-${id}` || 'sect-0'}>
-// 	<span>
-// 		<h3>
-// 			You are in the<pre>{name || 'unknown'}</pre>section!
-// 		</h3>
-// 		{icon ? <i>{icon}</i> : <p>No Icon Prop</p>}
-// 	</span>
-// 	<article>
-// 		<p>
-// 			Article:
-// 			<pre>{content || 'article content'}</pre>
-// 			<code>{'someCode()'}</code>
-// 		</p>
-// 	</article>
-// </section>
+
 // import "./About.scss";
-// import { Wrapper } from './Section';
 
 // export default function About() {
 // 	return (

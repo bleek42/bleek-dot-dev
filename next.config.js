@@ -11,6 +11,7 @@ export default {
       displayName: true,
       ssr: true,
       minify: true,
+      cssProp: true,
     },
   },
 

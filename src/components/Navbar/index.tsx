@@ -1,4 +1,4 @@
-import type { NextLinkProps } from '@prop-types/navbar.props';
+import type { NextLinkProps } from '@/props/navbar.props';
 
 import { useState } from 'react';
 
@@ -46,7 +46,9 @@ export default function Navbar() {
 					</Toggle>
 				) : (
 					<Toggle toggle={toggle}>
-						<ToggleBtn onMouseOver={toggleMenu} onClick={toggleMenu}></ToggleBtn>
+						<ToggleBtn
+							onMouseOver={toggleMenu}
+							onClick={toggleMenu}></ToggleBtn>
 					</Toggle>
 				)}
 			</NavList>

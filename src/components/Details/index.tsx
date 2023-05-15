@@ -1,3 +1,5 @@
+'use client';
+
 import { Details as Wrapper, Summary } from './Details';
 import { BlkTxt } from '@global/Text';
 

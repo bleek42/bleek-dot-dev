@@ -11,9 +11,6 @@ query AllProjects {
       createdAt
       updatedAt
 
-
-
-
       screenShots {
         fileName
         id

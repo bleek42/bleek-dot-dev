@@ -1,20 +1,18 @@
 import React, { useState, useEffect, Fragment, useId } from 'react';
 
-import Meta from '@global/Meta';
 import Header from '@/components/Header';
-import { Main } from '@global/Main';
+import { Main } from '@/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
 export default function About() {
-	console.log('about page:');
-	const pageId = useId();
+	// const pageId = useId();
+	// console.log('about page:', pageId);
 
 	return (
-		<Fragment>
-			<Meta />
+		<>
 			<Header
-				id={`about-header-${pageId}`}
+				id={`about-header-${3}`}
 				name="about"
 				title="About"
 				content={['content 1...', 'content 2...', 'content 3...']}
@@ -23,8 +21,8 @@ export default function About() {
 			<Main>
 				<Section id="about-sect-1" name="about_section" content="" icon={null} />
 			</Main>
-			<Footer id={`about-footer-${pageId}`} name="About" icon={null} />
-		</Fragment>
+			<Footer id={`about-footer-${3}`} name="About" icon={null} />
+		</>
 	);
 }
 

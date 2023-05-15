@@ -7,7 +7,7 @@ import type { Project, ImageAsset, ProjectQuery } from '@/interfaces/Project';
 import { useReducer, useEffect } from 'react';
 import { GraphQLError } from 'graphql';
 
-import { type DocumentType, graphql } from '@api/graphql';
+import { type DocumentType, graphql } from '@/app/lib/graphql';
 import { gql, request, type RequestDocument } from 'graphql-request';
 
 // <TDoc, TVars>

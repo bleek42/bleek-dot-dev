@@ -3,7 +3,14 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 
-dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
+dotenv.config({
+  path: path.join(__dirname, '.env.development.local'),
+  encoding: 'UTF-8',
+});
+
+if (process.env.NODE_ENV === 'development') {
+  console.log(`codegen.ts in NODE_ENV:${process.env.NODE_ENV}`);
+}
 
 const config: CodegenConfig = {
   require: ['ts-node/register'],
@@ -11,8 +18,8 @@ const config: CodegenConfig = {
   ignoreNoDocuments: true,
 
   documents: [
-    'src/pages/api/graphql/queries/*.gql',
-    'src/pages/api/graphql/mutations/*.gql',
+    'src/app/graphql/queries/*.gql',
+    'src/app/lib/graphql/mutations/*.gql',
     'src/pages/**/*.tsx',
     'src/hooks/*.ts',
     'src/utils/*.ts',
@@ -22,7 +29,7 @@ const config: CodegenConfig = {
 
   schema: [
     {
-      [`${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`]:
+      [`${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/v2/cl2jezykc0li901yx24p50f8f/master`]:
         {
           headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
@@ -32,16 +39,15 @@ const config: CodegenConfig = {
   ],
 
   generates: {
-    './src/pages/api/graphql/': {
+    './src/app/lib/graphql/': {
       preset: 'client',
       presetConfig: {
-        documentMode: 'string',
-        // optimizeDocumentNode: true,
+        optimizeDocumentNode: true,
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
         // fetcher: 'graphql-request',
-        // useIndexSignature: true,
+        useIndexSignature: true,
         exposeQueryKeys: true,
         exposeMutationKeys: true,
         useTypeImports: true,

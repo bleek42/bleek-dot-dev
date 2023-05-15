@@ -1,0 +1,9 @@
+fragment Image on Asset {
+	id
+	fileName
+	mimeType
+	url
+	width
+	height
+	size
+}

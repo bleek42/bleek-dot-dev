@@ -4,7 +4,7 @@ declare namespace NodeJS {
   export interface ProcessEnv {
     readonly NODE_ENV: 'development' | 'production' | 'test';
     readonly PORT: number;
-    readonly HYGRAPH_API_KEY?: string | null;
+    readonly HYGRAPH_AUTH_TOKEN?: string | null;
     readonly HYGRAPH_API_URL: SchemaPointer | WithList<string> | string | null | unknown;
 
     readonly NEXT_PUBLIC_DOMAIN_NAME:

@@ -4,10 +4,10 @@ import type { NextPage } from 'next';
 // ? NPM deps, libs, pkgs, etc...
 import { useId, Fragment } from 'react';
 
-import { Main } from '@/global/Main';
 
 // ? custom styled components
 import Header from '@/components/Header';
+import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 

@@ -1,20 +1,21 @@
-import { type BaseComponent } from '@/interfaces/BaseComponent';
+import { type BaseComponent } from '@/interfaces/BaseComponent.ts';
 import { GraphQLError } from 'graphql';
 
-import StyledRegistry from './lib/StyledRegistry.tsx';
+import StyledRegistry from '@/app/lib/StyledRegistry';
+import { MetaHTMLAttributes } from 'react';
 
-export type MetaProps = JSX.IntrinsicElements['meta' | 'html' | 'link'] &
-	Pick<BaseComponent, 'children'>;
-// import { hygraphClient } from '@/utils/gql-client';
+type MetaProps = MetaHTMLAttributes<Pick<BaseComponent<'root-layout-0'>, 'children'>>;
 
 export default function RootLayout({ children }: MetaProps) {
 	const defaultMeta = {
+		id: 'root-layout-0',
 		title: 'bleekDotDev',
 		description: 'Brandon Leek - Full Stack Web Developer',
 		keywords:
 			'bleek, dev brandon, leek, js, ts, javascript, typescript, html, css, engineer, usa, nj, nc, mobile, professional, tech, developer, web, development, application, software,   programming,  functional,  object,  oriented,  terminal,  react,  nodejs,  npm, rest,api,ajax,async,  typeorm,  relational,  mapping,  knex,expressjs,  sequelize,  docker,  container,  virtual,  microsoft,  windows,  linux,  wsl,debian,  ubuntu,  arch,android,  ios,sales,  sql,mysql,  postgres,  nosql,  mongodb,  graphql,  open-source,  debugging,  solutions,  shell,  scripting,  bash,zsh,fish,hacker,  crypto,  shopify,  wordpress,  jquery,  json,music,  festivals,  volunteer,  harm,reduction,  advocacy,  management,  ambition,  business,  creator,  maintain,  skateboard,   self,improvement,  growth,  courage,  strength,  open,accepting,  detail,  team, effort',
 		icon: undefined,
 	};
+
 	return (
 		<html lang="en">
 			<head>
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: MetaProps) {
 				<meta name="keywords" content={defaultMeta.keywords} />
 				<meta name="description" content={defaultMeta.description} />
 				<meta property="og:title" content={defaultMeta.title} />
+				<meta property="og:icon" content={defaultMeta.icon} />
 				<link
 					rel="preload"
 					href="/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf"

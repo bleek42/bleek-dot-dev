@@ -1,15 +1,15 @@
 {
 	"compilerOptions": {
 		"strict": true,
-		"target": "ES2022",
+		"target": "ES5",
 		"lib": [
 			"DOM",
 			"DOM.Iterable",
 			"ESNext",
 			"ESNext.AsyncIterable"
 		],
-		"module": "Node16",
-		"moduleResolution": "node16",
+		"module": "ESNext",
+		"moduleResolution": "node",
 		"esModuleInterop": true,
 		"noEmit": true,
 		"forceConsistentCasingInFileNames": true,
@@ -73,13 +73,7 @@
 		"node-env.d.ts",
 		"next.config.js",
 		"public/**/*",
-		"old/_app.tsx",
-		"old/projects.tsx",
-		"old/home.tsx",
-		"old/contact.tsx",
-		"old/about.tsx",
 		".next/types/**/*.ts",
-		"old/preview.ts"
 	],
 	"exclude": [
 		"node_modules/",

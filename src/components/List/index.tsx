@@ -1,10 +1,12 @@
+'use client';
+
 import type { BaseComponentProps } from '@/props/base.component.props';
 
-import { BlkTxt } from '@global/Text';
+import { MdTxt } from '@/components/global/Text';
 
 import { List as Wrapper, Item } from './List';
 
-type ListProps = BaseComponentProps & {
+type ListProps = BaseComponentProps<'ul'> & {
 	items?: Array<string | Record<string, unknown>>;
 };
 
@@ -21,20 +23,20 @@ export default function List(props: ListProps) {
 				props.items.length > 0 &&
 				props.items.map((item, idx) => (
 					<Item key={item?.id || idx}>
-						{item && <BlkTxt>{item.toString()}</BlkTxt>}
+						{item && <MdTxt>{item.toString()}</MdTxt>}
 						{item?.url && (
-							<BlkTxt>
+							<MdTxt>
 								this is an item in the List component with a url prop:
 								<a href={item.url} target="_blank" rel="noreferrer">
 									{item?.text || 'click here'}
 								</a>
-							</BlkTxt>
+							</MdTxt>
 						)}
 						{!item.url && (
-							<BlkTxt>
+							<MdTxt>
 								this is an item in the List component with a text prop:{' '}
 								{item.text}
-							</BlkTxt>
+							</MdTxt>
 						)}
 					</Item>
 				))}

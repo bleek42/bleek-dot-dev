@@ -8,7 +8,9 @@
 		"url": "https://github.com/bleek42/bleek-dot-dev"
 	},
 	"engines": {
-		"node": "^18.x.x"
+		"node": "^18.16.0",
+		"pnpm": "^8.5.1",
+		"vscode": "^1.22.0"
 	},
 	"scripts": {
 		"dev": "next dev",

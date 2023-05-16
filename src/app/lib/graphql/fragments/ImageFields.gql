@@ -1,4 +1,4 @@
-fragment Image on Asset {
+fragment ImageFields on Asset {
 	id
 	url
 	handle

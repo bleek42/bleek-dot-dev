@@ -3,12 +3,13 @@ import type { DefaultTheme, StyledComponentProps, AnyStyledComponent } from 'sty
 import type { BaseComponent, XTermInputOutput } from '@/interfaces/BaseComponent';
 import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 
-export type BaseComponentProps = StyledComponentProps<
-  AnyStyledComponent | keyof JSX.IntrinsicElements,
-  DefaultTheme,
-  BaseComponent,
-  string | number | symbol
->;
+export type BaseComponentProps<JSXKey extends keyof JSX.IntrinsicElements> =
+  StyledComponentProps<
+    AnyStyledComponent | JSXKey,
+    DefaultTheme,
+    BaseComponent<unknown>,
+    string | number | symbol
+  >;
 
 // type XTState = XTermInputOutput & ResizeObserverDimensions
 

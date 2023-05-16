@@ -1,9 +1,5 @@
-import { ThemeProvider } from 'styled-components';
-
-import XTerm from '@/components/XTerm';
-import { Main } from '@/global/Main';
-
-import hero from '../public/brandon-mask.png';
+import XTerm from '@/components/XTerm/index.tsx';
+import { Main } from '@/components/global/Main.ts';
 
 export default function LandingPage() {
 	return (

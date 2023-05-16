@@ -1,12 +1,5 @@
 query AllUsers {
 	users {
-		id
-		name
-		kind
-		isActive
-		picture
-		stage
-		publishedAt
-		updatedAt
+		...UserFields
 	}
 }

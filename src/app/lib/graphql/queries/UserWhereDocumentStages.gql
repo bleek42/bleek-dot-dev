@@ -1,0 +1,14 @@
+query UserWhereDocumentInStages(
+	$where: UserWhereInput = { id: "cl2jewzic0nfr01xl28no3fa0" }
+) {
+	user(where: $where) {
+		id
+		isActive
+		kind
+		name
+		picture
+		stage
+		createdAt
+		updatedAt
+	}
+}

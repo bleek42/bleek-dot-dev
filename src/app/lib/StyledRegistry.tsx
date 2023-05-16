@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager, ThemeProvider } from 'styled-components';
 
-import { Theme, GlobalStyle } from '@/components/global';
+import { Theme, GlobalStyle } from '@/components/global/Theme.tsx';
 
 type StyledChildrenProps = Pick<BaseComponent, 'children'>;
 

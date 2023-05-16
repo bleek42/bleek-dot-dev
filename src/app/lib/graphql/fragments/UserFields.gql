@@ -1,10 +1,10 @@
-fragment AuthUser on User [
+fragment UserFields on User [
 	id
 	name
     kind
     isActive
     picture
+    stage
     createdAt
     updatedAt
-    stage
 ]

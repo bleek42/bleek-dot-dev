@@ -5,10 +5,10 @@ import type { PatchedRequestInit } from 'graphql-request/dist/types';
 import type { Project, ImageAsset, ProjectQuery } from '@/interfaces/Project';
 
 import { useReducer, useEffect } from 'react';
+import { gql, request, type RequestDocument } from 'graphql-request';
 import { GraphQLError } from 'graphql';
 
-import { type DocumentType, graphql } from '@/app/lib/graphql';
-import { gql, request, type RequestDocument } from 'graphql-request';
+// import { type DocumentType, graphql } from '@/app/lib/graphql';
 
 // <TDoc, TVars>
 // document: TypedDocumentNode<TDoc>,

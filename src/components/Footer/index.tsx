@@ -1,5 +1,7 @@
+'use client';
+
 import { Footer as Wrapper } from './Footer';
-import { SmTxt } from '@global/Text';
+import { SmTxt } from '@/components/global';
 
 import type { BaseComponentProps } from '@/props/base.component.props';
 

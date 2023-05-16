@@ -1,0 +1,18 @@
+query ProjectsWhereActiveStage(
+	$where: ProjectWhereInput = { active: true }
+	$stage: Stage = DRAFT
+) {
+	projectsConnection(where: $where, stage: $stage) {
+		edges {
+			node {
+				...ProjectFields
+
+				screenShots(first: 10) {
+					history(limit: 10) {
+						...Image
+					}
+				}
+			}
+		}
+	}
+}

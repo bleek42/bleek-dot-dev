@@ -1,20 +1,8 @@
 query ProjectById($id: ID!) {
-    project(where: { id: $id }) {
-      title
-      description
-      active
-      id
-      link
-      sourceCode
-      techStack
-      version
-      createdAt
-      updatedAt
-      screenShots {
-        fileName
-        id
-        mimeType
-        url
-      }
+	project(where: { id: $id }) {
+		...ProjectFields
+		screenShots {
+			...Image
+		}
 	}
 }

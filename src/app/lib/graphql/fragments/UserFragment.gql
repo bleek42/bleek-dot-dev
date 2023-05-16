@@ -1,0 +1,10 @@
+fragment AuthUser on User [
+	id
+	name
+    kind
+    isActive
+    picture
+    createdAt
+    updatedAt
+    stage
+]

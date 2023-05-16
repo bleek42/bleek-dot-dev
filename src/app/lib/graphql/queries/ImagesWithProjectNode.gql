@@ -1,0 +1,10 @@
+query ProjectWithNode($id: ID) {
+	node(id: $id) {
+		...ProjectFields
+		screenShots(first: 10) {
+			history(limit: 10) {
+				...Image
+			}
+		}
+	}
+}

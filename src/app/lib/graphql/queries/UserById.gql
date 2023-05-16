@@ -1,0 +1,12 @@
+query UserById($where: UserWhereUniqueInput = { "id": "cl2jewzic0nfr01xl28no3fa0"}, $locale: Locale = "en_US") {
+  user(where: $where, locale: $locale) {
+    id
+    name
+    kind
+    isActive
+    picture
+    createdAt
+    updatedAt
+    stage
+  }
+}

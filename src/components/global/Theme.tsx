@@ -2,7 +2,7 @@ import type { DefaultTheme } from 'styled-components';
 
 import { createGlobalStyle } from 'styled-components';
 
-const theme: DefaultTheme = {
+export const Theme: DefaultTheme = {
 	name: 'Default',
 	borderRadius: '24% 16% / 16% 24%',
 	fonts: ['Birdman', 'Oxanium', 'MonocraftNF'],
@@ -76,15 +76,9 @@ export const GlobalStyle = createGlobalStyle`
 @font-face {
 	font-family: 'MonocraftNF';
 	src: url('/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
-  font-display: swap;
-}
-
-* {
-  box-sizing: border-box;
+  font-display: swap;exportbox;
   margin: 0;
-  padding: 0;
-}
-
+  padding: 0;export
 body {
   background: linear-gradient(45deg, rgb(35, 230, 45) 45%, rgb(5, 5, 5) 55%);
 }
@@ -96,5 +90,3 @@ code, i {
 }
 
 `;
-
-export default theme;

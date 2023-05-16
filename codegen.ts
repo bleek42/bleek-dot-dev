@@ -8,6 +8,16 @@ dotenv.config({
   encoding: 'UTF-8',
 });
 
+console.log('...GENERATING GRAPHQL TYPES....');
+console.table({
+  [process.env.NODE_ENV]: {
+    PORT: process.env.PORT,
+    HOST: process.env.HOST,
+    HYGRAPH_AUTH_TOKEN: process.env.HYGRAPH_AUTH_TOKEN,
+    HYGRAPH_API_BASE_URL: process.env.HYGRAPH_API_BASE_URL,
+  },
+});
+
 if (process.env.NODE_ENV === 'development') {
   console.log(`codegen.ts in NODE_ENV:${process.env.NODE_ENV}`);
 }
@@ -18,35 +28,32 @@ const config: CodegenConfig = {
   ignoreNoDocuments: true,
 
   documents: [
-    'src/app/graphql/queries/*.gql',
+    'src/app/lib/graphql/typeDefs.gql',
+    'src/app/lib/graphql/fragments/*.gql',
+    'src/app/lib/graphql/queries/*.gql',
     'src/app/lib/graphql/mutations/*.gql',
-    'src/pages/**/*.tsx',
-    'src/hooks/*.ts',
-    'src/utils/*.ts',
-    '!src/types/**/*.ts',
-    '!src/types/**/*.tsx',
   ],
 
   schema: [
     {
-      [`${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/v2/cl2jezykc0li901yx24p50f8f/master`]:
-        {
-          headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
-          },
+      [`${process.env.HYGRAPH_API_BASE_URL}/v2/cl2jezykc0li901yx24p50f8f/master`]: {
+        headers: {
+          Authorization: `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}`,
         },
+      },
     },
   ],
 
   generates: {
-    './src/app/lib/graphql/': {
-      preset: 'client',
+    './src/app/lib/graphql/gen/': {
+      preset: 'client-preset',
       presetConfig: {
+        documentMode: '@graphql-typed-document-node/core',
         optimizeDocumentNode: true,
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
-        // fetcher: 'graphql-request',
+        fetcher: 'graphql-request',
         useIndexSignature: true,
         exposeQueryKeys: true,
         exposeMutationKeys: true,
@@ -56,6 +63,7 @@ const config: CodegenConfig = {
         useImplementingTypes: true,
         addUnderscoreToArgsType: true,
         operationResultSuffix: 'Result',
+        emitLegacyCommonJSImports: false,
       },
     },
   },

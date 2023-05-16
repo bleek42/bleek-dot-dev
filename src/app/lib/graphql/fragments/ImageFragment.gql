@@ -1,8 +1,9 @@
 fragment Image on Asset {
 	id
+	url
+	handle
 	fileName
 	mimeType
-	url
 	width
 	height
 	size

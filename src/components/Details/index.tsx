@@ -1,9 +1,9 @@
 'use client';
 
-import { Details as Wrapper, Summary } from './Details';
-import { BlkTxt } from '@global/Text';
+import { Details as Wrapper, Summary } from './Details.ts';
+import { MdTxt } from '@/components/global';
 
-type DetailsProps = JSX.IntrinsicElements['details'] & {
+type DetailsProps = JSX.IntrinsicElements['details' & 'summary' & 'img'] & {
 	id: number | string;
 	name: string;
 	content: string | Array<string>;
@@ -16,7 +16,7 @@ export default function Details({ id, name, content, icon }: DetailsProps) {
 	return (
 		<Wrapper>
 			<Summary>
-				<BlkTxt>Details Component: Summary BlkTxt</BlkTxt>
+				<MdTxt>Details Component: Summary BlkTxt</MdTxt>
 			</Summary>
 		</Wrapper>
 	);

@@ -7,6 +7,9 @@
 		"name": "Brandon Leek",
 		"url": "https://github.com/bleek42/bleek-dot-dev"
 	},
+	"engines": {
+		"node": "^18.x.x"
+	},
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",

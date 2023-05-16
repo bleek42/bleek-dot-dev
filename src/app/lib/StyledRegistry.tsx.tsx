@@ -1,17 +1,20 @@
 'use client';
 
+import { type BaseComponent } from '@/interfaces/BaseComponent';
+
 import React, { useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager, ThemeProvider } from 'styled-components';
 
-import theme, { GlobalStyle } from '@/global/theme';
-import { ChildrenProps } from '@/props/children.props';
+import { Theme, GlobalStyle } from '@/components/global';
 
-export default function StyledRegistry({ children }: ChildrenProps) {
+type StyledChildrenProps = Pick<BaseComponent, 'children'>;
+
+export default function StyledRegistry({ children }: StyledChildrenProps) {
 	// Only create stylesheet once with lazy initial state
 	// x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
 	const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
-
+	console.log(styledComponentsStyleSheet);
 	useServerInsertedHTML(() => {
 		const styles = styledComponentsStyleSheet.getStyleElement();
 		styledComponentsStyleSheet.instance.getStyleTags();
@@ -22,7 +25,7 @@ export default function StyledRegistry({ children }: ChildrenProps) {
 
 	return (
 		<StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-			<ThemeProvider theme={theme}>
+			<ThemeProvider theme={Theme}>
 				<GlobalStyle />
 				{children}
 			</ThemeProvider>

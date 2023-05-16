@@ -1,16 +1,8 @@
 query AllProjects {
   projects {
-    title
-    description
-    activeTypedDocumentNode
-    version
-    createdAt
-    updatedAt
+	...ProjectFields
     screenShots {
-      fileName
-      id
-      mimeType
-      url
+      ...Image
     }
   }
 }`

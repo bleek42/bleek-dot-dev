@@ -1,91 +1,89 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "target": "ESNext",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext",
-      "ESNext.AsyncIterable"
-    ],
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "noEmit": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
-    "allowImportingTsExtensions": true,
-    "allowUmdGlobalAccess": true,
-    "allowJs": true,
-    "skipLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/src/*": [
-        "src/*"
-      ],
-      "@/components/*": [
-        "src/components/*"
-      ],
-      "@/global/*": [
-        "src/components/global/*"
-      ],
-      "@/app/*": [
-        "src/app/*"
-      ],
-      "@/layouts": [
-        "src/app/layouts/*"
-      ],
-      "@/interfaces/*": [
-        "src/types/interfaces/*"
-      ],
-      "@/props/*": [
-        "src/types/props/*"
-      ],
-      "@/hooks/*": [
-        "src/hooks/*"
-      ],
-      "@/utils/*": [
-        "src/utils/*"
-      ],
-      "@/images/*": [
-        "/public/images/*"
-      ],
-      "@/fonts/*": [
-        "/public/fonts/*"
-      ]
-    },
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ]
-  },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.tsx",
-    ".graphqlrc.ts",
-    "codegen.ts",
-    "next-env.d.ts",
-    "node-env.d.ts",
-    "gql-scalars.d.ts",
-    "gql-scalars.d.ts",
-    "styled.d.ts",
-    "node-env.d.ts",
-    "next.config.js",
-    "public/**/*",
-    "old/_app.tsx",
-    "old/projects.tsx",
-    "old/home.tsx",
-    "old/contact.tsx",
-    "old/about.tsx",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules/",
-    "build/",
-    ".next/"
-  ]
+	"compilerOptions": {
+		"strict": true,
+		"target": "ES2022",
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext",
+			"ESNext.AsyncIterable"
+		],
+		"module": "Node16",
+		"moduleResolution": "node16",
+		"esModuleInterop": true,
+		"noEmit": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"incremental": true,
+		"allowImportingTsExtensions": true,
+		"allowUmdGlobalAccess": true,
+		"allowJs": true,
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/components/*": [
+				"src/components/*"
+			],
+			"@/app/*": [
+				"src/app/*"
+			],
+			"@/layouts": [
+				"src/app/layouts/*"
+			],
+			"@/graphql/*": [
+				"src/app/lib/graphql/*"
+			],
+			"@/interfaces/*": [
+				"src/types/interfaces/*"
+			],
+			"@/props/*": [
+				"src/types/props/*"
+			],
+			"@/hooks/*": [
+				"src/hooks/*"
+			],
+			"@/utils/*": [
+				"src/utils/*"
+			],
+			"@/images/*": [
+				"public/images/*"
+			],
+			"@/fonts/*": [
+				"public/fonts/*"
+			]
+		},
+		"plugins": [
+			{
+				"name": "next"
+			}
+		]
+	},
+	"include": [
+		"src/**/*.ts",
+		"src/**/*.tsx",
+		".graphqlrc.ts",
+		"codegen.ts",
+		"next-env.d.ts",
+		"node-env.d.ts",
+		"gql-scalars.d.ts",
+		"gql-scalars.d.ts",
+		"styled.d.ts",
+		"node-env.d.ts",
+		"next.config.js",
+		"public/**/*",
+		"old/_app.tsx",
+		"old/projects.tsx",
+		"old/home.tsx",
+		"old/contact.tsx",
+		"old/about.tsx",
+		".next/types/**/*.ts",
+		"old/preview.ts"
+	],
+	"exclude": [
+		"node_modules/",
+		"build/",
+		".next/"
+	]
 }

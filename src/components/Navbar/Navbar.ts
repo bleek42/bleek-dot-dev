@@ -3,7 +3,7 @@ import type { NextLinkProps, ToggleProps } from '@/props/navbar.props';
 import styled, { DefaultTheme, ThemedStyledProps } from 'styled-components';
 import Link from 'next/link';
 
-export const Nav = styled.nav`
+export const NavBar = styled.nav`
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;

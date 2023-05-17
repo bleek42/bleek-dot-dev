@@ -1,3 +1,5 @@
+'use client';
+
 import type { QueryClientProviderProps } from '@tanstack/react-query';
 import {
 	type QueryClientConfig,
@@ -9,7 +11,7 @@ import { useRef } from 'react';
 import request from 'graphql-request';
 import { GraphQLError } from 'graphql';
 
-export default function QueryClientRegistry({ children }: QueryClientProviderProps) {
+export default function ReactQueryProvider({ children }: QueryClientProviderProps) {
 	const ref = useRef<QueryClient>(new QueryClient());
 	const config: QueryClientConfig = {};
 

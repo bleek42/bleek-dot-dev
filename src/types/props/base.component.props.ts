@@ -5,9 +5,9 @@ import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimens
 
 export type BaseComponentProps<JSXKey extends keyof JSX.IntrinsicElements> =
   StyledComponentProps<
-    AnyStyledComponent | JSXKey,
+    JSXKey | AnyStyledComponent,
     DefaultTheme,
-    BaseComponent<unknown>,
+    BaseComponent<string | number | symbol>,
     string | number | symbol
   >;
 

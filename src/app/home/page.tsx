@@ -1,39 +1,32 @@
-// ? types
-import type { NextPage } from 'next';
-
-// ? NPM deps, libs, pkgs, etc...
-import { useId, Fragment } from 'react';
-
-
 // ? custom styled components
 import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
 import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
 export default function Home() {
-	const pageId = useId();
-
 	return (
-		<Fragment>
+		<>
 			<Header
-				id={`home-header-${pageId}`}
+				id={`home-page-footer_${1}`}
 				name="home"
-				title="Home"
-				content="bleekDotDev"
-				icon={null}
-			/>
+				title="https://bleekDotDev.com/home"
+			>
+				<Navbar />
+			</Header>
 			<Main>
 				<Section
-					id="home-sect-1"
+					id={`home-page-section_${1}`}
 					name="home"
+					title="section 1 in /home"
 					content="Welcome to bleek.dev! My name is Brandon Leek and I'm a full-stack
 			web developer & tech enthusiast. This site is built with React.js in conjunction with other modern solutions including (but never limited to!) custom state management hooks, React Router, React Icons, Syntactically Awesome Style Sheets (SASS/SCSS), and test suites written with Jest & Enzyme."
-					icon={null}
+					icon={' \ueaaa '}
 				/>
 			</Main>
-			<Footer id={`home-footer-${pageId}`} name="home" icon={null} />
-		</Fragment>
+			<Footer id={`home-page-footer_${1}`} name="home" icon={' \ue714 '} />
+		</>
 	);
 }
 

@@ -1,84 +1,110 @@
 import React, { Fragment, useId } from 'react';
 
 import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
+import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
 // import { useRequest } from '../hooks/useRequest';
-import { Main } from '../../components/global/Main';
 
 export default function Contact() {
 	// const { profile, loading, error, msg } = useRequest();
-	const pageId = useId();
-
-	const linkedInIcon = ' \uf08c ';
-	const commentIcon = ' \udb80\udd7b ';
-	const githubIcon = ' \uf092 ';
+	// const pageId = useId();
 
 	return (
-		<Fragment>
-			<Header id={`contact-header-${pageId}`} name="contact" title="Contact" />
+		<>
+			<Header id={`contactpage-footer_${3}`} name="contact" title="Contact">
+				<Navbar />
+			</Header>
 			<Main>
-				{/* {loading && (
-					<div className="loading">
-						<progress>loading...</progress>
-					</div>
-				)}
-				{!loading && !error && profile && <List {...profile} />}
-				{error && (
-					<div className="error">
-						<p>
-							Error fetching profile data:{' '}
-							{msg?.toString() || 'an unknown error occurred...'}
-						</p>
-					</div>
-				)} */}
+				<Section>
+					<h4>
+						Contact <i>`${' \udb80\udd7b '}`</i>{' '}
+					</h4>
+					<address>
+						<ul>
+							<li>
+								<a href="mailto:brandonleek42@bleek.dev">Email</a>
+							</li>
+							<li>
+								<a>Discord</a>
+							</li>
+							<li>
+								<a>Slack</a>
+							</li>
+						</ul>
+					</address>
+				</Section>
+				<Section>
+					<h4>
+						LinkedIn <i>`${' \uf08c '}`</i>{' '}
+					</h4>
+					<a
+						id="my-linkedin"
+						href="https://www.linkedin.com/in/brandon-leek-4031891a4/"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Click here to view my LinkedIn!
+					</a>
+				</Section>
+				<Section className="github">
+					<h4>
+						Github <i>`${'\uf092'}`</i>{' '}
+					</h4>
+					<a
+						id="my-github"
+						href="https://github.com/bleek42"
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						Click here to view my GitHub!
+					</a>
+				</Section>
 			</Main>
-			<Footer id={`contact-footer-${pageId}`} name="Contact" icon={null} />
-		</Fragment>
+			<Footer id={`contactpage-footer_${3}`} name="Contact" icon={null} />
+		</>
 	);
 }
 
-{
-	/* <section className="linkedin">
-				<h4>{<GrLinkedin />} LinkedIn</h4>
-				<a
-					id="my-linkedin"
-					href="https://www.linkedin.com/in/brandon-leek-4031891a4/"
-					target="_blank"
-					rel="noopener noreferrer">
-					Click here to view my LinkedIn!
-				</a>
-			</section>
-			<section className="github">
-				<h4>{<FiGithub />} Github</h4>
-				<a
-					id="my-github"
-					href="https://github.com/bleek42"
-					target="_blank"
-					rel="noopener noreferrer">
-					Click here to view my GitHub!
-				</a>
-				{loading && <p>Loading profile data...</p>}
-				{profile && (
-					<ul>
-						<li>Total Repos: {profile.public_repos}</li>
-						<li>Total Followers: {profile.followers}</li>
-						<li>Total Followiing: {profile.following}</li>
-					</ul>
-				)}
-				{error && <p>Error fetching profile data: {msg.toString()}</p>}
-			</section> */
-}
+// {
+// }
+// 					{/* {loading && <p>Loading profile data...</p>}
+// 					{profile && (
+// 						<ul>
+// 							<li>Total Repos: {profile.public_repos}</li>
+// 							<li>Total Followers: {profile.followers}</li>
+// 							<li>Total Followiing: {profile.following}</li>
+// 						</ul>
+// 					)}
+// 					{error && <p>Error fetching profile data: {msg.toString()}</p>} */}
 
-{
-	/* <header>
-				<h4>{<VscCommentDiscussion />} Contact</h4>
-				<p>
-					Whether you're about to make me an offer I can't refuse, thinking
-					about becoming a developer, or somewhere in between: I'd love to
-					connect if you're taking the time to read this! Please reach out on
-					LinkedIn or GitHub.
-				</p>
-			</header> */
-}
+// {
+// 	/* <header>
+// 				<h4>{<VscCommentDiscussion />} Contact</h4>
+// 				<p>
+// 					Whether you're about to make me an offer I can't refuse, thinking
+// 					about becoming a developer, or somewhere in between: I'd love to
+// 					connect if you're taking the time to read this! Please reach out on
+// 					LinkedIn or GitHub.
+// 				</p>
+// 			</header> */
+// }
+
+// {
+// 	/* {loading && (
+// 					<div className="loading">
+// 						<progress>loading...</progress>
+// 					</div>
+// 				)}
+// 				{!loading && !error && profile && <List {...profile} />}
+// 				{error && (
+// 					<div className="error">
+// 						<p>
+// 							Error fetching profile data:{' '}
+// 							{msg?.toString() || 'an unknown error occurred...'}
+// 						</p>
+// 					</div>
+// 				)} */
+// }

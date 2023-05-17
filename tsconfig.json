@@ -26,11 +26,14 @@
 			"@/components/*": [
 				"src/components/*"
 			],
-			"@/app/*": [
-				"src/app/*"
-			],
+			// "@/app/*": [
+			// 	"src/app/*"
+			// ],
 			"@/layouts": [
 				"src/app/layouts/*"
+			],
+			"@/lib/*": [
+				"src/app/lib/*"
 			],
 			"@/graphql/*": [
 				"src/app/lib/graphql/*"

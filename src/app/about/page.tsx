@@ -1,7 +1,8 @@
 import React, { useState, useEffect, Fragment, useId } from 'react';
 
 import Header from '@/components/Header';
-import { Main } from '@/global/Main';
+import Navbar from '@/components/Navbar';
+import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
@@ -12,16 +13,29 @@ export default function About() {
 	return (
 		<>
 			<Header
-				id={`about-header-${3}`}
-				name="about"
+				id={`about-page-header_${1}`}
+				name="about-page-header"
 				title="About"
 				content={['content 1...', 'content 2...', 'content 3...']}
 				icon={'\ue456'}
-			/>
+			>
+				<Navbar />
+			</Header>
 			<Main>
-				<Section id="about-sect-1" name="about_section" content="" icon={null} />
+				<Section
+					id={`about-page-section_${1}`}
+					name={`about-page-section_${1}`}
+					content="This is About page, section 1"
+					icon={null}
+				/>
+				<Section
+					id={`about-page-section_${2}`}
+					name={`about-page-section-${2}`}
+					content="This is About page, section 2"
+					icon={null}
+				/>
 			</Main>
-			<Footer id={`about-footer-${3}`} name="About" icon={null} />
+			<Footer id={`about-page-footer_${1}`} name="About" icon={null} />
 		</>
 	);
 }

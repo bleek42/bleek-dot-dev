@@ -1,25 +1,45 @@
 'use client';
 
-import type { QueryClientProviderProps } from '@tanstack/react-query';
+import { useRef } from 'react';
+import request, { RequestExtendedOptions, Variables } from 'graphql-request';
+import { GraphQLError } from 'graphql';
+import { type QueryClientProviderProps } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import {
 	type QueryClientConfig,
 	QueryClient,
 	QueryClientProvider,
 } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { useRef } from 'react';
-import request from 'graphql-request';
-import { GraphQLError } from 'graphql';
+import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 export default function ReactQueryProvider({ children }: QueryClientProviderProps) {
-	const ref = useRef<QueryClient>(new QueryClient());
-	const config: QueryClientConfig = {};
+	const ref = useRef<QueryClient>();
+	const queryClient: QueryClient = new QueryClient();
+	let vars: Variables;
+	let document: TypedDocumentNode<
+		Record<string | symbol, RequestExtendedOptions>,
+		Variables
+	>;
+	// const config: QueryClientConfig = {
+	// 	defaultOptions: {
+	// 		queries: {
+	// 			queryKey: ['projects'],
 
+	// 		},
+	// 	},
+	// };
 	// if (!ref.current) ref.current = new QueryClient(config);
-	ref.current.setDefaultOptions({
+
+	ref?.current?.setDefaultOptions({
 		queries: {
 			queryKey: ['projects'],
-			initialData: () => ref.current.prefetchQuery(['projects']),
+			queryFn: () =>
+				request<typeof document, typeof vars>({
+					url: process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL as string,
+					document,
+				}),
+			initialData: () => ref?.current?.prefetchQuery(['projects']),
 			cacheTime: 100000,
 			staleTime: 300000,
 		},

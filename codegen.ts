@@ -9,12 +9,14 @@ dotenv.config({
 });
 
 console.log('...GENERATING GRAPHQL TYPES....');
-console.table({
-  [process.env.NODE_ENV]: {
-    PORT: process.env.PORT,
-    HOST: process.env.HOST,
-    HYGRAPH_AUTH_TOKEN: process.env.HYGRAPH_AUTH_TOKEN,
-    HYGRAPH_API_BASE_URL: process.env.HYGRAPH_API_BASE_URL,
+console.log({
+  'NODE_ENV': {
+    [process.env.NODE_ENV]: {
+      PORT: process.env.PORT,
+      HOST: process.env.HOST,
+      HYGRAPH_AUTH_TOKEN: process.env.HYGRAPH_API_AUTH_TOKEN,
+      HYGRAPH_API_BASE_URL: process.env.HYGRAPH_API_BASE_URL,
+    },
   },
 });
 
@@ -28,7 +30,6 @@ const config: CodegenConfig = {
   ignoreNoDocuments: true,
 
   documents: [
-    'src/app/lib/graphql/typeDefs.gql',
     'src/app/lib/graphql/fragments/*.gql',
     'src/app/lib/graphql/queries/*.gql',
     'src/app/lib/graphql/mutations/*.gql',
@@ -36,7 +37,7 @@ const config: CodegenConfig = {
 
   schema: [
     {
-      [`${process.env.HYGRAPH_API_BASE_URL}/v2/cl2jezykc0li901yx24p50f8f/master`]: {
+      [`${process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL}`]: {
         headers: {
           Authorization: `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}`,
         },
@@ -48,22 +49,19 @@ const config: CodegenConfig = {
     './src/app/lib/graphql/gen/': {
       preset: 'client-preset',
       presetConfig: {
-        documentMode: '@graphql-typed-document-node/core',
         optimizeDocumentNode: true,
         fragmentMasking: { unmaskFunctionName: 'getFragment' },
       },
       config: {
-        fetcher: 'graphql-request',
         useIndexSignature: true,
         exposeQueryKeys: true,
         exposeMutationKeys: true,
         useTypeImports: true,
         enumsAsTypes: true,
         futureProofTypes: true,
-        useImplementingTypes: true,
         addUnderscoreToArgsType: true,
         operationResultSuffix: 'Result',
-        emitLegacyCommonJSImports: false,
+        defaultScalarType: 'string',
       },
     },
   },

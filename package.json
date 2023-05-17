@@ -8,8 +8,8 @@
 		"url": "https://github.com/bleek42/bleek-dot-dev"
 	},
 	"engines": {
-		"node": "^18.16.0",
-		"pnpm": "^8.5.1",
+		"node": ">=18",
+		"pnpm": ">=8",
 		"vscode": "^1.22.0"
 	},
 	"scripts": {
@@ -20,7 +20,7 @@
 		"format": "prettier --write",
 		"gen": "graphql-codegen --config codegen.ts",
 		"gen:watch": "graphql-codegen --config --watch codegen.ts",
-		"gen:rm": "rm -rf src/pages/api/graphql/*.ts"
+		"gen:rm": "rm -rf src/app/lib/graphql/gen/*.ts"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "4.29.5",

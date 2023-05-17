@@ -24,23 +24,22 @@ dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
 
 const baseConfig: GQLConfig = {
   schema: `${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
-  documents: [
-    'src/**/*.gql',
-    'src/**/*.graphql',
-    'src/pages/api/*.ts',
-    'src/pages/*.tsx',
+  documents: ['src/**/*.gql', 'src/**/*.graphql'],
+  exclude: [
+    'src/app/**/*.ts',
+    'src/types/**/*.ts',
+    'src/components/**/*.ts',
+    'src/components/**/*.tsx',
   ],
-  include: ['src/components/**/*.ts', 'src/components/**/*.tsx'],
-  exclude: ['src/types/gen/*.ts', 'src/types/graphql/gen/*.ts'],
 
   extensions: {
     codegen: {
       generates: {
-        './src/': {
+        './src/app/lib/graphql/gen/': {
           plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
           preset: 'import-modules',
           presetConfig: {
-            baseTypesPath: 'src/types/graphql/types.ts',
+            baseTypesPath: 'src/app/lib/graphql/gen/types.ts',
             filename: 'hygraph.types.ts',
           },
         },

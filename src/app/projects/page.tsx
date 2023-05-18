@@ -1,38 +1,28 @@
-'use client';
+// import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
+// import type { Project, ImageAsset, ProjectQuery } from '@/interfaces/Project';
 
-import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import type { Project, ImageAsset, ProjectQuery } from '@/interfaces/Project';
-
-import { Fragment, useId } from 'react';
-import {
-	HydrateProps,
-	QueryClient,
-	dehydrate,
-	useQuery,
-	useQueryClient,
-} from '@tanstack/react-query';
+// import { Fragment, useId } from 'react';
 
 import { Main } from '@/components/global/Main';
-import Meta from '@/components/global/Meta';
 import Header from '@/components/Header';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
 import allProjectsQuery from '@/hooks/useProjectsQuery';
-import { AllProjectsDocument } from '@/app/lib/graphql/graphql';
+// import { AllProjectsDocument } from '@/app/lib/graphql/graphql';
 
 // import { GetStaticProps, InferGetStaticPropsType } from 'next';
 // import {  } from '';
 
-export default function Projects() {
-	const pageId = useId();
+export default function Page() {
+	// const pageId = useId();
 	// const { data, isLoading, isError } = useQuery({
 	// 	queryKey: ['projects'],
 	// 	queryFn: allProjectsQuery,
 	// 	initialData: { projects },
 	// });
 	const projects = allProjectsQuery();
-	// console.log(data);
+	console.log(projects);
 
 	return (
 		<>
@@ -56,6 +46,13 @@ export default function Projects() {
 					))}
 				</Main>
 			)}
+			{!projects && (
+				<Section
+					id="err-internal-projects-500"
+					content="500: Internal Server Error"
+				/>
+			)}
+			<Footer />
 		</>
 	);
 }

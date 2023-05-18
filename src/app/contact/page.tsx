@@ -8,7 +8,7 @@ import Footer from '@/components/Footer';
 
 // import { useRequest } from '../hooks/useRequest';
 
-export default function Contact() {
+export default function Page() {
 	// const { profile, loading, error, msg } = useRequest();
 	// const pageId = useId();
 

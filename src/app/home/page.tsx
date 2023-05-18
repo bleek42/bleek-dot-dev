@@ -5,7 +5,7 @@ import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
-export default function Home() {
+export default function Page() {
 	return (
 		<>
 			<Header

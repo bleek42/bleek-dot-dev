@@ -6,7 +6,7 @@ import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
-export default function About() {
+export default function Page() {
 	// const pageId = useId();
 	// console.log('about page:', pageId);
 

@@ -1,12 +1,15 @@
 scalar Date
 scalar DateTime
-scalar JSON
-scalar URL
+scalar Hex
+scalar Json
+scalar Long
+scalar RGBAHue
+scalar RGBATransparency
+scalar RichTextAST
 
 enum Locale {
 	en_US
-	en_CA
-	en_UK
+	es_MX
 }
 
 enum Stage {
@@ -19,36 +22,36 @@ interface Node {
 	stage: Stage!
 }
 
-type Asset implements Node {
-	id: ID!
-	url: URL!
-	fileName: String!
-	handle: String!
-	mimeType: String!
-	width: Float!
-	height: Float!
-	size: Float
-	createdAt: DateTime!
-	updatedAt: DateTime
-	locale: Locale!
-	stage: Stage!
-}
+# type Asset implements Node {
+# 	id: ID!
+# 	url: URL!
+# 	fileName: String!
+# 	handle: String!
+# 	mimeType: String!
+# 	width: Float!
+# 	height: Float!
+# 	size: Float
+# 	createdAt: DateTime!
+# 	updatedAt: DateTime
+# 	locale: Locale!
+# 	stage: Stage!
+# }
 
-type Project implements Node {
-	id: ID!
-	title: String!
-	description: [String]
-	active: Boolean!
-	link: URL!
-	techStack: JSON
-	sourceCode: [URL]
-	version: Float!
-	screenShots: [Asset]!
-	createdAt: DateTime!
-	updatedAt: DateTime
-	locale: Locale!
-	stage: Stage!
-}
+# type Project implements Node {
+# 	id: ID!
+# 	title: String!
+# 	description: [String]
+# 	active: Boolean!
+# 	link: URL!
+# 	techStack: JSON
+# 	sourceCode: [URL]
+# 	version: Float!
+# 	screenShots: [Asset]!
+# 	createdAt: DateTime!
+# 	updatedAt: DateTime
+# 	locale: Locale!
+# 	stage: Stage!
+#  }
 
 # input ProjectWhereInput {
 

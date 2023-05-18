@@ -1,70 +1,97 @@
-import type { CodegenConfig } from '@graphql-codegen/cli';
-import type { IGraphQLConfig as GQLConfig, SchemaPointer } from 'graphql-config';
+// import { type CodegenConfig } from '@graphql-codegen/cli';
+// import type { IGraphQLConfig as GQLConfig, SchemaPointer } from 'graphql-config';
 
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 
+import { GraphQLString } from 'graphql';
 import {
-  GraphQLJSON,
-  GraphQLURL,
-  GraphQLLocale,
+  typeDefs,
+  resolvers,
   GraphQLDate,
   GraphQLDateTime,
-  resolvers,
+  GraphQLHexadecimal,
+  GraphQLJSON,
+  GraphQLLong,
+  GraphQLRGBA,
 } from 'graphql-scalars';
 
-dotenv.config({ path: path.join(__dirname, '.env.local'), encoding: 'UTF-8' });
+dotenv.config({
+  path: path.join(__dirname, '.env.development.local'),
+  encoding: 'UTF-8',
+});
 
-// console.table({
-//   NODE_ENV: process.env.NODE_ENV,
-//   PORT: process.env.PORT,
-//   NEXT_PUBLIC_HYGRAPHCDN_BASE_URL: process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL,
-//   HYGRAPH_READONLY_API_KEY: process.env.HYGRAPH_READONLY_API_KEY,
-// });
+console.log('...GENERATING GRAPHQL TYPES....');
+console.log({
+  'NODE_ENV': {
+    [process.env.NODE_ENV]: {
+      PORT: process.env.PORT,
+      HOST: process.env.HOST,
+      HYGRAPH_AUTH_TOKEN: process.env.HYGRAPH_API_AUTH_TOKEN,
+      HYGRAPH_API_BASE_URL: process.env.HYGRAPH_API_BASE_URL,
+    },
+  },
+});
 
-const baseConfig: GQLConfig = {
-  schema: `${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
-  documents: ['src/**/*.gql', 'src/**/*.graphql'],
-  exclude: [
-    'src/app/**/*.ts',
-    'src/types/**/*.ts',
-    'src/components/**/*.ts',
-    'src/components/**/*.tsx',
+if (process.env.NODE_ENV === 'development') {
+  console.log(`codegen.ts in NODE_ENV:${process.env.NODE_ENV}`);
+}
+console.log('typeDefs', typeDefs);
+console.log(resolvers);
+/*
+??? schema pointer bs WithList type...?
+ {
+  [`${process.env.HYGRAPH_API_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`]: {
+      headers: {
+        'Authorization': `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}`
+      }
+    }
+}
+*/
+
+let schema;
+
+const baseConfig = {
+  schema: `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL}`,
+  documents: [
+    'src/app/lib/graphql/typeDefs.gql',
+    'src/app/lib/graphql/fragments/*.gql',
+    'src/app/lib/graphql/queries/*.gql',
+    'src/app/lib/graphql/mutations/*.gql',
   ],
+  exclude: ['src/types/**/*.ts', 'src/components/**/*.ts', 'src/components/**/*.tsx'],
 
   extensions: {
     codegen: {
       generates: {
-        './src/app/lib/graphql/gen/': {
-          plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
-          preset: 'import-modules',
-          presetConfig: {
-            baseTypesPath: 'src/app/lib/graphql/gen/types.ts',
-            filename: 'hygraph.types.ts',
-          },
+        './src/app/lib/graphql/gen/hygraph-docnode.types.ts': {
+          plugins: ['typescript', 'typed-document-node'],
         },
-        'config': {
-          fetcher: 'graphql-request',
-          futureProofUnions: true,
-          futureProofEnums: true,
 
-          scalars: {
-            ID: 'graphql#GraphQLID',
-            String: 'graphql#GraphQLString',
-            Boolean: 'graphql#GraphQLBoolean',
-            Int: 'graphql#GraphQLInt',
-            Float: 'graphql#GraphQLFloat',
-            Date: 'graphql#GraphQLString',
-            DateTime: 'graphql#GraphQLString',
-            Hex: 'graphql#GraphQLString',
-            Json: 'graphql#GraphQLString',
-            Long: 'graphql#GraphQLNumber',
-            RGBAHue: 'graphql#GraphQLString',
-            RGBATransparency: 'graphql#GraphQLString',
-            RichTextAST: 'graphql#GraphQLString',
+        './src/app/lib/graphql/gen/hygraph-client.ts': {
+          plugins: ['typescript-operations', 'typescript-graphql-request'],
+          preset: 'import-types',
+          presetConfig: {
+            filename: 'hygraph-docnode.types.ts',
           },
-          strictScalars: false,
         },
+      },
+      config: {
+        fetcher: 'graphql-request',
+        futureProofUnions: true,
+        futureProofEnums: true,
+
+        scalars: {
+          Date: 'graphql-scalars#GraphQLDate',
+          DateTime: 'graphql-scalars#GraphQLDateTime',
+          Hex: 'graphql-scalars#GraphQLHexadecimal',
+          Json: 'graphql-scalars#GraphQLJSON',
+          Long: 'graphql-scalars#GraphQLLong',
+          RGBAHue: 'graphql-scalars#GraphQLRGBA',
+          RGBATransparency: 'graphql-scalars#GraphQLRGBA',
+          RichTextAST: 'graphql-scalars#GraphQLString',
+        },
+        strictScalars: true,
       },
     },
   },

@@ -2,12 +2,8 @@
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -16,18 +12,18 @@ export type Scalars = {
   Int: number;
   Float: number;
   /** A date string, such as 2007-12-03 (YYYY-MM-DD), compliant with ISO 8601 standard for representation of dates using the Gregorian calendar. */
-  Date: string;
+  Date: "Date";
   /** A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the date-timeformat outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representationof dates and times using the Gregorian calendar. */
-  DateTime: string;
-  Hex: string;
+  DateTime: "DateTime";
+  Hex: "Hexadecimal";
   /** Raw JSON value */
-  Json: string;
+  Json: "JSON";
   /** The Long scalar type represents non-fractional signed whole numeric values. Long can represent values between -(2^63) and 2^63 - 1. */
-  Long: string;
-  RGBAHue: string;
-  RGBATransparency: string;
+  Long: "Long";
+  RGBAHue: "RGBA";
+  RGBATransparency: "RGBA";
   /** Slate-compatible RichText AST */
-  RichTextAST: string;
+  RichTextAST: "String";
 };
 
 export type Aggregate = {
@@ -80,16 +76,19 @@ export type Asset = Node & {
   width?: Maybe<Scalars['Float']>;
 };
 
+
 /** Asset system model */
 export type AssetCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
+
 
 /** Asset system model */
 export type AssetCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Asset system model */
 export type AssetDocumentInStagesArgs = {
@@ -98,6 +97,7 @@ export type AssetDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
+
 /** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int'];
@@ -105,22 +105,26 @@ export type AssetHistoryArgs = {
   stageOverride?: InputMaybe<Stage>;
 };
 
+
 /** Asset system model */
 export type AssetLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean'];
   locales?: Array<Locale>;
 };
 
+
 /** Asset system model */
 export type AssetPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
+
 
 /** Asset system model */
 export type AssetPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Asset system model */
 export type AssetScheduledInArgs = {
@@ -133,6 +137,7 @@ export type AssetScheduledInArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
+
 
 /** Asset system model */
 export type AssetScreenShotsArgs = {
@@ -147,16 +152,19 @@ export type AssetScreenShotsArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
+
 /** Asset system model */
 export type AssetUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
+
 
 /** Asset system model */
 export type AssetUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Asset system model */
 export type AssetUrlArgs = {
@@ -327,27 +335,28 @@ export type AssetManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export type AssetOrderByInput =
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'fileName_ASC'
-  | 'fileName_DESC'
-  | 'handle_ASC'
-  | 'handle_DESC'
-  | 'height_ASC'
-  | 'height_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'mimeType_ASC'
-  | 'mimeType_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'size_ASC'
-  | 'size_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'width_ASC'
-  | 'width_DESC';
+export enum AssetOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  FileNameAsc = 'fileName_ASC',
+  FileNameDesc = 'fileName_DESC',
+  HandleAsc = 'handle_ASC',
+  HandleDesc = 'handle_DESC',
+  HeightAsc = 'height_ASC',
+  HeightDesc = 'height_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  MimeTypeAsc = 'mimeType_ASC',
+  MimeTypeDesc = 'mimeType_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  SizeAsc = 'size_ASC',
+  SizeDesc = 'size_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC'
+}
 
 /** Transformations for Assets */
 export type AssetTransformationInput = {
@@ -770,6 +779,7 @@ export type DemoComponentContentRichText = {
   text: Scalars['String'];
 };
 
+
 export type DemoComponentContentRichTextReferencesArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -891,15 +901,16 @@ export type DemoComponentManyWhereInput = {
   title_starts_with?: InputMaybe<Scalars['String']>;
 };
 
-export type DemoComponentOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'slug_ASC'
-  | 'slug_DESC'
-  | 'subtitle_ASC'
-  | 'subtitle_DESC'
-  | 'title_ASC'
-  | 'title_DESC';
+export enum DemoComponentOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SubtitleAsc = 'subtitle_ASC',
+  SubtitleDesc = 'subtitle_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
 
 export type DemoComponentUpdateInput = {
   content?: InputMaybe<Scalars['RichTextAST']>;
@@ -1054,23 +1065,24 @@ export type DemoComponentWhereUniqueInput = {
   slug?: InputMaybe<Scalars['String']>;
 };
 
-export type DocumentFileTypes =
-  | 'doc'
-  | 'docx'
-  | 'html'
-  | 'jpg'
-  | 'odp'
-  | 'ods'
-  | 'odt'
-  | 'pdf'
-  | 'png'
-  | 'ppt'
-  | 'pptx'
-  | 'svg'
-  | 'txt'
-  | 'webp'
-  | 'xls'
-  | 'xlsx';
+export enum DocumentFileTypes {
+  Doc = 'doc',
+  Docx = 'docx',
+  Html = 'html',
+  Jpg = 'jpg',
+  Odp = 'odp',
+  Ods = 'ods',
+  Odt = 'odt',
+  Pdf = 'pdf',
+  Png = 'png',
+  Ppt = 'ppt',
+  Pptx = 'pptx',
+  Svg = 'svg',
+  Txt = 'txt',
+  Webp = 'webp',
+  Xls = 'xls',
+  Xlsx = 'xlsx'
+}
 
 export type DocumentOutputInput = {
   /**
@@ -1117,15 +1129,16 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
-export type ImageFit =
+export enum ImageFit {
   /** Resizes the image to fit within the specified parameters without distorting, cropping, or changing the aspect ratio. */
-  | 'clip'
+  Clip = 'clip',
   /** Resizes the image to fit the specified parameters exactly by removing any parts of the image that don't fit within the boundaries. */
-  | 'crop'
+  Crop = 'crop',
   /** Resizes the image to fit within the parameters, but as opposed to 'fit:clip' will not scale the image if the image is smaller than the output size. */
-  | 'max'
+  Max = 'max',
   /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
-  | 'scale';
+  Scale = 'scale'
+}
 
 export type ImageResizeInput = {
   /** The default value for the fit parameter is fit:clip. */
@@ -1152,6 +1165,7 @@ export type LandingPageComponent = {
   /** System stage field */
   stage: Stage;
 };
+
 
 /** Component for a landing or welcome page that displays a dynamic welcome message, user prompts, etc. */
 export type LandingPageComponentMessageArgs = {
@@ -1238,7 +1252,10 @@ export type LandingPageComponentManyWhereInput = {
   message?: InputMaybe<LandingPageComponentWhereInput>;
 };
 
-export type LandingPageComponentOrderByInput = 'id_ASC' | 'id_DESC';
+export enum LandingPageComponentOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
 
 export type LandingPageComponentParent = LandingPageComponent;
 
@@ -1274,13 +1291,9 @@ export type LandingPageComponentParentUpdateManyInlineInput = {
   /** Delete multiple LandingPageComponentParent documents */
   delete?: InputMaybe<Array<LandingPageComponentParentWhereUniqueInput>>;
   /** Update multiple LandingPageComponentParent component instances */
-  update?: InputMaybe<
-    Array<LandingPageComponentParentUpdateWithNestedWhereUniqueAndPositionInput>
-  >;
+  update?: InputMaybe<Array<LandingPageComponentParentUpdateWithNestedWhereUniqueAndPositionInput>>;
   /** Upsert multiple LandingPageComponentParent component instances */
-  upsert?: InputMaybe<
-    Array<LandingPageComponentParentUpsertWithNestedWhereUniqueAndPositionInput>
-  >;
+  upsert?: InputMaybe<Array<LandingPageComponentParentUpsertWithNestedWhereUniqueAndPositionInput>>;
 };
 
 export type LandingPageComponentParentUpdateManyWithNestedWhereInput = {
@@ -1332,13 +1345,9 @@ export type LandingPageComponentUpdateManyInlineInput = {
   /** Delete multiple LandingPageComponent documents */
   delete?: InputMaybe<Array<LandingPageComponentWhereUniqueInput>>;
   /** Update multiple LandingPageComponent component instances */
-  update?: InputMaybe<
-    Array<LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput>
-  >;
+  update?: InputMaybe<Array<LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput>>;
   /** Upsert multiple LandingPageComponent component instances */
-  upsert?: InputMaybe<
-    Array<LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput>
-  >;
+  upsert?: InputMaybe<Array<LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput>>;
 };
 
 export type LandingPageComponentUpdateManyInput = {
@@ -1441,9 +1450,11 @@ export type LandingPageComponentWhereUniqueInput = {
 };
 
 /** Locale system enumeration */
-export type Locale =
+export enum Locale {
   /** System locale */
-  'en' | 'es_MX';
+  En = 'en',
+  EsMx = 'es_MX'
+}
 
 /** Representing a geolocation point with latitude and longitude */
 export type Location = {
@@ -1452,6 +1463,7 @@ export type Location = {
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
 };
+
 
 /** Representing a geolocation point with latitude and longitude */
 export type LocationDistanceArgs = {
@@ -1567,25 +1579,31 @@ export type Mutation = {
   upsertProject?: Maybe<Project>;
 };
 
+
 export type MutationCreateAssetArgs = {
   data: AssetCreateInput;
 };
+
 
 export type MutationCreateProjectArgs = {
   data: ProjectCreateInput;
 };
 
+
 export type MutationCreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
 };
+
 
 export type MutationDeleteAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
+
 export type MutationDeleteManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
+
 
 export type MutationDeleteManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1596,9 +1614,11 @@ export type MutationDeleteManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
+
 export type MutationDeleteManyProjectsArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
+
 
 export type MutationDeleteManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1609,17 +1629,21 @@ export type MutationDeleteManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
+
 export type MutationDeleteProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
+
 
 export type MutationDeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
 
+
 export type MutationDeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
 };
+
 
 export type MutationPublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -1629,6 +1653,7 @@ export type MutationPublishAssetArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type MutationPublishManyAssetsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1636,6 +1661,7 @@ export type MutationPublishManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
+
 
 export type MutationPublishManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1651,6 +1677,7 @@ export type MutationPublishManyAssetsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type MutationPublishManyProjectsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1658,6 +1685,7 @@ export type MutationPublishManyProjectsArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
+
 
 export type MutationPublishManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1673,6 +1701,7 @@ export type MutationPublishManyProjectsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type MutationPublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1680,6 +1709,7 @@ export type MutationPublishProjectArgs = {
   where: ProjectWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
+
 
 export type MutationSchedulePublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -1691,6 +1721,7 @@ export type MutationSchedulePublishAssetArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type MutationSchedulePublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1701,6 +1732,7 @@ export type MutationSchedulePublishProjectArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
+
 export type MutationScheduleUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1709,6 +1741,7 @@ export type MutationScheduleUnpublishAssetArgs = {
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: AssetWhereUniqueInput;
 };
+
 
 export type MutationScheduleUnpublishProjectArgs = {
   from?: Array<Stage>;
@@ -1719,6 +1752,7 @@ export type MutationScheduleUnpublishProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
+
 export type MutationUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1726,12 +1760,14 @@ export type MutationUnpublishAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
+
 export type MutationUnpublishManyAssetsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<AssetManyWhereInput>;
 };
+
 
 export type MutationUnpublishManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1746,12 +1782,14 @@ export type MutationUnpublishManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
+
 export type MutationUnpublishManyProjectsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ProjectManyWhereInput>;
 };
+
 
 export type MutationUnpublishManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1766,6 +1804,7 @@ export type MutationUnpublishManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
+
 export type MutationUnpublishProjectArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1773,15 +1812,18 @@ export type MutationUnpublishProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
+
 export type MutationUpdateAssetArgs = {
   data: AssetUpdateInput;
   where: AssetWhereUniqueInput;
 };
 
+
 export type MutationUpdateManyAssetsArgs = {
   data: AssetUpdateManyInput;
   where?: InputMaybe<AssetManyWhereInput>;
 };
+
 
 export type MutationUpdateManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1793,10 +1835,12 @@ export type MutationUpdateManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
+
 export type MutationUpdateManyProjectsArgs = {
   data: ProjectUpdateManyInput;
   where?: InputMaybe<ProjectManyWhereInput>;
 };
+
 
 export type MutationUpdateManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1808,20 +1852,24 @@ export type MutationUpdateManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
+
 export type MutationUpdateProjectArgs = {
   data: ProjectUpdateInput;
   where: ProjectWhereUniqueInput;
 };
+
 
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
 };
 
+
 export type MutationUpsertAssetArgs = {
   upsert: AssetUpsertInput;
   where: AssetWhereUniqueInput;
 };
+
 
 export type MutationUpsertProjectArgs = {
   upsert: ProjectUpsertInput;
@@ -1897,16 +1945,19 @@ export type Project = Node & {
   version: Scalars['Float'];
 };
 
+
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
+
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectDocumentInStagesArgs = {
@@ -1915,6 +1966,7 @@ export type ProjectDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
+
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectHistoryArgs = {
   limit?: Scalars['Int'];
@@ -1922,22 +1974,26 @@ export type ProjectHistoryArgs = {
   stageOverride?: InputMaybe<Stage>;
 };
 
+
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean'];
   locales?: Array<Locale>;
 };
 
+
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
+
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectScheduledInArgs = {
@@ -1950,6 +2006,7 @@ export type ProjectScheduledInArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
+
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectScreenShotsArgs = {
@@ -1964,10 +2021,12 @@ export type ProjectScreenShotsArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
+
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
+
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectUpdatedByArgs = {
@@ -2220,27 +2279,28 @@ export type ProjectManyWhereInput = {
   version_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']>>>;
 };
 
-export type ProjectOrderByInput =
-  | 'active_ASC'
-  | 'active_DESC'
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'link_ASC'
-  | 'link_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'sourceCode_ASC'
-  | 'sourceCode_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC'
-  | 'version_ASC'
-  | 'version_DESC';
+export enum ProjectOrderByInput {
+  ActiveAsc = 'active_ASC',
+  ActiveDesc = 'active_DESC',
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  LinkAsc = 'link_ASC',
+  LinkDesc = 'link_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  SourceCodeAsc = 'sourceCode_ASC',
+  SourceCodeDesc = 'sourceCode_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC',
+  VersionAsc = 'version_ASC',
+  VersionDesc = 'version_DESC'
+}
 
 export type ProjectUpdateInput = {
   /** active input for default locale (en) */
@@ -2623,15 +2683,18 @@ export type Query = {
   usersConnection: UserConnection;
 };
 
+
 export type QueryAssetArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: AssetWhereUniqueInput;
 };
 
+
 export type QueryAssetVersionArgs = {
   where: VersionWhereInput;
 };
+
 
 export type QueryAssetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2645,6 +2708,7 @@ export type QueryAssetsArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
+
 export type QueryAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -2657,11 +2721,13 @@ export type QueryAssetsConnectionArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
+
 export type QueryNodeArgs = {
   id: Scalars['ID'];
   locales?: Array<Locale>;
   stage?: Stage;
 };
+
 
 export type QueryProjectArgs = {
   locales?: Array<Locale>;
@@ -2669,9 +2735,11 @@ export type QueryProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
+
 export type QueryProjectVersionArgs = {
   where: VersionWhereInput;
 };
+
 
 export type QueryProjectsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2685,6 +2753,7 @@ export type QueryProjectsArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
+
 export type QueryProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -2697,11 +2766,13 @@ export type QueryProjectsConnectionArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
+
 export type QueryScheduledOperationArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: ScheduledOperationWhereUniqueInput;
 };
+
 
 export type QueryScheduledOperationsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2715,6 +2786,7 @@ export type QueryScheduledOperationsArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
+
 export type QueryScheduledOperationsConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -2727,11 +2799,13 @@ export type QueryScheduledOperationsConnectionArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
+
 export type QueryScheduledReleaseArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: ScheduledReleaseWhereUniqueInput;
 };
+
 
 export type QueryScheduledReleasesArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2745,6 +2819,7 @@ export type QueryScheduledReleasesArgs = {
   where?: InputMaybe<ScheduledReleaseWhereInput>;
 };
 
+
 export type QueryScheduledReleasesConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -2757,11 +2832,13 @@ export type QueryScheduledReleasesConnectionArgs = {
   where?: InputMaybe<ScheduledReleaseWhereInput>;
 };
 
+
 export type QueryUserArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: UserWhereUniqueInput;
 };
+
 
 export type QueryUsersArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2774,6 +2851,7 @@ export type QueryUsersArgs = {
   stage?: Stage;
   where?: InputMaybe<UserWhereInput>;
 };
+
 
 export type QueryUsersConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2851,6 +2929,7 @@ export type ScheduledOperation = Node & {
   updatedBy?: Maybe<User>;
 };
 
+
 /** Scheduled Operation system model */
 export type ScheduledOperationAffectedDocumentsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2862,11 +2941,13 @@ export type ScheduledOperationAffectedDocumentsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
 };
 
+
 /** Scheduled Operation system model */
 export type ScheduledOperationCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Scheduled Operation system model */
 export type ScheduledOperationDocumentInStagesArgs = {
@@ -2875,17 +2956,20 @@ export type ScheduledOperationDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
+
 /** Scheduled Operation system model */
 export type ScheduledOperationPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
+
 /** Scheduled Operation system model */
 export type ScheduledOperationReleaseArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Scheduled Operation system model */
 export type ScheduledOperationUpdatedByArgs = {
@@ -3065,29 +3149,31 @@ export type ScheduledOperationManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export type ScheduledOperationOrderByInput =
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'errorMessage_ASC'
-  | 'errorMessage_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'status_ASC'
-  | 'status_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC';
+export enum ScheduledOperationOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  ErrorMessageAsc = 'errorMessage_ASC',
+  ErrorMessageDesc = 'errorMessage_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  StatusAsc = 'status_ASC',
+  StatusDesc = 'status_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
 
 /** System Scheduled Operation Status */
-export type ScheduledOperationStatus =
-  | 'CANCELED'
-  | 'COMPLETED'
-  | 'FAILED'
-  | 'IN_PROGRESS'
-  | 'PENDING';
+export enum ScheduledOperationStatus {
+  Canceled = 'CANCELED',
+  Completed = 'COMPLETED',
+  Failed = 'FAILED',
+  InProgress = 'IN_PROGRESS',
+  Pending = 'PENDING'
+}
 
 export type ScheduledOperationUpdateManyInlineInput = {
   /** Connect multiple existing ScheduledOperation documents */
@@ -3283,11 +3369,13 @@ export type ScheduledRelease = Node & {
   updatedBy?: Maybe<User>;
 };
 
+
 /** Scheduled Release system model */
 export type ScheduledReleaseCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Scheduled Release system model */
 export type ScheduledReleaseDocumentInStagesArgs = {
@@ -3295,6 +3383,7 @@ export type ScheduledReleaseDocumentInStagesArgs = {
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
 };
+
 
 /** Scheduled Release system model */
 export type ScheduledReleaseOperationsArgs = {
@@ -3309,11 +3398,13 @@ export type ScheduledReleaseOperationsArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
+
 /** Scheduled Release system model */
 export type ScheduledReleasePublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
+
 
 /** Scheduled Release system model */
 export type ScheduledReleaseUpdatedByArgs = {
@@ -3538,32 +3629,38 @@ export type ScheduledReleaseManyWhereInput = {
   updatedBy?: InputMaybe<UserWhereInput>;
 };
 
-export type ScheduledReleaseOrderByInput =
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
-  | 'errorMessage_ASC'
-  | 'errorMessage_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'isActive_ASC'
-  | 'isActive_DESC'
-  | 'isImplicit_ASC'
-  | 'isImplicit_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'releaseAt_ASC'
-  | 'releaseAt_DESC'
-  | 'status_ASC'
-  | 'status_DESC'
-  | 'title_ASC'
-  | 'title_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC';
+export enum ScheduledReleaseOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  ErrorMessageAsc = 'errorMessage_ASC',
+  ErrorMessageDesc = 'errorMessage_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  IsActiveAsc = 'isActive_ASC',
+  IsActiveDesc = 'isActive_DESC',
+  IsImplicitAsc = 'isImplicit_ASC',
+  IsImplicitDesc = 'isImplicit_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  ReleaseAtAsc = 'releaseAt_ASC',
+  ReleaseAtDesc = 'releaseAt_DESC',
+  StatusAsc = 'status_ASC',
+  StatusDesc = 'status_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
 
 /** System Scheduled Release Status */
-export type ScheduledReleaseStatus = 'COMPLETED' | 'FAILED' | 'IN_PROGRESS' | 'PENDING';
+export enum ScheduledReleaseStatus {
+  Completed = 'COMPLETED',
+  Failed = 'FAILED',
+  InProgress = 'IN_PROGRESS',
+  Pending = 'PENDING'
+}
 
 export type ScheduledReleaseUpdateInput = {
   description?: InputMaybe<Scalars['String']>;
@@ -3814,16 +3911,26 @@ export type ScheduledReleaseWhereUniqueInput = {
 };
 
 /** Stage system enumeration */
-export type Stage =
+export enum Stage {
   /** The Draft is the default stage for all your content. */
-  | 'DRAFT'
+  Draft = 'DRAFT',
   /** The Published stage is where you can publish your content to. */
-  | 'PUBLISHED';
+  Published = 'PUBLISHED'
+}
 
-export type SystemDateTimeFieldVariation = 'BASE' | 'COMBINED' | 'LOCALIZATION';
+export enum SystemDateTimeFieldVariation {
+  Base = 'BASE',
+  Combined = 'COMBINED',
+  Localization = 'LOCALIZATION'
+}
 
 /** Different technical stack (or "tech-stack") categories that is used in creating or maintaining a software development project, including but not limited to, a library, package, database paradigm, or some other tool. */
-export type TechCategories = 'BACKEND' | 'DATABASE' | 'FRONTEND' | 'OTHER';
+export enum TechCategories {
+  Backend = 'BACKEND',
+  Database = 'DATABASE',
+  Frontend = 'FRONTEND',
+  Other = 'OTHER'
+}
 
 export type UnpublishLocaleInput = {
   /** Locales to unpublish */
@@ -3856,6 +3963,7 @@ export type User = Node & {
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
 };
+
 
 /** User system model */
 export type UserDocumentInStagesArgs = {
@@ -3901,7 +4009,12 @@ export type UserEdge = {
 };
 
 /** System User Kind */
-export type UserKind = 'MEMBER' | 'PAT' | 'PUBLIC' | 'WEBHOOK';
+export enum UserKind {
+  Member = 'MEMBER',
+  Pat = 'PAT',
+  Public = 'PUBLIC',
+  Webhook = 'WEBHOOK'
+}
 
 /** Identifies documents */
 export type UserManyWhereInput = {
@@ -4030,23 +4143,24 @@ export type UserManyWhereInput = {
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']>>>;
 };
 
-export type UserOrderByInput =
-  | 'createdAt_ASC'
-  | 'createdAt_DESC'
-  | 'id_ASC'
-  | 'id_DESC'
-  | 'isActive_ASC'
-  | 'isActive_DESC'
-  | 'kind_ASC'
-  | 'kind_DESC'
-  | 'name_ASC'
-  | 'name_DESC'
-  | 'picture_ASC'
-  | 'picture_DESC'
-  | 'publishedAt_ASC'
-  | 'publishedAt_DESC'
-  | 'updatedAt_ASC'
-  | 'updatedAt_DESC';
+export enum UserOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  IsActiveAsc = 'isActive_ASC',
+  IsActiveDesc = 'isActive_DESC',
+  KindAsc = 'kind_ASC',
+  KindDesc = 'kind_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PictureAsc = 'picture_ASC',
+  PictureDesc = 'picture_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
 
 export type UserUpdateManyInlineInput = {
   /** Connect multiple existing User documents */
@@ -4230,69 +4344,88 @@ export type VersionWhereInput = {
   stage: Stage;
 };
 
-export type _FilterKind =
-  | 'AND'
-  | 'NOT'
-  | 'OR'
-  | 'contains'
-  | 'contains_all'
-  | 'contains_none'
-  | 'contains_some'
-  | 'ends_with'
-  | 'eq'
-  | 'eq_not'
-  | 'gt'
-  | 'gte'
-  | 'in'
-  | 'json_path_exists'
-  | 'json_value_recursive'
-  | 'lt'
-  | 'lte'
-  | 'not_contains'
-  | 'not_ends_with'
-  | 'not_in'
-  | 'not_starts_with'
-  | 'relational_every'
-  | 'relational_none'
-  | 'relational_single'
-  | 'relational_some'
-  | 'search'
-  | 'starts_with'
-  | 'union_empty'
-  | 'union_every'
-  | 'union_none'
-  | 'union_single'
-  | 'union_some';
+export enum _FilterKind {
+  And = 'AND',
+  Not = 'NOT',
+  Or = 'OR',
+  Contains = 'contains',
+  ContainsAll = 'contains_all',
+  ContainsNone = 'contains_none',
+  ContainsSome = 'contains_some',
+  EndsWith = 'ends_with',
+  Eq = 'eq',
+  EqNot = 'eq_not',
+  Gt = 'gt',
+  Gte = 'gte',
+  In = 'in',
+  JsonPathExists = 'json_path_exists',
+  JsonValueRecursive = 'json_value_recursive',
+  Lt = 'lt',
+  Lte = 'lte',
+  NotContains = 'not_contains',
+  NotEndsWith = 'not_ends_with',
+  NotIn = 'not_in',
+  NotStartsWith = 'not_starts_with',
+  RelationalEvery = 'relational_every',
+  RelationalNone = 'relational_none',
+  RelationalSingle = 'relational_single',
+  RelationalSome = 'relational_some',
+  Search = 'search',
+  StartsWith = 'starts_with',
+  UnionEmpty = 'union_empty',
+  UnionEvery = 'union_every',
+  UnionNone = 'union_none',
+  UnionSingle = 'union_single',
+  UnionSome = 'union_some'
+}
 
-export type _MutationInputFieldKind =
-  | 'enum'
-  | 'relation'
-  | 'richText'
-  | 'richTextWithEmbeds'
-  | 'scalar'
-  | 'union'
-  | 'virtual';
+export enum _MutationInputFieldKind {
+  Enum = 'enum',
+  Relation = 'relation',
+  RichText = 'richText',
+  RichTextWithEmbeds = 'richTextWithEmbeds',
+  Scalar = 'scalar',
+  Union = 'union',
+  Virtual = 'virtual'
+}
 
-export type _MutationKind =
-  | 'create'
-  | 'delete'
-  | 'deleteMany'
-  | 'publish'
-  | 'publishMany'
-  | 'schedulePublish'
-  | 'scheduleUnpublish'
-  | 'unpublish'
-  | 'unpublishMany'
-  | 'update'
-  | 'updateMany'
-  | 'upsert';
+export enum _MutationKind {
+  Create = 'create',
+  Delete = 'delete',
+  DeleteMany = 'deleteMany',
+  Publish = 'publish',
+  PublishMany = 'publishMany',
+  SchedulePublish = 'schedulePublish',
+  ScheduleUnpublish = 'scheduleUnpublish',
+  Unpublish = 'unpublish',
+  UnpublishMany = 'unpublishMany',
+  Update = 'update',
+  UpdateMany = 'updateMany',
+  Upsert = 'upsert'
+}
 
-export type _OrderDirection = 'asc' | 'desc';
+export enum _OrderDirection {
+  Asc = 'asc',
+  Desc = 'desc'
+}
 
-export type _RelationInputCardinality = 'many' | 'one';
+export enum _RelationInputCardinality {
+  Many = 'many',
+  One = 'one'
+}
 
-export type _RelationInputKind = 'create' | 'update';
+export enum _RelationInputKind {
+  Create = 'create',
+  Update = 'update'
+}
 
-export type _RelationKind = 'regular' | 'union';
+export enum _RelationKind {
+  Regular = 'regular',
+  Union = 'union'
+}
 
-export type _SystemDateTimeFieldVariation = 'base' | 'combined' | 'localization';
+export enum _SystemDateTimeFieldVariation {
+  Base = 'base',
+  Combined = 'combined',
+  Localization = 'localization'
+}

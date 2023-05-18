@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
 import type { ChangeEvent, ComponentType, RefObject } from 'react';
@@ -12,10 +14,8 @@ import useResizeObserver from '@/hooks/useResizeObserver';
 import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 import type { XTermComponentProps } from '@/props/base.component.props';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
-import { Btn, BtnClose, BtnMax, BtnMin } from '@global/Button';
+import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/global/Button';
 import { XTermInputOutput } from '@/interfaces/BaseComponent';
-
-
 
 type XTResizeState = ResizeObserverDimensions;
 type XTIOState = XTermInputOutput;
@@ -25,8 +25,8 @@ export default function XTerm<XTermComponentProps>() {
 		id: 'tty0',
 		name: '/dev/pts/tty0',
 		prompt: '[visitor@bleek.dev(v0.7)->/tty0]/λ->',
-		exec: null
-	}
+		exec: null,
+	};
 	const [xterm, setXterm] = useState<XTIOState>(xtInitState); // ? set execute state true, leave landing page to /home
 	const [dimensions, setDimensions] = useState<XTResizeState>({
 		cols: 20,
@@ -108,7 +108,9 @@ export default function XTerm<XTermComponentProps>() {
 	// eslint-disable-next-line no-console
 	console.info('ref+curr:', ref, ref?.current);
 
-	const handleChange = (evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+	const handleChange = (
+		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+	): void => {
 		const { name, value } = evt.currentTarget;
 		setXterm({ ...xterm, [name]: value });
 	};
@@ -120,21 +122,24 @@ export default function XTerm<XTermComponentProps>() {
 					id="xt-close"
 					type="reset"
 					// eslint-disable-next-line no-console
-					onClick={(evt) => console.info('xterm-close clicked', evt.target)}>
+					onClick={(evt) => console.info('xterm-close clicked', evt.target)}
+				>
 					{'[\uf00d]'}
 				</BtnClose>
 				<BtnMax
 					id="xt-maxmz"
 					type="button"
 					// eslint-disable-next-line no-console
-					onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}>
+					onClick={(evt) => console.info('xterm-maxmz clicked', evt.target)}
+				>
 					{'[\ueb95]'}
 				</BtnMax>
 				<BtnMin
 					id="xt-minmz"
 					type="button"
 					// eslint-disable-next-line no-console
-					onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}>
+					onClick={(evt) => console.info('xterm-minmz clicked', evt.target)}
+				>
 					{'[ \uf2d1 ]'}
 				</BtnMin>
 			</XTBtns>
@@ -155,23 +160,25 @@ export default function XTerm<XTermComponentProps>() {
 				// eslint-disable-next-line no-console
 				onChange={handleChange}
 				onSubmit={(evt) => {
-						console.info('xterm-txt submit capture', evt.target)
-						// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
-						setXterm((vals) => ({ ...vals, exec: true }))
-					}}
-			>
-			</XTxtArea>
+					console.info('xterm-txt submit capture', evt.target);
+					// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
+					setXterm((vals) => ({ ...vals, exec: true }));
+				}}
+			></XTxtArea>
 			<XTLabel
 				htmlFor="xt-prompt"
 				// eslint-disable-next-line no-console
-				onSubmitCapture={(evt) => console.info('xterm-txt submit capture', evt.target)}>
+				onSubmitCapture={(evt) =>
+					console.info('xterm-txt submit capture', evt.target)
+				}
+			>
 				{/* {'[visitor@https://bleek.dev-$>'} */}
 				<XTCode>{xterm.prompt.toString()}</XTCode>
 				<XTInput
 					type="text"
 					id="xt-prompt"
 					name="xt-prompt"
-					value={xterm.name}
+					// value={xterm.name}
 					onChange={handleChange}
 					placeholder={'press enter to continue'}
 				/>

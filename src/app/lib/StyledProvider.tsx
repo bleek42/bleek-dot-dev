@@ -6,9 +6,9 @@ import React, { useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
 import { ServerStyleSheet, StyleSheetManager, ThemeProvider } from 'styled-components';
 
-import { Theme, GlobalStyle } from '@/components/global/Theme.tsx';
+import { Theme, GlobalStyle } from '@/components/global/Theme';
 
-type StyledChildrenProps = Pick<BaseComponent, 'children'>;
+type StyledChildrenProps = Pick<BaseComponent<'styled-provider'>, 'children'>;
 
 export default function StyledProvider({ children }: StyledChildrenProps) {
 	// Only create stylesheet once with lazy initial state

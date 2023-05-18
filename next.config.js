@@ -30,7 +30,7 @@ export default {
     swcPlugins: [
       [
         '@graphql-codegen/client-preset-swc-plugin',
-        { artifactDirectory: './src/pages/api/graphql', gqlTagName: 'graphql' },
+        { artifactDirectory: './src/app/lib/graphql/gen', gqlTagName: 'graphql' },
       ],
     ],
   },

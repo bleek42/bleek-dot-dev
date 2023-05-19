@@ -3,7 +3,7 @@ query AllProjects {
 		...ProjectFields
 
 		screenShots {
-			...Image
+			...ImageFields
 		}
 	}
 }
@@ -12,81 +12,81 @@ query ProjectById($id: ID!) {
 	project(where: { id: $id }) {
 		...ProjectFields
 		screenShots {
-			...Image
+			...ImageFields
 		}
 	}
 }
 
-query ProjectWithNode($id: ID) {
-	node(id: $id) {
-		...ProjectFields
+# query ProjectWithNode($id: ID!) {
+# 	node(id: $id) {
+# 		...ProjectFields
 
-		screenShots(first: 10) {
-			history(limit: 10) {
-				...Image
-			}
-		}
-	}
-}
-
-
-query ProjectsWhereActiveStage(
-	$where: ProjectWhereInput = { active: true }
-	$stage: Stage = DRAFT
-) {
-	projectsConnection(where: $where, stage: $stage) {
-		edges {
-			node {
-				...ProjectFields
-
-				screenShots(first: 10) {
-					history(limit: 10) {
-						...Image
-					}
-				}
-			}
-		}
-	}
-}
-
-query AllUsers {
-	users {
-		...UserFields
-	}
-}
-
-query UserById($where: UserWhereUniqueInput = { "id": "cl2jewzic0nfr01xl28no3fa0"}, $locale: Locale = "en_US") {
-  user(where: $where, locale: $locale) {
-	...UserFields
-  }
-}
+# 		screenShots(first: 10) {
+# 			history(limit: 10) {
+# 				...ImageFields
+# 			}
+# 		}
+# 	}
+# }
 
 
-query UsersWhereActiveNameContains(
-	$where: UserWhereInput = { isActive: true, kind: MEMBER, name_contains: "bran" }
-	$orderBy: String = "name_DESC"
-	$stage: Stage = DRAFT
-) {
-	usersConnection(where: $where, orderBy: $orderBy, stage: $stage) {
-		edges {
-			node {
-				id
-				name
-				kind
-				isActive
-				picture
-				createdAt
-				updatedAt
-				stage
-			}
-		}
-	}
-}
+# query ProjectsWhereActiveStage(
+# 	$where: ProjectInput = { active: true }
+# 	$stage: Stage = DRAFT
+# ) {
+# 	projectsConnection(where: $where, stage: $stage) {
+# 		edges {
+# 			node {
+# 				...ProjectFields
 
-query UserWhereFields(
-	$where: UserWhereInput = { id: "cl2jewzic0nfr01xl28no3fa0" }
-) {
-	user(where: $where) {
-		...UserFields
-	}
-}
+# 				screenShots(first: 10) {
+# 					history(limit: 10) {
+# 						...ImageFields
+# 					}
+# 				}
+# 			}
+# 		}
+# 	}
+# }
+
+# query AllUsers {
+# 	users {
+# 		...UserFields
+# 	}
+# }
+
+# query UserById($where: UserInput = { "id": "cl2jewzic0nfr01xl28no3fa0"}, $locale: Locale = "en_US") {
+#   user(where: $where, locale: $locale) {
+# 	...UserFields
+#   }
+# }
+
+
+# query UsersWhereActiveNameContains(
+# 	$where: UserInput = { isActive: true, kind: MEMBER, name_contains: "bran" }
+# 	$orderBy: Order = "name_DESC"
+# 	$stage: Stage = DRAFT
+# ) {
+# 	usersConnection(where: $where, orderBy: $orderBy, stage: $stage) {
+# 		edges {
+# 			node {
+# 				id
+# 				name
+# 				kind
+# 				isActive
+# 				picture
+# 				createdAt
+# 				updatedAt
+# 				stage
+# 			}
+# 		}
+# 	}
+# }
+
+# query UserFields(
+# 	$where: UserInput = { id: "cl2jewzic0nfr01xl28no3fa0" }
+# ) {
+# 	user(where: $where) {
+# 		...UserFields
+# 	}
+# }

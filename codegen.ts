@@ -52,7 +52,7 @@ const config: CodegenConfig = {
     'src/app/lib/graphql/typeDefs.gql',
     'src/app/lib/graphql/fragments.gql',
     'src/app/lib/graphql/queries.gql',
-    'src/app/lib/graphql/mutations.gql',
+    // 'src/app/lib/graphql/mutations.gql',
   ],
 
   generates: {
@@ -68,18 +68,17 @@ const config: CodegenConfig = {
         documentNodeImport: '@graphql-typed-document-node/core#TypedDocumentNode',
         fetcher: 'graphql-request',
         useTypeImports: true,
-        defaultScalar: 'unknown',
-        scalars: {
-          ID: 'graphql#GraphQLID',
-          Date: 'Date',
-          DateTime: 'Date',
-          Long: 'graphql#GraphQLFloat',
-          Hex: 'string',
-          Json: 'string',
-          RGBAHue: 'string',
-          RGBATransparency: 'string',
-          RichTextAST: 'string',
-        },
+        defaultScalar: 'string',
+        // scalars: {
+        //   Date: 'Date',
+        //   DateTime: 'Date',
+        //   Long: 'graphql#GraphQLFloat',
+        //   Hex: 'string',
+        //   Json: 'string',
+        //   RGBAHue: 'string',
+        //   RGBATransparency: 'string',
+        //   RichTextAST: 'string',
+        // },
         emitLegacyCommonJSImports: false,
       },
     },
@@ -89,7 +88,7 @@ const config: CodegenConfig = {
     //   preset: 'import-types',
     //   presetConfig: {    documentMode: 'TypedDocumentNode',
   },
-  config: {},
+  // config: {},
 };
 
 export default config;

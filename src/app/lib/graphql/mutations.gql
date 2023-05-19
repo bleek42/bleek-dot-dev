@@ -1,62 +1,29 @@
-mutation CreateProject($data: ProjectCreateInput!) {
+mutation CreateProject($data: ProjectInput!) {
 	createProject(data: $data) {
-		title
-		description
-		active
-		id
-		link
-		sourceCode
-		techStack
-		version
-		createdAt
-		updatedAt
+		...ProjectFields
+
 		screenShots {
-			fileName
-			id
-			mimeType
-			url
+			...ImageFields
 		}
 	}
 }
 
-mutation UpdateProject($data: ProjectUpdateInput!) {
+mutation UpdateProject($data: ProjectInput!) {
 	updateProject(where: $data) {
-		title
-		description
-		active
-		id
-		link
-		sourceCode
-		techStack
-		version
-		createdAt
-		updatedAt
+		...ProjectFields
+
 		screenShots {
-			fileName
-			id
-			mimeType
-			url
+			...ImageFields
 		}
 	}
 }
 
-mutation DeleteProject($data: ProjectWhereUniqueInput!) {
+mutation DeleteProject($data: ProjectInput!) {
 	deleteProject(where: $data) {
-		title
-		description
-		active
-		id
-		link
-		sourceCode
-		techStack
-		version
-		createdAt
-		updatedAt
+		...ProjectFields
+
 		screenShots {
-			fileName
-			id
-			mimeType
-			url
+			...ImageFields
 		}
 	}
 }

@@ -34,9 +34,9 @@ type Asset implements Node {
 	String: String!
 	fileName: String!
 	handle: String!
-	mimeType: String!
-	width: Float!
-	height: Float!
+	mimeType: String
+	width: Float
+	height: Float
 	size: Float
 	createdAt: DateTime!
 	updatedAt: DateTime
@@ -47,30 +47,29 @@ type Asset implements Node {
 type Project implements Node {
 	id: ID!
 	title: String!
-	description: [String]
+	description: [String]!
 	active: Boolean!
 	link: String!
-	techStack: Json
+	techStack: String!
 	sourceCode: [String]
 	version: Float!
 	screenShots: [Asset]!
 	createdAt: DateTime!
-	updatedAt: DateTime!
-	locale: Locale!
+	updatedAt: DateTime
+	locale: Locale
 	stage: Stage!
 }
 
-type User implements Node {
-	id: ID!
-	name: String!
-	kind: Kind!
-	picture: String
-	stage: Stage!
-	createdAt: DateTime!
-	updatedAt: DateTime!
-}
+# type User implements Node {
+# 	id: ID!
+# 	name: String!
+# 	kind: Kind!
+# 	picture: String!
+# 	createdAt: DateTime!
+# 	updatedAt: DateTime
+# 	stage: Stage!
+# }
 
-union SearchResult = Project | User | Asset
 #
 input ProjectWhereInput {
 	title: String
@@ -85,39 +84,36 @@ input ProjectWhereInput {
 	updatedAt: DateTime
 	stage: Stage
 }
-#
+
 input ProjectCreateInput {
 	title: String!
 	description: [String]!
 	active: Boolean!
 	link: String
-	techStack: Json
+	techStack: String
 	sourceCode: [String]!
 	version: Float!
 	screenShots: [Asset]!
 }
-#
+
 input ProjectWhereUniqueInput {
 	id: ID
 	title: String
 	active: Boolean
 	link: String
-	sourceCode: String
-	screenShots: [Asset]!
 }
-#
+
+union SearchResult = Project | User | Asset
+union ProjectInput = ProjectWhereInput | ProjectWhereUniqueInput | ProjectCreateInput
+
 type Query {
-	node(id: ID!)
-  	projects: [Project]!
-  	project(where: ProjectWhereInput!): Project!
-	projectsConnection(where: ProjectWhereInput!, stage: Stage): [Project]!
-	history(limit: Int): [Node]!
-	screenShots(first: Int): [Node]!
+	projects: [Project]!
+	project(where: ProjectInput!): Project
+	projectsConnection(where: ProjectInput!, stage: Stage): [SearchResult]!
+	history(limit: Int): [SearchResult]!
+	screenShots(first: Int): [Asset]!
 }
-#
+
 type Mutation {
 	createProject(newProject: ProjectInput!): Project!
-	updateProject(projectFields: ProjectInput): Project!
-	deleteProject(id: ID!) Project!
 }
-#

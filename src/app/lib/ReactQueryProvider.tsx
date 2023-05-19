@@ -1,17 +1,20 @@
 'use client';
 
 import { useRef } from 'react';
-import request, { RequestExtendedOptions, Variables } from 'graphql-request';
 import { GraphQLError } from 'graphql';
+import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { type QueryClientProviderProps } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-
+import {
+	type RequestExtendedOptions,
+	type Variables,
+	GraphQLClient,
+} from 'graphql-request';
 import {
 	type QueryClientConfig,
 	QueryClient,
 	QueryClientProvider,
 } from '@tanstack/react-query';
-import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 export default function ReactQueryProvider({ children }: QueryClientProviderProps) {
 	const ref = useRef<QueryClient>();
@@ -29,9 +32,9 @@ export default function ReactQueryProvider({ children }: QueryClientProviderProp
 	// 		},
 	// 	},
 	// };
-	// if (!ref.current) ref.current = new QueryClient(config);
+	if (!ref.current) ref.current = queryClient;
 
-	ref?.current?.setDefaultOptions({
+	ref.current?.setDefaultOptions({
 		queries: {
 			queryKey: ['projects'],
 			queryFn: () =>
@@ -47,7 +50,7 @@ export default function ReactQueryProvider({ children }: QueryClientProviderProp
 	console.log(ref.current);
 
 	return (
-		<QueryClientProvider client={ref.current}>
+		<QueryClientProvider client={ref?.current}>
 			{children}
 			<ReactQueryDevtools initialIsOpen={false} position="top-right" />
 		</QueryClientProvider>

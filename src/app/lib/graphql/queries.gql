@@ -1,0 +1,106 @@
+query AllProjects {
+	projects {
+		...ProjectFields
+
+		screenShots {
+			...Image
+		}
+	}
+}
+
+query ProjectById($id: ID!) {
+	project(where: { id: $id }) {
+		...ProjectFields
+		screenShots {
+			...Image
+		}
+	}
+}
+
+query ProjectWithNode($id: ID) {
+	node(id: $id) {
+		...ProjectFields
+
+		screenShots(first: 10) {
+			history(limit: 10) {
+				...Image
+			}
+		}
+	}
+}
+
+
+query ProjectsWhereActiveStage(
+	$where: ProjectWhereInput = { active: true }
+	$stage: Stage = DRAFT
+) {
+	projectsConnection(where: $where, stage: $stage) {
+		edges {
+			node {
+				...ProjectFields
+
+				screenShots(first: 10) {
+					history(limit: 10) {
+						...Image
+					}
+				}
+			}
+		}
+	}
+}
+
+query AllUsers {
+	users {
+		...UserFields
+	}
+}
+
+query UserById($where: UserWhereUniqueInput = { "id": "cl2jewzic0nfr01xl28no3fa0"}, $locale: Locale = "en_US") {
+  user(where: $where, locale: $locale) {
+    id
+    name
+    kind
+    isActive
+    picture
+    createdAt
+    updatedAt
+    stage
+  }
+}
+
+
+query UsersWhereActiveNameContains(
+	$where: UserWhereInput = { isActive: true, kind: MEMBER, name_contains: "bran" }
+	$orderBy: String = "name_DESC"
+	$stage: Stage = DRAFT
+) {
+	usersConnection(where: $where, orderBy: $orderBy, stage: $stage) {
+		edges {
+			node {
+				id
+				name
+				kind
+				isActive
+				picture
+				createdAt
+				updatedAt
+				stage
+			}
+		}
+	}
+}
+
+query UserWhereFields(
+	$where: UserWhereInput = { id: "cl2jewzic0nfr01xl28no3fa0" }
+) {
+	user(where: $where) {
+		id
+		isActive
+		kind
+		name
+		picture
+		stage
+		createdAt
+		updatedAt
+	}
+}

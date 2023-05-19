@@ -18,7 +18,7 @@ export default function StyledProvider({ children }: StyledChildrenProps) {
 	useServerInsertedHTML(() => {
 		const styles = styledComponentsStyleSheet.getStyleElement();
 		console.log(styles);
-		styledComponentsStyleSheet.instance.getStyleTags();
+		styledComponentsStyleSheet.seal();
 		return <>{styles}</>;
 	});
 

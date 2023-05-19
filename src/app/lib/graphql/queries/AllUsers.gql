@@ -1,5 +1,0 @@
-query AllUsers {
-	users {
-		...UserFields
-	}
-}

@@ -6,6 +6,7 @@ export default {
   },
 
   swcMinify: true,
+
   compiler: {
     styledComponents: {
       displayName: true,

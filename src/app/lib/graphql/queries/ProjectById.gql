@@ -1,8 +1,0 @@
-query ProjectById($id: ID!) {
-	project(where: { id: $id }) {
-		...ProjectFields
-		screenShots {
-			...Image
-		}
-	}
-}

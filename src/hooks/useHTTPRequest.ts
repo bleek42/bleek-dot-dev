@@ -1,13 +1,9 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { PatchedRequestInit } from 'graphql-request/dist/types';
-import { type DocumentType, graphql } from '@gql/gen';
 
 import { useEffect, useReducer } from 'react';
 import { GraphQLClient } from 'graphql-request';
 import { GraphQLError } from 'graphql';
-
-import { allProjectsDoc } from '@gql/docs';
-import { hygraphClient } from '@/utils/gql-client';
 
 interface State {
   data: Awaited<TypedDocumentNode[] | TypedDocumentNode> | unknown;
@@ -70,7 +66,7 @@ export default function useHTTPRequest({
   useEffect(() => {
     let ignore = false;
     const url =
-      process.env.NEXT_PUBLIC_API_URL || 'https://jsonplaceholder.typicode.com/todos/1';
+      process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL || 'https://jsonplaceholder.typicode.com/todos/1';
     (async () => {
       try {
         const res = await fetch(`${url}`);

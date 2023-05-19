@@ -1,7 +1,6 @@
 import { type BaseComponent } from '@/interfaces/BaseComponent.ts';
 import { GraphQLError } from 'graphql';
 
-import StyledProvider from '@/lib/StyledProvider';
 import { MetaHTMLAttributes } from 'react';
 
 type MetaProps = MetaHTMLAttributes<Pick<BaseComponent<'root-layout-0'>, 'children'>>;
@@ -50,9 +49,7 @@ export default function RootLayout({ children }: MetaProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<title>bleekDotDev</title>
 			</head>
-			<body>
-				<StyledProvider>{children}</StyledProvider>
-			</body>
+			<body>{children}</body>
 		</html>
 	);
 }

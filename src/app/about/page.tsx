@@ -1,5 +1,3 @@
-import React, { useState, useEffect, Fragment, useId } from 'react';
-
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
 import { Main } from '@/components/global/Main';

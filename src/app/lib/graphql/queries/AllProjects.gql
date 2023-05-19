@@ -1,9 +1,0 @@
-query AllProjects {
-  projects {
-	...ProjectFields
-
-    screenShots {
-      ...Image
-    }
-  }
-}`

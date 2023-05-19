@@ -26,21 +26,21 @@ export default function Page() {
 
 	return (
 		<>
-			<Header id={`projects-${pageId}`} name="About" content="" icon={null} />
+			<Header
+				id={`projects-page-header-${4}`}
+				name={`projects-page-header-${4}`}
+				content="bleekDotDev('/projects')"
+				icon={null}
+			/>
 			{Array.isArray(projects) && projects.length > 0 && (
 				<Main>
 					{projects.map((project) => (
 						<Section
-							id="projects-sect-1"
-							name="projects_sect_1"
-							content="My first web application is a simple 5 question quiz, made for anyone
-					that enjoys simple bar trivia and wants to test their knowledge of
-					worldly, yet relatively basic facts. This application keeps track of
-					the users score, displays whether the user submitted a correct or
-					incorrect answer after every question and allows the user to reset the
-					quiz from the beginning upon completion. This application utilizes the
-					widely deployed Javascript jQuery library, which is used in more than
-					half of the top 1 million websites in the world!"
+							key={project.id}
+							id={`projects-section-${project.id}`}
+							name={`projects-section-${project.name}-${project.id}`}
+							title={`${project.title}`}
+							content={`${project.description}`}
 							icon={null}
 						/>
 					))}

@@ -1,5 +1,3 @@
-'use client';
-
 import StyledProvider from '@/lib/StyledProvider';
 import XTerm from '@/components/XTerm/index.tsx';
 import { Main } from '@/components/global/Main.ts';

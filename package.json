@@ -37,6 +37,8 @@
 		"@graphql-codegen/cli": "^3.3.1",
 		"@graphql-codegen/client-preset": "^3.0.1",
 		"@graphql-codegen/client-preset-swc-plugin": "0.2.0",
+		"@graphql-codegen/import-types-preset": "^2.2.6",
+		"@graphql-codegen/near-operation-file-preset": "2.5.0",
 		"@graphql-typed-document-node/core": "^3.2.0",
 		"@tanstack/eslint-plugin-query": "4.29.4",
 		"@types/node": "^20.2.1",
@@ -60,7 +62,6 @@
 	},
 	"optionalDependencies": {
 		"@effective/prettier": "4.3.4",
-		"@graphql-codegen/import-types-preset": "^2.2.6",
 		"@graphql-codegen/typed-document-node": "^4.0.1",
 		"@graphql-codegen/typescript": "^3.0.4",
 		"@graphql-codegen/typescript-graphql-request": "^4.5.9",

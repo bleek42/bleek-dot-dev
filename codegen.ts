@@ -18,7 +18,7 @@ import {
   GraphQLLong,
   GraphQLRGBA,
 } from 'graphql-scalars';
-import { GraphQLString } from 'graphql';
+// import { GraphQLString, GraphQLI } from 'graphql';
 
 console.log('|=== GENERATING GRAPHQL TYPES WITH .graphqlrc.cjs ===|');
 console.log({
@@ -37,7 +37,7 @@ console.log({
 const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
-  ignoreNoDocuments: true,
+  // ignoreNoDocuments: true,
 
   schema: [
     {
@@ -48,48 +48,48 @@ const config: CodegenConfig = {
       },
     },
   ],
-  documents: ['src/app/lib/graphql/**/*.gql'],
+  documents: [
+    'src/app/lib/graphql/typeDefs.gql',
+    'src/app/lib/graphql/fragments.gql',
+    'src/app/lib/graphql/queries.gql',
+    'src/app/lib/graphql/mutations.gql',
+  ],
 
   generates: {
-    // './src/app/lib/graphql/gen/docunode.types.ts': {
-    //   plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
-    //   config: {
-    //   },
-    // },
-
     './src/app/lib/graphql/gen/': {
-      plugins: ['typescript-graphql-request'],
-      preset: 'client-preset',
-      presetConfig: {
-        fragmentMasking: { unmaskFunctionName: 'createFragment' },
-      },
+      preset: 'client',
       config: {
-        fetcher: 'graphql-request',
         pureMagicComment: true,
         experimentalFragmentVariables: true,
-        useTypeImports: true,
         enumsAsTypes: true,
         futureProofUnions: true,
-        strictScalars: true,
-        emitLegacyCommonJSImports: false,
-        defaultScalar: 'string',
+        addUnderscoreToArgsType: true,
+        documentMode: 'TypedDocumentNode',
+        documentNodeImport: '@graphql-typed-document-node/core#TypedDocumentNode',
+        fetcher: 'graphql-request',
+        useTypeImports: true,
+        defaultScalar: 'unknown',
         scalars: {
+          ID: 'graphql#GraphQLID',
           Date: 'Date',
           DateTime: 'Date',
-          Long: 'number',
+          Long: 'graphql#GraphQLFloat',
           Hex: 'string',
           Json: 'string',
           RGBAHue: 'string',
           RGBATransparency: 'string',
           RichTextAST: 'string',
         },
+        emitLegacyCommonJSImports: false,
       },
     },
 
-    // importOperationTypesFrom: 'docunode.types.ts',
-    //       documentMode: 'external',
-    //       importDocumentNodeExternallyFrom: 'docunode.types.ts',
+    // './src/app/lib/graphql/gen/client.ts': {
+    //   plugins: ['typescript-graphql-request'],
+    //   preset: 'import-types',
+    //   presetConfig: {    documentMode: 'TypedDocumentNode',
   },
+  config: {},
 };
 
 export default config;

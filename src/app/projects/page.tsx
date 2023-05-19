@@ -1,58 +1,89 @@
-// import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
-// import type { Project, ImageAsset, ProjectQuery } from '@/interfaces/Project';
+import { GraphQLClient, gql } from 'graphql-request';
+import { GraphQLError } from 'graphql';
 
-// import { Fragment, useId } from 'react';
-
+import header from '@/components/header';
 import { Main } from '@/components/global/Main';
-import Header from '@/components/Header';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
+import {
+	Key,
+	ReactElement,
+	JSXElementConstructor,
+	ReactFragment,
+	PromiseLikeOfReactNode,
+	ReactPortal,
+	Fragment,
+} from 'react';
 
-import allProjectsQuery from '@/hooks/useProjectsQuery';
-// import { AllProjectsDocument } from '@/app/lib/graphql/graphql';
+const queryAllProjects = async () => {
+	const client = new GraphQLClient(process.env.HYGRAPH_API_BASE_URL, {
+		headers: { 'Authorization': `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}` },
+	});
+	const query = gql`
+		projects {
+			id
+			title
+			description
+			active
+			link
+			version
+			sourceCode
+			techStack
+			createdAt
+			updatedAt
+	}
+	`;
 
-// import { GetStaticProps, InferGetStaticPropsType } from 'next';
-// import {  } from '';
+	try {
+		const response = await client.request<typeof query>(query);
+		console.log({ response });
+		return response ?? response;
+		// return await new Promise((res: (val: unknown) => void) =>
+		// 	setTimeout(() => {
+		// 		res('resolved all projects query...');
+		// 	}, 10000)
+		// );
+	} catch {
+		console.error('error all projects query');
+		throw new GraphQLError('error all projects query');
+	}
+};
 
 export default function Page() {
-	// const pageId = useId();
-	// const { data, isLoading, isError } = useQuery({
-	// 	queryKey: ['projects'],
-	// 	queryFn: allProjectsQuery,
-	// 	initialData: { projects },
-	// });
-	const projects = allProjectsQuery();
+	const projects: Promise<any> = queryAllProjects();
 	console.log(projects);
 
 	return (
 		<>
-			<Header
-				id={`projects-page-header-${4}`}
-				name={`projects-page-header-${4}`}
-				content="bleekDotDev('/projects')"
-				icon={null}
-			/>
-			{Array.isArray(projects) && projects.length > 0 && (
-				<Main>
-					{projects.map((project) => (
-						<Section
-							key={project.id}
-							id={`projects-section-${project.id}`}
-							name={`projects-section-${project.name}-${project.id}`}
-							title={`${project.title}`}
-							content={`${project.description}`}
-							icon={null}
-						/>
-					))}
-				</Main>
-			)}
-			{!projects && (
-				<Section
-					id="err-internal-projects-500"
-					content="500: Internal Server Error"
-				/>
-			)}
-			<Footer />
+			<header>
+				<h4>projects-header-page4</h4>
+			</header>
+			<main>
+				{Array.isArray(projects) && projects.length > 0 && (
+					<section>
+						{projects.map((project) => (
+							<article
+								key={project.id as Key}
+								id={`projects-section-${project.id}`}
+								title={`${project.title}`}
+							>
+								<h5>{`projects-section-${project.title}-${project.id}`}</h5>
+								<p>`${project.description}`</p>
+							</article>
+						))}
+					</section>
+				)}
+
+				{!projects && (
+					<section>
+						<h5>Error /projects</h5>
+						<p>Unknown error getting projects...</p>
+					</section>
+				)}
+			</main>
+			<footer>
+				<p>footer page 4 /projects</p>
+			</footer>
 		</>
 	);
 }

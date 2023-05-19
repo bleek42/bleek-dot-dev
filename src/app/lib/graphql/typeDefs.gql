@@ -17,8 +17,10 @@ enum Stage {
 	PUBLISHED
 }
 
-enum Member {
-
+enum Kind  {
+	MEMBER
+	PUBLIC
+	PAT
 }
 
 
@@ -56,13 +58,12 @@ type Project implements Node {
 	updatedAt: DateTime!
 	locale: Locale!
 	stage: Stage!
- }
+}
 
 type User implements Node {
 	id: ID!
 	name: String!
-	kind: String!
-	isActive: Boolean!
+	kind: Kind!
 	picture: String
 	stage: Stage!
 	createdAt: DateTime!

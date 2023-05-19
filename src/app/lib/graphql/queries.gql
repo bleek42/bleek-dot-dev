@@ -57,14 +57,7 @@ query AllUsers {
 
 query UserById($where: UserWhereUniqueInput = { "id": "cl2jewzic0nfr01xl28no3fa0"}, $locale: Locale = "en_US") {
   user(where: $where, locale: $locale) {
-    id
-    name
-    kind
-    isActive
-    picture
-    createdAt
-    updatedAt
-    stage
+	...UserFields
   }
 }
 
@@ -94,13 +87,6 @@ query UserWhereFields(
 	$where: UserWhereInput = { id: "cl2jewzic0nfr01xl28no3fa0" }
 ) {
 	user(where: $where) {
-		id
-		isActive
-		kind
-		name
-		picture
-		stage
-		createdAt
-		updatedAt
+		...UserFields
 	}
 }

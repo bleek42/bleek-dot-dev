@@ -1,5 +1,5 @@
 import { GraphQLClient } from 'graphql-request';
-import { type Sdk, type SdkFunctionWrapper, getSdk } from './gen/gql.client';
+// import { type Sdk, type SdkFunctionWrapper, getSdk } from './gen/gql.client';
 
 export const queryAllProjects = async () => {
   const client = new GraphQLClient(

@@ -1,7 +1,7 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import { GraphQLError } from 'graphql';
 
-import header from '@/components/header';
+import Header from '@/components/header';
 import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
@@ -14,43 +14,12 @@ import {
 	ReactPortal,
 	Fragment,
 } from 'react';
-
-const queryAllProjects = async () => {
-	const client = new GraphQLClient(process.env.HYGRAPH_API_BASE_URL, {
-		headers: { 'Authorization': `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}` },
-	});
-	const query = gql`
-		projects {
-			id
-			title
-			description
-			active
-			link
-			version
-			sourceCode
-			techStack
-			createdAt
-			updatedAt
-	}
-	`;
-
-	try {
-		const response = await client.request<typeof query>(query);
-		console.log({ response });
-		return response ?? response;
-		// return await new Promise((res: (val: unknown) => void) =>
-		// 	setTimeout(() => {
-		// 		res('resolved all projects query...');
-		// 	}, 10000)
-		// );
-	} catch {
-		console.error('error all projects query');
-		throw new GraphQLError('error all projects query');
-	}
-};
+import useGraphQLRequest from '@/lib/graphql';
+import { AllProjectsDocument } from '@/lib/graphql/gen/graphql';
+import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 export default function Page() {
-	const projects: Promise<any> = queryAllProjects();
+	const projects = useGraphQLRequest(AllProjectsDocument);
 	console.log(projects);
 
 	return (

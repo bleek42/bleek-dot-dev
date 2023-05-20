@@ -1,18 +1,63 @@
 query AllProjects {
 	projects {
-		...ProjectFields
+		id
+		title
+		description
+		active
+		link
+		version
+		sourceCode
+		techStack
+		createdAt
+		updatedAt
+		stage
+		locale
 
 		screenShots {
-			...ImageFields
+			id
+			url
+			handle
+			fileName
+			mimeType
+			width
+			height
+			size
+			createdAt
+			updatedAt
+			stage
+			locale
 		}
 	}
 }
 
 query ProjectById($id: ID!) {
 	project(where: { id: $id }) {
-		...ProjectFields
+		id
+		title
+		description
+		active
+		link
+		version
+		sourceCode
+		techStack
+		createdAt
+		updatedAt
+		stage
+		locale
+
 		screenShots {
-			...ImageFields
+			id
+			url
+			handle
+			fileName
+			mimeType
+			width
+			height
+			size
+			createdAt
+			updatedAt
+			stage
+			locale
 		}
 	}
 }
@@ -28,7 +73,6 @@ query ProjectById($id: ID!) {
 # 		}
 # 	}
 # }
-
 
 # query ProjectsWhereActiveStage(
 # 	$where: ProjectInput = { active: true }
@@ -60,7 +104,6 @@ query ProjectById($id: ID!) {
 # 	...UserFields
 #   }
 # }
-
 
 # query UsersWhereActiveNameContains(
 # 	$where: UserInput = { isActive: true, kind: MEMBER, name_contains: "bran" }

@@ -1,4 +1,8 @@
 {
+	"ts-node": {
+		"esm": true,
+		"experimentalSpecifierResolution": "node",
+	},
   "compilerOptions": {
     "strict": true,
     "target": "ES5",

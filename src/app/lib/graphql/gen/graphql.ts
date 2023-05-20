@@ -3,8 +3,12 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: number | unknown;
@@ -77,19 +81,16 @@ export type Asset = Node & {
   width?: Maybe<Scalars['Float']>;
 };
 
-
 /** Asset system model */
 export type AssetCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type AssetCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Asset system model */
 export type AssetDocumentInStagesArgs = {
@@ -98,7 +99,6 @@ export type AssetDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 /** Asset system model */
 export type AssetHistoryArgs = {
   limit?: Scalars['Int'];
@@ -106,26 +106,22 @@ export type AssetHistoryArgs = {
   stageOverride?: InputMaybe<Stage>;
 };
 
-
 /** Asset system model */
 export type AssetLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean'];
   locales?: Array<Locale>;
 };
 
-
 /** Asset system model */
 export type AssetPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type AssetPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Asset system model */
 export type AssetScheduledInArgs = {
@@ -138,7 +134,6 @@ export type AssetScheduledInArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
-
 
 /** Asset system model */
 export type AssetScreenShotsArgs = {
@@ -153,19 +148,16 @@ export type AssetScreenShotsArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
-
 /** Asset system model */
 export type AssetUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type AssetUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Asset system model */
 export type AssetUrlArgs = {
@@ -779,7 +771,6 @@ export type DemoComponentContentRichText = {
   text: Scalars['String'];
 };
 
-
 export type DemoComponentContentRichTextReferencesArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -1163,7 +1154,6 @@ export type LandingPageComponent = {
   stage: Stage;
 };
 
-
 /** Component for a landing or welcome page that displays a dynamic welcome message, user prompts, etc. */
 export type LandingPageComponentMessageArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
@@ -1249,9 +1239,7 @@ export type LandingPageComponentManyWhereInput = {
   message?: InputMaybe<LandingPageComponentWhereInput>;
 };
 
-export type LandingPageComponentOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC';
+export type LandingPageComponentOrderByInput = 'id_ASC' | 'id_DESC';
 
 export type LandingPageComponentParent = LandingPageComponent;
 
@@ -1287,9 +1275,13 @@ export type LandingPageComponentParentUpdateManyInlineInput = {
   /** Delete multiple LandingPageComponentParent documents */
   delete?: InputMaybe<Array<LandingPageComponentParentWhereUniqueInput>>;
   /** Update multiple LandingPageComponentParent component instances */
-  update?: InputMaybe<Array<LandingPageComponentParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  update?: InputMaybe<
+    Array<LandingPageComponentParentUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
   /** Upsert multiple LandingPageComponentParent component instances */
-  upsert?: InputMaybe<Array<LandingPageComponentParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+  upsert?: InputMaybe<
+    Array<LandingPageComponentParentUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
 };
 
 export type LandingPageComponentParentUpdateManyWithNestedWhereInput = {
@@ -1341,9 +1333,13 @@ export type LandingPageComponentUpdateManyInlineInput = {
   /** Delete multiple LandingPageComponent documents */
   delete?: InputMaybe<Array<LandingPageComponentWhereUniqueInput>>;
   /** Update multiple LandingPageComponent component instances */
-  update?: InputMaybe<Array<LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  update?: InputMaybe<
+    Array<LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
   /** Upsert multiple LandingPageComponent component instances */
-  upsert?: InputMaybe<Array<LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput>>;
+  upsert?: InputMaybe<
+    Array<LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
 };
 
 export type LandingPageComponentUpdateManyInput = {
@@ -1448,8 +1444,7 @@ export type LandingPageComponentWhereUniqueInput = {
 /** Locale system enumeration */
 export type Locale =
   /** System locale */
-  | 'en'
-  | 'es_MX';
+  'en' | 'es_MX';
 
 /** Representing a geolocation point with latitude and longitude */
 export type Location = {
@@ -1458,7 +1453,6 @@ export type Location = {
   latitude: Scalars['Float'];
   longitude: Scalars['Float'];
 };
-
 
 /** Representing a geolocation point with latitude and longitude */
 export type LocationDistanceArgs = {
@@ -1574,31 +1568,25 @@ export type Mutation = {
   upsertProject?: Maybe<Project>;
 };
 
-
 export type MutationCreateAssetArgs = {
   data: AssetCreateInput;
 };
-
 
 export type MutationCreateProjectArgs = {
   data: ProjectCreateInput;
 };
 
-
 export type MutationCreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
 };
-
 
 export type MutationDeleteAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
-
 export type MutationDeleteManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type MutationDeleteManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1609,11 +1597,9 @@ export type MutationDeleteManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type MutationDeleteManyProjectsArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
-
 
 export type MutationDeleteManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1624,21 +1610,17 @@ export type MutationDeleteManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
-
 export type MutationDeleteProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
-
 
 export type MutationDeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
 
-
 export type MutationDeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
 };
-
 
 export type MutationPublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -1648,7 +1630,6 @@ export type MutationPublishAssetArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationPublishManyAssetsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1656,7 +1637,6 @@ export type MutationPublishManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationPublishManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1672,7 +1652,6 @@ export type MutationPublishManyAssetsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationPublishManyProjectsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1680,7 +1659,6 @@ export type MutationPublishManyProjectsArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationPublishManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1696,7 +1674,6 @@ export type MutationPublishManyProjectsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationPublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1704,7 +1681,6 @@ export type MutationPublishProjectArgs = {
   where: ProjectWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
-
 
 export type MutationSchedulePublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -1716,7 +1692,6 @@ export type MutationSchedulePublishAssetArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationSchedulePublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']>;
@@ -1727,7 +1702,6 @@ export type MutationSchedulePublishProjectArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
-
 export type MutationScheduleUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1736,7 +1710,6 @@ export type MutationScheduleUnpublishAssetArgs = {
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: AssetWhereUniqueInput;
 };
-
 
 export type MutationScheduleUnpublishProjectArgs = {
   from?: Array<Stage>;
@@ -1747,7 +1720,6 @@ export type MutationScheduleUnpublishProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
-
 export type MutationUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1755,14 +1727,12 @@ export type MutationUnpublishAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
-
 export type MutationUnpublishManyAssetsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type MutationUnpublishManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1777,14 +1747,12 @@ export type MutationUnpublishManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type MutationUnpublishManyProjectsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ProjectManyWhereInput>;
 };
-
 
 export type MutationUnpublishManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1799,7 +1767,6 @@ export type MutationUnpublishManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
-
 export type MutationUnpublishProjectArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1807,18 +1774,15 @@ export type MutationUnpublishProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
-
 export type MutationUpdateAssetArgs = {
   data: AssetUpdateInput;
   where: AssetWhereUniqueInput;
 };
 
-
 export type MutationUpdateManyAssetsArgs = {
   data: AssetUpdateManyInput;
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type MutationUpdateManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1830,12 +1794,10 @@ export type MutationUpdateManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type MutationUpdateManyProjectsArgs = {
   data: ProjectUpdateManyInput;
   where?: InputMaybe<ProjectManyWhereInput>;
 };
-
 
 export type MutationUpdateManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']>;
@@ -1847,24 +1809,20 @@ export type MutationUpdateManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
-
 export type MutationUpdateProjectArgs = {
   data: ProjectUpdateInput;
   where: ProjectWhereUniqueInput;
 };
-
 
 export type MutationUpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
 };
 
-
 export type MutationUpsertAssetArgs = {
   upsert: AssetUpsertInput;
   where: AssetWhereUniqueInput;
 };
-
 
 export type MutationUpsertProjectArgs = {
   upsert: ProjectUpsertInput;
@@ -1940,19 +1898,16 @@ export type Project = Node & {
   version: Scalars['Float'];
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectCreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectDocumentInStagesArgs = {
@@ -1961,7 +1916,6 @@ export type ProjectDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectHistoryArgs = {
   limit?: Scalars['Int'];
@@ -1969,26 +1923,22 @@ export type ProjectHistoryArgs = {
   stageOverride?: InputMaybe<Stage>;
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectLocalizationsArgs = {
   includeCurrent?: Scalars['Boolean'];
   locales?: Array<Locale>;
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectScheduledInArgs = {
@@ -2001,7 +1951,6 @@ export type ProjectScheduledInArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectScreenShotsArgs = {
@@ -2016,12 +1965,10 @@ export type ProjectScreenShotsArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectUpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type ProjectUpdatedByArgs = {
@@ -2677,18 +2624,15 @@ export type Query = {
   usersConnection: UserConnection;
 };
 
-
 export type QueryAssetArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: AssetWhereUniqueInput;
 };
 
-
 export type QueryAssetVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type QueryAssetsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2702,7 +2646,6 @@ export type QueryAssetsArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 export type QueryAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -2715,13 +2658,11 @@ export type QueryAssetsConnectionArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 export type QueryNodeArgs = {
   id: Scalars['ID'];
   locales?: Array<Locale>;
   stage?: Stage;
 };
-
 
 export type QueryProjectArgs = {
   locales?: Array<Locale>;
@@ -2729,11 +2670,9 @@ export type QueryProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
-
 export type QueryProjectVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type QueryProjectsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2747,7 +2686,6 @@ export type QueryProjectsArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
-
 export type QueryProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -2760,13 +2698,11 @@ export type QueryProjectsConnectionArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
-
 export type QueryScheduledOperationArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: ScheduledOperationWhereUniqueInput;
 };
-
 
 export type QueryScheduledOperationsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2780,7 +2716,6 @@ export type QueryScheduledOperationsArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type QueryScheduledOperationsConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -2793,13 +2728,11 @@ export type QueryScheduledOperationsConnectionArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type QueryScheduledReleaseArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: ScheduledReleaseWhereUniqueInput;
 };
-
 
 export type QueryScheduledReleasesArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2813,7 +2746,6 @@ export type QueryScheduledReleasesArgs = {
   where?: InputMaybe<ScheduledReleaseWhereInput>;
 };
 
-
 export type QueryScheduledReleasesConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
   before?: InputMaybe<Scalars['String']>;
@@ -2826,13 +2758,11 @@ export type QueryScheduledReleasesConnectionArgs = {
   where?: InputMaybe<ScheduledReleaseWhereInput>;
 };
 
-
 export type QueryUserArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: UserWhereUniqueInput;
 };
-
 
 export type QueryUsersArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2845,7 +2775,6 @@ export type QueryUsersArgs = {
   stage?: Stage;
   where?: InputMaybe<UserWhereInput>;
 };
-
 
 export type QueryUsersConnectionArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2923,7 +2852,6 @@ export type ScheduledOperation = Node & {
   updatedBy?: Maybe<User>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperationAffectedDocumentsArgs = {
   after?: InputMaybe<Scalars['String']>;
@@ -2935,13 +2863,11 @@ export type ScheduledOperationAffectedDocumentsArgs = {
   skip?: InputMaybe<Scalars['Int']>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperationCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Operation system model */
 export type ScheduledOperationDocumentInStagesArgs = {
@@ -2950,20 +2876,17 @@ export type ScheduledOperationDocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperationPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperationReleaseArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Operation system model */
 export type ScheduledOperationUpdatedByArgs = {
@@ -3361,13 +3284,11 @@ export type ScheduledRelease = Node & {
   updatedBy?: Maybe<User>;
 };
 
-
 /** Scheduled Release system model */
 export type ScheduledReleaseCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Release system model */
 export type ScheduledReleaseDocumentInStagesArgs = {
@@ -3375,7 +3296,6 @@ export type ScheduledReleaseDocumentInStagesArgs = {
   inheritLocale?: Scalars['Boolean'];
   stages?: Array<Stage>;
 };
-
 
 /** Scheduled Release system model */
 export type ScheduledReleaseOperationsArgs = {
@@ -3390,13 +3310,11 @@ export type ScheduledReleaseOperationsArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 /** Scheduled Release system model */
 export type ScheduledReleasePublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Release system model */
 export type ScheduledReleaseUpdatedByArgs = {
@@ -3646,11 +3564,7 @@ export type ScheduledReleaseOrderByInput =
   | 'updatedAt_DESC';
 
 /** System Scheduled Release Status */
-export type ScheduledReleaseStatus =
-  | 'COMPLETED'
-  | 'FAILED'
-  | 'IN_PROGRESS'
-  | 'PENDING';
+export type ScheduledReleaseStatus = 'COMPLETED' | 'FAILED' | 'IN_PROGRESS' | 'PENDING';
 
 export type ScheduledReleaseUpdateInput = {
   description?: InputMaybe<Scalars['String']>;
@@ -3907,17 +3821,10 @@ export type Stage =
   /** The Published stage is where you can publish your content to. */
   | 'PUBLISHED';
 
-export type SystemDateTimeFieldVariation =
-  | 'BASE'
-  | 'COMBINED'
-  | 'LOCALIZATION';
+export type SystemDateTimeFieldVariation = 'BASE' | 'COMBINED' | 'LOCALIZATION';
 
 /** Different technical stack (or "tech-stack") categories that is used in creating or maintaining a software development project, including but not limited to, a library, package, database paradigm, or some other tool. */
-export type TechCategories =
-  | 'BACKEND'
-  | 'DATABASE'
-  | 'FRONTEND'
-  | 'OTHER';
+export type TechCategories = 'BACKEND' | 'DATABASE' | 'FRONTEND' | 'OTHER';
 
 export type UnpublishLocaleInput = {
   /** Locales to unpublish */
@@ -3950,7 +3857,6 @@ export type User = Node & {
   /** The time the document was updated */
   updatedAt: Scalars['DateTime'];
 };
-
 
 /** User system model */
 export type UserDocumentInStagesArgs = {
@@ -3996,11 +3902,7 @@ export type UserEdge = {
 };
 
 /** System User Kind */
-export type UserKind =
-  | 'MEMBER'
-  | 'PAT'
-  | 'PUBLIC'
-  | 'WEBHOOK';
+export type UserKind = 'MEMBER' | 'PAT' | 'PUBLIC' | 'WEBHOOK';
 
 /** Identifies documents */
 export type UserManyWhereInput = {
@@ -4386,56 +4288,336 @@ export type _MutationKind =
   | 'updateMany'
   | 'upsert';
 
-export type _OrderDirection =
-  | 'asc'
-  | 'desc';
+export type _OrderDirection = 'asc' | 'desc';
 
-export type _RelationInputCardinality =
-  | 'many'
-  | 'one';
+export type _RelationInputCardinality = 'many' | 'one';
 
-export type _RelationInputKind =
-  | 'create'
-  | 'update';
+export type _RelationInputKind = 'create' | 'update';
 
-export type _RelationKind =
-  | 'regular'
-  | 'union';
+export type _RelationKind = 'regular' | 'union';
 
-export type _SystemDateTimeFieldVariation =
-  | 'base'
-  | 'combined'
-  | 'localization';
+export type _SystemDateTimeFieldVariation = 'base' | 'combined' | 'localization';
 
-export type ProjectFieldsFragment = { __typename?: 'Project', id: number | unknown, title: string, description: string, active: boolean, link: string, version: number, sourceCode: Array<string>, techStack?: string[] | string | unknown[] | unknown | null, createdAt: Date | string | unknown, updatedAt: Date | string | unknown, locale: Locale } & { ' $fragmentName'?: 'ProjectFieldsFragment' };
+export type ProjectFieldsFragment = {
+  __typename?: 'Project';
+  id: number | unknown;
+  title: string;
+  description: string;
+  active: boolean;
+  link: string;
+  version: number;
+  sourceCode: Array<string>;
+  techStack?: string[] | string | unknown[] | unknown | null;
+  createdAt: Date | string | unknown;
+  updatedAt: Date | string | unknown;
+  locale: Locale;
+} & { ' $fragmentName'?: 'ProjectFieldsFragment' };
 
-export type ImageFieldsFragment = { __typename?: 'Asset', id: number | unknown, url: string, handle: string, fileName: string, mimeType?: string | null, width?: number | null, height?: number | null, size?: number | null } & { ' $fragmentName'?: 'ImageFieldsFragment' };
+export type ImageFieldsFragment = {
+  __typename?: 'Asset';
+  id: number | unknown;
+  url: string;
+  handle: string;
+  fileName: string;
+  mimeType?: string | null;
+  width?: number | null;
+  height?: number | null;
+  size?: number | null;
+} & { ' $fragmentName'?: 'ImageFieldsFragment' };
 
-export type AllProjectsQueryVariables = Exact<{ [key: string]: never; }>;
+export type AllProjectsQueryVariables = Exact<{ [key: string]: never }>;
 
-
-export type AllProjectsQuery = { __typename?: 'Query', projects: Array<(
-    { __typename?: 'Project', screenShots: Array<(
-      { __typename?: 'Asset' }
-      & { ' $fragmentRefs'?: { 'ImageFieldsFragment': ImageFieldsFragment } }
-    )> }
-    & { ' $fragmentRefs'?: { 'ProjectFieldsFragment': ProjectFieldsFragment } }
-  )> };
+export type AllProjectsQuery = {
+  __typename?: 'Query';
+  projects: Array<{
+    __typename?: 'Project';
+    id: number | unknown;
+    title: string;
+    description: string;
+    active: boolean;
+    link: string;
+    version: number;
+    sourceCode: Array<string>;
+    techStack?: string[] | string | unknown[] | unknown | null;
+    createdAt: Date | string | unknown;
+    updatedAt: Date | string | unknown;
+    stage: Stage;
+    locale: Locale;
+    screenShots: Array<{
+      __typename?: 'Asset';
+      id: number | unknown;
+      url: string;
+      handle: string;
+      fileName: string;
+      mimeType?: string | null;
+      width?: number | null;
+      height?: number | null;
+      size?: number | null;
+      createdAt: Date | string | unknown;
+      updatedAt: Date | string | unknown;
+      stage: Stage;
+      locale: Locale;
+    }>;
+  }>;
+};
 
 export type ProjectByIdQueryVariables = Exact<{
   id: Scalars['ID'];
 }>;
 
+export type ProjectByIdQuery = {
+  __typename?: 'Query';
+  project?: {
+    __typename?: 'Project';
+    id: number | unknown;
+    title: string;
+    description: string;
+    active: boolean;
+    link: string;
+    version: number;
+    sourceCode: Array<string>;
+    techStack?: string[] | string | unknown[] | unknown | null;
+    createdAt: Date | string | unknown;
+    updatedAt: Date | string | unknown;
+    stage: Stage;
+    locale: Locale;
+    screenShots: Array<{
+      __typename?: 'Asset';
+      id: number | unknown;
+      url: string;
+      handle: string;
+      fileName: string;
+      mimeType?: string | null;
+      width?: number | null;
+      height?: number | null;
+      size?: number | null;
+      createdAt: Date | string | unknown;
+      updatedAt: Date | string | unknown;
+      stage: Stage;
+      locale: Locale;
+    }>;
+  } | null;
+};
 
-export type ProjectByIdQuery = { __typename?: 'Query', project?: (
-    { __typename?: 'Project', screenShots: Array<(
-      { __typename?: 'Asset' }
-      & { ' $fragmentRefs'?: { 'ImageFieldsFragment': ImageFieldsFragment } }
-    )> }
-    & { ' $fragmentRefs'?: { 'ProjectFieldsFragment': ProjectFieldsFragment } }
-  ) | null };
-
-export const ProjectFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProjectFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Project"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"active"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"sourceCode"}},{"kind":"Field","name":{"kind":"Name","value":"techStack"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"locale"}}]}}]} as unknown as DocumentNode<ProjectFieldsFragment, unknown>;
-export const ImageFieldsFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Asset"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"handle"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}},{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]} as unknown as DocumentNode<ImageFieldsFragment, unknown>;
-export const AllProjectsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AllProjects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"projects"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProjectFields"}},{"kind":"Field","name":{"kind":"Name","value":"screenShots"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageFields"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProjectFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Project"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"active"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"sourceCode"}},{"kind":"Field","name":{"kind":"Name","value":"techStack"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"locale"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Asset"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"handle"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}},{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]} as unknown as DocumentNode<AllProjectsQuery, AllProjectsQueryVariables>;
-export const ProjectByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ProjectById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"project"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProjectFields"}},{"kind":"Field","name":{"kind":"Name","value":"screenShots"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageFields"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProjectFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Project"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"description"}},{"kind":"Field","name":{"kind":"Name","value":"active"}},{"kind":"Field","name":{"kind":"Name","value":"link"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"sourceCode"}},{"kind":"Field","name":{"kind":"Name","value":"techStack"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}},{"kind":"Field","name":{"kind":"Name","value":"locale"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageFields"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Asset"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"handle"}},{"kind":"Field","name":{"kind":"Name","value":"fileName"}},{"kind":"Field","name":{"kind":"Name","value":"mimeType"}},{"kind":"Field","name":{"kind":"Name","value":"width"}},{"kind":"Field","name":{"kind":"Name","value":"height"}},{"kind":"Field","name":{"kind":"Name","value":"size"}}]}}]} as unknown as DocumentNode<ProjectByIdQuery, ProjectByIdQueryVariables>;
+export const ProjectFieldsFragmentDoc = {
+  'kind': 'Document',
+  'definitions': [
+    {
+      'kind': 'FragmentDefinition',
+      'name': { 'kind': 'Name', 'value': 'ProjectFields' },
+      'typeCondition': {
+        'kind': 'NamedType',
+        'name': { 'kind': 'Name', 'value': 'Project' },
+      },
+      'selectionSet': {
+        'kind': 'SelectionSet',
+        'selections': [
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'title' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'description' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'active' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'link' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'version' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'sourceCode' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'techStack' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'createdAt' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'updatedAt' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProjectFieldsFragment, unknown>;
+export const ImageFieldsFragmentDoc = {
+  'kind': 'Document',
+  'definitions': [
+    {
+      'kind': 'FragmentDefinition',
+      'name': { 'kind': 'Name', 'value': 'ImageFields' },
+      'typeCondition': {
+        'kind': 'NamedType',
+        'name': { 'kind': 'Name', 'value': 'Asset' },
+      },
+      'selectionSet': {
+        'kind': 'SelectionSet',
+        'selections': [
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'url' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'handle' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'fileName' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'mimeType' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'width' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'height' } },
+          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'size' } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ImageFieldsFragment, unknown>;
+export const AllProjectsDocument = {
+  'kind': 'Document',
+  'definitions': [
+    {
+      'kind': 'OperationDefinition',
+      'operation': 'query',
+      'name': { 'kind': 'Name', 'value': 'AllProjects' },
+      'selectionSet': {
+        'kind': 'SelectionSet',
+        'selections': [
+          {
+            'kind': 'Field',
+            'name': { 'kind': 'Name', 'value': 'projects' },
+            'selectionSet': {
+              'kind': 'SelectionSet',
+              'selections': [
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'title' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'description' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'active' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'link' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'version' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'sourceCode' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'techStack' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'createdAt' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'updatedAt' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
+                {
+                  'kind': 'Field',
+                  'name': { 'kind': 'Name', 'value': 'screenShots' },
+                  'selectionSet': {
+                    'kind': 'SelectionSet',
+                    'selections': [
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'url' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'handle' } },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'fileName' },
+                      },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'mimeType' },
+                      },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'width' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'height' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'size' } },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'createdAt' },
+                      },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'updatedAt' },
+                      },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<AllProjectsQuery, AllProjectsQueryVariables>;
+export const ProjectByIdDocument = {
+  'kind': 'Document',
+  'definitions': [
+    {
+      'kind': 'OperationDefinition',
+      'operation': 'query',
+      'name': { 'kind': 'Name', 'value': 'ProjectById' },
+      'variableDefinitions': [
+        {
+          'kind': 'VariableDefinition',
+          'variable': { 'kind': 'Variable', 'name': { 'kind': 'Name', 'value': 'id' } },
+          'type': {
+            'kind': 'NonNullType',
+            'type': { 'kind': 'NamedType', 'name': { 'kind': 'Name', 'value': 'ID' } },
+          },
+        },
+      ],
+      'selectionSet': {
+        'kind': 'SelectionSet',
+        'selections': [
+          {
+            'kind': 'Field',
+            'name': { 'kind': 'Name', 'value': 'project' },
+            'arguments': [
+              {
+                'kind': 'Argument',
+                'name': { 'kind': 'Name', 'value': 'where' },
+                'value': {
+                  'kind': 'ObjectValue',
+                  'fields': [
+                    {
+                      'kind': 'ObjectField',
+                      'name': { 'kind': 'Name', 'value': 'id' },
+                      'value': {
+                        'kind': 'Variable',
+                        'name': { 'kind': 'Name', 'value': 'id' },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            'selectionSet': {
+              'kind': 'SelectionSet',
+              'selections': [
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'title' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'description' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'active' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'link' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'version' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'sourceCode' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'techStack' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'createdAt' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'updatedAt' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
+                {
+                  'kind': 'Field',
+                  'name': { 'kind': 'Name', 'value': 'screenShots' },
+                  'selectionSet': {
+                    'kind': 'SelectionSet',
+                    'selections': [
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'url' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'handle' } },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'fileName' },
+                      },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'mimeType' },
+                      },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'width' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'height' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'size' } },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'createdAt' },
+                      },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'updatedAt' },
+                      },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProjectByIdQuery, ProjectByIdQueryVariables>;

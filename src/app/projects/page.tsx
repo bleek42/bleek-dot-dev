@@ -14,13 +14,12 @@ import {
 	ReactPortal,
 	Fragment,
 } from 'react';
-import useGraphQLRequest from '@/lib/graphql';
+import { allDraftProjectQuery } from '@/lib/graphql';
 import { AllProjectsDocument } from '@/lib/graphql/gen/graphql';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 export default function Page() {
-	const projects = useGraphQLRequest(AllProjectsDocument);
-	console.log(projects);
+	console.log(allDraftProjectQuery);
 
 	return (
 		<>

@@ -18,8 +18,8 @@
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier --write",
-		"gen": "graphql-codegen --config codegen.ts",
-		"gen:watch": "graphql-code-generator --config --watch codegen.ts",
+		"gen": "graphql-codegen --require dotenv/config --config codegen.ts",
+		"gen:watch": "graphql-codegen --require dotenv/config --config --watch codegen.ts",
 		"gen:rm": "rm -rf src/app/lib/graphql/gen/*.ts"
 	},
 	"dependencies": {

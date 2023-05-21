@@ -23,14 +23,8 @@ import { ExecutionResult, GraphQLError } from 'graphql';
 // });
 
 import { graphql } from './gen/gql';
-import { AllProjectsDocument, TypedDocumentString } from '@/lib/graphql/gen/graphql';
-import {
-  AllProjectsDocument,
-  AllProjectsQuery,
-  AllProjectsQueryVariables,
-  ProjectByIdQuery,
-  ProjectByIdQueryVariables,
-} from './gen/graphql';
+// import { AllProjectsDocument, TypedDocumentString } from '@/lib/graphql/gen/graphql';
+import { AllProjectsDocument, AllProjectsQuery, AllProjectsQueryVariables } from './gen/graphql';
 
 // type Vars = AllProjectsQueryVariables | ProjectByIdQueryVariables;
 async function useGraphQLRequest<TResult, Variables>(
@@ -52,9 +46,46 @@ async function useGraphQLRequest<TResult, Variables>(
   return result;
 }
 
-const projects = graphql();
+const projects = graphql(`
+  query AllProjects(
+    $stage: Stage = PUBLISHED
+    $orderBy: ProjectOrderByInput = createdAt_ASC
+  ) {
+    projects(stage: $stage, orderBy: $orderBy) {
+      id
+      title
+      description
+      active
+      link
+      version
+      sourceCode
+      techStack
+      createdAt
+      updatedAt
+      stage
+      locale
+      screenShots {
+        id
+        url
+        handle
+        fileName
+        mimeType
+        width
+        height
+        size
+        createdAt
+        updatedAt
+        stage
+        locale
+      }
+    }
+  }
+`) as TypedDocumentNode<typeof AllProjectsDocument, AllProjectsQueryVariables>;
 
-useGraphQLRequest(projects, [])
+export const allDraftProjectQuery = useGraphQLRequest(projects, {
+  'stage': 'DRAFT',
+  'orderBy': 'createdAt_ASC',
+})
   .then((result) => result)
   .catch((err) => console.error(err));
 

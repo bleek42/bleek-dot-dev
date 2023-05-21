@@ -9,18 +9,6 @@ dotenv.config({
 });
 
 console.log('|=== GENERATING GRAPHQL TYPES WITH .graphqlrc.cjs ===|');
-console.log({
-  'NODE_ENV': {
-    [process.env.NODE_ENV]: {
-      PORT: process.env.PORT,
-      HOST: process.env.HOST,
-      HYGRAPH_API_AUTH_TOKEN: process.env.HYGRAPH_API_AUTH_TOKEN,
-      HYGRAPH_API_BASE_URL: process.env.HYGRAPH_API_BASE_URL,
-      NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN: process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN,
-      NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL: process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL,
-    },
-  },
-});
 
 const config: CodegenConfig = {
   require: ['ts-node/register'],

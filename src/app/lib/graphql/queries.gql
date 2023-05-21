@@ -1,5 +1,8 @@
-query AllProjects {
-	projects {
+query AllProjects(
+	$stage: Stage = PUBLISHED
+	$orderBy: ProjectOrderByInput = createdAt_ASC
+) {
+	projects(stage: $stage, orderBy: $orderBy) {
 		id
 		title
 		description
@@ -30,46 +33,51 @@ query AllProjects {
 	}
 }
 
-query ProjectById($id: ID!) {
-	project(where: { id: $id }) {
+query ProjectWhereUniqueId(
+	$where: ProjectWhereUniqueInput! = { id: "clhxnw5chfpxm0bk7zwvofkdw" }
+	$stage: Stage = PUBLISHED
+) {
+	project(where: $where, stage: $stage) {
 		id
 		title
-		description
-		active
 		link
-		version
+		description
 		sourceCode
-		techStack
 		createdAt
 		updatedAt
 		stage
 		locale
-
-		screenShots {
-			id
-			url
-			handle
-			fileName
-			mimeType
-			width
-			height
-			size
-			createdAt
-			updatedAt
-			stage
-			locale
-		}
 	}
 }
 
-# query ProjectWithNode($id: ID!) {
-# 	node(id: $id) {
-# 		...ProjectFields
+# query ProjectById($id: ID!) {
+# 	project(where: { id: $id }) {
+# 		id
+# 		title
+# 		description
+# 		active
+# 		link
+# 		version
+# 		sourceCode
+# 		techStack
+# 		createdAt
+# 		updatedAt
+# 		stage
+# 		locale
 
-# 		screenShots(first: 10) {
-# 			history(limit: 10) {
-# 				...ImageFields
-# 			}
+# 		screenShots {
+# 			id
+# 			url
+# 			handle
+# 			fileName
+# 			mimeType
+# 			width
+# 			height
+# 			size
+# 			createdAt
+# 			updatedAt
+# 			stage
+# 			locale
 # 		}
 # 	}
 # }

@@ -1,13 +1,13 @@
-# fragment UserFields on User {
-# 	id
-# 	name
-# 	kind
-# 	isActive
-# 	picture
-# 	stage
-# 	createdAt
-# 	updatedAt
-# }
+fragment UserFields on User {
+	id
+	name
+	kind
+	isActive
+	picture
+	stage
+	createdAt
+	updatedAt
+}
 
 fragment ProjectFields on Project {
 	id

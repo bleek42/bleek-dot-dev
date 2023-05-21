@@ -23,97 +23,49 @@ enum Kind  {
 	PAT
 }
 
-
-interface Node {
-	id: ID!
-	stage: Stage!
-}
-
-type Asset implements Node {
-	id: ID!
-	String: String!
-	fileName: String!
-	handle: String!
-	mimeType: String
-	width: Float
-	height: Float
-	size: Float
-	createdAt: DateTime!
-	updatedAt: DateTime
-	locale: Locale!
-	stage: Stage!
-}
-
-type Project implements Node {
-	id: ID!
-	title: String!
-	description: [String]!
-	active: Boolean!
-	link: String!
-	techStack: String!
-	sourceCode: [String]
-	version: Float!
-	screenShots: [Asset]!
-	createdAt: DateTime!
-	updatedAt: DateTime
-	locale: Locale
-	stage: Stage!
-}
-
-# type User implements Node {
-# 	id: ID!
-# 	name: String!
-# 	kind: Kind!
-# 	picture: String!
-# 	createdAt: DateTime!
+# input ProjectWhereInput {
+# 	title: String
+# 	description: [String]
+# 	active: Boolean
+# 	link: String
+# 	techStack: String
+# 	sourceCode: [String]
+# 	version: Float
+# 	screenShots: [Asset]
+# 	createdAt: DateTime
 # 	updatedAt: DateTime
-# 	stage: Stage!
+# 	stage: Stage
 # }
 
-#
-input ProjectWhereInput {
-	title: String
-	description: [String]
-	active: Boolean
-	link: String
-	techStack: String
-	sourceCode: [String]
-	version: Float
-	screenShots: [Asset]
-	createdAt: DateTime
-	updatedAt: DateTime
-	stage: Stage
-}
+# input ProjectCreateInput {
+# 	title: String!
+# 	description: [String]!
+# 	active: Boolean!
+# 	link: String
+# 	techStack: String
+# 	sourceCode: [String]!
+# 	version: Float!
+# 	screenShots: [Asset]!
+# }
 
-input ProjectCreateInput {
-	title: String!
-	description: [String]!
-	active: Boolean!
-	link: String
-	techStack: String
-	sourceCode: [String]!
-	version: Float!
-	screenShots: [Asset]!
-}
-
-input ProjectWhereUniqueInput {
-	id: ID
-	title: String
-	active: Boolean
-	link: String
-}
+# input ProjectWhereUniqueInput {
+# 	id: ID
+# 	title: String
+# 	active: Boolean
+# 	link: String
+# }
 
 union SearchResult = Project | User | Asset
 union ProjectInput = ProjectWhereInput | ProjectWhereUniqueInput | ProjectCreateInput
 
-type Query {
-	projects: [Project]!
-	project(where: ProjectInput!): Project
-	projectsConnection(where: ProjectInput!, stage: Stage): [SearchResult]!
-	history(limit: Int): [SearchResult]!
-	screenShots(first: Int): [Asset]!
-}
+# type Query {
+# 	projects: [Project]!
+# 	project(where: ProjectInput!): Project
+# 	projectsConnection(where: ProjectInput!, stage: Stage): [SearchResult]!
+# 	history(limit: Int): [SearchResult]!
+# 	screenShots(first: Int): [Asset]!
+# }
 
-type Mutation {
-	createProject(newProject: ProjectInput!): Project!
-}
+# type Mutation {
+# 	createProject(newProject: ProjectInput!): Project!
+# }

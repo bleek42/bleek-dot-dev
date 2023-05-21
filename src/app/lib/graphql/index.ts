@@ -1,8 +1,8 @@
 // import * as dotenv from 'dotenv';
 // import * as path from 'path';
 import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { GraphQLClient, gql } from 'graphql-request';
-import { GraphQLError } from 'graphql';
+import { GraphQLClient, RequestDocument, gql } from 'graphql-request';
+import { ExecutionResult, GraphQLError } from 'graphql';
 
 // dotenv.config({
 //   path: path.join('/.env.development.local'),
@@ -23,6 +23,7 @@ import { GraphQLError } from 'graphql';
 // });
 
 import { graphql } from './gen/gql';
+import { AllProjectsDocument, TypedDocumentString } from '@/lib/graphql/gen/graphql';
 import {
   AllProjectsDocument,
   AllProjectsQuery,
@@ -33,9 +34,9 @@ import {
 
 // type Vars = AllProjectsQueryVariables | ProjectByIdQueryVariables;
 async function useGraphQLRequest<TResult, Variables>(
-  document: TypedDocumentNode<TResult, Variables>,
+  document: TypedDocumentNode<TResult, Variables> | RequestDocument,
   ...[variables]: Variables extends Record<string, never> ? [] : [Variables]
-) {
+): Promise<TResult> {
   const client = new GraphQLClient(
     'https://us-east-1.cdn.hygraph.com/content/cl2jezykc0li901yx24p50f8f/master',
     {
@@ -46,79 +47,14 @@ async function useGraphQLRequest<TResult, Variables>(
       cache: 'force-cache',
     }
   );
-
-  const result = await client.request<TypedDocumentNode<TResult, Variables>>(document, [
-    variables,
-  ]);
+  const result = await client.request<Awaited<TResult>>(document, variables ?? []);
   console.log(result);
   return result;
 }
 
-const projects = graphql(`
-  query AllProjects {
-    projects {
-      id
-      title
-      description
-      active
-      link
-      version
-      sourceCode
-      techStack
-      createdAt
-      updatedAt
-      stage
-      locale
-      screenShots {
-        id
-        url
-        handle
-        fileName
-        mimeType
-        width
-        height
-        size
-        createdAt
-        updatedAt
-        stage
-        locale
-      }
-    }
-  }
+const projects = graphql();
 
-  query ProjectById($id: ID!) {
-    project(where: { id: $id }) {
-      id
-      title
-      description
-      active
-      link
-      version
-      sourceCode
-      techStack
-      createdAt
-      updatedAt
-      stage
-      locale
-      screenShots {
-        id
-        url
-        handle
-        fileName
-        mimeType
-        width
-        height
-        size
-        createdAt
-        updatedAt
-        stage
-        locale
-      }
-    }
-  }
-`);
-
-useGraphQLRequest(projects)
+useGraphQLRequest(projects, [])
   .then((result) => result)
   .catch((err) => console.error(err));
 

@@ -1,5 +1,5 @@
-mutation CreateProject($data: ProjectInput!) {
-	createProject(data: $data) {
+mutation CreateProject($input: ProjectCreateInput!) {
+	createProject(data: $input) {
 		...ProjectFields
 
 		screenShots {
@@ -8,22 +8,22 @@ mutation CreateProject($data: ProjectInput!) {
 	}
 }
 
-mutation UpdateProject($data: ProjectInput!) {
-	updateProject(where: $data) {
-		...ProjectFields
+# mutation UpdateProject($data: ProjectInput!) {
+# 	updateProject(where: $data) {
+# 		...ProjectFields
 
-		screenShots {
-			...ImageFields
-		}
-	}
-}
+# 		screenShots {
+# 			...ImageFields
+# 		}
+# 	}
+# }
 
-mutation DeleteProject($data: ProjectInput!) {
-	deleteProject(where: $data) {
-		...ProjectFields
+# mutation DeleteProject($data: ProjectInput!) {
+# 	deleteProject(where: $data) {
+# 		...ProjectFields
 
-		screenShots {
-			...ImageFields
-		}
-	}
-}
+# 		screenShots {
+# 			...ImageFields
+# 		}
+# 	}
+# }

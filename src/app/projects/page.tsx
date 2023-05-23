@@ -14,12 +14,21 @@ import {
 	ReactPortal,
 	Fragment,
 } from 'react';
-import { allDraftProjectQuery } from '@/lib/graphql';
-import { AllProjectsDocument } from '@/lib/graphql/gen/graphql';
+import { allDraftProjectsQuery } from '@/lib/graphql';
+import {
+	AllProjectsDocument,
+	AllProjectsQueryVariables,
+} from '@/lib/graphql/gen/graphql';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import { AllProjectsQuery } from '@/graphql/gen/graphql';
 
 export default function Page() {
-	console.log(allDraftProjectQuery);
+	const projects: Promise<
+		TypedDocumentNode<AllProjectsQuery, AllProjectsQueryVariables>[]
+	> = allDraftProjectsQuery
+		.then((projects) => projects ?? null)
+		.catch((err) => console.error(err));
+	console.log(projects);
 
 	return (
 		<>

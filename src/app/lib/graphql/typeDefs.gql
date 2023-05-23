@@ -1,62 +1,62 @@
-scalar Date
-scalar DateTime
-scalar Hex
-scalar Json
-scalar Long
-scalar RGBAHue
-scalar RGBATransparency
-scalar RichTextAST
+# scalar Date
+# scalar DateTime
+# scalar Hex
+# scalar Json
+# scalar Long
+# scalar RGBAHue
+# scalar RGBATransparency
+# scalar RichTextAST
 
-enum Locale {
-	en_US
-	es_MX
-}
-
-enum Stage {
-	DRAFT
-	PUBLISHED
-}
-
-enum Kind  {
-	MEMBER
-	PUBLIC
-	PAT
-}
-
-# input ProjectWhereInput {
-# 	title: String
-# 	description: [String]
-# 	active: Boolean
-# 	link: String
-# 	techStack: String
-# 	sourceCode: [String]
-# 	version: Float
-# 	screenShots: [Asset]
-# 	createdAt: DateTime
-# 	updatedAt: DateTime
-# 	stage: Stage
+# enum Locale {
+# 	en_US
+# 	es_MX
 # }
 
-# input ProjectCreateInput {
-# 	title: String!
-# 	description: [String]!
-# 	active: Boolean!
-# 	link: String
-# 	techStack: String
-# 	sourceCode: [String]!
-# 	version: Float!
-# 	screenShots: [Asset]!
+# enum Stage {
+# 	DRAFT
+# 	PUBLISHED
 # }
 
-# input ProjectWhereUniqueInput {
-# 	id: ID
-# 	title: String
-# 	active: Boolean
-# 	link: String
+# enum Kind  {
+# 	MEMBER
+# 	PUBLIC
+# 	PAT
 # }
 
-union SearchResult = Project | User | Asset
-union ProjectInput = ProjectWhereInput | ProjectWhereUniqueInput | ProjectCreateInput
+# # input ProjectWhereInput {
+# # 	title: String
+# # 	description: [String]
+# # 	active: Boolean
+# # 	link: String
+# # 	techStack: String
+# # 	sourceCode: [String]
+# # 	version: Float
+# # 	screenShots: [Asset]
+# # 	createdAt: DateTime
+# # 	updatedAt: DateTime
+# # 	stage: Stage
+# # }
+
+# # input ProjectCreateInput {
+# # 	title: String!
+# # 	description: [String]!
+# # 	active: Boolean!
+# # 	link: String
+# # 	techStack: String
+# # 	sourceCode: [String]!
+# # 	version: Float!
+# # 	screenShots: [Asset]!
+# # }
+
+# # input ProjectWhereUniqueInput {
+# # 	id: ID
+# # 	title: String
+# # 	active: Boolean
+# # 	link: String
+# # }
+
+# union SearchResult = Project | User | Asset
+# union ProjectInput = ProjectWhereInput | ProjectWhereUniqueInput | ProjectCreateInput
 
 # type Query {
 # 	projects: [Project]!

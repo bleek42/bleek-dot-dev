@@ -1,34 +1,21 @@
-// import * as dotenv from 'dotenv';
-// import * as path from 'path';
 import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { GraphQLClient, RequestDocument, gql } from 'graphql-request';
 import { ExecutionResult, GraphQLError } from 'graphql';
 
-// dotenv.config({
-//   path: path.join('/.env.development.local'),
-//   encoding: 'UTF-8',
-// });
-
-// console.log({
-//   'NODE_ENV': {
-//     [process.env.NODE_ENV]: {
-//       PORT: process.env.PORT,
-//       HOST: process.env.HOST,
-//       HYGRAPH_API_AUTH_TOKEN: process.env.HYGRAPH_API_AUTH_TOKEN,
-//       HYGRAPH_API_BASE_URL: process.env.HYGRAPH_API_BASE_URL,
-//       NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN: process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN,
-//       NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL: process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL,
-//     },
-//   },
-// });
-
 import { graphql } from './gen/gql';
-// import { AllProjectsDocument, TypedDocumentString } from '@/lib/graphql/gen/graphql';
-import { AllProjectsDocument, AllProjectsQuery, AllProjectsQueryVariables } from './gen/graphql';
+import {
+  ProjectWhereUniqueDocument,
+  ProjectWhereUniqueInput,
+  ProjectWhereUniqueQueryVariables,
+  TypedDocumentString,
+} from './gen/graphql';
 
 // type Vars = AllProjectsQueryVariables | ProjectByIdQueryVariables;
-async function useGraphQLRequest<TResult, Variables>(
-  document: TypedDocumentNode<TResult, Variables> | RequestDocument,
+async function useGraphQLRequest<TResult = ExecutionResult, Variables = Array<unknown>>(
+  document:
+    | TypedDocumentString<TResult, Variables>
+    | TypedDocumentNode<TResult, Variables>
+    | RequestDocument,
   ...[variables]: Variables extends Record<string, never> ? [] : [Variables]
 ): Promise<TResult> {
   const client = new GraphQLClient(
@@ -41,53 +28,55 @@ async function useGraphQLRequest<TResult, Variables>(
       cache: 'force-cache',
     }
   );
-  const result = await client.request<Awaited<TResult>>(document, variables ?? []);
+  const result = await client.request(document.toString(), variables);
   console.log(result);
   return result;
 }
 
-const projects = graphql(`
-  query AllProjects(
-    $stage: Stage = PUBLISHED
-    $orderBy: ProjectOrderByInput = createdAt_ASC
-  ) {
-    projects(stage: $stage, orderBy: $orderBy) {
-      id
-      title
-      description
-      active
-      link
-      version
-      sourceCode
-      techStack
-      createdAt
-      updatedAt
-      stage
-      locale
-      screenShots {
+// ! where = { id: "clhxnw5chfpxm0bk7zwvofkdw" }
+const ProjectWhereIdDocument = graphql(
+  //@ts-expect-error
+  `
+    query ProjectWhereUnique(
+      $where: ProjectWhereUniqueInput! = { id: "clhxnw5chfpxm0bk7zwvofkdw" }
+      $stage: Stage = PUBLISHED
+    ) {
+      project(where: $where, stage: $stage) {
         id
-        url
-        handle
-        fileName
-        mimeType
-        width
-        height
-        size
+        title
+        link
+        description
+        version
+        active
+        sourceCode
+        techStack
         createdAt
         updatedAt
         stage
         locale
+        screenShots {
+          id
+          url
+          handle
+          fileName
+          mimeType
+          width
+          height
+          size
+          createdAt
+          updatedAt
+          stage
+          locale
+        }
       }
     }
-  }
-`) as TypedDocumentNode<typeof AllProjectsDocument, AllProjectsQueryVariables>;
+  `
+);
 
-export const allDraftProjectQuery = useGraphQLRequest(projects, {
-  'stage': 'DRAFT',
-  'orderBy': 'createdAt_ASC',
-})
-  .then((result) => result)
-  .catch((err) => console.error(err));
+export const queryProject = (id = { 'where': { 'id': 'clhxnw5chfpxm0bk7zwvofkdw' } }) =>
+  useGraphQLRequest(ProjectWhereIdDocument, id)
+    .then((result) => result)
+    .catch((err) => console.error(err));
 
 // export const queryProjectById = async () => {
 //   // const query = graphql();

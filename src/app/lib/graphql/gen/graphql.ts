@@ -1,4 +1,5 @@
 /* eslint-disable */
+import { DocumentTypeDecoration } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -4297,78 +4298,21 @@ export type _RelationKind = 'regular' | 'union';
 
 export type _SystemDateTimeFieldVariation = 'base' | 'combined' | 'localization';
 
-export type UserFieldsFragment = {
-  __typename?: 'User';
-  id: string | unknown;
-  name: string;
-  kind: UserKind;
-  isActive: boolean;
-  picture?: string | null;
-  stage: Stage;
-  createdAt: Date | string | unknown;
-  updatedAt: Date | string | unknown;
-} & { ' $fragmentName'?: 'UserFieldsFragment' };
-
-export type ProjectFieldsFragment = {
-  __typename?: 'Project';
-  id: string | unknown;
-  title: string;
-  description: string;
-  active: boolean;
-  link: string;
-  version: number;
-  sourceCode: Array<string>;
-  techStack?: string[] | string | unknown[] | unknown | null;
-  createdAt: Date | string | unknown;
-  updatedAt: Date | string | unknown;
-  locale: Locale;
-} & { ' $fragmentName'?: 'ProjectFieldsFragment' };
-
-export type ImageFieldsFragment = {
-  __typename?: 'Asset';
-  id: string | unknown;
-  url: string;
-  handle: string;
-  fileName: string;
-  mimeType?: string | null;
-  width?: number | null;
-  height?: number | null;
-  size?: number | null;
-} & { ' $fragmentName'?: 'ImageFieldsFragment' };
-
-export type CreateProjectMutationVariables = Exact<{
-  input: ProjectCreateInput;
-}>;
-
-export type CreateProjectMutation = {
-  __typename?: 'Mutation';
-  createProject?:
-    | ({
-        __typename?: 'Project';
-        screenShots: Array<
-          { __typename?: 'Asset' } & {
-            ' $fragmentRefs'?: { 'ImageFieldsFragment': ImageFieldsFragment };
-          }
-        >;
-      } & { ' $fragmentRefs'?: { 'ProjectFieldsFragment': ProjectFieldsFragment } })
-    | null;
-};
-
-export type AllProjectsQueryVariables = Exact<{
+export type ProjectWhereUniqueQueryVariables = Exact<{
+  where?: ProjectWhereUniqueInput;
   stage?: InputMaybe<Stage>;
-  orderBy?: InputMaybe<ProjectOrderByInput>;
 }>;
 
-export type AllProjectsQuery = {
+export type ProjectWhereUniqueQuery = {
   __typename?: 'Query';
-  projects: Array<{
+  project?: {
     __typename?: 'Project';
     id: string | unknown;
     title: string;
-    description: string;
-    active: boolean;
     link: string;
+    description: string;
     version: number;
+    active: boolean;
     sourceCode: Array<string>;
     techStack?: string[] | string | unknown[] | unknown | null;
     createdAt: Date | string | unknown;
@@ -4390,131 +4334,56 @@ export type AllProjectsQuery = {
       stage: Stage;
       locale: Locale;
     }>;
-  }>;
-};
-
-export type ProjectWhereUniqueIdQueryVariables = Exact<{
-  where?: ProjectWhereUniqueInput;
-  stage?: InputMaybe<Stage>;
-}>;
-
-export type ProjectWhereUniqueIdQuery = {
-  __typename?: 'Query';
-  project?: {
-    __typename?: 'Project';
-    id: string | unknown;
-    title: string;
-    link: string;
-    description: string;
-    sourceCode: Array<string>;
-    createdAt: Date | string | unknown;
-    updatedAt: Date | string | unknown;
-    stage: Stage;
-    locale: Locale;
   } | null;
 };
 
-export const UserFieldsFragmentDoc = gql`
-  fragment UserFields on User {
-    id
-    name
-    kind
-    isActive
-    picture
-    stage
-    createdAt
-    updatedAt
+export class TypedDocumentString<TResult, TVariables>
+  extends String
+  implements DocumentTypeDecoration<TResult, TVariables>
+{
+  __apiType?: DocumentTypeDecoration<TResult, TVariables>['__apiType'];
+
+  constructor(private value: string, public __meta__?: { hash: string }) {
+    super(value);
   }
-`;
-export const ProjectFieldsFragmentDoc = gql`
-  fragment ProjectFields on Project {
+
+  toString(): string & DocumentTypeDecoration<TResult, TVariables> {
+    return this.value;
+  }
+}
+
+export const ProjectWhereUniqueDocument: TypedDocumentString<
+  ProjectWhereUniqueQuery,
+  ProjectWhereUniqueQueryVariables
+> = new TypedDocumentString(`
+    query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage = PUBLISHED) {
+  project(where: $where, stage: $stage) {
     id
     title
-    description
-    active
     link
+    description
     version
+    active
     sourceCode
     techStack
     createdAt
     updatedAt
+    stage
     locale
-  }
-`;
-export const ImageFieldsFragmentDoc = gql`
-  fragment ImageFields on Asset {
-    id
-    url
-    handle
-    fileName
-    mimeType
-    width
-    height
-    size
-  }
-`;
-export const CreateProjectDocument = gql`
-  mutation CreateProject($input: ProjectCreateInput!) {
-    createProject(data: $input) {
-      ...ProjectFields
-      screenShots {
-        ...ImageFields
-      }
-    }
-  }
-  ${ProjectFieldsFragmentDoc}
-  ${ImageFieldsFragmentDoc}
-`;
-export const AllProjectsDocument = gql`
-  query AllProjects(
-    $stage: Stage = PUBLISHED
-    $orderBy: ProjectOrderByInput = createdAt_ASC
-  ) {
-    projects(stage: $stage, orderBy: $orderBy) {
+    screenShots {
       id
-      title
-      description
-      active
-      link
-      version
-      sourceCode
-      techStack
-      createdAt
-      updatedAt
-      stage
-      locale
-      screenShots {
-        id
-        url
-        handle
-        fileName
-        mimeType
-        width
-        height
-        size
-        createdAt
-        updatedAt
-        stage
-        locale
-      }
-    }
-  }
-`;
-export const ProjectWhereUniqueIdDocument = gql`
-  query ProjectWhereUniqueId(
-    $where: ProjectWhereUniqueInput! = { id: "clhxnw5chfpxm0bk7zwvofkdw" }
-    $stage: Stage = PUBLISHED
-  ) {
-    project(where: $where, stage: $stage) {
-      id
-      title
-      link
-      description
-      sourceCode
+      url
+      handle
+      fileName
+      mimeType
+      width
+      height
+      size
       createdAt
       updatedAt
       stage
       locale
     }
   }
-`;
+}
+`);

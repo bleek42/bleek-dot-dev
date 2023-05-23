@@ -1,0 +1,34 @@
+query ProjectWhereUnique(
+	$where: ProjectWhereUniqueInput! = { id: "clhxnw5chfpxm0bk7zwvofkdw" }
+	$stage: Stage = PUBLISHED
+) {
+	project(where: $where, stage: $stage) {
+		id
+		title
+		link
+		description
+		version
+		active
+		sourceCode
+		techStack
+		createdAt
+		updatedAt
+		stage
+		locale
+
+		screenShots {
+			id
+			url
+			handle
+			fileName
+			mimeType
+			width
+			height
+			size
+			createdAt
+			updatedAt
+			stage
+			locale
+		}
+	}
+}

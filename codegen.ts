@@ -8,19 +8,15 @@ dotenv.config({
   encoding: 'UTF-8',
 });
 
-console.log('|=== GENERATING GRAPHQL TYPES WITH .graphqlrc.cjs ===|');
+console.log('|=== GENERATING GRAPHQL TYPES ===|');
 
 const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
-  // ignoreNoDocuments: true,
+  ignoreNoDocuments: false,
 
   schema: './schema.json',
-  documents: [
-    './src/app/lib/graphql/*.gql',
-    './src/app/lib/graphql/*.graphql',
-    '!./src/app/lib/graphql/**/*.ts',
-  ],
+  documents: ['./src/app/lib/graphql/*.graphql', '!./src/app/lib/graphql/**/*.ts'],
 
   generates: {
     './schema.json': {
@@ -53,9 +49,6 @@ const config: CodegenConfig = {
 
     './src/types/hygraph.types.ts': {
       plugins: ['typescript', 'typescript-operations', 'typed-document-node'],
-      config: {
-        addUnderscoreToArgsType: true,
-      },
     },
 
     './src/app/lib/graphql/gen/': {
@@ -63,27 +56,22 @@ const config: CodegenConfig = {
       presetConfig: {
         fragmentMasking: { unmaskFunctionName: 'createTypedFragment' },
       },
+
       config: {
-        documentMode: 'TypedDocumentNode',
+        documentMode: 'string',
       },
     },
-
-    // './src/app/lib/graphql/gen/client.ts': {
-    //   plugins: ['typescript-graphql-request'],
-    //   preset: 'import-types',
   },
   config: {
     fetcher: 'graphql-request',
-    useTypeImports: true,
     futureProofUnions: true,
     enumsAsTypes: true,
-    enumPrefix: false,
-    enumSuffix: 'Field',
+    addUnderscoreToArgsType: true,
+    defaultScalar: 'unknown',
     declarationKind: {
       input: 'interface',
       type: 'interface',
     },
-    defaultScalar: 'unknown',
     scalars: {
       ID: 'string | unknown',
       Date: 'Date | string | unknown',
@@ -100,10 +88,3 @@ const config: CodegenConfig = {
 };
 
 export default config;
-
-// './src/app/lib/graphql/gen/': {
-//   plugins: ['typescript-graphql-request'],
-//   preset: 'import-types',
-//   presetConfig: {
-//     filename: 'hyg.docnode.types.ts',
-//   },

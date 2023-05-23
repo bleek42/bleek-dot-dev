@@ -1,4 +1,4 @@
-import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
+import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -4295,93 +4295,21 @@ export type _RelationKind = 'regular' | 'union';
 
 export type _SystemDateTimeFieldVariation = 'base' | 'combined' | 'localization';
 
-export type UserFieldsFragment = {
-  __typename?: 'User';
-  id: string | unknown;
-  name: string;
-  kind: UserKind;
-  isActive: boolean;
-  picture?: string | null;
-  stage: Stage;
-  createdAt: Date | string | unknown;
-  updatedAt: Date | string | unknown;
-};
-
-export type ProjectFieldsFragment = {
-  __typename?: 'Project';
-  id: string | unknown;
-  title: string;
-  description: string;
-  active: boolean;
-  link: string;
-  version: number;
-  sourceCode: Array<string>;
-  techStack?: string[] | string | unknown[] | unknown | null;
-  createdAt: Date | string | unknown;
-  updatedAt: Date | string | unknown;
-  locale: Locale;
-};
-
-export type ImageFieldsFragment = {
-  __typename?: 'Asset';
-  id: string | unknown;
-  url: string;
-  handle: string;
-  fileName: string;
-  mimeType?: string | null;
-  width?: number | null;
-  height?: number | null;
-  size?: number | null;
-};
-
-export type CreateProjectMutationVariables = Exact<{
-  input: ProjectCreateInput;
-}>;
-
-export type CreateProjectMutation = {
-  __typename?: 'Mutation';
-  createProject?: {
-    __typename?: 'Project';
-    id: string | unknown;
-    title: string;
-    description: string;
-    active: boolean;
-    link: string;
-    version: number;
-    sourceCode: Array<string>;
-    techStack?: string[] | string | unknown[] | unknown | null;
-    createdAt: Date | string | unknown;
-    updatedAt: Date | string | unknown;
-    locale: Locale;
-    screenShots: Array<{
-      __typename?: 'Asset';
-      id: string | unknown;
-      url: string;
-      handle: string;
-      fileName: string;
-      mimeType?: string | null;
-      width?: number | null;
-      height?: number | null;
-      size?: number | null;
-    }>;
-  } | null;
-};
-
-export type AllProjectsQueryVariables = Exact<{
+export type ProjectWhereUniqueQueryVariables = Exact<{
+  where?: ProjectWhereUniqueInput;
   stage?: InputMaybe<Stage>;
-  orderBy?: InputMaybe<ProjectOrderByInput>;
 }>;
 
-export type AllProjectsQuery = {
+export type ProjectWhereUniqueQuery = {
   __typename?: 'Query';
-  projects: Array<{
+  project?: {
     __typename?: 'Project';
     id: string | unknown;
     title: string;
-    description: string;
-    active: boolean;
     link: string;
+    description: string;
     version: number;
+    active: boolean;
     sourceCode: Array<string>;
     techStack?: string[] | string | unknown[] | unknown | null;
     createdAt: Date | string | unknown;
@@ -4403,340 +4331,16 @@ export type AllProjectsQuery = {
       stage: Stage;
       locale: Locale;
     }>;
-  }>;
-};
-
-export type ProjectWhereUniqueIdQueryVariables = Exact<{
-  where?: ProjectWhereUniqueInput;
-  stage?: InputMaybe<Stage>;
-}>;
-
-export type ProjectWhereUniqueIdQuery = {
-  __typename?: 'Query';
-  project?: {
-    __typename?: 'Project';
-    id: string | unknown;
-    title: string;
-    link: string;
-    description: string;
-    sourceCode: Array<string>;
-    createdAt: Date | string | unknown;
-    updatedAt: Date | string | unknown;
-    stage: Stage;
-    locale: Locale;
   } | null;
 };
 
-export const UserFieldsFragmentDoc = {
-  'kind': 'Document',
-  'definitions': [
-    {
-      'kind': 'FragmentDefinition',
-      'name': { 'kind': 'Name', 'value': 'UserFields' },
-      'typeCondition': {
-        'kind': 'NamedType',
-        'name': { 'kind': 'Name', 'value': 'User' },
-      },
-      'selectionSet': {
-        'kind': 'SelectionSet',
-        'selections': [
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'name' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'kind' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'isActive' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'picture' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'createdAt' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'updatedAt' } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UserFieldsFragment, unknown>;
-export const ProjectFieldsFragmentDoc = {
-  'kind': 'Document',
-  'definitions': [
-    {
-      'kind': 'FragmentDefinition',
-      'name': { 'kind': 'Name', 'value': 'ProjectFields' },
-      'typeCondition': {
-        'kind': 'NamedType',
-        'name': { 'kind': 'Name', 'value': 'Project' },
-      },
-      'selectionSet': {
-        'kind': 'SelectionSet',
-        'selections': [
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'title' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'description' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'active' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'link' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'version' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'sourceCode' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'techStack' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'createdAt' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'updatedAt' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ProjectFieldsFragment, unknown>;
-export const ImageFieldsFragmentDoc = {
-  'kind': 'Document',
-  'definitions': [
-    {
-      'kind': 'FragmentDefinition',
-      'name': { 'kind': 'Name', 'value': 'ImageFields' },
-      'typeCondition': {
-        'kind': 'NamedType',
-        'name': { 'kind': 'Name', 'value': 'Asset' },
-      },
-      'selectionSet': {
-        'kind': 'SelectionSet',
-        'selections': [
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'url' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'handle' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'fileName' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'mimeType' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'width' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'height' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'size' } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ImageFieldsFragment, unknown>;
-export const CreateProjectDocument = {
-  'kind': 'Document',
-  'definitions': [
-    {
-      'kind': 'OperationDefinition',
-      'operation': 'mutation',
-      'name': { 'kind': 'Name', 'value': 'CreateProject' },
-      'variableDefinitions': [
-        {
-          'kind': 'VariableDefinition',
-          'variable': {
-            'kind': 'Variable',
-            'name': { 'kind': 'Name', 'value': 'input' },
-          },
-          'type': {
-            'kind': 'NonNullType',
-            'type': {
-              'kind': 'NamedType',
-              'name': { 'kind': 'Name', 'value': 'ProjectCreateInput' },
-            },
-          },
-        },
-      ],
-      'selectionSet': {
-        'kind': 'SelectionSet',
-        'selections': [
-          {
-            'kind': 'Field',
-            'name': { 'kind': 'Name', 'value': 'createProject' },
-            'arguments': [
-              {
-                'kind': 'Argument',
-                'name': { 'kind': 'Name', 'value': 'data' },
-                'value': {
-                  'kind': 'Variable',
-                  'name': { 'kind': 'Name', 'value': 'input' },
-                },
-              },
-            ],
-            'selectionSet': {
-              'kind': 'SelectionSet',
-              'selections': [
-                {
-                  'kind': 'FragmentSpread',
-                  'name': { 'kind': 'Name', 'value': 'ProjectFields' },
-                },
-                {
-                  'kind': 'Field',
-                  'name': { 'kind': 'Name', 'value': 'screenShots' },
-                  'selectionSet': {
-                    'kind': 'SelectionSet',
-                    'selections': [
-                      {
-                        'kind': 'FragmentSpread',
-                        'name': { 'kind': 'Name', 'value': 'ImageFields' },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-    {
-      'kind': 'FragmentDefinition',
-      'name': { 'kind': 'Name', 'value': 'ProjectFields' },
-      'typeCondition': {
-        'kind': 'NamedType',
-        'name': { 'kind': 'Name', 'value': 'Project' },
-      },
-      'selectionSet': {
-        'kind': 'SelectionSet',
-        'selections': [
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'title' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'description' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'active' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'link' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'version' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'sourceCode' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'techStack' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'createdAt' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'updatedAt' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
-        ],
-      },
-    },
-    {
-      'kind': 'FragmentDefinition',
-      'name': { 'kind': 'Name', 'value': 'ImageFields' },
-      'typeCondition': {
-        'kind': 'NamedType',
-        'name': { 'kind': 'Name', 'value': 'Asset' },
-      },
-      'selectionSet': {
-        'kind': 'SelectionSet',
-        'selections': [
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'url' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'handle' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'fileName' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'mimeType' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'width' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'height' } },
-          { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'size' } },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<CreateProjectMutation, CreateProjectMutationVariables>;
-export const AllProjectsDocument = {
+export const ProjectWhereUniqueDocument = {
   'kind': 'Document',
   'definitions': [
     {
       'kind': 'OperationDefinition',
       'operation': 'query',
-      'name': { 'kind': 'Name', 'value': 'AllProjects' },
-      'variableDefinitions': [
-        {
-          'kind': 'VariableDefinition',
-          'variable': {
-            'kind': 'Variable',
-            'name': { 'kind': 'Name', 'value': 'stage' },
-          },
-          'type': { 'kind': 'NamedType', 'name': { 'kind': 'Name', 'value': 'Stage' } },
-          'defaultValue': { 'kind': 'EnumValue', 'value': 'PUBLISHED' },
-        },
-        {
-          'kind': 'VariableDefinition',
-          'variable': {
-            'kind': 'Variable',
-            'name': { 'kind': 'Name', 'value': 'orderBy' },
-          },
-          'type': {
-            'kind': 'NamedType',
-            'name': { 'kind': 'Name', 'value': 'ProjectOrderByInput' },
-          },
-          'defaultValue': { 'kind': 'EnumValue', 'value': 'createdAt_ASC' },
-        },
-      ],
-      'selectionSet': {
-        'kind': 'SelectionSet',
-        'selections': [
-          {
-            'kind': 'Field',
-            'name': { 'kind': 'Name', 'value': 'projects' },
-            'arguments': [
-              {
-                'kind': 'Argument',
-                'name': { 'kind': 'Name', 'value': 'stage' },
-                'value': {
-                  'kind': 'Variable',
-                  'name': { 'kind': 'Name', 'value': 'stage' },
-                },
-              },
-              {
-                'kind': 'Argument',
-                'name': { 'kind': 'Name', 'value': 'orderBy' },
-                'value': {
-                  'kind': 'Variable',
-                  'name': { 'kind': 'Name', 'value': 'orderBy' },
-                },
-              },
-            ],
-            'selectionSet': {
-              'kind': 'SelectionSet',
-              'selections': [
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'title' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'description' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'active' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'link' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'version' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'sourceCode' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'techStack' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'createdAt' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'updatedAt' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
-                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
-                {
-                  'kind': 'Field',
-                  'name': { 'kind': 'Name', 'value': 'screenShots' },
-                  'selectionSet': {
-                    'kind': 'SelectionSet',
-                    'selections': [
-                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
-                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'url' } },
-                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'handle' } },
-                      {
-                        'kind': 'Field',
-                        'name': { 'kind': 'Name', 'value': 'fileName' },
-                      },
-                      {
-                        'kind': 'Field',
-                        'name': { 'kind': 'Name', 'value': 'mimeType' },
-                      },
-                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'width' } },
-                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'height' } },
-                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'size' } },
-                      {
-                        'kind': 'Field',
-                        'name': { 'kind': 'Name', 'value': 'createdAt' },
-                      },
-                      {
-                        'kind': 'Field',
-                        'name': { 'kind': 'Name', 'value': 'updatedAt' },
-                      },
-                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
-                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<AllProjectsQuery, AllProjectsQueryVariables>;
-export const ProjectWhereUniqueIdDocument = {
-  'kind': 'Document',
-  'definitions': [
-    {
-      'kind': 'OperationDefinition',
-      'operation': 'query',
-      'name': { 'kind': 'Name', 'value': 'ProjectWhereUniqueId' },
+      'name': { 'kind': 'Name', 'value': 'ProjectWhereUnique' },
       'variableDefinitions': [
         {
           'kind': 'VariableDefinition',
@@ -4807,11 +4411,47 @@ export const ProjectWhereUniqueIdDocument = {
                 { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'title' } },
                 { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'link' } },
                 { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'description' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'version' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'active' } },
                 { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'sourceCode' } },
+                { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'techStack' } },
                 { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'createdAt' } },
                 { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'updatedAt' } },
                 { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
                 { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
+                {
+                  'kind': 'Field',
+                  'name': { 'kind': 'Name', 'value': 'screenShots' },
+                  'selectionSet': {
+                    'kind': 'SelectionSet',
+                    'selections': [
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'id' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'url' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'handle' } },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'fileName' },
+                      },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'mimeType' },
+                      },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'width' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'height' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'size' } },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'createdAt' },
+                      },
+                      {
+                        'kind': 'Field',
+                        'name': { 'kind': 'Name', 'value': 'updatedAt' },
+                      },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'stage' } },
+                      { 'kind': 'Field', 'name': { 'kind': 'Name', 'value': 'locale' } },
+                    ],
+                  },
+                },
               ],
             },
           },
@@ -4819,7 +4459,4 @@ export const ProjectWhereUniqueIdDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<
-  ProjectWhereUniqueIdQuery,
-  ProjectWhereUniqueIdQueryVariables
->;
+} as unknown as DocumentNode<ProjectWhereUniqueQuery, ProjectWhereUniqueQueryVariables>;

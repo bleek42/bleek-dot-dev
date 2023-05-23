@@ -2,7 +2,7 @@ import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { GraphQLClient, RequestDocument, gql } from 'graphql-request';
 import { ExecutionResult, GraphQLError } from 'graphql';
 
-import { graphql } from './gen/gql';
+import { graphql } from './gen';
 import {
   ProjectWhereUniqueDocument,
   ProjectWhereUniqueInput,
@@ -36,6 +36,7 @@ async function useGraphQLRequest<TResult = ExecutionResult, Variables = Array<un
 // ! where = { id: "clhxnw5chfpxm0bk7zwvofkdw" }
 const ProjectWhereIdDocument = graphql(
   //@ts-expect-error
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   `
     query ProjectWhereUnique(
       $where: ProjectWhereUniqueInput! = { id: "clhxnw5chfpxm0bk7zwvofkdw" }

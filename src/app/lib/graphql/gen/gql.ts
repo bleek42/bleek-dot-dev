@@ -12,46 +12,23 @@ import * as types from './graphql';
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-  [`query ProjectWhereUnique(
-    $where: ProjectWhereUniqueInput!
-    $stage: Stage = PUBLISHED
-  ) {
-    project(where: $where, stage: $stage) {
-      id
-      title
-      link
-      description
-      version
-      active
-      sourceCode
-      techStack
-      createdAt
-      updatedAt
-      stage
-      locale
-      screenShots {
-        id
-        url
-        handle
-        fileName
-        mimeType
-        width
-        height
-        size
-        createdAt
-        updatedAt
-        stage
-        locale
-      }
-    }
-  }`]: types.ProjectWhereUniqueDocument,
+  'fragment UserFields on User {\n  id\n  name\n  kind\n  isActive\n  picture\n  createdAt\n  updatedAt\n  stage\n}\n\nfragment ImageFields on Asset {\n  id\n  url\n  handle\n  fileName\n  mimeType\n  width\n  height\n  size\n  createdAt\n  updatedAt\n  stage\n  locale\n}\n\nfragment ProjectFields on Project {\n  id\n  title\n  description\n  active\n  link\n  version\n  sourceCode\n  techStack\n  screenShots {\n    ...ImageFields\n  }\n  createdAt\n  updatedAt\n  stage\n  locale\n}':
+    types.UserFieldsFragmentDoc,
+  'query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage) {\n  project(where: $where, stage: $stage) {\n    id\n    title\n    link\n    description\n    version\n    active\n    sourceCode\n    techStack\n    createdAt\n    updatedAt\n    stage\n    locale\n    screenShots {\n      id\n      url\n      handle\n      fileName\n      mimeType\n      width\n      height\n      size\n      createdAt\n      updatedAt\n      stage\n      locale\n    }\n  }\n}':
+    types.ProjectWhereUniqueDocument,
 };
 
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(
-  source: 'query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage = PUBLISHED) {\n  project(where: $where, stage: $stage) {\n    id\n    title\n    link\n    description\n    version\n    active\n    sourceCode\n    techStack\n    createdAt\n    updatedAt\n    stage\n    locale\n    screenShots {\n      id\n      url\n      handle\n      fileName\n      mimeType\n      width\n      height\n      size\n      createdAt\n      updatedAt\n      stage\n      locale\n    }\n  }\n}'
+  source: 'fragment UserFields on User {\n  id\n  name\n  kind\n  isActive\n  picture\n  createdAt\n  updatedAt\n  stage\n}\n\nfragment ImageFields on Asset {\n  id\n  url\n  handle\n  fileName\n  mimeType\n  width\n  height\n  size\n  createdAt\n  updatedAt\n  stage\n  locale\n}\n\nfragment ProjectFields on Project {\n  id\n  title\n  description\n  active\n  link\n  version\n  sourceCode\n  techStack\n  screenShots {\n    ...ImageFields\n  }\n  createdAt\n  updatedAt\n  stage\n  locale\n}'
+): typeof import('./graphql').UserFieldsFragmentDoc;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+  source: 'query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage) {\n  project(where: $where, stage: $stage) {\n    id\n    title\n    link\n    description\n    version\n    active\n    sourceCode\n    techStack\n    createdAt\n    updatedAt\n    stage\n    locale\n    screenShots {\n      id\n      url\n      handle\n      fileName\n      mimeType\n      width\n      height\n      size\n      createdAt\n      updatedAt\n      stage\n      locale\n    }\n  }\n}'
 ): typeof import('./graphql').ProjectWhereUniqueDocument;
 
 export function graphql(source: string) {

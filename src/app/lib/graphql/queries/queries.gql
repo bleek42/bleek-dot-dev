@@ -1,3 +1,45 @@
+query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage) {
+	project(where: $where, stage: $stage) {
+		id
+		title
+		link
+		description
+		version
+		active
+		sourceCode
+		techStack
+		createdAt
+		updatedAt
+		stage
+		locale
+
+		screenShots {
+			id
+			url
+			handle
+			fileName
+			mimeType
+			width
+			height
+			size
+			createdAt
+			updatedAt
+			stage
+			locale
+		}
+	}
+}
+
+# query UserWhereUnique($where: ProjectWhereUniqueInput!, $first: Int = 10) {
+# 	user(where: $where, stage: $stage, locale: $locale) {
+# 		...UserFields
+
+# 		screenShots(first: $first) {
+# 			...ImageFields
+# 		}
+# 	}
+# }
+
 # query AllProjects(
 # 	$stage: Stage = PUBLISHED
 # 	$orderBy: ProjectOrderByInput = createdAt_ASC
@@ -152,10 +194,8 @@
 # # 	}
 # # }
 
-# # query UserFields(
-# # 	$where: UserInput = { id: "cl2jewzic0nfr01xl28no3fa0" }
-# # ) {
-# # 	user(where: $where) {
-# # 		...UserFields
-# # 	}
-# # }
+# query UserWhereUnique($where: UserWhereUniqueInput!) {
+# 	user(where: $where) {
+# 		...UserFields
+# 	}
+# }

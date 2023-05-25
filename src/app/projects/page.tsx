@@ -1,10 +1,11 @@
 import { GraphQLClient, gql } from 'graphql-request';
-import { GraphQLError } from 'graphql';
+import { ExecutionArgs, ExecutionResult, GraphQLError } from 'graphql';
 
 import Header from '@/components/header';
 import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
+// import { ProjectWhereUniqueDocument } from '../../types/hygraph.types';
 import {
 	Key,
 	ReactElement,
@@ -14,44 +15,48 @@ import {
 	ReactPortal,
 	Fragment,
 } from 'react';
-import { allDraftProjectsQuery } from '@/lib/graphql';
 import {
-	AllProjectsDocument,
-	AllProjectsQueryVariables,
-} from '@/lib/graphql/gen/graphql';
-import { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { AllProjectsQuery } from '@/graphql/gen/graphql';
+	Project,
+	ProjectWhereUniqueDocument,
+	ProjectWhereUniqueQuery,
+	ProjectWhereUniqueInput,
+	ProjectWhereUniqueQueryVariables,
+	TypedDocumentString,
+} from '@/graphql/gen/graphql';
+import {
+	createFragment,
+	makeFragmentData,
+	isFragmentReady,
+	graphql,
+} from '@/lib/graphql/gen';
 
-export default function Page() {
-	const projects: Promise<
-		TypedDocumentNode<AllProjectsQuery, AllProjectsQueryVariables>[]
-	> = allDraftProjectsQuery
-		.then((projects) => projects ?? null)
-		.catch((err) => console.error(err));
-	console.log(projects);
+// @ts-expect-error
+// @eslint disable next line
+const document = graphql(ProjectWhereUniqueDocument.toString());
 
+export default function Page({ id }: { id: number | string }) {
 	return (
 		<>
 			<header>
 				<h4>projects-header-page4</h4>
 			</header>
 			<main>
-				{Array.isArray(projects) && projects.length > 0 && (
+				{project && (
 					<section>
-						{projects.map((project) => (
-							<article
-								key={project.id as Key}
-								id={`projects-section-${project.id}`}
-								title={`${project.title}`}
-							>
-								<h5>{`projects-section-${project.title}-${project.id}`}</h5>
-								<p>`${project.description}`</p>
-							</article>
-						))}
+						{/* {projects.map((project) => ( */}
+						<article
+							key={project.id as Key}
+							id={`projects-section-${project.id}`}
+							title={`${project.title}`}
+						>
+							<h5>{`projects-section-${project.title}-${project.id}`}</h5>
+							<p>`${project.description}`</p>
+						</article>
+						{/* ))} */}
 					</section>
 				)}
 
-				{!projects && (
+				{!project && (
 					<section>
 						<h5>Error /projects</h5>
 						<p>Unknown error getting projects...</p>

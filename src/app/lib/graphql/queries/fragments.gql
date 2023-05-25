@@ -1,0 +1,43 @@
+fragment UserFields on User {
+	id
+	name
+	kind
+	isActive
+	picture
+	createdAt
+	updatedAt
+	stage
+}
+
+fragment ImageFields on Asset {
+	id
+	url
+	handle
+	fileName
+	mimeType
+	width
+	height
+	size
+	createdAt
+	updatedAt
+	stage
+	locale
+}
+
+fragment ProjectFields on Project {
+	id
+	title
+	description
+	active
+	link
+	version
+	sourceCode
+	techStack
+	screenShots {
+		...ImageFields
+	}
+	createdAt
+	updatedAt
+	stage
+	locale
+}

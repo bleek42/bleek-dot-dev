@@ -1,12 +1,15 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { PatchedRequestInit } from 'graphql-request/dist/types';
 
-import { useEffect, useReducer } from 'react';
+import { Reducer, useEffect, useReducer } from 'react';
 import { GraphQLClient } from 'graphql-request';
 import { GraphQLError } from 'graphql';
 
 interface State {
-  data: Awaited<TypedDocumentNode[] | TypedDocumentNode> | unknown;
+  data:
+    | Awaited<TypedDocumentNode[] | TypedDocumentNode>
+    | Promise<TypedDocumentNode[] | TypedDocumentNode>
+    | unknown;
   loading: boolean;
   error: null | boolean | Awaited<unknown[] | unknown>;
   msg?: string;
@@ -28,13 +31,17 @@ export default function useHTTPRequest({
   headers = { 'content-type': 'application/json' },
 }) {
   const initState: State = {
+    msg: '',
     data: [],
     loading: false,
     error: null,
-    msg: '',
+    debug: null,
   };
 
-  const reducer = (state: State, action: Actions): State => {
+  const reducer: Reducer<State, Actions<ActionType>> = (
+    state: State,
+    action: Actions<ActionType>
+  ): State => {
     switch (action.type) {
       case 'REQUEST':
         return {
@@ -62,12 +69,19 @@ export default function useHTTPRequest({
     }
   };
 
-  const [{ data, loading, error, msg }, dispatch] = useReducer(reducer, initState);
+  const [{ data, loading, error, msg }, dispatch] = useReducer<
+    Reducer<State, Actions<ActionType>>
+  >(reducer, initState);
   useEffect(() => {
     let ignore = false;
     const url =
-      process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL || 'https://jsonplaceholder.typicode.com/todos/1';
+      process.env.HYGRAPH_API_BASE_URL || 'https://jsonplaceholder.typicode.com/todos/1';
     (async () => {
+      dispatch({
+        type: 'REQUEST',
+        payload: null,
+      });
+
       try {
         const res = await fetch(`${url}`);
         if (!res.ok) dispatch({ type: 'ERROR', payload: { ...res } });
@@ -79,9 +93,8 @@ export default function useHTTPRequest({
     })();
     return () => {
       ignore = true;
-      // controller.abort();
     };
-  }, [data, loading]);
+  }, [data, loading, error, msg]);
 
   return { data, loading, error, msg };
 }

@@ -1,7 +1,7 @@
 import { GraphQLClient, gql } from 'graphql-request';
 import { GraphQLError } from 'graphql';
 
-import Header from '@/components/header';
+import Header from '@/components/Header';
 import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
@@ -17,18 +17,19 @@ import {
 import { allDraftProjectQuery } from '@/lib/graphql';
 import { AllProjectsDocument } from '@/lib/graphql/gen/graphql';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import { MdTxt } from '@/components/global/Text';
 
 export default function Page() {
 	console.log(allDraftProjectQuery);
 
 	return (
 		<>
-			<header>
-				<h4>projects-header-page4</h4>
-			</header>
-			<main>
+			<Header>
+				<MdTxt>projects-header-page4</MdTxt>
+			</Header>
+			<Main>
 				{Array.isArray(projects) && projects.length > 0 && (
-					<section>
+					<Section>
 						{projects.map((project) => (
 							<article
 								key={project.id as Key}
@@ -39,19 +40,19 @@ export default function Page() {
 								<p>`${project.description}`</p>
 							</article>
 						))}
-					</section>
+					</Section>
 				)}
 
 				{!projects && (
-					<section>
-						<h5>Error /projects</h5>
+					<Section>
+						<MdTxt>Error /projects</MdTxt>
 						<p>Unknown error getting projects...</p>
-					</section>
+					</Section>
 				)}
-			</main>
-			<footer>
+			</Main>
+			<Footer>
 				<p>footer page 4 /projects</p>
-			</footer>
+			</Footer>
 		</>
 	);
 }

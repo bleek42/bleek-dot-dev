@@ -14,11 +14,9 @@ import { GraphQLError } from 'graphql';
 // dotenv.config({ path: envPath, encoding: 'UTF-8' });
 // console.log('NODE_ENV:', process.env.NODE_ENV);
 
-export async function createGraphQLClientRequest<TDoc, TVars>(
-  document: TypedDocumentNode<TDoc>,
-  ...[variables]: TVars extends Record<string | number | symbol, unknown>
-    ? Record<string | number | symbol, unknown>
-    : [TVars]
+export async function createGraphQLClientRequest<TResult, Variables>(
+  document: TypedDocumentNode<TResult>,
+  ...[variables]: Variables extends Record<string, never> ? [] : [Variables]
 ) {
   console.log(document, ...[variables]);
   const graphQLOptions: PatchedRequestInit = {
@@ -37,7 +35,7 @@ export async function createGraphQLClientRequest<TDoc, TVars>(
   );
 
   try {
-    const res = await graphQLClient.request<TDoc>(document, variables);
+    const res = await graphQLClient.request<TResult, Variables>(document, variables);
     console.log(res);
     return res;
   } catch {

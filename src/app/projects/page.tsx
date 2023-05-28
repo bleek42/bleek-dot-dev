@@ -1,10 +1,11 @@
 import { GraphQLClient, gql } from 'graphql-request';
-import { GraphQLError } from 'graphql';
+import { ExecutionArgs, ExecutionResult, GraphQLError } from 'graphql';
 
 import Header from '@/components/Header';
 import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
+// import { ProjectWhereUniqueDocument } from '../../types/hygraph.types';
 import {
 	Key,
 	ReactElement,
@@ -19,9 +20,11 @@ import { AllProjectsDocument } from '@/lib/graphql/gen/graphql';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { MdTxt } from '@/components/global/Text';
 
-export default function Page() {
-	console.log(allDraftProjectQuery);
+// @ts-expect-error
+// @eslint disable next line
+const document = graphql(ProjectWhereUniqueDocument.toString());
 
+export default function Page({ id }: { id: number | string }) {
 	return (
 		<>
 			<Header>

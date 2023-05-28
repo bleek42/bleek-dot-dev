@@ -1,71 +1,2523 @@
-scalar Date
-scalar DateTime
-scalar Hex
-scalar Json
 scalar Long
+scalar RichTextAST
 scalar RGBAHue
 scalar RGBATransparency
-scalar RichTextAST
 
-enum Locale {
-	en_US
-	es_MX
-}
-
+"""
+Stage system enumeration
+"""
 enum Stage {
+	"""
+	The Draft is the default stage for all your content.
+	"""
 	DRAFT
+
+	"""
+	The Published stage is where you can publish your content to.
+	"""
 	PUBLISHED
 }
 
-enum Kind  {
-	MEMBER
-	PUBLIC
-	PAT
+enum SystemDateTimeFieldVariation {
+	BASE
+	COMBINED
+	LOCALIZATION
 }
 
-# input ProjectWhereInput {
-# 	title: String
-# 	description: [String]
-# 	active: Boolean
-# 	link: String
-# 	techStack: String
-# 	sourceCode: [String]
-# 	version: Float
-# 	screenShots: [Asset]
-# 	createdAt: DateTime
-# 	updatedAt: DateTime
-# 	stage: Stage
-# }
+"""
+Different technical stack (or "tech-stack") categories that is used in creating or maintaining a software development project, including but not limited to, a library, package, database paradigm, or some other tool.
+"""
+enum TechCategories {
+	BACKEND
+	DATABASE
+	FRONTEND
+	OTHER
+}
 
-# input ProjectCreateInput {
-# 	title: String!
-# 	description: [String]!
-# 	active: Boolean!
-# 	link: String
-# 	techStack: String
-# 	sourceCode: [String]!
-# 	version: Float!
-# 	screenShots: [Asset]!
-# }
+enum ScheduledReleaseOrderByInput {
+	createdAt_ASC
+	createdAt_DESC
+	description_ASC
+	description_DESC
+	errorMessage_ASC
+	errorMessage_DESC
+	id_ASC
+	id_DESC
+	isActive_ASC
+	isActive_DESC
+	isImplicit_ASC
+	isImplicit_DESC
+	publishedAt_ASC
+	publishedAt_DESC
+	releaseAt_ASC
+	releaseAt_DESC
+	status_ASC
+	status_DESC
+	title_ASC
+	title_DESC
+	updatedAt_ASC
+	updatedAt_DESC
+}
 
-# input ProjectWhereUniqueInput {
-# 	id: ID
-# 	title: String
-# 	active: Boolean
-# 	link: String
-# }
+"""
+System Scheduled Release Status
+"""
+enum ScheduledReleaseStatus {
+	COMPLETED
+	FAILED
+	IN_PROGRESS
+	PENDING
+}
 
-union SearchResult = Project | User | Asset
-union ProjectInput = ProjectWhereInput | ProjectWhereUniqueInput | ProjectCreateInput
+"""
+Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values
+"""
+type RichText {
+	"""
+	Returns HTMl representation
+	"""
+	html: String!
 
-# type Query {
-# 	projects: [Project]!
-# 	project(where: ProjectInput!): Project
-# 	projectsConnection(where: ProjectInput!, stage: Stage): [SearchResult]!
-# 	history(limit: Int): [SearchResult]!
-# 	screenShots(first: Int): [Asset]!
-# }
+	"""
+	Returns Markdown representation
+	"""
+	markdown: String!
+
+	"""
+	Returns AST representation
+	"""
+	raw: RichTextAST!
+
+	"""
+	Returns plain-text contents of RichText
+	"""
+	text: String!
+}
+
+interface Node {
+	"""
+	The id of the object.
+	"""
+	id: ID!
+
+	"""
+	The Stage of an object
+	"""
+	stage: Stage!
+}
+
+type RGBA {
+	a: RGBATransparency!
+	b: RGBAHue!
+	g: RGBAHue!
+	r: RGBAHue!
+}
+
+input RGBAInput {
+	a: RGBATransparency!
+	b: RGBAHue!
+	g: RGBAHue!
+	r: RGBAHue!
+}
+
+"""
+Identifies documents
+"""
+input ProjectWhereInput {
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [ProjectWhereInput!]
+
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [ProjectWhereInput!]
+
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [ProjectWhereInput!]
+
+	"""
+	Contains search across all appropriate fields.
+	"""
+	_search: String
+	active: Boolean
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	active_not: Boolean
+	createdAt: DateTime
+
+	"""
+	All values greater than the given value.
+	"""
+	createdAt_gt: DateTime
+
+	"""
+	All values greater than or equal the given value.
+	"""
+	createdAt_gte: DateTime
+
+	"""
+	All values that are contained in given list.
+	"""
+	createdAt_in: [DateTime]
+
+	"""
+	All values less than the given value.
+	"""
+	createdAt_lt: DateTime
+
+	"""
+	All values less than or equal the given value.
+	"""
+	createdAt_lte: DateTime
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	createdAt_not: DateTime
+
+	"""
+	All values that are not contained in given list.
+	"""
+	createdAt_not_in: [DateTime]
+	createdBy: UserWhereInput
+	description: String
+
+	"""
+	All values containing the given string.
+	"""
+	description_contains: String
+
+	"""
+	All values ending with the given string.
+	"""
+	description_ends_with: String
+
+	"""
+	All values that are contained in given list.
+	"""
+	description_in: [String]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	description_not: String
+
+	"""
+	All values not containing the given string.
+	"""
+	description_not_contains: String
+
+	"""
+	All values not ending with the given string
+	"""
+	description_not_ends_with: String
+
+	"""
+	All values that are not contained in given list.
+	"""
+	description_not_in: [String]
+
+	"""
+	All values not starting with the given string.
+	"""
+	description_not_starts_with: String
+
+	"""
+	All values starting with the given string.
+	"""
+	description_starts_with: String
+	documentInStages_every: ProjectWhereStageInput
+	documentInStages_none: ProjectWhereStageInput
+	documentInStages_some: ProjectWhereStageInput
+	id: ID
+
+	"""
+	All values containing the given string.
+	"""
+	id_contains: ID
+
+	"""
+	All values ending with the given string.
+	"""
+	id_ends_with: ID
+
+	"""
+	All values that are contained in given list.
+	"""
+	id_in: [ID]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	id_not: ID
+
+	"""
+	All values not containing the given string.
+	"""
+	id_not_contains: ID
+
+	"""
+	All values not ending with the given string
+	"""
+	id_not_ends_with: ID
+
+	"""
+	All values that are not contained in given list.
+	"""
+	id_not_in: [ID]
+
+	"""
+	All values not starting with the given string.
+	"""
+	id_not_starts_with: ID
+
+	"""
+	All values starting with the given string.
+	"""
+	id_starts_with: ID
+	link: String
+
+	"""
+	All values containing the given string.
+	"""
+	link_contains: String
+
+	"""
+	All values ending with the given string.
+	"""
+	link_ends_with: String
+
+	"""
+	All values that are contained in given list.
+	"""
+	link_in: [String]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	link_not: String
+
+	"""
+	All values not containing the given string.
+	"""
+	link_not_contains: String
+
+	"""
+	All values not ending with the given string
+	"""
+	link_not_ends_with: String
+
+	"""
+	All values that are not contained in given list.
+	"""
+	link_not_in: [String]
+
+	"""
+	All values not starting with the given string.
+	"""
+	link_not_starts_with: String
+
+	"""
+	All values starting with the given string.
+	"""
+	link_starts_with: String
+	publishedAt: DateTime
+
+	"""
+	All values greater than the given value.
+	"""
+	publishedAt_gt: DateTime
+
+	"""
+	All values greater than or equal the given value.
+	"""
+	publishedAt_gte: DateTime
+
+	"""
+	All values that are contained in given list.
+	"""
+	publishedAt_in: [DateTime]
+
+	"""
+	All values less than the given value.
+	"""
+	publishedAt_lt: DateTime
+
+	"""
+	All values less than or equal the given value.
+	"""
+	publishedAt_lte: DateTime
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	publishedAt_not: DateTime
+
+	"""
+	All values that are not contained in given list.
+	"""
+	publishedAt_not_in: [DateTime]
+	publishedBy: UserWhereInput
+	scheduledIn_every: ScheduledOperationWhereInput
+	scheduledIn_none: ScheduledOperationWhereInput
+	scheduledIn_some: ScheduledOperationWhereInput
+	screenShots_every: AssetWhereInput
+	screenShots_none: AssetWhereInput
+	screenShots_some: AssetWhereInput
+
+	"""
+	Matches if the field array contains *all* items provided to the filter and order does match
+	"""
+	sourceCode: [String!]
+
+	"""
+	Matches if the field array contains *all* items provided to the filter
+	"""
+	sourceCode_contains_all: [String!]
+
+	"""
+	Matches if the field array does not contain any of the items provided to the filter
+	"""
+	sourceCode_contains_none: [String!]
+
+	"""
+	Matches if the field array contains at least one item provided to the filter
+	"""
+	sourceCode_contains_some: [String!]
+
+	"""
+	Matches if the field array does not contains *all* items provided to the filter or order does not match
+	"""
+	sourceCode_not: [String!]
+
+	"""
+	All values containing the given json path.
+	"""
+	techStack_json_path_exists: String
+
+	"""
+	Recursively tries to find the provided JSON scalar value inside the field.
+	It does use an exact match when comparing values.
+	If you pass `null` as value the filter will be ignored.
+	Note: This filter fails if you try to look for a non scalar JSON value!
+	"""
+	techStack_value_recursive: Json
+	title: String
+
+	"""
+	All values containing the given string.
+	"""
+	title_contains: String
+
+	"""
+	All values ending with the given string.
+	"""
+	title_ends_with: String
+
+	"""
+	All values that are contained in given list.
+	"""
+	title_in: [String]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	title_not: String
+
+	"""
+	All values not containing the given string.
+	"""
+	title_not_contains: String
+
+	"""
+	All values not ending with the given string
+	"""
+	title_not_ends_with: String
+
+	"""
+	All values that are not contained in given list.
+	"""
+	title_not_in: [String]
+
+	"""
+	All values not starting with the given string.
+	"""
+	title_not_starts_with: String
+
+	"""
+	All values starting with the given string.
+	"""
+	title_starts_with: String
+	updatedAt: DateTime
+
+	"""
+	All values greater than the given value.
+	"""
+	updatedAt_gt: DateTime
+
+	"""
+	All values greater than or equal the given value.
+	"""
+	updatedAt_gte: DateTime
+
+	"""
+	All values that are contained in given list.
+	"""
+	updatedAt_in: [DateTime]
+
+	"""
+	All values less than the given value.
+	"""
+	updatedAt_lt: DateTime
+
+	"""
+	All values less than or equal the given value.
+	"""
+	updatedAt_lte: DateTime
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	updatedAt_not: DateTime
+
+	"""
+	All values that are not contained in given list.
+	"""
+	updatedAt_not_in: [DateTime]
+	updatedBy: UserWhereInput
+	version: Float
+
+	"""
+	All values greater than the given value.
+	"""
+	version_gt: Float
+
+	"""
+	All values greater than or equal the given value.
+	"""
+	version_gte: Float
+
+	"""
+	All values that are contained in given list.
+	"""
+	version_in: [Float]
+
+	"""
+	All values less than the given value.
+	"""
+	version_lt: Float
+
+	"""
+	All values less than or equal the given value.
+	"""
+	version_lte: Float
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	version_not: Float
+
+	"""
+	All values that are not contained in given list.
+	"""
+	version_not_in: [Float]
+}
+
+"""
+The document in stages filter allows specifying a stage entry to cross compare the same document between different stages
+"""
+input ProjectWhereStageInput {
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [ProjectWhereStageInput!]
+
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [ProjectWhereStageInput!]
+
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [ProjectWhereStageInput!]
+
+	"""
+	This field contains fields which can be set as true or false to specify an internal comparison
+	"""
+	compareWithParent: ProjectWhereComparatorInput
+
+	"""
+	Specify the stage to compare with
+	"""
+	stage: Stage
+}
+
+"""
+This contains a set of filters that can be used to compare values internally
+"""
+input ProjectWhereComparatorInput {
+	"""
+	This field can be used to request to check if the entry is outdated by internal comparison
+	"""
+	outdated_to: Boolean
+}
+
+"""
+References Project record uniquely
+"""
+input ProjectWhereUniqueInput {
+	id: ID
+	link: String
+	title: String
+	stages: [Stage!]!
+}
+
+"""
+An edge in a connection.
+"""
+type UserEdge {
+	"""
+	A cursor for use in pagination.
+	"""
+	cursor: String!
+
+	"""
+	The item at the end of the edge.
+	"""
+	node: User!
+}
+
+"""
+System User Kind
+"""
+enum UserKind {
+	MEMBER
+	PAT
+	PUBLIC
+	WEBHOOK
+}
+
+"""
+User system model
+"""
+type User implements Node {
+	"""
+	The time the document was created
+	"""
+	createdAt: DateTime!
+
+	"""
+	Get the document in other stages
+	"""
+	documentInStages(
+		"""
+		Decides if the current stage should be included or not
+		"""
+		includeCurrent: Boolean! = false
+
+		"""
+		Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree
+		"""
+		inheritLocale: Boolean! = false
+
+		"""
+		Potential stages that should be returned
+		"""
+		stages: [Stage!]! = [DRAFT, PUBLISHED]
+	): [User!]!
+
+	"""
+	The unique identifier
+	"""
+	id: ID!
+
+	"""
+	Flag to determine if user is active or not
+	"""
+	isActive: Boolean!
+
+	"""
+	User Kind. Can be either MEMBER, PAT or PUBLIC
+	"""
+	kind: UserKind!
+
+	"""
+	The username
+	"""
+	name: String!
+
+	"""
+	Profile Picture url
+	"""
+	picture: String
+
+	"""
+	The time the document was published. Null on documents in draft stage.
+	"""
+	publishedAt: DateTime
+
+	"""
+	System stage field
+	"""
+	stage: Stage!
+
+	"""
+	The time the document was updated
+	"""
+	updatedAt: DateTime!
+}
+
+input UserConnectInput {
+	"""
+	Allow to specify document position in list of connected documents, will default to appending at end of list
+	"""
+	position: ConnectPositionInput
+
+	"""
+	Document to connect
+	"""
+	where: UserWhereUniqueInput!
+}
+
+"""
+A connection to a list of items.
+"""
+type UserConnection {
+	aggregate: Aggregate!
+
+	"""
+	A list of edges.
+	"""
+	edges: [UserEdge!]!
+
+	"""
+	Information to aid in pagination.
+	"""
+	pageInfo: PageInfo!
+}
+
+"""
+Identifies documents
+"""
+input ScheduledReleaseWhereInput {
+	"""
+	Logical AND on all given filters.
+	"""
+	AND: [ScheduledReleaseWhereInput!]
+
+	"""
+	Logical NOT on all given filters combined by AND.
+	"""
+	NOT: [ScheduledReleaseWhereInput!]
+
+	"""
+	Logical OR on all given filters.
+	"""
+	OR: [ScheduledReleaseWhereInput!]
+
+	"""
+	Contains search across all appropriate fields.
+	"""
+	_search: String
+	createdAt: DateTime
+
+	"""
+	All values greater than the given value.
+	"""
+	createdAt_gt: DateTime
+
+	"""
+	All values greater than or equal the given value.
+	"""
+	createdAt_gte: DateTime
+
+	"""
+	All values that are contained in given list.
+	"""
+	createdAt_in: [DateTime]
+
+	"""
+	All values less than the given value.
+	"""
+	createdAt_lt: DateTime
+
+	"""
+	All values less than or equal the given value.
+	"""
+	createdAt_lte: DateTime
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	createdAt_not: DateTime
+
+	"""
+	All values that are not contained in given list.
+	"""
+	createdAt_not_in: [DateTime]
+	createdBy: UserWhereInput
+	description: String
+
+	"""
+	All values containing the given string.
+	"""
+	description_contains: String
+
+	"""
+	All values ending with the given string.
+	"""
+	description_ends_with: String
+
+	"""
+	All values that are contained in given list.
+	"""
+	description_in: [String]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	description_not: String
+
+	"""
+	All values not containing the given string.
+	"""
+	description_not_contains: String
+
+	"""
+	All values not ending with the given string
+	"""
+	description_not_ends_with: String
+
+	"""
+	All values that are not contained in given list.
+	"""
+	description_not_in: [String]
+
+	"""
+	All values not starting with the given string.
+	"""
+	description_not_starts_with: String
+
+	"""
+	All values starting with the given string.
+	"""
+	description_starts_with: String
+	errorMessage: String
+
+	"""
+	All values containing the given string.
+	"""
+	errorMessage_contains: String
+
+	"""
+	All values ending with the given string.
+	"""
+	errorMessage_ends_with: String
+
+	"""
+	All values that are contained in given list.
+	"""
+	errorMessage_in: [String]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	errorMessage_not: String
+
+	"""
+	All values not containing the given string.
+	"""
+	errorMessage_not_contains: String
+
+	"""
+	All values not ending with the given string
+	"""
+	errorMessage_not_ends_with: String
+
+	"""
+	All values that are not contained in given list.
+	"""
+	errorMessage_not_in: [String]
+
+	"""
+	All values not starting with the given string.
+	"""
+	errorMessage_not_starts_with: String
+
+	"""
+	All values starting with the given string.
+	"""
+	errorMessage_starts_with: String
+	id: ID
+
+	"""
+	All values containing the given string.
+	"""
+	id_contains: ID
+
+	"""
+	All values ending with the given string.
+	"""
+	id_ends_with: ID
+
+	"""
+	All values that are contained in given list.
+	"""
+	id_in: [ID]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	id_not: ID
+
+	"""
+	All values not containing the given string.
+	"""
+	id_not_contains: ID
+
+	"""
+	All values not ending with the given string
+	"""
+	id_not_ends_with: ID
+
+	"""
+	All values that are not contained in given list.
+	"""
+	id_not_in: [ID]
+
+	"""
+	All values not starting with the given string.
+	"""
+	id_not_starts_with: ID
+
+	"""
+	All values starting with the given string.
+	"""
+	id_starts_with: ID
+	isActive: Boolean
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	isActive_not: Boolean
+	isImplicit: Boolean
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	isImplicit_not: Boolean
+	operations_every: ScheduledOperationWhereInput
+	operations_none: ScheduledOperationWhereInput
+	operations_some: ScheduledOperationWhereInput
+	publishedAt: DateTime
+
+	"""
+	All values greater than the given value.
+	"""
+	publishedAt_gt: DateTime
+
+	"""
+	All values greater than or equal the given value.
+	"""
+	publishedAt_gte: DateTime
+
+	"""
+	All values that are contained in given list.
+	"""
+	publishedAt_in: [DateTime]
+
+	"""
+	All values less than the given value.
+	"""
+	publishedAt_lt: DateTime
+
+	"""
+	All values less than or equal the given value.
+	"""
+	publishedAt_lte: DateTime
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	publishedAt_not: DateTime
+
+	"""
+	All values that are not contained in given list.
+	"""
+	publishedAt_not_in: [DateTime]
+	publishedBy: UserWhereInput
+	releaseAt: DateTime
+
+	"""
+	All values greater than the given value.
+	"""
+	releaseAt_gt: DateTime
+
+	"""
+	All values greater than or equal the given value.
+	"""
+	releaseAt_gte: DateTime
+
+	"""
+	All values that are contained in given list.
+	"""
+	releaseAt_in: [DateTime]
+
+	"""
+	All values less than the given value.
+	"""
+	releaseAt_lt: DateTime
+
+	"""
+	All values less than or equal the given value.
+	"""
+	releaseAt_lte: DateTime
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	releaseAt_not: DateTime
+
+	"""
+	All values that are not contained in given list.
+	"""
+	releaseAt_not_in: [DateTime]
+	status: ScheduledReleaseStatus
+
+	"""
+	All values that are contained in given list.
+	"""
+	status_in: [ScheduledReleaseStatus]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	status_not: ScheduledReleaseStatus
+
+	"""
+	All values that are not contained in given list.
+	"""
+	status_not_in: [ScheduledReleaseStatus]
+	title: String
+
+	"""
+	All values containing the given string.
+	"""
+	title_contains: String
+
+	"""
+	All values ending with the given string.
+	"""
+	title_ends_with: String
+
+	"""
+	All values that are contained in given list.
+	"""
+	title_in: [String]
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	title_not: String
+
+	"""
+	All values not containing the given string.
+	"""
+	title_not_contains: String
+
+	"""
+	All values not ending with the given string
+	"""
+	title_not_ends_with: String
+
+	"""
+	All values that are not contained in given list.
+	"""
+	title_not_in: [String]
+
+	"""
+	All values not starting with the given string.
+	"""
+	title_not_starts_with: String
+
+	"""
+	All values starting with the given string.
+	"""
+	title_starts_with: String
+	updatedAt: DateTime
+
+	"""
+	All values greater than the given value.
+	"""
+	updatedAt_gt: DateTime
+
+	"""
+	All values greater than or equal the given value.
+	"""
+	updatedAt_gte: DateTime
+
+	"""
+	All values that are contained in given list.
+	"""
+	updatedAt_in: [DateTime]
+
+	"""
+	All values less than the given value.
+	"""
+	updatedAt_lt: DateTime
+
+	"""
+	All values less than or equal the given value.
+	"""
+	updatedAt_lte: DateTime
+
+	"""
+	Any other value that exists and is not equal to the given value.
+	"""
+	updatedAt_not: DateTime
+
+	"""
+	All values that are not contained in given list.
+	"""
+	updatedAt_not_in: [DateTime]
+	updatedBy: UserWhereInput
+}
+
+"""
+References ScheduledRelease record uniquely
+"""
+input ScheduledReleaseWhereUniqueInput {
+	id: ID
+}
+
+"""
+Information about pagination in a connection.
+"""
+type PageInfo {
+	"""
+	When paginating forwards, the cursor to continue.
+	"""
+	endCursor: String
+
+	"""
+	When paginating forwards, are there more items?
+	"""
+	hasNextPage: Boolean!
+
+	"""
+	When paginating backwards, are there more items?
+	"""
+	hasPreviousPage: Boolean!
+
+	"""
+	Number of items in the current page.
+	"""
+	pageSize: Int
+
+	"""
+	When paginating backwards, the cursor to continue.
+	"""
+	startCursor: String
+}
+
+"""
+Web, mobile, and other software projects created by Brandon Leek.
+"""
+type Project implements Node {
+	"""
+	Is the project currently live and available for use?
+	"""
+	active: Boolean!
+
+	"""
+	The time the document was created
+	"""
+	createdAt(
+		"""
+		Variation of DateTime field to return, allows value from base document, current localization, or combined by returning the newer value of both
+		"""
+		variation: SystemDateTimeFieldVariation! = COMBINED
+	): DateTime!
+
+	"""
+	User that created this document
+	"""
+	createdBy(
+		"""
+		Sets the locale of the resolved parent document as the only locale in the query's subtree.
+
+		Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		forceParentLocale: Boolean
+
+		"""
+		Allows to optionally override locale filtering behaviour in the query's subtree.
+
+		Note that `createdBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		locales: [Locale!]
+	): User
+
+	"""
+	Tell everyone what this project is and what it does.
+	"""
+	description: String!
+
+	"""
+	Get the document in other stages
+	"""
+	documentInStages(
+		"""
+		Decides if the current stage should be included or not
+		"""
+		includeCurrent: Boolean! = false
+
+		"""
+		Decides if the documents should match the parent documents locale or should use the fallback order defined in the tree
+		"""
+		inheritLocale: Boolean! = false
+
+		"""
+		Potential stages that should be returned
+		"""
+		stages: [Stage!]! = [DRAFT, PUBLISHED]
+	): [Project!]!
+
+	"""
+	List of Project versions
+	"""
+	history(
+		limit: Int! = 10
+		skip: Int! = 0
+
+		"""
+		This is optional and can be used to fetch the document version history for a specific stage instead of the current one
+		"""
+		stageOverride: Stage
+	): [Version!]!
+
+	"""
+	The unique identifier
+	"""
+	id: ID!
+
+	"""
+	URL link to a live demo of the web application project
+	"""
+	link: String!
+
+	"""
+	System Locale field
+	"""
+	locale: Locale!
+
+	"""
+	Get the other localizations for this document
+	"""
+	localizations(
+		"""
+		Decides if the current locale should be included or not
+		"""
+		includeCurrent: Boolean! = false
+
+		"""
+		Potential locales that should be returned.
+
+		The order of locales will also override locale fall-backing behaviour in the query's subtree.
+
+		Note any related model with localized fields in the query's subtree will be affected.
+		The first locale matching the provided list will be returned, localized entries that do not have the provided locale defined will be filtered out.
+		This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+
+		Consider using this in conjunction with forceParentLocale on the children relation fields.
+		"""
+		locales: [Locale!]! = [en, es_MX]
+	): [Project!]!
+
+	"""
+	The time the document was published. Null on documents in draft stage.
+	"""
+	publishedAt(
+		"""
+		Variation of DateTime field to return, allows value from base document, current localization, or combined by returning the newer value of both
+		"""
+		variation: SystemDateTimeFieldVariation! = COMBINED
+	): DateTime
+
+	"""
+	User that last published this document
+	"""
+	publishedBy(
+		"""
+		Sets the locale of the resolved parent document as the only locale in the query's subtree.
+
+		Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		forceParentLocale: Boolean
+
+		"""
+		Allows to optionally override locale filtering behaviour in the query's subtree.
+
+		Note that `publishedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		locales: [Locale!]
+	): User
+	scheduledIn(
+		after: String
+		before: String
+		first: Int
+
+		"""
+		Sets the locale of the resolved parent document as the only locale in the query's subtree.
+
+		Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		forceParentLocale: Boolean
+		last: Int
+
+		"""
+		Allows to optionally override locale filtering behaviour in the query's subtree.
+
+		Note that `scheduledIn` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		locales: [Locale!]
+		skip: Int
+		where: ScheduledOperationWhereInput
+	): [ScheduledOperation!]!
+
+	"""
+	Screen shot images of the live application.
+	"""
+	screenShots(
+		after: String
+		before: String
+		first: Int
+
+		"""
+		Sets the locale of the parent document as the first locale in the fallback locales in the query's subtree.
+
+		Note that `screenShots` will be affected directly by this argument, as well as any other related models with localized fields in the query's subtree.
+		The first locale matching the provided list will be returned, localized entries that do not have the provided locale defined will be filtered out.
+
+		This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		forceParentLocale: Boolean
+		last: Int
+
+		"""
+		Allows to optionally override locale filtering behaviour in the query's subtree.
+
+		Note that `screenShots` will be affected directly by this argument, as well as any other related models with localized fields in the query's subtree.
+		The first locale matching the provided list will be returned, localized entries that do not have the provided locale defined will be filtered out.
+
+		This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		locales: [Locale!]
+		orderBy: AssetOrderByInput
+		skip: Int
+		where: AssetWhereInput
+	): [Asset!]!
+
+	"""
+	URL or list of URL's that link to where the project's source code can be found.
+	"""
+	sourceCode: [String!]!
+
+	"""
+	System stage field
+	"""
+	stage: Stage!
+
+	"""
+	JSON Key / Value pairs of tech categories ("frontEnd", "backEnd", "etc") with an array of unique string values (["React", "Typescript", "GraphQL", "etc"])
+	"""
+	techStack: Json
+
+	"""
+	Title of a Project
+	"""
+	title: String!
+
+	"""
+	The time the document was updated
+	"""
+	updatedAt(
+		"""
+		Variation of DateTime field to return, allows value from base document, current localization, or combined by returning the newer value of both
+		"""
+		variation: SystemDateTimeFieldVariation! = COMBINED
+	): DateTime!
+
+	"""
+	User that last updated this document
+	"""
+	updatedBy(
+		"""
+		Sets the locale of the resolved parent document as the only locale in the query's subtree.
+
+		Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locale will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument will affect any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		forceParentLocale: Boolean
+
+		"""
+		Allows to optionally override locale filtering behaviour in the query's subtree.
+
+		Note that `updatedBy` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument will overwrite any existing locale filtering defined in the query's tree for the subtree.
+		"""
+		locales: [Locale!]
+	): User
+
+	"""
+	Current app version.
+	"""
+	version: Float!
+}
+
+type Query {
+	"""
+	Retrieve a single asset
+	"""
+	asset(
+		"""
+		Defines which locales should be returned.
+
+		Note that `Asset` will be affected directly by this argument, as well as any other related models with localized fields in the query's subtree.
+		The first locale matching the provided list will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		stage: Stage! = DRAFT
+		where: AssetWhereUniqueInput!
+	): Asset
+
+	"""
+	Retrieve document version
+	"""
+	assetVersion(where: VersionWhereInput!): DocumentVersion
+
+	"""
+	Retrieve multiple assets
+	"""
+	assets(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `Asset` will be affected directly by this argument, as well as any other related models with localized fields in the query's subtree.
+		The first locale matching the provided list will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: AssetOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: AssetWhereInput
+	): [Asset!]!
+
+	"""
+	Retrieve multiple assets using the Relay connection interface
+	"""
+	assetsConnection(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `Asset` will be affected directly by this argument, as well as any other related models with localized fields in the query's subtree.
+		The first locale matching the provided list will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: AssetOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: AssetWhereInput
+	): AssetConnection!
+
+	"""
+	Fetches an object given its ID
+	"""
+	node(
+		"""
+		The ID of an object
+		"""
+		id: ID!
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `Node` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		stage: Stage! = DRAFT
+	): Node
+
+	"""
+	Retrieve a single project
+	"""
+	project(
+		"""
+		Defines which locales should be returned.
+
+		Note that `Project` will be affected directly by this argument, as well as any other related models with localized fields in the query's subtree.
+		The first locale matching the provided list will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale] = [en]
+		stage: Stage = DRAFT
+		where: ProjectWhereUniqueInput!
+	): Project
+
+	"""
+	Retrieve document version
+	"""
+	projectVersion(where: VersionWhereInput!): DocumentVersion
+
+	"""
+	Retrieve multiple projects
+	"""
+	projects(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `Project` will be affected directly by this argument, as well as any other related models with localized fields in the query's subtree.
+		The first locale matching the provided list will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: ProjectOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: ProjectWhereInput
+	): [Project!]!
+
+	"""
+	Retrieve multiple projects using the Relay connection interface
+	"""
+	projectsConnection(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `Project` will be affected directly by this argument, as well as any other related models with localized fields in the query's subtree.
+		The first locale matching the provided list will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: ProjectOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: ProjectWhereInput
+	): ProjectConnection!
+
+	"""
+	Retrieve a single scheduledOperation
+	"""
+	scheduledOperation(
+		"""
+		Defines which locales should be returned.
+
+		Note that `ScheduledOperation` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		stage: Stage! = DRAFT
+		where: ScheduledOperationWhereUniqueInput!
+	): ScheduledOperation
+
+	"""
+	Retrieve multiple scheduledOperations
+	"""
+	scheduledOperations(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `ScheduledOperation` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: ScheduledOperationOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: ScheduledOperationWhereInput
+	): [ScheduledOperation!]!
+
+	"""
+	Retrieve multiple scheduledOperations using the Relay connection interface
+	"""
+	scheduledOperationsConnection(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `ScheduledOperation` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: ScheduledOperationOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: ScheduledOperationWhereInput
+	): ScheduledOperationConnection!
+
+	"""
+	Retrieve a single scheduledRelease
+	"""
+	scheduledRelease(
+		"""
+		Defines which locales should be returned.
+
+		Note that `ScheduledRelease` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		stage: Stage! = DRAFT
+		where: ScheduledReleaseWhereUniqueInput!
+	): ScheduledRelease
+
+	"""
+	Retrieve multiple scheduledReleases
+	"""
+	scheduledReleases(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `ScheduledRelease` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: ScheduledReleaseOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: ScheduledReleaseWhereInput
+	): [ScheduledRelease!]!
+
+	"""
+	Retrieve multiple scheduledReleases using the Relay connection interface
+	"""
+	scheduledReleasesConnection(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `ScheduledRelease` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: ScheduledReleaseOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: ScheduledReleaseWhereInput
+	): ScheduledReleaseConnection!
+
+	"""
+	Retrieve a single user
+	"""
+	user(
+		"""
+		Defines which locales should be returned.
+
+		Note that `User` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		stage: Stage! = DRAFT
+		where: UserWhereUniqueInput!
+	): User
+
+	"""
+	Retrieve multiple users
+	"""
+	users(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `User` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: UserOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: UserWhereInput
+	): [User!]!
+
+	"""
+	Retrieve multiple users using the Relay connection interface
+	"""
+	usersConnection(
+		after: String
+		before: String
+		first: Int
+		last: Int
+
+		"""
+		Defines which locales should be returned.
+
+		Note that `User` is a model without localized fields and will not be affected directly by this argument, however the locales will be passed on to any relational fields in the query's subtree for filtering.
+		For related models with localized fields in the query's subtree, the first locale matching the provided list of locales will be returned, entries with non matching locales will be filtered out.
+
+		This argument may be overwritten by another locales definition in a relational child field, this will effectively use the overwritten argument for the affected query's subtree.
+		"""
+		locales: [Locale!]! = [en]
+		orderBy: UserOrderByInput
+		skip: Int
+		stage: Stage! = DRAFT
+		where: UserWhereInput
+	): UserConnection!
+	__schema: __Schema!
+	__type(name: String!): __Type
+}
 
 # type Mutation {
-# 	createProject(newProject: ProjectInput!): Project!
+# 	"""
+# 	Create one asset
+# 	"""
+# 	createAsset(data: AssetCreateInput!): Asset
+# 		@deprecated(reason: "Asset mutations will be overhauled soon")
+
+# 	"""
+# 	Create one project
+# 	"""
+# 	createProject(data: ProjectCreateInput!): Project
+
+# 	"""
+# 	Create one scheduledRelease
+# 	"""
+# 	createScheduledRelease(data: ScheduledReleaseCreateInput!): ScheduledRelease
+
+# 	"""
+# 	Delete one asset from _all_ existing stages. Returns deleted document.
+# 	"""
+# 	deleteAsset(
+# 		"""
+# 		Document to delete
+# 		"""
+# 		where: AssetWhereUniqueInput!
+# 	): Asset
+
+# 	"""
+# 	Delete many Asset documents
+# 	"""
+# 	deleteManyAssets(
+# 		"""
+# 		Documents to delete
+# 		"""
+# 		where: AssetManyWhereInput
+# 	): BatchPayload!
+# 		@deprecated(
+# 			reason: "Please use the new paginated many mutation (deleteManyAssetsConnection)"
+# 		)
+
+# 	"""
+# 	Delete many Asset documents, return deleted documents
+# 	"""
+# 	deleteManyAssetsConnection(
+# 		after: ID
+# 		before: ID
+# 		first: Int
+# 		last: Int
+# 		skip: Int
+
+# 		"""
+# 		Documents to delete
+# 		"""
+# 		where: AssetManyWhereInput
+# 	): AssetConnection!
+
+# 	"""
+# 	Delete many Project documents
+# 	"""
+# 	deleteManyProjects(
+# 		"""
+# 		Documents to delete
+# 		"""
+# 		where: ProjectManyWhereInput
+# 	): BatchPayload!
+# 		@deprecated(
+# 			reason: "Please use the new paginated many mutation (deleteManyProjectsConnection)"
+# 		)
+
+# 	"""
+# 	Delete many Project documents, return deleted documents
+# 	"""
+# 	deleteManyProjectsConnection(
+# 		after: ID
+# 		before: ID
+# 		first: Int
+# 		last: Int
+# 		skip: Int
+
+# 		"""
+# 		Documents to delete
+# 		"""
+# 		where: ProjectManyWhereInput
+# 	): ProjectConnection!
+
+# 	"""
+# 	Delete one project from _all_ existing stages. Returns deleted document.
+# 	"""
+# 	deleteProject(
+# 		"""
+# 		Document to delete
+# 		"""
+# 		where: ProjectWhereUniqueInput!
+# 	): Project
+
+# 	"""
+# 	Delete and return scheduled operation
+# 	"""
+# 	deleteScheduledOperation(
+# 		"""
+# 		Document to delete
+# 		"""
+# 		where: ScheduledOperationWhereUniqueInput!
+# 	): ScheduledOperation
+
+# 	"""
+# 	Delete one scheduledRelease from _all_ existing stages. Returns deleted document.
+# 	"""
+# 	deleteScheduledRelease(
+# 		"""
+# 		Document to delete
+# 		"""
+# 		where: ScheduledReleaseWhereUniqueInput!
+# 	): ScheduledRelease
+
+# 	"""
+# 	Publish one asset
+# 	"""
+# 	publishAsset(
+# 		"""
+# 		Optional localizations to publish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to publish the base document
+# 		"""
+# 		publishBase: Boolean = true
+
+# 		"""
+# 		Publishing target stage
+# 		"""
+# 		to: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Document to publish
+# 		"""
+# 		where: AssetWhereUniqueInput!
+
+# 		"""
+# 		Whether to include the default locale when publishBase is set
+# 		"""
+# 		withDefaultLocale: Boolean = true
+# 	): Asset
+
+# 	"""
+# 	Publish many Asset documents
+# 	"""
+# 	publishManyAssets(
+# 		"""
+# 		Document localizations to publish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to publish the base document
+# 		"""
+# 		publishBase: Boolean = true
+
+# 		"""
+# 		Stages to publish documents to
+# 		"""
+# 		to: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Identifies documents in each stage to be published
+# 		"""
+# 		where: AssetManyWhereInput
+
+# 		"""
+# 		Whether to include the default locale when publishBase is true
+# 		"""
+# 		withDefaultLocale: Boolean = true
+# 	): BatchPayload!
+# 		@deprecated(
+# 			reason: "Please use the new paginated many mutation (publishManyAssetsConnection)"
+# 		)
+
+# 	"""
+# 	Publish many Asset documents
+# 	"""
+# 	publishManyAssetsConnection(
+# 		after: ID
+# 		before: ID
+# 		first: Int
+
+# 		"""
+# 		Stage to find matching documents in
+# 		"""
+# 		from: Stage = DRAFT
+# 		last: Int
+
+# 		"""
+# 		Document localizations to publish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to publish the base document
+# 		"""
+# 		publishBase: Boolean = true
+# 		skip: Int
+
+# 		"""
+# 		Stages to publish documents to
+# 		"""
+# 		to: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Identifies documents in each stage to be published
+# 		"""
+# 		where: AssetManyWhereInput
+
+# 		"""
+# 		Whether to include the default locale when publishBase is true
+# 		"""
+# 		withDefaultLocale: Boolean = true
+# 	): AssetConnection!
+
+# 	"""
+# 	Publish many Project documents
+# 	"""
+# 	publishManyProjects(
+# 		"""
+# 		Document localizations to publish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to publish the base document
+# 		"""
+# 		publishBase: Boolean = true
+
+# 		"""
+# 		Stages to publish documents to
+# 		"""
+# 		to: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Identifies documents in each stage to be published
+# 		"""
+# 		where: ProjectManyWhereInput
+
+# 		"""
+# 		Whether to include the default locale when publishBase is true
+# 		"""
+# 		withDefaultLocale: Boolean = true
+# 	): BatchPayload!
+# 		@deprecated(
+# 			reason: "Please use the new paginated many mutation (publishManyProjectsConnection)"
+# 		)
+
+# 	"""
+# 	Publish many Project documents
+# 	"""
+# 	publishManyProjectsConnection(
+# 		after: ID
+# 		before: ID
+# 		first: Int
+
+# 		"""
+# 		Stage to find matching documents in
+# 		"""
+# 		from: Stage = DRAFT
+# 		last: Int
+
+# 		"""
+# 		Document localizations to publish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to publish the base document
+# 		"""
+# 		publishBase: Boolean = true
+# 		skip: Int
+
+# 		"""
+# 		Stages to publish documents to
+# 		"""
+# 		to: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Identifies documents in each stage to be published
+# 		"""
+# 		where: ProjectManyWhereInput
+
+# 		"""
+# 		Whether to include the default locale when publishBase is true
+# 		"""
+# 		withDefaultLocale: Boolean = true
+# 	): ProjectConnection!
+
+# 	"""
+# 	Publish one project
+# 	"""
+# 	publishProject(
+# 		"""
+# 		Optional localizations to publish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to publish the base document
+# 		"""
+# 		publishBase: Boolean = true
+
+# 		"""
+# 		Publishing target stage
+# 		"""
+# 		to: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Document to publish
+# 		"""
+# 		where: ProjectWhereUniqueInput!
+
+# 		"""
+# 		Whether to include the default locale when publishBase is set
+# 		"""
+# 		withDefaultLocale: Boolean = true
+# 	): Project
+
+# 	"""
+# 	Schedule to publish one asset
+# 	"""
+# 	schedulePublishAsset(
+# 		"""
+# 		Optional localizations to publish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to publish the base document
+# 		"""
+# 		publishBase: Boolean = true
+
+# 		"""
+# 		Release at point in time, will create new release containing this operation
+# 		"""
+# 		releaseAt: DateTime
+
+# 		"""
+# 		Optionally attach this scheduled operation to an existing release
+# 		"""
+# 		releaseId: String
+
+# 		"""
+# 		Publishing target stage
+# 		"""
+# 		to: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Document to publish
+# 		"""
+# 		where: AssetWhereUniqueInput!
+
+# 		"""
+# 		Whether to include the default locale when publishBase is set
+# 		"""
+# 		withDefaultLocale: Boolean = true
+# 	): Asset
+
+# 	"""
+# 	Schedule to publish one project
+# 	"""
+# 	schedulePublishProject(
+# 		"""
+# 		Optional localizations to publish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to publish the base document
+# 		"""
+# 		publishBase: Boolean = true
+
+# 		"""
+# 		Release at point in time, will create new release containing this operation
+# 		"""
+# 		releaseAt: DateTime
+
+# 		"""
+# 		Optionally attach this scheduled operation to an existing release
+# 		"""
+# 		releaseId: String
+
+# 		"""
+# 		Publishing target stage
+# 		"""
+# 		to: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Document to publish
+# 		"""
+# 		where: ProjectWhereUniqueInput!
+
+# 		"""
+# 		Whether to include the default locale when publishBase is set
+# 		"""
+# 		withDefaultLocale: Boolean = true
+# 	): Project
+
+# 	"""
+# 	Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only.
+# 	"""
+# 	scheduleUnpublishAsset(
+# 		"""
+# 		Stages to unpublish document from
+# 		"""
+# 		from: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Optional locales to unpublish. Unpublishing the default locale will completely remove the document from the selected stages
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Release at point in time, will create new release containing this operation
+# 		"""
+# 		releaseAt: DateTime
+
+# 		"""
+# 		Optionally attach this scheduled operation to an existing release
+# 		"""
+# 		releaseId: String
+
+# 		"""
+# 		Unpublish complete document including default localization and relations from stages. Can be disabled.
+# 		"""
+# 		unpublishBase: Boolean = true
+
+# 		"""
+# 		Document to unpublish
+# 		"""
+# 		where: AssetWhereUniqueInput!
+# 	): Asset
+
+# 	"""
+# 	Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only.
+# 	"""
+# 	scheduleUnpublishProject(
+# 		"""
+# 		Stages to unpublish document from
+# 		"""
+# 		from: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Optional locales to unpublish. Unpublishing the default locale will completely remove the document from the selected stages
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Release at point in time, will create new release containing this operation
+# 		"""
+# 		releaseAt: DateTime
+
+# 		"""
+# 		Optionally attach this scheduled operation to an existing release
+# 		"""
+# 		releaseId: String
+
+# 		"""
+# 		Unpublish complete document including default localization and relations from stages. Can be disabled.
+# 		"""
+# 		unpublishBase: Boolean = true
+
+# 		"""
+# 		Document to unpublish
+# 		"""
+# 		where: ProjectWhereUniqueInput!
+# 	): Project
+
+# 	"""
+# 	Unpublish one asset from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only.
+# 	"""
+# 	unpublishAsset(
+# 		"""
+# 		Stages to unpublish document from
+# 		"""
+# 		from: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Optional locales to unpublish. Unpublishing the default locale will completely remove the document from the selected stages
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Unpublish complete document including default localization and relations from stages. Can be disabled.
+# 		"""
+# 		unpublishBase: Boolean = true
+
+# 		"""
+# 		Document to unpublish
+# 		"""
+# 		where: AssetWhereUniqueInput!
+# 	): Asset
+
+# 	"""
+# 	Unpublish many Asset documents
+# 	"""
+# 	unpublishManyAssets(
+# 		"""
+# 		Stages to unpublish documents from
+# 		"""
+# 		from: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Locales to unpublish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to unpublish the base document and default localization
+# 		"""
+# 		unpublishBase: Boolean = true
+
+# 		"""
+# 		Identifies documents in each stage
+# 		"""
+# 		where: AssetManyWhereInput
+# 	): BatchPayload!
+# 		@deprecated(
+# 			reason: "Please use the new paginated many mutation (unpublishManyAssetsConnection)"
+# 		)
+
+# 	"""
+# 	Find many Asset documents that match criteria in specified stage and unpublish from target stages
+# 	"""
+# 	unpublishManyAssetsConnection(
+# 		after: ID
+# 		before: ID
+# 		first: Int
+
+# 		"""
+# 		Stages to unpublish documents from
+# 		"""
+# 		from: [Stage!]! = [PUBLISHED]
+# 		last: Int
+
+# 		"""
+# 		Locales to unpublish
+# 		"""
+# 		locales: [Locale!]
+# 		skip: Int
+
+# 		"""
+# 		Stage to find matching documents in
+# 		"""
+# 		stage: Stage = DRAFT
+
+# 		"""
+# 		Whether to unpublish the base document and default localization
+# 		"""
+# 		unpublishBase: Boolean = true
+
+# 		"""
+# 		Identifies documents in draft stage
+# 		"""
+# 		where: AssetManyWhereInput
+# 	): AssetConnection!
+
+# 	"""
+# 	Unpublish many Project documents
+# 	"""
+# 	unpublishManyProjects(
+# 		"""
+# 		Stages to unpublish documents from
+# 		"""
+# 		from: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Locales to unpublish
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Whether to unpublish the base document and default localization
+# 		"""
+# 		unpublishBase: Boolean = true
+
+# 		"""
+# 		Identifies documents in each stage
+# 		"""
+# 		where: ProjectManyWhereInput
+# 	): BatchPayload!
+# 		@deprecated(
+# 			reason: "Please use the new paginated many mutation (unpublishManyProjectsConnection)"
+# 		)
+
+# 	"""
+# 	Find many Project documents that match criteria in specified stage and unpublish from target stages
+# 	"""
+# 	unpublishManyProjectsConnection(
+# 		after: ID
+# 		before: ID
+# 		first: Int
+
+# 		"""
+# 		Stages to unpublish documents from
+# 		"""
+# 		from: [Stage!]! = [PUBLISHED]
+# 		last: Int
+
+# 		"""
+# 		Locales to unpublish
+# 		"""
+# 		locales: [Locale!]
+# 		skip: Int
+
+# 		"""
+# 		Stage to find matching documents in
+# 		"""
+# 		stage: Stage = DRAFT
+
+# 		"""
+# 		Whether to unpublish the base document and default localization
+# 		"""
+# 		unpublishBase: Boolean = true
+
+# 		"""
+# 		Identifies documents in draft stage
+# 		"""
+# 		where: ProjectManyWhereInput
+# 	): ProjectConnection!
+
+# 	"""
+# 	Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only.
+# 	"""
+# 	unpublishProject(
+# 		"""
+# 		Stages to unpublish document from
+# 		"""
+# 		from: [Stage!]! = [PUBLISHED]
+
+# 		"""
+# 		Optional locales to unpublish. Unpublishing the default locale will completely remove the document from the selected stages
+# 		"""
+# 		locales: [Locale!]
+
+# 		"""
+# 		Unpublish complete document including default localization and relations from stages. Can be disabled.
+# 		"""
+# 		unpublishBase: Boolean = true
+
+# 		"""
+# 		Document to unpublish
+# 		"""
+# 		where: ProjectWhereUniqueInput!
+# 	): Project
+
+# 	"""
+# 	Update one asset
+# 	"""
+# 	updateAsset(data: AssetUpdateInput!, where: AssetWhereUniqueInput!): Asset
+
+# 	"""
+# 	Update many assets
+# 	"""
+# 	updateManyAssets(
+# 		"""
+# 		Updates to document content
+# 		"""
+# 		data: AssetUpdateManyInput!
+
+# 		"""
+# 		Documents to apply update on
+# 		"""
+# 		where: AssetManyWhereInput
+# 	): BatchPayload!
+# 		@deprecated(
+# 			reason: "Please use the new paginated many mutation (updateManyAssetsConnection)"
+# 		)
+
+# 	"""
+# 	Update many Asset documents
+# 	"""
+# 	updateManyAssetsConnection(
+# 		after: ID
+# 		before: ID
+
+# 		"""
+# 		Updates to document content
+# 		"""
+# 		data: AssetUpdateManyInput!
+# 		first: Int
+# 		last: Int
+# 		skip: Int
+
+# 		"""
+# 		Documents to apply update on
+# 		"""
+# 		where: AssetManyWhereInput
+# 	): AssetConnection!
+
+# 	"""
+# 	Update many projects
+# 	"""
+# 	updateManyProjects(
+# 		"""
+# 		Updates to document content
+# 		"""
+# 		data: ProjectUpdateManyInput!
+
+# 		"""
+# 		Documents to apply update on
+# 		"""
+# 		where: ProjectManyWhereInput
+# 	): BatchPayload!
+# 		@deprecated(
+# 			reason: "Please use the new paginated many mutation (updateManyProjectsConnection)"
+# 		)
+
+# 	"""
+# 	Update many Project documents
+# 	"""
+# 	updateManyProjectsConnection(
+# 		after: ID
+# 		before: ID
+
+# 		"""
+# 		Updates to document content
+# 		"""
+# 		data: ProjectUpdateManyInput!
+# 		first: Int
+# 		last: Int
+# 		skip: Int
+
+# 		"""
+# 		Documents to apply update on
+# 		"""
+# 		where: ProjectManyWhereInput
+# 	): ProjectConnection!
+
+# 	"""
+# 	Update one project
+# 	"""
+# 	updateProject(data: ProjectUpdateInput!, where: ProjectWhereUniqueInput!): Project
+
+# 	"""
+# 	Update one scheduledRelease
+# 	"""
+# 	updateScheduledRelease(
+# 		data: ScheduledReleaseUpdateInput!
+# 		where: ScheduledReleaseWhereUniqueInput!
+# 	): ScheduledRelease
+
+# 	"""
+# 	Upsert one asset
+# 	"""
+# 	upsertAsset(upsert: AssetUpsertInput!, where: AssetWhereUniqueInput!): Asset
+
+# 	"""
+# 	Upsert one project
+# 	"""
+# 	upsertProject(upsert: ProjectUpsertInput!, where: ProjectWhereUniqueInput!): Project
 # }

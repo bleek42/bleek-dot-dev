@@ -16,7 +16,7 @@ export const AllProjects = gql`
       stage
       locale
 
-      screenShots {
+      screenShots(first: 10) {
         id
         url
         handle
@@ -35,7 +35,7 @@ export const AllProjects = gql`
 `;
 
 export const ProjectById = gql`
-  query ProjectById($where: ProjectWhereInput!) {
+  query ProjectById($where: ProjectWhereUniqueInput!, $stage: Stage) {
     project(where: $where) {
       id
       title
@@ -50,7 +50,7 @@ export const ProjectById = gql`
       stage
       locale
 
-      screenShots {
+      screenShots(first: 10) {
         id
         url
         handle
@@ -81,6 +81,7 @@ export const ProjectWithNode = gql`
     }
   }
 `;
+
 export const ProjectsWhereActiveStage = gql`
   query ProjectsWhereActiveStage($edge: ProjectEdge!, $stage: Stage = DRAFT) {
     projectsConnection(edge: $edge, stage: $stage) {

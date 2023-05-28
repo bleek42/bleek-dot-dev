@@ -3,21 +3,34 @@ import {
   type VariablesOf,
   type TypedDocumentNode,
 } from '@graphql-typed-document-node/core';
-import { GraphQLClient, RequestDocument, gql } from 'graphql-request';
-import { DocumentNode, ExecutionArgs, ExecutionResult, GraphQLError } from 'graphql';
+import {
+  GraphQLClient,
+  RequestDocument,
+  Variables,
+  Variables,
+  gql,
+} from 'graphql-request';
+import {
+  DocumentNode,
+  DocumentNode,
+  ExecutionArgs,
+  ExecutionResult,
+  GraphQLError,
+} from 'graphql';
 
 // import { type Variables } from 'graphql-request';
 // import {  } from '@graphql-typed-document-node/core';
 // import { ExecutionResult } from 'graphql';
 import { graphql } from './gen/gql';
 import { type Mutation, type Query, type TypedDocumentString } from './gen/graphql';
-import { RemoveIndex } from 'graphql-request/dist/types';
+import { RemoveIndex, Variables } from 'graphql-request/dist/types';
+import { Response } from 'graphql-request/dist/types.dom';
 
 // type Vars = AllProjectsQueryVariables | ProjectByIdQueryVariables;
 
 export const useGraphQLClient = async <
-  TResult = ResultOf<Query | Mutation>,
-  Variables = Record<string | number | symbol, unknown>
+  TResult extends ExecutionResult<Query | Mutation>,
+  Variables
 >(
   document:
     | TypedDocumentString<TResult, Variables>
@@ -26,7 +39,7 @@ export const useGraphQLClient = async <
   ...[variables]: Variables extends Record<string | number | symbol, unknown>
     ? [Variables]
     : []
-) => {
+): Promise<TResult> => {
   let err: GraphQLError;
   const client = new GraphQLClient(process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL, {
     headers: {
@@ -36,7 +49,7 @@ export const useGraphQLClient = async <
   });
 
   try {
-    const response = await client.rawRequest<TResult, Variables>(
+    const response = await client.rawRequest<TResult>(
       document.toString(),
       variables ?? []
     );
@@ -47,7 +60,7 @@ export const useGraphQLClient = async <
       err = new GraphQLError('Error: useGraphQLClient bad request/response..!');
       throw err;
     }
-    console.log(response);
+    console.log(response.data);
     return response;
   } catch {
     console.error('Error: useGraphQLClient uncaught exception..!');
@@ -55,6 +68,10 @@ export const useGraphQLClient = async <
     throw err;
   }
 };
+
+
+
+
 
 /*
     !  GRAPHQL !

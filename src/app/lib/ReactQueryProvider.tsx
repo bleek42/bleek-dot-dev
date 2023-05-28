@@ -1,14 +1,19 @@
 'use client';
 
 import { useRef } from 'react';
-import { GraphQLError } from 'graphql';
-import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { type QueryClientProviderProps } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { DocumentNode, GraphQLError } from 'graphql';
 import {
+	ResultOf,
+	VariablesOf,
+	type TypedDocumentNode,
+} from '@graphql-typed-document-node/core';
+import { QueryFunction, type QueryClientProviderProps } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import request, {
 	type RequestExtendedOptions,
 	type Variables,
 	GraphQLClient,
+	RequestDocument,
 } from 'graphql-request';
 import {
 	type QueryClientConfig,
@@ -19,11 +24,13 @@ import {
 export default function ReactQueryProvider({ children }: QueryClientProviderProps) {
 	const ref = useRef<QueryClient>();
 	const queryClient: QueryClient = new QueryClient();
-	let vars: Variables;
-	let document: TypedDocumentNode<
-		Record<string | symbol, RequestExtendedOptions>,
-		Variables
-	>;
+	let doc: DocumentNode | RequestDocument;
+	let vars: VariablesOf<RequestDocument>;
+	// let document: TypedDocumentNode<
+	// 	Record<string | symbol, RequestExtendedOptions>,
+	// 	Variables
+	// >;
+
 	// const config: QueryClientConfig = {
 	// 	defaultOptions: {
 	// 		queries: {
@@ -32,15 +39,20 @@ export default function ReactQueryProvider({ children }: QueryClientProviderProp
 	// 		},
 	// 	},
 	// };
+
+	//  QueryFunction<RequestDocument, QueryKey = ['projects']>
 	if (!ref.current) ref.current = queryClient;
 
 	ref.current?.setDefaultOptions({
 		queries: {
 			queryKey: ['projects'],
 			queryFn: () =>
-				request<typeof document, typeof vars>({
-					url: process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL as string,
-					document,
+				request<typeof doc, typeof vars>(
+					process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL as string,
+					doc
+				).then((result) => {
+					console.log(result);
+					return result ?? null;
 				}),
 			initialData: () => ref?.current?.prefetchQuery(['projects']),
 			cacheTime: 100000,

@@ -1,5 +1,3 @@
-'use client';
-
 import { Footer as Wrapper } from './Footer';
 import { SmTxt } from '@/components/global/Text';
 

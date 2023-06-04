@@ -1,5 +1,3 @@
-'use client';
-
 import { type BaseComponent } from '@/interfaces/BaseComponent';
 
 import React, { useState } from 'react';

@@ -33,12 +33,12 @@
 		}
 	},
 	"extends": [
+		"next/core-web-vitals",
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
-		"next/core-web-vitals",
 		"plugin:import/recommended",
 		"plugin:import/typescript",
 		"plugin:prettier",

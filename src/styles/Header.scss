@@ -1,0 +1,51 @@
+@use "sass:map";
+
+@import './vars/index.scss';
+@import './mixins/index.scss';
+
+header {
+  @include flex-inline;
+  font-family: $birdman;
+  background-color: map.get($bgcolors, "steel-cyan");
+  border: $dense;
+  text-align: left;
+  border-radius: $radi-1;
+  margin: 4px 4px 4px 4px;
+  padding: 4px 4px 4px 4px;
+
+  i {
+    font-family: $MonocraftNF;
+    font-weight: 700;
+    color: map.get($colors , "neon");
+    flex: 1 0 auto;
+  }
+
+  h1 {
+    @include txt-header;
+    flex: 0 1 auto;
+  }
+
+  h2 {
+    @include txt-bleek;
+    flex: 1 0 auto;
+  }
+
+  span.page-header {
+    font-family: $Oxanium;
+    flex: 0 1 auto;
+    text-align: right;
+
+    h6 {
+      @include txt-header;
+      color: map.get($colors , "teal");
+      font-weight: 500;
+      text-shadow: $shade-2;
+    }
+
+    p {
+      color: map.get($colors , "steel");
+      font-family: $MonocraftNF;
+      font-weight: 300;
+    }
+  }
+}

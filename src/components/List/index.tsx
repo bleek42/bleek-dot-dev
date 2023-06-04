@@ -1,4 +1,4 @@
-// 'use client';
+// ;
 
 // import type { BaseComponentProps } from '@/props/base.component.props';
 

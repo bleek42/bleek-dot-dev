@@ -1,5 +1,3 @@
-'use client';
-
 import { useId } from 'react';
 
 import type { BaseComponentProps } from '@/props/base.component.props';

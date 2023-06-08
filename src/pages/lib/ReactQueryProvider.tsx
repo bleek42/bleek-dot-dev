@@ -1,45 +1,36 @@
-import { useRef } from 'react';
-import { DocumentNode, GraphQLError } from 'graphql';
-import {
-	ResultOf,
-	VariablesOf,
-	type TypedDocumentNode,
-} from '@graphql-typed-document-node/core';
-import { QueryFunction, type QueryClientProviderProps } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import request, {
-	type RequestExtendedOptions,
-	type Variables,
-	GraphQLClient,
-	RequestDocument,
-} from 'graphql-request';
 import {
+	type QueryFunction,
+	type QueryClientProviderProps,
 	type QueryClientConfig,
 	QueryClient,
 	QueryClientProvider,
 } from '@tanstack/react-query';
+import request, {
+	type RequestExtendedOptions,
+	type Variables,
+	type RequestDocument,
+} from 'graphql-request';
+import {
+	type ResultOf,
+	type VariablesOf,
+	type TypedDocumentNode,
+} from '@graphql-typed-document-node/core';
 
-export default function ReactQueryProvider({ children }: QueryClientProviderProps) {
-	const ref = useRef<QueryClient>();
-	const queryClient: QueryClient = new QueryClient();
+function ReactQueryProvider() {
+	const client = new QueryClient()
+	 QueryClientProviderProps
+	const ref = useRef<QueryClient>(client);
+	// const queryClient: QueryClient = new QueryClient();
 	let doc: DocumentNode | RequestDocument;
 	let vars: VariablesOf<RequestDocument>;
 	// let document: TypedDocumentNode<
 	// 	Record<string | symbol, RequestExtendedOptions>,
 	// 	Variables
-	// >;
-
-	// const config: QueryClientConfig = {
-	// 	defaultOptions: {
-	// 		queries: {
-	// 			queryKey: ['projects'],
-
-	// 		},
-	// 	},
-	// };
+	//
 
 	//  QueryFunction<RequestDocument, QueryKey = ['projects']>
-	if (!ref.current) ref.current = queryClient;
+	if (!ref.current) ref.current = new QueryClient();
 
 	ref.current?.setDefaultOptions({
 		queries: {
@@ -59,13 +50,13 @@ export default function ReactQueryProvider({ children }: QueryClientProviderProp
 	});
 	console.log(ref.current);
 
-	return (
-		<QueryClientProvider client={ref?.current}>
-			{children}
-			<ReactQueryDevtools initialIsOpen={false} position="top-right" />
-		</QueryClientProvider>
-	);
+  return (
+	<div>ReactQueryProvider</>
+  )
 }
+
+export default ReactQueryProvider
+
 
 // errorTypes={[
 // 	{

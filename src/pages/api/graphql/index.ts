@@ -1,46 +1,34 @@
 import {
+  type DocumentNode,
+  type ExecutionArgs,
+  type ExecutionResult,
+  GraphQLError,
+} from 'graphql';
+import {
   type ResultOf,
   type VariablesOf,
   type TypedDocumentNode,
 } from '@graphql-typed-document-node/core';
-import {
-  GraphQLClient,
-  RequestDocument,
-  Variables,
-  Variables,
-  gql,
-} from 'graphql-request';
-import {
-  DocumentNode,
-  DocumentNode,
-  ExecutionArgs,
-  ExecutionResult,
-  GraphQLError,
-} from 'graphql';
+import { GraphQLClient, type RequestDocument, type Variables } from 'graphql-request';
 
-// import { type Variables } from 'graphql-request';
-// import {  } from '@graphql-typed-document-node/core';
-// import { ExecutionResult } from 'graphql';
-import { graphql } from './gen/gql';
 import { type Mutation, type Query, type TypedDocumentString } from './gen/graphql';
-import { RemoveIndex, Variables } from 'graphql-request/dist/types';
-import { Response } from 'graphql-request/dist/types.dom';
+import { graphql } from './gen/gql';
 
 // type Vars = AllProjectsQueryVariables | ProjectByIdQueryVariables;
 
 export const useGraphQLClient = async <
   TResult extends ExecutionResult<Query | Mutation>,
-  Variables
+  TVariables = Variables
 >(
   document:
-    | TypedDocumentString<TResult, Variables>
-    | TypedDocumentNode<TResult, Variables>
+    | TypedDocumentString<TResult, TVariables>
+    | TypedDocumentNode<TResult, TVariables>
     | DocumentNode,
-  ...[variables]: Variables extends Record<string | number | symbol, unknown>
-    ? [Variables]
+  ...[variables]: TVariables extends Record<string | number | symbol, unknown>
+    ? [TVariables]
     : []
 ): Promise<TResult> => {
-  let err: GraphQLError;
+  let err: GraphQLError | null = null;
   const client = new GraphQLClient(process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL, {
     headers: {
       'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN}`,
@@ -49,9 +37,9 @@ export const useGraphQLClient = async <
   });
 
   try {
-    const response = await client.rawRequest<TResult>(
+    const response = await client.request<TResult>(
       document.toString(),
-      variables ?? []
+      variables ?? undefined
     );
 
     console.table({ response });
@@ -68,10 +56,6 @@ export const useGraphQLClient = async <
     throw err;
   }
 };
-
-
-
-
 
 /*
     !  GRAPHQL !

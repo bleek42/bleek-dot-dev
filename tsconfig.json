@@ -30,13 +30,13 @@
 			// 	"src/app/*"
 			// ],
 			"@/layouts": [
-				"src/app/layouts/*"
+				"src/appdir/layouts/*"
 			],
 			"@/lib/*": [
-				"src/app/lib/*"
+				"src/pages/lib/*"
 			],
 			"@/graphql/*": [
-				"src/app/lib/graphql/*"
+				"src/pages/api/graphql/*"
 			],
 			"@/interfaces/*": [
 				"src/types/interfaces/*"

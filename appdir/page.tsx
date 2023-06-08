@@ -1,4 +1,4 @@
-import StyledProvider from '@/lib/StyledProvider';
+import StyledProvider from 'src/pages/lib/StyledProvider';
 import XTerm from '@/components/XTerm/index.tsx';
 import { Main } from '@/components/global/Main.ts';
 

@@ -1,7 +1,7 @@
 {
 	"name": "bleek-dot-dev",
 	"version": "0.5.0",
-	"private": true,
+	"main": "src/pages/_app.tsx",
 	"type": "module",
 	"author": {
 		"name": "Brandon Leek",
@@ -18,35 +18,32 @@
 		"start": "next start",
 		"lint": "next lint",
 		"format": "prettier --write",
+		"lntfmt": "next lint src/**/*.{ts,tsx} && prettier --write src/**/*.{ts,tsx}",
 		"gen": "graphql-codegen --require dotenv/config --config codegen.ts",
 		"gen:watch": "graphql-codegen --require dotenv/config --config --watch codegen.ts",
-		"gen:rm": "rm -rf src/app/lib/graphql/gen/*.ts"
+		"gen:rm": "rm -rf src/types/graphql/*.ts"
 	},
 	"dependencies": {
-		"@graphql-typed-document-node/core": "3.2.0",
 		"@tanstack/react-query": "4.29.7",
 		"@tanstack/react-query-devtools": "4.29.7",
 		"dotenv": "16.0.3",
 		"graphql": "^16.6.0",
-		"graphql-request": "6.1.0",
+		"graphql-request": "^5.1.0",
 		"graphql-tag": "2.12.6",
-		"next": "^13.4.3",
+		"next": "^13.2.0",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"styled-components": "^5.3.10"
+		"styled-components": "5.3.10"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "^4.0.0",
 		"@graphql-codegen/client-preset": "^4.0.0",
 		"@graphql-codegen/client-preset-swc-plugin": "0.2.0",
-		"@graphql-codegen/import-types-preset": "^2.2.6",
-		"@graphql-codegen/introspection": "4.0.0",
-		"@graphql-codegen/near-operation-file-preset": "2.5.0",
-		"@graphql-codegen/schema-ast": "4.0.0",
 		"@graphql-codegen/typescript": "^4.0.0",
 		"@graphql-codegen/typescript-graphql-request": "5.0.0",
 		"@graphql-codegen/typescript-operations": "^4.0.0",
 		"@graphql-eslint/eslint-plugin": "3.19.1",
+		"@graphql-typed-document-node/core": "3.2.0",
 		"@types/styled-components": "^5.1.26",
 		"@typescript-eslint/eslint-plugin": "^5.59.6",
 		"@typescript-eslint/parser": "^5.59.6",
@@ -70,7 +67,14 @@
 		"ts-node": "^10.9.1",
 		"typescript": "^5.0.4"
 	},
+	"optionalDependencies": {
+		"@graphql-codegen/import-types-preset": "^2.2.6",
+		"@graphql-codegen/introspection": "4.0.0",
+		"@graphql-codegen/near-operation-file-preset": "2.5.0",
+		"@graphql-codegen/schema-ast": "4.0.0"
+	},
 	"overrides": {
-		"styled-components": "^5.3.10"
+		"next": "~13.2.0",
+		"graphql-request": "~5.1.0"
 	}
 }

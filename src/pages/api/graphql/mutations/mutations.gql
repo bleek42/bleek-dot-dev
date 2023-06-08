@@ -1,0 +1,29 @@
+mutation CreateProject($input: ProjectCreateInput!) {
+	createProject(data: $input) {
+		...ProjectFields
+
+		screenShots {
+			...ImageFields
+		}
+	}
+}
+
+# mutation UpdateProject($data: ProjectInput!) {
+# 	updateProject(where: $data) {
+# 		...ProjectFields
+
+# 		screenShots {
+# 			...ImageFields
+# 		}
+# 	}
+# }
+
+# mutation DeleteProject($data: ProjectInput!) {
+# 	deleteProject(where: $data) {
+# 		...ProjectFields
+
+# 		screenShots {
+# 			...ImageFields
+# 		}
+# 	}
+# }

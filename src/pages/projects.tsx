@@ -1,9 +1,9 @@
-import { Fragment, useId } from "react";
+import { Fragment, useId } from 'react';
 
-import Header from '@components/Header';
-import Section from '@components/Section';
-import Footer from '@components/Footer';
-import Meta from '@components/global/Meta';
+import Header from '@/components/Header';
+import Section from '/@components/Section';
+import Footer from '/@components/Footer';
+import Meta from '/@components/global/Meta';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
@@ -359,4 +359,3 @@ export const getStaticProps = async ({ params = '', preview = false }) => {
 				</details>
 			</section> */
 }
-

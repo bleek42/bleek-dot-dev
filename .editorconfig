@@ -19,21 +19,20 @@ insert_final_newline = false
 trim_trailing_whitespace = false
 
 [*.{js,ts}]
-indent_style = space
 indent_size = 2
+indent_style = space
 
 [*.{jsx,tsx,json,html}]
-indent_style = tab
 indent_size = 4
+indent_style = tab
 
 [*.{graphql,gql}]
-indent_style = tab
 indent_size = 4
+indent_style = tab
 
 # Ignore paths
-[{node_modules/,src/generated/}**]
-charset = unset
+[node_modules/**]
+indent_size = unset
+indent_style = unset
 insert_final_newline = unset
 trim_trailing_whitespace = unset
-indent_style = unset
-indent_size = unset

@@ -1,27 +1,32 @@
-import type { BaseComponentProps } from '@prop-types/base.component.props';
+import type { BaseComponentProps } from '@/props/base.component.props';
 
 import { useId } from 'react';
 
-import { LgTxt, MdTxt, SmTxt } from '@global/Text';
 import { Section as Wrapper, Article } from './Section';
+import { LgTxt, MdTxt, SmTxt } from '@/components/global/Text';
 
-type SectionProps = BaseComponentProps;
+type SectionProps = BaseComponentProps<'section'>;
 
 export default function Section({ id, name, title, content, icon }: SectionProps) {
 	const sectionId = useId();
 
 	return (
-		<Wrapper key={`sect-${id}` || `sect-${sectionId}`} id={`sect-${id}` || `sect-${sectionId}`}>
-			<LgTxt>{title || 'Section Title'}</LgTxt>
+		<Wrapper key={id || `section-${sectionId}`} id={id || `section-${sectionId}`}>
+			<LgTxt>{title || 'Section Title Unknown'}</LgTxt>
 			<Article>
 				<SmTxt font="MonocraftNF" color="neon">
-					{content || 'no article content provided...'}
+					{content || 'No article content props provided...'}
 				</SmTxt>
 			</Article>
 			<Article>
 				<MdTxt font="Oxanium" color="cyan">
 					Test MDTXT
 				</MdTxt>
+			</Article>
+			<Article>
+				<LgTxt font="Oxanium" color="cyan">
+					Test MDTXT
+				</LgTxt>
 			</Article>
 		</Wrapper>
 	);

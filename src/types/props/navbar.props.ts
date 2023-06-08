@@ -6,9 +6,9 @@ import type {
   ThemedStyledProps,
 } from 'styled-components';
 import type { ComponentType, Key } from 'react';
-// import type { PageLink, PageTitle } from '@interfaces/PageLink';
+// import type { PageLink, PageTitle } from '@/interfaces/PageLink';
 
-// import type { PageLink, PageTitle } from '@interfaces/PageLink';
+// import type { PageLink, PageTitle } from '@/interfaces/PageLink';
 import type Link from 'next/link';
 import type { LinkProps } from 'next/link';
 

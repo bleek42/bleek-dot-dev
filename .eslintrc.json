@@ -33,37 +33,58 @@
 		}
 	},
 	"extends": [
+		"next/core-web-vitals",
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
-		"next/core-web-vitals",
 		"plugin:import/recommended",
 		"plugin:import/typescript",
-		"prettier",
-		"plugin:prettier/recommended"
+		"plugin:prettier",
+		"plugin:@tanstack/eslint-plugin-query"
 	],
 	// plugins bring in special rules, prettierrc rules you set
 	"plugins": [
 		"@typescript-eslint",
 		"react",
-		"import"
+		"import",
+		"@tanstack/eslint-plugin-query",
+		"prettier"
 	],
 	"rules": {
+		"prettier/prettier": "warn",
+		"@typescript-eslint/arrow-body-style": "off",
+		"@typescript-eslint/prefer-arrow-callback": "off",
+		"@typescript-eslint/explicit-module-boundary-types": "off",
+		"@typescript-eslint/no-non-null-assertion": "off",
+		"@typescript-eslint/no-inferrable-types": "off",
+		"@typescript-eslint/no-use-before-define": "off",
+		"@typescript-eslint/restrict-template-expressions": "off",
+		"@tanstack/query/exhaustive-deps": "error",
+		"@typescript-eslint/consistent-type-imports": [
+			"error",
+			{
+				"prefer": "type-imports"
+			}
+		],
+		"@typescript-eslint/brace-style": [
+			"warn",
+			"stroustrup"
+		],
 		"react/react-in-jsx-scope": "off",
-		"react/display-name": 0,
+		"react/display-name": "off",
 		"react/no-deprecated": "error",
+		"react/jsx-sort-props": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": 0,
 		"react/no-unsafe": [
 			"error",
 			{
 				"checkAliases": true
 			}
 		],
-		"react/jsx-sort-props": "off",
-		"react-hooks/rules-of-hooks": "error",
-		"react-hooks/exhaustive-deps": 0,
-		"prettier/prettier": "warn",
+		"@tanstack/query/prefer-query-object-syntax": "error",
 		"@next/next/no-img-element": "off",
 		"import/no-unresolved": [
 			"warn",
@@ -75,23 +96,7 @@
 		"import/default": "off",
 		"import/export": "warn",
 		"import/namespace": "off",
-		"@typescript-eslint/arrow-body-style": "off",
-		"@typescript-eslint/prefer-arrow-callback": "off",
-		"@typescript-eslint/explicit-module-boundary-types": "off",
-		"@typescript-eslint/no-non-null-assertion": "off",
-		"@typescript-eslint/no-inferrable-types": "off",
-		"@typescript-eslint/no-use-before-define": "off",
-		"@typescript-eslint/consistent-type-imports": [
-			"error",
-			{
-				"prefer": "type-imports"
-			}
-		],
-		"@typescript-eslint/brace-style": [
-			"error",
-			"stroustrup"
-		],
-		"@typescript-eslint/restrict-template-expressions": "off",
+		"import/no-anonymous-default-export": "off",
 		"no-console": "warn",
 		"no-unused-vars": "warn",
 		"no-else-return": "error",
@@ -106,5 +111,25 @@
 			"warn",
 			"single"
 		]
-	}
+	},
+	"overrides": [
+		{
+			"files": [
+				"*.graphql",
+				".gql"
+			],
+			"parser": "@graphql-eslint/eslint-plugin",
+			"plugins": [
+				"@graphql-eslint",
+				"plugin:prettier"
+			],
+			"extends": [
+				"prettier"
+			],
+			"rules": {
+				"prettier/prettier": "warn",
+				"@graphql-eslint/known-type-names": "error"
+			}
+		}
+	]
 }

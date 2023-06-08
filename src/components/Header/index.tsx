@@ -1,17 +1,18 @@
-import type { BaseComponentProps } from '@prop-types/base.component.props';
+import { useId } from 'react';
 
-import Navbar from '@components/Navbar';
+import type { BaseComponentProps } from '@/props/base.component.props';
 
 import { Header as Wrapper } from './Header';
-import { LgTxt, MdTxt } from '@global/Text';
+import { LgTxt, MdTxt } from '@/components/global/Text';
+import Navbar from '@/components/Navbar';
 
-type HeaderProps = BaseComponentProps;
+type HeaderProps = BaseComponentProps<'header'>;
 
-export default function Header({ id, name, title }: HeaderProps) {
+export default function Header({ id, name, title, children }: HeaderProps) {
 	console.log('Header component:', id, name, title);
-
+	// const pageId = useId();
 	return (
-		<Wrapper>
+		<Wrapper id={`header-${name || 'noname'}${id}`}>
 			<LgTxt font="Birdman" color="green" shadow="black">
 				Brandon Leek
 			</LgTxt>
@@ -21,7 +22,7 @@ export default function Header({ id, name, title }: HeaderProps) {
 			<MdTxt font="Birdman" color="red" shadow="steel">
 				{title}
 			</MdTxt>
-			<Navbar />
+			{children}
 		</Wrapper>
 	);
 }

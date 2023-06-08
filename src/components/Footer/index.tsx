@@ -1,9 +1,9 @@
 import { Footer as Wrapper } from './Footer';
-import { SmTxt } from '@global/Text';
+import { SmTxt } from '@/components/global/Text';
 
-import type { BaseComponentProps } from '@prop-types/base.component.props';
+import type { BaseComponentProps } from '@/props/base.component.props';
 
-type FooterProps = BaseComponentProps;
+type FooterProps = BaseComponentProps<'footer'>;
 
 export default function Footer({ id, name, icon }: FooterProps) {
 	console.log('Footer:', id, name, icon);

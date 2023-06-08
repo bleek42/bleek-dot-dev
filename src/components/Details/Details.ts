@@ -19,5 +19,3 @@ export const Summary = styled.summary`
   min-height: 45%;
   border: 1px solid rgb(43, 230, 33);
 `;
-
-

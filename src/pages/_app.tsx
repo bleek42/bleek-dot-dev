@@ -1,14 +1,20 @@
-import type { AppProps } from 'next/app';
-import { ThemeProvider } from 'styled-components';
+import { AppContext, type AppProps } from 'next/app';
 
-import theme, { GlobalStyle } from '@global/theme';
+import StyledProvider from './lib/StyledProvider';
+import PageLayout from './lib/PageLayout';
+import { ReactNode } from 'react';
+import { Theme, GlobalStyle } from '@/components/global/Theme';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
 	return (
-		<ThemeProvider theme={theme}>
+		<StyledProvider theme={Theme}>
 			<GlobalStyle />
-			<Component {...pageProps} />
-		</ThemeProvider>
+			<PageLayout>
+				<Component {...pageProps} />
+			</PageLayout>
+		</StyledProvider>
 	);
 }
-export default MyApp;
+export default App;
+/* <ThemeProvider theme={Theme}> */
+/* // </ThemeProvider> */

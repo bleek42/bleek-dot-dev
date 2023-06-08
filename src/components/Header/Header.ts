@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
-  display: flex;
-  /* flex-flow: row wrap;
-  justify-content: flex-start; */
+  display: inline-flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
   align-items: center;
   height: 12vh;
   width: 100vh;

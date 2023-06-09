@@ -1,33 +1,56 @@
 import { type BaseComponent } from '@/interfaces/BaseComponent';
 
-import React, { useState } from 'react';
+import React, { Fragment, ReactNode, useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
-import { ServerStyleSheet, StyleSheetManager, ThemeProvider } from 'styled-components';
+import {
+	AnyStyledComponent,
+	DefaultTheme,
+	ServerStyleSheet,
+	StyleSheetManager,
+	ThemeProvider,
+} from 'styled-components';
 
-import { Theme, GlobalStyle } from '@/components/global/Theme';
+import { theme, GlobalStyle } from '@/components/global/Theme';
 
-type StyledChildrenProps = Pick<BaseComponent<'styled-provider'>, 'children'>;
+interface StyledChildrenProps {
+	children: AnyStyledComponent | AnyStyledComponent[] | ReactNode | ReactNode[] | null;
+	defaultTheme?: DefaultTheme;
+}
 
-export default function StyledProvider({ children }: StyledChildrenProps) {
+export default function StyledProvider({
+	children,
+	defaultTheme = theme,
+}: StyledChildrenProps) {
 	// Only create stylesheet once with lazy initial state
 	// x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
-	const [styledComponentsStyleSheet] = useState(() => new ServerStyleSheet());
-	console.log(styledComponentsStyleSheet);
+	const [styledComponentsStyleSheet, setStyledComponentsStyleSheet] = useState(
+		() => new ServerStyleSheet()
+	);
 	useServerInsertedHTML(() => {
 		const styles = styledComponentsStyleSheet.getStyleElement();
 		console.log(styles);
+		if (styles && styledComponentsStyleSheet.instance) {
+			console.log(
+				'styled provder instance loaded & OK!',
+				styledComponentsStyleSheet.instance
+			);
+			console.log('instance.getStyleElement() value', styles);
+			return <>{styles}</>;
+		}
 		styledComponentsStyleSheet.seal();
-		return <>{styles}</>;
 	});
 
-	if (typeof window !== 'undefined') return <>{children}</>;
-
 	return (
-		<StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
-			<ThemeProvider theme={Theme}>
-				<GlobalStyle />
-				{children}
-			</ThemeProvider>
-		</StyleSheetManager>
+		<Fragment>
+			{typeof window !== 'undefined' && <>{children}</>}
+			{window && (
+				<StyleSheetManager sheet={styledComponentsStyleSheet.instance}>
+					<ThemeProvider theme={defaultTheme}>
+						<GlobalStyle />
+						{children}
+					</ThemeProvider>
+				</StyleSheetManager>
+			)}
+		</Fragment>
 	);
 }

@@ -2,7 +2,7 @@ import type { DefaultTheme } from 'styled-components';
 
 import { createGlobalStyle } from 'styled-components';
 
-export const Theme: DefaultTheme = {
+export const theme: DefaultTheme = {
   name: 'Default',
   borderRadius: '24% 16% / 16% 24%',
   fonts: ['Birdman', 'Oxanium', 'MonocraftNF'],

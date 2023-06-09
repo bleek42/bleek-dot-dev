@@ -93,7 +93,13 @@ query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage) {
 # 		stage
 # 		locale
 
-# 		screenShots {
+# 		screenShots pages/lib
+pages/lib
+pages/lib
+pages/lib
+pages/lib
+pages/lib
+pages/lib{
 # 			id
 # 			url
 # 			handle

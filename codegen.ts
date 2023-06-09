@@ -17,11 +17,11 @@ const config: CodegenConfig = {
 
   schema: './schema.json',
   documents: [
-    // './src/app/lib/graphql/ast.gql',
-    'src/app/lib/graphql/ast.gql',
-    'src/app/lib/graphql/queries/*.gql',
-    'src/app/lib/graphql/queries/*.graphql',
-    '!src/app/lib/graphql/gen/*',
+    // 'ast.gql',
+    'src/types/graphql/ast.gql',
+    'src/types/graphql/queries/*.gql',
+    'src/types/graphql/queries/*.graphql',
+    '!src/types/graphql/gen/*',
     '!src/types/**/*',
   ],
 
@@ -40,7 +40,7 @@ const config: CodegenConfig = {
     //     },
     //   },
 
-    'src/app/lib/graphql/ast.gql': {
+    'src/types/graphql/ast.gql': {
       plugins: ['schema-ast'],
       config: {
         commentDescriptions: true,
@@ -85,7 +85,7 @@ const config: CodegenConfig = {
       },
     },
 
-    'src/app/lib/graphql/gen/': {
+    'src/types/graphql/gen/': {
       preset: 'client-preset',
       presetConfig: {
         fragmentMasking: { unmaskFunctionName: 'createFragment' },

@@ -1,9 +1,10 @@
-import { Fragment, useId } from 'react';
+import { Main, useId } from 'react';
 
 import Header from '@/components/Header';
 import Section from '/@components/Section';
 import Footer from '/@components/Footer';
 import Meta from '/@components/global/Meta';
+import PageLayout from '../components/global/PageLayout';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
@@ -16,10 +17,8 @@ import Meta from '/@components/global/Meta';
 export default function Projects() {
 	const pageId = useId();
 	return (
-		<Fragment>
-			<Meta />
-			<Header id={`projects-${pageId}`} name="About" content="" icon={null} />
-			<main>
+		<PageLayout>
+			<Main>
 				<Section
 					id="projects-sect-1"
 					name="projects_sect_1"
@@ -89,9 +88,8 @@ export default function Projects() {
 					Nodemailer, and an animated loading screen."
 					icon={null}
 				/>
-			</main>
-			<Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
-		</Fragment>
+			</Main>
+		</PageLayout>
 	);
 }
 
@@ -116,8 +114,10 @@ export const getStaticProps = async ({ params = '', preview = false }) => {
 	);
 };
 
-{
-	/* <section
+// <Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
+// <Header id={`projects-${pageId}`} name="About" content="" icon={null} />
+// {
+/* <section
 				className="project"
 				id="jquery-quiz">
 				<h4 className="title">Multiple Choice Quiz App</h4>
@@ -358,4 +358,4 @@ export const getStaticProps = async ({ params = '', preview = false }) => {
 					/>
 				</details>
 			</section> */
-}
+// }

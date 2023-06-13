@@ -1,25 +1,25 @@
-import { AppContext, type AppProps } from 'next/app';
+import { type NextComponentType, type NextPageContext, type NextPage } from 'next';
 
-import StyledProvider from './lib/StyledProvider';
+import {
+	type AppProps,
+	type AppInitialProps,
+	type AppContext,
+	type AppType,
+} from 'next/app';
+
+// import StyledProvider from './lib/StyledProvider';
 // import PageLayout from './lib/PageLayout';
-import { ReactNode } from 'react';
-import { GlobalStyle } from '@/components/global/Theme';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyle, theme } from '@/components/global/Theme';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 function App({ Component, pageProps }: AppProps) {
 	return (
-		<StyledProvider>
-			<Header
-				id={[-1]}
-				name="testing"
-				title="layout.tsx with styled provider, consistent instances of Header, NavBar, Footer across all pages"
-			/>
+		<ThemeProvider theme={theme}>
+			<GlobalStyle />
 			<Component {...pageProps} />
-			<Footer />
-		</StyledProvider>
+		</ThemeProvider>
 	);
 }
 export default App;
-/* <ThemeProvider theme={Theme}> */
-/* // </ThemeProvider> */

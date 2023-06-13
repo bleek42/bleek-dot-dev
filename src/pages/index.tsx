@@ -1,5 +1,3 @@
-import { ThemeProvider } from 'styled-components';
-
 import XTerm from '@/components/XTerm';
 import { Main } from '@/components/global/Main';
 

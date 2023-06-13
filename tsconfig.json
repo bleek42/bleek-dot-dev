@@ -33,7 +33,7 @@
 				"src/appdir/layouts/*"
 			],
 			"@/lib/*": [
-				"src/pages/lib/*"
+				"src/appdir/lib/*"
 			],
 			"@/graphql/*": [
 				"src/pages/api/graphql/*"
@@ -79,7 +79,8 @@
 	"exclude": [
 		"node_modules/",
 		"build/",
-		".next/"
+		".next/",
+		"src/appdir"
 	],
 	"ts-node": {
 		"esm": true,

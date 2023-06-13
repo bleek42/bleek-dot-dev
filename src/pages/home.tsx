@@ -1,31 +1,16 @@
-// ? types
 import type { NextPage } from 'next';
 
-// ? NPM deps, libs, pkgs, etc...
-import { useId, Fragment } from 'react';
+import { useId } from 'react';
 
-// ? global Meta, Main Background components
-import Meta from '@global/Meta';
-import { Main } from '@global/Main';
-
-// ? custom styled components
-import Header from '@components/Header';
-import Section from '@components/Section';
-import Footer from '@components/Footer';
+import { Main } from '@/components/global/Main';
+import Section from '@/components/Section';
+import PageLayout from '../components/global/PageLayout';
 
 export default function Home() {
 	const pageId = useId();
 
 	return (
-		<Fragment>
-			<Meta />
-			<Header
-				id={`home-header-${pageId}`}
-				name="home"
-				title="Home"
-				content="bleekDotDev"
-				icon={null}
-			/>
+		<PageLayout>
 			<Main>
 				<Section
 					id="home-sect-1"
@@ -35,11 +20,18 @@ export default function Home() {
 					icon={null}
 				/>
 			</Main>
-			<Footer id={`home-footer-${pageId}`} name="home" icon={null} />
-		</Fragment>
+		</PageLayout>
 	);
 }
 
+// <Header
+// 	id={`home-header-${pageId}`}
+// 	name="home"
+// 	title="Home"
+// 	content="bleekDotDev"
+// 	icon={null}
+// />
+// <Footer id={`home-footer-${pageId}`} name="home" icon={null} />
 // <div className="home">
 // 	<header>
 // 		<h1>Brandon Leek</h1>

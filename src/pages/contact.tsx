@@ -1,12 +1,8 @@
-import React, { Fragment, useId } from 'react';
+import { useId } from 'react';
 
-import Header from '@/components/Header';
+import PageLayout from '@/components/global/PageLayout';
 import { Main } from '@/components/global/Main';
 import Section from '@/components/Section';
-import Footer from '@/components/Footer';
-
-// import { useRequest } from '../hooks/useRequest';
-// import Meta from '@/components/global/Meta';
 
 export default function Contact() {
 	// const { profile, loading, error, msg } = useRequest();
@@ -17,9 +13,16 @@ export default function Contact() {
 	const githubIcon = ' \uf092 ';
 
 	return (
-		<Fragment>
-			<Header id={`contact-header-${pageId}`} name="contact" title="Contact" />
+		<PageLayout>
 			<Main>
+				{/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */}
+				<Section
+					id={`contact-1`}
+					name="contact-page-section-1"
+					title="Contact: Email"
+					content={null}
+					icon={commentIcon}
+				/>
 				{/* {loading && (
 					<div className="loading">
 						<progress>loading...</progress>
@@ -35,13 +38,15 @@ export default function Contact() {
 					</div>
 				)} */}
 			</Main>
-			<Footer id={`contact-footer-${pageId}`} name="Contact" icon={null} />
-		</Fragment>
+		</PageLayout>
 	);
 }
 
-{
-	/* <section className="linkedin">
+// {
+/* <Footer id={`contact-footer-${pageId}`} name="Contact" icon={null} /> */
+// }
+// {
+/* <section className="linkedin">
 				<h4>{<GrLinkedin />} LinkedIn</h4>
 				<a
 					id="my-linkedin"
@@ -70,10 +75,10 @@ export default function Contact() {
 				)}
 				{error && <p>Error fetching profile data: {msg.toString()}</p>}
 			</section> */
-}
+// }
 
-{
-	/* <header>
+// {
+/* <header>
 				<h4>{<VscCommentDiscussion />} Contact</h4>
 				<p>
 					Whether you're about to make me an offer I can't refuse, thinking
@@ -82,4 +87,4 @@ export default function Contact() {
 					LinkedIn or GitHub.
 				</p>
 			</header> */
-}
+// }

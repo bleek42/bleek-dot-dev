@@ -1,15 +1,19 @@
-import { type BaseComponent } from '@/interfaces/BaseComponent';
-
 import React, { Fragment, ReactNode, useState } from 'react';
 import { useServerInsertedHTML } from 'next/navigation';
+
 import {
-	AnyStyledComponent,
-	DefaultTheme,
+	type DefaultTheme,
+	type ThemeProps,
+	type ThemedStyledProps,
+	type ThemeContext,
+	type ThemeProviderProps,
+	type StyledComponentProps,
 	ServerStyleSheet,
 	StyleSheetManager,
 	ThemeProvider,
+	ThemeConsumer,
+	AnyStyledComponent,
 } from 'styled-components';
-
 import { theme, GlobalStyle } from '@/components/global/Theme';
 
 interface StyledChildrenProps {

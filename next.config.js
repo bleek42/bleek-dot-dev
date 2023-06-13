@@ -28,7 +28,7 @@ export default {
   },
 
   experimental: {
-    appDir: false,
+
     swcPlugins: [
       [
         '@graphql-codegen/client-preset-swc-plugin',

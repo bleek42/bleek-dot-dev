@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 import { Main } from "@/components/global/Main";
-import PageLayout from "../components/global/PageLayout";
+import PageLayout from '@/components/global/PageLayout';
 
 export default function About() {
 	console.log("about page:");

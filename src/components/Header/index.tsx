@@ -8,7 +8,7 @@ import Navbar from '@/components/Navbar';
 
 type HeaderProps = BaseComponentProps<'header'>;
 
-export default function Header({ id, name, title, children }: HeaderProps) {
+export default function Header({ id, name, title, children = Navbar }: HeaderProps) {
 	console.log('Header component:', id, name, title);
 	// const pageId = useId();
 	return (

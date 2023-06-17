@@ -13,20 +13,21 @@ import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimens
 import type { XTermComponentProps } from '@/props/base.component.props';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/global/Button';
-import { XTermInputOutput } from '@/interfaces/BaseComponent';
+import { XTermComponent } from '@/interfaces/BaseComponent';
 
-type XTResizeState = ResizeObserverDimensions;
-type XTIOState = XTermInputOutput;
+// type XTResizeState = ResizeObserverDimensions;
 
-export default function XTerm<XTermComponentProps>() {
-	const xtInitState: XTIOState = {
+export default function XTerm() {
+	const xtInitState: XTermComponent = {
 		id: 'tty0',
 		name: '/dev/pts/tty0',
 		prompt: '[visitor@bleek.dev(v0.7)->/tty0]/λ->',
-		exec: null,
+		isExec: null,
+		result: null,
+		hasError: null,
 	};
-	const [xterm, setXterm] = useState<XTIOState>(xtInitState); // ? set execute state true, leave landing page to /home
-	const [dimensions, setDimensions] = useState<XTResizeState>({
+	const [xterm, setXterm] = useState<XTermComponent>(xtInitState); // ? set execute state true, leave landing page to /home
+	const [dimensions, setDimensions] = useState<ResizeObserverDimensions>({
 		cols: 20,
 		rows: 20,
 		area: 20 * 20,

@@ -13,8 +13,7 @@ export default function About() {
 
 	return (
 		<PageLayout>
-			<Main>
-				{/* <Header
+			{/* <Header
 				id={`about-header-${pageId}`}
 				name="about"
 				title="About"
@@ -22,8 +21,7 @@ export default function About() {
 				icon={'\ue456'}
 			/> */}
 
-				<Section id="about-sect-1" name="about_section" content="" icon={null} />
-			</Main>
+			<Section id="about-sect-1" name="about_section" content="" icon={null} />
 		</PageLayout>
 	);
 }

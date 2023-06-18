@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { type XTermComponent } from '@/interfaces/BaseComponent';
+
 export const XTForm = styled.form`
   display: flex;
   flex-flow: column wrap;

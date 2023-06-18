@@ -17,12 +17,15 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { AppProps } from 'next/app';
+import Meta from '@/components/global/Meta';
+import { Main } from '@/components/global/Main';
 
 export default function PageLayout({ children }: { children: ReactNode }) {
 	return (
 		<Fragment>
+			<Meta />
 			<Header />
-			{children}
+			<Main>{children}</Main>
 			<Footer />
 		</Fragment>
 	);

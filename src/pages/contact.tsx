@@ -14,16 +14,15 @@ export default function Contact() {
 
 	return (
 		<PageLayout>
-			<Main>
-				{/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */}
-				<Section
-					id={`contact-1`}
-					name="contact-page-section-1"
-					title="Contact: Email"
-					content={null}
-					icon={commentIcon}
-				/>
-				{/* {loading && (
+			{/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */}
+			<Section
+				id={`contact-1`}
+				name="contact-page-section-1"
+				title="Contact: Email"
+				content={null}
+				icon={commentIcon}
+			/>
+			{/* {loading && (
 					<div className="loading">
 						<progress>loading...</progress>
 					</div>
@@ -37,7 +36,6 @@ export default function Contact() {
 						</p>
 					</div>
 				)} */}
-			</Main>
 		</PageLayout>
 	);
 }

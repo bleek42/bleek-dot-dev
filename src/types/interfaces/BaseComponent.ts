@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import {
   StyledComponent,
   StyledComponentProps,
@@ -9,6 +9,7 @@ import {
 export interface Component {
   id?: unknown;
   name?: string | symbol;
+  className?: string | null;
   title?: string | symbol;
   content?: string | string[] | symbol;
   icon?: string | null;
@@ -21,5 +22,15 @@ export interface XTermComponent extends Component {
   stdin: string | null;
   stdio: string | null;
   isExec: boolean | null;
-  stderr?: boolean | null;
-};
+  stderr?: string | null;
+}
+
+export interface MetaComponent extends Component {
+  title: string;
+  description: string;
+  keywords: string | string[];
+  id?: unknown;
+  name?: string | symbol;
+  icon?: string | null;
+  image?: Array<URL | string> | URL | string;
+}

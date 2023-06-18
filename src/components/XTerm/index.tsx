@@ -13,21 +13,30 @@ import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimens
 // import type { XTermComponentProps } from '@/props/base.component.props';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/global/Button';
-import { XTermComponent } from '@/interfaces/BaseComponent';
+import { Component, XTermComponent } from '@/interfaces/BaseComponent';
 
-type XTermState = XTermComponent & ResizeObserverDimensions;
-type XTermProps = StyledComponent<'textarea', DefaultTheme>;
-export default function XTerm({}: XTermProps) {
-	const xtInitState: XTermComponent = {
+type XTermState = XTermComponent;
+type XTermDimensionsState = ResizeObserverDimensions;
+type XTermProps = StyledComponentProps<
+	'textarea',
+	DefaultTheme,
+	Component,
+	string | number | symbol
+> &
+	Component;
+
+export default function XTerm({ className, id, name }: XTermProps) {
+	const initXTermState: XTermComponent = {
 		id: 'tty0',
 		name: '/dev/pts/tty0',
 		prompt: '[visitor@bleek.dev(v0.7)->/tty0]/λ->',
 		isExec: null,
-		result: null,
-		hasError: null,
+		stdin: '',
+		stdio: '',
+		stderr: '',
 	};
-	const [xterm, setXterm] = useState<XTermComponent>(xtInitState); // ? set execute state true, leave landing page to /home
-	const [dimensions, setDimensions] = useState<ResizeObserverDimensions>({
+	const [xterm, setXterm] = useState<XTermState>(initXTermState); // ? set execute state true, leave landing page to /home
+	const [dimensions, setDimensions] = useState<XTermDimensionsState>({
 		cols: 20,
 		rows: 20,
 		area: 20 * 20,

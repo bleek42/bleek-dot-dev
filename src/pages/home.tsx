@@ -11,15 +11,13 @@ export default function Home() {
 
 	return (
 		<PageLayout>
-			<Main>
-				<Section
-					id="home-sect-1"
-					name="home"
-					content="Welcome to bleek.dev! My name is Brandon Leek and I'm a full-stack
+			<Section
+				id="home-sect-1"
+				name="home"
+				content="Welcome to bleek.dev! My name is Brandon Leek and I'm a full-stack
 			web developer & tech enthusiast. This site is built with React.js in conjunction with other modern solutions including (but never limited to!) custom state management hooks, React Router, React Icons, Syntactically Awesome Style Sheets (SASS/SCSS), and test suites written with Jest & Enzyme."
-					icon={null}
-				/>
-			</Main>
+				icon={null}
+			/>
 		</PageLayout>
 	);
 }

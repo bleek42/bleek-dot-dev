@@ -10,14 +10,14 @@ import type {
 
 import useResizeObserver from '@/hooks/useResizeObserver';
 import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
-import type { XTermComponentProps } from '@/props/base.component.props';
+// import type { XTermComponentProps } from '@/props/base.component.props';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/global/Button';
 import { XTermComponent } from '@/interfaces/BaseComponent';
 
-// type XTResizeState = ResizeObserverDimensions;
-
-export default function XTerm() {
+type XTermState = XTermComponent & ResizeObserverDimensions;
+type XTermProps = StyledComponent<'textarea', DefaultTheme>;
+export default function XTerm({}: XTermProps) {
 	const xtInitState: XTermComponent = {
 		id: 'tty0',
 		name: '/dev/pts/tty0',

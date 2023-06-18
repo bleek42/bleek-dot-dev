@@ -23,6 +23,7 @@ export const XTLabel = styled.label`
     border: 2px solid rgb(136, 255, 0);
     cursor: text;
   }
+
   &:active {
     border: 2px solid rgb(136, 255, 0);
     cursor: text;

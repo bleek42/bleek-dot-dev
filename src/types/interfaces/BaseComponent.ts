@@ -7,9 +7,9 @@ import {
 } from 'styled-components';
 
 export interface Component {
-  id?: unknown;
-  name?: string | symbol;
+  name: string | symbol;
   className?: string | null;
+  id?: unknown;
   title?: string | symbol;
   content?: string | string[] | symbol;
   icon?: string | null;

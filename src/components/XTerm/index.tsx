@@ -25,7 +25,7 @@ type XTermProps = StyledComponentProps<
 > &
 	Component;
 
-export default function XTerm({ className, id, name }: XTermProps) {
+export default function XTerm({ name }: XTermProps) {
 	const initXTermState: XTermComponent = {
 		id: 'tty0',
 		name: '/dev/pts/tty0',

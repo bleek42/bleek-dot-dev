@@ -1,4 +1,4 @@
-import { type MetaComponent } from '@/interfaces/BaseComponent';
+import { type MetaComponent } from '@/interfaces/Component';
 
 import Head from 'next/head';
 

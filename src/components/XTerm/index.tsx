@@ -13,34 +13,37 @@ import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimens
 // import type { XTermComponentProps } from '@/props/base.component.props';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/global/Button';
-import { Component, XTermComponent } from '@/interfaces/BaseComponent';
+import { Component, XTermComponent } from '@/interfaces/Component';
 
 type XTermState = XTermComponent;
-type XTermDimensionsState = ResizeObserverDimensions;
+type XTermViewportState = ResizeObserverDimensions;
 type XTermProps = StyledComponentProps<
 	'textarea',
 	DefaultTheme,
-	Component,
+	XTermComponent,
 	string | number | symbol
 > &
-	Component;
+	XTermComponent;
 
-export default function XTerm({ name }: XTermProps) {
-	const initXTermState: XTermComponent = {
+export default function XTerm(props: XTermProps) {
+	const xtermState: XTermState = {
+		name: '/dev/null/tty0',
 		id: 'tty0',
-		name: '/dev/pts/tty0',
 		prompt: '[visitor@bleek.dev(v0.7)->/tty0]/λ->',
 		isExec: null,
 		stdin: '',
 		stdio: '',
 		stderr: '',
 	};
-	const [xterm, setXterm] = useState<XTermState>(initXTermState); // ? set execute state true, leave landing page to /home
-	const [dimensions, setDimensions] = useState<XTermDimensionsState>({
+
+	const xtermViewportState: XTermViewportState = {
 		cols: 20,
 		rows: 20,
 		area: 20 * 20,
-	});
+	};
+
+	const [xterm, setXterm] = useState<XTermState>(xtermState); // ? set execute state true, leave landing page to /home
+	const [dimensions, setDimensions] = useState<XTermViewportState>(xtermViewportState);
 
 	const handleResize = useCallback(
 		<T extends Element>(target: T, entry: ResizeObserverEntry) => {
@@ -101,8 +104,6 @@ export default function XTerm({ name }: XTermProps) {
 
 			console.warn('resizing:', currentWidth, currentHeight);
 			console.table(entry.borderBoxSize);
-			console.table(entry.contentRect);
-			console.table(entry.contentBoxSize);
 			console.table(entry.devicePixelContentBoxSize);
 			console.table(entry.target);
 		},

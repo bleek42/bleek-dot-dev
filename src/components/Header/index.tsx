@@ -1,14 +1,20 @@
 import { useId } from 'react';
 
-import type { BaseComponentProps } from '@/props/base.component.props';
-
 import { Header as Wrapper } from './Header';
 import { LgTxt, MdTxt } from '@/components/global/Text';
 import Navbar from '@/components/Navbar';
+import { DefaultTheme, StyledComponent, StyledComponentProps } from 'styled-components';
+import { Component } from '@/interfaces/Component';
 
-type HeaderProps = BaseComponentProps<'header'>;
+type HeaderProps = StyledComponentProps<
+	'header',
+	DefaultTheme,
+	Component,
+	string | number | symbol
+> &
+	Component;
 
-export default function Header({ id, name, title, children = Navbar }: HeaderProps) {
+export default function Header({ id, name, title, children }: HeaderProps) {
 	console.log('Header component:', id, name, title);
 	// const pageId = useId();
 	return (
@@ -22,7 +28,7 @@ export default function Header({ id, name, title, children = Navbar }: HeaderPro
 			<MdTxt font="Birdman" color="red" shadow="steel">
 				{title}
 			</MdTxt>
-			{children}
+			{!children ? <Navbar /> : children}
 		</Wrapper>
 	);
 }

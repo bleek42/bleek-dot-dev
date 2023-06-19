@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { type XTermComponent } from '@/interfaces/BaseComponent';
+import { type XTermComponent } from '@/interfaces/Component';
 
 export const XTForm = styled.form`
   display: flex;

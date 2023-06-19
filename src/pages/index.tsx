@@ -6,7 +6,7 @@ import hero from '../public/brandon-mask.png';
 export default function LandingPage() {
 	return (
 		<Main>
-			<XTerm name="/dev/pts/tty0" id="tty0" />
+			<XTerm name="/dev/pts/tty0" />
 		</Main>
 	);
 }

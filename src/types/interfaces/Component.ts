@@ -7,7 +7,7 @@ import {
 } from 'styled-components';
 
 export interface Component {
-  name: string | symbol;
+  name?: string | symbol;
   className?: string | null;
   id?: unknown;
   title?: string | symbol;
@@ -16,9 +16,10 @@ export interface Component {
   image?: Array<URL | string> | URL | string;
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[] | null;
 }
+
 export interface XTermComponent extends Component {
-  name: 'tty0' | string | symbol;
-  prompt: '[visitor@bleek.dev(v0.9)]λ->>' | string | symbol;
+  name: string | symbol;
+  prompt: string | symbol;
   stdin: string | null;
   stdio: string | null;
   isExec: boolean | null;
@@ -29,8 +30,12 @@ export interface MetaComponent extends Component {
   title: string;
   description: string;
   keywords: string | string[];
+  name: string | symbol;
   id?: unknown;
-  name?: string | symbol;
   icon?: string | null;
   image?: Array<URL | string> | URL | string;
+}
+
+export interface LayoutComponent extends Component {
+  children: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[] | null;
 }

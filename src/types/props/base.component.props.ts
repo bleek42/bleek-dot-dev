@@ -1,7 +1,7 @@
 import type { ComponentType } from 'react';
 import type { DefaultTheme, StyledComponentProps, AnyStyledComponent } from 'styled-components';
 
-import { type Component } from '@/interfaces/BaseComponent';
+import { type Component } from '@/interfaces/Component';
 import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 
 // export type BaseComponentProps = StyledComponentProps<

@@ -5,19 +5,13 @@ import {
 	type JSX,
 	Fragment,
 } from 'react';
-
-import { type BaseComponent } from '@/interfaces/BaseComponent';
-import { theme, GlobalStyle } from '@/components/global/Theme';
-
-import StyledProvider from '../../appdir/lib/StyledProvider';
+import { type LayoutComponent } from '@/interfaces/Component';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { BaseComponentProps } from '@/props/base.component.props';
+// import { theme, GlobalStyle } from '@/components/global/Theme';\
+// import StyledProvider from '../../appdir/lib/StyledProvider';
 
-interface LayoutChildren {
-	children: ReactNode | ReactNode[];
-}
-export default function PageLayout({ children }: LayoutChildren) {
+export default function PageLayout({ children }: LayoutComponent) {
 	return (
 		<Fragment>
 			<Header

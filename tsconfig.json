@@ -26,23 +26,14 @@
 			"@/components/*": [
 				"src/components/*"
 			],
-			// "@/app/*": [
-			// 	"src/app/*"
-			// ],
-			"@/layouts": [
-				"src/appdir/layouts/*"
-			],
-			"@/lib/*": [
-				"src/appdir/lib/*"
+			"@/pages/*": [
+				"src/pages/*"
 			],
 			"@/graphql/*": [
-				"src/pages/api/graphql/*"
+				"src/types/graphql/*"
 			],
 			"@/interfaces/*": [
 				"src/types/interfaces/*"
-			],
-			"@/props/*": [
-				"src/types/props/*"
 			],
 			"@/hooks/*": [
 				"src/hooks/*"
@@ -56,6 +47,15 @@
 			"@/fonts/*": [
 				"public/fonts/*"
 			]
+			// "@/app/*": [
+			// 	"src/app/*"
+			// ],
+			// "@/layouts": [
+			// 	"src/appdir/layouts/*"
+			// ],
+			// "@/lib/*": [
+			// 	"src/appdir/lib/*"
+			// ],
 		},
 		"plugins": [
 			{

@@ -15,8 +15,6 @@ export type ToggleProps = StyledComponentProps<
   string | number | symbol
 >;
 
-// type NavLinkComponentBase = StyledComponentBase<AnyStyledComponent | typeof Link>;
-
 export type NextLinkProps = StyledComponentProps<
   typeof Link | AnyStyledComponent,
   DefaultTheme,
@@ -35,11 +33,11 @@ const toggleKeyframes = keyframes`
 
 `;
 
-export const NavBar = styled.nav`
-  /* display: flex;
+export const NavBar = styled.nav((props) => `
+  display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start; */
-  background-color: ${({ theme }) => theme.palette.secondary.gray};
+  justify-content: flex-start;
+  background-color: ${props.theme.palette.secondary.gray};
   padding: 2px 2px;
   margin: 4px auto;
   float: inline-end;
@@ -53,58 +51,58 @@ export const NavBar = styled.nav`
   touch-action: auto;
   user-select: none;
   animation: slide-open 0.6s forwards;
-`;
+`
+);
 
-export const NavList = styled.ul`
+export const NavList = styled.ul((props) => `
   padding: 2px 2px 2px 2px;
   list-style: none;
-`;
+`); 
 
-export const NavItem = styled.li`
-  border-top: 1px solid ${({ theme }) => theme.palette.common.black};
+export const NavItem = styled.li((props) => `
+  border-top: 1px solid ${props.theme.palette.common.black};
   padding: 2px 2px;
   margin: 2px auto;
   /* margin: 10px, 3px, 3px, 10px;
   padding: 6px, 5px, 5px, 6px; */
   /* color: rgb(11, 211, 11);
   transition: filter 400ms; */
-`;
+`
+);
 
-export const ToggleBtn = styled.button.attrs<ToggleProps>(({ toggle, theme }) => ({
-  toggle: toggle ? true : false,
-  theme,
-}))<ToggleProps>`
-  position: ${({ toggle }) => (toggle ? 'absolute' : 'fixed')};
-  bottom: ${({ toggle }) => (toggle ? '0%' : '-100%')};
-  top: ${({ toggle }) => (toggle ? '65px' : '0px')};
-  left: ${({ toggle }) => (toggle ? '0%' : '-100%')};
-  width: ${({ toggle }) => (toggle ? '400px' : '100px')};
-  /* display: inline-flex;
+export const ToggleBtn = styled.button<ToggleProps>((props) => `
+  position: ${props.toggle ? 'absolute' : 'fixed'};
+  bottom: ${props.toggle ? '0%' : '-100%'};
+  top: ${props.toggle ? '65px' : '0px'};
+  left: ${props.toggle ? '0%' : '-100%'};
+  width: ${props.toggle ? '400px' : '100px'};
+  display: inline-flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  align-items: center; */
+  align-items: center;
   z-index: 200;
-  margin: 2px auto;
+  margin: 2px 2px;
   padding: 2px 2px;
-  /* padding-left: 20px; */
   animation: slide-open 0.6s forwards;
-  color: ${({ theme }) => theme.palette.primary.cyan};
-  font-family: ${({ theme }) => theme.fonts.at(2)};
+  color: ${props.theme.palette.primary.cyan};
+  font-family: ${props.theme.fonts.at(2)};
   font-size: 24px;
   font-weight: 450;
-  text-shadow: ${({ theme }) => theme.palette.secondary.steel} 3px 2px 3px;
+  text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
   letter-spacing: 1px;
-  border: 2px solid ${({ theme }) => theme.palette.primary.cyan};
+  border: 2px solid ${props.theme.palette.primary.cyan};
   border-radius: 3% 3% / 3% 3%;
-  background-color: ${({ theme }) => theme.palette.secondary.gray};
+  background-color: ${props.theme.palette.secondary.gray};
   /* width: 16vh; */
   transition: filter 500ms;
 
   &:hover {
-    color: ${({ theme }) => theme.palette.primary.neon};
+    color: ${props.theme.palette.primary.neon};
     filter: brightness(3);
+    position: absolute;
   }
-`;
+`
+);
 
 // export const Toggle = styled.span.attrs<ToggleProps>((props) => ({
 //   toggle: props.toggle ? true : false,
@@ -125,13 +123,13 @@ export const ToggleBtn = styled.button.attrs<ToggleProps>(({ toggle, theme }) =>
 //   animation: slide-open 0.6s forwards;
 // `;
 
-export const NextLink = styled(Link)`
-  color: ${({ theme }) => theme.palette.secondary.green};
-  font-family: ${({ theme }) => theme.fonts.at(1)};
+export const NextLink = styled(Link)<NextLinkProps>((props) => `
+  color: ${props.theme.palette.secondary.green};
+  font-family: ${props.theme.fonts.at(1)};
   font-size: 14px;
   font-weight: 500;
   text-align: center;
-  text-shadow: ${({ theme }) => theme.palette.secondary.steel} 3px 2px 3px;
+  text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
 
   &:hover,
   &:focus,
@@ -144,19 +142,21 @@ export const NextLink = styled(Link)`
     filter: brightness(0.9);
     color: rgb(44, 8, 250);
   }
-`;
+`
+);
 
-export const Icon = styled.i`
-  color: ${({ theme }) => theme.palette.secondary.green};
-  font-family: ${({ theme }) => theme.fonts.at(2)};
+export const Icon = styled.i((props) => `
+  color: ${props.theme.palette.secondary.green};
+  font-family: ${props.theme.fonts.at(2)};
   font-size: 16px;
   font-weight: 850;
   text-align: center;
-  text-shadow: ${({ theme }) => theme.palette.secondary.steel} 3px 2px 3px;
+  text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
 
   &:hover,
   &:focus {
     filter: brightness(2.6);
     color: rgb(12, 205, 160);
   }
-`;
+`
+);

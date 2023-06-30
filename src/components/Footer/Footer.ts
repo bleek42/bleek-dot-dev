@@ -1,15 +1,28 @@
-import styled from 'styled-components';
+import styled, {
+  type StyledComponentProps,
+  type DefaultTheme,
+  type AnyStyledComponent,
+} from 'styled-components';
 
-export const Footer = styled.footer`
+import { type FooterComponent } from '@/interfaces/Component';
+
+export type StyledFooterProps = StyledComponentProps<
+  'footer' | keyof JSX.IntrinsicElements,
+  DefaultTheme,
+  FooterComponent,
+  string | number | symbol
+>;
+
+export const Footer = styled.footer<StyledFooterProps>((props) => `
   display: flex;
   flex-flow: row wrap;
-  align-items: flex-start;
-  height: 8vh;
-  width: 80vh;
-  min-width: 40%;
-  border: 4px solid ${({ theme }) => theme.palette.secondary.cyan};
-  border-radius: 10% 10% / 10% 10%;
-  margin: 4px 2px 4px 2px;
-  padding: 2px 2px 2px 2px;
-  background-color: ${({ theme }) => theme.palette.secondary.steel};
-`;
+  align-items: center;
+  height: 10vh;
+  width: 120vh;
+  margin: 4px 4px;
+  padding: 4px 4px 4px 4px;
+  color: ${props.theme.palette.secondary.tan};
+  background-color: ${props.theme.palette.secondary.steel};
+  border: 4px solid ${props.theme.palette.secondary.cyan};
+  border-radius: 10% 10% / 10% 10%;`
+);

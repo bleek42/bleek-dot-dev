@@ -11,7 +11,6 @@ import {
 // import PageLayout from './lib/PageLayout';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@/components/global/Theme';
-import Meta from '@/components/global/Meta';
 
 function App({ Component, pageProps }: AppProps) {
 	return (

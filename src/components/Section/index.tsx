@@ -1,21 +1,21 @@
-import type { BaseComponentProps } from '@/props/base.component.props';
-
 import { useId } from 'react';
+import { type DefaultTheme, type StyledComponent } from 'styled-components';
 
+import  { type SectionComponent } from '@/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
 import { LgTxt, MdTxt, SmTxt } from '@/components/global/Text';
 
-type SectionProps = BaseComponentProps<'section'>;
+type SectionProps = StyledComponent<'section' | keyof JSX.IntrinsicElements, DefaultTheme, SectionComponent, string | number | symbol>;
 
-export default function Section({ id, name, title, content, icon }: SectionProps) {
+export default function Section(props: SectionProps) {
 	const sectionId = useId();
-
+	console.log('section component:', props)
 	return (
-		<Wrapper key={id || `section-${sectionId}`} id={id || `section-${sectionId}`}>
-			<LgTxt>{title || 'Section Title Unknown'}</LgTxt>
+		<Wrapper key={`section-${sectionId}`} id={`section-${sectionId}`}>
+			<LgTxt>{props?.title || 'Section Title Unknown'}</LgTxt>
 			<Article>
 				<SmTxt font="MonocraftNF" color="neon">
-					{content || 'No article content props provided...'}
+					{props?.content || 'No article content props provided...'}
 				</SmTxt>
 			</Article>
 			<Article>

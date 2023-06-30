@@ -11,15 +11,11 @@ import Footer from '@/components/Footer';
 // import { theme, GlobalStyle } from '@/components/global/Theme';\
 // import StyledProvider from '../../appdir/lib/StyledProvider';
 
-export default function PageLayout({ children }: LayoutComponent) {
+export default function PageLayout(props: LayoutComponent) {
 	return (
 		<Fragment>
-			<Header
-				id={[-1]}
-				name="testing"
-				title="layout.tsx with styled provider, consistent instances of Header, NavBar, Footer across all pages"
-			/>
-			{children}
+			<Header />
+			{props.children}
 			<Footer />
 		</Fragment>
 	);

@@ -17,11 +17,13 @@ export default function Navbar() {
 				Menu
 			</LgTxt>
 			<NavList>
+				<NavItem>
 				<ToggleBtn
 					toggle={toggle}
 					onMouseOver={toggleMenu}
 					onTouchStart={toggleMenu}
 				></ToggleBtn>
+				</NavItem>
 				{toggle && (
 					<>
 						<NavItem>

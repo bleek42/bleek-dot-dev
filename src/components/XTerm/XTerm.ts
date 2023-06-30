@@ -69,29 +69,17 @@ export const XTxtArea = styled.textarea`
   font-family: 'MonocraftNF';
   color: rgb(15, 95, 150);
   font-size: 18px;
+
   &:hover {
     border: 2px solid rgb(136, 255, 0);
     cursor: text;
   }
+
   &:active {
     border: 2px solid rgb(136, 255, 0);
     cursor: text;
   }
 `;
-//   /* flex: 0 2 10%; */
-//   width: 10vh;
-//   font-family: 'MonocraftNF';
-//   font-size: 24px;
-//   background-color: rgb(15, 95, 150);
-// `;
-
-// export const Minmz = styled.button`
-//   /* flex: 0 2 10%; */
-//   width: 10vh;
-//   font-family: 'MonocraftNF';
-//   font-size: 24px;
-//   background-color: yellow;
-// `;
 
 // // export const XTBtn = styled.button`
 // //   background-color: ${(props) =>

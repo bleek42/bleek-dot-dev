@@ -1,24 +1,24 @@
 import { useId } from 'react';
+import { type DefaultTheme, type StyledComponent } from 'styled-components';
 
 import { Header as Wrapper } from './Header';
 import { LgTxt, MdTxt } from '@/components/global/Text';
 import Navbar from '@/components/Navbar';
-import { DefaultTheme, StyledComponent, StyledComponentProps } from 'styled-components';
-import { Component } from '@/interfaces/Component';
+import { type HeaderComponent } from '@/interfaces/Component';
 
-type HeaderProps = StyledComponentProps<
-	'header',
+type HeaderProps = StyledComponent<
+	'header' | keyof JSX.IntrinsicElements,
 	DefaultTheme,
-	Component,
+	HeaderComponent,
 	string | number | symbol
-> &
-	Component;
+>;
 
-export default function Header({ id, name, title, children }: HeaderProps) {
-	console.log('Header component:', id, name, title);
-	// const pageId = useId();
+export default function Header(props: HeaderProps) {
+	console.log('Header component:', props);
+	const pageId = useId();
+
 	return (
-		<Wrapper id={`header-${name || 'noname'}${id}`}>
+		<Wrapper id={`header-${pageId}`}>
 			<LgTxt font="Birdman" color="green" shadow="black">
 				Brandon Leek
 			</LgTxt>
@@ -26,9 +26,9 @@ export default function Header({ id, name, title, children }: HeaderProps) {
 				bleekDotDev
 			</MdTxt>
 			<MdTxt font="Birdman" color="red" shadow="steel">
-				{title}
+				{props?.title ?? 'untitled'}
 			</MdTxt>
-			{!children ? <Navbar /> : children}
+			{props?.children ?? <Navbar />}
 		</Wrapper>
 	);
 }

@@ -11,7 +11,6 @@ export interface Component {
   className?: string | null;
   id?: unknown;
   title?: string | symbol;
-  content?: string | string[] | symbol;
   icon?: string | null;
   image?: Array<URL | string> | URL | string;
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[] | null;
@@ -39,6 +38,23 @@ export interface MetaComponent extends Component {
 export interface LayoutComponent extends Component {
   children: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[] | null;
 }
+export interface HeaderComponent extends Component {}
+
+export interface NavbarComponent extends Component {
+  toggle: boolean;
+}
+
+export interface DetailsComponent extends Component {
+  content?: string | string[] | symbol;
+}
+
+export interface SectionComponent extends Component {
+  content?: string | string[] | symbol;
+}
+
+export interface ListComponent extends Component {}
+
+export interface FooterComponent extends Component {}
 
 export type PageID = 1 | 2 | 3 | 4 | 5 | number;
 export type Title = 'Home' | 'About' | 'Contact' | 'Projects' | 'Resume';

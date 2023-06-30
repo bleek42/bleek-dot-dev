@@ -1,11 +1,11 @@
-import { Footer as Wrapper } from './Footer';
+import {  Footer as Wrapper, type StyledFooterProps } from './Footer';
 import { SmTxt } from '@/components/global/Text';
 
-import type { BaseComponentProps } from '@/props/base.component.props';
+// import { type FooterComponent } from '@/interfaces/Component';
 
-type FooterProps = BaseComponentProps<'footer'>;
+// type FooterProps = FooterComponent;
 
-export default function Footer({ id, name, icon }: FooterProps) {
+export default function Footer({ id, name, icon }: StyledFooterProps) {
 	console.log('Footer:', id, name, icon);
 
 	return (

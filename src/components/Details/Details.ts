@@ -1,15 +1,26 @@
-import styled from 'styled-components';
+import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
-export const Details = styled.details`
+import { type DetailsComponent } from '@/interfaces/Component';
+
+type StyledDetailsProps = StyledComponentProps<
+  'details' | keyof JSX.IntrinsicElements,
+  DefaultTheme,
+  DetailsComponent,
+  string | number | symbol
+>;
+
+export const Details = styled.details<StyledDetailsProps>((props) => `
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   margin: 4px 4px;
-  padding: 2px 2px;
-  color: rgb(45, 230, 35);
+  padding: 3px 2px 2px 3px;
+  color: ${props.theme.palette.secondary.blue};
+  background-color: ${props.theme.palette.secondary.white};
   border: 2px solid rgb(0, 0, 0);
   border-radius: 20% 10% / 10% 20%;
-`;
+`
+);
 
 export const Summary = styled.summary`
   font-family: Oxanium;

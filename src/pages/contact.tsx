@@ -1,7 +1,7 @@
 import { useId } from 'react';
 
-import PageLayout from '@/components/global/PageLayout';
-import { Main } from '@/components/global/Main';
+import PageLayout from '@/pages/lib/PageLayout';
+
 import Section from '@/components/Section';
 
 export default function Contact() {
@@ -15,27 +15,21 @@ export default function Contact() {
 	return (
 		<PageLayout>
 			{/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */}
-			<Section
-				id={`contact-1`}
-				name="contact-page-section-1"
-				title="Contact: Email"
-				content={null}
-				icon={commentIcon}
-			/>
+			<Section name="Email" content={null} icon={commentIcon} />
 			{/* {loading && (
-					<div className="loading">
-						<progress>loading...</progress>
-					</div>
-				)}
-				{!loading && !error && profile && <List {...profile} />}
-				{error && (
-					<div className="error">
-						<p>
-							Error fetching profile data:{' '}
-							{msg?.toString() || 'an unknown error occurred...'}
-						</p>
-					</div>
-				)} */}
+				<div className="loading">
+					<progress>loading...</progress>
+				</div>
+			)}
+			{!loading && !error && profile && <List {...profile} />}
+			{error && (
+				<div className="error">
+					<p>
+						Error fetching profile data:{' '}
+						{msg?.toString() || 'an unknown error occurred...'}
+					</p>
+				</div>
+			)} */}
 		</PageLayout>
 	);
 }

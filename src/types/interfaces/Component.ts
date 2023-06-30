@@ -29,7 +29,7 @@ export interface MetaComponent extends Component {
   title: string;
   description: string;
   keywords: string | string[];
-  name: string | symbol;
+  name?: string | symbol;
   id?: unknown;
   icon?: string | null;
   image?: Array<URL | string> | URL | string;

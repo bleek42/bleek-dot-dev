@@ -1,12 +1,12 @@
 import { useId } from 'react';
-import { type DefaultTheme, type StyledComponent } from 'styled-components';
+import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
 import { Header as Wrapper } from './Header';
 import { LgTxt, MdTxt } from '@/components/global/Text';
 import Navbar from '@/components/Navbar';
 import { type HeaderComponent } from '@/interfaces/Component';
 
-type HeaderProps = StyledComponent<
+type HeaderProps = StyledComponentProps<
 	'header' | keyof JSX.IntrinsicElements,
 	DefaultTheme,
 	HeaderComponent,

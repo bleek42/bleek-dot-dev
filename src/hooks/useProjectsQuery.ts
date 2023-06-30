@@ -52,7 +52,7 @@ const allProjectsQuery = async () => {
     const res = await request(
       `${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
       query,
-      [],
+      {},
       headers
     );
     console.log(res);

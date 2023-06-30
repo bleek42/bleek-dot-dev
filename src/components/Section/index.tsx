@@ -1,21 +1,28 @@
 import { useId } from 'react';
-import { type DefaultTheme, type StyledComponent } from 'styled-components';
+import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
-import  { type SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from '@/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
 import { LgTxt, MdTxt, SmTxt } from '@/components/global/Text';
 
-type SectionProps = StyledComponent<'section' | keyof JSX.IntrinsicElements, DefaultTheme, SectionComponent, string | number | symbol>;
+type SectionProps = StyledComponentProps<
+	'section' | keyof JSX.IntrinsicElements,
+	DefaultTheme,
+	SectionComponent,
+	string | number | symbol
+>;
 
-export default function Section(props: SectionProps) {
+export default function Section({ name, content, icon = '\ue667' }: SectionProps) {
 	const sectionId = useId();
-	console.log('section component:', props)
+	console.log('section component:');
 	return (
 		<Wrapper key={`section-${sectionId}`} id={`section-${sectionId}`}>
-			<LgTxt>{props?.title || 'Section Title Unknown'}</LgTxt>
+			<LgTxt>
+				{name} - {icon}
+			</LgTxt>
 			<Article>
 				<SmTxt font="MonocraftNF" color="neon">
-					{props?.content || 'No article content props provided...'}
+					{content || 'No article content  provided...'}
 				</SmTxt>
 			</Article>
 			<Article>

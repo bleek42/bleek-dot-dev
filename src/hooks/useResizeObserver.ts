@@ -1,23 +1,23 @@
-import { useEffect, useRef } from 'react';
+import { MutableRefObject, RefObject, useEffect, useRef } from 'react';
 
-export default function useResizeObserver<T extends Element>(
-  cb?: (target: T, entry: ResizeObserverEntry) => void
+export default function useResizeObserver<T extends HTMLElement>(
+  cb: (target: T, entry: ResizeObserverEntry) => void
 ) {
-  const ref = useRef<T>(null);
+  const ref = useRef<T>();
 
   useEffect(() => {
-    const observer = new ResizeObserver(([entry]) => {
-      if (!cb) return;
+    const element = ref?.current;
 
-      cb(ref?.current, entry);
+    const observer = new ResizeObserver(([entry]) => {
+      if (element) cb(element, entry);
     });
 
-    observer.observe(ref?.current);
+    if (element) observer.observe(element);
 
     return () => {
       observer.disconnect();
     };
-  }, [ref?.current]);
+  }, [cb, ref]);
 
-  return { ref };
+  return ref;
 }

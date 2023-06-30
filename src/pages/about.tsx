@@ -5,23 +5,14 @@ import Header from '@/components/Header';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 import { Main } from "@/components/global/Main";
-import PageLayout from '@/components/global/PageLayout';
+import PageLayout from '@/pages/lib/PageLayout';
 
 export default function About() {
-	console.log("about page:");
-	const pageId = useId();
+	console.log('about page:');
 
 	return (
 		<PageLayout>
-			{/* <Header
-				id={`about-header-${pageId}`}
-				name="about"
-				title="About"
-				content={['content 1...', 'content 2...', 'content 3...']}
-				icon={'\ue456'}
-			/> */}
-
-			<Section id="about-sect-1" name="about_section" content="" icon={null} />
+			<Section name="about_section" content="section content" />
 		</PageLayout>
 	);
 }

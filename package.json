@@ -20,7 +20,8 @@
 		"lntfmt": "next lint src/**/*.{ts,tsx} && prettier --write src/**/*.{ts,tsx}",
 		"gen": "graphql-codegen --require dotenv/config --config codegen.ts",
 		"gen:watch": "graphql-codegen --require dotenv/config --config --watch codegen.ts",
-		"gen:rm": "rm -rf src/types/graphql/*.ts"
+		"gen:rm": "rm -rf src/types/graphql/*.ts",
+		"deps:rm": "rm -rf node_modules/ pnpm-lock.yaml"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "4.29.12",

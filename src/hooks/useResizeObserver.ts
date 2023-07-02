@@ -6,7 +6,7 @@ export default function useResizeObserver<T extends HTMLElement>(
   const ref = useRef<T>();
 
   useEffect(() => {
-    const element = ref?.current;
+    let element = ref?.current;
 
     const observer = new ResizeObserver(([entry]) => {
       if (element) cb(element, entry);

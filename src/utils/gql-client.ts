@@ -1,12 +1,11 @@
 // import * as fs from 'fs/promises'
 // import * as dotenv from 'dotenv';
 // import * as path from 'path';
-import type { QueryClient } from '@tanstack/react-query';
-import type { PatchedRequestInit } from 'graphql-request/dist/types';
-import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
+
+import { type RequestConfig } from 'graphql-request/build/esm/types';
+import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 import { GraphQLClient } from 'graphql-request';
-import { GraphQLError } from 'graphql';
 
 // import { allProjectsDoc } from '@gql/docs';
 
@@ -19,9 +18,9 @@ export async function createGraphQLClientRequest<TResult, Variables>(
   ...[variables]: Variables extends Record<string, never> ? [] : [Variables]
 ) {
   console.log(document, ...[variables]);
-  const graphQLOptions: PatchedRequestInit = {
+  const graphQLOptions: RequestConfig = {
     credentials: 'include',
-    cache: 'only-if-cached',
+    cache: 'force-cache',
     mode: 'cors',
     headers: {
       'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
@@ -34,12 +33,8 @@ export async function createGraphQLClientRequest<TResult, Variables>(
     graphQLOptions
   );
 
-  try {
-    const res = await graphQLClient.request<TResult, Variables>(document, variables);
-    console.log(res);
-    return res;
-  } catch {
-    throw new GraphQLError('GQL ERR: graphQL request failed!');
-  }
+  const res = await graphQLClient.request<TResult>(document, variables ?? undefined);
+  console.log(res);
+  return res;
 }
 

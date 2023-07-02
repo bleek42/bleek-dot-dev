@@ -1,3 +1,4 @@
+import { ReactNode, useRef } from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import {
 	type QueryFunction,
@@ -25,11 +26,10 @@ import {
 	type TypedDocumentNode,
 	type DocumentTypeDecoration,
 } from '@graphql-typed-document-node/core';
-import { ReactNode, useclientRef } from 'react';
 
-function ReactQueryClientProvider({ children }: { children: ReactNode }) {
+export default function ReactQueryClientProvider({ children }: { children: ReactNode }) {
 	// const client = new QueryClient();
-	const clientRef = useclientRef<QueryClient>();
+	const clientRef = useRef<QueryClient>();
 	// const queryClient: QueryClient = new QueryClient();
 	let doc: RequestDocument = gql(
 		/*graphql*/
@@ -85,18 +85,17 @@ function ReactQueryClientProvider({ children }: { children: ReactNode }) {
 					console.log(result);
 					return result ?? null;
 				}),
-			initialData: () => clientRef?.current?.pclientRefetchQuery(['projects']),
+			initialData: () => clientRef?.current?.prefetchQuery(['projects']),
 			cacheTime: 100000,
 			staleTime: 300000,
 		},
 	});
 	console.log(clientRef.current);
 
-	return <QueryClientProvider>{children}</QueryClientProvider>;
+	return (
+		<QueryClientProvider client={clientRef.current}>{children}</QueryClientProvider>
+	);
 }
-
-export default ReactQueryClientProvider;
-
 
 // errorTypes={[
 // 	{

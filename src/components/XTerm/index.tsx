@@ -20,10 +20,9 @@ type XTermViewportState = ResizeObserverDimensions;
 type XTermProps = StyledComponentProps<
 	'textarea',
 	DefaultTheme,
-	XTermComponent,
+	XTermState,
 	string | number | symbol
-> &
-	XTermComponent;
+>;
 
 export default function XTerm(props: XTermProps) {
 	const xtermState: XTermState = {
@@ -110,7 +109,7 @@ export default function XTerm(props: XTermProps) {
 		[dimensions.width]
 	);
 
-	const { ref } = useResizeObserver(handleResize);
+	const ref = useResizeObserver(handleResize);
 
 	// eslint-disable-next-line no-console
 	console.info({ dimensions });

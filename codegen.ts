@@ -1,7 +1,6 @@
 import { type CodegenConfig } from '@graphql-codegen/cli';
-import * as path from 'path';
 import * as dotenv from 'dotenv';
-import { GraphQLID } from 'graphql';
+import * as path from 'path';
 
 dotenv.config({
   path: path.join(__dirname, '.env.development.local'),

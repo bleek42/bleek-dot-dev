@@ -1,29 +1,24 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { PatchedRequestInit } from 'graphql-request/dist/types';
+import {} from 'graphql-request';
 
 import { Reducer, useEffect, useReducer } from 'react';
 import { GraphQLClient } from 'graphql-request';
 import { GraphQLError } from 'graphql';
 
+type ActionType = 'REQUEST' | 'SUCCESS' | 'ERROR';
+type Payload = Awaited<unknown[] | unknown> | Promise<unknown[] | unknown>;
+interface Actions<T, P> {
+  type: T;
+  payload: P;
+}
+
 interface State {
-  data:
-    | Awaited<TypedDocumentNode[] | TypedDocumentNode>
-    | Promise<TypedDocumentNode[] | TypedDocumentNode>
-    | unknown;
+  data: Payload;
   loading: boolean;
   error: null | boolean | Awaited<unknown[] | unknown>;
   msg?: string;
   debug?: unknown;
 }
-
-type ActionType = 'REQUEST' | 'SUCCESS' | 'ERROR';
-
-type Actions<T = ActionType> = {
-  type: T;
-  payload: Awaited<TypedDocumentNode[] | TypedDocumentNode> | unknown;
-};
-
-// import { AllProjectsDocument, AllProjectsQuery } from './gen/graphql';
 
 export default function useHTTPRequest({
   method = 'GET',
@@ -38,9 +33,9 @@ export default function useHTTPRequest({
     debug: null,
   };
 
-  const reducer: Reducer<State, Actions<ActionType>> = (
+  const reducer: Reducer<State, Actions<ActionType, Payload>> = (
     state: State,
-    action: Actions<ActionType>
+    action: Actions<ActionType, Payload>
   ): State => {
     switch (action.type) {
       case 'REQUEST':
@@ -70,7 +65,7 @@ export default function useHTTPRequest({
   };
 
   const [{ data, loading, error, msg }, dispatch] = useReducer<
-    Reducer<State, Actions<ActionType>>
+    Reducer<State, Actions<ActionType, Payload>>
   >(reducer, initState);
   useEffect(() => {
     let ignore = false;
@@ -91,6 +86,7 @@ export default function useHTTPRequest({
         console.error(err);
       }
     })();
+
     return () => {
       ignore = true;
     };

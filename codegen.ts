@@ -12,9 +12,9 @@ console.log('|=== GENERATING GRAPHQL TYPES ===|');
 const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
-  // ignoreNoDocuments: true,
+  ignoreNoDocuments: true,
 
-  schema: './schema.json',
+  schema: 'schema.json',
   documents: [
     // 'ast.gql',
     'src/types/graphql/ast.gql',
@@ -25,21 +25,21 @@ const config: CodegenConfig = {
   ],
 
   generates: {
-    //   './schema.json': {
-    //     plugins: ['introspection'],
-    //     config: {
-    //       schemaDescription: true,
-    //     },
-    //     schema: {
-    //       'https://api-us-east-1.hygraph.com/v2/cl2jezykc0li901yx24p50f8f/master': {
-    //         headers: {
-    //           'Authorization': `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}`,
-    //         },
+    // 'schema.json': {
+    //   plugins: ['introspection'],
+    //   config: {
+    //     schemaDescription: true,
+    //   },
+    //   schema: {
+    //     'https://api-us-east-1.hygraph.com/v2/cl2jezykc0li901yx24p50f8f/master': {
+    //       headers: {
+    //         'Authorization': `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}`,
     //       },
     //     },
     //   },
+    // },
 
-    'src/types/graphql/ast.gql': {
+    'src/types/graphql/typeDefs.gql': {
       plugins: ['schema-ast'],
       config: {
         commentDescriptions: true,
@@ -47,7 +47,7 @@ const config: CodegenConfig = {
       },
     },
 
-    'src/types/hygraph-types.ts': {
+    'src/types/graphql/hygraph-types.ts': {
       plugins: ['typescript', 'typed-document-node'],
       config: {
         useTypeImports: true,
@@ -63,38 +63,38 @@ const config: CodegenConfig = {
       },
     },
 
-    'src/types/': {
-      plugins: ['typescript-operations', 'typescript-graphql-request'],
-      preset: 'near-operation-file',
-      presetConfig: {
-        extension: '.operation.ts',
-        baseTypesPath: 'hygraph-types.ts',
-      },
-      config: {
-        useTypeImports: true,
-        futureProofUnions: true,
-        enumsAsTypes: true,
-        addUnderscoreToArgsType: true,
-        useImplementingTypes: true,
-        declarationKind: {
-          interface: 'interface',
-          type: 'interface',
-          mutation: 'interface',
-        },
-      },
-    },
+    // 'src/types/graphql/gen/': {
+    //   plugins: ['typescript-operations', 'typescript-graphql-request'],
+    //   preset: 'near-operation-file',
+    //   presetConfig: {
+    //     extension: '.operation.ts',
+    //     baseTypesPath: 'hygraph-types.ts',
+    //   },
+    //   config: {
+    //     useTypeImports: true,
+    //     futureProofUnions: true,
+    //     enumsAsTypes: true,
+    //     addUnderscoreToArgsType: true,
+    //     useImplementingTypes: true,
+    //     declarationKind: {
+    //       interface: 'interface',
+    //       type: 'interface',
+    //       mutation: 'interface',
+    //     },
+    //   },
+    // },
 
-    'src/types/graphql/gen/': {
-      preset: 'client-preset',
-      presetConfig: {
-        fragmentMasking: { unmaskFunctionName: 'createFragment' },
-      },
-      config: {
-        documentMode: 'string',
-        pureMagicComment: true,
-        experimentalFragmentVariables: true,
-      },
-    },
+    // 'src/types/graphql/gen/preset/': {
+    //   preset: 'client-preset',
+    //   presetConfig: {
+    //     fragmentMasking: { unmaskFunctionName: 'createFragment' },
+    //   },
+    //   config: {
+    //     documentMode: 'string',
+    //     pureMagicComment: true,
+    //     experimentalFragmentVariables: true,
+    //   },
+    // },
   },
   config: {
     defaultScalar: 'unknown',
@@ -110,7 +110,7 @@ const config: CodegenConfig = {
       RichTextAST: 'string[] | unknown',
     },
   },
-  hooks: { afterAllFileWrite: ['prettier --write'] },
+  // hooks: { afterAllFileWrite: ['prettier --write'] },
 };
 
 export default config;

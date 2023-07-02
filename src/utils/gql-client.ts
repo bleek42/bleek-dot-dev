@@ -6,6 +6,7 @@ import { type RequestConfig } from 'graphql-request/build/esm/types';
 import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 import { GraphQLClient } from 'graphql-request';
+import { type TypedDocumentString } from '@/graphql/gen/preset/graphql';
 
 // import { allProjectsDoc } from '@gql/docs';
 
@@ -14,7 +15,7 @@ import { GraphQLClient } from 'graphql-request';
 // console.log('NODE_ENV:', process.env.NODE_ENV);
 
 export async function createGraphQLClientRequest<TResult, Variables>(
-  document: TypedDocumentNode<TResult>,
+  document: TypedDocumentNode<TResult> | TypedDocumentString<TResult, Variables>,
   ...[variables]: Variables extends Record<string, never> ? [] : [Variables]
 ) {
   console.log(document, ...[variables]);

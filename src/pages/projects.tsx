@@ -2,6 +2,7 @@ import { useId } from 'react';
 
 import PageLayout from '@/components/global/PageLayout';
 import Section from '@/components/Section';
+import { createGraphQLClientRequest } from '@/utils/gql-client';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
@@ -88,8 +89,8 @@ export default function Projects() {
 	);
 }
 
-export const getStaticProps = async ({ params = '', preview = false }) => {
-	const projects = {};
+export const getStaticProps = async ({ params = '1', preview = false }) => {
+	const project = createGraphQLClientRequest();
 	console.log(projects);
 	if (!preview || !projects) {
 		return {

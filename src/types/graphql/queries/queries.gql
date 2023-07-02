@@ -1,4 +1,4 @@
-query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage) {
+query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage, $first: Int = 10) {
 	project(where: $where, stage: $stage) {
 		id
 		title
@@ -13,19 +13,8 @@ query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage) {
 		stage
 		locale
 
-		screenShots {
-			id
-			url
-			handle
-			fileName
-			mimeType
-			width
-			height
-			size
-			createdAt
-			updatedAt
-			stage
-			locale
+		screenShots(first: $first) {
+			...ImageFields
 		}
 	}
 }
@@ -94,12 +83,7 @@ query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage) {
 # 		locale
 
 # 		screenShots pages/lib
-pages/lib
-pages/lib
-pages/lib
-pages/lib
-pages/lib
-pages/lib{
+
 # 			id
 # 			url
 # 			handle

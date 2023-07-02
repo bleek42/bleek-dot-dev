@@ -28,12 +28,12 @@ export default {
   },
 
   experimental: {
-    // swcPlugins: [
-    //   [
-    //     '@graphql-codegen/client-preset-swc-plugin',
-    //     { artifactDirectory: './src/app/lib/graphql/gen', gqlTagName: 'graphql' },
-    //   ],
-    // ],
+    swcPlugins: [
+      [
+        '@graphql-codegen/client-preset-swc-plugin',
+        { artifactDirectory: './src/types/graphql/gen', gqlTagName: 'gql' },
+      ],
+    ],
   },
 
   // async headers() {

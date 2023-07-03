@@ -2,11 +2,32 @@
 // import * as dotenv from 'dotenv';
 // import * as path from 'path';
 
-import { type RequestConfig } from 'graphql-request/build/esm/types';
+import { type RequestConfig, RequestDocument } from 'graphql-request/build/esm/types';
 import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 import { GraphQLClient } from 'graphql-request';
-import { type TypedDocumentString } from '@/graphql/gen/preset/graphql';
+import { getSdk } from '@/graphql/queries/AllProjects.operation.ts';
+
+const graphQLOptions: RequestConfig = {
+  credentials: 'include',
+  cache: 'force-cache',
+  mode: 'cors',
+  headers: {
+    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
+    'content-type': 'application/json',
+  },
+};
+
+const graphQLClient: GraphQLClient = new GraphQLClient(
+  `${process.env.NEXT_PUBLIC_HYGRAPHCDN_BASE_URL}/content/cl2jezykc0li901yx24p50f8f/master`,
+  graphQLOptions
+);
+
+const allProjectsRequest = getSdk(graphQLClient);
+
+allProjectsRequest.AllProjects();
+
+// import { type TypedDocumentString } from '@/graphql/gen/preset/graphql';
 
 // import { allProjectsDoc } from '@gql/docs';
 
@@ -15,7 +36,7 @@ import { type TypedDocumentString } from '@/graphql/gen/preset/graphql';
 // console.log('NODE_ENV:', process.env.NODE_ENV);
 
 export async function createGraphQLClientRequest<TResult, Variables>(
-  document: TypedDocumentNode<TResult> | TypedDocumentString<TResult, Variables>,
+  document: TypedDocumentNode<TResult>,
   ...[variables]: Variables extends Record<string, never> ? [] : [Variables]
 ) {
   console.log(document, ...[variables]);

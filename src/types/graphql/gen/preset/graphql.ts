@@ -4446,6 +4446,14 @@ export type CreateProjectMutation = { __typename?: 'Mutation', createProject?: (
     & { ' $fragmentRefs'?: { 'ProjectFieldsFragment': ProjectFieldsFragment } }
   ) | null };
 
+export type AllProjectsQueryVariables = Exact<{
+  stage?: InputMaybe<Stage>;
+  orderBy?: InputMaybe<ProjectOrderByInput>;
+}>;
+
+
+export type AllProjectsQuery = { __typename?: 'Query', projects: Array<{ __typename?: 'Project', id: string | number, title: string, link: string, description: string, version: number, active: boolean, sourceCode: Array<string>, techStack?: string[] | unknown | null, createdAt: Date | string, updatedAt: Date | string, stage: Stage, locale: Locale, screenShots: Array<{ __typename?: 'Asset', id: string | number, url: string, handle: string, fileName: string, mimeType?: string | null, width?: number | null, height?: number | null, size?: number | null, createdAt: Date | string, updatedAt: Date | string, stage: Stage, locale: Locale }> }> };
+
 export type UserFieldsFragment = { __typename?: 'User', id: string | number, name: string, kind: UserKind, isActive: boolean, picture?: string | null, createdAt: Date | string, updatedAt: Date | string, stage: Stage } & { ' $fragmentName'?: 'UserFieldsFragment' };
 
 export type ImageFieldsFragment = { __typename?: 'Asset', id: string | number, url: string, handle: string, fileName: string, mimeType?: string | null, width?: number | null, height?: number | null, size?: number | null, createdAt: Date | string, updatedAt: Date | string, stage: Stage, locale: Locale } & { ' $fragmentName'?: 'ImageFieldsFragment' };
@@ -4581,6 +4589,38 @@ fragment ProjectFields on Project {
   stage
   locale
 }`) as unknown as TypedDocumentString<CreateProjectMutation, CreateProjectMutationVariables>;
+export const AllProjectsDocument = new TypedDocumentString(`
+    query AllProjects($stage: Stage = PUBLISHED, $orderBy: ProjectOrderByInput = createdAt_ASC) {
+  projects(stage: $stage, orderBy: $orderBy) {
+    id
+    title
+    link
+    description
+    version
+    active
+    sourceCode
+    techStack
+    createdAt
+    updatedAt
+    stage
+    locale
+    screenShots {
+      id
+      url
+      handle
+      fileName
+      mimeType
+      width
+      height
+      size
+      createdAt
+      updatedAt
+      stage
+      locale
+    }
+  }
+}
+    `) as unknown as TypedDocumentString<AllProjectsQuery, AllProjectsQueryVariables>;
 export const ProjectWhereUniqueDocument = new TypedDocumentString(`
     query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage, $first: Int = 10) {
   project(where: $where, stage: $stage) {

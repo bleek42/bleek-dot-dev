@@ -1,8 +1,19 @@
 import { useId } from 'react';
 
-import PageLayout from '@/components/global/PageLayout';
+import PageLayout from '@/pages/lib/PageLayout';
 import Section from '@/components/Section';
-import { createGraphQLClientRequest } from '@/utils/gql-client';
+// import { createGraphQLClientRequest } from '@/utils/gql-client';
+
+import {
+	ProjectWhereUniqueDocument,
+	ProjectWhereUniqueQueryVariables,
+} from '@/graphql/queries/queries.operation';
+import {
+	ProjectWhereUniqueQuery,
+	TypedDocumentString,
+} from '@/graphql/gen/preset/graphql';
+import request from 'graphql-request';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
@@ -89,25 +100,27 @@ export default function Projects() {
 	);
 }
 
-export const getStaticProps = async ({ params = '1', preview = false }) => {
-	const project = createGraphQLClientRequest();
-	console.log(projects);
-	if (!preview || !projects) {
-		return {
-			props: {
-				message: 'no preview',
-			},
-		};
-	}
-	console.log(projects);
-	return await new Promise((res, _rej) =>
-		res({
-			props: {
-				preview,
-				...projects,
-			},
-		})
-	);
+export const getStaticProps: InferGetStaticPropsType = async ({
+	projects,
+	preview = true,
+}) => {
+	const project = await request<
+		TypedDocumentString<ProjectWhereUniqueQuery, ProjectWhereUniqueQueryVariables>
+	>({
+		url: process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL.toString(),
+		document: ProjectWhereUniqueDocument,
+		...[params],
+	});
+	console.log(project);
+
+	// return await new Promise((res, _rej) =>
+	// 	res({
+	// 		props: {
+	// 			preview,
+	// 			project,
+	// 		},
+	// 	})
+	// );
 };
 
 // <Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />

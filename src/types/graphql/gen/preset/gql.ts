@@ -15,6 +15,7 @@ import * as types from './graphql';
  */
 const documents = {
     "mutation CreateProject($input: ProjectCreateInput!) {\n  createProject(data: $input) {\n    ...ProjectFields\n    screenShots {\n      ...ImageFields\n    }\n  }\n}": types.CreateProjectDocument,
+    "query AllProjects($stage: Stage = PUBLISHED, $orderBy: ProjectOrderByInput = createdAt_ASC) {\n  projects(stage: $stage, orderBy: $orderBy) {\n    id\n    title\n    link\n    description\n    version\n    active\n    sourceCode\n    techStack\n    createdAt\n    updatedAt\n    stage\n    locale\n    screenShots {\n      id\n      url\n      handle\n      fileName\n      mimeType\n      width\n      height\n      size\n      createdAt\n      updatedAt\n      stage\n      locale\n    }\n  }\n}": types.AllProjectsDocument,
     "fragment UserFields on User {\n  id\n  name\n  kind\n  isActive\n  picture\n  createdAt\n  updatedAt\n  stage\n}\n\nfragment ImageFields on Asset {\n  id\n  url\n  handle\n  fileName\n  mimeType\n  width\n  height\n  size\n  createdAt\n  updatedAt\n  stage\n  locale\n}\n\nfragment ProjectFields on Project {\n  id\n  title\n  description\n  active\n  link\n  version\n  sourceCode\n  techStack\n  screenShots {\n    ...ImageFields\n  }\n  createdAt\n  updatedAt\n  stage\n  locale\n}": types.UserFieldsFragmentDoc,
     "query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage, $first: Int = 10) {\n  project(where: $where, stage: $stage) {\n    id\n    title\n    link\n    description\n    version\n    active\n    sourceCode\n    techStack\n    createdAt\n    updatedAt\n    stage\n    locale\n    screenShots(first: $first) {\n      ...ImageFields\n    }\n  }\n}": types.ProjectWhereUniqueDocument,
 };
@@ -23,6 +24,10 @@ const documents = {
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "mutation CreateProject($input: ProjectCreateInput!) {\n  createProject(data: $input) {\n    ...ProjectFields\n    screenShots {\n      ...ImageFields\n    }\n  }\n}"): typeof import('./graphql').CreateProjectDocument;
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query AllProjects($stage: Stage = PUBLISHED, $orderBy: ProjectOrderByInput = createdAt_ASC) {\n  projects(stage: $stage, orderBy: $orderBy) {\n    id\n    title\n    link\n    description\n    version\n    active\n    sourceCode\n    techStack\n    createdAt\n    updatedAt\n    stage\n    locale\n    screenShots {\n      id\n      url\n      handle\n      fileName\n      mimeType\n      width\n      height\n      size\n      createdAt\n      updatedAt\n      stage\n      locale\n    }\n  }\n}"): typeof import('./graphql').AllProjectsDocument;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

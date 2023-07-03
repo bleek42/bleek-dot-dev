@@ -69,7 +69,7 @@ const config: CodegenConfig = {
       preset: 'near-operation-file',
       presetConfig: {
         extension: '.operation.ts',
-        baseTypesPath: '../hygraph-types.ts',
+        baseTypesPath: './hygraph-types.ts',
       },
     },
 

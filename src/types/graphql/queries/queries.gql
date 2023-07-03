@@ -29,40 +29,7 @@ query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage, $first
 # 	}
 # }
 
-# query AllProjects(
-# 	$stage: Stage = PUBLISHED
-# 	$orderBy: ProjectOrderByInput = createdAt_ASC
-# ) {
-# 	projects(stage: $stage, orderBy: $orderBy) {
-# 		id
-# 		title
-# 		link
-# 		description
-# 		version
-# 		active
-# 		sourceCode
-# 		techStack
-# 		createdAt
-# 		updatedAt
-# 		stage
-# 		locale
 
-# 		screenShots {
-# 			id
-# 			url
-# 			handle
-# 			fileName
-# 			mimeType
-# 			width
-# 			height
-# 			size
-# 			createdAt
-# 			updatedAt
-# 			stage
-# 			locale
-# 		}
-# 	}
-# }
 
 # query ProjectWhereUniqueId(
 # 	$where: ProjectWhereUniqueInput! = { id: "clhxnw5chfpxm0bk7zwvofkdw" }

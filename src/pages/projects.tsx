@@ -29,20 +29,17 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 	const pageId = useId();
 	console.log(props);
 	return (
-		<PageLayout>
-			{props.result.projects &&
-				props.result.projects.map((item) => {
-					console.log(item);
-					return (
-						<Section
-							key={item.id}
-							id={item.title}
-							name={item.title}
-							content={item.description}
-							icon={null}
-						/>
-					);
-				})}
+		<PageLayout id={pageId}>
+			{props.result.projects.length >= 1 &&
+				props.result.projects.map((item) => (
+					<Section
+						key={item.id}
+						id={item.title}
+						name={item.title}
+						content={item.description}
+						icon={null}
+					/>
+				))}
 			{/* <Section
 				id="projects-sect-2"
 				name="projects_sect_2"

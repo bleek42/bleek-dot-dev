@@ -11,15 +11,12 @@ import {
 // import PageLayout from './lib/PageLayout';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@/components/global/Theme';
-import ReactQueryClientProvider from './lib/ReactQueryProvider';
 
 function App({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider theme={theme}>
 			<GlobalStyle />
-			{/* <ReactQueryClientProvider> */}
 			<Component {...pageProps} />
-			{/* </ReactQueryClientProvider> */}
 		</ThemeProvider>
 	);
 }

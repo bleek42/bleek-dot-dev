@@ -31,65 +31,65 @@ export default function ReactQueryProvider({ children }: { children: ReactNode }
 	const client = new QueryClient();
 	const clientRef = useRef<QueryClient>();
 
-	let doc: RequestDocument = gql(
-		/*graphql*/
-		`query AllProjects(
- 	$stage: Stage = PUBLISHED
- 	$orderBy: ProjectOrderByInput = createdAt_ASC
- ) {
- 	projects(stage: $stage, orderBy: $orderBy) {
- 		id
- 		title
- 		link
- 		description
- 		version
- 		active
- 		sourceCode
- 		techStack
- 		createdAt
- 		updatedAt
- 		stage
- 		locale
+	// 	let doc: RequestDocument = gql(
+	// 		/*graphql*/
+	// 		`query AllProjects(
+	//  	$stage: Stage = PUBLISHED
+	//  	$orderBy: ProjectOrderByInput = createdAt_ASC
+	//  ) {
+	//  	projects(stage: $stage, orderBy: $orderBy) {
+	//  		id
+	//  		title
+	//  		link
+	//  		description
+	//  		version
+	//  		active
+	//  		sourceCode
+	//  		techStack
+	//  		createdAt
+	//  		updatedAt
+	//  		stage
+	//  		locale
 
- 		screenShots {
- 			id
- 			url
- 			handle
- 			fileName
- 			mimeType
- 			width
- 			height
- 			size
- 			createdAt
- 			updatedAt
- 			stage
- 			locale
- 		}
- 	}
- }
-`
-	);
+	//  		screenShots {
+	//  			id
+	//  			url
+	//  			handle
+	//  			fileName
+	//  			mimeType
+	//  			width
+	//  			height
+	//  			size
+	//  			createdAt
+	//  			updatedAt
+	//  			stage
+	//  			locale
+	//  		}
+	//  	}
+	//  }
+	// `
+	// 	);
 	// let vars: VariablesOf<RequestDocument> | null = null;
 
 	//  QueryFunction<RequestDocument, QueryKey = ['projects']>
 	if (!clientRef.current) clientRef.current = client;
 
-	clientRef.current?.setDefaultOptions({
-		queries: {
-			queryKey: ['projects'],
-			queryFn: async () =>
-				await rawRequest<typeof doc>(
-					process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL as string,
-					doc.toString()
-				).then((result) => {
-					console.log(result);
-					return result ?? null;
-				}),
-			initialData: () => clientRef?.current?.prefetchQuery(['projects']),
-			cacheTime: 100000,
-			staleTime: 300000,
-		},
-	});
+	// clientRef.current?.setDefaultOptions({
+	// 	queries: {
+	// 		queryKey: ['projects'],
+	// 		queryFn: async () =>
+	// 			await rawRequest<typeof doc>(
+	// 				process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL as string,
+	// 				doc.toString()
+	// 			).then((result) => {
+	// 				console.log(result);
+	// 				return result ?? null;
+	// 			}),
+	// 		initialData: () => clientRef?.current?.prefetchQuery(['projects']),
+	// 		cacheTime: 100000,
+	// 		staleTime: 300000,
+	// 	},
+	// });
 	console.log(clientRef.current);
 
 	return (

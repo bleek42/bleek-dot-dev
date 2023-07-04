@@ -17,9 +17,9 @@ function App({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider theme={theme}>
 			<GlobalStyle />
-			<ReactQueryClientProvider>
-				<Component {...pageProps} />
-			</ReactQueryClientProvider>
+			{/* <ReactQueryClientProvider> */}
+			<Component {...pageProps} />
+			{/* </ReactQueryClientProvider> */}
 		</ThemeProvider>
 	);
 }

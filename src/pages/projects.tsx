@@ -12,8 +12,9 @@ import {
 	ProjectWhereUniqueQuery,
 	TypedDocumentString,
 } from '@/graphql/gen/preset/graphql';
-import request from 'graphql-request';
+import { hygraphClient } from '@/utils/gql-client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { AllProjectsQuery } from '@/graphql/queries/AllProjects.operation';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
@@ -23,8 +24,11 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 // import screenshot6 from '../../images/trouvaille-1.jpg';
 // import screenshot7 from '../../images/trouvaille-2.jpg';
 
-export default function Projects() {
+export default function Projects({
+	projects,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
 	const pageId = useId();
+	console.log(projects);
 	return (
 		<PageLayout>
 			<Section
@@ -100,18 +104,18 @@ export default function Projects() {
 	);
 }
 
-export const getStaticProps: InferGetStaticPropsType = async ({
-	projects,
-	preview = true,
-}) => {
-	const project = await request<
-		TypedDocumentString<ProjectWhereUniqueQuery, ProjectWhereUniqueQueryVariables>
-	>({
-		url: process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL.toString(),
-		document: ProjectWhereUniqueDocument,
-		...[params],
-	});
-	console.log(project);
+export const getStaticProps: GetStaticProps<{
+	projects: ProjectWhereUniqueQuery;
+}> = async () => {
+	const projects = await hygraphClient.AllProjects();
+	console.log(projects);
+	// console.log(props);
+	return {
+		props: {
+			projects,
+		},
+	};
+};
 
 	// return await new Promise((res, _rej) =>
 	// 	res({
@@ -121,7 +125,6 @@ export const getStaticProps: InferGetStaticPropsType = async ({
 	// 		},
 	// 	})
 	// );
-};
 
 // <Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
 // <Header id={`projects-${pageId}`} name="About" content="" icon={null} />

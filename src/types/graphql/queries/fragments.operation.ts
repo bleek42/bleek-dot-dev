@@ -1,12 +1,65 @@
-import * as Types from '../gen/ops/hygraph-types';
+import * as Types from '../hygraph-types';
 
 import { GraphQLClient } from 'graphql-request';
 import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
-export type UserFieldsFragment = { __typename?: 'User', id: string | number, name: string, kind: Types.UserKind, isActive: boolean, picture?: string | null, createdAt: Date | string, updatedAt: Date | string, stage: Types.Stage };
+export type UserFieldsFragment = {
+  __typename?: 'User';
+  id: string | number;
+  name: string;
+  kind: Types.UserKind;
+  isActive: boolean;
+  picture?: string | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  stage: Types.Stage;
+};
 
-export type ImageFieldsFragment = { __typename?: 'Asset', id: string | number, url: string, handle: string, fileName: string, mimeType?: string | null, width?: number | null, height?: number | null, size?: number | null, createdAt: Date | string, updatedAt: Date | string, stage: Types.Stage, locale: Types.Locale };
+export type ImageFieldsFragment = {
+  __typename?: 'Asset';
+  id: string | number;
+  url: string;
+  handle: string;
+  fileName: string;
+  mimeType?: string | null;
+  width?: number | null;
+  height?: number | null;
+  size?: number | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  stage: Types.Stage;
+  locale: Types.Locale;
+};
 
-export type ProjectFieldsFragment = { __typename?: 'Project', id: string | number, title: string, description: string, active: boolean, link: string, version: number, sourceCode: Array<string>, techStack?: string[] | unknown | null, createdAt: Date | string, updatedAt: Date | string, stage: Types.Stage, locale: Types.Locale, screenShots: Array<{ __typename?: 'Asset', id: string | number, url: string, handle: string, fileName: string, mimeType?: string | null, width?: number | null, height?: number | null, size?: number | null, createdAt: Date | string, updatedAt: Date | string, stage: Types.Stage, locale: Types.Locale }> };
+export type ProjectFieldsFragment = {
+  __typename?: 'Project';
+  id: string | number;
+  title: string;
+  description: string;
+  active: boolean;
+  link: string;
+  version: number;
+  sourceCode: Array<string>;
+  techStack?: string[] | unknown | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  stage: Types.Stage;
+  locale: Types.Locale;
+  screenShots: Array<{
+    __typename?: 'Asset';
+    id: string | number;
+    url: string;
+    handle: string;
+    fileName: string;
+    mimeType?: string | null;
+    width?: number | null;
+    height?: number | null;
+    size?: number | null;
+    createdAt: Date | string;
+    updatedAt: Date | string;
+    stage: Types.Stage;
+    locale: Types.Locale;
+  }>;
+};
 
 export const UserFieldsFragmentDoc = `
     fragment UserFields on User {
@@ -56,14 +109,19 @@ export const ProjectFieldsFragmentDoc = `
 }
     ${ImageFieldsFragmentDoc}`;
 
-export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
+export type SdkFunctionWrapper = <T>(
+  action: (requestHeaders?: Record<string, string>) => Promise<T>,
+  operationName: string,
+  operationType?: string
+) => Promise<T>;
 
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) =>
+  action();
 
-const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
-
-export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
-  return {
-
-  };
+export function getSdk(
+  client: GraphQLClient,
+  withWrapper: SdkFunctionWrapper = defaultWrapper
+) {
+  return {};
 }
 export type Sdk = ReturnType<typeof getSdk>;

@@ -27,14 +27,14 @@ export default {
     ],
   },
 
-  experimental: {
-    swcPlugins: [
-      [
-        '@graphql-codegen/client-preset-swc-plugin',
-        { artifactDirectory: './src/types/graphql/gen', gqlTagName: 'gql' },
-      ],
-    ],
-  },
+  // experimental: {
+  //   swcPlugins: [
+  //     [
+  //       '@graphql-codegen/client-preset-swc-plugin',
+  //       { artifactDirectory: './src/types/graphql', gqlTagName: 'graphql' },
+  //     ],
+  //   ],
+  // },
 
   // async headers() {
   //   return await new Promise((res) =>

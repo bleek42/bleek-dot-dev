@@ -15,6 +15,7 @@ import {
 import { hygraphClient } from '@/utils/gql-client';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { AllProjectsQuery } from '@/graphql/queries/AllProjects.operation';
+import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
@@ -24,27 +25,25 @@ import { AllProjectsQuery } from '@/graphql/queries/AllProjects.operation';
 // import screenshot6 from '../../images/trouvaille-1.jpg';
 // import screenshot7 from '../../images/trouvaille-2.jpg';
 
-export default function Projects({
-	projects,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	const pageId = useId();
-	console.log(projects);
+	console.log(props);
 	return (
 		<PageLayout>
-			<Section
-				id="projects-sect-1"
-				name="projects_sect_1"
-				content="My first web application is a simple 5 question quiz, made for anyone
-					that enjoys simple bar trivia and wants to test their knowledge of
-					worldly, yet relatively basic facts. This application keeps track of
-					the users score, displays whether the user submitted a correct or
-					incorrect answer after every question and allows the user to reset the
-					quiz from the beginning upon completion. This application utilizes the
-					widely deployed Javascript jQuery library, which is used in more than
-					half of the top 1 million websites in the world!"
-				icon={null}
-			/>
-			<Section
+			{props.result.projects &&
+				props.result.projects.map((item) => {
+					console.log(item);
+					return (
+						<Section
+							key={item.id}
+							id={item.title}
+							name={item.title}
+							content={item.description}
+							icon={null}
+						/>
+					);
+				})}
+			{/* <Section
 				id="projects-sect-2"
 				name="projects_sect_2"
 				content="My second web application is a Bookmarks application, that also
@@ -99,33 +98,36 @@ export default function Projects({
 					secure registration & login, email verification & password reset with
 					Nodemailer, and an animated loading screen."
 				icon={null}
-			/>
+			/> */}
 		</PageLayout>
 	);
 }
 
 export const getStaticProps: GetStaticProps<{
-	projects: ProjectWhereUniqueQuery;
+	result: AllProjectsQuery;
 }> = async () => {
-	const projects = await hygraphClient.AllProjects(
+	console.log(process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN);
+	const headers: Record<string | number | symbol, any> = {
+		credentials: 'include',
+		cache: 'force-cache',
+		mode: 'cors',
+		headers: {
+			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN}`,
+		},
+	};
+
+	const result = await hygraphClient.AllProjects(
 		{
 			'stage': 'PUBLISHED',
-			'orderBy': 'createdAt_DESC',
+			'orderBy': 'createdAt_ASC',
 		},
-		{
-			'credentials': 'include',
-			'cache': 'force-cache',
-			'mode': 'cors',
-			'headers': {
-				'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
-			},
-		}
+		headers
 	);
-	console.log(projects);
+	console.log(typeof result);
 	// console.log(props);
 	return {
 		props: {
-			projects,
+			result,
 		},
 	};
 };

@@ -107,7 +107,20 @@ export default function Projects({
 export const getStaticProps: GetStaticProps<{
 	projects: ProjectWhereUniqueQuery;
 }> = async () => {
-	const projects = await hygraphClient.AllProjects();
+	const projects = await hygraphClient.AllProjects(
+		{
+			'stage': 'PUBLISHED',
+			'orderBy': 'createdAt_DESC',
+		},
+		{
+			'credentials': 'include',
+			'cache': 'force-cache',
+			'mode': 'cors',
+			'headers': {
+				'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
+			},
+		}
+	);
 	console.log(projects);
 	// console.log(props);
 	return {

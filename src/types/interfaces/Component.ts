@@ -1,19 +1,21 @@
-import { type ReactNode } from 'react';
-import {
-  StyledComponent,
-  StyledComponentProps,
-  AnyStyledComponent,
-  DefaultTheme,
-} from 'styled-components';
+import { type Key, type ReactNode } from 'react';
+import { type AnyStyledComponent } from 'styled-components';
 
 export interface Component {
-  name?: string | symbol;
+  id?: Key | null;
   className?: string | null;
-  id?: unknown;
+  name?: string | symbol;
   title?: string | symbol;
-  icon?: string | null;
+  description?: string | string[] | unknown;
+  icon?: string | unknown;
   image?: Array<URL | string> | URL | string;
-  children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[] | null;
+  locale?: 'en' | 'en_US' | string;
+  children?:
+    | ReactNode
+    | ReactNode[]
+    | AnyStyledComponent
+    | AnyStyledComponent[]
+    | unknown;
 }
 
 export interface XTermComponent extends Component {
@@ -22,34 +24,42 @@ export interface XTermComponent extends Component {
   stdin: string | null;
   stdio: string | null;
   isExec: boolean | null;
-  stderr?: string | null;
+  stderr: string | null;
 }
 
 export interface MetaComponent extends Component {
   title: string;
   description: string;
   keywords: string | string[];
-  name?: string | symbol;
-  id?: unknown;
-  icon?: string | null;
-  image?: Array<URL | string> | URL | string;
+  locale?: 'en' | 'en_US' | string;
 }
 
 export interface LayoutComponent extends Component {
   children: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[] | null;
 }
-export interface HeaderComponent extends Component {}
+export interface HeaderComponent extends Component {
+  children?:
+    | ReactNode
+    | ReactNode[]
+    | AnyStyledComponent
+    | AnyStyledComponent[]
+    | unknown;
+}
 
 export interface NavbarComponent extends Component {
   toggle: boolean;
 }
 
 export interface DetailsComponent extends Component {
-  content?: string | string[] | symbol;
+  title: string;
+  image: URL | string;
 }
 
 export interface SectionComponent extends Component {
-  content?: string | string[] | symbol;
+  name: string;
+  description: string | string[];
+  id?: Key | null;
+  content?: string | string[] | null;
 }
 
 export interface ListComponent extends Component {}

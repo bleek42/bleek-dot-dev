@@ -1,21 +1,21 @@
-import { useId } from 'react';
+import { Fragment, useId } from 'react';
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
+import { hygraphClient } from '@/utils/gql-client';
+import { AllProjectsQuery } from '@/graphql/queries/AllProjects.operation';
 import PageLayout from '@/pages/lib/PageLayout';
 import Section from '@/components/Section';
+
 // import { createGraphQLClientRequest } from '@/utils/gql-client';
 
-import {
-	ProjectWhereUniqueDocument,
-	ProjectWhereUniqueQueryVariables,
-} from '@/graphql/queries/queries.operation';
-import {
-	ProjectWhereUniqueQuery,
-	TypedDocumentString,
-} from '@/graphql/gen/preset/graphql';
-import { hygraphClient } from '@/utils/gql-client';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { AllProjectsQuery } from '@/graphql/queries/AllProjects.operation';
-import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
+// import {
+// 	ProjectWhereUniqueDocument,
+// 	ProjectWhereUniqueQueryVariables,
+// } from '@/graphql/queries/queries.operation';
+// import {
+// 	ProjectWhereUniqueQuery,
+// 	TypedDocumentString,
+// } from '@/graphql/gen/preset/graphql';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';
@@ -29,17 +29,19 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 	const pageId = useId();
 	console.log(props);
 	return (
-		<PageLayout id={pageId}>
+		<Fragment id={pageId}>
 			{props.result.projects.length >= 1 &&
 				props.result.projects.map((item) => (
 					<Section
 						key={item.id}
 						id={item.title}
 						name={item.title}
+						description={item.description}
 						content={item.description}
 						icon={null}
 					/>
 				))}
+
 			{/* <Section
 				id="projects-sect-2"
 				name="projects_sect_2"
@@ -96,7 +98,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 					Nodemailer, and an animated loading screen."
 				icon={null}
 			/> */}
-		</PageLayout>
+		</Fragment>
 	);
 }
 
@@ -126,17 +128,19 @@ export const getStaticProps: GetStaticProps<{
 		props: {
 			result,
 		},
+
+		revalidate: 3000,
 	};
 };
 
-	// return await new Promise((res, _rej) =>
-	// 	res({
-	// 		props: {
-	// 			preview,
-	// 			project,
-	// 		},
-	// 	})
-	// );
+// return await new Promise((res, _rej) =>
+// 	res({
+// 		props: {
+// 			preview,
+// 			project,
+// 		},
+// 	})
+// );
 
 // <Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
 // <Header id={`projects-${pageId}`} name="About" content="" icon={null} />

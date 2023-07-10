@@ -1,20 +1,25 @@
 import { useId } from 'react';
-import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
+import {
+	type DefaultTheme,
+	type StyledComponent,
+	type StyledComponentProps,
+} from 'styled-components';
 
 import { Header as Wrapper } from './Header';
 import { LgTxt, MdTxt } from '@/components/global/Text';
 import Navbar from '@/components/Navbar';
 import { type HeaderComponent } from '@/interfaces/Component';
 
-type HeaderProps = StyledComponentProps<
-	'header' | keyof JSX.IntrinsicElements,
-	DefaultTheme,
-	HeaderComponent,
-	string | number | symbol
->;
+type HeaderProps = HeaderComponent &
+	StyledComponentProps<
+		'header',
+		DefaultTheme,
+		HeaderComponent,
+		string | number | symbol
+	>;
 
 export default function Header(props: HeaderProps) {
-	console.log('Header component:', props);
+	console.log('Header component:', props.children);
 	const pageId = useId();
 
 	return (
@@ -28,7 +33,7 @@ export default function Header(props: HeaderProps) {
 			<MdTxt font="Birdman" color="red" shadow="steel">
 				{props?.title ?? 'untitled'}
 			</MdTxt>
-			{props?.children ?? <Navbar />}
+			{props.children ?? <Navbar />}
 		</Wrapper>
 	);
 }

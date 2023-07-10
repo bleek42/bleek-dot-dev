@@ -1,21 +1,27 @@
-import styled, { DefaultTheme, StyledComponentProps } from 'styled-components';
+import styled, {
+  type DefaultTheme,
+  type StyledComponent,
+  type StyledComponentProps,
+} from 'styled-components';
 import { type HeaderComponent } from '@/interfaces/Component';
 
-type StyledHeaderProps = StyledComponentProps<
+type StyledHeader = StyledComponent<
   'header' | keyof JSX.IntrinsicElements,
   DefaultTheme,
   HeaderComponent,
   string | number | symbol
 >;
 
-export const Header = styled.header<StyledHeaderProps>(
-  (props) => `
-  display: inline-flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
+type StyledHeaderProps = StyledComponentProps<
+  StyledHeader,
+  DefaultTheme,
+  HeaderComponent,
+  string | number | symbol
+>;
+
+export const Header = styled.header((props) => `
   color: ${props.theme.palette.primary.yellow};
-  background-color: ${props.theme.palette.tertiary.linear};
+  background-color: ${props.theme.palette.secondary.steel};
   border: 4px solid ${props.theme.palette.secondary.cyan};
   border-radius: 10% 20% / 10% 20%;
   height: 12vh;

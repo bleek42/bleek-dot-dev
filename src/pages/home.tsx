@@ -10,19 +10,20 @@ export default function Home() {
 	const pageId = useId();
 
 	return (
-		<PageLayout>
-			<Section
-				name="home"
-				content="Welcome to bleek.dev! My name is Brandon Leek and I'm a full-stack
-			web developer & tech enthusiast. This site is built with React.js in conjunction with other modern solutions including (but never limited to!) custom state management hooks, React Router, React Icons, Syntactically Awesome Style Sheets (SASS/SCSS), and test suites written with Jest & Enzyme."
-			/>
-		</PageLayout>
+		<Section
+			id={`home-${pageId}`}
+			name="Home"
+			description="bleek.dev/home"
+			content="Welcome & thanks for visiting! I'm Brandon Leek: a full-stack web developer, Linux enthusiast, & lifelong power user. I hope you find the results of my latest iterations on my portfolio rather unique, yet still modern-contemporary, and of course a pleasure to use as you navigate around! This was create with React via NextJS, GraphQL via Hygraph CMS, custom CSS-in-JS via Styled Components, & full TypeScript integration!"
+		/>
 	);
 }
 
 // <Header
 // 	id={`home-header-${pageId}`}
 // 	name="home"
+		// <PageLayout>
+		// </PageLayout>
 // 	title="Home"
 // 	content="bleekDotDev"
 // 	icon={null}

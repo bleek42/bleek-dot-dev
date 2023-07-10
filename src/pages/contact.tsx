@@ -12,11 +12,14 @@ export default function Contact() {
 	const commentIcon = ' \udb80\udd7b ';
 	const githubIcon = ' \uf092 ';
 
-	return (
-		<PageLayout>
-			{/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */}
-			<Section name="Email" content={null} icon={commentIcon} />
-			{/* {loading && (
+	return <Section name="Email" description={''} content={''} icon={commentIcon} />;
+}
+
+{
+	/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */
+}
+{
+	/* {loading && (
 				<div className="loading">
 					<progress>loading...</progress>
 				</div>
@@ -29,12 +32,10 @@ export default function Contact() {
 						{msg?.toString() || 'an unknown error occurred...'}
 					</p>
 				</div>
-			)} */}
+		<PageLayout>
 		</PageLayout>
-	);
+			)} */
 }
-
-// {
 /* <Footer id={`contact-footer-${pageId}`} name="Contact" icon={null} /> */
 // }
 // {

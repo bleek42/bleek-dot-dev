@@ -10,11 +10,7 @@ import PageLayout from '@/pages/lib/PageLayout';
 export default function About() {
 	console.log('about page:');
 
-	return (
-		<PageLayout>
-			<Section name="about_section" content="section content" />
-		</PageLayout>
-	);
+	return <Section name="about_section" description={''} content="section content" />;
 }
 
 // import "./About.scss";

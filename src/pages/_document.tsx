@@ -2,15 +2,13 @@ import {
 	DocumentContext,
 	DocumentInitialProps,
 	Html,
+	Head,
 	Main,
 	NextScript,
 } from 'next/document';
 
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-
-import Head from 'next/head';
-import { render } from 'react-dom';
 
 export default class StyledDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -25,21 +23,30 @@ export default class StyledDocument extends Document {
 				});
 
 			const initialProps = await Document.getInitialProps(ctx);
-			console.log(initialProps);
+			console.log(initialProps.styles);
 			return {
-				// <Html lang='en'>
-				// </Html>
+				styles: [sheet.getStyleElement()],
 				...initialProps,
-				styles: (
-					<>
-						{initialProps.styles},{sheet.getStyleElement()}
-					</>
-				),
 			};
+
 			// eslint-disable-next-line prettier/prettier
+		} catch (err: any) {
+			console.error(err);
+			throw new Error(err ?? 'next styled doc error...');
 		} finally {
 			sheet.seal();
 		}
+	}
+	render() {
+		return (
+			<Html lang={'en_US'}>
+				<Head />
+				<NextScript />
+				<body>
+					<Main />
+				</body>
+			</Html>
+		);
 	}
 }
 

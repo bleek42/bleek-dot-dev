@@ -1,40 +1,47 @@
-import { useId } from 'react';
-import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
+import { type Key, useId } from 'react';
+// import {
+// 	type AnyStyledComponent,
+// 	type DefaultTheme,
+// 	type StyledComponentProps,
+// } from 'styled-components';
 
 import { type SectionComponent } from '@/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
 import { LgTxt, MdTxt, SmTxt } from '@/components/global/Text';
 
-type SectionProps = StyledComponentProps<
-	'section' | keyof JSX.IntrinsicElements,
-	DefaultTheme,
-	SectionComponent,
-	string | number | symbol
->;
+type SectionProps = SectionComponent;
 
-export default function Section({ name, content, icon = '\ue667' }: SectionProps) {
-	const sectionId = useId();
+export default function Section(props: SectionProps) {
+	// const sectionId = useId();
 	console.log('section component:');
 	return (
-		<Wrapper key={`section-${sectionId}`} id={`section-${sectionId}`}>
+		<Wrapper key={props.id} id={`${props.id}-section`}>
 			<LgTxt>
-				{name} - {icon}
+				{props.name ?? ''} - {props.icon ?? '&\ue667;'}
 			</LgTxt>
-			<Article>
-				<SmTxt font="MonocraftNF" color="neon">
-					{content || 'No article content  provided...'}
-				</SmTxt>
-			</Article>
-			<Article>
-				<MdTxt font="Oxanium" color="cyan">
-					Test MDTXT
-				</MdTxt>
-			</Article>
-			<Article>
-				<LgTxt font="Oxanium" color="cyan">
-					Test MDTXT
-				</LgTxt>
-			</Article>
+			{typeof props.content === 'string' && (
+				<Article>
+					<SmTxt font="MonocraftNF" color="neon">
+						{props.content}
+					</SmTxt>
+				</Article>
+			)}
+			{Array.isArray(props.content) && (
+				<>
+					{props.content.map((articleContent: string, idx: Key) => (
+						<Article key={idx}>
+							<SmTxt font="MonocraftNF" color="neon">
+								{articleContent}
+							</SmTxt>
+						</Article>
+					))}
+				</>
+			)}
+			{!props.content && (
+				<Article>
+					<SmTxt>'This section has no article content to show...'</SmTxt>
+				</Article>
+			)}
 		</Wrapper>
 	);
 }

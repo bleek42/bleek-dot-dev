@@ -1,6 +1,6 @@
 import { BaseComponentProps } from '@/props/base.component.props.ts';
 import { Details as Wrapper, Summary } from './Details.ts';
-import { MdTxt } from '@/components/global/Text.ts';
+import { MdTxt } from '@/components/common/Text.ts';
 
 type DetailsProps = BaseComponentProps<'details'>;
 // icon?: '\ue456' | '\ue677';

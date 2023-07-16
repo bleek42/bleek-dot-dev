@@ -1,11 +1,11 @@
 import React, { useState, useEffect, Fragment, useId } from "react";
 
-// import Meta from '@/components/global/Meta';
+// import Meta from '@/components/common/Meta';
 import Header from '@/components/Header';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
-import { Main } from "@/components/global/Main";
-import PageLayout from '@/components/global/PageLayout';
+import { Main } from '@/components/common/Main';
+import PageLayout from '@/components/common/PageLayout';
 
 export default function About() {
 	console.log("about page:");

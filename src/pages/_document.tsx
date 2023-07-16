@@ -2,6 +2,7 @@ import {
 	DocumentContext,
 	DocumentInitialProps,
 	Html,
+	Head,
 	Main,
 	NextScript,
 } from 'next/document';
@@ -9,7 +10,7 @@ import {
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-import Head from 'next/head';
+// import Head from 'next/head';
 import { render } from 'react-dom';
 
 export default class StyledDocument extends Document {
@@ -27,23 +28,39 @@ export default class StyledDocument extends Document {
 			const initialProps = await Document.getInitialProps(ctx);
 			console.log(initialProps);
 			return {
-				// <Html lang='en'>
-				// </Html>
 				...initialProps,
 				styles: (
 					<>
-						{initialProps.styles},{sheet.getStyleElement()}
+						{initialProps.styles}
+						{sheet.getStyleElement()}
 					</>
 				),
 			};
-			// eslint-disable-next-line prettier/prettier
-		} finally {
+		}
+
+		// eslint-disable-next-line prettier/prettier
+		catch (err) {
+			if (err) throw err
+		}
+
+		// eslint-disable-next-line prettier/prettier
+		finally {
 			sheet.seal();
 		}
 	}
+	render() {
+		return (
+			<Html lang="en">
+				<Head />
+				<body>
+					{' '}
+					<Main /> <NextScript />{' '}
+				</body>
+			</Html>
+		);
+	}
 }
 
-// 	// render() {
 
 // Document.defaultProps = {
 // 	title: 'bleekDotDev',

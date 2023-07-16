@@ -1,5 +1,5 @@
 import { Footer as Wrapper } from './Footer';
-import { SmTxt } from '@/components/global/Text';
+import { SmTxt } from '@/components/common/Text';
 
 import type { BaseComponentProps } from '@/props/base.component.props';
 

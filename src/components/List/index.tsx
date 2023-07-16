@@ -2,7 +2,7 @@
 
 // import type { BaseComponentProps } from '@/props/base.component.props';
 
-// import { MdTxt } from '@/components/global/Text';
+// import { MdTxt } from '@/components/common/Text';
 
 // import { List as Wrapper, Item } from './List';
 

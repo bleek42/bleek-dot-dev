@@ -1,10 +1,11 @@
-import { Main, useId } from 'react';
+import { useId } from 'react';
 
+import { Main } from '@/components/common/Main';
 import Header from '@/components/Header';
-import Section from '/@components/Section';
-import Footer from '/@components/Footer';
-import Meta from '/@components/global/Meta';
-import PageLayout from '../components/global/PageLayout';
+import Section from '@/components/Section';
+import Footer from '@/components/Footer';
+import Meta from '@/components/common/Meta';
+import PageLayout from '@/components/common/PageLayout';
 
 // import screenshot1 from '../../images/quiz-app.png';
 // import screenshot2 from '../../images/quiz-app2.png';

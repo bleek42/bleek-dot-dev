@@ -5,24 +5,28 @@ import {
   DefaultTheme,
 } from 'styled-components';
 
-export interface ComponentBase<K extends keyof JSX.IntrinsicElements> {
-  styleProps: StyledComponentProps<
-    K | AnyStyledComponent,
-    DefaultTheme,
-    object,
-    string | number | symbol
-  >;
+// type K = K extends keyof JSX.IntrinsicElements
+// styleProps: StyledComponentProps<
+//   K | AnyStyledComponent,
+//   DefaultTheme,
+//   object,
+//   string | number | symbol
+// styleProps: StyledComponentProps<'form' | 'input' | 'textarea', DefaultTheme, object, string | number | symbol>;
+// >; <'form' | 'input' | 'textarea'>
+
+export interface ComponentBase {
   id?: unknown;
-  name?: string | symbol;
+  name?: string;
   title?: string | symbol;
   content?: string | string[] | symbol;
-  icon?: string | null;
+  icon?: string;
   image?: Array<URL | string> | URL | string;
   children?: ReactNode | ReactNode[] | null;
 }
-export interface XTermComponent extends ComponentBase<'textarea'> {
-  name: 'tty0' | string | symbol;
+export interface XTermComponent extends ComponentBase {
+  id: 'tty0' | string | symbol;
   prompt: '[visitor@bleek.dev(v0.9)]λ->>' | string | symbol;
+  name: string;
   isExec: boolean | null;
   result: string | null;
   hasError: boolean | null;

@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 import { type BaseComponent } from '@/interfaces/BaseComponent';
-import { theme, GlobalStyle } from '@/components/global/Theme';
+import { theme, GlobalStyle } from '@/components/common/Theme';
 
 import StyledProvider from '../../appdir/lib/StyledProvider';
 import Header from '@/components/Header';

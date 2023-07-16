@@ -26,9 +26,6 @@
 			"@/components/*": [
 				"src/components/*"
 			],
-			// "@/app/*": [
-			// 	"src/app/*"
-			// ],
 			"@/layouts": [
 				"src/appdir/layouts/*"
 			],
@@ -56,10 +53,21 @@
 			"@/fonts/*": [
 				"public/fonts/*"
 			]
+			// "@/app/*": [
+			// 	"src/app/*"
+			// ],
 		},
 		"plugins": [
 			{
 				"name": "next"
+			},
+			{
+				"name": "@styled/typescript-styled-plugin",
+				"tags": [
+					"styled",
+					"css",
+					"sty"
+				]
 			}
 		]
 	},

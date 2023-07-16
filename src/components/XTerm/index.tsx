@@ -1,6 +1,12 @@
 import { useState, useCallback } from 'react';
 import { useRouter } from 'next/router';
-import type { ChangeEvent, ComponentType, RefObject } from 'react';
+import type {
+	ChangeEvent,
+	ComponentType,
+	MutableRefObject,
+	ReactNode,
+	RefObject,
+} from 'react';
 import type {
 	StyledComponentProps,
 	DefaultTheme,
@@ -12,7 +18,7 @@ import useResizeObserver from '@/hooks/useResizeObserver';
 import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 import type { XTermComponentProps } from '@/props/base.component.props';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
-import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/global/Button';
+import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
 import { XTermComponent } from '@/interfaces/BaseComponent';
 
 // type XTResizeState = ResizeObserverDimensions;
@@ -34,7 +40,7 @@ export default function XTerm() {
 	});
 
 	const handleResize = useCallback(
-		<T extends Element>(target: T, entry: ResizeObserverEntry) => {
+		<T extends Element>(target: T | undefined, entry: ResizeObserverEntry) => {
 			console.info({ target });
 			console.info({ entry });
 
@@ -46,6 +52,9 @@ export default function XTerm() {
 			if (currentWidth < 481) {
 				setDimensions((prev) => ({
 					...prev,
+					cols: 20,
+					rows: 20,
+					area: 20 * 20,
 					width: currentWidth,
 					height: currentHeight,
 					top,
@@ -91,21 +100,21 @@ export default function XTerm() {
 			}
 
 			console.warn('resizing:', currentWidth, currentHeight);
-			console.table(entry.borderBoxSize);
-			console.table(entry.contentRect);
-			console.table(entry.contentBoxSize);
-			console.table(entry.devicePixelContentBoxSize);
-			console.table(entry.target);
+			// console.table(entry.borderBoxSize);
+			// console.table(entry.contentRect);
+			// console.table(entry.contentBoxSize);
+			// console.table(entry.devicePixelContentBoxSize);
+			// console.table(entry.target);
+			console.info('xt dimensions:', { dimensions });
 		},
-		[dimensions.width]
+		[dimensions.width, dimensions.height, dimensions.cols, dimensions.rows]
 	);
 
 	const { ref } = useResizeObserver(handleResize);
 
 	// eslint-disable-next-line no-console
-	console.info({ dimensions });
 	// eslint-disable-next-line no-console
-	console.info('ref+curr:', ref, ref?.current);
+	console.info('RO ref:', { ref });
 
 	const handleChange = (
 		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -115,7 +124,7 @@ export default function XTerm() {
 	};
 
 	return (
-		<XTForm ref={ref as RefObject<HTMLFormElement>}>
+		<XTForm ref={ref as MutableRefObject<HTMLFormElement>}>
 			<XTBtns id="xt-btns">
 				<BtnClose
 					id="xt-close"
@@ -142,23 +151,14 @@ export default function XTerm() {
 					{'[ \uf2d1 ]'}
 				</BtnMin>
 			</XTBtns>
-			{/* <span>
-					<code>Area: {area?.toString()} </code>
-				</span> */}
-			<XTCode>[#!/usr/bin/bleek]</XTCode>
+			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
 			<XTxtArea
-				id="xt-textarea"
-				name={xterm.name.toString()}
 				// value={null}
 				cols={dimensions.cols}
 				rows={dimensions.rows}
-				autoCapitalize="off"
-				autoCorrect="off"
-				spellCheck={false}
-				// placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
 				// eslint-disable-next-line no-console
 				onChange={handleChange}
-				onSubmit={(evt) => {
+				onSubmit={(evt: SubmitEvent) => {
 					console.info('xterm-txt submit capture', evt.target);
 					// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
 					setXterm((vals) => ({ ...vals, exec: true }));
@@ -171,12 +171,8 @@ export default function XTerm() {
 					console.info('xterm-txt submit capture', evt.target)
 				}
 			>
-				{/* {'[visitor@https://bleek.dev-$>'} */}
-				<XTCode>{xterm.prompt.toString()}</XTCode>
+				<XTCode>{xterm.prompt as ReactNode}</XTCode>
 				<XTInput
-					type="text"
-					id="xt-prompt"
-					name="xt-prompt"
 					// value={xterm.name}
 					onChange={handleChange}
 					placeholder={'press enter to continue'}

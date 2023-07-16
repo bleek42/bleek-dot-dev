@@ -1,23 +1,23 @@
 import { useEffect, useRef } from 'react';
 
 export default function useResizeObserver<T extends Element>(
-  cb?: (target: T, entry: ResizeObserverEntry) => void
+  cb: (target: T | undefined, entry: ResizeObserverEntry) => void
 ) {
-  const ref = useRef<T>(null);
+  const ref = useRef<T>();
 
   useEffect(() => {
     const observer = new ResizeObserver(([entry]) => {
       if (!cb) return;
 
-      cb(ref?.current, entry);
+      cb(ref.current, entry);
     });
 
-    observer.observe(ref?.current);
+    if (ref.current) observer.observe(ref.current);
 
     return () => {
       observer.disconnect();
     };
-  }, [ref?.current]);
+  }, [ref.current, ref]);
 
   return { ref };
 }

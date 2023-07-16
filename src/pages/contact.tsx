@@ -1,7 +1,7 @@
 import { useId } from 'react';
 
-import PageLayout from '@/components/global/PageLayout';
-import { Main } from '@/components/global/Main';
+import { Main } from '@/components/common/Main';
+import PageLayout from '@/components/common/PageLayout';
 import Section from '@/components/Section';
 
 export default function Contact() {

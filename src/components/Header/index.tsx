@@ -3,7 +3,7 @@ import { useId } from 'react';
 import type { BaseComponentProps } from '@/props/base.component.props';
 
 import { Header as Wrapper } from './Header';
-import { LgTxt, MdTxt } from '@/components/global/Text';
+import { LgTxt, MdTxt } from '@/components/common/Text';
 import Navbar from '@/components/Navbar';
 
 type HeaderProps = BaseComponentProps<'header'>;

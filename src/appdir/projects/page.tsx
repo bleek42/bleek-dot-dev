@@ -2,7 +2,7 @@ import { GraphQLClient, gql } from 'graphql-request';
 import { ExecutionArgs, ExecutionResult, GraphQLError } from 'graphql';
 
 import Header from '@/components/Header';
-import { Main } from '@/components/global/Main';
+import { Main } from '@/components/common/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 // import { ProjectWhereUniqueDocument } from '../../types/hygraph.types';
@@ -18,7 +18,7 @@ import {
 import { allDraftProjectQuery } from 'src/pages/api/graphql';
 import { AllProjectsDocument } from 'src/pages/api/graphql/gen/graphql';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { MdTxt } from '@/components/global/Text';
+import { MdTxt } from '@/components/common/Text';
 
 // @ts-expect-error
 // @eslint disable next line

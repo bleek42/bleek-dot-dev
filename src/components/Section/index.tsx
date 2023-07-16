@@ -3,7 +3,7 @@ import type { BaseComponentProps } from '@/props/base.component.props';
 import { useId } from 'react';
 
 import { Section as Wrapper, Article } from './Section';
-import { LgTxt, MdTxt, SmTxt } from '@/components/global/Text';
+import { LgTxt, MdTxt, SmTxt } from '@/components/common/Text';
 
 type SectionProps = BaseComponentProps<'section'>;
 

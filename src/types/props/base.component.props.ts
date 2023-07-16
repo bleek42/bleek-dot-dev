@@ -1,4 +1,3 @@
-import type { ComponentType } from 'react';
 import type { DefaultTheme, StyledComponentProps, AnyStyledComponent } from 'styled-components';
 
 import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';

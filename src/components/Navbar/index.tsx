@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { NavBar, ToggleBtn, NavList, NavItem, NextLink, Icon } from './Navbar';
-import { LgTxt } from '@/components/global/Text';
+import { LgTxt } from '@/components/common/Text';
 
 export default function Navbar() {
 	const [toggle, setToggle] = useState<boolean>(false);

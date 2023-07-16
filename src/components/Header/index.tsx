@@ -6,7 +6,7 @@ import {
 } from 'styled-components';
 
 import { Header as Wrapper } from './Header';
-import { LgTxt, MdTxt } from '@/components/global/Text';
+import { LgTxt, MdTxt } from '@/components/common/Text';
 import Navbar from '@/components/Navbar';
 import { type HeaderComponent } from '@/interfaces/Component';
 

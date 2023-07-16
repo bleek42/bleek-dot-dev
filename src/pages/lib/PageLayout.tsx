@@ -3,7 +3,7 @@ import { type AppProps } from 'next/app';
 
 import Meta from '@/components/Meta';
 import Header from '@/components/Header';
-import { Main } from '@/components/global/Main';
+import { Main } from '@/components/common/Main';
 import Footer from '@/components/Footer';
 import { type LayoutComponent, type MetaComponent } from '@/interfaces/Component';
 

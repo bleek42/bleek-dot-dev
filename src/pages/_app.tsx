@@ -10,7 +10,7 @@ import {
 // import StyledProvider from './lib/StyledProvider';
 // import PageLayout from './lib/PageLayout';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyle, theme } from '@/components/global/Theme';
+import { GlobalStyle, theme } from '@/components/common/Theme';
 import PageLayout from './lib/PageLayout';
 import LandingPage from '.';
 

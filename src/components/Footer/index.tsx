@@ -1,5 +1,5 @@
 import {  Footer as Wrapper, type StyledFooterProps } from './Footer';
-import { SmTxt } from '@/components/global/Text';
+import { SmTxt } from '@/components/common/Text';
 
 // import { type FooterComponent } from '@/interfaces/Component';
 

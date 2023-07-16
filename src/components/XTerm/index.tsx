@@ -1,25 +1,20 @@
 import { useRouter } from 'next/router';
 import {
-	type ChangeEvent,
-	type RefObject,
 	useState,
 	useCallback,
-	MutableRefObject,
-	SyntheticEvent,
-	FormEvent,
+	type ChangeEvent,
+	type FormEvent,
+	type MutableRefObject,
+	type SyntheticEvent,
 } from 'react';
-import {
-	AnyStyledComponent,
-	type DefaultTheme,
-	type StyledComponentProps,
-} from 'styled-components';
+import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
+
+import useResizeObserver from '@/hooks/useResizeObserver';
+import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
+import { BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
 
 import { type XTermComponent } from '@/interfaces/Component';
 import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
-import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
-import useResizeObserver from '@/hooks/useResizeObserver';
-
-import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/global/Button';
 
 type XTermState = XTermComponent;
 type XTermViewportState = ResizeObserverDimensions;
@@ -30,20 +25,18 @@ type XTermProps = StyledComponentProps<
 	string | number | symbol
 >;
 
-export default function XTerm(props: XTermProps) {
+export default function XTerm() {
 	const xtermState: XTermState = {
-		name: '/dev/null/tty0',
 		id: 'tty0',
+		name: '/dev/tty0',
 		prompt: '[visitor@bleek.dev(v0.7)->/tty0]/λ->',
-		isExec: null,
 		stdin: '',
 		stdio: '',
-		stderr: '',
+		stderr: null,
+		isExec: null,
 	};
 
 	const xtermViewportState: XTermViewportState = {
-		cols: 20,
-		rows: 20,
 		area: 20 * 20,
 	};
 
@@ -62,20 +55,7 @@ export default function XTerm(props: XTermProps) {
 			const currentWidth = Math.round(width);
 			const currentHeight = Math.round(height);
 
-			if (currentWidth < 481) {
-				setDimensions((prev) => ({
-					...prev,
-					width: currentWidth,
-					height: currentHeight,
-					top,
-					bottom,
-					left,
-					right,
-					x,
-					y,
-				}));
-			}
-			if (currentWidth < 1024 && currentWidth > 480) {
+			if (width < 1024 && width >= 481) {
 				setDimensions((prev) => ({
 					...prev,
 					cols: 60,
@@ -92,7 +72,7 @@ export default function XTerm(props: XTermProps) {
 				}));
 			}
 
-			if (currentWidth >= 1024) {
+			if (width >= 1024) {
 				setDimensions((prev) => ({
 					...prev,
 					cols: 80,
@@ -109,14 +89,32 @@ export default function XTerm(props: XTermProps) {
 				}));
 			}
 
+			if (width < 481) {
+				setDimensions((prev) => ({
+					...prev,
+					cols: 20,
+					rows: 20,
+					area: 20 * 20,
+					width: currentWidth,
+					height: currentHeight,
+					top,
+					bottom,
+					left,
+					right,
+					x,
+					y,
+				}));
+			}
+
 			console.warn('resizing:', currentWidth, currentHeight);
 			console.table(entry.borderBoxSize);
 			console.table(entry.devicePixelContentBoxSize);
 		},
+
 		[dimensions.width, dimensions.height]
 	);
 
-	const ref = useResizeObserver(handleResize) as MutableRefObject<HTMLFormElement>;
+	const ref = useResizeObserver(handleResize) as MutableRefObject<HTMLTextAreaElement>;
 
 	// eslint-disable-next-line no-console
 	// console.info({ dimensions });
@@ -131,7 +129,7 @@ export default function XTerm(props: XTermProps) {
 	};
 
 	return (
-		<XTForm ref={ref}>
+		<XTForm>
 			<XTBtns id="xt-btns">
 				<BtnClose
 					id="xt-close"
@@ -168,40 +166,37 @@ export default function XTerm(props: XTermProps) {
 					<code>Area: {area?.toString()} </code>
 				</span> */}
 			<XTCode>[#!/usr/bin/bleek]</XTCode>
-			<XTxtArea
-				id="xt-textarea"
-				name={xterm.name.toString()}
-				// value={null}
-				cols={dimensions.cols}
-				rows={dimensions.rows}
-				autoCapitalize="off"
-				autoCorrect="off"
-				spellCheck={false}
-				// placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
-				// eslint-disable-next-line no-console
-				onChange={handleChange}
-				onSubmit={(evt: FormEvent<HTMLTextAreaElement>) => {
-					console.info('xterm-txt submit capture', evt.target);
-					// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
-					setXterm((vals) => ({ ...vals, exec: true }));
-				}}
-				onClickCapture={(evt: SyntheticEvent<HTMLTextAreaElement>) => {
-					console.log({ onTouchMoveEvent: { ...evt } });
-					router.push('/home');
-				}}
-			></XTxtArea>
 			<XTLabel
-				htmlFor="xt-prompt"
+				htmlFor={xterm.id}
 				// eslint-disable-next-line no-console
 				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) =>
 					console.info('xterm-txt submit capture', evt.target)
 				}
 			>
+				<XTxtArea
+					ref={ref}
+					id={xterm.id}
+					value={xterm.stdin || xterm.stdio}
+					cols={dimensions?.cols}
+					rows={dimensions?.rows}
+					onChange={handleChange}
+					// placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
+					// eslint-disable-next-line no-console
+					// onSubmit={(evt: FormEvent<HTMLTextAreaElement>) => {
+					// 	console.info('xterm-txt submit capture', evt.target);
+					// 	// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
+					// 	setXterm((vals) => ({ ...vals, isExec: true }));
+					// }}
+					// onClickCapture={(evt: SyntheticEvent<HTMLTextAreaElement>) => {
+					// 	console.log({ onTouchMoveEvent: { ...evt } });
+					// 	router.push('/home');
+					// }}
+				></XTxtArea>
 				{/* {'[visitor@https://bleek.dev-$>'} */}
 				<XTCode>{xterm.prompt.toString()}</XTCode>
 				<XTInput
-					type="text"
 					id="xt-prompt"
+					type="text"
 					name="xt-prompt"
 					// value={xterm.name}
 

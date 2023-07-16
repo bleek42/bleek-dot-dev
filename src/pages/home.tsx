@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 
 import { useId } from 'react';
 
-// import { Main } from '@/components/global/Main';
+// import { Main } from '@/components/common/Main';
 import Section from '@/components/Section';
 import PageLayout from '@/components/PageLayout';
 

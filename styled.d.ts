@@ -1,38 +1,48 @@
 import 'styled-components';
 
 declare module 'styled-components' {
-  export interface CommonColors {
-    black?: string;
-    white?: string;
-  }
+   interface CommonColors {
+    readonly black?: string;
+     readonly white?: string;
+   }
 
-  export interface Colors extends CommonColors {
-    red: string;
-    orange: string;
-    blue: string;
-    cyan: string;
-    green: string;
-    drab: string;
-    steel: string;
-    tan: string;
-    gray: string;
-    teal: string;
-    neon: string;
-    yellow: string;
-    linear?: string;
-    radial?: string;
-  }
+   interface Colors extends CommonColors {
+     readonly red: string;
+     readonly orange: string;
+     readonly blue: string;
+     readonly cyan: string;
+     readonly green: string;
+     readonly drab: string;
+     readonly steel: string;
+     readonly tan: string;
+     readonly gray: string;
+     readonly teal: string;
+     readonly neon: string;
+     readonly yellow: string;
+     readonly linear?: string;
+     readonly radial?: string;
+   }
 
-  export interface DefaultTheme {
-    name: 'Default' | string;
-    fonts: string[];
-    borderRadius: string;
-    palette: {
-      common: CommonColors;
+   interface Breakpoints {
+     readonly phone: '480px';
+     readonly smallTab: '640px';
+     readonly laptop: '768px';
+     readonly fullDisplay: '1024px';
+     readonly largeDisplay: '1280px';
+   }
 
-      primary: Colors;
-      secondary: Colors;
-      tertiary: Colors;
-    };
-  }
+   export interface DefaultTheme {
+     name: 'Default' | string;
+     fonts: string[];
+     borderRadius: string;
+     breakpoints: Breakpoints;
+
+     palette: {
+       common: CommonColors;
+
+       primary: Colors;
+       secondary: Colors;
+       tertiary: Colors;
+     };
+   }
 }

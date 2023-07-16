@@ -1,7 +1,7 @@
 export interface ResizeObserverDimensions {
-  cols: number;
-  rows: number;
-  area: number;
+  cols?: number;
+  rows?: number;
+  area?: number;
   width?: number;
   height?: number;
   top?: number;

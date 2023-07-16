@@ -10,8 +10,9 @@ import {
 import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
+//@ts-expect-error
 export default class StyledDocument extends Document {
-	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+	static async getInitialProps(ctx: DocumentContext) {
 		const sheet = new ServerStyleSheet();
 		const originalRenderPage = ctx.renderPage;
 
@@ -22,35 +23,42 @@ export default class StyledDocument extends Document {
 						sheet.collectStyles(<App {...props} />),
 				});
 
-			const initialProps = await Document.getInitialProps(ctx);
-			console.log(initialProps.styles);
-			return {
-				styles: [sheet.getStyleElement()],
+			const initialProps: Awaited<DocumentInitialProps> =
+				await Document.getInitialProps(ctx);
+			console.log(initialProps);
+
+			const result: DocumentInitialProps = {
 				...initialProps,
+				styles: (
+					<>
+						{initialProps.styles}
+						{sheet.getStyleElement()}
+					</>
+				),
 			};
 
+			return result;
+		} catch (err: unknown) {
 			// eslint-disable-next-line prettier/prettier
-		} catch (err: any) {
-			console.error(err);
-			throw new Error(err ?? 'next styled doc error...');
+			if (err) throw err;
 		} finally {
+			// eslint-disable-next-line prettier/prettier
 			sheet.seal();
 		}
 	}
 	render() {
 		return (
-			<Html lang={'en_US'}>
+			<Html lang="en">
 				<Head />
-				<NextScript />
 				<body>
-					<Main />
+					<Main /> 
+					<NextScript />
 				</body>
 			</Html>
 		);
 	}
 }
 
-// 	// render() {
 
 // Document.defaultProps = {
 // 	title: 'bleekDotDev',

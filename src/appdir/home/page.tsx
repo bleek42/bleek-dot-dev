@@ -1,7 +1,7 @@
 // ? custom styled components
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
-import { Main } from '@/components/global/Main';
+import { Main } from '@/components/common/Main';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 

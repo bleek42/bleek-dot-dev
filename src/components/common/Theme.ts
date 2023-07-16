@@ -6,6 +6,14 @@ export const theme: DefaultTheme = {
   name: 'Default',
   borderRadius: '24% 16% / 16% 24%',
   fonts: ['Birdman', 'Oxanium', 'MonocraftNF'],
+  breakpoints: {
+    phone: '480px',
+    smallTab: '640px',
+    laptop: '768px',
+    fullDisplay: '1024px',
+    largeDisplay: '1280px',
+  },
+
   palette: {
     common: {
       black: 'rgb(0, 0, 0)',

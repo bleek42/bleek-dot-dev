@@ -3,9 +3,9 @@ import { type AnyStyledComponent } from 'styled-components';
 
 export interface Component {
   id?: Key | null;
-  className?: string | null;
-  name?: string | symbol;
-  title?: string | symbol;
+  // className?: string | null;
+  name?: string;
+  title?: string;
   description?: string | string[] | unknown;
   icon?: string | unknown;
   image?: Array<URL | string> | URL | string;
@@ -18,12 +18,21 @@ export interface Component {
     | unknown;
 }
 
+// type K = K extends keyof JSX.IntrinsicElements
+// styleProps: StyledComponentProps<
+//   K | AnyStyledComponent,
+//   DefaultTheme,
+//   object,
+//   string | number | symbol
+// styleProps: StyledComponentProps<'form' | 'input' | 'textarea', DefaultTheme, object, string | number | symbol>;
+// >; <'form' | 'input' | 'textarea'>
 export interface XTermComponent extends Component {
-  name: string | symbol;
-  prompt: string | symbol;
+  id: string | 'tty0';
+  name: string | '/dev/tty0';
+  prompt: '[visitor@bleek.dev(v0.9)]λ->>' | string | symbol;
+  isExec: boolean | null;
   stdin: string | null;
   stdio: string | null;
-  isExec: boolean | null;
   stderr: string | null;
 }
 

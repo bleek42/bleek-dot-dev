@@ -14,7 +14,7 @@ import {
 	ThemeConsumer,
 	AnyStyledComponent,
 } from 'styled-components';
-import { theme, GlobalStyle } from '@/components/global/Theme';
+import { theme, GlobalStyle } from '@/components/common/Theme';
 
 interface StyledChildrenProps {
 	children: AnyStyledComponent | AnyStyledComponent[] | ReactNode | ReactNode[] | null;

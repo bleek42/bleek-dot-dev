@@ -1,5 +1,5 @@
 import XTerm from '@/components/XTerm';
-import { Main } from '@/components/global/Main';
+import { Main } from '@/components/common/Main';
 
 import hero from '../public/brandon-mask.png';
 import { useId } from 'react';

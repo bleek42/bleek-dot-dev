@@ -2,7 +2,6 @@
 // import * as dotenv from 'dotenv';
 // import * as path from 'path';
 // import type { PatchedRequestInit } from 'graphql-request/dist/types';
-import type { Project, ImageAsset, ProjectQuery } from '@/interfaces/Project';
 
 import { useReducer, useEffect } from 'react';
 import { gql, request, type RequestDocument } from 'graphql-request';

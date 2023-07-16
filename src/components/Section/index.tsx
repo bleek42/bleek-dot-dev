@@ -7,7 +7,7 @@ import { type Key, useId } from 'react';
 
 import { type SectionComponent } from '@/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
-import { LgTxt, MdTxt, SmTxt } from '@/components/global/Text';
+import { LgTxt, MdTxt, SmTxt } from '@/components/common/Text';
 
 type SectionProps = SectionComponent;
 

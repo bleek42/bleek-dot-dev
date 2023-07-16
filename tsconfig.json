@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"strict": true,
-		"target": "ES6",
+		"target": "ESNext",
 		"lib": [
 			"DOM",
 			"DOM.Iterable",
@@ -26,14 +26,18 @@
 			"@/components/*": [
 				"src/components/*"
 			],
-			"@/pages/*": [
-				"src/pages/*"
+			"@/layouts": [
+				"src/appdir/layouts/*"
 			],
+
 			"@/graphql/*": [
-				"src/types/graphql/*"
+				"src/pages/api/graphql/*"
 			],
 			"@/interfaces/*": [
 				"src/types/interfaces/*"
+			],
+			"@/props/*": [
+				"src/types/props/*"
 			],
 			"@/hooks/*": [
 				"src/hooks/*"
@@ -50,16 +54,18 @@
 			// "@/app/*": [
 			// 	"src/app/*"
 			// ],
-			// "@/layouts": [
-			// 	"src/appdir/layouts/*"
-			// ],
-			// "@/lib/*": [
-			// 	"src/appdir/lib/*"
-			// ],
 		},
 		"plugins": [
 			{
 				"name": "next"
+			},
+			{
+				"name": "@styled/typescript-styled-plugin",
+				"tags": [
+					"styled",
+					"css",
+					"sty"
+				]
 			}
 		]
 	},
@@ -80,7 +86,7 @@
 		"node_modules/",
 		"build/",
 		".next/",
-		"src/appdir"
+		"src/appdir/"
 	],
 	"ts-node": {
 		"esm": true,

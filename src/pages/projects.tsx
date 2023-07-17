@@ -1,9 +1,9 @@
-import { Fragment, useId } from 'react';
+import { Fragment, type Key } from 'react';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
+import { type AllProjectsWhereQuery } from '@/graphql/queries/AllProjectsWhere.operation';
+
 import { hygraphClient } from '@/utils/gql-client';
-import { AllProjectsQuery } from '@/graphql/queries/AllProjects.operation';
-import PageLayout from '@/pages/lib/PageLayout';
 import Section from '@/components/Section';
 
 // import { createGraphQLClientRequest } from '@/utils/gql-client';
@@ -17,23 +17,13 @@ import Section from '@/components/Section';
 // 	TypedDocumentString,
 // } from '@/graphql/gen/preset/graphql';
 
-// import screenshot1 from '../../images/quiz-app.png';
-// import screenshot2 from '../../images/quiz-app2.png';
-// import screenshot3 from '../../images/bookmarks-app.png';
-// import screenshot4 from '../../images/covid19.jpg';
-// import screenshot5 from '../../images/sirilla-learning.jpg';
-// import screenshot6 from '../../images/trouvaille-1.jpg';
-// import screenshot7 from '../../images/trouvaille-2.jpg';
-
 export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
-	const pageId = useId();
-	console.log(props);
 	return (
-		<Fragment id={pageId}>
+		<Fragment>
 			{props.result.projects.length >= 1 &&
 				props.result.projects.map((item) => (
 					<Section
-						key={item.id}
+						key={item.id as Key}
 						id={item.title}
 						name={item.title}
 						description={item.description}
@@ -41,81 +31,24 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 						icon={null}
 					/>
 				))}
-
-			{/* <Section
-				id="projects-sect-2"
-				name="projects_sect_2"
-				content="My second web application is a Bookmarks application, that also
-					utilizes jQuery and a public API that makes post, update, and delete
-					requests. It also has an expand/collapse function to view details of
-					individual bookmarks, validates user entry forms when adding a new
-					bookmark, and a rating function from 1 to 5 that allows you to filter
-					by your bookmarks rating. The API functionality allows the user to
-					access them from any device, as any bookmarks app should!"
-				icon={null}
-			/>
-			<Section
-				id="projects-sect-3"
-				name="projects_sect_3"
-				content="Furthering my skills to full-stack programming with more modern
-					JavaScript tools, my third effort is an anonymous message board on the
-					subject of the COVID-19 outbreak in the United States. Using React.js
-					for client-side and Node.js for server-side, I created a small
-					platform for users to discuss & share their experiences, hardships,
-					triumphs, and whatever else they see relevant by the state or US
-					territory they reside in during the pandemic. Users are prompted to
-					provide a name or alias they choose, select 1 of 54
-					states/territories, and their most recent occupation. From there, they
-					are directed to the state they can leave their thoughts, see what
-					others commented, and view the current total cases and fatalities
-					relative to that state!"
-				icon={null}
-			/>
-			<Section
-				id="projects-sect-4"
-				name="projects_sect_4"
-				content="My next full-stack effort using React and Node explores the learning
-					technique known as spaced-repetition. Spaced-repetition is exactly how
-					it sounds: repeating something in timed intervals, in an effort to
-					commit to memory new concepts and abilities one wants to learn.
-					Highlighted features include a linked-list data structure &
-					accompanying algoritihm that serves as a score multiplier, 256-bit
-					encryption with JSON WebToken for secure user registration & login,
-					and a modern user interface with SASS style sheets. Please note that
-					this was a joint effort between a fellow student and I."
-				icon={null}
-			/>
-			<Section
-				id="projects-sect-5"
-				name="projects_sect_5"
-				content="My latest project is a travel planner application with a React & SASS
-					user-interface, Google Maps integration, and a secure Node server that
-					verifies & sends emails. As a user, you can plan customizable
-					cross-country trips according to your interests. Users select their
-					origin, destination, and categories (landmarks, recreation, etc.),
-					providing places you can visit along your way. Other features include
-					secure registration & login, email verification & password reset with
-					Nodemailer, and an animated loading screen."
-				icon={null}
-			/> */}
 		</Fragment>
 	);
 }
 
 export const getStaticProps: GetStaticProps<{
-	result: AllProjectsQuery;
+	result: AllProjectsWhereQuery;
 }> = async () => {
-	console.log(process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN);
+	console.log(process.env.NEXT_PUBLIC_HYGRAPH_CDN);
 	const headers: Record<string | number | symbol, any> = {
 		credentials: 'include',
 		cache: 'force-cache',
 		mode: 'cors',
 		headers: {
-			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH_TOKEN}`,
+			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
 		},
 	};
 
-	const result = await hygraphClient.AllProjects(
+	const result = await hygraphClient.AllProjectsWhere(
 		{
 			'stage': 'PUBLISHED',
 			'orderBy': 'createdAt_ASC',
@@ -129,7 +62,7 @@ export const getStaticProps: GetStaticProps<{
 			result,
 		},
 
-		revalidate: 3000,
+		revalidate: 60000,
 	};
 };
 
@@ -145,6 +78,62 @@ export const getStaticProps: GetStaticProps<{
 // <Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
 // <Header id={`projects-${pageId}`} name="About" content="" icon={null} />
 // {
+// <Section
+// 	id="projects-sect-2"
+// 	name="projects_sect_2"
+// 	content="My second web application is a Bookmarks application, that also
+// 		utilizes jQuery and a public API that makes post, update, and delete
+// 		requests. It also has an expand/collapse function to view details of
+// 		individual bookmarks, validates user entry forms when adding a new
+// 		bookmark, and a rating function from 1 to 5 that allows you to filter
+// 		by your bookmarks rating. The API functionality allows the user to
+// 		access them from any device, as any bookmarks app should!"
+// 	icon={null}
+// />
+// <Section
+// 	id="projects-sect-3"
+// 	name="projects_sect_3"
+// 	content="Furthering my skills to full-stack programming with more modern
+// 		JavaScript tools, my third effort is an anonymous message board on the
+// 		subject of the COVID-19 outbreak in the United States. Using React.js
+// 		for client-side and Node.js for server-side, I created a small
+// 		platform for users to discuss & share their experiences, hardships,
+// 		triumphs, and whatever else they see relevant by the state or US
+// 		territory they reside in during the pandemic. Users are prompted to
+// 		provide a name or alias they choose, select 1 of 54
+// 		states/territories, and their most recent occupation. From there, they
+// 		are directed to the state they can leave their thoughts, see what
+// 		others commented, and view the current total cases and fatalities
+// 		relative to that state!"
+// 	icon={null}
+// />
+// <Section
+// 	id="projects-sect-4"
+// 	name="projects_sect_4"
+// 	content="My next full-stack effort using React and Node explores the learning
+// 		technique known as spaced-repetition. Spaced-repetition is exactly how
+// 		it sounds: repeating something in timed intervals, in an effort to
+// 		commit to memory new concepts and abilities one wants to learn.
+// 		Highlighted features include a linked-list data structure &
+// 		accompanying algoritihm that serves as a score multiplier, 256-bit
+// 		encryption with JSON WebToken for secure user registration & login,
+// 		and a modern user interface with SASS style sheets. Please note that
+// 		this was a joint effort between a fellow student and I."
+// 	icon={null}
+// />
+// <Section
+// 	id="projects-sect-5"
+// 	name="projects_sect_5"
+// 	content="My latest project is a travel planner application with a React & SASS
+// 		user-interface, Google Maps integration, and a secure Node server that
+// 		verifies & sends emails. As a user, you can plan customizable
+// 		cross-country trips according to your interests. Users select their
+// 		origin, destination, and categories (landmarks, recreation, etc.),
+// 		providing places you can visit along your way. Other features include
+// 		secure registration & login, email verification & password reset with
+// 		Nodemailer, and an animated loading screen."
+// 	icon={null}
+// />
 /* <section
 				className="project"
 				id="jquery-quiz">

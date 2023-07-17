@@ -10,16 +10,17 @@ import { LgTxt, MdTxt } from '@/components/common/Text';
 import Navbar from '@/components/Navbar';
 import { type HeaderComponent } from '@/interfaces/Component';
 
-type HeaderProps = HeaderComponent &
+type HeaderProps = HeaderComponent;
+/* &
 	StyledComponentProps<
 		'header',
 		DefaultTheme,
 		HeaderComponent,
 		string | number | symbol
-	>;
+	>; */
 
 export default function Header(props: HeaderProps) {
-	console.log('Header component:', props.children);
+	console.log('Header component:', { props });
 	const pageId = useId();
 
 	return (
@@ -31,9 +32,9 @@ export default function Header(props: HeaderProps) {
 				bleekDotDev
 			</MdTxt>
 			<MdTxt font="Birdman" color="red" shadow="steel">
-				{props?.title ?? 'untitled'}
+				{props.title ?? 'untitled'}
 			</MdTxt>
-			{props.children ?? <Navbar />}
+			<Navbar />
 		</Wrapper>
 	);
 }

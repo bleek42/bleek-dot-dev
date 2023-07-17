@@ -1,22 +1,23 @@
-import * as Types from '../hygraph-types';
+import * as Types from './gen/hygraph-types';
 
 import { GraphQLClient } from 'graphql-request';
 import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
+import gql from 'graphql-tag';
 export type UserFieldsFragment = {
   __typename?: 'User';
-  id: string | number;
+  id: string | number | symbol | unknown;
   name: string;
   kind: Types.UserKind;
   isActive: boolean;
   picture?: string | null;
-  createdAt: Date | string;
-  updatedAt: Date | string;
+  createdAt: Date | string | symbol | unknown;
+  updatedAt: Date | string | symbol | unknown;
   stage: Types.Stage;
 };
 
 export type ImageFieldsFragment = {
   __typename?: 'Asset';
-  id: string | number;
+  id: string | number | symbol | unknown;
   url: string;
   handle: string;
   fileName: string;
@@ -24,29 +25,27 @@ export type ImageFieldsFragment = {
   width?: number | null;
   height?: number | null;
   size?: number | null;
-  createdAt: Date | string;
-  updatedAt: Date | string;
+  createdAt: Date | string | symbol | unknown;
+  updatedAt: Date | string | symbol | unknown;
   stage: Types.Stage;
   locale: Types.Locale;
 };
 
 export type ProjectFieldsFragment = {
   __typename?: 'Project';
-  id: string | number;
+  id: string | number | symbol | unknown;
   title: string;
   description: string;
   active: boolean;
   link: string;
-  version: number;
+  techStack?: string[] | string | symbol | unknown | null;
   sourceCode: Array<string>;
-  techStack?: string[] | unknown | null;
-  createdAt: Date | string;
-  updatedAt: Date | string;
+  version: number;
   stage: Types.Stage;
   locale: Types.Locale;
   screenShots: Array<{
     __typename?: 'Asset';
-    id: string | number;
+    id: string | number | symbol | unknown;
     url: string;
     handle: string;
     fileName: string;
@@ -54,60 +53,59 @@ export type ProjectFieldsFragment = {
     width?: number | null;
     height?: number | null;
     size?: number | null;
-    createdAt: Date | string;
-    updatedAt: Date | string;
+    createdAt: Date | string | symbol | unknown;
+    updatedAt: Date | string | symbol | unknown;
     stage: Types.Stage;
     locale: Types.Locale;
   }>;
 };
 
-export const UserFieldsFragmentDoc = `
-    fragment UserFields on User {
-  id
-  name
-  kind
-  isActive
-  picture
-  createdAt
-  updatedAt
-  stage
-}
-    `;
-export const ImageFieldsFragmentDoc = `
-    fragment ImageFields on Asset {
-  id
-  url
-  handle
-  fileName
-  mimeType
-  width
-  height
-  size
-  createdAt
-  updatedAt
-  stage
-  locale
-}
-    `;
-export const ProjectFieldsFragmentDoc = `
-    fragment ProjectFields on Project {
-  id
-  title
-  description
-  active
-  link
-  version
-  sourceCode
-  techStack
-  screenShots {
-    ...ImageFields
+export const UserFieldsFragmentDoc = gql`
+  fragment UserFields on User {
+    id
+    name
+    kind
+    isActive
+    picture
+    createdAt
+    updatedAt
+    stage
   }
-  createdAt
-  updatedAt
-  stage
-  locale
-}
-    ${ImageFieldsFragmentDoc}`;
+`;
+export const ImageFieldsFragmentDoc = gql`
+  fragment ImageFields on Asset {
+    id
+    url
+    handle
+    fileName
+    mimeType
+    width
+    height
+    size
+    createdAt
+    updatedAt
+    stage
+    locale
+  }
+`;
+export const ProjectFieldsFragmentDoc = gql`
+  fragment ProjectFields on Project {
+    id
+    title
+    description
+    active
+    link
+    techStack
+    sourceCode
+    version
+    stage
+    locale
+    screenShots {
+      ...ImageFields
+    }
+  }
+  ${ImageFieldsFragmentDoc}
+`;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,

@@ -1,11 +1,10 @@
-import { useRef } from 'react';
-import { type AppProps } from 'next/app';
+import { Fragment, useId } from 'react';
 
+import { type LayoutComponent, type MetaComponent } from '@/interfaces/Component';
+import { Main } from '@/components/common/Main';
 import Meta from '@/components/Meta';
 import Header from '@/components/Header';
-import { Main } from '@/components/common/Main';
 import Footer from '@/components/Footer';
-import { type LayoutComponent, type MetaComponent } from '@/interfaces/Component';
 
 type MetaProps = MetaComponent;
 
@@ -20,12 +19,13 @@ const defaultMetaProps: MetaProps = {
 };
 
 export default function PageLayout(props: LayoutComponent) {
+	const pageId = useId();
 	return (
-		<>
+		<Fragment>
 			<Meta {...defaultMetaProps} />
-			<Header />
+			<Header id={pageId} />
 			<Main>{props.children}</Main>
 			<Footer />
-		</>
+		</Fragment>
 	);
 }

@@ -14,39 +14,33 @@ const config: CodegenConfig = {
   overwrite: true,
   ignoreNoDocuments: false,
 
-  schema: 'schema.json',
+  schema: [process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL, 'schema.json'],
   documents: [
     // 'ast.gql',
     // 'src/types/graphql/ast.gql',
     'src/types/graphql/typeDefs.gql',
+    'src/types/graphql/fragments.gql',
     'src/types/graphql/queries/*.gql',
     'src/types/graphql/mutations/*.gql',
-    '!src/types/graphql/gen/preset/*',
-    '!src/types/graphql/gen/ops/*',
+    '!src/types/graphql/*.ts',
   ],
 
   generates: {
-    // 'schema.json': {
-    //   plugins: ['introspection'],
-    //   config: {
-    //     schemaDescription: true,
-    //   },
-    //   schema: {
-    //     'https://api-us-east-1.hygraph.com/v2/cl2jezykc0li901yx24p50f8f/master': {
-    //       headers: {
-    //         'Authorization': `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}`,
-    //       },
-    //     },
-    //   },
-    // },
+    'schema.json': {
+      plugins: ['introspection'],
+      config: {
+        descriptions: true,
+        schemaDescription: true,
+      },
+    },
 
-    // 'src/types/graphql/typeDefs.gql': {
-    //   plugins: ['schema-ast'],
-    //   config: {
-    //     commentDescriptions: true,
-    //     includeIntrospectionTypes: true,
-    //   },
-    // },
+    'src/types/graphql/typeDefs.gql': {
+      plugins: ['schema-ast'],
+      config: {
+        commentDescriptions: true,
+        includeIntrospectionTypes: true,
+      },
+    },
 
     'src/types/graphql/gen/hygraph-types.ts': {
       plugins: ['typescript'],
@@ -58,13 +52,11 @@ const config: CodegenConfig = {
         useImplementingTypes: true,
         declarationKind: {
           interface: 'interface',
-          type: 'interface',
-          mutation: 'interface',
         },
       },
     },
 
-    'src/types/graphql/gen/ops/': {
+    'src/types/graphql/gen/': {
       plugins: ['typescript-operations', 'typescript-graphql-request'],
       preset: 'near-operation-file',
       presetConfig: {
@@ -72,27 +64,16 @@ const config: CodegenConfig = {
         baseTypesPath: './hygraph-types.ts',
       },
     },
-
-    'src/types/graphql/gen/preset/': {
-      preset: 'client-preset',
-      presetConfig: {
-        fragmentMasking: { unmaskFunctionName: 'createFragment' },
-      },
-    },
   },
   config: {
-    documentMode: 'string',
-    defaultScalar: 'unknown',
+    defaultScalar: 'string | symbol | unknown',
     scalars: {
-      ID: 'string | number',
-      Date: 'Date | string',
-      DateTime: 'Date | string',
-      Long: 'number | unknown',
-      Hex: 'string | unknown',
-      Json: 'string[] | unknown',
-      RGBAHue: 'string',
-      RGBATransparency: 'string',
-      RichTextAST: 'string[] | unknown',
+      ID: 'string | number | symbol | unknown',
+      Date: 'Date | string | symbol | unknown',
+      DateTime: 'Date | string | symbol | unknown',
+      Long: 'number | BigInt | string | symbol | unknown',
+      Json: 'string[] | string | symbol | unknown',
+      RichTextAST: 'string[] | string | symbol | unknown',
     },
   },
   // hooks: { afterAllFileWrite: ['prettier --write'] },

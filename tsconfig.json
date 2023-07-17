@@ -21,23 +21,22 @@
 		"allowUmdGlobalAccess": true,
 		"allowJs": true,
 		"skipLibCheck": true,
-		"baseUrl": ".",
+		"baseUrl": "./",
 		"paths": {
+			"@/pages/*": [
+				"src/pages/*"
+			],
 			"@/components/*": [
 				"src/components/*"
 			],
-			"@/layouts": [
-				"src/appdir/layouts/*"
-			],
-
-			"@/graphql/*": [
-				"src/pages/api/graphql/*"
+			"@/common/*": [
+				"src/components/common/*"
 			],
 			"@/interfaces/*": [
 				"src/types/interfaces/*"
 			],
-			"@/props/*": [
-				"src/types/props/*"
+			"@/graphql/*": [
+				"src/types/graphql/*"
 			],
 			"@/hooks/*": [
 				"src/hooks/*"
@@ -51,6 +50,9 @@
 			"@/fonts/*": [
 				"public/fonts/*"
 			]
+			// "@/layouts": [
+			// 	"src/appdir/layouts/*"
+			// ],
 			// "@/app/*": [
 			// 	"src/app/*"
 			// ],
@@ -80,7 +82,6 @@
 		"node-env.d.ts",
 		"next.config.js",
 		"public/**/*",
-		".next/types/**/*.ts"
 	],
 	"exclude": [
 		"node_modules/",

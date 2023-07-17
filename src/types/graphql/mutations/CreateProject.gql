@@ -1,0 +1,30 @@
+mutation CreateProject($input: ProjectCreateInput!, $stage: Stage = PUBLISHED, $first: Int = 10) {
+	createProject(data: $input) {
+		id
+		title
+		active
+		description
+		link
+		active
+		sourceCode
+		techStack
+		version
+		stage
+		locale
+
+		screenShots(first: $first, forceParentLocale: true) {
+			id
+			url
+			handle
+			fileName
+			mimeType
+			width
+			height
+			size
+			stage
+			locale
+		}
+	}
+}
+
+

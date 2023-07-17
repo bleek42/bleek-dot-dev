@@ -6,10 +6,10 @@ import { type RequestDocument } from 'graphql-request';
 import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
 
 import { GraphQLClient } from 'graphql-request';
-import { getSdk } from '@/graphql/queries/AllProjects.operation.ts';
+import { getSdk } from '@/graphql/queries/AllProjectsWhere.operation';
 
 const graphQLClient: GraphQLClient = new GraphQLClient(
-  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL}`
+  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`
 );
 
 

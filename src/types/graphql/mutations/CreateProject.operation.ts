@@ -1,34 +1,31 @@
-import * as Types from '../hygraph-types';
+import * as Types from '../gen/hygraph-types';
 
 import { GraphQLClient } from 'graphql-request';
 import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
-import {
-  ProjectFieldsFragmentDoc,
-  ImageFieldsFragmentDoc,
-} from '../queries/fragments.operation';
+import gql from 'graphql-tag';
 export type CreateProjectMutationVariables = Types.Exact<{
   input: Types.ProjectCreateInput;
+  stage?: Types.InputMaybe<Types.Stage>;
+  first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
 }>;
 
 export type CreateProjectMutation = {
   __typename?: 'Mutation';
   createProject?: {
     __typename?: 'Project';
-    id: string | number;
+    id: string | number | symbol | unknown;
     title: string;
-    description: string;
     active: boolean;
+    description: string;
     link: string;
-    version: number;
     sourceCode: Array<string>;
-    techStack?: string[] | unknown | null;
-    createdAt: Date | string;
-    updatedAt: Date | string;
+    techStack?: string[] | string | symbol | unknown | null;
+    version: number;
     stage: Types.Stage;
     locale: Types.Locale;
     screenShots: Array<{
       __typename?: 'Asset';
-      id: string | number;
+      id: string | number | symbol | unknown;
       url: string;
       handle: string;
       fileName: string;
@@ -36,25 +33,45 @@ export type CreateProjectMutation = {
       width?: number | null;
       height?: number | null;
       size?: number | null;
-      createdAt: Date | string;
-      updatedAt: Date | string;
       stage: Types.Stage;
       locale: Types.Locale;
     }>;
   } | null;
 };
 
-export const CreateProjectDocument = `
-    mutation CreateProject($input: ProjectCreateInput!) {
-  createProject(data: $input) {
-    ...ProjectFields
-    screenShots {
-      ...ImageFields
+export const CreateProjectDocument = gql`
+  mutation CreateProject(
+    $input: ProjectCreateInput!
+    $stage: Stage = PUBLISHED
+    $first: Int = 10
+  ) {
+    createProject(data: $input) {
+      id
+      title
+      active
+      description
+      link
+      active
+      sourceCode
+      techStack
+      version
+      stage
+      locale
+      screenShots(first: $first, forceParentLocale: true) {
+        id
+        url
+        handle
+        fileName
+        mimeType
+        width
+        height
+        size
+        stage
+        locale
+      }
     }
   }
-}
-    ${ProjectFieldsFragmentDoc}
-${ImageFieldsFragmentDoc}`;
+`;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,

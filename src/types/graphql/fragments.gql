@@ -30,14 +30,13 @@ fragment ProjectFields on Project {
 	description
 	active
 	link
-	version
-	sourceCode
 	techStack
+	sourceCode
+	version
+	stage
+	locale
+
 	screenShots {
 		...ImageFields
 	}
-	createdAt
-	updatedAt
-	stage
-	locale
 }

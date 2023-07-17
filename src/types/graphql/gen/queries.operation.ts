@@ -1,4 +1,4 @@
-import * as Types from '../hygraph-types';
+import * as Types from './preset/hygraph-types';
 
 import { GraphQLClient } from 'graphql-request';
 import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';

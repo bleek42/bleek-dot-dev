@@ -5,20 +5,25 @@ import PageLayout from '@/pages/lib/PageLayout';
 import Section from '@/components/Section';
 
 export default function Contact() {
-	// const { profile, loading, error, msg } = useRequest();
-	const pageId = useId();
+	// const { profile, loading, error, msg } = useRequest()
 
 	const linkedInIcon = ' \uf08c ';
 	const commentIcon = ' \udb80\udd7b ';
 	const githubIcon = ' \uf092 ';
 
-	return <Section name="Email" description={''} content={''} icon={commentIcon} />;
+	return (
+		<Section
+			name="Email"
+			description={'contact section description'}
+			content={'contact section content'}
+			icon={commentIcon}
+		/>
+	);
 }
 
-{
 	/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */
-}
-{
+
+
 	/* {loading && (
 				<div className="loading">
 					<progress>loading...</progress>
@@ -35,7 +40,7 @@ export default function Contact() {
 		<PageLayout>
 		</PageLayout>
 			)} */
-}
+
 /* <Footer id={`contact-footer-${pageId}`} name="Contact" icon={null} /> */
 // }
 // {
@@ -68,9 +73,7 @@ export default function Contact() {
 				)}
 				{error && <p>Error fetching profile data: {msg.toString()}</p>}
 			</section> */
-// }
 
-// {
 /* <header>
 				<h4>{<VscCommentDiscussion />} Contact</h4>
 				<p>
@@ -80,4 +83,3 @@ export default function Contact() {
 					LinkedIn or GitHub.
 				</p>
 			</header> */
-// }

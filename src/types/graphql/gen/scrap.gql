@@ -1,24 +1,3 @@
-query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage, $first: Int = 10) {
-	project(where: $where, stage: $stage) {
-		id
-		title
-		link
-		description
-		version
-		active
-		sourceCode
-		techStack
-		createdAt
-		updatedAt
-		stage
-		locale
-
-		screenShots(first: $first) {
-			...ImageFields
-		}
-	}
-}
-
 # query UserWhereUnique($where: ProjectWhereUniqueInput!, $first: Int = 10) {
 # 	user(where: $where, stage: $stage, locale: $locale) {
 # 		...UserFields

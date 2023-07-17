@@ -1,0 +1,33 @@
+query AllProjectsWhere(
+	$where: ProjectWhereInput
+	$stage: Stage = PUBLISHED
+	$orderBy: ProjectOrderByInput = active_ASC
+	$first: Int = 20
+	$locales: [Locale!] = [en]
+) {
+	projects(where: $where, stage: $stage, orderBy: $orderBy, first: $first, locales: $locales) {
+		id
+		title
+		active
+		link
+		description
+		version
+		sourceCode
+		techStack
+		stage
+		locale
+
+		screenShots(first: $first, forceParentLocale: true) {
+			id
+			url
+			handle
+			fileName
+			mimeType
+			width
+			height
+			size
+			stage
+			locale
+		}
+	}
+}

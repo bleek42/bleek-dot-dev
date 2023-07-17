@@ -1,31 +1,33 @@
-import * as Types from '../hygraph-types';
+import * as Types from '../gen/hygraph-types';
 
 import { GraphQLClient } from 'graphql-request';
 import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
-export type AllProjectsQueryVariables = Types.Exact<{
+import gql from 'graphql-tag';
+export type AllProjectsWhereQueryVariables = Types.Exact<{
+  where?: Types.InputMaybe<Types.ProjectWhereInput>;
   stage?: Types.InputMaybe<Types.Stage>;
   orderBy?: Types.InputMaybe<Types.ProjectOrderByInput>;
+  first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  locales?: Types.InputMaybe<Array<Types.Locale> | Types.Locale>;
 }>;
 
-export type AllProjectsQuery = {
+export type AllProjectsWhereQuery = {
   __typename?: 'Query';
   projects: Array<{
     __typename?: 'Project';
-    id: string | number;
+    id: string | number | symbol | unknown;
     title: string;
+    active: boolean;
     link: string;
     description: string;
     version: number;
-    active: boolean;
     sourceCode: Array<string>;
-    techStack?: string[] | unknown | null;
-    createdAt: Date | string;
-    updatedAt: Date | string;
+    techStack?: string[] | string | symbol | unknown | null;
     stage: Types.Stage;
     locale: Types.Locale;
     screenShots: Array<{
       __typename?: 'Asset';
-      id: string | number;
+      id: string | number | symbol | unknown;
       url: string;
       handle: string;
       fileName: string;
@@ -33,46 +35,52 @@ export type AllProjectsQuery = {
       width?: number | null;
       height?: number | null;
       size?: number | null;
-      createdAt: Date | string;
-      updatedAt: Date | string;
       stage: Types.Stage;
       locale: Types.Locale;
     }>;
   }>;
 };
 
-export const AllProjectsDocument = `
-    query AllProjects($stage: Stage = PUBLISHED, $orderBy: ProjectOrderByInput = createdAt_ASC) {
-  projects(stage: $stage, orderBy: $orderBy) {
-    id
-    title
-    link
-    description
-    version
-    active
-    sourceCode
-    techStack
-    createdAt
-    updatedAt
-    stage
-    locale
-    screenShots {
+export const AllProjectsWhereDocument = gql`
+  query AllProjectsWhere(
+    $where: ProjectWhereInput
+    $stage: Stage = PUBLISHED
+    $orderBy: ProjectOrderByInput = active_ASC
+    $first: Int = 20
+    $locales: [Locale!] = [en]
+  ) {
+    projects(
+      where: $where
+      stage: $stage
+      orderBy: $orderBy
+      first: $first
+      locales: $locales
+    ) {
       id
-      url
-      handle
-      fileName
-      mimeType
-      width
-      height
-      size
-      createdAt
-      updatedAt
+      title
+      active
+      link
+      description
+      version
+      sourceCode
+      techStack
       stage
       locale
+      screenShots(first: $first, forceParentLocale: true) {
+        id
+        url
+        handle
+        fileName
+        mimeType
+        width
+        height
+        size
+        stage
+        locale
+      }
     }
   }
-}
-    `;
+`;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,
@@ -88,17 +96,17 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
-    AllProjects(
-      variables?: AllProjectsQueryVariables,
+    AllProjectsWhere(
+      variables?: AllProjectsWhereQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders
-    ): Promise<AllProjectsQuery> {
+    ): Promise<AllProjectsWhereQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<AllProjectsQuery>(AllProjectsDocument, variables, {
+          client.request<AllProjectsWhereQuery>(AllProjectsWhereDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'AllProjects',
+        'AllProjectsWhere',
         'query'
       );
     },

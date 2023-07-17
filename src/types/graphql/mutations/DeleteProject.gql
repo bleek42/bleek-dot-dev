@@ -1,0 +1,16 @@
+ mutation DeleteProject($where: ProjectWhereUniqueInput!) {
+ 	deleteProject(where: $where) {
+ 		id
+		title
+		active
+		link
+		description
+		techStack
+		sourceCode
+		version
+		createdAt
+		updatedAt
+		stage
+		locale
+ 	}
+ }

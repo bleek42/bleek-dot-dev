@@ -139,7 +139,7 @@ export default function XTerm() {
 						console.info('xterm-close clicked', evt.target)
 					}
 				>
-					{'[\uf00d]'}
+					{'[ \uf00d ]'}
 				</BtnClose>
 				<BtnMax
 					id="xt-maxmz"
@@ -149,7 +149,7 @@ export default function XTerm() {
 						console.info('xterm-maxmz clicked', evt.target)
 					}
 				>
-					{'[\ueb95]'}
+					{'[ \ueb95 ]'}
 				</BtnMax>
 				<BtnMin
 					id="xt-minmz"
@@ -159,13 +159,13 @@ export default function XTerm() {
 						console.info('xterm-minmz clicked', evt.target)
 					}
 				>
-					{'[ \uf2d1 ]'}
+					{'[ \uf2d1  ]'}
 				</BtnMin>
 			</XTBtns>
 			{/* <span>
 					<code>Area: {area?.toString()} </code>
 				</span> */}
-			<XTCode>[#!/usr/bin/bleek]</XTCode>
+			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
 			<XTLabel
 				htmlFor={xterm.id}
 				// eslint-disable-next-line no-console
@@ -177,8 +177,7 @@ export default function XTerm() {
 					ref={ref}
 					id={xterm.id}
 					value={xterm.stdin || xterm.stdio}
-					cols={dimensions?.cols}
-					rows={dimensions?.rows}
+					
 					onChange={handleChange}
 					// placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
 					// eslint-disable-next-line no-console
@@ -191,8 +190,9 @@ export default function XTerm() {
 					// 	console.log({ onTouchMoveEvent: { ...evt } });
 					// 	router.push('/home');
 					// }}
-				></XTxtArea>
-				{/* {'[visitor@https://bleek.dev-$>'} */}
+				>
+
+				</XTxtArea>
 				<XTCode>{xterm.prompt.toString()}</XTCode>
 				<XTInput
 					id="xt-prompt"
@@ -203,6 +203,7 @@ export default function XTerm() {
 					onChange={handleChange}
 					placeholder={'press enter to continue'}
 				/>
+				{/* {'[visitor@https://bleek.dev-$>'} */}
 			</XTLabel>
 		</XTForm>
 	);

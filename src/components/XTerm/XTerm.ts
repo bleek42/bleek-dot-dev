@@ -7,10 +7,9 @@ import styled, {
 } from 'styled-components';
 
 export const XTForm = styled.form.attrs((props) => ({
-  id: props.id || 'tty0',
-  name: props.name || 'xterm',
+  id: props.id || 'xt-form',
+  name: props.name || 'xt-form',
 }))`
-
   /* align-items: center; */
   box-shadow: ${(props) => props.theme.palette.primary.steel} 3em 3em;
   border: 2px solid blue;
@@ -22,8 +21,8 @@ export const XTForm = styled.form.attrs((props) => ({
 
 export const XTLabel = styled.label.attrs((props) => ({
   htmlFor: props.htmlFor || 'labeled-inputs',
+  form: props.form || 'xt-form',
 }))`
-
   display: flex;
   flex-flow: row wrap;
 
@@ -48,6 +47,7 @@ export const XTInput = styled.input.attrs((props) => ({
 }))`
   background-color: rgb(0, 0, 0);
   color: ${(props) => props.theme.palette.secondary.green};
+  flex: 2 1 40vh;
   font-size: 18px;
   padding: 4px 4px;
   font-family: ${(props) => props.theme.fonts.at(1)};
@@ -59,11 +59,8 @@ export const XTBtns = styled.label.attrs((props) => ({
 }))`
   display: flex;
   flex-flow: row nowrap;
-
-  flex: 2 2 50px;  
   margin: 2px 4px 4px 2px;
   padding: 8px 4px 4px 8px;
-  /* width: 100vh; */
   font-family: ${(props) => props.theme.fonts.at(2)};
   color: ${(props) => props.theme.palette.secondary.gray};
   background-color: ${(props) => props.theme.palette.secondary.steel};
@@ -73,8 +70,8 @@ export const XTBtns = styled.label.attrs((props) => ({
 export const XTxtArea = styled.textarea.attrs((props) => ({
   id: props.id,
   name: props.name,
-  cols: props.cols || 20,
-  rows: props.rows || 20,
+  cols: props?.cols,
+  rows: props?.rows,
   autoCapitalize: props.autoCapitalize || false,
   autoCorrect: props.spellCheck || false,
   spellCheck: props.spellCheck || false,
@@ -85,10 +82,11 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   font-family: ${(props) => props.theme.fonts.at(2)};
   color: ${(props) => props.theme.palette.primary.orange};
   font-size: 18px;
-  height: 60vh;
+  flex: 1 3 90vh;
+  height: 90vh;
 
   &:hover {
-    border: 2px solid rgb(136, 255, 0);
+    border: 1px solid rgb(136, 255, 0);
     cursor: text;
   }
 
@@ -96,14 +94,13 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
     border: 2px solid rgb(136, 255, 0);
     cursor: text;
   }
-
-  
-
 `;
 
-export const XTCode = styled.code((props) => `
-  font-size: 24px;
+export const XTCode = styled.code(
+  (props) => `
+  font-size: 18px;
   font-weight: 650;
+  flex: 2 1 4vh;
   color: ${props.theme.palette.secondary.neon};
   text-align: left;
   text-decoration: underline;

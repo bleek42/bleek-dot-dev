@@ -20,6 +20,13 @@ import Section from '@/components/Section';
 export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
 		<Fragment>
+			{props.result.projects.length <= 0 && (
+				<Section
+					id={'projects-loading'}
+					name={'loading...'}
+					description={'please wait...'}
+				/>
+			)}
 			{props.result.projects.length >= 1 &&
 				props.result.projects.map((item) => (
 					<Section
@@ -55,7 +62,7 @@ export const getStaticProps: GetStaticProps<{
 		},
 		headers
 	);
-	console.log(typeof result);
+	console.log(result);
 	// console.log(props);
 	return {
 		props: {

@@ -1,7 +1,3 @@
-import { useId } from 'react';
-
-import PageLayout from '@/pages/lib/PageLayout';
-
 import Section from '@/components/Section';
 
 export default function Contact() {
@@ -21,10 +17,9 @@ export default function Contact() {
 	);
 }
 
-	/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */
+/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */
 
-
-	/* {loading && (
+/* {loading && (
 				<div className="loading">
 					<progress>loading...</progress>
 				</div>

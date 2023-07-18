@@ -1,7 +1,7 @@
 import { Fragment, useId } from 'react';
 
 import { type LayoutComponent, type MetaComponent } from '@/interfaces/Component';
-import { Main } from '@/components/common/Main';
+import { MainPage } from '@/components/common';
 import Meta from '@/components/Meta';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -24,7 +24,7 @@ export default function PageLayout(props: LayoutComponent) {
 		<Fragment>
 			<Meta {...defaultMetaProps} />
 			<Header id={pageId} />
-			<Main>{props.children}</Main>
+			<MainPage>{props.children}</MainPage>
 			<Footer />
 		</Fragment>
 	);

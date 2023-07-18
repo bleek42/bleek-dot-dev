@@ -6,7 +6,7 @@ import {
 } from 'styled-components';
 
 import { Header as Wrapper } from './Header';
-import { LgTxt, MdTxt } from '@/components/common/Text';
+import { LgTxt, MdTxt, SmTxt, theme } from '@/components/common';
 import Navbar from '@/components/Navbar';
 import { type HeaderComponent } from '@/interfaces/Component';
 
@@ -34,6 +34,15 @@ export default function Header(props: HeaderProps) {
 			<MdTxt font="Birdman" color="red" shadow="steel">
 				{props.title ?? 'untitled'}
 			</MdTxt>
+			<SmTxt
+				font={'MonocraftNF'}
+				colorPalette={'secondary'}
+				color={'neon'}
+				size={'18px'}
+				shadow={'red'}
+			>
+				small text
+			</SmTxt>
 			<Navbar />
 		</Wrapper>
 	);

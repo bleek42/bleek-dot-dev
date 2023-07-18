@@ -2,7 +2,7 @@ import { GraphQLClient, gql } from 'graphql-request';
 import { ExecutionArgs, ExecutionResult, GraphQLError } from 'graphql';
 
 import Header from '@/components/Header';
-import { Main } from '@/components/common/Main';
+import { MainPage } from '@/components/common/MainPage';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 // import { ProjectWhereUniqueDocument } from '../../types/hygraph.types';
@@ -30,7 +30,7 @@ export default function Page({ id }: { id: number | string }) {
 			<Header>
 				<MdTxt>projects-header-page4</MdTxt>
 			</Header>
-			<Main>
+			<MainPage>
 				{Array.isArray(projects) && projects.length > 0 && (
 					<Section>
 						{projects.map((project) => (
@@ -52,7 +52,7 @@ export default function Page({ id }: { id: number | string }) {
 						<p>Unknown error getting projects...</p>
 					</Section>
 				)}
-			</Main>
+			</MainPage>
 			<Footer>
 				<p>footer page 4 /projects</p>
 			</Footer>

@@ -2,7 +2,7 @@ import React, { Fragment, useId } from 'react';
 
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
-import { Main } from '@/components/common/Main';
+import { MainPage } from '@/components/common/MainPage';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
@@ -17,7 +17,7 @@ export default function Page() {
 			<Header id={`contactpage-footer_${3}`} name="contact" title="Contact">
 				<Navbar />
 			</Header>
-			<Main>
+			<MainPage>
 				<Section>
 					<h4>
 						Contact <i>`${' \udb80\udd7b '}`</i>{' '}
@@ -62,7 +62,7 @@ export default function Page() {
 						Click here to view my GitHub!
 					</a>
 				</Section>
-			</Main>
+			</MainPage>
 			<Footer id={`contactpage-footer_${3}`} name="Contact" icon={null} />
 		</>
 	);

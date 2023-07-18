@@ -1,7 +1,7 @@
 // ? custom styled components
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
-import { Main } from '@/components/common/Main';
+import { MainPage } from '@/components/common/MainPage';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
@@ -15,7 +15,7 @@ export default function Page() {
 			>
 				<Navbar />
 			</Header>
-			<Main>
+			<MainPage>
 				<Section
 					id={`home-page-section_${1}`}
 					name="home"
@@ -24,7 +24,7 @@ export default function Page() {
 			web developer & tech enthusiast. This site is built with React.js in conjunction with other modern solutions including (but never limited to!) custom state management hooks, React Router, React Icons, Syntactically Awesome Style Sheets (SASS/SCSS), and test suites written with Jest & Enzyme."
 					icon={' \ueaaa '}
 				/>
-			</Main>
+			</MainPage>
 			<Footer id={`home-page-footer_${1}`} name="home" icon={' \ue714 '} />
 		</>
 	);

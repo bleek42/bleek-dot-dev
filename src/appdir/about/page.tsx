@@ -1,6 +1,6 @@
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
-import { Main } from '@/components/common/Main';
+import { MainPage } from '@/components/common/MainPage';
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 
@@ -19,7 +19,7 @@ export default function Page() {
 			>
 				<Navbar />
 			</Header>
-			<Main>
+			<MainPage>
 				<Section
 					id={`about-page-section_${1}`}
 					name={`about-page-section_${1}`}
@@ -32,7 +32,7 @@ export default function Page() {
 					content="This is About page, section 2"
 					icon={null}
 				/>
-			</Main>
+			</MainPage>
 			<Footer id={`about-page-footer_${1}`} name="About" icon={null} />
 		</>
 	);

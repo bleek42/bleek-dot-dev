@@ -6,14 +6,15 @@ import styled, {
 
 import { type FooterComponent } from '@/interfaces/Component';
 
-export type StyledFooterProps = StyledComponentProps<
+export type FooterProps = StyledComponentProps<
   'footer' | keyof JSX.IntrinsicElements,
   DefaultTheme,
   FooterComponent,
   string | number | symbol
->;
+> &
+  FooterComponent;
 
-export const Footer = styled.footer<StyledFooterProps>((props) => `
+export const Footer = styled.footer<FooterProps>((props) => `
   display: flex;
   flex-flow: row wrap;
   align-items: center;

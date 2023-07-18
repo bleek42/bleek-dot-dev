@@ -1,30 +1,24 @@
 import { useId } from 'react';
-import {
-	type DefaultTheme,
-	type StyledComponent,
-	type StyledComponentProps,
-} from 'styled-components';
+import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
-import { Header as Wrapper } from './Header';
+import { type HeaderComponent } from '@/interfaces/Component';
+import { Header } from './Header';
 import { LgTxt, MdTxt, SmTxt, theme } from '@/components/common';
 import Navbar from '@/components/Navbar';
-import { type HeaderComponent } from '@/interfaces/Component';
 
-type HeaderProps = HeaderComponent;
-/* &
-	StyledComponentProps<
-		'header',
-		DefaultTheme,
-		HeaderComponent,
-		string | number | symbol
-	>; */
+type HeaderProps = StyledComponentProps<
+	'header',
+	DefaultTheme,
+	HeaderComponent,
+	string | number | symbol
+> &
+	HeaderComponent;
 
-export default function Header(props: HeaderProps) {
-	console.log('Header component:', { props });
-	const pageId = useId();
+export default function PageHeader(props: HeaderProps) {
+	console.log({ 'Header component': { props } });
 
 	return (
-		<Wrapper id={`header-${pageId}`}>
+		<Header>
 			<LgTxt font="Birdman" color="green" shadow="black">
 				Brandon Leek
 			</LgTxt>
@@ -44,6 +38,6 @@ export default function Header(props: HeaderProps) {
 				small text
 			</SmTxt>
 			<Navbar />
-		</Wrapper>
+		</Header>
 	);
 }

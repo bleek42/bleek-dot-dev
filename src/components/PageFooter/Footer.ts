@@ -7,7 +7,7 @@ import styled, {
 import { type FooterComponent } from '@/interfaces/Component';
 
 export type FooterProps = StyledComponentProps<
-  'footer' | keyof JSX.IntrinsicElements,
+  'footer' | AnyStyledComponent,
   DefaultTheme,
   FooterComponent,
   string | number | symbol
@@ -18,7 +18,7 @@ export const Footer = styled.footer<FooterProps>((props) => `
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  height: 10vh;
+  height: 16vh;
   width: 120vh;
   margin: 4px 4px;
   padding: 4px 4px 4px 4px;

@@ -19,7 +19,9 @@ export const Section = styled.section<SectionProps>((props) => `
   display: flex;
   flex-flow: row wrap;
   justify-content: flex-start;
-  text-align: left;
+  width: 100vw;
+  height: 60vh;
+  /* text-align: left; */
   border: 4px solid ${props.theme.palette.secondary.green};
   border-radius: 15% 20% / 15% 20%;
   margin: 4px 4px 4px 4px;

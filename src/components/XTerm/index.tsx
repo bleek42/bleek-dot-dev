@@ -18,12 +18,6 @@ import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimens
 
 type XTermState = XTermComponent;
 type XTermViewportState = ResizeObserverDimensions;
-type XTermProps = StyledComponentProps<
-	'textarea',
-	DefaultTheme,
-	XTermState,
-	string | number | symbol
->;
 
 export default function XTerm() {
 	const xtermState: XTermState = {
@@ -177,7 +171,6 @@ export default function XTerm() {
 					ref={ref}
 					id={xterm.id}
 					value={xterm.stdin || xterm.stdio}
-					
 					onChange={handleChange}
 					// placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
 					// eslint-disable-next-line no-console
@@ -190,9 +183,7 @@ export default function XTerm() {
 					// 	console.log({ onTouchMoveEvent: { ...evt } });
 					// 	router.push('/home');
 					// }}
-				>
-
-				</XTxtArea>
+				></XTxtArea>
 				<XTCode>{xterm.prompt.toString()}</XTCode>
 				<XTInput
 					id="xt-prompt"

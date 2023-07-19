@@ -8,7 +8,7 @@ import {
 } from 'next/document';
 
 import Document from 'next/document';
-import { ServerStyleSheet } from 'styled-components';
+import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
 //@ts-expect-error
 export default class StyledDocument extends Document {
@@ -29,6 +29,7 @@ export default class StyledDocument extends Document {
 
 			const result: DocumentInitialProps = {
 				...initialProps,
+
 				styles: (
 					<>
 						{initialProps.styles}
@@ -51,7 +52,7 @@ export default class StyledDocument extends Document {
 			<Html lang="en">
 				<Head />
 				<body>
-					<Main /> 
+					<Main />
 					<NextScript />
 				</body>
 			</Html>

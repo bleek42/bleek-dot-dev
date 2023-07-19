@@ -1,16 +1,24 @@
 import styled from 'styled-components';
 
-export const Btn = styled.button`
-  color: ${({ theme }) => theme.palette.primary.neon};
-  background-color: ${({ theme }) => theme.palette.primary.gray};
-  flex: 1 3 12vh;
-  font-family: ${({ theme }) => theme.fonts.at(2)};
+export const Btn = styled.button((props) => `
+  color: ${props.theme.palette.primary.neon};
+  background-color: ${props.theme.palette.primary.gray};
+  flex: 2 1 12vh;
+  width: 32vw;
+  font-family: ${props.theme.fonts.at(2)};
   font-size: 24px;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 12% / 12%;
   margin: 4px 4px;
   padding: 4px 4px;
-`;
+
+  @media (max-width: ${props.theme.breakpoints.phone}) {
+    /* flex: 3 4 6vh; */
+    font-size: 28px;
+    
+  }
+`
+);
 
 export const BtnClose = styled(Btn)`
   color: ${({ theme }) => theme.palette.primary.orange};

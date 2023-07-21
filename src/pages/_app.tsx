@@ -7,8 +7,6 @@ import {
 	type AppType,
 } from 'next/app';
 
-// import StyledProvider from './lib/StyledProvider';
-// import PageLayout from './lib/PageLayout';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@/components/common/Theme';
 import PageLayout from './lib/PageLayout';
@@ -18,13 +16,15 @@ function App({ Component, pageProps }: AppProps) {
 	return (
 		<ThemeProvider theme={theme}>
 			<GlobalStyle />
-			{Component !== LandingPage && (
+			{Component !== LandingPage ? (
 				<PageLayout>
 					<Component {...pageProps} />
 				</PageLayout>
+			) : (
+				<Component {...pageProps} />
 			)}
-			<Component {...pageProps} />
 		</ThemeProvider>
 	);
 }
+
 export default App;

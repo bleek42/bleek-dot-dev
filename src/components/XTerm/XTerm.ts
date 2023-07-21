@@ -61,7 +61,7 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
   htmlFor: props.htmlFor || 'xt-btns',
 }))<XTermProps>`
   display: flex;
-  margin: 2px 4px 4px 2px;
+  margin: 4px 6px 4px 6px;
   width: 100vw;
   padding: 8px 4px 4px 8px;
   font-family: ${(props) => props.theme.fonts.at(2)};

@@ -36,19 +36,11 @@ const toggleKeyframes = keyframes`
 export const NavBar = styled.nav<NavBarProps>((props) => `
   display: flex;
   flex-flow: column wrap;
+  min-width: 12vw;
   background-color: ${props.theme.palette.secondary.gray};
-  padding: 2px 4px 2px 4px;
-  margin: 4px 4px auto;
-  position: fixed;
-  left: 40vw;
-  top: 3vh;
-  min-width: 8vw;
-  /* z-index: 6; */
-
-  /* max-width: 20%;
-  max-height: 40%; */
-
-  // animation: slide-open 0.6s forwards; */
+  padding: 2px 4px 4px 2px;
+  margin: 4px;
+  float: right;
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
     /* flex-flow: column wrap; */
@@ -65,46 +57,48 @@ export const NavBar = styled.nav<NavBarProps>((props) => `
 );
 
 export const NavList = styled.ul<NavBarProps>((props) => `
-  flex: 3 1 16vw;
+  list-style: none; 
+  position: ${props.toggle ? 'absolute' : 'inherit'};
+  /* z-index: 200; */
+  /* animation: slide-open 0.6s forwards; */
+  bottom: ${props.toggle ? '0%' : '-100%'};
+  top: ${props.toggle ? '65px' : '0px'};
+  left: ${props.toggle ? '0%' : '-100%'};
+  width: ${props.toggle ? '400px' : '100px'};
+/*   
+  right: 10%;
+  top: 10vh; */
+  z-index: 3;
+  
+  overflow-x: 10%;
+  overflow-y: 20%;
+  
 
-  list-style: none;
-
-
-  max-height: 16vh;
-  // right: 10%;
-  // overflow-x: 10%;
-  // overflow-y: 20%;
-  // left: -20%;
-
-  // z-index: 6;
-
+  // animation: slide-open 0.6s forwards;
   letter-spacing: 3px;
   padding: 3px 2px 3px 2px;
-  /* margin: 5px auto; */
   background-color: ${props.theme.palette.secondary.linear} ;
+  /* flex: 2 3 4vh; */
+
+  // z-index: 6;
+  /* margin: 5px auto; */
   `
 );
 
 export const NavItem = styled.li<NavBarProps>((props) => `
   border-top: 1px solid ${props.theme.palette.common.black};
-  padding: 2px 2px;
-  margin: 2px auto;
+  padding: 4px 4px;
+  margin: 2px 2px;
+  min-width: 12vw;
   /* margin: 10px, 3px, 3px, 10px;
   padding: 6px, 5px, 5px, 6px; */
   /* color: rgb(11, 211, 11);
   transition: filter 400ms; */
 `
 );
-  /* z-index: 200; */
-  /* animation: slide-open 0.6s forwards; */
-  /* position: ${props.toggle ? 'absolute' : 'fixed'};
-  bottom: ${props.toggle ? '0%' : '-100%'};
-  top: ${props.toggle ? '65px' : '0px'};
-  left: ${props.toggle ? '0%' : '-100%'};
-  width: ${props.toggle ? '400px' : '100px'}; */
 
 export const ToggleBtn = styled.button<NavBarProps>((props) => `
-  flex: 1 3 2vw;
+  /* flex: 1 3 2vw; */
   padding: 4px 4px;
   margin: 4px 4px auto;
   color: ${props.theme.palette.primary.cyan};

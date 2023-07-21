@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 export const MainPage = styled.main(({ theme }) => `
-  width: 100vh;
-  min-width: 15%;
-  height: 100vh;
+  display: inline-block;
+  width: 80vw;
+  height: 60vh;
   background: ${theme.palette.tertiary.linear};
 `);

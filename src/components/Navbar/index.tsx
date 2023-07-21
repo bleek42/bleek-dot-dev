@@ -7,19 +7,21 @@ export default function Navbar() {
 	const [toggle, setToggle] = useState<boolean>(false);
 
 	const toggleMenu = (evt: React.SyntheticEvent<HTMLElement>) => {
+		evt.preventDefault();
 		console.log(evt?.currentTarget, toggle);
 		setToggle(!toggle);
 	};
 
 	return (
-		<NavBar onMouseEnter={toggleMenu} onMouseLeave={toggleMenu}>
+		<NavBar toggle={toggle}>
 			<LgTxt font="Birdman" color="neon" shadow="steel">
 				Menu
 			</LgTxt>
 			{!toggle && (
 				<ToggleBtn
-					onClick={toggleMenu}
 					toggle={toggle}
+					onClick={toggleMenu}
+					
 					// onMouseOver={toggleMenu}
 					// onTouchStart={toggleMenu}
 				>

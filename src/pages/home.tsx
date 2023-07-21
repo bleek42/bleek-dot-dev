@@ -6,11 +6,10 @@ import Section from '@/components/Section';
 
 
 export default function Home() {
-	const pageId = useId();
 
 	return (
 		<Section
-			id={`home-${pageId}`}
+			id={`home-section`}
 			name="Home"
 			description="bleek.dev/home"
 			content="Welcome & thanks for visiting! I'm Brandon Leek: a full-stack web developer, Linux enthusiast, & lifelong power user. I hope you find the results of my latest iterations on my portfolio rather unique, yet still modern-contemporary, and of course a pleasure to use as you navigate around! This was create with React via NextJS, GraphQL via Hygraph CMS, custom CSS-in-JS via Styled Components, & full TypeScript integration!"

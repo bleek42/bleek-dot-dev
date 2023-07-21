@@ -18,8 +18,8 @@ export const Footer = styled.footer<FooterProps>((props) => `
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  height: 16vh;
-  width: 120vh;
+  max-height: 12vh;
+  max-width: 120vw;
   margin: 4px 4px;
   padding: 4px 4px 4px 4px;
   color: ${props.theme.palette.secondary.tan};

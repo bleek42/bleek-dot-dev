@@ -25,5 +25,18 @@ export const Footer = styled.footer<FooterProps>((props) => `
   color: ${props.theme.palette.secondary.tan};
   background-color: ${props.theme.palette.secondary.steel};
   border: 4px solid ${props.theme.palette.secondary.cyan};
-  border-radius: 10% 10% / 10% 10%;`
+  border-radius: 10% 10% / 10% 10%;
+  
+  @media (max-width: ${props.theme.breakpoints.phone}) {
+    /* display: none; */
+    /* font-size: 28px;
+    min-height: 50%; */
+  }
+
+  @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
+    /* flex: 3 4 6vh; */
+    
+  }
+
+  `
 );

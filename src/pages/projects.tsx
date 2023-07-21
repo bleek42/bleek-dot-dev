@@ -5,6 +5,7 @@ import { type AllProjectsWhereQuery } from '@/graphql/queries/AllProjectsWhere.o
 
 import { hygraphClient } from '@/utils/gql-client';
 import Section from '@/components/Section';
+import { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types';
 
 // import { createGraphQLClientRequest } from '@/utils/gql-client';
 

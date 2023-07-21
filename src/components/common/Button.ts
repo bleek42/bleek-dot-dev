@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const Btn = styled.button((props) => `
   color: ${props.theme.palette.primary.neon};
   background-color: ${props.theme.palette.primary.gray};
-  flex: 2 1 12vh;
-  width: 32vw;
+  flex: 2 1 56vw;
+  height: 16vh;
   font-family: ${props.theme.fonts.at(2)};
+    font-size: 26px;
   font-size: 24px;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 12% / 12%;
@@ -13,8 +14,13 @@ export const Btn = styled.button((props) => `
   padding: 4px 4px;
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
+    display: none;
+    /* font-size: 28px;
+    min-height: 50%; */
+  }
+
+  @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-    font-size: 28px;
     
   }
 `

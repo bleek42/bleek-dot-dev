@@ -7,26 +7,27 @@ export default function Navbar() {
 	const [toggle, setToggle] = useState<boolean>(false);
 
 	const toggleMenu = (evt: React.SyntheticEvent) => {
-		console.log(evt?.currentTarget);
-		setToggle(!!toggle);
+		console.log(evt?.currentTarget, toggle);
+		setToggle(!toggle);
 	};
 
 	return (
-		<NavBar onMouseLeave={toggleMenu}>
+		<NavBar onMouseEnter={toggleMenu} onMouseLeave={toggleMenu}>
 			<LgTxt font="Birdman" color="neon" shadow="steel">
 				Menu
 			</LgTxt>
-			<NavList>
-				<NavItem>
+			{!toggle && (
 				<ToggleBtn
 					toggle={toggle}
-					onMouseOver={toggleMenu}
-					onTouchStart={toggleMenu}
+					// onMouseOver={toggleMenu}
+					// onTouchStart={toggleMenu}
 				></ToggleBtn>
-				</NavItem>
-				{toggle && (
-					<>
-						<NavItem>
+			)}
+
+			{toggle && (
+				<>
+					<NavList>
+						<NavItem onMouseLeave={toggleMenu}>
 							<Icon>
 								{'\udb83\udd84'}
 								<NextLink href="/home">Home</NextLink>
@@ -50,9 +51,9 @@ export default function Navbar() {
 								<NextLink href="/contact">Contact</NextLink>
 							</Icon>
 						</NavItem>
-					</>
-				)}
-			</NavList>
+					</NavList>
+				</>
+			)}
 		</NavBar>
 	);
 }

@@ -1,4 +1,4 @@
-import { Footer, type FooterProps } from './Footer';
+import { type FooterProps, Footer } from './Footer';
 import { SmTxt } from '@/components/common/Text';
 
 // import { type FooterComponent } from '@/interfaces/Component';

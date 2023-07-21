@@ -29,8 +29,8 @@ export const XTForm = styled.form.attrs((props: XTermProps) => ({
 `;
 
 export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
-  htmlFor: props.htmlFor || 'labeled-inputs',
-  form: props.form || 'xt-form',
+  htmlFor: props.htmlFor || 'xtinput-id',
+  form: props.form || 'xt-form-id',
 }))<XTermProps>`
   display: flex;
   flex-flow: column wrap;
@@ -101,7 +101,7 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   autoCapitalize: props.autoCapitalize || 'false',
   autoCorrect: props.spellCheck || 'false',
   spellCheck: props.spellCheck || 'false',
-  wrap: 'hard',
+  wrap: props.wrap || 'hard',
   placeholder: props.placeholder || 'Welcome to bleekDotDev!',
 }))<XTermProps>`
   background-color: ${(props) => props.theme.palette.common.black};

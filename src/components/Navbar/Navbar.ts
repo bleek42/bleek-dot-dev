@@ -36,7 +36,7 @@ const toggleKeyframes = keyframes`
 export const NavBar = styled.nav((props) => `
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: flex-end;
   background-color: ${props.theme.palette.secondary.gray};
   padding: 2px 2px;
   margin: 4px auto;
@@ -48,9 +48,21 @@ export const NavBar = styled.nav((props) => `
   overflow-x: 10%;
   overflow-y: 20%;
   z-index: 6;
+  animation: slide-open 0.6s forwards;
+
+  @media (max-width: ${props.theme.breakpoints.phone}) {
   touch-action: auto;
   user-select: none;
-  animation: slide-open 0.6s forwards;
+    /* display: none; */
+    /* font-size: 28px;
+    min-height: 50%; */
+  }
+
+  @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
+    /* flex: 3 4 6vh; */
+    
+  }
+
 `
 );
 

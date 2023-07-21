@@ -1,17 +1,17 @@
-import Link, { type LinkProps } from 'next/link';
 import styled, {
   keyframes,
   type AnyStyledComponent,
   type DefaultTheme,
   type StyledComponentProps,
-  type ThemedStyledFunction,
-  type ThemedStyledProps,
 } from 'styled-components';
+import Link, { type LinkProps } from 'next/link';
 
-export type ToggleProps = StyledComponentProps<
-  typeof Link | AnyStyledComponent,
+import { type NavbarComponent } from '@/interfaces/Component';
+
+export type NavBarProps = StyledComponentProps<
+  'nav' | 'button' | 'ul' | 'li',
   DefaultTheme,
-  { toggle: boolean },
+  NavbarComponent,
   string | number | symbol
 >;
 
@@ -33,45 +33,59 @@ const toggleKeyframes = keyframes`
 
 `;
 
-export const NavBar = styled.nav((props) => `
+export const NavBar = styled.nav<NavBarProps>((props) => `
   display: flex;
-  flex-flow: row wrap;
-  justify-content: flex-end;
+  flex-flow: column wrap;
   background-color: ${props.theme.palette.secondary.gray};
-  padding: 2px 2px;
-  margin: 4px auto;
-  float: inline-end;
-  position: sticky;
-  top: 4%;
-  right: 10%;
-  left: -20%;
-  overflow-x: 10%;
-  overflow-y: 20%;
-  z-index: 6;
-  animation: slide-open 0.6s forwards;
+  padding: 2px 4px 2px 4px;
+  margin: 4px 4px auto;
+  position: fixed;
+  left: 40vw;
+  top: 3vh;
+  min-width: 8vw;
+  /* z-index: 6; */
+
+  /* max-width: 20%;
+  max-height: 40%; */
+
+  // animation: slide-open 0.6s forwards; */
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
-  touch-action: auto;
-  user-select: none;
-    /* display: none; */
-    /* font-size: 28px;
-    min-height: 50%; */
+    /* flex-flow: column wrap; */
+    touch-action: auto;
+    user-select: none;
   }
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-    
+
   }
 
 `
 );
 
-export const NavList = styled.ul((props) => `
-  padding: 2px 2px 2px 2px;
-  list-style: none;
-`); 
+export const NavList = styled.ul<NavBarProps>((props) => `
+  flex: 3 1 16vw;
 
-export const NavItem = styled.li((props) => `
+  list-style: none;
+
+
+  max-height: 16vh;
+  // right: 10%;
+  // overflow-x: 10%;
+  // overflow-y: 20%;
+  // left: -20%;
+
+  // z-index: 6;
+
+  letter-spacing: 3px;
+  padding: 3px 2px 3px 2px;
+  /* margin: 5px auto; */
+  background-color: ${props.theme.palette.secondary.linear} ;
+  `
+);
+
+export const NavItem = styled.li<NavBarProps>((props) => `
   border-top: 1px solid ${props.theme.palette.common.black};
   padding: 2px 2px;
   margin: 2px auto;
@@ -81,21 +95,18 @@ export const NavItem = styled.li((props) => `
   transition: filter 400ms; */
 `
 );
-
-export const ToggleBtn = styled.button<ToggleProps>((props) => `
-  position: ${props.toggle ? 'absolute' : 'fixed'};
+  /* z-index: 200; */
+  /* animation: slide-open 0.6s forwards; */
+  /* position: ${props.toggle ? 'absolute' : 'fixed'};
   bottom: ${props.toggle ? '0%' : '-100%'};
   top: ${props.toggle ? '65px' : '0px'};
   left: ${props.toggle ? '0%' : '-100%'};
-  width: ${props.toggle ? '400px' : '100px'};
-  display: inline-flex;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  align-items: center;
-  z-index: 200;
-  margin: 2px 2px;
-  padding: 2px 2px;
-  animation: slide-open 0.6s forwards;
+  width: ${props.toggle ? '400px' : '100px'}; */
+
+export const ToggleBtn = styled.button<NavBarProps>((props) => `
+  flex: 1 3 2vw;
+  padding: 4px 4px;
+  margin: 4px 4px auto;
   color: ${props.theme.palette.primary.cyan};
   font-family: ${props.theme.fonts.at(2)};
   font-size: 24px;
@@ -103,15 +114,14 @@ export const ToggleBtn = styled.button<ToggleProps>((props) => `
   text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
   letter-spacing: 1px;
   border: 2px solid ${props.theme.palette.primary.cyan};
-  border-radius: 3% 3% / 3% 3%;
   background-color: ${props.theme.palette.secondary.gray};
-  /* width: 16vh; */
+  border-radius: 3% 2% / 3% 2%;
   transition: filter 500ms;
 
   &:hover {
     color: ${props.theme.palette.primary.neon};
     filter: brightness(3);
-    position: absolute;
+
   }
 `
 );
@@ -172,3 +182,19 @@ export const Icon = styled.i((props) => `
   }
 `
 );
+
+// export const NavLabel = styled.label.attrs((props) => ({
+//   htmlFor: props.htmlFor || 'nav-toggle',
+// }))`
+//   font-family: ${(props) => props.theme.fonts.at(2)};
+
+//   background-color: ${(props) => props.theme.palette.secondary.steel};
+
+//   @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
+
+//   }
+
+//   @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
+
+//   }
+// `;

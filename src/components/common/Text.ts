@@ -1,9 +1,9 @@
-import type {
-  AnyStyledComponent,
-  ColorPalettes,
-  Colors,
-  DefaultTheme,
-  StyledComponentProps,
+import {
+  type AnyStyledComponent,
+  type ColorPalettes,
+  type Colors,
+  type DefaultTheme,
+  type StyledComponentProps,
 } from 'styled-components';
 
 import styled from 'styled-components';
@@ -31,6 +31,7 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
   size: props.size || undefined,
   shadow: props.shadow || undefined,
 }))<TextProps>`
+  display: inherit;
   text-align: left;
   font-weight: 450;
   font-size: ${(props) => props.size ?? '12px'};
@@ -63,7 +64,8 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
 `;
 
 export const MdTxt = styled.h5<TextProps>`
-  text-align: center;
+  display: inherit;
+  /* text-align: center; */
   font-weight: 350;
   font-family: ${(props) =>
     props?.font &&
@@ -94,12 +96,15 @@ export const MdTxt = styled.h5<TextProps>`
 `;
 
 export const LgTxt = styled.h2<TextProps>`
+  display: inline-block;
   text-align: center;
   font-weight: 450;
   font-family: ${(props) =>
     props?.font &&
     props.theme.fonts.find(([font]) =>
-      props.font === font ? `${font}` : '"Times New Roman", Times, Haettenschweiler, serif'
+      props.font === font
+        ? `${font}`
+        : '"Times New Roman", Times, Haettenschweiler, serif'
     )};
   color: ${(props) =>
     props?.color in props.theme.palette.primary

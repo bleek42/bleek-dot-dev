@@ -6,7 +6,7 @@ import { LgTxt } from '@/components/common/Text';
 export default function Navbar() {
 	const [toggle, setToggle] = useState<boolean>(false);
 
-	const toggleMenu = (evt: React.SyntheticEvent) => {
+	const toggleMenu = (evt: React.SyntheticEvent<HTMLElement>) => {
 		console.log(evt?.currentTarget, toggle);
 		setToggle(!toggle);
 	};
@@ -18,10 +18,13 @@ export default function Navbar() {
 			</LgTxt>
 			{!toggle && (
 				<ToggleBtn
+					onClick={toggleMenu}
 					toggle={toggle}
 					// onMouseOver={toggleMenu}
 					// onTouchStart={toggleMenu}
-				></ToggleBtn>
+				>
+					+
+				</ToggleBtn>
 			)}
 
 			{toggle && (

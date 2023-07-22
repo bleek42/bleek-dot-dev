@@ -5,7 +5,7 @@ import { type DetailsComponent } from '@/interfaces/Component';
 type StyledDetailsProps = StyledComponentProps<
   'details' | keyof JSX.IntrinsicElements,
   DefaultTheme,
-  DetailsComponent,
+  object,
   string | number | symbol
 > & DetailsComponent;
 

@@ -9,7 +9,7 @@ import { type FooterComponent } from '@/interfaces/Component';
 export type FooterProps = StyledComponentProps<
   'footer' | AnyStyledComponent,
   DefaultTheme,
-  FooterComponent,
+  object,
   string | number | symbol
 > &
   FooterComponent;

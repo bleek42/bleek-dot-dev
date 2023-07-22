@@ -1,4 +1,5 @@
-import {
+import styled, {
+  type Fonts,
   type AnyStyledComponent,
   type ColorPalettes,
   type Colors,
@@ -6,12 +7,10 @@ import {
   type StyledComponentProps,
 } from 'styled-components';
 
-import styled from 'styled-components';
-
 interface TextOptions {
   colorPalette: ColorPalettes;
   color: keyof Colors;
-  font: string;
+  font: Fonts;
   size?: string;
   shadow?: keyof Colors;
 }
@@ -19,23 +18,28 @@ interface TextOptions {
 type TextProps = StyledComponentProps<
   AnyStyledComponent | keyof JSX.IntrinsicElements,
   DefaultTheme,
-  TextOptions,
+  object,
   string | number | symbol
 > &
   TextOptions;
 
 export const SmTxt = styled.p.attrs<TextProps>((props) => ({
-  font: props.font || 'Verdana, Geneva, Tahoma, Arial, sans-serif, monospace',
+  font:
+    props.font ||
+    'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace',
   colorPalette: props.colorPalette || 'common',
   color: props.color || 'rgb(0, 0, 0)',
-  size: props.size || undefined,
-  shadow: props.shadow || undefined,
+  size: props.size || '12px',
+  shadow: props?.shadow,
 }))<TextProps>`
   display: inherit;
   text-align: left;
   font-weight: 450;
-  font-size: ${(props) => props.size ?? '12px'};
-  font-family: ${(props) => props.theme.fonts.find((font) => props.font === font)};
+  font-size: ${(props) => props.size};
+  font-family: ${(props) =>
+    props.theme.fonts.find((font) =>
+      props.font === font ? `var(${props.font});` : props.font
+    )};
   color: ${(props) =>
     props.colorPalette === 'primary' && props.color in props.theme.palette.primary
       ? props.theme.palette.primary[props.color]
@@ -63,65 +67,66 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
   text-decoration-style: double; */
 `;
 
-export const MdTxt = styled.h5<TextProps>`
+export const MdTxt = styled.h5.attrs<TextProps>((props) => ({
+  font:
+    props.font ||
+    'Verdana, Geneva, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont',
+}))<TextProps>`
   display: inherit;
   /* text-align: center; */
-  font-weight: 350;
   font-family: ${(props) =>
-    props?.font &&
-    props.theme.fonts.find(([font]) =>
-      props.font === font
-        ? `${font}`
-        : '"Arial Narrow Bold", Impact, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif'
+    props.theme.fonts.find((font) =>
+      props.font === font ? `var(${props.font})` : props.font
     )};
   color: ${(props) =>
-    props?.color in props.theme.palette.primary
-      ? props.theme.palette.primary[props?.color]
+    props.color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.color]
       : props.color in props.theme.palette.secondary
-      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
+      ? props.theme.palette.tertiary[props.color]
       : props.color in props.theme.palette.tertiary
-      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
+      ? props.theme.palette.tertiary[props.color]
       : props.theme.palette.common.white};
   text-shadow: ${(props) =>
-    props?.shadow && props?.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props?.shadow]} 2px 1px 2px`
+    props.shadow && props.shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props.color]} 2px 1px 2px`
       : props.color in props.theme.palette.secondary
-      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
+      ? `${props.theme.palette.tertiary[props.color]} 2px 1px 2px`
       : props.color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
-      : 'none'};
+      ? `${props.theme.palette.tertiary[props.color]} 2px 1px 2px`
+      : undefined};
   text-decoration: underline;
   text-decoration-color: ${({ theme }) => theme.palette.secondary.steel};
   text-decoration-style: solid;
 `;
 
-export const LgTxt = styled.h2<TextProps>`
-  display: inline-block;
+export const LgTxt = styled.h2.attrs<TextProps>((props) => ({
+  font:
+    props.font ||
+    '"Times New Roman", Times, Haettenschweiler, system-ui, -apple-system, BlinkMacSystemFont',
+}))<TextProps>`
+  display: inherit;
   text-align: center;
   font-weight: 450;
   font-family: ${(props) =>
-    props?.font &&
-    props.theme.fonts.find(([font]) =>
-      props.font === font
-        ? `${font}`
-        : '"Times New Roman", Times, Haettenschweiler, serif'
+    props.theme.fonts.find((font) =>
+      props.font === font ? `var(${props.font})` : props.font
     )};
   color: ${(props) =>
-    props?.color in props.theme.palette.primary
-      ? props.theme.palette.primary[props?.color]
+    props.color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.color]
       : props.color in props.theme.palette.secondary
-      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
+      ? props.theme.palette.tertiary[props.color]
       : props.color in props.theme.palette.tertiary
-      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
+      ? props.theme.palette.tertiary[props.color]
       : props.theme.palette.common.white};
   text-shadow: ${(props) =>
     props?.shadow && props.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.shadow]} 2px 1px 2px`
+      ? `${props.theme.palette.primary[props.color]} 2px 1px 2px`
       : props.color in props.theme.palette.secondary
-      ? `${props.theme.palette.secondary[props.shadow as keyof Colors]} 2px 1px 2px`
+      ? `${props.theme.palette.secondary[props.color]} 2px 1px 2px`
       : props.color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
-      : 'none'};
+      ? `${props.theme.palette.tertiary[props.color]} 2px 1px 2px`
+      : undefined};
   text-decoration: underline;
   text-decoration-color: ${({ theme }) => theme.palette.secondary.green};
   text-decoration-style: solid;

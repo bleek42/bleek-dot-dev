@@ -1,11 +1,18 @@
 import Head from 'next/head';
 
 import { type MetaComponent } from '@/interfaces/Component';
-
+import { Birdman, Oxanium, MonocraftNF } from '@/common/Theme';
 
 type MetaProps = MetaComponent;
 
-export default function Meta({ title, description, keywords, image, icon, locale }: MetaProps) {
+export default function Meta({
+	title,
+	description,
+	keywords,
+	image,
+	icon,
+	locale,
+}: MetaProps) {
 	return (
 		<Head>
 			<meta charSet="utf-8" />
@@ -13,6 +20,7 @@ export default function Meta({ title, description, keywords, image, icon, locale
 			<meta name="description" content={description} />
 			<meta property="og:title" content={title} />
 			<meta property="og:image" content={image?.toString()} />
+			
 			<meta
 				name="keywords"
 				content={

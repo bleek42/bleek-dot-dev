@@ -1,4 +1,5 @@
-import {
+import { Birdman, MonocraftNF, Oxanium } from '@/components/common/Theme';
+import Document, {
 	DocumentContext,
 	DocumentInitialProps,
 	Html,
@@ -7,7 +8,6 @@ import {
 	NextScript,
 } from 'next/document';
 
-import Document from 'next/document';
 import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
 
 //@ts-expect-error
@@ -25,11 +25,10 @@ export default class StyledDocument extends Document {
 
 			const initialProps: Awaited<DocumentInitialProps> =
 				await Document.getInitialProps(ctx);
-			console.log(initialProps);
+			// console.log(initialProps);
 
 			const result: DocumentInitialProps = {
 				...initialProps,
-
 				styles: (
 					<>
 						{initialProps.styles}
@@ -44,12 +43,16 @@ export default class StyledDocument extends Document {
 			if (err) throw err;
 		} finally {
 			// eslint-disable-next-line prettier/prettier
+			console.log(sheet);
 			sheet.seal();
 		}
 	}
 	render() {
 		return (
-			<Html lang="en">
+			<Html
+				lang="en"
+				className={`${MonocraftNF.variable} ${Oxanium.variable} ${Birdman.variable}`}
+			>
 				<Head />
 				<body>
 					<Main />
@@ -59,7 +62,6 @@ export default class StyledDocument extends Document {
 		);
 	}
 }
-
 
 // Document.defaultProps = {
 // 	title: 'bleekDotDev',

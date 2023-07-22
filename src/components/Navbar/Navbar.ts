@@ -11,9 +11,9 @@ import { type NavbarComponent } from '@/interfaces/Component';
 export type NavBarProps = StyledComponentProps<
   'nav' | 'button' | 'ul' | 'li',
   DefaultTheme,
-  NavbarComponent,
+  object,
   string | number | symbol
->;
+> & NavbarComponent
 
 export type NextLinkProps = StyledComponentProps<
   typeof Link | AnyStyledComponent,
@@ -34,13 +34,14 @@ const toggleKeyframes = keyframes`
 `;
 
 export const NavBar = styled.nav<NavBarProps>((props) => `
-  display: flex;
+  display: inline-flex;
   flex-flow: column wrap;
-  min-width: 12vw;
+  justify-content: flex-end;
+  /* min-width: 12vw; */
   background-color: ${props.theme.palette.secondary.gray};
   padding: 2px 4px 4px 2px;
   margin: 4px;
-  float: right;
+  
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
     /* flex-flow: column wrap; */
@@ -57,22 +58,21 @@ export const NavBar = styled.nav<NavBarProps>((props) => `
 );
 
 export const NavList = styled.ul<NavBarProps>((props) => `
-  list-style: none; 
-  position: ${props.toggle ? 'absolute' : 'inherit'};
+  list-style: none;
+  /* position: ${props.toggle ? 'absolute' : 'static'}; */
   /* z-index: 200; */
   /* animation: slide-open 0.6s forwards; */
-  bottom: ${props.toggle ? '0%' : '-100%'};
-  top: ${props.toggle ? '65px' : '0px'};
-  left: ${props.toggle ? '0%' : '-100%'};
-  width: ${props.toggle ? '400px' : '100px'};
-/*   
-  right: 10%;
-  top: 10vh; */
-  z-index: 3;
-  
-  overflow-x: 10%;
-  overflow-y: 20%;
-  
+  /* bottom: ${props.toggle ? '0%' : '-100%'}; /*
+  /* width: ${props.toggle ? '400px' : '100px'}; */
+  /* top: ${props.toggle ? '65px' : '0px'}; */
+  /* left: ${props.toggle ? '0%' : '-100%'}; */
+  /* right: 10%; */
+  /* top: 10vh; */
+  /* z-index: 3; */
+  /* overflow-x: 10%; */
+  /* overflow-y: 20%; */
+
+
 
   // animation: slide-open 0.6s forwards;
   letter-spacing: 3px;
@@ -100,7 +100,7 @@ export const NavItem = styled.li<NavBarProps>((props) => `
 export const ToggleBtn = styled.button<NavBarProps>((props) => `
   /* flex: 1 3 2vw; */
   padding: 4px 4px;
-  margin: 4px 4px auto;
+  margin: 4px 4px;
   color: ${props.theme.palette.primary.cyan};
   font-family: ${props.theme.fonts.at(2)};
   font-size: 24px;

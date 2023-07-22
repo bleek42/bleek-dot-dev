@@ -19,17 +19,17 @@ export default function PageHeader(props: HeaderProps) {
 
 	return (
 		<Header>
-			<LgTxt font="Birdman" color="green" shadow="black">
+			<LgTxt font={'--font-Birdman'} color="green" shadow="black">
 				Brandon Leek
 			</LgTxt>
-			<MdTxt font="Birdman" color="neon" shadow="steel">
+			<MdTxt font={'--font-Birdman'} color="neon" shadow="steel">
 				bleekDotDev
 			</MdTxt>
-			<MdTxt font="Birdman" color="red" shadow="steel">
+			<MdTxt font={'--font-Oxanium'} color="red" shadow="steel">
 				{props.title ?? 'untitled'}
 			</MdTxt>
 			<SmTxt
-				font={'MonocraftNF'}
+				font={'--font-MonocraftNF'}
 				colorPalette={'secondary'}
 				color={'neon'}
 				size={'18px'}

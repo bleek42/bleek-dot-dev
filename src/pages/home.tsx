@@ -1,15 +1,12 @@
 import type { NextPage } from 'next';
 
-import { useId } from 'react';
-
 import Section from '@/components/Section';
 
 
 export default function Home() {
-
 	return (
 		<Section
-			id={`home-section`}
+			id="home-section"
 			name="Home"
 			description="bleek.dev/home"
 			content="Welcome & thanks for visiting! I'm Brandon Leek: a full-stack web developer, Linux enthusiast, & lifelong power user. I hope you find the results of my latest iterations on my portfolio rather unique, yet still modern-contemporary, and of course a pleasure to use as you navigate around! This was create with React via NextJS, GraphQL via Hygraph CMS, custom CSS-in-JS via Styled Components, & full TypeScript integration!"
@@ -17,22 +14,6 @@ export default function Home() {
 	);
 }
 
-// <Header
-// 	id={`home-header-${pageId}`}
-// 	name="home"
-		// <PageLayout>
-		// </PageLayout>
-// 	title="Home"
-// 	content="bleekDotDev"
-// 	icon={null}
-// />
-// <Footer id={`home-footer-${pageId}`} name="home" icon={null} />
-// <div className="home">
-// 	<header>
-// 		<h1>Brandon Leek</h1>
-// 		<h2>Web Developer & Mobile Tech Enthusiast</h2>
-// 	</header>
-// 	<section>
 // 		<p>
 
 // 			<div className="dwn-icn">

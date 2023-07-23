@@ -1,5 +1,3 @@
-import React, { useState, useEffect, Fragment, useId } from "react";
-
 import Section from '@/components/Section';
 
 export default function About() {

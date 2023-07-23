@@ -13,15 +13,18 @@ export type NavBarProps = StyledComponentProps<
   DefaultTheme,
   object,
   string | number | symbol
-> & NavbarComponent
+> &
+  NavbarComponent;
 
 export type NextLinkProps = StyledComponentProps<
   typeof Link | AnyStyledComponent,
   DefaultTheme,
   LinkProps,
   string | number | symbol
->;
+> &
+  NavbarComponent;
 
+// eslint-disable-next-line prettier/prettier
 const toggleKeyframes = keyframes`
   to {
 
@@ -33,15 +36,21 @@ const toggleKeyframes = keyframes`
 
 `;
 
+// eslint-disable-next-line prettier/prettier
 export const NavBar = styled.nav<NavBarProps>((props) => `
   display: inline-flex;
   flex-flow: column wrap;
   justify-content: flex-end;
-  /* min-width: 12vw; */
+  position: absolute;
+  left: 65%;
+  top: 4%;
+  z-index: 3;
+  overflow-x: 10%;
+  overflow-y: 20%;
+  min-width: 24vw;
   background-color: ${props.theme.palette.secondary.gray};
-  padding: 2px 4px 4px 2px;
-  margin: 4px;
-  
+  padding: 4px 4px 4px 4px;
+  margin: 8px 4px 8px 4px;
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
     /* flex-flow: column wrap; */
@@ -51,33 +60,29 @@ export const NavBar = styled.nav<NavBarProps>((props) => `
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-
+    flex-flow: column nowrap;
   }
 
 `
 );
 
+// eslint-disable-next-line prettier/prettier
 export const NavList = styled.ul<NavBarProps>((props) => `
+  letter-spacing: 3px;
+  padding: 3px 2px 3px 2px;
+  background-color: ${props.theme.palette.secondary.linear} ;
   list-style: none;
-  /* position: ${props.toggle ? 'absolute' : 'static'}; */
   /* z-index: 200; */
   /* animation: slide-open 0.6s forwards; */
   /* bottom: ${props.toggle ? '0%' : '-100%'}; /*
   /* width: ${props.toggle ? '400px' : '100px'}; */
   /* top: ${props.toggle ? '65px' : '0px'}; */
-  /* left: ${props.toggle ? '0%' : '-100%'}; */
   /* right: 10%; */
   /* top: 10vh; */
-  /* z-index: 3; */
-  /* overflow-x: 10%; */
-  /* overflow-y: 20%; */
 
 
 
   // animation: slide-open 0.6s forwards;
-  letter-spacing: 3px;
-  padding: 3px 2px 3px 2px;
-  background-color: ${props.theme.palette.secondary.linear} ;
   /* flex: 2 3 4vh; */
 
   // z-index: 6;
@@ -85,10 +90,11 @@ export const NavList = styled.ul<NavBarProps>((props) => `
   `
 );
 
+// eslint-disable-next-line prettier/prettier
 export const NavItem = styled.li<NavBarProps>((props) => `
   border-top: 1px solid ${props.theme.palette.common.black};
   padding: 4px 4px;
-  margin: 2px 2px;
+  margin: 4px 4px;
   min-width: 12vw;
   /* margin: 10px, 3px, 3px, 10px;
   padding: 6px, 5px, 5px, 6px; */
@@ -97,12 +103,12 @@ export const NavItem = styled.li<NavBarProps>((props) => `
 `
 );
 
+// eslint-disable-next-line prettier/prettier
 export const ToggleBtn = styled.button<NavBarProps>((props) => `
-  /* flex: 1 3 2vw; */
-  padding: 4px 4px;
-  margin: 4px 4px;
+  /* padding: 4px 4px;
+  margin: 4px 4px; */
   color: ${props.theme.palette.primary.cyan};
-  font-family: ${props.theme.fonts.at(2)};
+  font-family: var(${props.theme.fonts.at(2)});
   font-size: 24px;
   font-weight: 450;
   text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
@@ -111,6 +117,7 @@ export const ToggleBtn = styled.button<NavBarProps>((props) => `
   background-color: ${props.theme.palette.secondary.gray};
   border-radius: 3% 2% / 3% 2%;
   transition: filter 500ms;
+  /* flex: 1 3 2vw; */
 
   &:hover {
     color: ${props.theme.palette.primary.neon};
@@ -139,9 +146,11 @@ export const ToggleBtn = styled.button<NavBarProps>((props) => `
 //   animation: slide-open 0.6s forwards;
 // `;
 
+// eslint-disable-next-line prettier/prettier
 export const NextLink = styled(Link)<NextLinkProps>((props) => `
+  flex: 2 1 4vw;
   color: ${props.theme.palette.secondary.green};
-  font-family: ${props.theme.fonts.at(1)};
+  font-family: var(${props.theme.fonts.at(1)});
   font-size: 14px;
   font-weight: 500;
   text-align: center;
@@ -161,6 +170,7 @@ export const NextLink = styled(Link)<NextLinkProps>((props) => `
 `
 );
 
+// eslint-disable-next-line prettier/prettier
 export const Icon = styled.i((props) => `
   color: ${props.theme.palette.secondary.green};
   font-family: ${props.theme.fonts.at(2)};
@@ -183,12 +193,4 @@ export const Icon = styled.i((props) => `
 //   font-family: ${(props) => props.theme.fonts.at(2)};
 
 //   background-color: ${(props) => props.theme.palette.secondary.steel};
-
-//   @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
-
-//   }
-
-//   @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
-
-//   }
 // `;

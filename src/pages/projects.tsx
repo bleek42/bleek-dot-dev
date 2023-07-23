@@ -1,24 +1,16 @@
+import { type GetServerSideProps, type InferGetServerSidePropsType } from 'next';
 import { Fragment, type Key } from 'react';
-import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-import { type AllProjectsWhereQuery } from '@/graphql/queries/AllProjectsWhere.operation';
-
+import { type AllProjectsWhereQuery } from '@/graphql/queries';
 import { hygraphClient } from '@/utils/gql-client';
 import Section from '@/components/Section';
-import { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types';
 
-// import { createGraphQLClientRequest } from '@/utils/gql-client';
-
-// import {
-// 	ProjectWhereUniqueDocument,
-// 	ProjectWhereUniqueQueryVariables,
-// } from '@/graphql/queries/queries.operation';
-// import {
-// 	ProjectWhereUniqueQuery,
-// 	TypedDocumentString,
-// } from '@/graphql/gen/preset/graphql';
-
-export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Projects(
+	props: InferGetServerSidePropsType<typeof getServerSideProps>
+) {
+	console.log({
+		'/projects': { props },
+	});
 	return (
 		<Fragment>
 			{props.result.projects.length <= 0 && (
@@ -43,7 +35,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 	);
 }
 
-export const getStaticProps: GetStaticProps<{
+const getServerSideProps: GetServerSideProps<{
 	result: AllProjectsWhereQuery;
 }> = async () => {
 	console.log(process.env.NEXT_PUBLIC_HYGRAPH_CDN);
@@ -64,7 +56,7 @@ export const getStaticProps: GetStaticProps<{
 		headers
 	);
 	console.log(result);
-	// console.log(props);
+
 	return {
 		props: {
 			result,

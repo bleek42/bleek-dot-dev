@@ -6,6 +6,62 @@ import styled, {
   type DefaultTheme,
   type StyledComponentProps,
 } from 'styled-components';
+import localFont from 'next/font/local';
+
+export const Birdman = localFont<'--font-Birdman'>({
+  src: [
+    {
+      path: '../../../public/fonts/birdman/BIRDMAN_REG.ttf',
+      style: 'regular',
+      weight: '400',
+    },
+    {
+      path: '../../../public/fonts/birdman/BIRDMAN_LT.ttf',
+      style: 'light',
+      weight: '300',
+    },
+    {
+      path: '../../../public/fonts/birdman/BIRDMAN_BD.ttf',
+      style: 'bold',
+      weight: '600',
+    },
+    {
+      path: '../../../public/fonts/birdman/BIRDMAN_OBL.ttf',
+      style: 'oblique',
+      weight: '750',
+    },
+  ],
+
+  variable: '--font-Birdman',
+});
+
+export const Oxanium = localFont<'--font-Oxanium'>({
+  src: [
+    {
+      path: '../../../public/fonts/Oxanium/Oxanium-Regular.ttf',
+      style: 'regular',
+    },
+    {
+      path: '../../../public/fonts/Oxanium/Oxanium-Light.ttf',
+      style: 'light',
+    },
+    {
+      path: '../../../public/fonts/Oxanium/Oxanium-Bold.ttf',
+      style: 'bold',
+    },
+    {
+      path: '../../../public/fonts/Oxanium/Oxanium-SemiBold.ttf',
+      style: 'semi-bold',
+    },
+  ],
+
+  variable: '--font-Oxanium',
+});
+
+export const MonocraftNF = localFont<'--font-MonocraftNF'>({
+  src: '../../../public/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf',
+  variable: '--font-MonocraftNF',
+});
 
 interface TextOptions {
   colorPalette: ColorPalettes;
@@ -32,9 +88,9 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
   size: props.size || '12px',
   shadow: props?.shadow,
 }))<TextProps>`
-  display: inherit;
-  text-align: left;
+  flex: 3 1 4vw;
   font-weight: 450;
+  padding-top: 12px;
   font-size: ${(props) => props.size};
   font-family: ${(props) =>
     props.theme.fonts.find((font) =>
@@ -72,8 +128,8 @@ export const MdTxt = styled.h5.attrs<TextProps>((props) => ({
     props.font ||
     'Verdana, Geneva, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont',
 }))<TextProps>`
-  display: inherit;
-  /* text-align: center; */
+  flex: 3 1 12vw;
+  text-align: center;
   font-family: ${(props) =>
     props.theme.fonts.find((font) =>
       props.font === font ? `var(${props.font})` : props.font
@@ -104,9 +160,9 @@ export const LgTxt = styled.h2.attrs<TextProps>((props) => ({
     props.font ||
     '"Times New Roman", Times, Haettenschweiler, system-ui, -apple-system, BlinkMacSystemFont',
 }))<TextProps>`
-  display: inherit;
+  flex: 4 2 5vw;
   text-align: center;
-  font-weight: 450;
+    padding-top: 24px;
   font-family: ${(props) =>
     props.theme.fonts.find((font) =>
       props.font === font ? `var(${props.font})` : props.font

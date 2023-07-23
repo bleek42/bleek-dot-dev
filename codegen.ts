@@ -14,7 +14,7 @@ const config: CodegenConfig = {
   overwrite: true,
   ignoreNoDocuments: false,
 
-  schema: [process.env.NEXT_PUBLIC_HYGRAPH_CDN_BASE_URL, 'schema.json'],
+  schema: [process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL, 'schema.json'],
   documents: [
     // 'ast.gql',
     // 'src/types/graphql/ast.gql',

@@ -30,8 +30,8 @@ declare module 'styled-components' {
     | '--font-Oxanium'
     | '--font-MonocraftNF'
     | 'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace'
-    | 'Verdana, Geneva, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont'
-    | '"Times New Roman", Times, Haettenschweiler, system-ui, -apple-system, BlinkMacSystemFont';
+    | 'Verdana, Geneva, Tahoma, Arial, sans-serif, system-ui, -apple-system, BlinkMacSystemFont'
+    | '"Times New Roman", Times, Haettenschweiler, monospace, system-ui, -apple-system, BlinkMacSystemFont';
 
   interface Breakpoints {
     readonly phone: '480px';

@@ -1,16 +1,16 @@
-import { Birdman, MonocraftNF, Oxanium } from '@/components/common/Theme';
+// import { Birdman, MonocraftNF, Oxanium } from '@/components/common';
 import Document, {
-	DocumentContext,
-	DocumentInitialProps,
+	type DocumentContext,
+	type DocumentInitialProps,
 	Html,
 	Head,
 	Main,
 	NextScript,
 } from 'next/document';
 
-import { ServerStyleSheet, StyleSheetManager } from 'styled-components';
+import { ServerStyleSheet } from 'styled-components';
 
-//@ts-expect-error
+//@ts-expect-error (known issue with DocumentContext)
 export default class StyledDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext) {
 		const sheet = new ServerStyleSheet();
@@ -26,9 +26,11 @@ export default class StyledDocument extends Document {
 			const initialProps: Awaited<DocumentInitialProps> =
 				await Document.getInitialProps(ctx);
 			// console.log(initialProps);
+			// initialProps.disableVendorPrefixes = true;
 
-			const result: DocumentInitialProps = {
+			return {
 				...initialProps,
+
 				styles: (
 					<>
 						{initialProps.styles}
@@ -36,24 +38,36 @@ export default class StyledDocument extends Document {
 					</>
 				),
 			};
-
-			return result;
-		} catch (err: unknown) {
 			// eslint-disable-next-line prettier/prettier
+		} 
+		catch (err: unknown) {
 			if (err) throw err;
-		} finally {
 			// eslint-disable-next-line prettier/prettier
-			console.log(sheet);
+		}
+		finally {
 			sheet.seal();
 		}
 	}
+
 	render() {
 		return (
-			<Html
-				lang="en"
-				className={`${MonocraftNF.variable} ${Oxanium.variable} ${Birdman.variable}`}
-			>
-				<Head />
+			<Html lang="en">
+				<Head>
+					{/* <style
+						// eslint-disable-next-line react/no-danger
+						dangerouslySetInnerHTML={{
+							__html: `
+					  :root {
+						--font-MonocraftNF: MonocraftNF;
+					    --font-Oxanium: __Oxanium_5aa400;
+						--font-Birdman: __Birdman_17cb25;
+						--font-Oxanium-lt: __Oxanium_5aa400
+					  }
+
+					`,
+						}}
+					/> */}
+				</Head>
 				<body>
 					<Main />
 					<NextScript />
@@ -63,21 +77,20 @@ export default class StyledDocument extends Document {
 	}
 }
 
-// Document.defaultProps = {
-// 	title: 'bleekDotDev',
-// 	description: 'Brandon Leek - Full Stack Web Developer',
-// 	keywords:
-// 		'bleek, dev brandon, leek, js, ts, javascript, typescript, html, css, engineer, usa, nj, nc, mobile, professional, tech, developer, web, development, application, software,   programming,  functional,  object,  oriented,  terminal,  react,  nodejs,  npm, rest,api,ajax,async,  typeorm,  relational,  mapping,  knex,expressjs,  sequelize,  docker,  container,  virtual,  microsoft,  windows,  linux,  wsl,debian,  ubuntu,  arch,android,  ios,sales,  sql,mysql,  postgres,  nosql,  mongodb,  graphql,  open-source,  debugging,  solutions,  shell,  scripting,  bash,zsh,fish,hacker,  crypto,  shopify,  wordpress,  jquery,  json,music,  festivals,  volunteer,  harm,reduction,  advocacy,  management,  ambition,  business,  creator,  maintain,  skateboard,   self,improvement,  growth,  courage,  strength,  open,accepting,  detail,  team, effort',
-// 	image: undefined,
-// };
-// 	// 	return (
-// 	// 		<Html lang="en">
-// 	// 			<Meta />
-// 	// 			<body>
-// 	// 				<Main />
-// 	// 				<NextScript />
-// 	// 			</body>
-// 	// 		</Html>
-// 	// 	);
-// 	// }
-// }
+//   @font-face{
+// 	${Birdman.style.fontFamily}
+// 	${Birdman.style.fontStyle}
+// 	${Birdman.style.fontWeight}
+//   }
+
+//   @font-face{
+// 	${Oxanium.style.fontFamily}
+// 	${Oxanium.style.fontStyle}
+// 	${Oxanium.style.fontWeight}
+//   }
+//   @font-face{
+// 	${MonocraftNF.style.fontFamily}
+// 	${MonocraftNF.style.fontStyle}
+// 	${MonocraftNF.style.fontWeight}
+
+//   }

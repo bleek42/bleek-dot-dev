@@ -10,7 +10,8 @@ export default {
   compiler: {
     styledComponents: {
       displayName: true,
-      fileName: false,
+      fileName: true,
+
       ssr: true,
       minify: true,
       cssProp: true,

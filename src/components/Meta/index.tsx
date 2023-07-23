@@ -1,7 +1,7 @@
 import Head from 'next/head';
 
 import { type MetaComponent } from '@/interfaces/Component';
-import { Birdman, Oxanium, MonocraftNF } from '@/common/Theme';
+// import { Birdman, Oxanium, MonocraftNF } from '@/components/common';
 
 type MetaProps = MetaComponent;
 
@@ -20,7 +20,6 @@ export default function Meta({
 			<meta name="description" content={description} />
 			<meta property="og:title" content={title} />
 			<meta property="og:image" content={image?.toString()} />
-			
 			<meta
 				name="keywords"
 				content={
@@ -29,6 +28,7 @@ export default function Meta({
 						: keywords.toLocaleLowerCase()
 				}
 			/>
+
 			<title>{title}</title>
 		</Head>
 	);

@@ -14,14 +14,14 @@ export default function Navbar() {
 
 	return (
 		<NavBar toggle={toggle}>
-			<LgTxt font="Birdman" color="neon" shadow="steel">
+			<LgTxt font={'--font-Birdman'} color="neon" shadow="steel">
 				Menu
 			</LgTxt>
 			{!toggle && (
 				<ToggleBtn
 					toggle={toggle}
 					onClick={toggleMenu}
-					
+
 					// onMouseOver={toggleMenu}
 					// onTouchStart={toggleMenu}
 				>

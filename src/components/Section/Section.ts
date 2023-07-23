@@ -16,15 +16,17 @@ type ArticleProps = StyledComponentProps<
   string | number | symbol
 >;
 
-export const Section = styled.section<SectionProps>((props) => `
+export const Section = styled.section<SectionProps>(
+  (props) => `
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: row nowrap;
   justify-content: flex-start;
   border: 4px solid ${props.theme.palette.secondary.green};
   border-radius: 15% 20% / 15% 20%;
-  padding: 16px; 
-  margin: 12px 6px 16px 6px;
+    padding: 8px 8px 8px 8px;
+  margin: 6px 6px 6px 6px;
   background-color: ${props.theme.palette.secondary.steel};
+  min-height: 60vh;
   /* width: 100vw;
   height: 60vh; */
   /* text-align: left; */
@@ -43,15 +45,19 @@ export const Section = styled.section<SectionProps>((props) => `
 `
 );
 
+// eslint-disable-next-line prettier/prettier
 export const Article = styled.article<ArticleProps>((props) => `
   color: ${props.theme.palette.secondary.steel};
   background-color: ${props.theme.palette.secondary.gray};
-  font-family: ${props.theme.fonts.at(1)};
+  font-family: var(${props.theme.fonts.at(1)});
   text-shadow: ${props.theme.palette.secondary.green} 2px 2px 2px;
   border: 2px solid ${props.theme.palette.secondary.neon};
-  text-align: left;
-  border-radius: 10% 10% / 10% 10%;
-  padding: 8px;
+  border-radius: 5% 5% / 5% 5%;
+  min-height: 40vh;
+  flex: 5 3 50vw;
+  min-height: 40vh;
+  padding: 12px 12px 12px 12px;
+  margin: 8px 8px auto;
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
     /* display: none; */
@@ -61,7 +67,7 @@ export const Article = styled.article<ArticleProps>((props) => `
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-
+    
   }
 
 `

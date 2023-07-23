@@ -1,7 +1,7 @@
 import { Fragment, useId } from 'react';
 
 import { type LayoutComponent, type MetaComponent } from '@/interfaces/Component';
-import { MainPage } from '@/components/common';
+import { MainPage, MonocraftNF } from '@/components/common';
 import Meta from '@/components/Meta';
 import PageHeader from '@/components/PageHeader';
 import PageFooter from '@/components/PageFooter';

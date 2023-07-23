@@ -14,6 +14,7 @@ export type FooterProps = StyledComponentProps<
 > &
   FooterComponent;
 
+// eslint-disable-next-line prettier/prettier
 export const Footer = styled.footer<FooterProps>((props) => `
   display: flex;
   flex-flow: row wrap;
@@ -26,7 +27,7 @@ export const Footer = styled.footer<FooterProps>((props) => `
   background-color: ${props.theme.palette.secondary.steel};
   border: 4px solid ${props.theme.palette.secondary.cyan};
   border-radius: 10% 10% / 10% 10%;
-  
+
   @media (max-width: ${props.theme.breakpoints.phone}) {
     /* display: none; */
     /* font-size: 28px;
@@ -35,7 +36,7 @@ export const Footer = styled.footer<FooterProps>((props) => `
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-    
+
   }
 
   `

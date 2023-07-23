@@ -21,16 +21,16 @@ export default function Section(props: SectionProps) {
 			</LgTxt>
 			{typeof props.content === 'string' && (
 				<Article>
-					<SmTxt font="MonocraftNF" color="neon">
+					<SmTxt font="--font-MonocraftNF" color="neon">
 						{props.content}
 					</SmTxt>
 				</Article>
 			)}
-			{Array.isArray(props.content) && (
+			{Array.isArray(props.content) && props.content.length >= 1 && (
 				<>
 					{props.content.map((articleContent: string, idx: Key) => (
 						<Article key={idx}>
-							<SmTxt font="MonocraftNF" color="neon">
+							<SmTxt font="--font-MonocraftNF" color="neon">
 								{articleContent}
 							</SmTxt>
 						</Article>
@@ -39,7 +39,7 @@ export default function Section(props: SectionProps) {
 			)}
 			{!props.content && (
 				<Article>
-					<SmTxt>'This section has no article content to show...'</SmTxt>
+					<SmTxt>This section has no article content to show...</SmTxt>
 				</Article>
 			)}
 		</Wrapper>

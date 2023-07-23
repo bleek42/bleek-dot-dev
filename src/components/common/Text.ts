@@ -6,62 +6,62 @@ import styled, {
   type DefaultTheme,
   type StyledComponentProps,
 } from 'styled-components';
-import localFont from 'next/font/local';
+// import localFont from 'next/font/local';
 
-export const Birdman = localFont<'--font-Birdman'>({
-  src: [
-    {
-      path: '../../../public/fonts/birdman/BIRDMAN_REG.ttf',
-      style: 'regular',
-      weight: '400',
-    },
-    {
-      path: '../../../public/fonts/birdman/BIRDMAN_LT.ttf',
-      style: 'light',
-      weight: '300',
-    },
-    {
-      path: '../../../public/fonts/birdman/BIRDMAN_BD.ttf',
-      style: 'bold',
-      weight: '600',
-    },
-    {
-      path: '../../../public/fonts/birdman/BIRDMAN_OBL.ttf',
-      style: 'oblique',
-      weight: '750',
-    },
-  ],
+// export const Birdman = localFont<'--font-Birdman'>({
+//   src: [
+//     {
+//       path: '../../../public/fonts/birdman/BIRDMAN_REG.ttf',
+//       style: 'regular',
+//       weight: '400',
+//     },
+//     {
+//       path: '../../../public/fonts/birdman/BIRDMAN_LT.ttf',
+//       style: 'light',
+//       weight: '300',
+//     },
+//     {
+//       path: '../../../public/fonts/birdman/BIRDMAN_BD.ttf',
+//       style: 'bold',
+//       weight: '600',
+//     },
+//     {
+//       path: '../../../public/fonts/birdman/BIRDMAN_OBL.ttf',
+//       style: 'oblique',
+//       weight: '750',
+//     },
+//   ],
 
-  variable: '--font-Birdman',
-});
+//   variable: '--font-Birdman',
+// });
 
-export const Oxanium = localFont<'--font-Oxanium'>({
-  src: [
-    {
-      path: '../../../public/fonts/Oxanium/Oxanium-Regular.ttf',
-      style: 'regular',
-    },
-    {
-      path: '../../../public/fonts/Oxanium/Oxanium-Light.ttf',
-      style: 'light',
-    },
-    {
-      path: '../../../public/fonts/Oxanium/Oxanium-Bold.ttf',
-      style: 'bold',
-    },
-    {
-      path: '../../../public/fonts/Oxanium/Oxanium-SemiBold.ttf',
-      style: 'semi-bold',
-    },
-  ],
+// export const Oxanium = localFont<'--font-Oxanium'>({
+//   src: [
+//     {
+//       path: '../../../public/fonts/Oxanium/Oxanium-Regular.ttf',
+//       style: 'regular',
+//     },
+//     {
+//       path: '../../../public/fonts/Oxanium/Oxanium-Light.ttf',
+//       style: 'light',
+//     },
+//     {
+//       path: '../../../public/fonts/Oxanium/Oxanium-Bold.ttf',
+//       style: 'bold',
+//     },
+//     {
+//       path: '../../../public/fonts/Oxanium/Oxanium-SemiBold.ttf',
+//       style: 'semi-bold',
+//     },
+//   ],
 
-  variable: '--font-Oxanium',
-});
+//   variable: '--font-Oxanium',
+// });
 
-export const MonocraftNF = localFont<'--font-MonocraftNF'>({
-  src: '../../../public/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf',
-  variable: '--font-MonocraftNF',
-});
+// export const MonocraftNF = localFont<'--font-MonocraftNF'>({
+//   src: '../../../public/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf',
+//   variable: '--font-MonocraftNF',
+// });
 
 interface TextOptions {
   colorPalette: ColorPalettes;
@@ -88,14 +88,12 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
   size: props.size || '12px',
   shadow: props?.shadow,
 }))<TextProps>`
-  flex: 3 1 4vw;
+  /* flex: 3 1 4vw; */
   font-weight: 450;
   padding-top: 12px;
   font-size: ${(props) => props.size};
   font-family: ${(props) =>
-    props.theme.fonts.find((font) =>
-      props.font === font ? `var(${props.font});` : props.font
-    )};
+    props.theme.fonts.find((font) => props.font === font && `var(${props.font})`)};
   color: ${(props) =>
     props.colorPalette === 'primary' && props.color in props.theme.palette.primary
       ? props.theme.palette.primary[props.color]
@@ -131,9 +129,7 @@ export const MdTxt = styled.h5.attrs<TextProps>((props) => ({
   flex: 3 1 12vw;
   text-align: center;
   font-family: ${(props) =>
-    props.theme.fonts.find((font) =>
-      props.font === font ? `var(${props.font})` : props.font
-    )};
+    props.theme.fonts.find((font) => props.font === font && `var(${props.font})`)};
   color: ${(props) =>
     props.color in props.theme.palette.primary
       ? props.theme.palette.primary[props.color]
@@ -160,13 +156,11 @@ export const LgTxt = styled.h2.attrs<TextProps>((props) => ({
     props.font ||
     '"Times New Roman", Times, Haettenschweiler, system-ui, -apple-system, BlinkMacSystemFont',
 }))<TextProps>`
-  flex: 4 2 5vw;
+  flex: 4 1 5vw;
   text-align: center;
-    padding-top: 24px;
+  padding-top: 24px;
   font-family: ${(props) =>
-    props.theme.fonts.find((font) =>
-      props.font === font ? `var(${props.font})` : props.font
-    )};
+    props.theme.fonts.find((font) => props.font === font && `var(${props.font})`)};
   color: ${(props) =>
     props.color in props.theme.palette.primary
       ? props.theme.palette.primary[props.color]

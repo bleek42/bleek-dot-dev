@@ -82,21 +82,31 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
 	  font-family: Birdman;
-	  src: url('/fonts/birdman/BIRDMAN_REG.ttf') format('truetype');
+	  src: url('/fonts/birdman/BIRDMAN.ttf') format('truetype');
     font-display: swap;
+    font-style: normal;
+    font-weight: 500;
   }
 
   @font-face {
     font-family: Oxanium;
-    src: url('/fonts/Oxanium/Oxanium-Regular.ttf') format('truetype');
+    src: url('/fonts/Oxanium/Oxanium.ttf') format('truetype');
     font-display: swap;
+    font-style: normal;
+    font-weight: 400;
   }
 
   @font-face {
 	  font-family: MonocraftNF;
 	  src: url('/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
     font-display: swap;
+    font-weight: 400;
+  }
 
+  :root {
+    --font-Birdman: Birdman;
+    --font-Oxanium: Oxanium;
+    --font-MonocraftNF: MonocraftNF;
   }
 
   *,
@@ -109,13 +119,11 @@ export const GlobalStyle = createGlobalStyle`
 
 
   body {
-    background: ${(props) => props.theme.palette.primary.linear};
-    font-family: ${(props) => `var(${props.theme.fonts.at(2)})`};
+    background: ${({ theme }) => theme.palette.primary.linear};
   }
 
   code, i {
-    font-family: ${({ theme }) => `var(${theme.fonts.at(0)})`};
-    font-weight: 500;
+    font-family: ${({ theme }) => `var(${theme.fonts.at(2)})`};
     font-size: 16px;
   }
 

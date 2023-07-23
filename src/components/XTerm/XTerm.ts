@@ -34,7 +34,7 @@ export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
 }))<XTermProps>`
   display: flex;
   flex-flow: column wrap;
-  font-size: 26px;
+  font-size: 24px;
   color: rgb(12, 205, 165);
   background-color: rgb(0, 0, 0);
 
@@ -48,7 +48,7 @@ export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
-    align-items: center;
+    flex-flow: column nowrap;
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
@@ -64,7 +64,7 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
   margin: 4px 6px 4px 6px;
   width: 100vw;
   padding: 8px 4px 4px 8px;
-  font-family: ${(props) => props.theme.fonts.at(2)};
+  font-family: ${(props) => `var(${props.theme.fonts.at(2)})`};
   color: ${(props) => props.theme.palette.secondary.gray};
   background-color: ${(props) => props.theme.palette.secondary.steel};
   border: ${(props) => '2px solid ' + props.theme.palette.secondary.green};
@@ -88,9 +88,7 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
 }))<XTermProps>`
   background-color: ${(props) => props.theme.palette.common.black};
   color: ${(props) => props.theme.palette.secondary.green};
-  font-size: 18px;
   padding: 4px 4px;
-  font-family: ${(props) => props.theme.fonts.at(1)};
 `;
 
 export const XTxtArea = styled.textarea.attrs((props) => ({
@@ -107,8 +105,8 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   background-color: ${(props) => props.theme.palette.common.black};
   font-family: ${(props) => props.theme.fonts.at(2)};
   color: ${(props) => props.theme.palette.primary.orange};
-  flex: 5 3 90vw;
-  width: 90vw;
+  flex: 2 1 70vw;
+  /* width: 90vw; */
 
   &:hover {
     border: 1px solid rgb(136, 255, 0);
@@ -126,14 +124,14 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
 
   @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
     font-size: 28px;
-    min-width: 50%;
+    
   }
 `;
 
 export const XTCode = styled.code<XTermProps>(
   (props) => `font-size: 16px;
   font-weight: 650;
-  flex: 3 1 8vw;
+  flex: 2 1 4vw;
   color: ${props.theme.palette.secondary.neon};
   /* text-align: left; */
   text-decoration: underline;

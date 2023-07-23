@@ -3,11 +3,10 @@ import styled from 'styled-components';
 export const Btn = styled.button((props) => `
   color: ${props.theme.palette.primary.neon};
   background-color: ${props.theme.palette.primary.gray};
-  flex: 2 1 56vw;
-  height: 16vh;
-  font-family: ${props.theme.fonts.at(2)};
-    font-size: 26px;
-  font-size: 24px;
+  font-family: var(${props.theme.fonts.at(2)});
+  flex: 3 1 36vw;
+  min-height: 16vh;
+  font-size: 28px;
   border: 2px solid rgb(0, 0, 0);
   border-radius: 12% / 12%;
   margin: 4px 4px;
@@ -21,7 +20,7 @@ export const Btn = styled.button((props) => `
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-    
+
   }
 `
 );

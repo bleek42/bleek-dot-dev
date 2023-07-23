@@ -16,14 +16,13 @@ type ArticleProps = StyledComponentProps<
   string | number | symbol
 >;
 
-export const Section = styled.section<SectionProps>(
-  (props) => `
+export const Section = styled.section<SectionProps>((props) => `
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
   border: 4px solid ${props.theme.palette.secondary.green};
   border-radius: 15% 20% / 15% 20%;
-    padding: 8px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
   margin: 6px 6px 6px 6px;
   background-color: ${props.theme.palette.secondary.steel};
   min-height: 60vh;

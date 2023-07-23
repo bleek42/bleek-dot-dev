@@ -18,7 +18,7 @@ export const Header = styled.header<HeaderProps>((props) => `
   background-color: ${props.theme.palette.secondary.steel};
   border: 4px solid ${props.theme.palette.secondary.cyan};
   border-radius: 10% 20% / 10% 20%;
-  min-height: 12vh; 
+  min-height: 14vh; 
   margin: 4px 4px 4px 4px;
   padding: 4px 4px 4px 4px;
   /* height: 12vh;

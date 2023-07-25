@@ -31,7 +31,7 @@ export default {
   },
 
   experimental: {
-    appDir: false,
+    // appDir: false,
   },
 
   // async headers() {

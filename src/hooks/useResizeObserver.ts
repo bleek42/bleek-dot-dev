@@ -9,15 +9,17 @@ export default function useResizeObserver<T extends HTMLElement>(
     let element = ref?.current;
 
     const observer = new ResizeObserver(([entry]) => {
+      console.log({ element, entry });
       if (element) cb(element, entry);
     });
 
     if (element) observer.observe(element);
 
     return () => {
+      console.log('ran useRO effect', { observer, ...ref })
       observer.disconnect();
     };
-  }, [cb, ref]);
+  }, [cb, ref?.current]);
 
   return ref;
 }

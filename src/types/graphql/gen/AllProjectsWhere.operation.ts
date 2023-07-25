@@ -11,6 +11,7 @@ export type AllProjectsWhereQueryVariables = Types.Exact<{
   locales?: Types.InputMaybe<Array<Types.Locale> | Types.Locale>;
 }>;
 
+
 export type AllProjectsWhereQuery = {
   __typename?: 'Query';
   projects: Array<{
@@ -40,6 +41,7 @@ export type AllProjectsWhereQuery = {
     }>;
   }>;
 };
+
 
 export const AllProjectsWhereDocument = gql`
   query AllProjectsWhere(
@@ -87,6 +89,7 @@ export type SdkFunctionWrapper = <T>(
   operationName: string,
   operationType?: string
 ) => Promise<T>;
+
 
 const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) =>
   action();

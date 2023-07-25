@@ -2,19 +2,19 @@ import { GraphQLClient } from 'graphql-request';
 import { getSdk } from '@/graphql/gen';
 import { type RequestConfig } from 'graphql-request/build/esm/types';
 
-const graphQLOptions: RequestConfig | undefined = {
-  credentials: 'include',
-  cache: 'force-cache',
-  mode: 'cors',
-  headers: {
-    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
-    'content-type': 'application/json',
-  },
-};
+// const graphQLOptions: RequestConfig | undefined = {
+//   credentials: 'include',
+//   cache: 'force-cache',
+//   mode: 'cors',
+//   headers: {
+//     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
+//     'content-type': 'application/json',
+//   },
+// };
 
 const graphQLClient: GraphQLClient = new GraphQLClient(
-  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`,
-  graphQLOptions
+  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`
+  // graphQLOptions
 );
 
 export const hygraphClient = getSdk(graphQLClient);

@@ -2,7 +2,6 @@ import type { NextPage } from 'next';
 
 import Section from '@/components/Section';
 
-
 export default function Home() {
 	return (
 		<Section

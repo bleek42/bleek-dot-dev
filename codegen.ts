@@ -45,13 +45,13 @@ const config: CodegenConfig = {
     'src/types/graphql/gen/hygraph-types.ts': {
       plugins: ['typescript'],
       config: {
-        useTypeImports: true,
         futureProofUnions: true,
         enumsAsTypes: true,
         addUnderscoreToArgsType: true,
         useImplementingTypes: true,
         declarationKind: {
           interface: 'interface',
+          input: 'interface',
         },
       },
     },
@@ -60,12 +60,15 @@ const config: CodegenConfig = {
       plugins: ['typescript-operations', 'typescript-graphql-request'],
       preset: 'near-operation-file',
       presetConfig: {
+        // cwd: './src/types/graphql',
+        folder: '../gen',
         extension: '.operation.ts',
         baseTypesPath: './hygraph-types.ts',
       },
     },
   },
   config: {
+    useTypeImports: true,
     defaultScalar: 'string | symbol | unknown',
     scalars: {
       ID: 'string | number | symbol | unknown',

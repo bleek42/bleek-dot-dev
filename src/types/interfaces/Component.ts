@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-interface */
 import { type Key, type ReactNode } from 'react';
 import { type AnyStyledComponent } from 'styled-components';
 

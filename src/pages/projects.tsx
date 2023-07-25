@@ -1,26 +1,28 @@
-import { type GetServerSideProps, type InferGetServerSidePropsType } from 'next';
 import { Fragment, type Key } from 'react';
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-import { type AllProjectsWhereQuery } from '@/graphql/queries';
+import { type AllProjectsWhereQuery } from '@/graphql/gen';
 import { hygraphClient } from '@/utils/gql-client';
 import Section from '@/components/Section';
 
-export default function Projects(
-	props: InferGetServerSidePropsType<typeof getServerSideProps>
-) {
+export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	console.log({
 		'/projects': { props },
 	});
 	return (
 		<Fragment>
-			{props.result.projects.length <= 0 && (
-				<Section
-					id={'projects-loading'}
-					name={'loading...'}
-					description={'please wait...'}
-				/>
-			)}
-			{props.result.projects.length >= 1 &&
+			{props.result?.projects &&
+				Array.isArray(props.result.projects) &&
+				props.result.projects?.length <= 0 && (
+					<Section
+						id={'projects-loading'}
+						name={'loading...'}
+						description={'please wait...'}
+					/>
+				)}
+			{props.result?.projects &&
+				Array.isArray(props.result.projects) &&
+				props.result.projects.length >= 1 &&
 				props.result.projects.map((item) => (
 					<Section
 						key={item.id as Key}
@@ -31,38 +33,53 @@ export default function Projects(
 						icon={null}
 					/>
 				))}
+			{!props.result && (
+				<Section
+					key={'err-projects'}
+					id={'err-projects'}
+					name={'err-projects'}
+					description={'Error loading projects!'}
+					content={'please refresh & try again...'}
+					icon={null}
+				/>
+			)}
 		</Fragment>
 	);
 }
 
-const getServerSideProps: GetServerSideProps<{
+export const getStaticProps: GetStaticProps<{
 	result: AllProjectsWhereQuery;
 }> = async () => {
-	console.log(process.env.NEXT_PUBLIC_HYGRAPH_CDN);
-	const headers: Record<string | number | symbol, any> = {
-		credentials: 'include',
-		cache: 'force-cache',
-		mode: 'cors',
-		headers: {
-			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
-		},
-	};
+	// const headers: Record<string | number | symbol, unknown> = {
+	// 	credentials: 'include',
+	// 	mode: 'cors',
+	// 	headers: {
+	// 		'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
+	// 	},
+	// };
 
-	const result = await hygraphClient.AllProjectsWhere(
-		{
-			'stage': 'PUBLISHED',
-			'orderBy': 'createdAt_ASC',
-		},
-		headers
-	);
-	console.log(result);
+	const result: Awaited<AllProjectsWhereQuery> = await hygraphClient.AllProjectsWhere({
+		'stage': 'PUBLISHED',
+	});
+	console.log({ result });
+
+	// if (!result.projects) {
+	// 	return {
+	// 		props: {
+	// 			result: {
+	// 				error: true,
+	// 				message: 'Error: cannot query all projects... ',
+	// 			},
+	// 		},
+	// 	};
+	// }
 
 	return {
 		props: {
 			result,
 		},
 
-		revalidate: 60000,
+		// revalidate: 60000,
 	};
 };
 

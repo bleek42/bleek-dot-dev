@@ -1,5 +1,5 @@
 import { type DefaultTheme, createGlobalStyle } from 'styled-components';
-import { Birdman, MonocraftNF, Oxanium } from './Text';
+// import { Birdman, MonocraftNF, Oxanium } from './Text';
 
 export const theme: DefaultTheme = {
   name: 'Default',

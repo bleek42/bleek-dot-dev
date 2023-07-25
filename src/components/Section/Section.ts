@@ -4,7 +4,7 @@ import { type SectionComponent } from '@/interfaces/Component';
 type SectionProps = StyledComponentProps<
   'section',
   DefaultTheme,
-  SectionComponent,
+  object,
   string | number | symbol
 > &
   SectionComponent;
@@ -12,13 +12,14 @@ type SectionProps = StyledComponentProps<
 type ArticleProps = StyledComponentProps<
   'article',
   DefaultTheme,
-  SectionComponent,
+  object,
   string | number | symbol
 >;
 
-export const Section = styled.section<SectionProps>((props) => `
+export const Section = styled.section<SectionProps>(
+  (props) => `
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   justify-content: flex-start;
   border: 4px solid ${props.theme.palette.secondary.green};
   border-radius: 15% 20% / 15% 20%;
@@ -32,6 +33,7 @@ export const Section = styled.section<SectionProps>((props) => `
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
     /* display: none; */
+    flex-flow: column wrap;
     /* font-size: 28px;
     min-height: 50%; */
   }
@@ -45,7 +47,8 @@ export const Section = styled.section<SectionProps>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const Article = styled.article<ArticleProps>((props) => `
+export const Article = styled.article<ArticleProps>(
+  (props) => `
   color: ${props.theme.palette.secondary.steel};
   background-color: ${props.theme.palette.secondary.gray};
   font-family: var(${props.theme.fonts.at(1)});

@@ -1,25 +1,51 @@
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
-export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]?: Maybe<T[SubKey]>;
+};
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
+  [SubKey in K]: Maybe<T[SubKey]>;
+};
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
+  [_ in K]?: never;
+};
+export type Incremental<T> =
+  | T
+  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string | number | symbol | unknown; output: string | number | symbol | unknown; }
-  String: { input: string; output: string; }
-  Boolean: { input: boolean; output: boolean; }
-  Int: { input: number; output: number; }
-  Float: { input: number; output: number; }
-  Date: { input: Date | string | symbol | unknown; output: Date | string | symbol | unknown; }
-  DateTime: { input: Date | string | symbol | unknown; output: Date | string | symbol | unknown; }
-  Hex: { input: any; output: any; }
-  Json: { input: string[] | string | symbol | unknown; output: string[] | string | symbol | unknown; }
-  Long: { input: number | BigInt | string | symbol | unknown; output: number | BigInt | string | symbol | unknown; }
-  RGBAHue: { input: any; output: any; }
-  RGBATransparency: { input: any; output: any; }
-  RichTextAST: { input: string[] | string | symbol | unknown; output: string[] | string | symbol | unknown; }
+  ID: {
+    input: string | number | symbol | unknown;
+    output: string | number | symbol | unknown;
+  };
+  String: { input: string; output: string };
+  Boolean: { input: boolean; output: boolean };
+  Int: { input: number; output: number };
+  Float: { input: number; output: number };
+  Date: {
+    input: Date | string | symbol | unknown;
+    output: Date | string | symbol | unknown;
+  };
+  DateTime: {
+    input: Date | string | symbol | unknown;
+    output: Date | string | symbol | unknown;
+  };
+  Hex: { input: any; output: any };
+  Json: {
+    input: string[] | string | symbol | unknown;
+    output: string[] | string | symbol | unknown;
+  };
+  Long: {
+    input: number | BigInt | string | symbol | unknown;
+    output: number | BigInt | string | symbol | unknown;
+  };
+  RGBAHue: { input: any; output: any };
+  RGBATransparency: { input: any; output: any };
+  RichTextAST: {
+    input: string[] | string | symbol | unknown;
+    output: string[] | string | symbol | unknown;
+  };
 };
 
 export type Aggregate = {
@@ -72,19 +98,16 @@ export type Asset = Node & {
   width?: Maybe<Scalars['Float']['output']>;
 };
 
-
 /** Asset system model */
 export type Asset_CreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type Asset_CreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Asset system model */
 export type Asset_DocumentInStagesArgs = {
@@ -93,7 +116,6 @@ export type Asset_DocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 /** Asset system model */
 export type Asset_HistoryArgs = {
   limit?: Scalars['Int']['input'];
@@ -101,26 +123,22 @@ export type Asset_HistoryArgs = {
   stageOverride?: InputMaybe<Stage>;
 };
 
-
 /** Asset system model */
 export type Asset_LocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
 };
 
-
 /** Asset system model */
 export type Asset_PublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type Asset_PublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Asset system model */
 export type Asset_ScheduledInArgs = {
@@ -133,7 +151,6 @@ export type Asset_ScheduledInArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
-
 
 /** Asset system model */
 export type Asset_ScreenShotsArgs = {
@@ -148,12 +165,10 @@ export type Asset_ScreenShotsArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
-
 /** Asset system model */
 export type Asset_UpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Asset system model */
 export type Asset_UpdatedByArgs = {
@@ -161,18 +176,17 @@ export type Asset_UpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-
 /** Asset system model */
 export type Asset_UrlArgs = {
   transformation?: InputMaybe<AssetTransformationInput>;
 };
 
-export type AssetConnectInput = {
+export interface AssetConnectInput {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Document to connect */
   where: AssetWhereUniqueInput;
-};
+}
 
 /** A connection to a list of items. */
 export type AssetConnection = {
@@ -184,7 +198,7 @@ export type AssetConnection = {
   pageInfo: PageInfo;
 };
 
-export type AssetCreateInput = {
+export interface AssetCreateInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   fileName: Scalars['String']['input'];
   handle: Scalars['String']['input'];
@@ -196,9 +210,9 @@ export type AssetCreateInput = {
   size?: InputMaybe<Scalars['Float']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   width?: InputMaybe<Scalars['Float']['input']>;
-};
+}
 
-export type AssetCreateLocalizationDataInput = {
+export interface AssetCreateLocalizationDataInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   fileName: Scalars['String']['input'];
   handle: Scalars['String']['input'];
@@ -207,32 +221,32 @@ export type AssetCreateLocalizationDataInput = {
   size?: InputMaybe<Scalars['Float']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   width?: InputMaybe<Scalars['Float']['input']>;
-};
+}
 
-export type AssetCreateLocalizationInput = {
+export interface AssetCreateLocalizationInput {
   /** Localization input */
   data: AssetCreateLocalizationDataInput;
   locale: Locale;
-};
+}
 
-export type AssetCreateLocalizationsInput = {
+export interface AssetCreateLocalizationsInput {
   /** Create localizations for the newly-created document */
   create?: InputMaybe<Array<AssetCreateLocalizationInput>>;
-};
+}
 
-export type AssetCreateManyInlineInput = {
+export interface AssetCreateManyInlineInput {
   /** Connect multiple existing Asset documents */
   connect?: InputMaybe<Array<AssetWhereUniqueInput>>;
   /** Create and connect multiple existing Asset documents */
   create?: InputMaybe<Array<AssetCreateInput>>;
-};
+}
 
-export type AssetCreateOneInlineInput = {
+export interface AssetCreateOneInlineInput {
   /** Connect one existing Asset document */
   connect?: InputMaybe<AssetWhereUniqueInput>;
   /** Create and connect one Asset document */
   create?: InputMaybe<AssetCreateInput>;
-};
+}
 
 /** An edge in a connection. */
 export type AssetEdge = {
@@ -244,7 +258,7 @@ export type AssetEdge = {
 };
 
 /** Identifies documents */
-export type AssetManyWhereInput = {
+export interface AssetManyWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<AssetWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -329,7 +343,7 @@ export type AssetManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
-};
+}
 
 export type AssetOrderByInput =
   | 'createdAt_ASC'
@@ -354,14 +368,14 @@ export type AssetOrderByInput =
   | 'width_DESC';
 
 /** Transformations for Assets */
-export type AssetTransformationInput = {
+export interface AssetTransformationInput {
   document?: InputMaybe<DocumentTransformationInput>;
   image?: InputMaybe<ImageTransformationInput>;
   /** Pass true if you want to validate the passed transformation parameters */
   validateOptions?: InputMaybe<Scalars['Boolean']['input']>;
-};
+}
 
-export type AssetUpdateInput = {
+export interface AssetUpdateInput {
   fileName?: InputMaybe<Scalars['String']['input']>;
   handle?: InputMaybe<Scalars['String']['input']>;
   height?: InputMaybe<Scalars['Float']['input']>;
@@ -371,23 +385,23 @@ export type AssetUpdateInput = {
   screenShots?: InputMaybe<ProjectUpdateManyInlineInput>;
   size?: InputMaybe<Scalars['Float']['input']>;
   width?: InputMaybe<Scalars['Float']['input']>;
-};
+}
 
-export type AssetUpdateLocalizationDataInput = {
+export interface AssetUpdateLocalizationDataInput {
   fileName?: InputMaybe<Scalars['String']['input']>;
   handle?: InputMaybe<Scalars['String']['input']>;
   height?: InputMaybe<Scalars['Float']['input']>;
   mimeType?: InputMaybe<Scalars['String']['input']>;
   size?: InputMaybe<Scalars['Float']['input']>;
   width?: InputMaybe<Scalars['Float']['input']>;
-};
+}
 
-export type AssetUpdateLocalizationInput = {
+export interface AssetUpdateLocalizationInput {
   data: AssetUpdateLocalizationDataInput;
   locale: Locale;
-};
+}
 
-export type AssetUpdateLocalizationsInput = {
+export interface AssetUpdateLocalizationsInput {
   /** Localizations to create */
   create?: InputMaybe<Array<AssetCreateLocalizationInput>>;
   /** Localizations to delete */
@@ -395,9 +409,9 @@ export type AssetUpdateLocalizationsInput = {
   /** Localizations to update */
   update?: InputMaybe<Array<AssetUpdateLocalizationInput>>;
   upsert?: InputMaybe<Array<AssetUpsertLocalizationInput>>;
-};
+}
 
-export type AssetUpdateManyInlineInput = {
+export interface AssetUpdateManyInlineInput {
   /** Connect multiple existing Asset documents */
   connect?: InputMaybe<Array<AssetConnectInput>>;
   /** Create and connect multiple Asset documents */
@@ -412,9 +426,9 @@ export type AssetUpdateManyInlineInput = {
   update?: InputMaybe<Array<AssetUpdateWithNestedWhereUniqueInput>>;
   /** Upsert multiple Asset documents */
   upsert?: InputMaybe<Array<AssetUpsertWithNestedWhereUniqueInput>>;
-};
+}
 
-export type AssetUpdateManyInput = {
+export interface AssetUpdateManyInput {
   fileName?: InputMaybe<Scalars['String']['input']>;
   height?: InputMaybe<Scalars['Float']['input']>;
   /** Optional updates to localizations */
@@ -422,34 +436,34 @@ export type AssetUpdateManyInput = {
   mimeType?: InputMaybe<Scalars['String']['input']>;
   size?: InputMaybe<Scalars['Float']['input']>;
   width?: InputMaybe<Scalars['Float']['input']>;
-};
+}
 
-export type AssetUpdateManyLocalizationDataInput = {
+export interface AssetUpdateManyLocalizationDataInput {
   fileName?: InputMaybe<Scalars['String']['input']>;
   height?: InputMaybe<Scalars['Float']['input']>;
   mimeType?: InputMaybe<Scalars['String']['input']>;
   size?: InputMaybe<Scalars['Float']['input']>;
   width?: InputMaybe<Scalars['Float']['input']>;
-};
+}
 
-export type AssetUpdateManyLocalizationInput = {
+export interface AssetUpdateManyLocalizationInput {
   data: AssetUpdateManyLocalizationDataInput;
   locale: Locale;
-};
+}
 
-export type AssetUpdateManyLocalizationsInput = {
+export interface AssetUpdateManyLocalizationsInput {
   /** Localizations to update */
   update?: InputMaybe<Array<AssetUpdateManyLocalizationInput>>;
-};
+}
 
-export type AssetUpdateManyWithNestedWhereInput = {
+export interface AssetUpdateManyWithNestedWhereInput {
   /** Update many input */
   data: AssetUpdateManyInput;
   /** Document search */
   where: AssetWhereInput;
-};
+}
 
-export type AssetUpdateOneInlineInput = {
+export interface AssetUpdateOneInlineInput {
   /** Connect existing Asset document */
   connect?: InputMaybe<AssetWhereUniqueInput>;
   /** Create and connect one Asset document */
@@ -462,43 +476,43 @@ export type AssetUpdateOneInlineInput = {
   update?: InputMaybe<AssetUpdateWithNestedWhereUniqueInput>;
   /** Upsert single Asset document */
   upsert?: InputMaybe<AssetUpsertWithNestedWhereUniqueInput>;
-};
+}
 
-export type AssetUpdateWithNestedWhereUniqueInput = {
+export interface AssetUpdateWithNestedWhereUniqueInput {
   /** Document to update */
   data: AssetUpdateInput;
   /** Unique document search */
   where: AssetWhereUniqueInput;
-};
+}
 
-export type AssetUpsertInput = {
+export interface AssetUpsertInput {
   /** Create document if it didn't exist */
   create: AssetCreateInput;
   /** Update document if it exists */
   update: AssetUpdateInput;
-};
+}
 
-export type AssetUpsertLocalizationInput = {
+export interface AssetUpsertLocalizationInput {
   create: AssetCreateLocalizationDataInput;
   locale: Locale;
   update: AssetUpdateLocalizationDataInput;
-};
+}
 
-export type AssetUpsertWithNestedWhereUniqueInput = {
+export interface AssetUpsertWithNestedWhereUniqueInput {
   /** Upsert data */
   data: AssetUpsertInput;
   /** Unique document search */
   where: AssetWhereUniqueInput;
-};
+}
 
 /** This contains a set of filters that can be used to compare values internally */
-export type AssetWhereComparatorInput = {
+export interface AssetWhereComparatorInput {
   /** This field can be used to request to check if the entry is outdated by internal comparison */
   outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
-};
+}
 
 /** Identifies documents */
-export type AssetWhereInput = {
+export interface AssetWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<AssetWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -685,10 +699,10 @@ export type AssetWhereInput = {
   width_not?: InputMaybe<Scalars['Float']['input']>;
   /** All values that are not contained in given list. */
   width_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
-};
+}
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
-export type AssetWhereStageInput = {
+export interface AssetWhereStageInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<AssetWhereStageInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -699,12 +713,12 @@ export type AssetWhereStageInput = {
   compareWithParent?: InputMaybe<AssetWhereComparatorInput>;
   /** Specify the stage to compare with */
   stage?: InputMaybe<Stage>;
-};
+}
 
 /** References Asset record uniquely */
-export type AssetWhereUniqueInput = {
+export interface AssetWhereUniqueInput {
   id?: InputMaybe<Scalars['ID']['input']>;
-};
+}
 
 export type BatchPayload = {
   __typename?: 'BatchPayload';
@@ -721,12 +735,12 @@ export type Color = {
 };
 
 /** Accepts either HEX or RGBA color value. At least one of hex or rgba value should be passed. If both are passed RGBA is used. */
-export type ColorInput = {
+export interface ColorInput {
   hex?: InputMaybe<Scalars['Hex']['input']>;
   rgba?: InputMaybe<RgbaInput>;
-};
+}
 
-export type ConnectPositionInput = {
+export interface ConnectPositionInput {
   /** Connect document after specified document */
   after?: InputMaybe<Scalars['ID']['input']>;
   /** Connect document before specified document */
@@ -735,7 +749,7 @@ export type ConnectPositionInput = {
   end?: InputMaybe<Scalars['Boolean']['input']>;
   /** Connect document at first position */
   start?: InputMaybe<Scalars['Boolean']['input']>;
-};
+}
 
 /** This component is an example of re-useable fields that are, as an example, included on several different content forms or pages. */
 export type DemoComponent = {
@@ -774,7 +788,6 @@ export type DemoComponentContentRichText = {
   text: Scalars['String']['output'];
 };
 
-
 export type DemoComponentContentRichText_ReferencesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -783,21 +796,21 @@ export type DemoComponentContentRichText_ReferencesArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
-export type DemoComponentContentRichTextEmbeddedTypes = Asset | { __typename?: "%other" };
+export type DemoComponentContentRichTextEmbeddedTypes = Asset | { __typename?: '%other' };
 
-export type DemoComponentCreateInput = {
+export interface DemoComponentCreateInput {
   content: Scalars['RichTextAST']['input'];
   slug: Scalars['String']['input'];
   subtitle?: InputMaybe<Scalars['String']['input']>;
   title: Scalars['String']['input'];
-};
+}
 
-export type DemoComponentCreateWithPositionInput = {
+export interface DemoComponentCreateWithPositionInput {
   /** Document to create */
   data: DemoComponentCreateInput;
   /** Position in the list of existing component instances, will default to appending at the end of list */
   position?: InputMaybe<ConnectPositionInput>;
-};
+}
 
 /** An edge in a connection. */
 export type DemoComponentEdge = {
@@ -809,7 +822,7 @@ export type DemoComponentEdge = {
 };
 
 /** Identifies documents */
-export type DemoComponentManyWhereInput = {
+export interface DemoComponentManyWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<DemoComponentWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -894,7 +907,7 @@ export type DemoComponentManyWhereInput = {
   title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   title_starts_with?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
 export type DemoComponentOrderByInput =
   | 'id_ASC'
@@ -906,67 +919,67 @@ export type DemoComponentOrderByInput =
   | 'title_ASC'
   | 'title_DESC';
 
-export type DemoComponentUpdateInput = {
+export interface DemoComponentUpdateInput {
   content?: InputMaybe<Scalars['RichTextAST']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
-export type DemoComponentUpdateManyInput = {
+export interface DemoComponentUpdateManyInput {
   content?: InputMaybe<Scalars['RichTextAST']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
-export type DemoComponentUpdateManyWithNestedWhereInput = {
+export interface DemoComponentUpdateManyWithNestedWhereInput {
   /** Update many input */
   data: DemoComponentUpdateManyInput;
   /** Document search */
   where: DemoComponentWhereInput;
-};
+}
 
-export type DemoComponentUpdateWithNestedWhereUniqueAndPositionInput = {
+export interface DemoComponentUpdateWithNestedWhereUniqueAndPositionInput {
   /** Document to update */
   data?: InputMaybe<DemoComponentUpdateInput>;
   /** Position in the list of existing component instances, will default to appending at the end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Unique component instance search */
   where: DemoComponentWhereUniqueInput;
-};
+}
 
-export type DemoComponentUpdateWithNestedWhereUniqueInput = {
+export interface DemoComponentUpdateWithNestedWhereUniqueInput {
   /** Document to update */
   data: DemoComponentUpdateInput;
   /** Unique document search */
   where: DemoComponentWhereUniqueInput;
-};
+}
 
-export type DemoComponentUpsertInput = {
+export interface DemoComponentUpsertInput {
   /** Create document if it didn't exist */
   create: DemoComponentCreateInput;
   /** Update document if it exists */
   update: DemoComponentUpdateInput;
-};
+}
 
-export type DemoComponentUpsertWithNestedWhereUniqueAndPositionInput = {
+export interface DemoComponentUpsertWithNestedWhereUniqueAndPositionInput {
   /** Document to upsert */
   data?: InputMaybe<DemoComponentUpsertInput>;
   /** Position in the list of existing component instances, will default to appending at the end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Unique component instance search */
   where: DemoComponentWhereUniqueInput;
-};
+}
 
-export type DemoComponentUpsertWithNestedWhereUniqueInput = {
+export interface DemoComponentUpsertWithNestedWhereUniqueInput {
   /** Upsert data */
   data: DemoComponentUpsertInput;
   /** Unique document search */
   where: DemoComponentWhereUniqueInput;
-};
+}
 
 /** Identifies documents */
-export type DemoComponentWhereInput = {
+export interface DemoComponentWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<DemoComponentWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -1051,13 +1064,13 @@ export type DemoComponentWhereInput = {
   title_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   title_starts_with?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
 /** References DemoComponent record uniquely */
-export type DemoComponentWhereUniqueInput = {
+export interface DemoComponentWhereUniqueInput {
   id?: InputMaybe<Scalars['ID']['input']>;
   slug?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
 export type DocumentFileTypes =
   | 'doc'
@@ -1077,7 +1090,7 @@ export type DocumentFileTypes =
   | 'xls'
   | 'xlsx';
 
-export type DocumentOutputInput = {
+export interface DocumentOutputInput {
   /**
    * Transforms a document into a desired file type.
    * See this matrix for format support:
@@ -1105,13 +1118,13 @@ export type DocumentOutputInput = {
    * TXT:	jpg, html, odt, pdf, svg, and webp
    */
   format?: InputMaybe<DocumentFileTypes>;
-};
+}
 
 /** Transformations for Documents */
-export type DocumentTransformationInput = {
+export interface DocumentTransformationInput {
   /** Changes the output for the file. */
   output?: InputMaybe<DocumentOutputInput>;
-};
+}
 
 export type DocumentVersion = {
   __typename?: 'DocumentVersion';
@@ -1132,20 +1145,20 @@ export type ImageFit =
   /** Resizes the image to fit the specified parameters exactly by scaling the image to the desired size. The aspect ratio of the image is not respected and the image can be distorted using this method. */
   | 'scale';
 
-export type ImageResizeInput = {
+export interface ImageResizeInput {
   /** The default value for the fit parameter is fit:clip. */
   fit?: InputMaybe<ImageFit>;
   /** The height in pixels to resize the image to. The value must be an integer from 1 to 10000. */
   height?: InputMaybe<Scalars['Int']['input']>;
   /** The width in pixels to resize the image to. The value must be an integer from 1 to 10000. */
   width?: InputMaybe<Scalars['Int']['input']>;
-};
+}
 
 /** Transformations for Images */
-export type ImageTransformationInput = {
+export interface ImageTransformationInput {
   /** Resizes the image */
   resize?: InputMaybe<ImageResizeInput>;
-};
+}
 
 /** Component for a landing or welcome page that displays a dynamic welcome message, user prompts, etc. */
 export type LandingPageComponent = {
@@ -1158,19 +1171,18 @@ export type LandingPageComponent = {
   stage: Stage;
 };
 
-
 /** Component for a landing or welcome page that displays a dynamic welcome message, user prompts, etc. */
 export type LandingPageComponent_MessageArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type LandingPageComponentConnectInput = {
+export interface LandingPageComponentConnectInput {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Document to connect */
   where: LandingPageComponentWhereUniqueInput;
-};
+}
 
 /** A connection to a list of items. */
 export type LandingPageComponentConnection = {
@@ -1182,26 +1194,26 @@ export type LandingPageComponentConnection = {
   pageInfo: PageInfo;
 };
 
-export type LandingPageComponentCreateInput = {
+export interface LandingPageComponentCreateInput {
   message?: InputMaybe<LandingPageComponentCreateOneInlineInput>;
-};
+}
 
-export type LandingPageComponentCreateManyInlineInput = {
+export interface LandingPageComponentCreateManyInlineInput {
   /** Create and connect multiple existing LandingPageComponent documents */
   create?: InputMaybe<Array<LandingPageComponentCreateInput>>;
-};
+}
 
-export type LandingPageComponentCreateOneInlineInput = {
+export interface LandingPageComponentCreateOneInlineInput {
   /** Create and connect one LandingPageComponent document */
   create?: InputMaybe<LandingPageComponentCreateInput>;
-};
+}
 
-export type LandingPageComponentCreateWithPositionInput = {
+export interface LandingPageComponentCreateWithPositionInput {
   /** Document to create */
   data: LandingPageComponentCreateInput;
   /** Position in the list of existing component instances, will default to appending at the end of list */
   position?: InputMaybe<ConnectPositionInput>;
-};
+}
 
 /** An edge in a connection. */
 export type LandingPageComponentEdge = {
@@ -1213,7 +1225,7 @@ export type LandingPageComponentEdge = {
 };
 
 /** Identifies documents */
-export type LandingPageComponentManyWhereInput = {
+export interface LandingPageComponentManyWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<LandingPageComponentWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -1242,56 +1254,58 @@ export type LandingPageComponentManyWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
   message?: InputMaybe<LandingPageComponentWhereInput>;
-};
+}
 
-export type LandingPageComponentOrderByInput =
-  | 'id_ASC'
-  | 'id_DESC';
+export type LandingPageComponentOrderByInput = 'id_ASC' | 'id_DESC';
 
-export type LandingPageComponentParent = LandingPageComponent | { __typename?: "%other" };
+export type LandingPageComponentParent = LandingPageComponent | { __typename?: '%other' };
 
-export type LandingPageComponentParentConnectInput = {
+export interface LandingPageComponentParentConnectInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentConnectInput>;
-};
+}
 
-export type LandingPageComponentParentCreateInput = {
+export interface LandingPageComponentParentCreateInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentCreateInput>;
-};
+}
 
-export type LandingPageComponentParentCreateManyInlineInput = {
+export interface LandingPageComponentParentCreateManyInlineInput {
   /** Create and connect multiple existing LandingPageComponentParent documents */
   create?: InputMaybe<Array<LandingPageComponentParentCreateInput>>;
-};
+}
 
-export type LandingPageComponentParentCreateOneInlineInput = {
+export interface LandingPageComponentParentCreateOneInlineInput {
   /** Create and connect one LandingPageComponentParent document */
   create?: InputMaybe<LandingPageComponentParentCreateInput>;
-};
+}
 
-export type LandingPageComponentParentCreateWithPositionInput = {
+export interface LandingPageComponentParentCreateWithPositionInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentCreateWithPositionInput>;
-};
+}
 
-export type LandingPageComponentParentUpdateInput = {
+export interface LandingPageComponentParentUpdateInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentUpdateInput>;
-};
+}
 
-export type LandingPageComponentParentUpdateManyInlineInput = {
+export interface LandingPageComponentParentUpdateManyInlineInput {
   /** Create and connect multiple LandingPageComponentParent component instances */
   create?: InputMaybe<Array<LandingPageComponentParentCreateWithPositionInput>>;
   /** Delete multiple LandingPageComponentParent documents */
   delete?: InputMaybe<Array<LandingPageComponentParentWhereUniqueInput>>;
   /** Update multiple LandingPageComponentParent component instances */
-  update?: InputMaybe<Array<LandingPageComponentParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  update?: InputMaybe<
+    Array<LandingPageComponentParentUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
   /** Upsert multiple LandingPageComponentParent component instances */
-  upsert?: InputMaybe<Array<LandingPageComponentParentUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
+  upsert?: InputMaybe<
+    Array<LandingPageComponentParentUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+}
 
-export type LandingPageComponentParentUpdateManyWithNestedWhereInput = {
+export interface LandingPageComponentParentUpdateManyWithNestedWhereInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentUpdateManyWithNestedWhereInput>;
-};
+}
 
-export type LandingPageComponentParentUpdateOneInlineInput = {
+export interface LandingPageComponentParentUpdateOneInlineInput {
   /** Create and connect one LandingPageComponentParent document */
   create?: InputMaybe<LandingPageComponentParentCreateInput>;
   /** Delete currently connected LandingPageComponentParent document */
@@ -1300,60 +1314,64 @@ export type LandingPageComponentParentUpdateOneInlineInput = {
   update?: InputMaybe<LandingPageComponentParentUpdateWithNestedWhereUniqueInput>;
   /** Upsert single LandingPageComponentParent document */
   upsert?: InputMaybe<LandingPageComponentParentUpsertWithNestedWhereUniqueInput>;
-};
+}
 
-export type LandingPageComponentParentUpdateWithNestedWhereUniqueAndPositionInput = {
+export interface LandingPageComponentParentUpdateWithNestedWhereUniqueAndPositionInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput>;
-};
+}
 
-export type LandingPageComponentParentUpdateWithNestedWhereUniqueInput = {
+export interface LandingPageComponentParentUpdateWithNestedWhereUniqueInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentUpdateWithNestedWhereUniqueInput>;
-};
+}
 
-export type LandingPageComponentParentUpsertWithNestedWhereUniqueAndPositionInput = {
+export interface LandingPageComponentParentUpsertWithNestedWhereUniqueAndPositionInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput>;
-};
+}
 
-export type LandingPageComponentParentUpsertWithNestedWhereUniqueInput = {
+export interface LandingPageComponentParentUpsertWithNestedWhereUniqueInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentUpsertWithNestedWhereUniqueInput>;
-};
+}
 
-export type LandingPageComponentParentWhereInput = {
+export interface LandingPageComponentParentWhereInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentWhereInput>;
-};
+}
 
-export type LandingPageComponentParentWhereUniqueInput = {
+export interface LandingPageComponentParentWhereUniqueInput {
   LandingPageComponent?: InputMaybe<LandingPageComponentWhereUniqueInput>;
-};
+}
 
-export type LandingPageComponentUpdateInput = {
+export interface LandingPageComponentUpdateInput {
   message?: InputMaybe<LandingPageComponentUpdateOneInlineInput>;
-};
+}
 
-export type LandingPageComponentUpdateManyInlineInput = {
+export interface LandingPageComponentUpdateManyInlineInput {
   /** Create and connect multiple LandingPageComponent component instances */
   create?: InputMaybe<Array<LandingPageComponentCreateWithPositionInput>>;
   /** Delete multiple LandingPageComponent documents */
   delete?: InputMaybe<Array<LandingPageComponentWhereUniqueInput>>;
   /** Update multiple LandingPageComponent component instances */
-  update?: InputMaybe<Array<LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  update?: InputMaybe<
+    Array<LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput>
+  >;
   /** Upsert multiple LandingPageComponent component instances */
-  upsert?: InputMaybe<Array<LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
+  upsert?: InputMaybe<
+    Array<LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput>
+  >;
+}
 
-export type LandingPageComponentUpdateManyInput = {
+export interface LandingPageComponentUpdateManyInput {
   /** No fields in updateMany data input */
   _?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
-export type LandingPageComponentUpdateManyWithNestedWhereInput = {
+export interface LandingPageComponentUpdateManyWithNestedWhereInput {
   /** Update many input */
   data: LandingPageComponentUpdateManyInput;
   /** Document search */
   where: LandingPageComponentWhereInput;
-};
+}
 
-export type LandingPageComponentUpdateOneInlineInput = {
+export interface LandingPageComponentUpdateOneInlineInput {
   /** Create and connect one LandingPageComponent document */
   create?: InputMaybe<LandingPageComponentCreateInput>;
   /** Delete currently connected LandingPageComponent document */
@@ -1362,49 +1380,49 @@ export type LandingPageComponentUpdateOneInlineInput = {
   update?: InputMaybe<LandingPageComponentUpdateWithNestedWhereUniqueInput>;
   /** Upsert single LandingPageComponent document */
   upsert?: InputMaybe<LandingPageComponentUpsertWithNestedWhereUniqueInput>;
-};
+}
 
-export type LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput = {
+export interface LandingPageComponentUpdateWithNestedWhereUniqueAndPositionInput {
   /** Document to update */
   data?: InputMaybe<LandingPageComponentUpdateInput>;
   /** Position in the list of existing component instances, will default to appending at the end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Unique component instance search */
   where: LandingPageComponentWhereUniqueInput;
-};
+}
 
-export type LandingPageComponentUpdateWithNestedWhereUniqueInput = {
+export interface LandingPageComponentUpdateWithNestedWhereUniqueInput {
   /** Document to update */
   data: LandingPageComponentUpdateInput;
   /** Unique document search */
   where: LandingPageComponentWhereUniqueInput;
-};
+}
 
-export type LandingPageComponentUpsertInput = {
+export interface LandingPageComponentUpsertInput {
   /** Create document if it didn't exist */
   create: LandingPageComponentCreateInput;
   /** Update document if it exists */
   update: LandingPageComponentUpdateInput;
-};
+}
 
-export type LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput = {
+export interface LandingPageComponentUpsertWithNestedWhereUniqueAndPositionInput {
   /** Document to upsert */
   data?: InputMaybe<LandingPageComponentUpsertInput>;
   /** Position in the list of existing component instances, will default to appending at the end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Unique component instance search */
   where: LandingPageComponentWhereUniqueInput;
-};
+}
 
-export type LandingPageComponentUpsertWithNestedWhereUniqueInput = {
+export interface LandingPageComponentUpsertWithNestedWhereUniqueInput {
   /** Upsert data */
   data: LandingPageComponentUpsertInput;
   /** Unique document search */
   where: LandingPageComponentWhereUniqueInput;
-};
+}
 
 /** Identifies documents */
-export type LandingPageComponentWhereInput = {
+export interface LandingPageComponentWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<LandingPageComponentWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -1433,18 +1451,17 @@ export type LandingPageComponentWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
   message?: InputMaybe<LandingPageComponentWhereInput>;
-};
+}
 
 /** References LandingPageComponent record uniquely */
-export type LandingPageComponentWhereUniqueInput = {
+export interface LandingPageComponentWhereUniqueInput {
   id?: InputMaybe<Scalars['ID']['input']>;
-};
+}
 
 /** Locale system enumeration */
 export type Locale =
   /** System locale */
-  | 'en'
-  | 'es_MX';
+  'en' | 'es_MX';
 
 /** Representing a geolocation point with latitude and longitude */
 export type Location = {
@@ -1454,17 +1471,16 @@ export type Location = {
   longitude: Scalars['Float']['output'];
 };
 
-
 /** Representing a geolocation point with latitude and longitude */
 export type Location_DistanceArgs = {
   from: LocationInput;
 };
 
 /** Input for a geolocation point with latitude and longitude */
-export type LocationInput = {
+export interface LocationInput {
   latitude: Scalars['Float']['input'];
   longitude: Scalars['Float']['input'];
-};
+}
 
 export type Mutation = {
   __typename?: 'Mutation';
@@ -1569,31 +1585,25 @@ export type Mutation = {
   upsertProject?: Maybe<Project>;
 };
 
-
 export type Mutation_CreateAssetArgs = {
   data: AssetCreateInput;
 };
-
 
 export type Mutation_CreateProjectArgs = {
   data: ProjectCreateInput;
 };
 
-
 export type Mutation_CreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
 };
-
 
 export type Mutation_DeleteAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
-
 export type Mutation_DeleteManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type Mutation_DeleteManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1604,11 +1614,9 @@ export type Mutation_DeleteManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type Mutation_DeleteManyProjectsArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
-
 
 export type Mutation_DeleteManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1619,21 +1627,17 @@ export type Mutation_DeleteManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
-
 export type Mutation_DeleteProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
-
 
 export type Mutation_DeleteScheduledOperationArgs = {
   where: ScheduledOperationWhereUniqueInput;
 };
 
-
 export type Mutation_DeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
 };
-
 
 export type Mutation_PublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -1643,7 +1647,6 @@ export type Mutation_PublishAssetArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type Mutation_PublishManyAssetsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1651,7 +1654,6 @@ export type Mutation_PublishManyAssetsArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type Mutation_PublishManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1667,7 +1669,6 @@ export type Mutation_PublishManyAssetsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type Mutation_PublishManyProjectsArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1675,7 +1676,6 @@ export type Mutation_PublishManyProjectsArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type Mutation_PublishManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1691,7 +1691,6 @@ export type Mutation_PublishManyProjectsConnectionArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type Mutation_PublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1699,7 +1698,6 @@ export type Mutation_PublishProjectArgs = {
   where: ProjectWhereUniqueInput;
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
-
 
 export type Mutation_SchedulePublishAssetArgs = {
   locales?: InputMaybe<Array<Locale>>;
@@ -1711,7 +1709,6 @@ export type Mutation_SchedulePublishAssetArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type Mutation_SchedulePublishProjectArgs = {
   locales?: InputMaybe<Array<Locale>>;
   publishBase?: InputMaybe<Scalars['Boolean']['input']>;
@@ -1722,7 +1719,6 @@ export type Mutation_SchedulePublishProjectArgs = {
   withDefaultLocale?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-
 export type Mutation_ScheduleUnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1731,7 +1727,6 @@ export type Mutation_ScheduleUnpublishAssetArgs = {
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where: AssetWhereUniqueInput;
 };
-
 
 export type Mutation_ScheduleUnpublishProjectArgs = {
   from?: Array<Stage>;
@@ -1742,7 +1737,6 @@ export type Mutation_ScheduleUnpublishProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
-
 export type Mutation_UnpublishAssetArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1750,14 +1744,12 @@ export type Mutation_UnpublishAssetArgs = {
   where: AssetWhereUniqueInput;
 };
 
-
 export type Mutation_UnpublishManyAssetsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type Mutation_UnpublishManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1772,14 +1764,12 @@ export type Mutation_UnpublishManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type Mutation_UnpublishManyProjectsArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
   unpublishBase?: InputMaybe<Scalars['Boolean']['input']>;
   where?: InputMaybe<ProjectManyWhereInput>;
 };
-
 
 export type Mutation_UnpublishManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1794,7 +1784,6 @@ export type Mutation_UnpublishManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
-
 export type Mutation_UnpublishProjectArgs = {
   from?: Array<Stage>;
   locales?: InputMaybe<Array<Locale>>;
@@ -1802,18 +1791,15 @@ export type Mutation_UnpublishProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
-
 export type Mutation_UpdateAssetArgs = {
   data: AssetUpdateInput;
   where: AssetWhereUniqueInput;
 };
 
-
 export type Mutation_UpdateManyAssetsArgs = {
   data: AssetUpdateManyInput;
   where?: InputMaybe<AssetManyWhereInput>;
 };
-
 
 export type Mutation_UpdateManyAssetsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1825,12 +1811,10 @@ export type Mutation_UpdateManyAssetsConnectionArgs = {
   where?: InputMaybe<AssetManyWhereInput>;
 };
 
-
 export type Mutation_UpdateManyProjectsArgs = {
   data: ProjectUpdateManyInput;
   where?: InputMaybe<ProjectManyWhereInput>;
 };
-
 
 export type Mutation_UpdateManyProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1842,24 +1826,20 @@ export type Mutation_UpdateManyProjectsConnectionArgs = {
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
-
 export type Mutation_UpdateProjectArgs = {
   data: ProjectUpdateInput;
   where: ProjectWhereUniqueInput;
 };
-
 
 export type Mutation_UpdateScheduledReleaseArgs = {
   data: ScheduledReleaseUpdateInput;
   where: ScheduledReleaseWhereUniqueInput;
 };
 
-
 export type Mutation_UpsertAssetArgs = {
   upsert: AssetUpsertInput;
   where: AssetWhereUniqueInput;
 };
-
 
 export type Mutation_UpsertProjectArgs = {
   upsert: ProjectUpsertInput;
@@ -1935,19 +1915,16 @@ export type Project = Node & {
   version: Scalars['Float']['output'];
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_CreatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_CreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_DocumentInStagesArgs = {
@@ -1956,7 +1933,6 @@ export type Project_DocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_HistoryArgs = {
   limit?: Scalars['Int']['input'];
@@ -1964,26 +1940,22 @@ export type Project_HistoryArgs = {
   stageOverride?: InputMaybe<Stage>;
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_LocalizationsArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
   locales?: Array<Locale>;
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_PublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_PublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_ScheduledInArgs = {
@@ -1996,7 +1968,6 @@ export type Project_ScheduledInArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_ScreenShotsArgs = {
@@ -2011,12 +1982,10 @@ export type Project_ScreenShotsArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_UpdatedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
-
 
 /** Web, mobile, and other software projects created by Brandon Leek. */
 export type Project_UpdatedByArgs = {
@@ -2024,12 +1993,12 @@ export type Project_UpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ProjectConnectInput = {
+export interface ProjectConnectInput {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Document to connect */
   where: ProjectWhereUniqueInput;
-};
+}
 
 /** A connection to a list of items. */
 export type ProjectConnection = {
@@ -2041,7 +2010,7 @@ export type ProjectConnection = {
   pageInfo: PageInfo;
 };
 
-export type ProjectCreateInput = {
+export interface ProjectCreateInput {
   /** active input for default locale (en) */
   active: Scalars['Boolean']['input'];
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2056,39 +2025,39 @@ export type ProjectCreateInput = {
   title: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   version: Scalars['Float']['input'];
-};
+}
 
-export type ProjectCreateLocalizationDataInput = {
+export interface ProjectCreateLocalizationDataInput {
   active: Scalars['Boolean']['input'];
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   techStack?: InputMaybe<Scalars['Json']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-};
+}
 
-export type ProjectCreateLocalizationInput = {
+export interface ProjectCreateLocalizationInput {
   /** Localization input */
   data: ProjectCreateLocalizationDataInput;
   locale: Locale;
-};
+}
 
-export type ProjectCreateLocalizationsInput = {
+export interface ProjectCreateLocalizationsInput {
   /** Create localizations for the newly-created document */
   create?: InputMaybe<Array<ProjectCreateLocalizationInput>>;
-};
+}
 
-export type ProjectCreateManyInlineInput = {
+export interface ProjectCreateManyInlineInput {
   /** Connect multiple existing Project documents */
   connect?: InputMaybe<Array<ProjectWhereUniqueInput>>;
   /** Create and connect multiple existing Project documents */
   create?: InputMaybe<Array<ProjectCreateInput>>;
-};
+}
 
-export type ProjectCreateOneInlineInput = {
+export interface ProjectCreateOneInlineInput {
   /** Connect one existing Project document */
   connect?: InputMaybe<ProjectWhereUniqueInput>;
   /** Create and connect one Project document */
   create?: InputMaybe<ProjectCreateInput>;
-};
+}
 
 /** An edge in a connection. */
 export type ProjectEdge = {
@@ -2100,7 +2069,7 @@ export type ProjectEdge = {
 };
 
 /** Identifies documents */
-export type ProjectManyWhereInput = {
+export interface ProjectManyWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<ProjectWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -2267,7 +2236,7 @@ export type ProjectManyWhereInput = {
   version_not?: InputMaybe<Scalars['Float']['input']>;
   /** All values that are not contained in given list. */
   version_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
-};
+}
 
 export type ProjectOrderByInput =
   | 'active_ASC'
@@ -2291,7 +2260,7 @@ export type ProjectOrderByInput =
   | 'version_ASC'
   | 'version_DESC';
 
-export type ProjectUpdateInput = {
+export interface ProjectUpdateInput {
   /** active input for default locale (en) */
   active?: InputMaybe<Scalars['Boolean']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -2304,19 +2273,19 @@ export type ProjectUpdateInput = {
   techStack?: InputMaybe<Scalars['Json']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   version?: InputMaybe<Scalars['Float']['input']>;
-};
+}
 
-export type ProjectUpdateLocalizationDataInput = {
+export interface ProjectUpdateLocalizationDataInput {
   active?: InputMaybe<Scalars['Boolean']['input']>;
   techStack?: InputMaybe<Scalars['Json']['input']>;
-};
+}
 
-export type ProjectUpdateLocalizationInput = {
+export interface ProjectUpdateLocalizationInput {
   data: ProjectUpdateLocalizationDataInput;
   locale: Locale;
-};
+}
 
-export type ProjectUpdateLocalizationsInput = {
+export interface ProjectUpdateLocalizationsInput {
   /** Localizations to create */
   create?: InputMaybe<Array<ProjectCreateLocalizationInput>>;
   /** Localizations to delete */
@@ -2324,9 +2293,9 @@ export type ProjectUpdateLocalizationsInput = {
   /** Localizations to update */
   update?: InputMaybe<Array<ProjectUpdateLocalizationInput>>;
   upsert?: InputMaybe<Array<ProjectUpsertLocalizationInput>>;
-};
+}
 
-export type ProjectUpdateManyInlineInput = {
+export interface ProjectUpdateManyInlineInput {
   /** Connect multiple existing Project documents */
   connect?: InputMaybe<Array<ProjectConnectInput>>;
   /** Create and connect multiple Project documents */
@@ -2341,9 +2310,9 @@ export type ProjectUpdateManyInlineInput = {
   update?: InputMaybe<Array<ProjectUpdateWithNestedWhereUniqueInput>>;
   /** Upsert multiple Project documents */
   upsert?: InputMaybe<Array<ProjectUpsertWithNestedWhereUniqueInput>>;
-};
+}
 
-export type ProjectUpdateManyInput = {
+export interface ProjectUpdateManyInput {
   /** active input for default locale (en) */
   active?: InputMaybe<Scalars['Boolean']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
@@ -2351,30 +2320,30 @@ export type ProjectUpdateManyInput = {
   localizations?: InputMaybe<ProjectUpdateManyLocalizationsInput>;
   sourceCode?: InputMaybe<Array<Scalars['String']['input']>>;
   version?: InputMaybe<Scalars['Float']['input']>;
-};
+}
 
-export type ProjectUpdateManyLocalizationDataInput = {
+export interface ProjectUpdateManyLocalizationDataInput {
   active?: InputMaybe<Scalars['Boolean']['input']>;
-};
+}
 
-export type ProjectUpdateManyLocalizationInput = {
+export interface ProjectUpdateManyLocalizationInput {
   data: ProjectUpdateManyLocalizationDataInput;
   locale: Locale;
-};
+}
 
-export type ProjectUpdateManyLocalizationsInput = {
+export interface ProjectUpdateManyLocalizationsInput {
   /** Localizations to update */
   update?: InputMaybe<Array<ProjectUpdateManyLocalizationInput>>;
-};
+}
 
-export type ProjectUpdateManyWithNestedWhereInput = {
+export interface ProjectUpdateManyWithNestedWhereInput {
   /** Update many input */
   data: ProjectUpdateManyInput;
   /** Document search */
   where: ProjectWhereInput;
-};
+}
 
-export type ProjectUpdateOneInlineInput = {
+export interface ProjectUpdateOneInlineInput {
   /** Connect existing Project document */
   connect?: InputMaybe<ProjectWhereUniqueInput>;
   /** Create and connect one Project document */
@@ -2387,43 +2356,43 @@ export type ProjectUpdateOneInlineInput = {
   update?: InputMaybe<ProjectUpdateWithNestedWhereUniqueInput>;
   /** Upsert single Project document */
   upsert?: InputMaybe<ProjectUpsertWithNestedWhereUniqueInput>;
-};
+}
 
-export type ProjectUpdateWithNestedWhereUniqueInput = {
+export interface ProjectUpdateWithNestedWhereUniqueInput {
   /** Document to update */
   data: ProjectUpdateInput;
   /** Unique document search */
   where: ProjectWhereUniqueInput;
-};
+}
 
-export type ProjectUpsertInput = {
+export interface ProjectUpsertInput {
   /** Create document if it didn't exist */
   create: ProjectCreateInput;
   /** Update document if it exists */
   update: ProjectUpdateInput;
-};
+}
 
-export type ProjectUpsertLocalizationInput = {
+export interface ProjectUpsertLocalizationInput {
   create: ProjectCreateLocalizationDataInput;
   locale: Locale;
   update: ProjectUpdateLocalizationDataInput;
-};
+}
 
-export type ProjectUpsertWithNestedWhereUniqueInput = {
+export interface ProjectUpsertWithNestedWhereUniqueInput {
   /** Upsert data */
   data: ProjectUpsertInput;
   /** Unique document search */
   where: ProjectWhereUniqueInput;
-};
+}
 
 /** This contains a set of filters that can be used to compare values internally */
-export type ProjectWhereComparatorInput = {
+export interface ProjectWhereComparatorInput {
   /** This field can be used to request to check if the entry is outdated by internal comparison */
   outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
-};
+}
 
 /** Identifies documents */
-export type ProjectWhereInput = {
+export interface ProjectWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<ProjectWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -2602,10 +2571,10 @@ export type ProjectWhereInput = {
   version_not?: InputMaybe<Scalars['Float']['input']>;
   /** All values that are not contained in given list. */
   version_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
-};
+}
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
-export type ProjectWhereStageInput = {
+export interface ProjectWhereStageInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<ProjectWhereStageInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -2616,21 +2585,21 @@ export type ProjectWhereStageInput = {
   compareWithParent?: InputMaybe<ProjectWhereComparatorInput>;
   /** Specify the stage to compare with */
   stage?: InputMaybe<Stage>;
-};
+}
 
 /** References Project record uniquely */
-export type ProjectWhereUniqueInput = {
+export interface ProjectWhereUniqueInput {
   id?: InputMaybe<Scalars['ID']['input']>;
   link?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
-export type PublishLocaleInput = {
+export interface PublishLocaleInput {
   /** Locales to publish */
   locale: Locale;
   /** Stages to publish selected locales to */
   stages: Array<Stage>;
-};
+}
 
 export type Query = {
   __typename?: 'Query';
@@ -2672,18 +2641,15 @@ export type Query = {
   usersConnection: UserConnection;
 };
 
-
 export type Query_AssetArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: AssetWhereUniqueInput;
 };
 
-
 export type Query_AssetVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type Query_AssetsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2697,7 +2663,6 @@ export type Query_AssetsArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 export type Query_AssetsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2710,13 +2675,11 @@ export type Query_AssetsConnectionArgs = {
   where?: InputMaybe<AssetWhereInput>;
 };
 
-
 export type Query_NodeArgs = {
   id: Scalars['ID']['input'];
   locales?: Array<Locale>;
   stage?: Stage;
 };
-
 
 export type Query_ProjectArgs = {
   locales?: Array<Locale>;
@@ -2724,11 +2687,9 @@ export type Query_ProjectArgs = {
   where: ProjectWhereUniqueInput;
 };
 
-
 export type Query_ProjectVersionArgs = {
   where: VersionWhereInput;
 };
-
 
 export type Query_ProjectsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2742,7 +2703,6 @@ export type Query_ProjectsArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
-
 export type Query_ProjectsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2755,13 +2715,11 @@ export type Query_ProjectsConnectionArgs = {
   where?: InputMaybe<ProjectWhereInput>;
 };
 
-
 export type Query_ScheduledOperationArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: ScheduledOperationWhereUniqueInput;
 };
-
 
 export type Query_ScheduledOperationsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2775,7 +2733,6 @@ export type Query_ScheduledOperationsArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type Query_ScheduledOperationsConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2788,13 +2745,11 @@ export type Query_ScheduledOperationsConnectionArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 export type Query_ScheduledReleaseArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: ScheduledReleaseWhereUniqueInput;
 };
-
 
 export type Query_ScheduledReleasesArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2808,7 +2763,6 @@ export type Query_ScheduledReleasesArgs = {
   where?: InputMaybe<ScheduledReleaseWhereInput>;
 };
 
-
 export type Query_ScheduledReleasesConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2821,13 +2775,11 @@ export type Query_ScheduledReleasesConnectionArgs = {
   where?: InputMaybe<ScheduledReleaseWhereInput>;
 };
 
-
 export type Query_UserArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
   where: UserWhereUniqueInput;
 };
-
 
 export type Query_UsersArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2840,7 +2792,6 @@ export type Query_UsersArgs = {
   stage?: Stage;
   where?: InputMaybe<UserWhereInput>;
 };
-
 
 export type Query_UsersConnectionArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2864,12 +2815,12 @@ export type Rgba = {
 };
 
 /** Input type representing a RGBA color value: https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgb()_and_rgba() */
-export type RgbaInput = {
+export interface RgbaInput {
   a: Scalars['RGBATransparency']['input'];
   b: Scalars['RGBAHue']['input'];
   g: Scalars['RGBAHue']['input'];
   r: Scalars['RGBAHue']['input'];
-};
+}
 
 /** Custom type representing a rich text value comprising of raw rich text ast, html, markdown and text values */
 export type RichText = {
@@ -2918,7 +2869,6 @@ export type ScheduledOperation = Node & {
   updatedBy?: Maybe<User>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperation_AffectedDocumentsArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
@@ -2930,13 +2880,11 @@ export type ScheduledOperation_AffectedDocumentsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperation_CreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Operation system model */
 export type ScheduledOperation_DocumentInStagesArgs = {
@@ -2945,13 +2893,11 @@ export type ScheduledOperation_DocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperation_PublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Operation system model */
 export type ScheduledOperation_ReleaseArgs = {
@@ -2959,21 +2905,23 @@ export type ScheduledOperation_ReleaseArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-
 /** Scheduled Operation system model */
 export type ScheduledOperation_UpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Project | { __typename?: "%other" };
+export type ScheduledOperationAffectedDocument =
+  | Asset
+  | Project
+  | { __typename?: '%other' };
 
-export type ScheduledOperationConnectInput = {
+export interface ScheduledOperationConnectInput {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Document to connect */
   where: ScheduledOperationWhereUniqueInput;
-};
+}
 
 /** A connection to a list of items. */
 export type ScheduledOperationConnection = {
@@ -2985,15 +2933,15 @@ export type ScheduledOperationConnection = {
   pageInfo: PageInfo;
 };
 
-export type ScheduledOperationCreateManyInlineInput = {
+export interface ScheduledOperationCreateManyInlineInput {
   /** Connect multiple existing ScheduledOperation documents */
   connect?: InputMaybe<Array<ScheduledOperationWhereUniqueInput>>;
-};
+}
 
-export type ScheduledOperationCreateOneInlineInput = {
+export interface ScheduledOperationCreateOneInlineInput {
   /** Connect one existing ScheduledOperation document */
   connect?: InputMaybe<ScheduledOperationWhereUniqueInput>;
-};
+}
 
 /** An edge in a connection. */
 export type ScheduledOperationEdge = {
@@ -3005,7 +2953,7 @@ export type ScheduledOperationEdge = {
 };
 
 /** Identifies documents */
-export type ScheduledOperationManyWhereInput = {
+export interface ScheduledOperationManyWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<ScheduledOperationWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -3136,7 +3084,7 @@ export type ScheduledOperationManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
-};
+}
 
 export type ScheduledOperationOrderByInput =
   | 'createdAt_ASC'
@@ -3162,24 +3110,24 @@ export type ScheduledOperationStatus =
   | 'IN_PROGRESS'
   | 'PENDING';
 
-export type ScheduledOperationUpdateManyInlineInput = {
+export interface ScheduledOperationUpdateManyInlineInput {
   /** Connect multiple existing ScheduledOperation documents */
   connect?: InputMaybe<Array<ScheduledOperationConnectInput>>;
   /** Disconnect multiple ScheduledOperation documents */
   disconnect?: InputMaybe<Array<ScheduledOperationWhereUniqueInput>>;
   /** Override currently-connected documents with multiple existing ScheduledOperation documents */
   set?: InputMaybe<Array<ScheduledOperationWhereUniqueInput>>;
-};
+}
 
-export type ScheduledOperationUpdateOneInlineInput = {
+export interface ScheduledOperationUpdateOneInlineInput {
   /** Connect existing ScheduledOperation document */
   connect?: InputMaybe<ScheduledOperationWhereUniqueInput>;
   /** Disconnect currently connected ScheduledOperation document */
   disconnect?: InputMaybe<Scalars['Boolean']['input']>;
-};
+}
 
 /** Identifies documents */
-export type ScheduledOperationWhereInput = {
+export interface ScheduledOperationWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<ScheduledOperationWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -3310,12 +3258,12 @@ export type ScheduledOperationWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
-};
+}
 
 /** References ScheduledOperation record uniquely */
-export type ScheduledOperationWhereUniqueInput = {
+export interface ScheduledOperationWhereUniqueInput {
   id?: InputMaybe<Scalars['ID']['input']>;
-};
+}
 
 /** Scheduled Release system model */
 export type ScheduledRelease = Node & {
@@ -3356,13 +3304,11 @@ export type ScheduledRelease = Node & {
   updatedBy?: Maybe<User>;
 };
 
-
 /** Scheduled Release system model */
 export type ScheduledRelease_CreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Release system model */
 export type ScheduledRelease_DocumentInStagesArgs = {
@@ -3370,7 +3316,6 @@ export type ScheduledRelease_DocumentInStagesArgs = {
   inheritLocale?: Scalars['Boolean']['input'];
   stages?: Array<Stage>;
 };
-
 
 /** Scheduled Release system model */
 export type ScheduledRelease_OperationsArgs = {
@@ -3385,13 +3330,11 @@ export type ScheduledRelease_OperationsArgs = {
   where?: InputMaybe<ScheduledOperationWhereInput>;
 };
 
-
 /** Scheduled Release system model */
 export type ScheduledRelease_PublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
 };
-
 
 /** Scheduled Release system model */
 export type ScheduledRelease_UpdatedByArgs = {
@@ -3399,12 +3342,12 @@ export type ScheduledRelease_UpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledReleaseConnectInput = {
+export interface ScheduledReleaseConnectInput {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Document to connect */
   where: ScheduledReleaseWhereUniqueInput;
-};
+}
 
 /** A connection to a list of items. */
 export type ScheduledReleaseConnection = {
@@ -3416,7 +3359,7 @@ export type ScheduledReleaseConnection = {
   pageInfo: PageInfo;
 };
 
-export type ScheduledReleaseCreateInput = {
+export interface ScheduledReleaseCreateInput {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   description?: InputMaybe<Scalars['String']['input']>;
   errorMessage?: InputMaybe<Scalars['String']['input']>;
@@ -3424,21 +3367,21 @@ export type ScheduledReleaseCreateInput = {
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-};
+}
 
-export type ScheduledReleaseCreateManyInlineInput = {
+export interface ScheduledReleaseCreateManyInlineInput {
   /** Connect multiple existing ScheduledRelease documents */
   connect?: InputMaybe<Array<ScheduledReleaseWhereUniqueInput>>;
   /** Create and connect multiple existing ScheduledRelease documents */
   create?: InputMaybe<Array<ScheduledReleaseCreateInput>>;
-};
+}
 
-export type ScheduledReleaseCreateOneInlineInput = {
+export interface ScheduledReleaseCreateOneInlineInput {
   /** Connect one existing ScheduledRelease document */
   connect?: InputMaybe<ScheduledReleaseWhereUniqueInput>;
   /** Create and connect one ScheduledRelease document */
   create?: InputMaybe<ScheduledReleaseCreateInput>;
-};
+}
 
 /** An edge in a connection. */
 export type ScheduledReleaseEdge = {
@@ -3450,7 +3393,7 @@ export type ScheduledReleaseEdge = {
 };
 
 /** Identifies documents */
-export type ScheduledReleaseManyWhereInput = {
+export interface ScheduledReleaseManyWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<ScheduledReleaseWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -3614,7 +3557,7 @@ export type ScheduledReleaseManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
-};
+}
 
 export type ScheduledReleaseOrderByInput =
   | 'createdAt_ASC'
@@ -3641,21 +3584,17 @@ export type ScheduledReleaseOrderByInput =
   | 'updatedAt_DESC';
 
 /** System Scheduled Release Status */
-export type ScheduledReleaseStatus =
-  | 'COMPLETED'
-  | 'FAILED'
-  | 'IN_PROGRESS'
-  | 'PENDING';
+export type ScheduledReleaseStatus = 'COMPLETED' | 'FAILED' | 'IN_PROGRESS' | 'PENDING';
 
-export type ScheduledReleaseUpdateInput = {
+export interface ScheduledReleaseUpdateInput {
   description?: InputMaybe<Scalars['String']['input']>;
   errorMessage?: InputMaybe<Scalars['String']['input']>;
   isActive?: InputMaybe<Scalars['Boolean']['input']>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
-export type ScheduledReleaseUpdateManyInlineInput = {
+export interface ScheduledReleaseUpdateManyInlineInput {
   /** Connect multiple existing ScheduledRelease documents */
   connect?: InputMaybe<Array<ScheduledReleaseConnectInput>>;
   /** Create and connect multiple ScheduledRelease documents */
@@ -3670,24 +3609,24 @@ export type ScheduledReleaseUpdateManyInlineInput = {
   update?: InputMaybe<Array<ScheduledReleaseUpdateWithNestedWhereUniqueInput>>;
   /** Upsert multiple ScheduledRelease documents */
   upsert?: InputMaybe<Array<ScheduledReleaseUpsertWithNestedWhereUniqueInput>>;
-};
+}
 
-export type ScheduledReleaseUpdateManyInput = {
+export interface ScheduledReleaseUpdateManyInput {
   description?: InputMaybe<Scalars['String']['input']>;
   errorMessage?: InputMaybe<Scalars['String']['input']>;
   isActive?: InputMaybe<Scalars['Boolean']['input']>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
-};
+}
 
-export type ScheduledReleaseUpdateManyWithNestedWhereInput = {
+export interface ScheduledReleaseUpdateManyWithNestedWhereInput {
   /** Update many input */
   data: ScheduledReleaseUpdateManyInput;
   /** Document search */
   where: ScheduledReleaseWhereInput;
-};
+}
 
-export type ScheduledReleaseUpdateOneInlineInput = {
+export interface ScheduledReleaseUpdateOneInlineInput {
   /** Connect existing ScheduledRelease document */
   connect?: InputMaybe<ScheduledReleaseWhereUniqueInput>;
   /** Create and connect one ScheduledRelease document */
@@ -3700,31 +3639,31 @@ export type ScheduledReleaseUpdateOneInlineInput = {
   update?: InputMaybe<ScheduledReleaseUpdateWithNestedWhereUniqueInput>;
   /** Upsert single ScheduledRelease document */
   upsert?: InputMaybe<ScheduledReleaseUpsertWithNestedWhereUniqueInput>;
-};
+}
 
-export type ScheduledReleaseUpdateWithNestedWhereUniqueInput = {
+export interface ScheduledReleaseUpdateWithNestedWhereUniqueInput {
   /** Document to update */
   data: ScheduledReleaseUpdateInput;
   /** Unique document search */
   where: ScheduledReleaseWhereUniqueInput;
-};
+}
 
-export type ScheduledReleaseUpsertInput = {
+export interface ScheduledReleaseUpsertInput {
   /** Create document if it didn't exist */
   create: ScheduledReleaseCreateInput;
   /** Update document if it exists */
   update: ScheduledReleaseUpdateInput;
-};
+}
 
-export type ScheduledReleaseUpsertWithNestedWhereUniqueInput = {
+export interface ScheduledReleaseUpsertWithNestedWhereUniqueInput {
   /** Upsert data */
   data: ScheduledReleaseUpsertInput;
   /** Unique document search */
   where: ScheduledReleaseWhereUniqueInput;
-};
+}
 
 /** Identifies documents */
-export type ScheduledReleaseWhereInput = {
+export interface ScheduledReleaseWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<ScheduledReleaseWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -3888,12 +3827,12 @@ export type ScheduledReleaseWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
-};
+}
 
 /** References ScheduledRelease record uniquely */
-export type ScheduledReleaseWhereUniqueInput = {
+export interface ScheduledReleaseWhereUniqueInput {
   id?: InputMaybe<Scalars['ID']['input']>;
-};
+}
 
 /** Stage system enumeration */
 export type Stage =
@@ -3902,24 +3841,17 @@ export type Stage =
   /** The Published stage is where you can publish your content to. */
   | 'PUBLISHED';
 
-export type SystemDateTimeFieldVariation =
-  | 'BASE'
-  | 'COMBINED'
-  | 'LOCALIZATION';
+export type SystemDateTimeFieldVariation = 'BASE' | 'COMBINED' | 'LOCALIZATION';
 
 /** Different technical stack (or "tech-stack") categories that is used in creating or maintaining a software development project, including but not limited to, a library, package, database paradigm, or some other tool. */
-export type TechCategories =
-  | 'BACKEND'
-  | 'DATABASE'
-  | 'FRONTEND'
-  | 'OTHER';
+export type TechCategories = 'BACKEND' | 'DATABASE' | 'FRONTEND' | 'OTHER';
 
-export type UnpublishLocaleInput = {
+export interface UnpublishLocaleInput {
   /** Locales to unpublish */
   locale: Locale;
   /** Stages to unpublish selected locales from */
   stages: Array<Stage>;
-};
+}
 
 /** User system model */
 export type User = Node & {
@@ -3946,7 +3878,6 @@ export type User = Node & {
   updatedAt: Scalars['DateTime']['output'];
 };
 
-
 /** User system model */
 export type User_DocumentInStagesArgs = {
   includeCurrent?: Scalars['Boolean']['input'];
@@ -3954,12 +3885,12 @@ export type User_DocumentInStagesArgs = {
   stages?: Array<Stage>;
 };
 
-export type UserConnectInput = {
+export interface UserConnectInput {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
   position?: InputMaybe<ConnectPositionInput>;
   /** Document to connect */
   where: UserWhereUniqueInput;
-};
+}
 
 /** A connection to a list of items. */
 export type UserConnection = {
@@ -3971,15 +3902,15 @@ export type UserConnection = {
   pageInfo: PageInfo;
 };
 
-export type UserCreateManyInlineInput = {
+export interface UserCreateManyInlineInput {
   /** Connect multiple existing User documents */
   connect?: InputMaybe<Array<UserWhereUniqueInput>>;
-};
+}
 
-export type UserCreateOneInlineInput = {
+export interface UserCreateOneInlineInput {
   /** Connect one existing User document */
   connect?: InputMaybe<UserWhereUniqueInput>;
-};
+}
 
 /** An edge in a connection. */
 export type UserEdge = {
@@ -3991,14 +3922,10 @@ export type UserEdge = {
 };
 
 /** System User Kind */
-export type UserKind =
-  | 'MEMBER'
-  | 'PAT'
-  | 'PUBLIC'
-  | 'WEBHOOK';
+export type UserKind = 'MEMBER' | 'PAT' | 'PUBLIC' | 'WEBHOOK';
 
 /** Identifies documents */
-export type UserManyWhereInput = {
+export interface UserManyWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<UserWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -4122,7 +4049,7 @@ export type UserManyWhereInput = {
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-};
+}
 
 export type UserOrderByInput =
   | 'createdAt_ASC'
@@ -4142,30 +4069,30 @@ export type UserOrderByInput =
   | 'updatedAt_ASC'
   | 'updatedAt_DESC';
 
-export type UserUpdateManyInlineInput = {
+export interface UserUpdateManyInlineInput {
   /** Connect multiple existing User documents */
   connect?: InputMaybe<Array<UserConnectInput>>;
   /** Disconnect multiple User documents */
   disconnect?: InputMaybe<Array<UserWhereUniqueInput>>;
   /** Override currently-connected documents with multiple existing User documents */
   set?: InputMaybe<Array<UserWhereUniqueInput>>;
-};
+}
 
-export type UserUpdateOneInlineInput = {
+export interface UserUpdateOneInlineInput {
   /** Connect existing User document */
   connect?: InputMaybe<UserWhereUniqueInput>;
   /** Disconnect currently connected User document */
   disconnect?: InputMaybe<Scalars['Boolean']['input']>;
-};
+}
 
 /** This contains a set of filters that can be used to compare values internally */
-export type UserWhereComparatorInput = {
+export interface UserWhereComparatorInput {
   /** This field can be used to request to check if the entry is outdated by internal comparison */
   outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
-};
+}
 
 /** Identifies documents */
-export type UserWhereInput = {
+export interface UserWhereInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<UserWhereInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -4289,10 +4216,10 @@ export type UserWhereInput = {
   updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
-};
+}
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
-export type UserWhereStageInput = {
+export interface UserWhereStageInput {
   /** Logical AND on all given filters. */
   AND?: InputMaybe<Array<UserWhereStageInput>>;
   /** Logical NOT on all given filters combined by AND. */
@@ -4303,12 +4230,12 @@ export type UserWhereStageInput = {
   compareWithParent?: InputMaybe<UserWhereComparatorInput>;
   /** Specify the stage to compare with */
   stage?: InputMaybe<Stage>;
-};
+}
 
 /** References User record uniquely */
-export type UserWhereUniqueInput = {
+export interface UserWhereUniqueInput {
   id?: InputMaybe<Scalars['ID']['input']>;
-};
+}
 
 export type Version = {
   __typename?: 'Version';
@@ -4318,11 +4245,11 @@ export type Version = {
   stage: Stage;
 };
 
-export type VersionWhereInput = {
+export interface VersionWhereInput {
   id: Scalars['ID']['input'];
   revision: Scalars['Int']['input'];
   stage: Stage;
-};
+}
 
 export type _FilterKind =
   | 'AND'
@@ -4381,23 +4308,12 @@ export type _MutationKind =
   | 'updateMany'
   | 'upsert';
 
-export type _OrderDirection =
-  | 'asc'
-  | 'desc';
+export type _OrderDirection = 'asc' | 'desc';
 
-export type _RelationInputCardinality =
-  | 'many'
-  | 'one';
+export type _RelationInputCardinality = 'many' | 'one';
 
-export type _RelationInputKind =
-  | 'create'
-  | 'update';
+export type _RelationInputKind = 'create' | 'update';
 
-export type _RelationKind =
-  | 'regular'
-  | 'union';
+export type _RelationKind = 'regular' | 'union';
 
-export type _SystemDateTimeFieldVariation =
-  | 'base'
-  | 'combined'
-  | 'localization';
+export type _SystemDateTimeFieldVariation = 'base' | 'combined' | 'localization';

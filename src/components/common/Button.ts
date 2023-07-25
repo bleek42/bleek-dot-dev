@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Btn = styled.button((props) => `
+export const Btn = styled.button(
+  (props) => `
   color: ${props.theme.palette.primary.neon};
   background-color: ${props.theme.palette.primary.gray};
   font-family: var(${props.theme.fonts.at(2)});
@@ -12,11 +13,11 @@ export const Btn = styled.button((props) => `
   margin: 4px 4px;
   padding: 4px 4px;
 
-  @media (max-width: ${props.theme.breakpoints.phone}) {
+  /* @media (max-width: ${props.theme.breakpoints.phone}) {
     display: none;
-    /* font-size: 28px;
-    min-height: 50%; */
-  }
+    font-size: 28px;
+    min-height: 50%;
+  } */
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
@@ -32,13 +33,26 @@ export const BtnClose = styled(Btn)`
     text-shadow: ${({ theme }) => theme.palette.secondary.orange + '1px 2px'};
     cursor: pointer;
   }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.phone}) {
+    display: none;
+    /* font-size: 28px;
+    min-height: 50%; */
+  }
 `;
 
 export const BtnMax = styled(Btn)`
   color: ${({ theme }) => theme.palette.primary.cyan};
+
   &:hover {
     text-shadow: ${({ theme }) => theme.palette.secondary.cyan + '1px 2px'};
     cursor: pointer;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.phone}) {
+    display: none;
+    /* font-size: 28px;
+    min-height: 50%; */
   }
 `;
 
@@ -48,5 +62,11 @@ export const BtnMin = styled(Btn)`
   &:hover {
     text-shadow: ${({ theme }) => theme.palette.secondary.yellow + '1px 2px'};
     cursor: pointer;
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.phone}) {
+    display: none;
+    /* font-size: 28px;
+    min-height: 50%; */
   }
 `;

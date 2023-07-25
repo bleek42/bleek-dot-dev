@@ -1,17 +1,18 @@
 /** @type {import('next').NextConfig} */
 export default {
   reactStrictMode: true,
+  swcMinify: true,
+  cleanDistDir: true,
+  outputFileTracing: true,
+
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
 
-  swcMinify: true,
-
   compiler: {
     styledComponents: {
       displayName: true,
-      fileName: true,
-
+      pure: true,
       ssr: true,
       minify: true,
       cssProp: true,
@@ -22,21 +23,16 @@ export default {
     dirs: [
       'src/pages/**/*.{tsx,ts}',
       'src/components/**/*.{tsx,ts}',
-      'src/hooks/**/*.ts',
-      'src/context/**/*.tsx',
-      'src/utils/*.ts',
-      'src/types/**/*.ts',
+      'src/hooks/**/*.{tsx,ts}',
+      'src/context/**/*.{tsx,ts}',
+      'src/utils/*.{tsx,ts}',
+      'src/types/**/*.{tsx,ts}',
     ],
   },
 
-  // experimental: {
-  //   swcPlugins: [
-  //     [
-  //       '@graphql-codegen/client-preset-swc-plugin',
-  //       { artifactDirectory: './src/types/graphql', gqlTagName: 'graphql' },
-  //     ],
-  //   ],
-  // },
+  experimental: {
+    appDir: false,
+  },
 
   // async headers() {
   //   return await new Promise((res) =>

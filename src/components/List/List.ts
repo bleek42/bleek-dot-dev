@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const List = styled.ul((props) => `
+export const List = styled.ul(
+  (props) => `
   display: flex;
   border: 2px solid black;
   margin: 2px 2px;
@@ -17,9 +18,11 @@ export const List = styled.ul((props) => `
     /* flex: 3 4 6vh; */
     
   }
-`);
+`
+);
 
-export const Item = styled.li((props) => `
+export const Item = styled.li(
+  (props) => `
   display: inline-flex;
   color: rgb(5, 5, 5);
 

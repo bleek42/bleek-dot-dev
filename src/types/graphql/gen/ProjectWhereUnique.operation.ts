@@ -1,25 +1,25 @@
-import * as Types from '../gen/hygraph-types';
+import type * as Types from './hygraph-types';
 
-import { GraphQLClient } from 'graphql-request';
-import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
+import type { GraphQLClient } from 'graphql-request';
+import type { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
 import gql from 'graphql-tag';
-export type CreateProjectMutationVariables = Types.Exact<{
-  input: Types.ProjectCreateInput;
+export type ProjectWhereUniqueQueryVariables = Types.Exact<{
+  where: Types.ProjectWhereUniqueInput;
   stage?: Types.InputMaybe<Types.Stage>;
-  first?: Types.InputMaybe<Types.Scalars['Int']['input']>;
+  locales?: Types.InputMaybe<Array<Types.Locale> | Types.Locale>;
 }>;
 
-export type CreateProjectMutation = {
-  __typename?: 'Mutation';
-  createProject?: {
+export type ProjectWhereUniqueQuery = {
+  __typename?: 'Query';
+  project?: {
     __typename?: 'Project';
     id: string | number | symbol | unknown;
     title: string;
     active: boolean;
     description: string;
     link: string;
-    sourceCode: Array<string>;
     techStack?: string[] | string | symbol | unknown | null;
+    sourceCode: Array<string>;
     version: number;
     stage: Types.Stage;
     locale: Types.Locale;
@@ -39,25 +39,24 @@ export type CreateProjectMutation = {
   } | null;
 };
 
-export const CreateProjectDocument = gql`
-  mutation CreateProject(
-    $input: ProjectCreateInput!
+export const ProjectWhereUniqueDocument = gql`
+  query ProjectWhereUnique(
+    $where: ProjectWhereUniqueInput!
     $stage: Stage = PUBLISHED
-    $first: Int = 10
+    $locales: [Locale!] = [en]
   ) {
-    createProject(data: $input) {
+    project(where: $where, stage: $stage, locales: $locales) {
       id
       title
       active
       description
       link
-      active
-      sourceCode
       techStack
+      sourceCode
       version
       stage
       locale
-      screenShots(first: $first, forceParentLocale: true) {
+      screenShots(first: 10, forceParentLocale: true) {
         id
         url
         handle
@@ -87,18 +86,18 @@ export function getSdk(
   withWrapper: SdkFunctionWrapper = defaultWrapper
 ) {
   return {
-    CreateProject(
-      variables: CreateProjectMutationVariables,
+    ProjectWhereUnique(
+      variables: ProjectWhereUniqueQueryVariables,
       requestHeaders?: GraphQLClientRequestHeaders
-    ): Promise<CreateProjectMutation> {
+    ): Promise<ProjectWhereUniqueQuery> {
       return withWrapper(
         (wrappedRequestHeaders) =>
-          client.request<CreateProjectMutation>(CreateProjectDocument, variables, {
+          client.request<ProjectWhereUniqueQuery>(ProjectWhereUniqueDocument, variables, {
             ...requestHeaders,
             ...wrappedRequestHeaders,
           }),
-        'CreateProject',
-        'mutation'
+        'ProjectWhereUnique',
+        'query'
       );
     },
   };

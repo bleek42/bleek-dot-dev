@@ -10,7 +10,8 @@ type HeaderProps = StyledComponentProps<
   HeaderComponent;
 
 // eslint-disable-next-line prettier/prettier
-export const Header = styled.header<HeaderProps>((props) => `
+export const Header = styled.header<HeaderProps>(
+  (props) => `
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
@@ -30,6 +31,6 @@ export const Header = styled.header<HeaderProps>((props) => `
 `
 );
 
-    /* @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
+/* @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
 
   } */

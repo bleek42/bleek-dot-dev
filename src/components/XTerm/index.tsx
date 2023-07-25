@@ -162,6 +162,7 @@ export default function XTerm() {
 			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
 			<XTLabel
 				htmlFor={xterm.id}
+				form={'xt-form'}
 				// eslint-disable-next-line no-console
 				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) =>
 					console.info('xterm-txt submit capture', evt.target)

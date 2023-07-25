@@ -84,9 +84,9 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
     props.font ||
     'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace',
   colorPalette: props.colorPalette || 'common',
-  color: props.color || 'rgb(0, 0, 0)',
+  color: props.color,
   size: props.size || '12px',
-  shadow: props?.shadow,
+  shadow: props.shadow,
 }))<TextProps>`
   /* flex: 3 1 4vw; */
   font-weight: 450;
@@ -176,7 +176,7 @@ export const LgTxt = styled.h2.attrs<TextProps>((props) => ({
       ? `${props.theme.palette.secondary[props.color]} 2px 1px 2px`
       : props.color in props.theme.palette.tertiary
       ? `${props.theme.palette.tertiary[props.color]} 2px 1px 2px`
-      : undefined};
+      : `${props.theme.palette.common.black} 2px 1px 2px`};
   text-decoration: underline;
   text-decoration-color: ${({ theme }) => theme.palette.secondary.green};
   text-decoration-style: solid;

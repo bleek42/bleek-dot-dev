@@ -7,9 +7,11 @@ type StyledDetailsProps = StyledComponentProps<
   DefaultTheme,
   object,
   string | number | symbol
-> & DetailsComponent;
+> &
+  DetailsComponent;
 
-export const Details = styled.details<StyledDetailsProps>((props) => `
+export const Details = styled.details<StyledDetailsProps>(
+  (props) => `
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
@@ -33,7 +35,8 @@ export const Details = styled.details<StyledDetailsProps>((props) => `
 `
 );
 
-export const Summary = styled.summary((props) => `
+export const Summary = styled.summary(
+  (props) => `
   flex: 2 1 14vw;
   color: ${props.theme.palette.secondary.blue};
   font-family: ${props.theme.fonts.at(1)};;
@@ -49,4 +52,5 @@ export const Summary = styled.summary((props) => `
     /* flex: 3 4 6vh; */
     
   }
-`);
+`
+);

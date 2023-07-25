@@ -1,11 +1,11 @@
 // import { Birdman, MonocraftNF, Oxanium } from '@/components/common';
 import Document, {
-	type DocumentContext,
-	type DocumentInitialProps,
 	Html,
 	Head,
 	Main,
 	NextScript,
+	type DocumentContext,
+	type DocumentInitialProps,
 } from 'next/document';
 
 import { ServerStyleSheet } from 'styled-components';
@@ -39,12 +39,10 @@ export default class StyledDocument extends Document {
 				),
 			};
 			// eslint-disable-next-line prettier/prettier
-		} 
-		catch (err: unknown) {
+		} catch (err: unknown) {
 			if (err) throw err;
 			// eslint-disable-next-line prettier/prettier
-		}
-		finally {
+		} finally {
 			sheet.seal();
 		}
 	}
@@ -52,22 +50,7 @@ export default class StyledDocument extends Document {
 	render() {
 		return (
 			<Html lang="en">
-				<Head>
-					{/* <style
-						// eslint-disable-next-line react/no-danger
-						dangerouslySetInnerHTML={{
-							__html: `
-					  :root {
-						--font-MonocraftNF: MonocraftNF;
-					    --font-Oxanium: __Oxanium_5aa400;
-						--font-Birdman: __Birdman_17cb25;
-						--font-Oxanium-lt: __Oxanium_5aa400
-					  }
-
-					`,
-						}}
-					/> */}
-				</Head>
+				<Head></Head>
 				<body>
 					<Main />
 					<NextScript />

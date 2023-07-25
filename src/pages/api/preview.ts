@@ -11,12 +11,10 @@ export default async function handler<NextApiHandler>(
     }
     res.status(200).json({ message: 'happy path!' });
     // eslint-disable-next-line prettier/prettier
-  } 
-  catch {
+  } catch {
     res.status(500).send({ message: 'Internal Server Error!' });
     // eslint-disable-next-line prettier/prettier
-  } 
-  finally {
+  } finally {
     console.log('Pinged Next API Route!');
   }
 }

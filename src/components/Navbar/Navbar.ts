@@ -37,7 +37,8 @@ const toggleKeyframes = keyframes`
 `;
 
 // eslint-disable-next-line prettier/prettier
-export const NavBar = styled.nav<NavBarProps>((props) => `
+export const NavBar = styled.nav<NavBarProps>(
+  (props) => `
   display: inline-flex;
   flex-flow: column wrap;
   justify-content: flex-end;
@@ -67,7 +68,8 @@ export const NavBar = styled.nav<NavBarProps>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavList = styled.ul<NavBarProps>((props) => `
+export const NavList = styled.ul<NavBarProps>(
+  (props) => `
   letter-spacing: 3px;
   padding: 3px 2px 3px 2px;
   background-color: ${props.theme.palette.secondary.linear} ;
@@ -91,7 +93,8 @@ export const NavList = styled.ul<NavBarProps>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavItem = styled.li<NavBarProps>((props) => `
+export const NavItem = styled.li<NavBarProps>(
+  (props) => `
   border-top: 1px solid ${props.theme.palette.common.black};
   padding: 4px 4px;
   margin: 4px 4px;
@@ -104,7 +107,8 @@ export const NavItem = styled.li<NavBarProps>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const ToggleBtn = styled.button<NavBarProps>((props) => `
+export const ToggleBtn = styled.button<NavBarProps>(
+  (props) => `
   /* padding: 4px 4px;
   margin: 4px 4px; */
   color: ${props.theme.palette.primary.cyan};
@@ -147,7 +151,8 @@ export const ToggleBtn = styled.button<NavBarProps>((props) => `
 // `;
 
 // eslint-disable-next-line prettier/prettier
-export const NextLink = styled(Link)<NextLinkProps>((props) => `
+export const NextLink = styled(Link)<NextLinkProps>(
+  (props) => `
   flex: 2 1 4vw;
   color: ${props.theme.palette.secondary.green};
   font-family: var(${props.theme.fonts.at(1)});
@@ -171,7 +176,8 @@ export const NextLink = styled(Link)<NextLinkProps>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const Icon = styled.i((props) => `
+export const Icon = styled.i(
+  (props) => `
   color: ${props.theme.palette.secondary.green};
   font-family: ${props.theme.fonts.at(2)};
   font-size: 16px;

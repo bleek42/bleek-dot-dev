@@ -1,22 +1,23 @@
-// import * as fs from 'fs/promises'
-// import * as dotenv from 'dotenv';
-// import * as path from 'path';
-
-import { type RequestDocument } from 'graphql-request';
-import { type TypedDocumentNode } from '@graphql-typed-document-node/core';
-
 import { GraphQLClient } from 'graphql-request';
-import { getSdk } from '@/graphql/queries/AllProjectsWhere.operation';
+import { getSdk } from '@/graphql/gen';
+import { type RequestConfig } from 'graphql-request/build/esm/types';
+
+const graphQLOptions: RequestConfig | undefined = {
+  credentials: 'include',
+  cache: 'force-cache',
+  mode: 'cors',
+  headers: {
+    'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
+    'content-type': 'application/json',
+  },
+};
 
 const graphQLClient: GraphQLClient = new GraphQLClient(
-  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`
+  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`,
+  graphQLOptions
 );
 
-
-
 export const hygraphClient = getSdk(graphQLClient);
-
-
 
 // import { type TypedDocumentString } from '@/graphql/gen/preset/graphql';
 
@@ -50,4 +51,3 @@ export const hygraphClient = getSdk(graphQLClient);
 //   console.log(res);
 //   return res;
 // }
-

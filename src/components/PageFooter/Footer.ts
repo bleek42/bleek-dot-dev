@@ -15,7 +15,8 @@ export type FooterProps = StyledComponentProps<
   FooterComponent;
 
 // eslint-disable-next-line prettier/prettier
-export const Footer = styled.footer<FooterProps>((props) => `
+export const Footer = styled.footer<FooterProps>(
+  (props) => `
   display: flex;
   flex-flow: row wrap;
   align-items: center;

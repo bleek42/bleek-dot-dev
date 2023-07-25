@@ -12,7 +12,7 @@ declare namespace NodeJS {
     PORT?: number | 3000;
     HOST?: 'http://localhost' | 'http://127.0.0.1' | string | unknown;
     HYGRAPH_API_URL: string | WithList<string>;
-    HYGRAPH_API_AUTH_TOKEN?: string;
+    HYGRAPH_API_AUTH_TOKEN: string;
 
     NEXT_PUBLIC_HYGRAPH_CDN_URL: string | WithList<string>;
     NEXT_PUBLIC_HYGRAPH_CDN_AUTH: string;

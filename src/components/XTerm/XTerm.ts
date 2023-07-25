@@ -5,12 +5,12 @@ import styled, {
   type StyledComponentPropsWithRef,
 } from 'styled-components';
 
-import { XTermComponent } from '@/interfaces/Component';
+import { type XTermComponent } from '@/interfaces/Component';
 
 type XTermProps = StyledComponentProps<
   'textarea' | 'form' | 'input' | 'label' | 'code',
   DefaultTheme,
-  XTermComponent,
+  object,
   string | number | symbol
 > &
   XTermComponent;
@@ -59,10 +59,13 @@ export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
 
 export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
   htmlFor: props.htmlFor || 'xt-btns',
+  form: props.form || 'xt-form',
 }))<XTermProps>`
   display: flex;
+  align-items: center;
   margin: 4px 6px 4px 6px;
-  width: 100vw;
+  /* width: 100vw; */
+  min-width: 40%;
   padding: 8px 4px 4px 8px;
   font-family: ${(props) => `var(${props.theme.fonts.at(2)})`};
   color: ${(props) => props.theme.palette.secondary.gray};
@@ -71,17 +74,17 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
 
   @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
     flex-flow: row nowrap;
-    align-items: center;
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
-    min-width: 40%;
     flex-flow: column wrap;
-    align-content: flex-start;
+    align-items: flex-start;
   }
 `;
 
 export const XTInput = styled.input.attrs<XTermProps>((props) => ({
+  htmlFor: props.htmlFor || 'xt-textarea',
+  form: props.form || 'xt-form',
   id: props.id || 'xt-prompt',
   name: props.name || 'xt-prompt',
   type: props.type || 'text',
@@ -92,20 +95,20 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
 `;
 
 export const XTxtArea = styled.textarea.attrs((props) => ({
-  id: props.id,
-  name: props.name,
-  // cols: props.cols || 60,
-  // rows: props.rows || 60,
-  autoCapitalize: props.autoCapitalize || 'false',
-  autoCorrect: props.spellCheck || 'false',
+  id: props.id || 'xt-textarea',
+  name: props.name || 'xt-textarea',
   spellCheck: props.spellCheck || 'false',
+  autoCorrect: props.spellCheck || 'false',
+  autoCapitalize: props.autoCapitalize || 'false',
   wrap: props.wrap || 'hard',
   placeholder: props.placeholder || 'Welcome to bleekDotDev!',
+  // cols: props.cols || 60,
+  // rows: props.rows || 60,
 }))<XTermProps>`
   background-color: ${(props) => props.theme.palette.common.black};
   font-family: ${(props) => props.theme.fonts.at(2)};
   color: ${(props) => props.theme.palette.primary.orange};
-  flex: 2 1 70vw;
+  flex: 2 0 70vw;
   /* width: 90vw; */
 
   &:hover {
@@ -124,7 +127,6 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
 
   @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
     font-size: 28px;
-    
   }
 `;
 

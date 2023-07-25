@@ -47,9 +47,7 @@
 			"@/images/*": [
 				"public/images/*"
 			],
-			"@/fonts/*": [
-				"public/fonts/*"
-			]
+
 			// "@/layouts": [
 			// 	"src/appdir/layouts/*"
 			// ],
@@ -59,14 +57,13 @@
 		},
 		"plugins": [
 			{
-				"name": "next"
+				"name": "next",
 			},
 			{
 				"name": "@styled/typescript-styled-plugin",
 				"tags": [
 					"styled",
 					"css",
-					"sty"
 				]
 			}
 		]
@@ -77,7 +74,6 @@
 		"codegen.ts",
 		"next-env.d.ts",
 		"node-env.d.ts",
-		"gql-scalars.d.ts",
 		"styled.d.ts",
 		"node-env.d.ts",
 		"next.config.js",
@@ -87,7 +83,7 @@
 		"node_modules/",
 		"build/",
 		".next/",
-		"src/appdir/"
+		"src/appdir/**/*"
 	],
 	"ts-node": {
 		"esm": true,

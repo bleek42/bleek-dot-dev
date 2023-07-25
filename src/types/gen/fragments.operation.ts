@@ -1,7 +1,7 @@
-import * as Types from './gen/hygraph-types';
+import type * as Types from '../graphql/gen/hygraph-types';
 
-import { GraphQLClient } from 'graphql-request';
-import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
+import type { GraphQLClient } from 'graphql-request';
+import type { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
 import gql from 'graphql-tag';
 export type UserFieldsFragment = {
   __typename?: 'User';

@@ -1,100 +1,100 @@
-// @use "sass:map";
+@use "sass:map";
 
-// @import "./vars/index.scss";
-// @import "./mixins/index.scss";
+@import "./vars/index.scss";
+@import "./mixins/index.scss";
 
-// .contact {
-// 	@include flex-col;
+.contact {
+	@include flex-col;
 
-// 	header {
-// 		background-color: #159b9bb0;
-// 		border: $dense;
-// 		border-radius: $radi-1;
-// 		text-align: center;
+	header {
+		background-color: #159b9bb0;
+		border: $dense;
+		border-radius: $radi-1;
+		text-align: center;
 
-// 		h4 {
-// 			text-shadow: 3px 2px black;
-// 			letter-spacing: 2px;
-// 			font-family: $birdman;
-// 			color: map.get($colors, "green");
-// 			font-size: 30px;
-// 		}
+		h4 {
+			text-shadow: 3px 2px black;
+			letter-spacing: 2px;
+			font-family: $birdman;
+			color: map.get($colors, "green");
+			font-size: 30px;
+		}
 
-// 		p {
-// 			font-family: $Oxanium;
-// 			font-size: 20px;
-// 			padding-bottom: 20px;
-// 		}
-// 	}
+		p {
+			font-family: $Oxanium;
+			font-size: 20px;
+			padding-bottom: 20px;
+		}
+	}
 
-// 	.linkedin {
-// 		background-color: map-get($bgcolors, "green-cyan");
-// 		text-align: center;
-// 		border: $thin;
-// 		border-radius: $radi-2;
+	.linkedin {
+		background-color: map-get($bgcolors, "green-cyan");
+		text-align: center;
+		border: $thin;
+		border-radius: $radi-2;
 
-// 		h4 {
-// 			letter-spacing: 2px;
-// 			color: map.get($colors, "cyan");
-// 			text-shadow: 3px 2px black;
-// 		}
+		h4 {
+			letter-spacing: 2px;
+			color: map.get($colors, "cyan");
+			text-shadow: 3px 2px black;
+		}
 
-// 		#my-linkedin {
-// 			transition: filter 500ms;
+		#my-linkedin {
+			transition: filter 500ms;
 
-// 			&:before {
-// 				color: map.get($colors, "cyan");
-// 			}
+			&:before {
+				color: map.get($colors, "cyan");
+			}
 
-// 			&:hover {
-// 				filter: brightness(3);
-// 				color: map.get($colors, "purple");
-// 			}
+			&:hover {
+				filter: brightness(3);
+				color: map.get($colors, "purple");
+			}
 
-// 			&:after {
-// 				color: map.get($colors, "purple");
-// 			}
-// 		}
-// 	}
+			&:after {
+				color: map.get($colors, "purple");
+			}
+		}
+	}
 
-// 	.github {
-// 		background-color: map.get($bgcolors, "steel-blue");
-// 		text-align: center;
-// 		border: $thin;
-// 		border-radius: $radi-1;
+	.github {
+		background-color: map.get($bgcolors, "steel-blue");
+		text-align: center;
+		border: $thin;
+		border-radius: $radi-1;
 
-// 		h4 {
-// 			text-shadow: 3px 2px black;
-// 			letter-spacing: 2px;
-// 			font-size: 30px;
-// 			letter-spacing: 2px;
-// 			color: map.get($colors, "cyan")1;
-// 		}
+		h4 {
+			text-shadow: 3px 2px black;
+			letter-spacing: 2px;
+			font-size: 30px;
+			letter-spacing: 2px;
+			color: map.get($colors, "cyan")1;
+		}
 
-// 		#my-github {
-// 			transition: filter 500ms;
+		#my-github {
+			transition: filter 500ms;
 
-// 			&:before {
-// 				color: map.get($colors, "cyan")e;
-// 			}
+			&:before {
+				color: map.get($colors, "cyan")e;
+			}
 
-// 			&:hover {
-// 				filter: brightness(3);
-// 				color: map.get($colors, "purple");
-// 			}
+			&:hover {
+				filter: brightness(3);
+				color: map.get($colors, "purple");
+			}
 
-// 			&:after {
-// 				color: map.get($colors, "purple]");
-// 			}
-// 		}
+			&:after {
+				color: map.get($colors, "purple]");
+			}
+		}
 
-// 		ul {
-// 			font-family: $MonocraftNF;
-// 			font-weight: 20px;
+		ul {
+			font-family: $MonocraftNF;
+			font-weight: 20px;
 
-// 			li {
-// 				list-style: none;
-// 			}
-// 		}
-// 	}
-// }
+			li {
+				list-style: none;
+			}
+		}
+	}
+}

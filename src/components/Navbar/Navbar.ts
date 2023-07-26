@@ -37,17 +37,17 @@ const toggleKeyframes = keyframes`
 `;
 
 // eslint-disable-next-line prettier/prettier
-export const NavBar = styled.nav<NavBarProps>(
-  (props) => `
+export const NavBar = styled.nav<NavBarProps>((props) => `
   display: inline-flex;
   flex-flow: column wrap;
   justify-content: flex-end;
-  position: absolute;
+  position: fixed;
   left: 65%;
   top: 4%;
-  z-index: 3;
+  z-index: 200;
   overflow-x: 10%;
   overflow-y: 20%;
+  animation: slide-open 0.6s forwards;
   min-width: 24vw;
   background-color: ${props.theme.palette.secondary.gray};
   padding: 4px 4px 4px 4px;
@@ -68,8 +68,7 @@ export const NavBar = styled.nav<NavBarProps>(
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavList = styled.ul<NavBarProps>(
-  (props) => `
+export const NavList = styled.ul<NavBarProps>((props) => `
   letter-spacing: 3px;
   padding: 3px 2px 3px 2px;
   background-color: ${props.theme.palette.secondary.linear} ;
@@ -93,12 +92,13 @@ export const NavList = styled.ul<NavBarProps>(
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavItem = styled.li<NavBarProps>(
-  (props) => `
+export const NavItem = styled.li<NavBarProps>((props) => `
   border-top: 1px solid ${props.theme.palette.common.black};
   padding: 4px 4px;
   margin: 4px 4px;
-  min-width: 12vw;
+  width: 20vw;
+  top: 80px;
+  background-color: ${props.theme.palette.primary.steel} ;
   /* margin: 10px, 3px, 3px, 10px;
   padding: 6px, 5px, 5px, 6px; */
   /* color: rgb(11, 211, 11);
@@ -107,8 +107,7 @@ export const NavItem = styled.li<NavBarProps>(
 );
 
 // eslint-disable-next-line prettier/prettier
-export const ToggleBtn = styled.button<NavBarProps>(
-  (props) => `
+export const ToggleBtn = styled.button<NavBarProps>((props) => `
   /* padding: 4px 4px;
   margin: 4px 4px; */
   color: ${props.theme.palette.primary.cyan};

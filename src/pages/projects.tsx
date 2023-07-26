@@ -5,9 +5,9 @@ import { AllProjectsWhereDocument, type AllProjectsWhereQuery } from '@/graphql/
 import { hygraphClient } from '@/utils/gql-client';
 import Section from '@/components/Section';
 
-console.log(process.env);
-
 export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
+	console.table({ ...props });
+
 	return (
 		<Fragment>
 			{props.result?.projects &&
@@ -67,7 +67,6 @@ export const getStaticProps: GetStaticProps<{
 		},
 		headers
 	);
-	console.table({ ...result });
 
 	return {
 		props: {
@@ -77,25 +76,6 @@ export const getStaticProps: GetStaticProps<{
 		revalidate: 60000,
 	};
 };
-
-// return await new Promise((res, _rej) =>
-// 	res({
-// 		props: {
-// 			preview,
-// 			project,
-// 		},
-// 	})
-// );
-	// if (!result.projects) {
-	// 	return {
-	// 		props: {
-	// 			result: {
-	// 				error: true,
-	// 				message: 'Error: cannot query all projects... ',
-	// 			},
-	// 		},
-	// 	};
-	// }
 
 // <Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
 // <Header id={`projects-${pageId}`} name="About" content="" icon={null} />

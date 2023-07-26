@@ -13,6 +13,7 @@
 	},
 	"scripts": {
 		"dev": "next dev",
+		"dev:edge": "NODE_OPTIONS='--inspect-port=9229' next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint",

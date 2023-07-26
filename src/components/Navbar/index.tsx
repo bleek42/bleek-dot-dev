@@ -8,7 +8,7 @@ export default function Navbar() {
 
 	const toggleMenu = (evt: React.SyntheticEvent<HTMLElement>) => {
 		evt.preventDefault();
-		console.log(evt?.currentTarget, toggle);
+		console.log(evt?.currentTarget, !!toggle);
 		setToggle(!toggle);
 	};
 
@@ -20,10 +20,8 @@ export default function Navbar() {
 			{!toggle && (
 				<ToggleBtn
 					toggle={toggle}
-					onClick={toggleMenu}
-
-					// onMouseOver={toggleMenu}
-					// onTouchStart={toggleMenu}
+					onMouseOver={toggleMenu}
+					onClick={toggleMenu} /*onTouchStart={toggleMenu}*/
 				>
 					+
 				</ToggleBtn>
@@ -31,8 +29,8 @@ export default function Navbar() {
 
 			{toggle && (
 				<>
-					<NavList>
-						<NavItem onMouseLeave={toggleMenu}>
+					<NavList toggle={toggle} onMouseLeave={toggleMenu}>
+						<NavItem>
 							<Icon>
 								{'\udb83\udd84'}
 								<NextLink href="/home">Home</NextLink>

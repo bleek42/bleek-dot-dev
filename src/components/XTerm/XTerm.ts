@@ -31,9 +31,11 @@ export const XTForm = styled.form.attrs((props: XTermProps) => ({
 export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
   htmlFor: props.htmlFor || 'xtinput-id',
   form: props.form || 'xt-form-id',
+  id: props.id || undefined,
 }))<XTermProps>`
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
+
   font-size: 24px;
   color: rgb(12, 205, 165);
   background-color: rgb(0, 0, 0);
@@ -62,7 +64,6 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
   form: props.form || 'xt-form',
 }))<XTermProps>`
   display: flex;
-  align-items: center;
   margin: 4px 6px 4px 6px;
   /* width: 100vw; */
   min-width: 40%;
@@ -92,6 +93,7 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
   background-color: ${(props) => props.theme.palette.common.black};
   color: ${(props) => props.theme.palette.secondary.green};
   padding: 4px 4px;
+  margin: 4px 4px auto;
 `;
 
 export const XTxtArea = styled.textarea.attrs((props) => ({
@@ -101,14 +103,17 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   autoCorrect: props.spellCheck || 'false',
   autoCapitalize: props.autoCapitalize || 'false',
   wrap: props.wrap || 'hard',
-  placeholder: props.placeholder || 'Welcome to bleekDotDev!',
+  placeholder:
+    props.placeholder || 'Welcome to bleekDotDev! \n Click/touch here to continue.',
   // cols: props.cols || 60,
   // rows: props.rows || 60,
 }))<XTermProps>`
   background-color: ${(props) => props.theme.palette.common.black};
   font-family: ${(props) => props.theme.fonts.at(2)};
   color: ${(props) => props.theme.palette.primary.orange};
-  flex: 2 0 70vw;
+  flex: 3 1 70vw;
+  font-size: 18px;
+  text-align: center;
   /* width: 90vw; */
 
   &:hover {
@@ -131,9 +136,10 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
 `;
 
 export const XTCode = styled.code<XTermProps>(
-  (props) => `font-size: 16px;
-  font-weight: 650;
-  flex: 2 1 4vw;
+  (props) => `
+  font-size: 16px;
+  font-weight: 450;
+  flex: 2 0 4vw;
   color: ${props.theme.palette.secondary.neon};
   /* text-align: left; */
   text-decoration: underline;

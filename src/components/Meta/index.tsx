@@ -5,31 +5,33 @@ import { type MetaComponent } from '@/interfaces/Component';
 
 type MetaProps = MetaComponent;
 
-export default function Meta({
-	title,
-	description,
-	keywords,
-	image,
-	icon,
-	locale,
-}: MetaProps) {
+export default function Meta(props: MetaProps) {
 	return (
-		<Head>
+		<Head key={'meta-bleek-0'}>
 			<meta charSet="utf-8" />
-			<meta name="viewport" content="initial-scale=1, width=device-width" />
-			<meta name="description" content={description} />
-			<meta property="og:title" content={title} />
-			<meta property="og:image" content={image?.toString()} />
 			<meta
+				rel="viewport"
+				name="viewport"
+				content="initial-scale=1, width=device-width"
+			/>
+			<meta
+				rel="description"
+				name="description"
+				content={props.description?.toString()}
+			/>
+			<meta
+				rel="keyuwords"
 				name="keywords"
 				content={
-					Array.isArray(keywords)
-						? keywords.join(' ').toLocaleLowerCase()
-						: keywords.toLocaleLowerCase()
+					Array.isArray(props.keywords)
+						? props.keywords.join(' ').toLowerCase()
+						: props.keywords
 				}
 			/>
+			<meta property="og:title" content={props.title as string} />
+			<meta property="og:image" content={props.icons as string} />
 
-			<title>{title}</title>
+			<title>{props.title.toString()}</title>
 		</Head>
 	);
 }

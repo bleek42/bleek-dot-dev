@@ -1,7 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
+import { type Metadata } from 'next';
+import {
+  type DefaultTemplateString,
+  type Icons,
+  type IconURL,
+} from 'next/dist/lib/metadata/types/metadata-types';
 import { type Key, type ReactNode } from 'react';
 import { type AnyStyledComponent } from 'styled-components';
-
 export interface Component {
   id?: Key | null;
   // className?: string | null;
@@ -30,18 +35,19 @@ export interface Component {
 export interface XTermComponent extends Component {
   id: string | 'tty0';
   name: string | '/dev/tty0';
-  prompt: '[visitor@bleek.dev(v0.9)]λ->>' | string | symbol;
+  prompt: string | symbol | '[visitor@bleek.dev]λ->>';
   isExec: boolean | null;
   stdin: string | null;
   stdio: string | null;
   stderr: string | null;
 }
 
-export interface MetaComponent extends Component {
-  title: string;
-  description: string;
+export interface MetaComponent extends Metadata {
+  title: string | DefaultTemplateString | 'bleekDotDev';
+  description?: string | null;
   keywords: string | string[];
-  locale?: 'en' | 'en_US' | string;
+  icons?: IconURL | Icons | null;
+  locale: string | 'en_US' | 'en' | 'es';
 }
 
 export interface LayoutComponent extends Component {

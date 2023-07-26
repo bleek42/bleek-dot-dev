@@ -23,7 +23,7 @@ export default function XTerm() {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
-		prompt: '[visitor@bleek.dev(v0.7)->/tty0]/λ->',
+		prompt: '[visitor@bleek.dev]λ->>',
 		stdin: '',
 		stdio: '',
 		stderr: null,
@@ -38,6 +38,13 @@ export default function XTerm() {
 	const [dimensions, setDimensions] = useState<XTermViewportState>(xtermViewportState);
 
 	const router = useRouter();
+
+	const handleContinueHome = async (
+		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>
+	) => {
+		console.log({ onClick: { ...evt } });
+		await router.push('/home');
+	};
 
 	const handleResize = useCallback(
 		<T extends HTMLElement>(target: T, entry: ResizeObserverEntry) => {
@@ -129,9 +136,10 @@ export default function XTerm() {
 					id="xt-close"
 					type="reset"
 					// eslint-disable-next-line no-console
-					onClick={(evt: SyntheticEvent<HTMLButtonElement>) =>
-						console.info('xterm-close clicked', evt.target)
-					}
+					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						console.info('xterm-close clicked');
+						console.log(/* evt.target */);
+					}}
 				>
 					{'[ \uf00d ]'}
 				</BtnClose>
@@ -139,9 +147,10 @@ export default function XTerm() {
 					id="xt-maxmz"
 					type="button"
 					// eslint-disable-next-line no-console
-					onClick={(evt: SyntheticEvent<HTMLButtonElement>) =>
-						console.info('xterm-maxmz clicked', evt.target)
-					}
+					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						console.info('xterm-maxmz clicked');
+						console.log(/* evt.target */);
+					}}
 				>
 					{'[ \ueb95 ]'}
 				</BtnMax>
@@ -149,9 +158,10 @@ export default function XTerm() {
 					id="xt-minmz"
 					type="button"
 					// eslint-disable-next-line no-console
-					onClick={(evt: SyntheticEvent<HTMLButtonElement>) =>
-						console.info('xterm-minmz clicked', evt.target)
-					}
+					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						console.info('xterm-minmz clicked');
+						console.log(/* evt.target */);
+					}}
 				>
 					{'[ \uf2d1  ]'}
 				</BtnMin>
@@ -164,15 +174,18 @@ export default function XTerm() {
 				htmlFor={xterm.id}
 				form={'xt-form'}
 				// eslint-disable-next-line no-console
-				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) =>
-					console.info('xterm-txt submit capture', evt.target)
-				}
+				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) => {
+					console.info('xterm-txt submit capture');
+					console.log(/* evt.target */);
+				}}
 			>
 				<XTxtArea
 					ref={ref}
 					id={xterm.id}
 					value={xterm.stdin || xterm.stdio}
 					onChange={handleChange}
+					onClick={handleContinueHome}
+					onTouchEnd={handleContinueHome}
 					// placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
 					// eslint-disable-next-line no-console
 					// onSubmit={(evt: FormEvent<HTMLTextAreaElement>) => {
@@ -180,21 +193,18 @@ export default function XTerm() {
 					// 	// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
 					// 	setXterm((vals) => ({ ...vals, isExec: true }));
 					// }}
-					// onClickCapture={(evt: SyntheticEvent<HTMLTextAreaElement>) => {
-					// 	console.log({ onTouchMoveEvent: { ...evt } });
-					// 	router.push('/home');
-					// }}
 				></XTxtArea>
-				<XTCode>{xterm.prompt.toString()}</XTCode>
-				<XTInput
-					id="xt-prompt"
-					type="text"
-					name="xt-prompt"
-					// value={xterm.name}
+				<XTCode>
+					{xterm.prompt.toString()}
+					<XTInput
+						id="xt-prompt"
+						name="xt-prompt"
+						// value={xterm.name}
 
-					onChange={handleChange}
-					placeholder={'press enter to continue'}
-				/>
+						onChange={handleChange}
+						placeholder={'__'}
+					/>
+				</XTCode>
 				{/* {'[visitor@https://bleek.dev-$>'} */}
 			</XTLabel>
 		</XTForm>

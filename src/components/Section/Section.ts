@@ -43,7 +43,7 @@ export const Section = styled.section<SectionProps>(
 
   }
 
-`
+`,
 );
 
 // eslint-disable-next-line prettier/prettier
@@ -72,5 +72,5 @@ export const Article = styled.article<ArticleProps>(
     
   }
 
-`
+`,
 );

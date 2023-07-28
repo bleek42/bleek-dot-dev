@@ -18,7 +18,7 @@ import { graphql } from './gen/gql';
 
 export const useGraphQLClient = async <
   TResult extends ExecutionResult<Query | Mutation>,
-  TVariables = Variables
+  TVariables = Variables,
 >(
   document:
     | TypedDocumentString<TResult, TVariables>
@@ -39,7 +39,7 @@ export const useGraphQLClient = async <
   try {
     const response = await client.request<TResult>(
       document.toString(),
-      variables ?? undefined
+      variables ?? undefined,
     );
 
     console.table({ response });

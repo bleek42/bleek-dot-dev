@@ -105,7 +105,7 @@ export default function XTerm() {
 			console.table(entry.devicePixelContentBoxSize);
 		},
 
-		[dimensions.width, dimensions.height]
+		[dimensions.width, dimensions.height],
 	);
 
 	const ref = useResizeObserver(handleResize) as MutableRefObject<HTMLTextAreaElement>;
@@ -116,14 +116,14 @@ export default function XTerm() {
 	console.info('ref+curr:', ref, ref?.current);
 
 	const handleChange = (
-		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
 	): void => {
 		const { name, value } = evt.currentTarget;
 		setXterm({ ...xterm, [name]: value });
 	};
 
 	const handleRouteToHome = async (
-		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>
+		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>,
 	) => {
 		console.log({ onClick: { ...evt } });
 		await router.push('/home');

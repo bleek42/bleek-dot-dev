@@ -18,7 +18,7 @@ export const List = styled.ul(
     /* flex: 3 4 6vh; */
     
   }
-`
+`,
 );
 
 export const Item = styled.li(
@@ -37,5 +37,5 @@ export const Item = styled.li(
     
   }
   
-  `
+  `,
 );

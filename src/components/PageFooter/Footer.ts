@@ -40,5 +40,5 @@ export const Footer = styled.footer<FooterProps>(
 
   }
 
-  `
+  `,
 );

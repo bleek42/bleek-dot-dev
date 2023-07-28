@@ -1,7 +1,7 @@
 import { MutableRefObject, RefObject, useEffect, useRef } from 'react';
 
 export default function useResizeObserver<T extends HTMLElement>(
-  cb: (target: T, entry: ResizeObserverEntry) => void
+  cb: (target: T, entry: ResizeObserverEntry) => void,
 ) {
   const ref = useRef<T>();
 
@@ -16,7 +16,7 @@ export default function useResizeObserver<T extends HTMLElement>(
     if (element) observer.observe(element);
 
     return () => {
-      console.log('ran useRO effect', { observer, ...ref })
+      console.log('ran useRO effect', { observer, ...ref });
       observer.disconnect();
     };
   }, [cb, ref?.current]);

@@ -138,7 +138,8 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   }
 `;
 
-export const XTCode = styled.code<XTermProps>((props) => `
+export const XTCode = styled.code<XTermProps>(
+  (props) => `
   display: inline-flex;
   flex: 2 1 4vh;
   margin: 2px 2px;
@@ -159,7 +160,7 @@ export const XTCode = styled.code<XTermProps>((props) => `
     font-weight: 500;
     padding-right: 8px;
   }
-`
+`,
 );
 
 // export const Minmz = styled.button`

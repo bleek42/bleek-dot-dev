@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse, NextApiHandler } from 'next';
 
 export default async function handler<NextApiHandler>(
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
 ): Promise<void> {
   const { title } = req.body;
   try {

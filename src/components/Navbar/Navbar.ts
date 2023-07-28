@@ -37,7 +37,8 @@ const toggleKeyframes = keyframes`
 `;
 
 // eslint-disable-next-line prettier/prettier
-export const NavBar = styled.nav<NavBarProps>((props) => `
+export const NavBar = styled.nav<NavBarProps>(
+  (props) => `
   display: inline-flex;
   flex-flow: column wrap;
   justify-content: flex-end;
@@ -64,11 +65,12 @@ export const NavBar = styled.nav<NavBarProps>((props) => `
     flex-flow: column nowrap;
   }
 
-`
+`,
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavList = styled.ul<NavBarProps>((props) => `
+export const NavList = styled.ul<NavBarProps>(
+  (props) => `
   letter-spacing: 3px;
   padding: 3px 2px 3px 2px;
   background-color: ${props.theme.palette.secondary.linear} ;
@@ -88,11 +90,12 @@ export const NavList = styled.ul<NavBarProps>((props) => `
 
   // z-index: 6;
   /* margin: 5px auto; */
-  `
+  `,
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavItem = styled.li<NavBarProps>((props) => `
+export const NavItem = styled.li<NavBarProps>(
+  (props) => `
   border-top: 1px solid ${props.theme.palette.common.black};
   padding: 4px 4px;
   margin: 4px 4px;
@@ -103,11 +106,12 @@ export const NavItem = styled.li<NavBarProps>((props) => `
   padding: 6px, 5px, 5px, 6px; */
   /* color: rgb(11, 211, 11);
   transition: filter 400ms; */
-`
+`,
 );
 
 // eslint-disable-next-line prettier/prettier
-export const ToggleBtn = styled.button<NavBarProps>((props) => `
+export const ToggleBtn = styled.button<NavBarProps>(
+  (props) => `
   /* padding: 4px 4px;
   margin: 4px 4px; */
   color: ${props.theme.palette.primary.cyan};
@@ -127,7 +131,7 @@ export const ToggleBtn = styled.button<NavBarProps>((props) => `
     filter: brightness(3);
 
   }
-`
+`,
 );
 
 // export const Toggle = styled.span.attrs<ToggleProps>((props) => ({
@@ -171,7 +175,7 @@ export const NextLink = styled(Link)<NextLinkProps>(
     filter: brightness(0.9);
     color: rgb(44, 8, 250);
   }
-`
+`,
 );
 
 // eslint-disable-next-line prettier/prettier
@@ -189,7 +193,7 @@ export const Icon = styled.i(
     filter: brightness(2.6);
     color: rgb(12, 205, 160);
   }
-`
+`,
 );
 
 // export const NavLabel = styled.label.attrs((props) => ({

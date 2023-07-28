@@ -32,7 +32,7 @@ export const Details = styled.details<StyledDetailsProps>(
     
   }
   
-`
+`,
 );
 
 export const Summary = styled.summary(
@@ -52,5 +52,5 @@ export const Summary = styled.summary(
     /* flex: 3 4 6vh; */
     
   }
-`
+`,
 );

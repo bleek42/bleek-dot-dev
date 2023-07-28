@@ -32,7 +32,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 							content={item.description}
 							icon={null}
 						/>
-					)
+					),
 				)}
 			{!props.result && (
 				<Section
@@ -65,7 +65,7 @@ export const getStaticProps: GetStaticProps<{
 			'stage': 'PUBLISHED',
 			'first': 10,
 		},
-		headers
+		headers,
 	);
 
 	return {

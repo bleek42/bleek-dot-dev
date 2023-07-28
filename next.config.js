@@ -29,24 +29,25 @@ export default {
       'src/types/**/*.{tsx,ts}',
     ],
   },
-
   experimental: {
     // appDir: false,
   },
 
-  // async headers() {
-  //   return await new Promise((res) =>
-  //     res([
-  //       {
-  //         source: '/*',
-  //         headers: [
-  //           {
-  //             key: 'x-origin-locale-datetime',
-  //             value: new Date().toLocaleDateString(),
-  //           },
-  //         ],
-  //       },
-  //     ])
-  //   );
-  // },
 };
+
+
+  // // async headers() {
+  // //   return await new Promise((res) =>
+  // //     res([
+  // //       {
+  // //         source: '/*',
+  // //         headers: [
+  // //           {
+  // //             key: 'x-origin-locale-datetime',
+  // //             value: new Date().toLocaleDateString(),
+  // //           },
+  // //         ],
+  // //       },
+  // //     ])
+  // //   );
+  // // },

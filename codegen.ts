@@ -12,36 +12,34 @@ console.log('|=== GENERATING GRAPHQL TYPES ===|');
 const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
-  ignoreNoDocuments: false,
+  ignoreNoDocuments: true,
+  emitLegacyCommonJSImports: false,
 
   schema: [process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL, 'schema.json'],
   documents: [
-    // 'ast.gql',
-    // 'src/types/graphql/ast.gql',
     'src/types/graphql/typeDefs.gql',
     'src/types/graphql/fragments.gql',
     'src/types/graphql/queries/*.gql',
     'src/types/graphql/mutations/*.gql',
-    '!src/types/graphql/*.ts',
+    '!src/types/**/*.ts',
   ],
 
   generates: {
-    'schema.json': {
-      plugins: ['introspection'],
-      config: {
-        descriptions: true,
-        schemaDescription: true,
-      },
-    },
+    // 'schema.json': {
+    //   plugins: ['introspection'],
+    //   config: {
+    //     descriptions: true,
+    //     schemaDescription: true,
+    //   },
+    // },
 
-    'src/types/graphql/typeDefs.gql': {
-      plugins: ['schema-ast'],
-      config: {
-        commentDescriptions: true,
-        includeIntrospectionTypes: true,
-      },
-    },
-
+    // 'src/types/graphql/typeDefs.gql': {
+    //   plugins: ['schema-ast'],
+    //   config: {
+    //     commentDescriptions: true,
+    //     includeIntrospectionTypes: true,
+    //   },
+    // },
     'src/types/graphql/gen/hygraph-types.ts': {
       plugins: ['typescript'],
       config: {

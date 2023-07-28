@@ -8,5 +8,5 @@ export const MainPage = styled.main(
   height: 60vh;
   background: ${theme.palette.tertiary.linear};
   /* font-family: var(${theme.fonts.at(1)}); */
-`
+`,
 );

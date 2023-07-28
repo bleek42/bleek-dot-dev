@@ -67,7 +67,7 @@ export default function ReactQueryClientProvider({ children }: { children: React
  		}
  	}
  }
-` as unknown as TemplateStringsArray
+` as unknown as TemplateStringsArray,
 	);
 	// let vars: VariablesOf<RequestDocument> | null = null;
 
@@ -80,7 +80,7 @@ export default function ReactQueryClientProvider({ children }: { children: React
 			queryFn: async () =>
 				await rawRequest<typeof doc>(
 					process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL as string,
-					doc.toString()
+					doc.toString(),
 				).then((result) => {
 					console.log(result);
 					return result ?? null;

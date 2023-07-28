@@ -28,7 +28,7 @@ export const Header = styled.header<HeaderProps>(
   @media (max-width: ${props.theme.breakpoints.phone}) {
     flex-flow: row wrap;
   }
-`
+`,
 );
 
 /* @media (min-width: ${props.theme.breakpoints.fullDisplay}) {

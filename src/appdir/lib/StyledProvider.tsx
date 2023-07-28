@@ -28,7 +28,7 @@ export default function StyledProvider({
 	// Only create stylesheet once with lazy initial state
 	// x-ref: https://reactjs.org/docs/hooks-reference.html#lazy-initial-state
 	const [styledComponentsStyleSheet, setStyledComponentsStyleSheet] = useState(
-		() => new ServerStyleSheet()
+		() => new ServerStyleSheet(),
 	);
 	useServerInsertedHTML(() => {
 		const styles = styledComponentsStyleSheet.getStyleElement();
@@ -36,7 +36,7 @@ export default function StyledProvider({
 		if (styles && styledComponentsStyleSheet.instance) {
 			console.log(
 				'styled provder instance loaded & OK!',
-				styledComponentsStyleSheet.instance
+				styledComponentsStyleSheet.instance,
 			);
 			console.log('instance.getStyleElement() value', styles);
 			return <>{styles}</>;

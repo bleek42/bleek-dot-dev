@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
-export const Btn = styled.button((props) => `
+export const Btn = styled.button(
+  (props) => `
   color: ${props.theme.palette.primary.neon};
   background-color: ${props.theme.palette.primary.gray};
   font-family: var(${props.theme.fonts.at(2)});
@@ -23,7 +24,7 @@ export const Btn = styled.button((props) => `
     /* flex: 3 4 6vh; */
 
   }
-`
+`,
 );
 
 export const BtnClose = styled(Btn)`

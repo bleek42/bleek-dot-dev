@@ -2,7 +2,7 @@ import { GraphQLClient } from 'graphql-request';
 import { getSdk } from '@/graphql/gen';
 
 const graphQLClient: GraphQLClient = new GraphQLClient(
-  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`
+  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`,
   // graphQLOptions
 );
 

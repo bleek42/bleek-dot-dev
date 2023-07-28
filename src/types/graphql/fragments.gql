@@ -9,7 +9,7 @@ fragment UserFields on User {
 	stage
 }
 
-fragment ImageFields on Asset {
+fragment AssetFields on Asset {
 	id
 	url
 	handle
@@ -18,10 +18,11 @@ fragment ImageFields on Asset {
 	width
 	height
 	size
+	url
+	locale
 	createdAt
 	updatedAt
 	stage
-	locale
 }
 
 fragment ProjectFields on Project {
@@ -33,10 +34,12 @@ fragment ProjectFields on Project {
 	techStack
 	sourceCode
 	version
-	stage
 	locale
+	createdAt
+	updatedAt
+	stage
 
-	screenShots {
-		...ImageFields
+	screenShots(first: 4, forceParentLocale: true) {
+		...AssetFields
 	}
 }

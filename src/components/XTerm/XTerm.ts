@@ -64,22 +64,22 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
   form: props.form || 'xt-form',
 }))<XTermProps>`
   display: flex;
+  flex-flow: row nowrap;
+  align-items: space-around;
   margin: 4px 6px 4px 6px;
-  /* width: 100vw; */
-  min-width: 40%;
-  padding: 8px 4px 4px 8px;
+  padding: 4px 4px 4px 4px;
   font-family: ${(props) => `var(${props.theme.fonts.at(2)})`};
-  color: ${(props) => props.theme.palette.secondary.gray};
   background-color: ${(props) => props.theme.palette.secondary.steel};
-  border: ${(props) => '2px solid ' + props.theme.palette.secondary.green};
+  border: ${(props) => `2px solid  ${props.theme.palette.secondary.green}`};
 
   @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
-    flex-flow: row nowrap;
+    /* flex-flow: row nowrap; */
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
-    flex-flow: column wrap;
-    align-items: flex-start;
+    /* flex-flow: column wrap;
+    align-items: center; */
+    display: none;
   }
 `;
 
@@ -92,8 +92,14 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
 }))<XTermProps>`
   background-color: ${(props) => props.theme.palette.common.black};
   color: ${(props) => props.theme.palette.secondary.green};
-  padding: 4px 4px;
-  margin: 4px 4px auto;
+  padding: 2px 2px 2px 2px;
+  margin: 2px 2px;
+  flex: 1 1 4vw;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
+    font-size: 14px;
+    padding-bottom: 5px;
+  }
 `;
 
 export const XTxtArea = styled.textarea.attrs((props) => ({
@@ -105,25 +111,22 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   wrap: props.wrap || 'hard',
   placeholder:
     props.placeholder || 'Welcome to bleekDotDev! \n Click/touch here to continue.',
-  // cols: props.cols || 60,
-  // rows: props.rows || 60,
 }))<XTermProps>`
-  background-color: ${(props) => props.theme.palette.common.black};
-  font-family: ${(props) => props.theme.fonts.at(2)};
-  color: ${(props) => props.theme.palette.primary.orange};
+  background-color: ${({ theme }) => theme.palette.common.black};
+  font-family: ${({ theme }) => theme.fonts.at(1)};
+  color: ${({ theme }) => theme.palette.primary.orange};
   flex: 3 1 70vw;
-  font-size: 18px;
+  max-height: 60vh;
+  /* max-width: 100vw; */
   text-align: center;
-  /* width: 90vw; */
+  font-size: 20px;
 
   &:hover {
-    border: 1px solid rgb(136, 255, 0);
-    cursor: text;
+    border: 2px solid ${({ theme }) => theme.palette.secondary.cyan};
   }
 
   &:active {
-    border: 2px solid rgb(136, 255, 0);
-    cursor: text;
+    border: 2px solid ${({ theme }) => theme.palette.primary.neon};
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
@@ -135,32 +138,29 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   }
 `;
 
-export const XTCode = styled.code<XTermProps>(
-  (props) => `
-  font-size: 16px;
-  font-weight: 450;
-  flex: 2 0 4vw;
+export const XTCode = styled.code<XTermProps>((props) => `
+  display: inline-flex;
+  flex: 2 1 4vh;
+  margin: 2px 2px;
+  padding: 4px 4px;
   color: ${props.theme.palette.secondary.neon};
-  /* text-align: left; */
+  font-size: 18px;
+  font-weight: 450;
+  text-align: left;
   text-decoration: underline;
   text-decoration-color: ${props.theme.palette.secondary.gray};
 
   @media(min-width: ${props.theme.breakpoints.fullDisplay}) {
-    font-size: 18px;
+    font-size: 22px;
   }
 
   @media(max-width: ${props.theme.breakpoints.phone}) {
-    font-size: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    padding-right: 8px;
   }
 `
 );
-
-//   /* flex: 0 2 10%; */
-//   width: 10vh;
-//   font-family: 'MonocraftNF';
-//   font-size: 24px;
-//   background-color: rgb(15, 95, 150);
-// `;
 
 // export const Minmz = styled.button`
 //   /* flex: 0 2 10%; */
@@ -169,14 +169,3 @@ export const XTCode = styled.code<XTermProps>(
 //   font-size: 24px;
 //   background-color: yellow;
 // `;
-
-// // export const XTBtn = styled.button`
-// //   background-color: ${(props) =>
-// //     props?.close
-// //       ? 'rgb(215, 30, 30)'
-// //       : props?.max
-// //       ? 'rgb(15, 95, 150)'
-// //       : props?.min
-// //       ? 'yellow'
-// //       : 'grey'};
-// // `;

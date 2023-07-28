@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-export const Btn = styled.button(
-  (props) => `
+export const Btn = styled.button((props) => `
   color: ${props.theme.palette.primary.neon};
   background-color: ${props.theme.palette.primary.gray};
   font-family: var(${props.theme.fonts.at(2)});
-  flex: 3 1 36vw;
-  min-height: 16vh;
+  flex: 2 1 12vw;
+  /* max-width: 40vw; */
+  min-height: 10vh;
   font-size: 28px;
-  border: 2px solid rgb(0, 0, 0);
+  border: 2px solid ${props.theme.palette.common.black};
   border-radius: 12% / 12%;
-  margin: 4px 4px;
+  margin: 4px 4px auto;
   padding: 4px 4px;
 
   /* @media (max-width: ${props.theme.breakpoints.phone}) {
@@ -35,9 +35,7 @@ export const BtnClose = styled(Btn)`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.phone}) {
-    display: none;
-    /* font-size: 28px;
-    min-height: 50%; */
+    /* display: none; */
   }
 `;
 
@@ -50,7 +48,6 @@ export const BtnMax = styled(Btn)`
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.phone}) {
-    display: none;
     /* font-size: 28px;
     min-height: 50%; */
   }
@@ -58,15 +55,13 @@ export const BtnMax = styled(Btn)`
 
 export const BtnMin = styled(Btn)`
   color: ${({ theme }) => theme.palette.primary.yellow};
-
+  fill: aqua;
   &:hover {
     text-shadow: ${({ theme }) => theme.palette.secondary.yellow + '1px 2px'};
     cursor: pointer;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.phone}) {
-    display: none;
-    /* font-size: 28px;
-    min-height: 50%; */
+    /* display: none; */
   }
 `;

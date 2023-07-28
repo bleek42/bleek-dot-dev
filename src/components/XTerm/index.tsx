@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import {
 	useState,
@@ -7,12 +8,11 @@ import {
 	type MutableRefObject,
 	type SyntheticEvent,
 } from 'react';
-import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
+// import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
 import useResizeObserver from '@/hooks/useResizeObserver';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
-
 import { type XTermComponent } from '@/interfaces/Component';
 import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 
@@ -38,13 +38,6 @@ export default function XTerm() {
 	const [dimensions, setDimensions] = useState<XTermViewportState>(xtermViewportState);
 
 	const router = useRouter();
-
-	const handleContinueHome = async (
-		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>
-	) => {
-		console.log({ onClick: { ...evt } });
-		await router.push('/home');
-	};
 
 	const handleResize = useCallback(
 		<T extends HTMLElement>(target: T, entry: ResizeObserverEntry) => {
@@ -129,6 +122,13 @@ export default function XTerm() {
 		setXterm({ ...xterm, [name]: value });
 	};
 
+	const handleRouteToHome = async (
+		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>
+	) => {
+		console.log({ onClick: { ...evt } });
+		await router.push('/home');
+	};
+
 	return (
 		<XTForm>
 			<XTBtns id="xt-btns">
@@ -137,8 +137,9 @@ export default function XTerm() {
 					type="reset"
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						evt.preventDefault();
 						console.info('xterm-close clicked');
-						console.log(/* evt.target */);
+						console.log({ 'cls-btn': evt.target });
 					}}
 				>
 					{'[ \uf00d ]'}
@@ -148,8 +149,9 @@ export default function XTerm() {
 					type="button"
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						evt.preventDefault();
 						console.info('xterm-maxmz clicked');
-						console.log(/* evt.target */);
+						console.log({ 'max-btn': evt.target });
 					}}
 				>
 					{'[ \ueb95 ]'}
@@ -159,53 +161,51 @@ export default function XTerm() {
 					type="button"
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						evt.preventDefault();
 						console.info('xterm-minmz clicked');
-						console.log(/* evt.target */);
+						console.log({ 'min-btn': evt.target });
 					}}
 				>
 					{'[ \uf2d1  ]'}
 				</BtnMin>
 			</XTBtns>
-			{/* <span>
-					<code>Area: {area?.toString()} </code>
-				</span> */}
 			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
 			<XTLabel
 				htmlFor={xterm.id}
 				form={'xt-form'}
 				// eslint-disable-next-line no-console
 				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) => {
+					evt.preventDefault();
 					console.info('xterm-txt submit capture');
-					console.log(/* evt.target */);
+					console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
 			>
 				<XTxtArea
 					ref={ref}
 					id={xterm.id}
-					value={xterm.stdin || xterm.stdio}
-					onChange={handleChange}
-					onClick={handleContinueHome}
-					onTouchEnd={handleContinueHome}
-					// placeholder="Welcome to bleekDotDev: My name is Brandon C. Leek, & I am a FullStack Web Developer"
+					// value={xterm.stdin || xterm.stdio}
+					// onChange={handleChange}
+					// onClick={handleRouteToHome}
+					// onTouchEnd={handleRouteToHome}
 					// eslint-disable-next-line no-console
 					// onSubmit={(evt: FormEvent<HTMLTextAreaElement>) => {
 					// 	console.info('xterm-txt submit capture', evt.target);
 					// 	// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
 					// 	setXterm((vals) => ({ ...vals, isExec: true }));
 					// }}
-				></XTxtArea>
+				>
+					<Image src={'/'} width={100} height={40} alt={'bleek42'} />
+				</XTxtArea>
 				<XTCode>
 					{xterm.prompt.toString()}
 					<XTInput
 						id="xt-prompt"
 						name="xt-prompt"
-						// value={xterm.name}
-
 						onChange={handleChange}
-						placeholder={'__'}
+						placeholder={''}
+						// value={xterm.name}
 					/>
 				</XTCode>
-				{/* {'[visitor@https://bleek.dev-$>'} */}
 			</XTLabel>
 		</XTForm>
 	);

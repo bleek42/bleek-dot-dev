@@ -1,6 +1,6 @@
 import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
-import { type HeaderComponent } from '@/interfaces/Component';
+import { type HeaderComponent } from 'src/interfaces/Component';
 import { Header } from './Header';
 import { LgTxt, MdTxt, SmTxt } from '@/components/common';
 import Navbar from '@/components/Navbar';

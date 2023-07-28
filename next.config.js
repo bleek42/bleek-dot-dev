@@ -19,6 +19,11 @@ export default {
     },
   },
 
+  images: {
+    domains: ['media.graphassets.com'],
+
+  },
+
   eslint: {
     dirs: [
       'src/pages/**/*.{tsx,ts}',
@@ -26,28 +31,27 @@ export default {
       'src/hooks/**/*.{tsx,ts}',
       'src/context/**/*.{tsx,ts}',
       'src/utils/*.{tsx,ts}',
-      'src/types/**/*.{tsx,ts}',
+      'src/interfaces/**/*.ts',
+      'src/graphql/**/*.{gql,graphql,ts}',
     ],
   },
   experimental: {
     // appDir: false,
   },
-
 };
 
-
-  // // async headers() {
-  // //   return await new Promise((res) =>
-  // //     res([
-  // //       {
-  // //         source: '/*',
-  // //         headers: [
-  // //           {
-  // //             key: 'x-origin-locale-datetime',
-  // //             value: new Date().toLocaleDateString(),
-  // //           },
-  // //         ],
-  // //       },
-  // //     ])
-  // //   );
-  // // },
+// // async headers() {
+// //   return await new Promise((res) =>
+// //     res([
+// //       {
+// //         source: '/*',
+// //         headers: [
+// //           {
+// //             key: 'x-origin-locale-datetime',
+// //             value: new Date().toLocaleDateString(),
+// //           },
+// //         ],
+// //       },
+// //     ])
+// //   );
+// // },

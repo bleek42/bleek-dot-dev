@@ -7,13 +7,14 @@ import {
 	type FormEvent,
 	type MutableRefObject,
 	type SyntheticEvent,
+	SetStateAction,
 } from 'react';
 // import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
 import useResizeObserver from '@/hooks/useResizeObserver';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
-import { type XTermComponent } from '@/interfaces/Component';
+import { type XTermComponent } from 'src/interfaces/Component';
 import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 
 type XTermState = XTermComponent;
@@ -39,95 +40,97 @@ export default function XTerm() {
 
 	const router = useRouter();
 
-	const handleResize = useCallback(
-		<T extends HTMLElement>(target: T, entry: ResizeObserverEntry) => {
-			console.info({ target });
-			console.info({ entry });
-
-			const { width, height, top, bottom, left, right, x, y } = entry.contentRect;
-
-			const currentWidth = Math.round(width);
-			const currentHeight = Math.round(height);
-
-			if (width < 1024 && width >= 481) {
-				setDimensions((prev) => ({
-					...prev,
-					cols: 60,
-					rows: 60,
-					area: 60 * 60,
-					width: currentWidth,
-					height: currentHeight,
-					top,
-					bottom,
-					left,
-					right,
-					x,
-					y,
-				}));
-			}
-
-			if (width >= 1024) {
-				setDimensions((prev) => ({
-					...prev,
-					cols: 80,
-					rows: 36,
-					area: 80 * 36,
-					width: currentWidth,
-					height: currentHeight,
-					top,
-					bottom,
-					left,
-					right,
-					x,
-					y,
-				}));
-			}
-
-			if (width < 481) {
-				setDimensions((prev) => ({
-					...prev,
-					cols: 20,
-					rows: 20,
-					area: 20 * 20,
-					width: currentWidth,
-					height: currentHeight,
-					top,
-					bottom,
-					left,
-					right,
-					x,
-					y,
-				}));
-			}
-
-			console.warn('resizing:', currentWidth, currentHeight);
-			console.table(entry.borderBoxSize);
-			console.table(entry.devicePixelContentBoxSize);
-		},
-
-		[dimensions.width, dimensions.height],
-	);
-
-	const ref = useResizeObserver(handleResize) as MutableRefObject<HTMLTextAreaElement>;
-
-	// eslint-disable-next-line no-console
-	// console.info({ dimensions });
-	// eslint-disable-next-line no-console
-	console.info('ref+curr:', ref, ref?.current);
-
 	const handleChange = (
-		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
 	): void => {
 		const { name, value } = evt.currentTarget;
 		setXterm({ ...xterm, [name]: value });
 	};
 
-	const handleRouteToHome = async (
-		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>,
+	const handleContinueRoute = async (
+		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>
 	) => {
 		console.log({ onClick: { ...evt } });
 		await router.push('/home');
 	};
+
+	// const handleResize = useCallback(
+	// 	<T extends HTMLElement>(target: T, entry: ResizeObserverEntry) => {
+	// 		console.info({ target });
+	// 		console.info({ entry });
+
+	// 		const { width, height, top, bottom, left, right, x, y } = entry.contentRect;
+
+	// 		const currentWidth = Math.round(width);
+	// 		const currentHeight = Math.round(height);
+
+	// 		if (width < 1024 && width >= 481) {
+	// 			setDimensions(
+	// 				(prev): ResizeObserverDimensions => ({
+	// 					...prev,
+	// 					cols: 60,
+	// 					rows: 60,
+	// 					area: 60 * 60,
+	// 					width: currentWidth,
+	// 					height: currentHeight,
+	// 					top,
+	// 					bottom,
+	// 					left,
+	// 					right,
+	// 					x,
+	// 					y,
+	// 				})
+	// 			);
+	// 		}
+
+	// 		if (width >= 1024) {
+	// 			setDimensions((prev) => ({
+	// 				...prev,
+	// 				cols: 80,
+	// 				rows: 36,
+	// 				area: 80 * 36,
+	// 				width: currentWidth,
+	// 				height: currentHeight,
+	// 				top,
+	// 				bottom,
+	// 				left,
+	// 				right,
+	// 				x,
+	// 				y,
+	// 			}));
+	// 		}
+
+	// 		if (width < 481) {
+	// 			setDimensions((prev) => ({
+	// 				...prev,
+	// 				cols: 20,
+	// 				rows: 20,
+	// 				area: 20 * 20,
+	// 				width: currentWidth,
+	// 				height: currentHeight,
+	// 				top,
+	// 				bottom,
+	// 				left,
+	// 				right,
+	// 				x,
+	// 				y,
+	// 			}));
+	// 		}
+
+	// 		console.warn('resizing:', currentWidth, currentHeight);
+	// 		console.table(entry.borderBoxSize);
+	// 		console.table(entry.devicePixelContentBoxSize);
+	// 	},
+
+	// 	[dimensions.width, dimensions.height]
+	// );
+
+	// const ref = useResizeObserver(handleResize) as MutableRefObject<HTMLTextAreaElement>;
+
+	// eslint-disable-next-line no-console
+	// console.info({ dimensions });
+	// eslint-disable-next-line no-console
+	// console.info('ref+curr:', ref, ref?.current);
 
 	return (
 		<XTForm>
@@ -180,29 +183,14 @@ export default function XTerm() {
 					console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
 			>
-				<XTxtArea
-					ref={ref}
-					id={xterm.id}
-					// value={xterm.stdin || xterm.stdio}
-					// onChange={handleChange}
-					// onClick={handleRouteToHome}
-					// onTouchEnd={handleRouteToHome}
-					// eslint-disable-next-line no-console
-					// onSubmit={(evt: FormEvent<HTMLTextAreaElement>) => {
-					// 	console.info('xterm-txt submit capture', evt.target);
-					// 	// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
-					// 	setXterm((vals) => ({ ...vals, isExec: true }));
-					// }}
-				>
-					<Image src={'/'} width={100} height={40} alt={'bleek42'} />
-				</XTxtArea>
+				<XTxtArea id={xterm.id} defaultValue={null} />
 				<XTCode>
 					{xterm.prompt.toString()}
 					<XTInput
 						id="xt-prompt"
 						name="xt-prompt"
 						onChange={handleChange}
-						placeholder={''}
+						placeholder={'__'}
 						// value={xterm.name}
 					/>
 				</XTCode>

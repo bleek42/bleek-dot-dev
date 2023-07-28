@@ -1,13 +1,23 @@
 import { GraphQLClient } from 'graphql-request';
-import { getSdk } from '@/graphql/gen';
+import { getAllProjectsWhereSdk, getAssetWhereUniqueSdk } from 'src/graphql/gen';
+
+const headers: Record<string | number | symbol, any> = {
+		credentials: 'include',
+		mode: 'cors',
+		cache: 'force-cache',
+		headers: {
+			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
+		},
+	};
 
 const graphQLClient: GraphQLClient = new GraphQLClient(
   `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`,
-  // graphQLOptions
+  headers
 );
 
-export const hygraphClient = getSdk(graphQLClient);
+export const allProjectsQuery = getAllProjectsWhereSdk(graphQLClient);
 
+export const assetWhereQuery = getAssetWhereUniqueSdk(graphQLClient);
 // export async function createGraphQLRequest<TResult, Variables>(
 //   document: TypedDocumentNode<TResult>,
 //   ...[variables]: Variables extends Record<string, never> ? [] : [Variables]

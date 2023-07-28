@@ -1,8 +1,8 @@
 import { Fragment, type Key } from 'react';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-import { AllProjectsWhereDocument, type AllProjectsWhereQuery } from '@/graphql/gen';
-import { hygraphClient } from '@/utils/gql-client';
+import { type AllProjectsWhereQuery } from 'src/graphql/gen';
+import { allProjectsQuery } from '@/utils/gql-client';
 import Section from '@/components/Section';
 
 export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
@@ -51,7 +51,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 export const getStaticProps: GetStaticProps<{
 	result: AllProjectsWhereQuery;
 }> = async () => {
-	const headers: Record<string | number | symbol, unknown> = {
+	const headers: Record<string | number | symbol, any> = {
 		credentials: 'include',
 		mode: 'cors',
 		cache: 'force-cache',
@@ -60,12 +60,12 @@ export const getStaticProps: GetStaticProps<{
 		},
 	};
 
-	const result = await hygraphClient.AllProjectsWhere(
+	const result: Awaited<AllProjectsWhereQuery> = await allProjectsQuery.AllProjectsWhere(
 		{
 			'stage': 'PUBLISHED',
 			'first': 10,
 		},
-		headers,
+		headers
 	);
 
 	return {

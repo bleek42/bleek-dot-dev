@@ -5,7 +5,7 @@ import styled, {
   type StyledComponentPropsWithRef,
 } from 'styled-components';
 
-import { type XTermComponent } from '@/interfaces/Component';
+import { type XTermComponent } from 'src/interfaces/Component';
 
 type XTermProps = StyledComponentProps<
   'textarea' | 'form' | 'input' | 'label' | 'code',

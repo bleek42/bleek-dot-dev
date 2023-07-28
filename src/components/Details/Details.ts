@@ -1,6 +1,6 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
-import { type DetailsComponent } from '@/interfaces/Component';
+import { type DetailsComponent } from 'src/interfaces/Component';
 
 type StyledDetailsProps = StyledComponentProps<
   'details' | keyof JSX.IntrinsicElements,
@@ -29,9 +29,9 @@ export const Details = styled.details<StyledDetailsProps>(
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-    
+
   }
-  
+
 `,
 );
 
@@ -50,7 +50,7 @@ export const Summary = styled.summary(
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-    
+
   }
 `,
 );

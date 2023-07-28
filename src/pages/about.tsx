@@ -1,10 +1,33 @@
+import Image from 'next/image'
+import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 import Section from '@/components/Section';
+import { type AssetWhereUniqueQuery } from '@/graphql/gen';
+import { assetWhereQuery } from '@/utils/gql-client';
 
-export default function About() {
-	console.log('about page:');
+export default function About(props: InferGetStaticPropsType<typeof getStaticProps>) {
+	console.log('about page:', { props });
 
-	return <Section name="about_section" description={''} content="section content" />;
+	return (
+		<Section name="about_section" description={''} content="section content">
+			<Image src={props.result.asset?.url || 'https://'} alt={props.result.asset?.handle || 'bleek42'} width={props.result.asset?.width || 40} height={props.result.asset?.height || 40}  />
+		</Section>
+	);
 }
+
+export const getStaticProps: GetStaticProps<{
+	result: AssetWhereUniqueQuery;
+}> = async () => {
+	const result: Awaited<AssetWhereUniqueQuery> =
+		await assetWhereQuery.AssetWhereUnique();
+
+	console.log({ 'result-asset': { ...result } });
+
+	return {
+		props: {
+			result,
+		},
+	};
+};
 
 // import "./About.scss";
 

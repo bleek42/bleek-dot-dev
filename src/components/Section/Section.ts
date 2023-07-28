@@ -1,5 +1,5 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
-import { type SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from 'src/interfaces/Component';
 
 type SectionProps = StyledComponentProps<
   'section',
@@ -69,7 +69,7 @@ export const Article = styled.article<ArticleProps>(
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
-    
+
   }
 
 `,

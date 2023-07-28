@@ -1,5 +1,5 @@
 import { type DefaultTheme, type StyledComponent } from 'styled-components';
-import { type DetailsComponent } from '@/interfaces/Component.ts';
+import { type DetailsComponent } from 'src/interfaces/Component.ts';
 
 import { Details as Wrapper, Summary } from './Details.ts';
 import { MdTxt } from '@/components/common/Text.ts';

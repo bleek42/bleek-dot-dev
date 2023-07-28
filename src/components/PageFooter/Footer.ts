@@ -4,7 +4,7 @@ import styled, {
   type AnyStyledComponent,
 } from 'styled-components';
 
-import { type FooterComponent } from '@/interfaces/Component';
+import { type FooterComponent } from 'src/interfaces/Component';
 
 export type FooterProps = StyledComponentProps<
   'footer' | AnyStyledComponent,

@@ -21,7 +21,7 @@ export interface Component {
     | ReactNode[]
     | AnyStyledComponent
     | AnyStyledComponent[]
-    | unknown;
+    ;
 }
 
 // type K = K extends keyof JSX.IntrinsicElements

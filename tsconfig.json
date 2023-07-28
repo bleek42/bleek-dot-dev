@@ -34,10 +34,10 @@
 				"src/components/common/*"
 			],
 			"@/interfaces/*": [
-				"src/types/interfaces/*"
+				"src/interfaces/*"
 			],
 			"@/graphql/*": [
-				"src/types/graphql/*"
+				"src/graphql/*"
 			],
 			"@/hooks/*": [
 				"src/hooks/*"
@@ -63,8 +63,9 @@
 			{
 				"name": "@styled/typescript-styled-plugin",
 				"tags": [
-					"styled",
 					"css",
+					"styled",
+					"keyfranes"
 				]
 			}
 		]
@@ -84,7 +85,7 @@
 		"node_modules/",
 		"build/",
 		".next/",
-		"src/appdir/**/*"
+		"src/appdir/"
 	],
 
 	"ts-node": {
@@ -93,7 +94,7 @@
 		"swc": true,
 		// "experimentalSpecifierResolution": "node",
 		"compilerOptions": {
-			"target": "ES2018",
+			"target": "ES2022",
 			"module": "Node16",
 			"moduleResolution": "Node16",
 			"outDir": "dist/",

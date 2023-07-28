@@ -5,7 +5,7 @@ import { type Key, useId } from 'react';
 // 	type StyledComponentProps,
 // } from 'styled-components';
 
-import { type SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from 'src/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
 import { LgTxt, MdTxt, SmTxt } from '@/components/common/Text';
 
@@ -13,18 +13,21 @@ type SectionProps = SectionComponent;
 
 export default function Section(props: SectionProps) {
 	// const sectionId = useId();
-	console.log('section component:');
+	console.log({ 'section-component': props });
 	return (
 		<Wrapper key={props.id} id={`${props.id}-section`}>
 			<LgTxt>
 				{props.name ?? ''} - {props.icon ?? '&\ue667;'}
 			</LgTxt>
 			{typeof props.content === 'string' && (
-				<Article>
-					<SmTxt font="--font-MonocraftNF" color="neon">
-						{props.content}
-					</SmTxt>
-				</Article>
+				<>
+					<Article>
+						<SmTxt font="--font-MonocraftNF" color="neon">
+							{props.content}
+						</SmTxt>
+					</Article>
+					{props.children && <div>{props.children}</div>}
+				</>
 			)}
 			{Array.isArray(props.content) && props.content.length >= 1 && (
 				<>
@@ -35,6 +38,7 @@ export default function Section(props: SectionProps) {
 							</SmTxt>
 						</Article>
 					))}
+					{props.children && <div>{props.children}</div>}
 				</>
 			)}
 			{!props.content && (

@@ -1,4 +1,4 @@
-import type * as Types from '../graphql/gen/hygraph-types.js';
+import type * as Types from './hygraph-types.js';
 
 import type { GraphQLClient } from 'graphql-request';
 import type { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types.js';

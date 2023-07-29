@@ -28,9 +28,9 @@ export { defaultMetaProps };
 function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
+			<Meta {...defaultMetaProps} />
 			<ThemeProvider theme={theme}>
 				<GlobalStyle />
-				<Meta {...defaultMetaProps} />
 				{Component !== LandingPage ? (
 					<PageLayout>
 						<Component {...pageProps} />

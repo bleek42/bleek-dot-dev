@@ -26,9 +26,9 @@ declare module 'styled-components' {
 
   type ColorPalettes = 'primary' | 'secondary' | 'tertiary' | 'common';
   type Fonts =
-    | '--font-Birdman'
-    | '--font-Oxanium'
-    | '--font-MonocraftNF'
+    | 'Birdman'
+    | 'Oxanium'
+    | 'MonocraftNF'
     | 'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace'
     | 'Verdana, Geneva, Tahoma, Arial, sans-serif, system-ui, -apple-system, BlinkMacSystemFont'
     | '"Times New Roman", Times, Haettenschweiler, monospace, system-ui, -apple-system, BlinkMacSystemFont';

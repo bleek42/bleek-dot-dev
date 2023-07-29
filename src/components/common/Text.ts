@@ -8,7 +8,7 @@ import styled, {
 } from 'styled-components';
 // import localFont from 'next/font/local';
 
-// export const Birdman = localFont<'--font-Birdman'>({
+// export const Birdman = localFont<'Birdman'>({
 //   src: [
 //     {
 //       path: '../../../public/fonts/birdman/BIRDMAN_REG.ttf',
@@ -32,10 +32,10 @@ import styled, {
 //     },
 //   ],
 
-//   variable: '--font-Birdman',
+//   variable: 'Birdman',
 // });
 
-// export const Oxanium = localFont<'--font-Oxanium'>({
+// export const Oxanium = localFont<'Oxanium'>({
 //   src: [
 //     {
 //       path: '../../../public/fonts/Oxanium/Oxanium-Regular.ttf',
@@ -55,12 +55,12 @@ import styled, {
 //     },
 //   ],
 
-//   variable: '--font-Oxanium',
+//   variable: 'Oxanium',
 // });
 
-// export const MonocraftNF = localFont<'--font-MonocraftNF'>({
+// export const MonocraftNF = localFont<'MonocraftNF'>({
 //   src: '../../../public/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf',
-//   variable: '--font-MonocraftNF',
+//   variable: 'MonocraftNF',
 // });
 
 interface TextOptions {
@@ -72,28 +72,30 @@ interface TextOptions {
 }
 
 type TextProps = StyledComponentProps<
-  AnyStyledComponent | keyof JSX.IntrinsicElements,
+  'h4' | 'h2' | 'p' | AnyStyledComponent,
   DefaultTheme,
   object,
   string | number | symbol
 > &
   TextOptions;
 
+
+// 'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace'
 export const SmTxt = styled.p.attrs<TextProps>((props) => ({
   font:
     props.font ||
-    'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace',
+    'inherit',
   colorPalette: props.colorPalette || 'common',
   color: props.color,
-  size: props.size || '12px',
+  size: props.size || 'inherit',
   shadow: props.shadow,
 }))<TextProps>`
-  /* flex: 3 1 4vw; */
+  flex: 2 0 4vw;
   font-weight: 450;
   padding-top: 12px;
   font-size: ${(props) => props.size};
   font-family: ${(props) =>
-    props.theme.fonts.find((font) => props.font === font && `var(${props.font})`)};
+    props.theme.fonts.find((font) => props.font === font && props.font)};
   color: ${(props) =>
     props.colorPalette === 'primary' && props.color in props.theme.palette.primary
       ? props.theme.palette.primary[props.color]
@@ -121,15 +123,17 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
   text-decoration-style: double; */
 `;
 
-export const MdTxt = styled.h5.attrs<TextProps>((props) => ({
+// 'Verdana, Geneva, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont'
+
+export const MdTxt = styled.h4.attrs<TextProps>((props) => ({
   font:
     props.font ||
-    'Verdana, Geneva, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont',
+    'inherit',
 }))<TextProps>`
-  flex: 3 1 12vw;
-  text-align: center;
+  flex: 1 1 auto;
+
   font-family: ${(props) =>
-    props.theme.fonts.find((font) => props.font === font && `var(${props.font})`)};
+    props.theme.fonts.find((font) => props.font === font && props.font)};
   color: ${(props) =>
     props.color in props.theme.palette.primary
       ? props.theme.palette.primary[props.color]
@@ -156,9 +160,9 @@ export const LgTxt = styled.h2.attrs<TextProps>((props) => ({
     props.font ||
     '"Times New Roman", Times, Haettenschweiler, system-ui, -apple-system, BlinkMacSystemFont',
 }))<TextProps>`
-  flex: 4 1 5vw;
+  flex: 2 1 5vw;
   text-align: center;
-  padding-top: 24px;
+  /* padding-top: 24px; */
   font-family: ${(props) =>
     props.theme.fonts.find((font) => props.font === font && `var(${props.font})`)};
   color: ${(props) =>

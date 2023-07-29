@@ -93,7 +93,7 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
     props.placeholder || 'Welcome to bleekDotDev! \n Click/touch here to continue.',
 }))<XTermProps>`
   background-color: ${({ theme }) => theme.palette.common.black};
-  font-family: ${({ theme }) => theme.fonts.at(1)};
+  font-family: ${({ theme }) => `var(${theme.fonts.at(1)})`};
   color: ${({ theme }) => theme.palette.primary.orange};
   flex: 3 1 65vw;
   max-height: 70vh;

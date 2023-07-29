@@ -16,13 +16,13 @@ export default function Section(props: SectionProps) {
 	console.log({ 'section-component': props });
 	return (
 		<Wrapper key={props.id} id={`${props.id}-section`}>
-			<LgTxt>
+			<LgTxt font="Birdman">
 				{props.name ?? ''} - {props.icon ?? '&\ue667;'}
 			</LgTxt>
 			{typeof props.content === 'string' && (
 				<>
 					<Article>
-						<SmTxt font="--font-MonocraftNF" color="neon">
+						<SmTxt font="MonocraftNF" color="neon">
 							{props.content}
 						</SmTxt>
 					</Article>
@@ -33,7 +33,7 @@ export default function Section(props: SectionProps) {
 				<>
 					{props.content.map((articleContent: string, idx: Key) => (
 						<Article key={idx}>
-							<SmTxt font="--font-MonocraftNF" color="neon">
+							<SmTxt font="MonocraftNF" color="neon">
 								{articleContent}
 							</SmTxt>
 						</Article>

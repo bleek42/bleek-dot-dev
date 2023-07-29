@@ -6,9 +6,9 @@ export const theme: DefaultTheme = {
   borderRadius: '12% 16% / 16% 12%',
 
   fonts: [
-    '--font-Birdman',
-    '--font-Oxanium',
-    '--font-MonocraftNF',
+    'Birdman',
+    'Oxanium',
+    'MonocraftNF',
     'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace',
     'Verdana, Geneva, Tahoma, Arial, sans-serif, system-ui, -apple-system, BlinkMacSystemFont',
     '"Times New Roman", Times, Haettenschweiler, monospace, system-ui, -apple-system, BlinkMacSystemFont',
@@ -81,14 +81,14 @@ export const theme: DefaultTheme = {
 export const GlobalStyle = createGlobalStyle`
 
   @font-face {
-	  font-family: Birdman;
+	  font-family: 'Birdman';
 	  src: url('/fonts/birdman/birdman.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
   }
 
   @font-face {
-    font-family: Oxanium;
+    font-family: 'Oxanium';
     src: url('/fonts/Oxanium/Oxanium.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
@@ -96,17 +96,17 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
-	  font-family: MonocraftNF;
+	  font-family: 'MonocraftNF';
 	  src: url('/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
     font-display: swap;
-    font-weight: 400;
+    font-style: normal;
   }
 
-  :root {
-    --font-Birdman: Birdman;
-    --font-Oxanium: Oxanium;
-    --font-MonocraftNF: MonocraftNF;
-  }
+  /* :root {
+    Birdman: 'Birdman';
+    Oxanium: 'Oxanium';
+    MonocraftNF: 'MonocraftNF';
+  } */
 
   *,
   *::before,
@@ -119,11 +119,11 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     background: rgb(5, 5, 5);
-    font-family: var(--font-Oxanium);
+    font-family: var(Oxanium);
   }
 
   code, i {
-    font-family: var(--font-MonocraftNF);
+    font-family: var(MonocraftNF);
     font-size: 16px;
   }
 

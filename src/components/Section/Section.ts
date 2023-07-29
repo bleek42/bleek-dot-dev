@@ -16,23 +16,17 @@ type ArticleProps = StyledComponentProps<
   string | number | symbol
 >;
 
-export const Section = styled.section<SectionProps>(
-  (props) => `
+export const Section = styled.section<SectionProps>((props) => `
   display: flex;
   flex-flow: column nowrap;
-  justify-content: flex-start;
   border: 4px solid ${props.theme.palette.secondary.green};
   border-radius: 15% 20% / 15% 20%;
-  padding: 8px 8px 8px 8px;
-  margin: 6px 6px 6px 6px;
+  padding: 4px 4px 4px 4px;
+  margin: 6px 6px;
   background-color: ${props.theme.palette.secondary.steel};
-  min-height: 60vh;
-  /* width: 100vw;
-  height: 60vh; */
-  /* text-align: left; */
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
-    /* display: none; */
+    justify-content: center;
     flex-flow: column wrap;
     /* font-size: 28px;
     min-height: 50%; */
@@ -40,6 +34,8 @@ export const Section = styled.section<SectionProps>(
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
     /* flex: 3 4 6vh; */
+    justify-content: flex-start;
+    align-items: center;
 
   }
 
@@ -47,19 +43,20 @@ export const Section = styled.section<SectionProps>(
 );
 
 // eslint-disable-next-line prettier/prettier
-export const Article = styled.article<ArticleProps>(
-  (props) => `
+export const Article = styled.article<ArticleProps>((props) => `
   color: ${props.theme.palette.secondary.steel};
   background-color: ${props.theme.palette.secondary.gray};
   font-family: var(${props.theme.fonts.at(1)});
   text-shadow: ${props.theme.palette.secondary.green} 2px 2px 2px;
   border: 2px solid ${props.theme.palette.secondary.neon};
   border-radius: 5% 5% / 5% 5%;
-  min-height: 40vh;
-  flex: 5 3 50vw;
-  min-height: 40vh;
+  /* min-height: 10vh; */
+
+  display: inline-flex;
+  flex: 3 1 12vh;
+
   padding: 12px 12px 12px 12px;
-  margin: 8px 8px auto;
+  margin: 8px 8px;
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
     /* display: none; */

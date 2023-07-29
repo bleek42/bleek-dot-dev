@@ -14,7 +14,7 @@ export default function Navbar() {
 
 	return (
 		<NavBar toggle={toggle}>
-			<LgTxt font={'--font-Birdman'} color="neon" shadow="steel">
+			<LgTxt font={'Birdman'} color="neon" shadow="steel">
 				Menu
 			</LgTxt>
 			{!toggle && (

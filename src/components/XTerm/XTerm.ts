@@ -19,12 +19,11 @@ export const XTForm = styled.form.attrs((props: XTermProps) => ({
   id: props.id || 'xt-form',
   name: props.name || 'xt-form',
 }))<XTermProps>`
-  /* align-items: center; */
-  box-shadow: ${(props) => props.theme.palette.primary.steel} 3em 3em;
+  box-shadow: ${(props) => props.theme.palette.primary.gray} 1rem 1rem;
   border: 2px solid ${(props) => props.theme.palette.primary.blue};
-  /* margin: 10px 4px 4px 10px;
-  padding: 8px 8px 8px 8px; */
-  /* border-radius: 20% 20% / 20% 20%; */
+  margin: 8px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
+  border-radius: 2% 2% / 2% 2%;
   background-color: ${(props) => props.theme.palette.common.black};
 `;
 
@@ -35,10 +34,9 @@ export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
 }))<XTermProps>`
   display: flex;
   flex-flow: column nowrap;
-
-  font-size: 24px;
-  color: rgb(12, 205, 165);
-  background-color: rgb(0, 0, 0);
+  background-color: ${({ theme }) => theme.palette.common.black};
+  margin: 4px 4px;
+  padding: 2px 2px;
 
   &:hover {
     border: 2px solid rgb(136, 255, 0);
@@ -65,6 +63,7 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
 }))<XTermProps>`
   display: flex;
   flex-flow: row nowrap;
+  justify-content: space-around;
   align-items: space-around;
   margin: 4px 6px 4px 6px;
   padding: 4px 4px 4px 4px;
@@ -83,25 +82,6 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
   }
 `;
 
-export const XTInput = styled.input.attrs<XTermProps>((props) => ({
-  htmlFor: props.htmlFor || 'xt-textarea',
-  form: props.form || 'xt-form',
-  id: props.id || 'xt-prompt',
-  name: props.name || 'xt-prompt',
-  type: props.type || 'text',
-}))<XTermProps>`
-  background-color: ${(props) => props.theme.palette.common.black};
-  color: ${(props) => props.theme.palette.secondary.green};
-  padding: 2px 2px 2px 2px;
-  margin: 2px 2px;
-  flex: 1 1 4vw;
-
-  @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
-    font-size: 14px;
-    padding-bottom: 5px;
-  }
-`;
-
 export const XTxtArea = styled.textarea.attrs((props) => ({
   id: props.id || 'xt-textarea',
   name: props.name || 'xt-textarea',
@@ -115,9 +95,8 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   background-color: ${({ theme }) => theme.palette.common.black};
   font-family: ${({ theme }) => theme.fonts.at(1)};
   color: ${({ theme }) => theme.palette.primary.orange};
-  flex: 3 1 70vw;
-  max-height: 60vh;
-  /* max-width: 100vw; */
+  flex: 3 1 65vw;
+  max-height: 70vh;
   text-align: center;
   font-size: 20px;
 
@@ -138,12 +117,33 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   }
 `;
 
+export const XTInput = styled.input.attrs<XTermProps>((props) => ({
+  htmlFor: props.htmlFor || 'xt-textarea',
+  form: props.form || 'xt-form',
+  id: props.id || 'xt-prompt',
+  name: props.name || 'xt-prompt',
+  type: props.type || 'text',
+}))<XTermProps>`
+  background-color: ${(props) => props.theme.palette.common.black};
+  color: ${(props) => props.theme.palette.secondary.green};
+  padding: 4px 4px 4px 4px;
+  margin: 2px 4px 2px 4px;
+  flex: 2 0 2vw;
+  justify-self: end;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
+    font-size: 16px;
+    /* padding-bottom: 5px; */
+  }
+`;
+
 export const XTCode = styled.code<XTermProps>(
   (props) => `
   display: inline-flex;
-  flex: 2 1 4vh;
-  margin: 2px 2px;
-  padding: 4px 4px;
+  align-items: center;
+  /* max-width: 60vw; */
+  margin: 2px 2px 2px 2px;
+  padding: 4px 4px 4px 4px;
   color: ${props.theme.palette.secondary.neon};
   font-size: 18px;
   font-weight: 450;
@@ -152,13 +152,12 @@ export const XTCode = styled.code<XTermProps>(
   text-decoration-color: ${props.theme.palette.secondary.gray};
 
   @media(min-width: ${props.theme.breakpoints.fullDisplay}) {
-    font-size: 22px;
+    font-size: 20px;
+    /* flex: 2 1 2vw; */
   }
 
   @media(max-width: ${props.theme.breakpoints.phone}) {
-    font-size: 14px;
-    font-weight: 500;
-    padding-right: 8px;
+    font-size: 16px;
   }
 `,
 );

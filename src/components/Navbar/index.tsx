@@ -20,7 +20,7 @@ export default function Navbar() {
 			{!toggle && (
 				<ToggleBtn
 					toggle={toggle}
-					onMouseOver={toggleMenu}
+					// onMouseOver={toggleMenu}
 					onClick={toggleMenu} /*onTouchStart={toggleMenu}*/
 				>
 					+

@@ -10,17 +10,17 @@ type HeaderProps = StyledComponentProps<
   HeaderComponent;
 
 // eslint-disable-next-line prettier/prettier
-export const Header = styled.header<HeaderProps>(
-  (props) => `
+export const Header = styled.header<HeaderProps>((props) => `
   display: flex;
   flex-flow: row nowrap;
   justify-content: flex-start;
+  align-items: center;
   color: ${props.theme.palette.primary.yellow};
   background-color: ${props.theme.palette.secondary.steel};
   border: 4px solid ${props.theme.palette.secondary.cyan};
   border-radius: 10% 20% / 10% 20%;
   min-height: 14vh;
-  margin: 4px 4px 4px 4px;
+  margin: 4px 6px 4px 6px;
   padding: 4px 4px 4px 4px;
   /* height: 12vh;
   width: 100vh; */

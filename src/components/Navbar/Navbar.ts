@@ -37,22 +37,21 @@ const toggleKeyframes = keyframes`
 `;
 
 // eslint-disable-next-line prettier/prettier
-export const NavBar = styled.nav<NavBarProps>(
-  (props) => `
+export const NavBar = styled.nav<NavBarProps>((props) => `
   display: inline-flex;
   flex-flow: column wrap;
-  justify-content: flex-end;
-  position: fixed;
-  left: 65%;
+  justify-content: flex-start;
+  position: sticky;
+  left: 60%;
   top: 4%;
-  z-index: 200;
-  overflow-x: 10%;
-  overflow-y: 20%;
+  z-index: 20;
+  /* overflow-x: 10%;
+  overflow-y: 20%; */
   animation: slide-open 0.6s forwards;
-  min-width: 24vw;
+  min-width: 20vw;
   background-color: ${props.theme.palette.secondary.gray};
-  padding: 4px 4px 4px 4px;
-  margin: 8px 4px 8px 4px;
+  padding: 2px 2px 2px 2px;
+  margin: 8px auto;
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
     /* flex-flow: column wrap; */
@@ -69,19 +68,18 @@ export const NavBar = styled.nav<NavBarProps>(
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavList = styled.ul<NavBarProps>(
-  (props) => `
-  letter-spacing: 3px;
-  padding: 3px 2px 3px 2px;
-  background-color: ${props.theme.palette.secondary.linear} ;
+export const NavList = styled.ul<NavBarProps>((props) => `
   list-style: none;
+  margin: 4px 4px auto;
+  background-color: ${props.theme.palette.secondary.linear} ;
+  /* display: inline-flex; */
+  position: absolute;
+  /* flex-flow: column nowrap; */
+  letter-spacing: 3px;
   /* z-index: 200; */
   /* animation: slide-open 0.6s forwards; */
-  /* bottom: ${props.toggle ? '0%' : '-100%'}; /*
-  /* width: ${props.toggle ? '400px' : '100px'}; */
-  /* top: ${props.toggle ? '65px' : '0px'}; */
-  /* right: 10%; */
-  /* top: 10vh; */
+  /* bottom: ${props.toggle ? '0%' : '-100%'}; */
+  top: ${props.toggle ? '86%' : '0'};
 
 
 
@@ -94,16 +92,16 @@ export const NavList = styled.ul<NavBarProps>(
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavItem = styled.li<NavBarProps>(
-  (props) => `
-  border-top: 1px solid ${props.theme.palette.common.black};
-  padding: 4px 4px;
-  margin: 4px 4px;
-  width: 20vw;
+export const NavItem = styled.li<NavBarProps>((props) => `
+  
+  min-width: 18vw;
+  border-top: 2px solid ${props.theme.palette.common.black};
+  padding: 6px 4px 6px 4px;
+  margin: 4px 4px 4px 4px;
+
   top: 80px;
   background-color: ${props.theme.palette.primary.steel} ;
-  /* margin: 10px, 3px, 3px, 10px;
-  padding: 6px, 5px, 5px, 6px; */
+  opacity: 0.8;
   /* color: rgb(11, 211, 11);
   transition: filter 400ms; */
 `,

@@ -10,18 +10,13 @@ import { type AnyStyledComponent } from 'styled-components';
 export interface Component {
   id?: Key | null;
   // className?: string | null;
-  name?: string;
-  title?: string;
+  name?: string | unknown;
+  title?: string | string[] | unknown;
   description?: string | string[] | unknown;
   icon?: string | unknown;
-  image?: Array<URL | string> | URL | string;
-  locale?: 'en' | 'en_US' | string;
-  children?:
-    | ReactNode
-    | ReactNode[]
-    | AnyStyledComponent
-    | AnyStyledComponent[]
-    ;
+  image?: string | URL | Array<URL | string> | unknown;
+  locale?: string | 'en' | 'en_US' | 'es_MX';
+  children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
 // type K = K extends keyof JSX.IntrinsicElements
@@ -54,12 +49,7 @@ export interface LayoutComponent extends Component {
   children: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[] | null;
 }
 export interface HeaderComponent extends Component {
-  children?:
-    | ReactNode
-    | ReactNode[]
-    | AnyStyledComponent
-    | AnyStyledComponent[]
-    | unknown;
+  children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
 export interface NavbarComponent extends Component {

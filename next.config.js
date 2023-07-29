@@ -20,8 +20,7 @@ export default {
   },
 
   images: {
-    domains: ['media.graphassets.com'],
-
+    domains: ['media.graphassets.com', 'drive.google.com', 'photos.google.com'],
   },
 
   eslint: {

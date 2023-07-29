@@ -24,18 +24,9 @@ export default function PageHeader(props: HeaderProps) {
 			<MdTxt font="--font-Oxanium" color="neon" shadow="steel">
 				bleekDotDev
 			</MdTxt>
-			<MdTxt font="--font-MonocraftNF" color="red" shadow="steel">
+			{/* <MdTxt font="--font-MonocraftNF" color="red" shadow="steel">
 				{props.title ?? 'untitled'}
-			</MdTxt>
-			<SmTxt
-				font="--font-MonocraftNF"
-				colorPalette="secondary"
-				color="neon"
-				size="14px"
-				shadow="red"
-			>
-				small text
-			</SmTxt>
+			</MdTxt> */}
 			<Navbar />
 		</Header>
 	);

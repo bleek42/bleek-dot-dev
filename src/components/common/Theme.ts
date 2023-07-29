@@ -82,10 +82,9 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
 	  font-family: Birdman;
-	  src: url('/fonts/birdman/BIRDMAN.ttf') format('truetype');
+	  src: url('/fonts/birdman/birdman.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
-    font-weight: 500;
   }
 
   @font-face {
@@ -93,7 +92,7 @@ export const GlobalStyle = createGlobalStyle`
     src: url('/fonts/Oxanium/Oxanium.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
-    font-weight: 400;
+
   }
 
   @font-face {
@@ -119,11 +118,12 @@ export const GlobalStyle = createGlobalStyle`
 
 
   body {
-    background: ${({ theme }) => theme.palette.primary.linear};
+    background: rgb(5, 5, 5);
+    font-family: var(--font-Oxanium);
   }
 
   code, i {
-    font-family: ${({ theme }) => `var(${theme.fonts.at(2)})`};
+    font-family: var(--font-MonocraftNF);
     font-size: 16px;
   }
 

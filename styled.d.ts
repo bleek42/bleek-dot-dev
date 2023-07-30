@@ -3,8 +3,8 @@ import 'styled-components';
 
 declare module 'styled-components' {
   interface CommonColors {
-    black?: string;
-    white?: string;
+    readonly black: string | 'rgb(0, 0, 0)';
+    readonly white: string | 'rgb(255, 255, 255)';
   }
 
   interface Colors extends CommonColors {

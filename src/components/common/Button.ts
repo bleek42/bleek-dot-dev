@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
-export const Btn = styled.button(
-  (props) => `
+export const Btn = styled.button((props) => `
   color: ${props.theme.palette.primary.neon};
   background-color: ${props.theme.palette.primary.gray};
-  font-family: var(${props.theme.fonts.at(2)});
+  font-family: ${props.theme.fonts.at(2)};
   flex: 2 1 12vw;
   /* max-width: 40vw; */
-  min-height: 10vh;
+  min-height: 5vh;
   font-size: 28px;
   border: 2px solid ${props.theme.palette.common.black};
   border-radius: 12% / 12%;

@@ -30,9 +30,7 @@
 			"@/components/*": [
 				"src/components/*"
 			],
-			"@/common/*": [
-				"src/components/common/*"
-			],
+
 			"@/interfaces/*": [
 				"src/interfaces/*"
 			],
@@ -73,6 +71,7 @@
 	"include": [
 		"src/**/*.ts",
 		"src/**/*.tsx",
+		"tests/**/*",
 		"codegen.ts",
 		"next-env.d.ts",
 		"node-env.d.ts",

@@ -41,6 +41,8 @@ export const theme: DefaultTheme = {
       teal: 'rgb(54, 213, 181)',
       neon: 'rgb(0, 255, 30)',
       yellow: 'rgb(222, 210, 76)',
+      black: 'rgb(0, 0, 0)',
+      white: 'rgb(255, 255, 255)',
       linear: 'linear-gradient(45deg, rgb(35, 230, 45) 45%, rgb(5, 5, 5) 55%)',
     },
 
@@ -57,6 +59,7 @@ export const theme: DefaultTheme = {
       teal: 'rgb(40, 171, 145)',
       neon: 'rgb(89, 255, 0)',
       yellow: 'rgb(225, 255, 0)',
+      white: 'rgb(255, 255, 255)',
       linear: 'linear-gradient(25deg, rgb(45, 147, 243) 35%, rgb(23, 240, 193) 65%)',
     },
 
@@ -73,6 +76,8 @@ export const theme: DefaultTheme = {
       teal: 'rgb(11, 205, 165)',
       neon: 'rgb(135, 255, 0)',
       yellow: 'rgb(252, 231, 0)',
+      black: 'rgb(0, 0, 0)',
+      white: 'rgb(255, 255, 255)',
       linear: 'linear-gradient(45deg, rgb(132, 255, 0) 35%, rgb(22, 247, 135) 35%)',
     },
   },

@@ -20,6 +20,7 @@ export const XTForm = styled.form.attrs((props: XTermProps) => ({
   name: props.name || 'xt-form',
 }))<XTermProps>`
   box-shadow: ${(props) => props.theme.palette.primary.gray} 1rem 1rem;
+  width: 100vw;
   border: 2px solid ${(props) => props.theme.palette.primary.blue};
   margin: 8px 8px 8px 8px;
   padding: 8px 8px 8px 8px;
@@ -137,8 +138,7 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
   }
 `;
 
-export const XTCode = styled.code<XTermProps>(
-  (props) => `
+export const XTCode = styled.code<XTermProps>((props) => `
   display: inline-flex;
   align-items: center;
   /* max-width: 60vw; */
@@ -147,7 +147,7 @@ export const XTCode = styled.code<XTermProps>(
   color: ${props.theme.palette.secondary.neon};
   font-size: 18px;
   font-weight: 450;
-  text-align: left;
+  text-align: right;
   text-decoration: underline;
   text-decoration-color: ${props.theme.palette.secondary.gray};
 

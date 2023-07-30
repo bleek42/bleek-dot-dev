@@ -31,28 +31,28 @@ export default function XTerm() {
 		isExec: null,
 	};
 
-	const xtermViewportState: XTermViewportState = {
-		area: 20 * 20,
-	};
-
 	const [xterm, setXterm] = useState<XTermState>(xtermState); // ? set execute state true, leave landing page to /home
-	const [dimensions, setDimensions] = useState<XTermViewportState>(xtermViewportState);
 
 	const router = useRouter();
 
 	const handleChange = (
-		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
 	): void => {
 		const { name, value } = evt.currentTarget;
 		setXterm({ ...xterm, [name]: value });
 	};
 
-	const handleContinueRoute = async (
-		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>
+	const handleRouteHome = async (
+		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>,
 	) => {
 		console.log({ onClick: { ...evt } });
 		await router.push('/home');
 	};
+
+	// const xtermViewportState: XTermViewportState = {
+	// 	area: 20 * 20,
+	// };
+	// const [dimensions, setDimensions] = useState<XTermViewportState>(xtermViewportState);
 
 	// const handleResize = useCallback(
 	// 	<T extends HTMLElement>(target: T, entry: ResizeObserverEntry) => {
@@ -182,6 +182,7 @@ export default function XTerm() {
 					console.info('xterm-txt submit capture');
 					console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
+				onSubmit={handleRouteHome}
 			>
 				<XTxtArea id={xterm.id} defaultValue={null} />
 				<XTCode>
@@ -191,6 +192,7 @@ export default function XTerm() {
 						name="xt-prompt"
 						onChange={handleChange}
 						placeholder={'__'}
+
 						// value={xterm.name}
 					/>
 				</XTCode>

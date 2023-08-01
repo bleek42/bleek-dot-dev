@@ -1,16 +1,40 @@
-import Image from 'next/image'
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
-import Section from '@/components/Section';
+import Image from 'next/image';
+
 import { type AssetWhereUniqueQuery } from '@/graphql/gen';
+import Section from '@/components/Section';
 import { assetWhereQuery } from '@/utils/gql-client';
 
 export default function About(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	console.log('about page:', { props });
 
 	return (
-		<Section name="about_section" description={''} content="section content">
-			<Image src={props.result.asset?.url || 'https://'} alt={props.result.asset?.handle || 'bleek42'} width={props.result.asset?.width || 40} height={props.result.asset?.height || 40}  />
-		</Section>
+		<>
+			{props.result.asset && (
+				<Section
+					name="about_section"
+					description={'about...'}
+					content="section content"
+				>
+					<Image
+						src={props.result.asset?.url || 'https://'}
+						alt={props.result.asset?.handle || 'bleek42'}
+						width={props.result.asset?.width || 40}
+						height={props.result.asset?.height || 40}
+					/>
+				</Section>
+			)}
+			{!props.result.asset && (
+				<Section
+					key={'err-projects'}
+					id={'err-about'}
+					name={'err-about'}
+					description={'Error loading about image asset!'}
+					content={'please refresh & try again...'}
+					icon={null}
+				/>
+			)}
+		</>
 	);
 }
 

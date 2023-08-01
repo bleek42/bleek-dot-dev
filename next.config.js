@@ -2,7 +2,6 @@
 export default {
   reactStrictMode: true,
   swcMinify: true,
-  cleanDistDir: true,
   outputFileTracing: true,
 
   typescript: {
@@ -11,11 +10,9 @@ export default {
 
   compiler: {
     styledComponents: {
-      displayName: true,
-      pure: true,
+      cssProp: true,
       ssr: true,
       minify: true,
-      cssProp: true,
     },
   },
 
@@ -33,9 +30,6 @@ export default {
       'src/interfaces/**/*.ts',
       'src/graphql/**/*.{gql,graphql,ts}',
     ],
-  },
-  experimental: {
-    // appDir: false,
   },
 };
 

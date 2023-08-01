@@ -1,5 +1,7 @@
 import Section from '@/components/Section';
 
+const contactProps = {};
+
 export default function Contact() {
 	// const { profile, loading, error, msg } = useRequest()
 
@@ -8,12 +10,26 @@ export default function Contact() {
 	const githubIcon = ' \uf092 ';
 
 	return (
-		<Section
-			name="Email"
-			description={'contact section description'}
-			content={'contact section content'}
-			icon={commentIcon}
-		/>
+		<>
+			<Section
+				name="Email"
+				description={'contact section description'}
+				content={'contact section content'}
+				icon={commentIcon}
+			/>
+			<Section
+				name="Github"
+				description={'github section description'}
+				content={'github section content'}
+				icon={githubIcon}
+			/>
+			<Section
+				name="Linkedin"
+				description={'linkedin section description'}
+				content={'linkedin section content'}
+				icon={linkedInIcon}
+			/>
+		</>
 	);
 }
 

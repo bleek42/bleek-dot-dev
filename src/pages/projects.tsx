@@ -34,7 +34,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 						/>
 					),
 				)}
-			{!props.result && (
+			{!props.result.projects && (
 				<Section
 					key={'err-projects'}
 					id={'err-projects'}
@@ -51,29 +51,29 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 export const getStaticProps: GetStaticProps<{
 	result: AllProjectsWhereQuery;
 }> = async () => {
-	const headers: Record<string | number | symbol, any> = {
-		credentials: 'include',
-		mode: 'cors',
-		cache: 'force-cache',
-		headers: {
-			'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
-		},
-	};
+	console.log(process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH);
+	// const headers: Record<string | number | symbol, any> = {
+	// 	credentials: 'include',
+	// 	mode: 'cors',
+	// 	cache: 'force-cache',
+	// 	headers: {
+	// 		'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
+	// 	},
+	// };
 
-	const result: Awaited<AllProjectsWhereQuery> = await allProjectsQuery.AllProjectsWhere(
-		{
-			'stage': 'PUBLISHED',
-			'first': 10,
-		},
-		headers
-	);
+	const result: Awaited<AllProjectsWhereQuery> =
+		await allProjectsQuery.AllProjectsWhere(
+			{
+				'stage': 'PUBLISHED',
+				'first': 10,
+			},
+			// headers,
+		);
 
 	return {
 		props: {
 			result,
 		},
-
-		revalidate: 60000,
 	};
 };
 

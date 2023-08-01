@@ -2,7 +2,7 @@ import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-com
 import { type SectionComponent } from 'src/interfaces/Component';
 
 type SectionProps = StyledComponentProps<
-  'section',
+  'section' | 'article' | keyof JSX.IntrinsicElements,
   DefaultTheme,
   object,
   string | number | symbol
@@ -19,23 +19,21 @@ type ArticleProps = StyledComponentProps<
 export const Section = styled.section<SectionProps>((props) => `
   display: flex;
   flex-flow: column nowrap;
+    justify-content: center;
   border: 4px solid ${props.theme.palette.secondary.green};
   border-radius: 15% 20% / 15% 20%;
-  padding: 4px 4px 4px 4px;
+  padding: 16px 6px 60px 6px;
   margin: 6px 6px;
   background-color: ${props.theme.palette.secondary.steel};
 
   @media (max-width: ${props.theme.breakpoints.phone}) {
-    justify-content: center;
     flex-flow: column wrap;
+    align-items: center;
     /* font-size: 28px;
     min-height: 50%; */
   }
 
   @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
-    /* flex: 3 4 6vh; */
-    justify-content: flex-start;
-    align-items: center;
 
   }
 
@@ -43,7 +41,8 @@ export const Section = styled.section<SectionProps>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const Article = styled.article<ArticleProps>((props) => `
+export const Article = styled.article<ArticleProps>(
+  (props) => `
   color: ${props.theme.palette.secondary.steel};
   background-color: ${props.theme.palette.secondary.gray};
   font-family: var(${props.theme.fonts.at(1)});
@@ -53,7 +52,7 @@ export const Article = styled.article<ArticleProps>((props) => `
   /* min-height: 10vh; */
 
   display: inline-flex;
-  flex: 3 1 12vh;
+  flex: 3 0 18vh;
 
   padding: 12px 12px 12px 12px;
   margin: 8px 8px;

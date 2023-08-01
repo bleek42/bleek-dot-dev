@@ -1,7 +1,7 @@
-export default function createURL(url: string): URL | never {
+export default function createURL(url: string): URL | null {
   try {
     const instance = new URL(url);
-    return instance ?? instance;
+    return instance ?? null;
     // eslint-disable-next-line prettier/prettier
   } catch {
     throw Error('error creating URL instance...');

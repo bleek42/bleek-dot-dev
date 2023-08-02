@@ -1,6 +1,6 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
-import { type DetailsComponent } from 'src/interfaces/Component';
+import { type DetailsComponent } from '@/interfaces/Component';
 
 type StyledDetailsProps = StyledComponentProps<
   'details' | keyof JSX.IntrinsicElements,

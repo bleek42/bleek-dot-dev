@@ -12,16 +12,17 @@ console.log('|=== GENERATING GRAPHQL TYPES ===|');
 const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
-  ignoreNoDocuments: true,
-  emitLegacyCommonJSImports: false,
+  ignoreNoDocuments: false,
+  // emitLegacyCommonJSImports: false,
 
-  schema: [process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL, 'schema.json'],
+  schema: [process.env.HYGRAPH_CDN_URL, 'schema.json'],
   documents: [
-    'src/types/graphql/typeDefs.gql',
-    'src/types/graphql/fragments.gql',
-    'src/types/graphql/queries/*.gql',
-    'src/types/graphql/mutations/*.gql',
-    '!src/types/**/*.ts',
+    // ? these 2 first...
+    'src/graphql/typeDefs.gql',
+    'src/graphql/queries/*.gql',
+    '!src/graphql/**/*.ts',
+    // 'src/graphql/fragments.gql',
+    // 'src/graphql/mutations/*.gql',
   ],
 
   generates: {
@@ -33,51 +34,51 @@ const config: CodegenConfig = {
     //   },
     // },
 
-    // 'src/types/graphql/typeDefs.gql': {
+    // 'src/graphql/typeDefs.gql': {
     //   plugins: ['schema-ast'],
     //   config: {
     //     commentDescriptions: true,
     //     includeIntrospectionTypes: true,
     //   },
     // },
-    'src/types/graphql/gen/hygraph-types.ts': {
+
+    'src/graphql/hygraph-types.ts': {
       plugins: ['typescript'],
       config: {
         futureProofUnions: true,
         enumsAsTypes: true,
         addUnderscoreToArgsType: true,
         useImplementingTypes: true,
+        useTypeImports: true,
         declarationKind: {
           interface: 'interface',
           input: 'interface',
         },
+        defaultScalar: 'string | symbol | number | unknown',
+        scalars: {
+          Date: 'Date | string | symbol | number | unknown',
+          DateTime: 'Date | string | symbol | number | unknown',
+          Long: 'BigInt | number | string | symbol | unknown',
+          Json: 'string[] | string | symbol | unknown',
+          RichTextAST: 'string[] | string | symbol | unknown',
+        },
       },
     },
 
-    'src/types/graphql/gen/': {
+    'src/graphql/': {
       plugins: ['typescript-operations', 'typescript-graphql-request'],
       preset: 'near-operation-file',
       presetConfig: {
-        // cwd: './src/types/graphql',
-        folder: '../gen',
         extension: '.operation.ts',
         baseTypesPath: './hygraph-types.ts',
       },
     },
   },
   config: {
-    useTypeImports: true,
-    defaultScalar: 'string | symbol | unknown',
-    scalars: {
-      ID: 'string | number | symbol | unknown',
-      Date: 'Date | string | symbol | unknown',
-      DateTime: 'Date | string | symbol | unknown',
-      Long: 'number | BigInt | string | symbol | unknown',
-      Json: 'string[] | string | symbol | unknown',
-      RichTextAST: 'string[] | string | symbol | unknown',
-    },
+    documentMode: 'string',
   },
-  // hooks: { afterAllFileWrite: ['prettier --write'] },
+
+  hooks: { afterAllFileWrite: ['prettier --write ./src/graphql/**/*.ts'] },
 };
 
 export default config;

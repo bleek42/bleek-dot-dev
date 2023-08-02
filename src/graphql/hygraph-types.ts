@@ -15,21 +15,18 @@ export type Incremental<T> =
   | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: {
-    input: string | number | symbol | unknown;
-    output: string | number | symbol | unknown;
-  };
+  ID: { input: string; output: string };
   String: { input: string; output: string };
   Boolean: { input: boolean; output: boolean };
   Int: { input: number; output: number };
   Float: { input: number; output: number };
   Date: {
-    input: Date | string | symbol | unknown;
-    output: Date | string | symbol | unknown;
+    input: Date | string | symbol | number | unknown;
+    output: Date | string | symbol | number | unknown;
   };
   DateTime: {
-    input: Date | string | symbol | unknown;
-    output: Date | string | symbol | unknown;
+    input: Date | string | symbol | number | unknown;
+    output: Date | string | symbol | number | unknown;
   };
   Hex: { input: any; output: any };
   Json: {
@@ -37,8 +34,8 @@ export type Scalars = {
     output: string[] | string | symbol | unknown;
   };
   Long: {
-    input: number | BigInt | string | symbol | unknown;
-    output: number | BigInt | string | symbol | unknown;
+    input: BigInt | number | string | symbol | unknown;
+    output: BigInt | number | string | symbol | unknown;
   };
   RGBAHue: { input: any; output: any };
   RGBATransparency: { input: any; output: any };

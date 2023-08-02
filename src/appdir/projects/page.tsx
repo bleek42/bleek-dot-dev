@@ -16,7 +16,7 @@ import {
 	Fragment,
 } from 'react';
 import { allDraftProjectQuery } from 'src/pages/api/graphql';
-import { AllProjectsDocument } from 'src/pages/api/graphql/gen/graphql';
+import { AllProjectsDocument } from 'src/pages/api/graphql/graphql';
 import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { MdTxt } from '@/components/common/Text';
 

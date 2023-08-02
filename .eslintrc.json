@@ -5,12 +5,13 @@
 		"es2023": true
 	},
 	"globals": {
-		"React": "readonly"
+		"React": "readonly",
+		"jest": "readonly"
 	},
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {
 		"sourceType": "module",
-		"ecmaVersion": 13,
+		"ecmaVersion": "latest",
 		"ecmaFeatures": {
 			"jsx": true
 		},

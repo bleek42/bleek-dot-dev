@@ -1,5 +1,5 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
-import { type SectionComponent } from 'src/interfaces/Component';
+import { type SectionComponent } from '@/interfaces/Component';
 
 type SectionProps = StyledComponentProps<
   'section' | 'article' | keyof JSX.IntrinsicElements,

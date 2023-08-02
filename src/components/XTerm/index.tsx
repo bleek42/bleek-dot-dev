@@ -14,7 +14,7 @@ import {
 import useResizeObserver from '@/hooks/useResizeObserver';
 import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
 import { BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
-import { type XTermComponent } from 'src/interfaces/Component';
+import { type XTermComponent } from '@/interfaces/Component';
 import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 
 type XTermState = XTermComponent;

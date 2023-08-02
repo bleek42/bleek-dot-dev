@@ -11,8 +11,8 @@ import {
 } from '@graphql-typed-document-node/core';
 import { GraphQLClient, type RequestDocument, type Variables } from 'graphql-request';
 
-import { type Mutation, type Query, type TypedDocumentString } from './gen/graphql';
-import { graphql } from './gen/gql';
+import { type Mutation, type Query, type TypedDocumentString } from './graphql';
+import { graphql } from './gql';
 
 // type Vars = AllProjectsQueryVariables | ProjectByIdQueryVariables;
 

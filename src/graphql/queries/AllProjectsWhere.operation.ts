@@ -1,8 +1,7 @@
-import type * as Types from './hygraph-types.js';
+import * as Types from '../hygraph-types';
 
-import type { GraphQLClient } from 'graphql-request';
-import type { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types.js';
-import gql from 'graphql-tag';
+import { GraphQLClient } from 'graphql-request';
+import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
 export type AllProjectsWhereQueryVariables = Types.Exact<{
   where?: Types.InputMaybe<Types.ProjectWhereInput>;
   stage?: Types.InputMaybe<Types.Stage>;
@@ -15,19 +14,19 @@ export type AllProjectsWhereQuery = {
   __typename?: 'Query';
   projects: Array<{
     __typename?: 'Project';
-    id: string | number | symbol | unknown;
+    id: string;
     title: string;
     active: boolean;
     link: string;
     description: string;
     version: number;
     sourceCode: Array<string>;
-    techStack?: string[] | string | symbol | unknown | null;
+    techStack?: any | null;
     stage: Types.Stage;
     locale: Types.Locale;
     screenShots: Array<{
       __typename?: 'Asset';
-      id: string | number | symbol | unknown;
+      id: string;
       url: string;
       handle: string;
       fileName: string;
@@ -41,46 +40,40 @@ export type AllProjectsWhereQuery = {
   }>;
 };
 
-export const AllProjectsWhereDocument = gql`
-  query AllProjectsWhere(
-    $where: ProjectWhereInput
-    $stage: Stage = PUBLISHED
-    $orderBy: ProjectOrderByInput = active_ASC
-    $first: Int = 20
-    $locales: [Locale!] = [en]
+export const AllProjectsWhereDocument = `
+    query AllProjectsWhere($where: ProjectWhereInput, $stage: Stage = PUBLISHED, $orderBy: ProjectOrderByInput = active_ASC, $first: Int = 20, $locales: [Locale!] = [en]) {
+  projects(
+    where: $where
+    stage: $stage
+    orderBy: $orderBy
+    first: $first
+    locales: $locales
   ) {
-    projects(
-      where: $where
-      stage: $stage
-      orderBy: $orderBy
-      first: $first
-      locales: $locales
-    ) {
+    id
+    title
+    active
+    link
+    description
+    version
+    sourceCode
+    techStack
+    stage
+    locale
+    screenShots(first: $first, forceParentLocale: true) {
       id
-      title
-      active
-      link
-      description
-      version
-      sourceCode
-      techStack
+      url
+      handle
+      fileName
+      mimeType
+      width
+      height
+      size
       stage
       locale
-      screenShots(first: $first, forceParentLocale: true) {
-        id
-        url
-        handle
-        fileName
-        mimeType
-        width
-        height
-        size
-        stage
-        locale
-      }
     }
   }
-`;
+}
+    `;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,

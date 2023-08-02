@@ -5,7 +5,7 @@ import { type Key, useId } from 'react';
 // 	type StyledComponentProps,
 // } from 'styled-components';
 
-import { type SectionComponent } from 'src/interfaces/Component';
+import { type SectionComponent } from '@/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
 import { LgTxt, MdTxt, SmTxt } from '@/components/common/Text';
 

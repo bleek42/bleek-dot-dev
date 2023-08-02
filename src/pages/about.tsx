@@ -1,9 +1,9 @@
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 import Image from 'next/image';
 
-import { type AssetWhereUniqueQuery } from '@/graphql/gen';
+import { type AssetWhereUniqueQuery } from '@/graphql/queries';
 import Section from '@/components/Section';
-import { assetWhereQuery } from '@/utils/gql-client';
+import { assetWhereQuery } from '@/graphql/client';
 
 export default function About(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	console.log('about page:', { props });
@@ -44,7 +44,7 @@ export const getStaticProps: GetStaticProps<{
 	const result: Awaited<AssetWhereUniqueQuery> =
 		await assetWhereQuery.AssetWhereUnique();
 
-	console.log({ 'result-asset': { ...result } });
+	console.log('/about result', { result });
 
 	return {
 		props: {

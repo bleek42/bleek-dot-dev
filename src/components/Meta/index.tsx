@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-import { type MetaComponent } from 'src/interfaces/Component';
+import { type MetaComponent } from '@/interfaces/Component';
 // import { Birdman, Oxanium, MonocraftNF } from '@/components/common';
 
 type MetaProps = MetaComponent;

@@ -1,16 +1,16 @@
 import { Fragment, type Key } from 'react';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-import { type AllProjectsWhereQuery } from 'src/graphql/gen';
-import { allProjectsQuery } from '@/utils/gql-client';
 import Section from '@/components/Section';
+import { type AllProjectsWhereQuery } from '@/graphql/queries';
+import { allProjectsQuery } from '@/graphql/client';
 
 export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	console.table({ ...props });
 
 	return (
 		<Fragment>
-			{props.result?.projects &&
+			{props?.result.projects &&
 				Array.isArray(props.result.projects) &&
 				props.result.projects?.length <= 0 && (
 					<Section
@@ -19,7 +19,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 						description={'please wait...'}
 					/>
 				)}
-			{props.result?.projects &&
+			{props?.result.projects &&
 				Array.isArray(props.result.projects) &&
 				props.result.projects.length >= 1 &&
 				props.result.projects.map(
@@ -51,24 +51,13 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 export const getStaticProps: GetStaticProps<{
 	result: AllProjectsWhereQuery;
 }> = async () => {
-	console.log(process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH);
-	// const headers: Record<string | number | symbol, any> = {
-	// 	credentials: 'include',
-	// 	mode: 'cors',
-	// 	cache: 'force-cache',
-	// 	headers: {
-	// 		'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPH_CDN_AUTH}`,
-	// 	},
-	// };
+	console.log(process.env.HYGRAPH_CDN_AUTH, process.env.HYGRAPH_CDN_URL);
 
 	const result: Awaited<AllProjectsWhereQuery> =
-		await allProjectsQuery.AllProjectsWhere(
-			{
-				'stage': 'PUBLISHED',
-				'first': 10,
-			},
-			// headers,
-		);
+		await allProjectsQuery.AllProjectsWhere({
+			'stage': 'PUBLISHED',
+			'first': 10,
+		});
 
 	return {
 		props: {

@@ -6,7 +6,7 @@ import styled, {
 } from 'styled-components';
 import Link, { type LinkProps } from 'next/link';
 
-import { type NavbarComponent } from 'src/interfaces/Component';
+import { type NavbarComponent } from '@/interfaces/Component';
 
 export type NavBarProps = StyledComponentProps<
   'nav' | 'button' | 'ul' | 'li',
@@ -93,7 +93,7 @@ export const NavList = styled.ul<NavBarProps>((props) => `
 
 // eslint-disable-next-line prettier/prettier
 export const NavItem = styled.li<NavBarProps>((props) => `
-  
+
   min-width: 18vw;
   border-top: 2px solid ${props.theme.palette.common.black};
   padding: 6px 4px 6px 4px;

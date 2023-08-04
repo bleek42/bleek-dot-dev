@@ -41,8 +41,7 @@ export const Section = styled.section<SectionProps>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const Article = styled.article<ArticleProps>(
-  (props) => `
+export const Article = styled.article<ArticleProps>((props) => `
   color: ${props.theme.palette.secondary.steel};
   background-color: ${props.theme.palette.secondary.gray};
   font-family: var(${props.theme.fonts.at(1)});

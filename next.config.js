@@ -31,20 +31,20 @@ export default {
       'src/graphql/**/*.{gql,graphql,ts}',
     ],
   },
+  async headers() {
+    return await new Promise((res) =>
+      res([
+        {
+          source: '/fonts/birdman/birdman.ttf',
+          headers: [
+            {
+              key: 'Cache-Control',
+              value: 'public, max-age=31536000, immutable',
+            },
+          ],
+        },
+      ]),
+    );
+  },
 };
 
-// // async headers() {
-// //   return await new Promise((res) =>
-// //     res([
-// //       {
-// //         source: '/*',
-// //         headers: [
-// //           {
-// //             key: 'x-origin-locale-datetime',
-// //             value: new Date().toLocaleDateString(),
-// //           },
-// //         ],
-// //       },
-// //     ])
-// //   );
-// // },

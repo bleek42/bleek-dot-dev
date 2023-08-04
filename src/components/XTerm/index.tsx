@@ -182,7 +182,7 @@ export default function XTerm() {
 					console.info('xterm-txt submit capture');
 					console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
-				onSubmit={handleRouteHome}
+				onClick={handleRouteHome}
 			>
 				<XTxtArea id={xterm.id} defaultValue={null} />
 				<XTCode>

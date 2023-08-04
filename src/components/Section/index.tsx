@@ -7,7 +7,7 @@ import { type Key, useId } from 'react';
 
 import { type SectionComponent } from '@/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
-import { LgTxt, MdTxt, SmTxt } from '@/components/common/Text';
+import { Icon, LgTxt, MdTxt, SmTxt } from '@/components/common/Text';
 
 type SectionProps = SectionComponent;
 
@@ -17,7 +17,8 @@ export default function Section(props: SectionProps) {
 	return (
 		<Wrapper key={props.id} id={`${props.id}-section`}>
 			<LgTxt font="Birdman">
-				{props.name ?? ''} - {props.icon ?? '&\ue667;'}
+				{props.name ?? 'Section Name'}
+				<Icon>{props.icon ?? '\ue667'}</Icon>
 			</LgTxt>
 			{typeof props.content === 'string' && (
 				<>
@@ -26,7 +27,7 @@ export default function Section(props: SectionProps) {
 							{props.content}
 						</SmTxt>
 					</Article>
-					{props.children && <div>{props.children}</div>}
+					{props.children && <Article>{props.children}</Article>}
 				</>
 			)}
 			{Array.isArray(props.content) && props.content.length >= 1 && (
@@ -38,12 +39,16 @@ export default function Section(props: SectionProps) {
 							</SmTxt>
 						</Article>
 					))}
-					{props.children && <div>{props.children}</div>}
+					{props.children && (
+						<Article>
+							<SmTxt>{props.children}</SmTxt>
+						</Article>
+					)}
 				</>
 			)}
 			{!props.content && (
 				<Article>
-					<SmTxt>This section has no article content to show...</SmTxt>
+					<SmTxt>This section has no content to show...</SmTxt>
 				</Article>
 			)}
 		</Wrapper>

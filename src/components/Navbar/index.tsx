@@ -1,6 +1,13 @@
 import { useState } from 'react';
 
-import { NavBar, ToggleBtn, NavList, NavItem, NextLink, Icon } from './Navbar';
+import {
+	NavBar as Wrapper,
+	ToggleBtn,
+	NavList,
+	NavItem,
+	NextLink,
+	NavIcon,
+} from './Navbar';
 import { LgTxt } from '@/components/common/Text';
 
 export default function Navbar() {
@@ -13,7 +20,7 @@ export default function Navbar() {
 	};
 
 	return (
-		<NavBar toggle={toggle}>
+		<Wrapper toggle={toggle}>
 			<LgTxt font={'Birdman'} color="neon" shadow="steel">
 				Menu
 			</LgTxt>
@@ -31,32 +38,32 @@ export default function Navbar() {
 				<>
 					<NavList toggle={toggle} onMouseLeave={toggleMenu}>
 						<NavItem>
-							<Icon>
+							<NavIcon>
 								{'\udb83\udd84'}
 								<NextLink href="/home">Home</NextLink>
-							</Icon>
+							</NavIcon>
 						</NavItem>
 						<NavItem>
-							<Icon>
+							<NavIcon>
 								{'\udb84\udcf6'}
 								<NextLink href="/about">About</NextLink>
-							</Icon>
+							</NavIcon>
 						</NavItem>
 						<NavItem>
-							<Icon>
+							<NavIcon>
 								{'\udb84\udcdc'}
 								<NextLink href="/projects">Projects</NextLink>
-							</Icon>
+							</NavIcon>
 						</NavItem>
 						<NavItem>
-							<Icon>
+							<NavIcon>
 								{'\udb84\udcd6'}
 								<NextLink href="/contact">Contact</NextLink>
-							</Icon>
+							</NavIcon>
 						</NavItem>
 					</NavList>
 				</>
 			)}
-		</NavBar>
+		</Wrapper>
 	);
 }

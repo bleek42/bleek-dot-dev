@@ -188,6 +188,33 @@ export const LgTxt = styled.h2.attrs<TextProps>((props) => ({
   text-decoration-style: solid;
 `;
 
+
+export const Icon = styled.i.attrs<TextProps>((props) => ({
+  font: 'MonocraftNF',
+  colorPalette: props.colorPalette || 'common',
+  color: props.color || 'black',
+  shadow: props.shadow || 'black',
+}))<TextProps>`
+  display: inline-flex;
+  color: ${(props) =>
+    props.color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.color]
+      : props.color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.color]
+      : props.color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.color]
+      : props.theme.palette.common['black']};
+  text-shadow: ${(props) =>
+    props.shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props.shadow]} 2px 1px 2px`
+      : props.color in props.theme.palette.secondary
+      ? `${props.theme.palette.secondary[props.shadow]} 2px 1px 2px`
+      : props.color in props.theme.palette.tertiary
+      ? `${props.theme.palette.tertiary[props.shadow]} 2px 1px 2px`
+      : `${props.theme.palette.common['black']} 2px 1px 2px`};
+`;
+
+
 // export const StlLg = styled.h2`
 //   color: rgb(66, 66, 66);
 //   font-family: Birdman;

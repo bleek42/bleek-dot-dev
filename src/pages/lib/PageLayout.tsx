@@ -9,6 +9,8 @@ import PageFooter from '@/components/PageFooter';
 
 export default function PageLayout(props: LayoutComponent) {
 	const pageId = useId();
+	console.log({ 'page-layout': props });
+
 	return (
 		<Fragment>
 			<PageHeader id={pageId} />

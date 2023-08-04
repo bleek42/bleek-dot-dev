@@ -86,7 +86,7 @@ export const theme: DefaultTheme = {
 
 export const GlobalStyle = createGlobalStyle`
 
-  @font-face {
+  /* @font-face {
 	  font-family: 'Birdman';
 	  src: url('/fonts/birdman/birdman.ttf') format('truetype');
     font-display: swap;
@@ -106,7 +106,7 @@ export const GlobalStyle = createGlobalStyle`
 	  src: url('/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
-  }
+  } */
 
   /* :root {
     Birdman: 'Birdman';
@@ -129,7 +129,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   code, i {
-    font-family: var(MonocraftNF);
+    font-family: 'MonocraftNF';
     font-size: 16px;
   }
 

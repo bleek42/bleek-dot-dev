@@ -1,7 +1,7 @@
 import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
 import { type HeaderComponent } from '@/interfaces/Component';
-import { Header } from './Header';
+import { Header as Wrapper } from './Header';
 import { LgTxt, MdTxt, SmTxt } from '@/components/common';
 import Navbar from '@/components/Navbar';
 
@@ -17,7 +17,7 @@ export default function PageHeader(props: HeaderProps) {
 	console.log({ 'Header component': { props } });
 
 	return (
-		<Header>
+		<Wrapper>
 			<LgTxt font="Birdman" color="green">
 				Brandon Leek
 			</LgTxt>
@@ -28,6 +28,6 @@ export default function PageHeader(props: HeaderProps) {
 				{props.title ?? 'untitled'}
 			</MdTxt> */}
 			<Navbar />
-		</Header>
+		</Wrapper>
 	);
 }

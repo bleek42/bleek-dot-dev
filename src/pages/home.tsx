@@ -32,16 +32,7 @@ export default function Home() {
 // 					Portfolio repository on Github.com
 // 				</a>
 // 			</li>
-// 			{/* <li>
-// 				<a
-// 					id="aj"
-// 					target="_blank"
-// 					rel="noopener noreferrer"
-// 					href="https://androidjones-obtain.com/?gclid=CjwKCAjwh7H7BRBBEiwAPXjadhkPGYgKyIHH1PdY8iEVzfSSD0qIDsHL3uevBzcC362xwoY-xJWkFhoCyq8QAvD_BwE"
-// 				>
-// 					Check out more of Android Jones artwork
-// 				</a>
-// 			</li> */}
+
 // 			<li>
 // 				<a
 // 					id="react"

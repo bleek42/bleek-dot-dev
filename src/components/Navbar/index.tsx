@@ -1,33 +1,24 @@
 import { useState } from 'react';
 
-import {
-	NavBar as Wrapper,
-	ToggleBtn,
-	NavList,
-	NavItem,
-	NextLink,
-	NavIcon,
-} from './Navbar';
-import { LgTxt } from '@/components/common/Text';
+import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon } from './Navbar';
+import { LgTxt } from '@/components/common';
 
 export default function Navbar() {
 	const [toggle, setToggle] = useState<boolean>(false);
 
 	const toggleMenu = (evt: React.SyntheticEvent<HTMLElement>) => {
-		evt.preventDefault();
-		console.log(evt?.currentTarget, !!toggle);
-		setToggle(!toggle);
+		// evt.preventDefault();
+		console.log(evt?.currentTarget, toggle);
+		setToggle((toggle) => !!toggle);
 	};
 
 	return (
-		<Wrapper toggle={toggle}>
-			<LgTxt font={'Birdman'} color="neon" shadow="steel">
-				Menu
-			</LgTxt>
+		<NavBar toggle={toggle}>
+			<LgTxt flex="">Menu</LgTxt>
 			{!toggle && (
 				<ToggleBtn
 					toggle={toggle}
-					// onMouseOver={toggleMenu}
+					onMouseOver={toggleMenu}
 					onClick={toggleMenu} /*onTouchStart={toggleMenu}*/
 				>
 					+
@@ -38,10 +29,8 @@ export default function Navbar() {
 				<>
 					<NavList toggle={toggle} onMouseLeave={toggleMenu}>
 						<NavItem>
-							<NavIcon>
-								{'\udb83\udd84'}
-								<NextLink href="/home">Home</NextLink>
-							</NavIcon>
+							<NavIcon>{'\udb83\udd84'}</NavIcon>
+							<NextLink href="/home">Home</NextLink>
 						</NavItem>
 						<NavItem>
 							<NavIcon>
@@ -64,6 +53,6 @@ export default function Navbar() {
 					</NavList>
 				</>
 			)}
-		</Wrapper>
+		</NavBar>
 	);
 }

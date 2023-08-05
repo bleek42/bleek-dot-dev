@@ -26,21 +26,19 @@ let defaultMetaProps: MetaComponent = {
 export { defaultMetaProps };
 
 function App({ Component, pageProps }: AppProps) {
-	console.log();
+	// console.log();
 	return (
-		<>
+		<ThemeProvider theme={theme}>
 			<Meta {...defaultMetaProps} />
-			<ThemeProvider theme={theme}>
-				<GlobalStyle />
-				{Component !== LandingPage ? (
-					<PageLayout>
-						<Component {...pageProps} />
-					</PageLayout>
-				) : (
+			<GlobalStyle />
+			{Component !== LandingPage ? (
+				<PageLayout>
 					<Component {...pageProps} />
-				)}
-			</ThemeProvider>
-		</>
+				</PageLayout>
+			) : (
+				<Component {...pageProps} />
+			)}
+		</ThemeProvider>
 	);
 }
 

@@ -86,9 +86,9 @@ export const theme: DefaultTheme = {
 
 export const GlobalStyle = createGlobalStyle`
 
-  /* @font-face {
+  @font-face {
 	  font-family: 'Birdman';
-	  src: url('/fonts/birdman/birdman.ttf') format('truetype');
+	  src: url('/fonts/Birdman/Birdman.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
   }
@@ -103,10 +103,10 @@ export const GlobalStyle = createGlobalStyle`
 
   @font-face {
 	  font-family: 'MonocraftNF';
-	  src: url('/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf') format('truetype');
+	  src: url('/fonts/MonocraftNF/Monocraft-nerd-fonts-patched.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
-  } */
+  }
 
   /* :root {
     Birdman: 'Birdman';
@@ -128,7 +128,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Ubuntu, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont';
   }
 
-  code, i {
+  code, i, em {
     font-family: 'MonocraftNF';
     font-size: 16px;
   }

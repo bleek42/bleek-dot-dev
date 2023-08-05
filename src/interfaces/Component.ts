@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
+import { AssetWhereUniqueQuery } from '@/graphql/queries';
 import { type Metadata } from 'next';
 import {
   type DefaultTemplateString,
@@ -14,7 +15,12 @@ export interface Component {
   title?: string | string[] | unknown;
   description?: string | string[] | unknown;
   icon?: string | unknown;
-  image?: string | URL | Array<URL | string> | unknown;
+  image?:
+    | AssetWhereUniqueQuery['asset']
+    | AssetWhereUniqueQuery['asset'][]
+    | string
+    | URL
+    | Array<URL | string>;
   locale?: string | 'en' | 'en_US' | 'es_MX';
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
@@ -58,7 +64,14 @@ export interface NavbarComponent extends Component {
 
 export interface DetailsComponent extends Component {
   title: string;
-  image: URL | string;
+  description?: string | string[];
+  images?:
+    | AssetWhereUniqueQuery['asset']
+    | AssetWhereUniqueQuery['asset'][]
+    | string
+    | URL
+    | Array<URL | string>;
+  children: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
 export interface SectionComponent extends Component {

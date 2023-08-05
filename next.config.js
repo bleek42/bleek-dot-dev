@@ -18,6 +18,7 @@ export default {
 
   images: {
     domains: ['media.graphassets.com', 'drive.google.com', 'photos.google.com'],
+    formats: ['image/webp', 'image/avif'],
   },
 
   eslint: {
@@ -32,19 +33,35 @@ export default {
     ],
   },
   async headers() {
-    return await new Promise((res) =>
-      res([
-        {
-          source: '/fonts/birdman/birdman.ttf',
-          headers: [
-            {
-              key: 'Cache-Control',
-              value: 'public, max-age=31536000, immutable',
-            },
-          ],
-        },
-      ]),
-    );
+    return await Promise.resolve([
+      {
+        source: '/fonts/Birdman/Birdman.ttf',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/fonts/Oxanium/Oxanium.ttf',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/fonts/MonocraftNF/Monocraft-nerd-fonts-patched.ttf',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]);
   },
 };
 

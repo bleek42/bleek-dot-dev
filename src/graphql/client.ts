@@ -12,7 +12,7 @@ export const hygraphReqConfig: Record<string | number | symbol, any> = {
 };
 
 const client: GraphQLClient = new GraphQLClient(`${process.env.HYGRAPH_CDN_URL}`);
-// console.log(window);
+
 export const allProjectsQuery = getAllProjectsWhereSdk(client);
 
 export const assetWhereQuery = getAssetWhereUniqueSdk(client);

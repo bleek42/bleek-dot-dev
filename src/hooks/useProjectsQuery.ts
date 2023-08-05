@@ -43,8 +43,8 @@
 //     'Authorization': `Bearer ${process.env.NEXT_PUBLIC_HYGRAPHCDN_AUTH_TOKEN}`,
 //     'content-type': 'application/json',
 //     'credentials': 'include',
-//     'cache': 'force-cache',
 //     'mode': 'cors',
+//     'cache': 'force-cache',
 //   };
 
 //   try {

@@ -1,51 +1,67 @@
-import { type Key, useId } from 'react';
-// import {
-// 	type AnyStyledComponent,
-// 	type DefaultTheme,
-// 	type StyledComponentProps,
-// } from 'styled-components';
+import { type Key } from 'react';
+import Image from 'next/image';
+import bleekImg from '/public/images/brandon-mask.png';
 
 import { type SectionComponent } from '@/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
-import { Icon, LgTxt, MdTxt, SmTxt } from '@/components/common/Text';
+import { Details, Summary } from '@/components/common/Details';
+import { Icon, LgTxt, MdTxt, SmTxt } from '@/components/common';
+import { AssetWhereUniqueDocument, AssetWhereUniqueQuery } from '@/graphql/queries';
+import { AssetConnection } from '@/graphql/hygraph-types';
 
 type SectionProps = SectionComponent;
 
 export default function Section(props: SectionProps) {
-	// const sectionId = useId();
-	console.log({ 'section-component': props });
+	// console.log({ 'section-component': props });
+
 	return (
 		<Wrapper key={props.id} id={`${props.id}-section`}>
 			<LgTxt font="Birdman">
 				{props.name ?? 'Section Name'}
 				<Icon>{props.icon ?? '\ue667'}</Icon>
 			</LgTxt>
-			{typeof props.content === 'string' && (
-				<>
-					<Article>
+
+			{!props.image && bleekImg && (
+				<Image src={bleekImg} alt={'brandon-mask'} width={600} height={360} />
+			)}
+			{props.content && typeof props.content === 'string' && (
+				<Article>
+					<SmTxt font="MonocraftNF" color="neon">
+						{props.content}
+					</SmTxt>
+				</Article>
+			)}
+			{props.content &&
+				Array.isArray(props.content) &&
+				props.content.length >= 1 &&
+				props.content.map((articleContent: string, idx: Key) => (
+					<Article key={idx}>
 						<SmTxt font="MonocraftNF" color="neon">
-							{props.content}
+							{articleContent}
 						</SmTxt>
 					</Article>
-					{props.children && <Article>{props.children}</Article>}
-				</>
-			)}
-			{Array.isArray(props.content) && props.content.length >= 1 && (
+				))}
+
+			{/* {props.image && Array.isArray(props.image) && props.image.length >= 1 && (
 				<>
-					{props.content.map((articleContent: string, idx: Key) => (
-						<Article key={idx}>
-							<SmTxt font="MonocraftNF" color="neon">
-								{articleContent}
-							</SmTxt>
-						</Article>
+					{props.image.map(({ asset }: AssetWhereUniqueQuery, idx) => (
+						<Details key={`asset-${asset.id || idx}`}>
+							<Summary>
+								<MdTxt>Details Component: Summary BlkTxt</MdTxt>
+								<Details>
+									<Image
+										src={`${asset?.url}/${asset?.fileName}`}
+										alt={`${asset?.fileName}`}
+										width={200}
+										height={400}
+									/>
+								</Details>
+							</Summary>
+						</Details>
 					))}
-					{props.children && (
-						<Article>
-							<SmTxt>{props.children}</SmTxt>
-						</Article>
-					)}
 				</>
-			)}
+			)} */}
+
 			{!props.content && (
 				<Article>
 					<SmTxt>This section has no content to show...</SmTxt>

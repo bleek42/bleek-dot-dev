@@ -18,9 +18,7 @@ export default function PageHeader(props: HeaderProps) {
 
 	return (
 		<Wrapper>
-			<LgTxt font="Birdman" color="green">
-				Brandon Leek
-			</LgTxt>
+			<LgTxt color="green">Brandon Leek</LgTxt>
 			<MdTxt font="Oxanium" color="neon" shadow="steel">
 				bleekDotDev
 			</MdTxt>

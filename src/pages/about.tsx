@@ -24,8 +24,8 @@ export default function About(props: InferGetStaticPropsType<typeof getStaticPro
 	// />
 	return (
 		<Section
-			name="about_section"
-			description={'about...'}
+			name="about"
+			description={'about section...'}
 			content={sectionContent.join(' ')}
 		/>
 	);

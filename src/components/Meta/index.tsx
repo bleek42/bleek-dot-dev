@@ -31,10 +31,10 @@ export default function Meta(props: MetaProps) {
 							: props.keywords
 					}
 				/>
-				<meta property="og:title" content={props.title as string} />
+				<meta property="og:title" content={props.title.default} />
 				<meta property="og:image" content={props.icons as string} />
 
-				<title>{props.title.toString()}</title>
+				<title>{props.title.default}</title>
 			</Head>
 		</>
 	);

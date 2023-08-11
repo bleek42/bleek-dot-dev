@@ -1,26 +1,34 @@
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import {
 	useState,
 	useCallback,
 	type ChangeEvent,
 	type FormEvent,
-	type MutableRefObject,
 	type SyntheticEvent,
-	SetStateAction,
 } from 'react';
 // import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
+// import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 
 import useResizeObserver from '@/hooks/useResizeObserver';
-import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
-import { BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
 import { type XTermComponent } from '@/interfaces/Component';
-import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
+import {
+	XTForm,
+	XTLabel,
+	XTBtns,
+	XTInput,
+	XTCode,
+	XTxtArea,
+	type XTermProps,
+	XTIcon,
+} from './XTerm';
+import { BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
+import { printIntrospectionSchema } from 'graphql';
+import { Icon } from '../common';
 
 type XTermState = XTermComponent;
-type XTermViewportState = ResizeObserverDimensions;
+// type XTermViewportState = ResizeObserverDimensions;
 
-export default function XTerm() {
+export default function XTerm(props: XTermProps) {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
@@ -169,7 +177,7 @@ export default function XTerm() {
 						console.log({ 'min-btn': evt.target });
 					}}
 				>
-					{'[ \uf2d1  ]'}
+					{'[ \uf2d1 ]'}
 				</BtnMin>
 			</XTBtns>
 			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
@@ -177,21 +185,35 @@ export default function XTerm() {
 				htmlFor={xterm.id}
 				form={'xt-form'}
 				// eslint-disable-next-line no-console
+				onClick={handleRouteHome}
 				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) => {
 					evt.preventDefault();
 					console.info('xterm-txt submit capture');
 					console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
-				onClick={handleRouteHome}
 			>
-				<XTxtArea id={xterm.id} defaultValue={null} />
+				<XTIcon
+					size={'40px'}
+					colorPalette={'secondary'}
+					color={'green'}
+					shadow={'black'}
+				>
+					{'\ue683'}
+				</XTIcon>
+				<XTxtArea
+					id={xterm.id}
+					defaultValue={
+						" \n \n Hey there \uf4a2 \n \n I'm Brandon: a Full Stack Web Dev! \n \n \n  \ue736  \ue749  \ue718  \ue69d  \ue7ba  \n \n  \ue662  \ufab2  \ue712  \uebca  \ue702  \n \n \n  Click | Touch here to proceed to . . .  \n \n \n  \uea9c  \ue617  \n \n  bleek.dev/home  "
+					}
+				>
+					{props?.children}
+				</XTxtArea>
 				<XTCode>
 					{xterm.prompt.toString()}
 					<XTInput
 						id="xt-prompt"
 						name="xt-prompt"
 						onChange={handleChange}
-						placeholder={'__'}
 
 						// value={xterm.name}
 					/>

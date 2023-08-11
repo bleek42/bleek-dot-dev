@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon } from './Navbar';
+import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon, NavTxt } from './Navbar';
 import { LgTxt } from '@/components/common';
 
 export default function Navbar() {
@@ -9,32 +9,34 @@ export default function Navbar() {
 	const toggleMenu = (evt: React.SyntheticEvent<HTMLElement>) => {
 		// evt.preventDefault();
 		console.log(evt?.currentTarget, toggle);
-		setToggle((toggle) => !!toggle);
+		setToggle(!toggle);
 	};
 
 	return (
 		<NavBar toggle={toggle}>
-			<LgTxt flex="">Menu</LgTxt>
+			<NavTxt>Menu</NavTxt>
 			{!toggle && (
 				<ToggleBtn
 					toggle={toggle}
 					onMouseOver={toggleMenu}
-					onClick={toggleMenu} /*onTouchStart={toggleMenu}*/
+					
+					/*onTouchStart={toggleMenu}*/
 				>
-					+
+					{'\uef65'}
 				</ToggleBtn>
 			)}
 
 			{toggle && (
 				<>
+				
 					<NavList toggle={toggle} onMouseLeave={toggleMenu}>
 						<NavItem>
-							<NavIcon>{'\udb83\udd84'}</NavIcon>
+							<NavIcon>{' \udb83\udd84 '}</NavIcon>
 							<NextLink href="/home">Home</NextLink>
 						</NavItem>
 						<NavItem>
 							<NavIcon>
-								{'\udb84\udcf6'}
+								{' \udb84\udcf6 '}
 								<NextLink href="/about">About</NextLink>
 							</NavIcon>
 						</NavItem>

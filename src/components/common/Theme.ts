@@ -1,9 +1,9 @@
-import { type DefaultTheme, createGlobalStyle } from 'styled-components';
-// import { Birdman, MonocraftNF, Oxanium } from './Text';
+import styled, { createGlobalStyle, type DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
   name: 'Default',
-  borderRadius: '12% 16% / 16% 12%',
+  defaultBorder: '2px solid rgb(8, 8, 8)',
+  defaultRadius: '3% 6% / 6% 3%',
 
   fonts: [
     'Birdman',
@@ -43,7 +43,7 @@ export const theme: DefaultTheme = {
       yellow: 'rgb(222, 210, 76)',
       black: 'rgb(5, 5, 5)',
       white: 'rgb(250, 250, 235)',
-      linear: 'linear-gradient(45deg, rgb(35, 230, 45) 45%, rgb(5, 5, 5) 55%)',
+      linear: 'linear-gradient(175deg, rgb(10,5,5)  45%, rgb(35,230,45) 55%)',
     },
 
     secondary: {
@@ -59,7 +59,7 @@ export const theme: DefaultTheme = {
       teal: 'rgb(40, 171, 145)',
       neon: 'rgb(89, 255, 0)',
       yellow: 'rgb(225, 255, 0)',
-      black: 'rgb(0, 0, 0)',
+      black: 'rgb(10, 5, 10)',
       white: 'rgb(255, 255, 255)',
       linear: 'linear-gradient(25deg, rgb(45, 147, 243) 35%, rgb(23, 240, 193) 65%)',
     },
@@ -83,6 +83,14 @@ export const theme: DefaultTheme = {
     },
   },
 };
+
+export const PageBg = styled.main(({ theme }) => `
+  display: block;
+  min-width: 100vw;
+  min-height: 100vh;
+  background: ${theme.palette.primary.linear};
+`,
+);
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -114,9 +122,7 @@ export const GlobalStyle = createGlobalStyle`
     MonocraftNF: 'MonocraftNF';
   } */
 
-  *,
-  *::before,
-  *::after {
+  :root {
     margin: 0;
     padding: 0;
     box-sizing: border-box;

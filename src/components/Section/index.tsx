@@ -21,8 +21,14 @@ export default function Section(props: SectionProps) {
 				<Icon>{props.icon ?? '\ue667'}</Icon>
 			</LgTxt>
 
-			{!props.image && bleekImg && (
-				<Image src={bleekImg} alt={'brandon-mask'} width={600} height={360} />
+			{!props.image && props.name === 'about' && (
+				<Image
+					src={bleekImg}
+					alt={'brandon-mask'}
+					width={600}
+					height={360}
+					priority
+				/>
 			)}
 			{props.content && typeof props.content === 'string' && (
 				<Article>

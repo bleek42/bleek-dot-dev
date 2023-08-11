@@ -2,6 +2,7 @@
 import { AssetWhereUniqueQuery } from '@/graphql/queries';
 import { type Metadata } from 'next';
 import {
+  TemplateString,
   type DefaultTemplateString,
   type Icons,
   type IconURL,
@@ -44,7 +45,7 @@ export interface XTermComponent extends Component {
 }
 
 export interface MetaComponent extends Metadata {
-  title: string | DefaultTemplateString | 'bleekDotDev';
+  title: DefaultTemplateString | TemplateString;
   description?: string | null;
   keywords: string | string[];
   icons?: IconURL | Icons | null;

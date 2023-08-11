@@ -64,13 +64,13 @@ import styled, {
 // });
 
 interface TextOptions {
-  color: keyof Colors;
-  font?: Fonts;
-  colorPalette?: ColorPalettes;
-  size?: string;
-  shadow: keyof Colors;
-  align?: 'center' | 'left' | 'right' | string;
-  flex?: string | 'auto';
+  $color: keyof Colors;
+  $font?: Fonts;
+  $colorPalette?: ColorPalettes;
+  $size?: `${string}px`;
+  $shadow: keyof Colors;
+  $align?: 'center' | 'left' | 'right' | string;
+  $flex?: string | 'auto';
 }
 
 type TextProps = StyledComponentProps<
@@ -83,39 +83,40 @@ type TextProps = StyledComponentProps<
 
 // 'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace'
 export const SmTxt = styled.p.attrs<TextProps>((props) => ({
-  color: props.color,
-  shadow: props.shadow || 'inherit',
-  font: props.font || props.theme.fonts.at(2),
-  align: props.align || 'initial',
-  size: props.size || 'initial',
-  flex: props.flex || 'auto',
+  $color: props.color,
+  $shadow: props.shadow || 'inherit',
+  $font: props.font || props.theme.fonts.at(2),
+  $align: props.align || 'initial',
+  $size: props.size || 'initial',
+  $flex: props.flex || 'auto',
 }))<TextProps>`
-  flex: ${(props) => props.flex};
-  font-size: ${(props) => props.size};
-  font-family: ${(props) => props.theme.fonts.find((font) => props.font === font)};
+  flex: ${(props) => props.$flex};
+  font-size: ${(props) => props.$size};
+  font-family: ${(props) => props.$font};
   color: ${(props) =>
-    props.colorPalette === 'primary' && props.color in props.theme.palette.primary
-      ? props.theme.palette.primary[props.color]
-      : props.colorPalette === 'secondary' && props.color in props.theme.palette.secondary
-      ? props.theme.palette.secondary[props.color]
-      : props.colorPalette === 'tertiary' && props.color in props.theme.palette.tertiary
-      ? props.theme.palette.tertiary[props.color]
+    props.colorPalette === 'primary' && props.$color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.$color]
+      : props.colorPalette === 'secondary' &&
+        props.$color in props.theme.palette.secondary
+      ? props.theme.palette.secondary[props.$color]
+      : props.colorPalette === 'tertiary' && props.$color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.$color]
       : props.theme.palette.common.black};
   text-shadow: ${(props) =>
     props.shadow &&
     props.colorPalette === 'primary' &&
     props.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.shadow]} 2px 1px 2px`
+      ? `${props.theme.palette.primary[props.$shadow]} 2px 1px 2px`
       : props.shadow &&
         props.colorPalette === 'secondary' &&
         props.shadow in props.theme.palette.secondary
-      ? `${props.theme.palette.tertiary[props.shadow]} 2x 1px 2px`
+      ? `${props.theme.palette.tertiary[props.$shadow]} 2x 1px 2px`
       : props.shadow &&
         props.colorPalette === 'tertiary' &&
         props.shadow in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.shadow]} 2px 1px 2px`
+      ? `${props.theme.palette.tertiary[props.$shadow]} 2px 1px 2px`
       : props.shadow};
-  text-align: ${({ align }) => align};
+  text-align: ${(props) => props.$align};
   /* text-decoration: underline;
   text-decoration-color: rgb(0, 0, 0);
   text-decoration-style: double; */
@@ -124,62 +125,56 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
 // 'Verdana, Geneva, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont'
 
 export const MdTxt = styled.h4.attrs<TextProps>((props) => ({
-  colorPalette: props.colorPalette,
-  color: props.color || props.theme.palette.secondary.green,
-  shadow: props.color || props.theme.palette.secondary.steel,
-  font: props.font || props.theme.fonts.at(1),
-  flex: props.flex || '1 1 auto',
+  $colorPalette: props.colorPalette,
+  $color: props.color || props.theme.palette.secondary.green,
+  $shadow: props.color || props.theme.palette.secondary.steel,
+  $font: props.font || props.theme.fonts.at(1),
 }))<TextProps>`
-  flex: ${(props) => props.flex};
-  font-family: ${(props) => props.font};
+  font-family: ${(props) => props.$font};
   color: ${(props) =>
-    props.color in props.theme.palette.primary
-      ? props.theme.palette.primary[props.color]
-      : props.color in props.theme.palette.secondary
-      ? props.theme.palette.tertiary[props.color]
-      : props.color in props.theme.palette.tertiary
-      ? props.theme.palette.tertiary[props.color]
-      : props.color};
+    props.$color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.$color]
+      : props.$color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.$color]
+      : props.$color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.$color]
+      : props.$color};
   text-shadow: ${(props) =>
-    props.colorPalette && props.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.shadow]} 2px 2px 1px`
-      : props.color in props.theme.palette.secondary
-      ? `${props.theme.palette.tertiary[props.shadow]} 2px 2px 1px`
-      : props.color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.shadow]} 2px 2px 1px`
-      : `${props.shadow} 2px 2px 1px`};
+    props.$colorPalette && props.$shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props.$shadow]} 2px 2px 1px`
+      : props.$color in props.theme.palette.secondary
+      ? `${props.theme.palette.tertiary[props.$shadow]} 2px 2px 1px`
+      : props.$color in props.theme.palette.tertiary
+      ? `${props.theme.palette.tertiary[props.$shadow]} 2px 2px 1px`
+      : `${props.$shadow} 2px 2px 1px`};
   text-decoration: underline;
   text-decoration-color: ${({ theme }) => theme.palette.secondary.steel};
   text-decoration-style: solid;
 `;
 
 export const LgTxt = styled.h2.attrs<TextProps>((props) => ({
-  font: props.font || props.theme.fonts.at(0),
-  colorPalette: props.colorPalette,
-  color: props.color || props.theme.palette.primary.orange,
-  shadow: props.shadow || 'black',
-  flex: props.flex || '2 1 auto',
+  $font: props.font || props.theme.fonts.at(0),
+  $colorPalette: props.colorPalette,
+  $color: props.color || props.theme.palette.primary.orange,
+  $shadow: props.shadow || 'black',
 }))<TextProps>`
-  flex: ${(props) => props.flex};
-  text-align: center;
   /* padding-top: 24px; */
-  font-family: ${(props) =>
-    props.theme.fonts.find((font) => props.font === font && `var(${props.font})`)};
+  font-family: ${(props) => props.$font};
   color: ${(props) =>
-    props.color in props.theme.palette.primary
-      ? props.theme.palette.primary[props.color]
-      : props.color in props.theme.palette.secondary
-      ? props.theme.palette.tertiary[props.color]
-      : props.color in props.theme.palette.tertiary
-      ? props.theme.palette.tertiary[props.color]
+    props.$color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.$color]
+      : props.$color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.$color]
+      : props.$color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.$color]
       : props.theme.palette.common['black']};
   text-shadow: ${(props) =>
-    props.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.shadow]} 2px 1px 2px`
-      : props.color in props.theme.palette.secondary
-      ? `${props.theme.palette.secondary[props.shadow]} 2px 1px 2px`
-      : props.color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.shadow]} 2px 1px 2px`
+    props.$shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props.$shadow]} 2px 1px 2px`
+      : props.$color in props.theme.palette.secondary
+      ? `${props.theme.palette.secondary[props.$shadow]} 2px 1px 2px`
+      : props.$color in props.theme.palette.tertiary
+      ? `${props.theme.palette.tertiary[props.$shadow]} 2px 1px 2px`
       : `${props.theme.palette.common['black']} 2px 1px 2px`};
   text-decoration: underline;
   text-decoration-color: ${({ theme }) => theme.palette.secondary.green};
@@ -187,32 +182,33 @@ export const LgTxt = styled.h2.attrs<TextProps>((props) => ({
 `;
 
 export const Icon = styled.em.attrs<TextProps>((props) => ({
-  font: props.font || 'MonocraftNF',
-  colorPalette: props.colorPalette || 'common',
-  color: props.color || 'black',
-  size: props.size || '16px',
-  shadow: props.shadow || 'white',
+  $font: props.font || props.theme.fonts.at(2),
+  $colorPalette: props.colorPalette || 'common',
+  $color: props.color || 'black',
+  $size: props.size || '16px',
+  $shadow: props.shadow || 'white',
 }))<TextProps>`
   display: inline-flex;
   flex: 2 1 fit-content;
-  font-family: ${(props) => props.theme.fonts.at(2)};
+
+  font-family: ${(props) => props.font};
   font-size: ${(props) => props.size};
   color: ${(props) =>
-    props.color in props.theme.palette.primary
-      ? props.theme.palette.primary[props.color]
-      : props.color in props.theme.palette.secondary
-      ? props.theme.palette.tertiary[props.color]
-      : props.color in props.theme.palette.tertiary
-      ? props.theme.palette.tertiary[props.color]
+    props.$color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.$color]
+      : props.$color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.$color]
+      : props.$color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.$color]
       : props.theme.palette.common['black']};
   text-shadow: ${(props) =>
-    props.colorPalette !== 'common' && props.shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.shadow]} 2px 1px 2px`
-      : props.color in props.theme.palette.secondary
-      ? `${props.theme.palette.secondary[props.shadow]} 2px 1px 2px`
-      : props.color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.shadow]} 2px 1px 2px`
-      : `${props.shadow} 2px 1px 2px`};
+    props.$colorPalette !== 'common' && props.$shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props.$shadow]} 2px 1px 1px`
+      : props.$color in props.theme.palette.secondary
+      ? `${props.theme.palette.secondary[props.$shadow]} 2px 1px 1px`
+      : props.$color in props.theme.palette.tertiary
+      ? `${props.theme.palette.tertiary[props.$shadow]} 2px 1px 1px`
+      : `${props.$shadow} 2px 1px 1px`};
 `;
 
 

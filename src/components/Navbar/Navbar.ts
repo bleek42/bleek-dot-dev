@@ -39,63 +39,70 @@ const toggleKeyframes = keyframes`
 
 // eslint-disable-next-line prettier/prettier
 export const NavBar = styled.nav<NavBarProps>((props) => `
-  display: inline-flex;
-  flex-flow: column wrap;
-  width: 12vw;
-  /* min-width: 14vw; */
-  /* min-height: 8vh; */
-
   border: 1px solid rgb(0,0,0);
+  border-radius: 2% / 2%;
   background-color: ${props.theme.palette.secondary.gray};
-  margin: 8px 8px;
-  padding: 4px 3px 4px 3px;
+  min-width: 22vw;
+  max-width: 24vw;
+  height: 12vh;
   position: relative;
-  order: 1;
-  /* order: 3; */
+  /* min-height: 8vh; */
   /* animation: slide-open 0.6s forwards; */
 
-
-  @media (max-width: ${props.theme.breakpoints.phone}) {
+  @media (max-width: ${props.theme.breakpoints.smallTab}) {
+    /* justify-content: flex-start; */
     /* flex-flow: column wrap; */
-    touch-action: auto;
-    user-select: none;
+    /* flex: auto; */
+    /* align-items: center; */
+    /* touch-action: auto; */
+    /* user-select: none; */
   }
 
-  @media (min-width: ${props.theme.breakpoints.laptop}) {
-    flex-flow: column nowrap;
-  }
 
-`,
+  @media (min-width: ${props.theme.breakpoints.smallTab}) {
+
+    /* justify-content: flex-start; */
+    /* flex-flow: column wrap; */
+    /* flex: auto; */
+    /* touch-action: auto;
+    user-select: none; */
+    /* align-items: center; */
+  }
+`
 );
 
 // eslint-disable-next-line prettier/prettier
 export const NavList = styled.ul<NavBarProps>((props) => `
+  
   list-style: none;
-  width: 12vw;
-  /* margin: 4px 2px 4px 2px;
-  padding: 2px 2px; */
-  background-color: ${props.theme.palette.secondary.linear} ;
-  letter-spacing: 1.5px;
+  /* height: 8vh; */
+  display: contents;
+  inset: 82% -15% auto;
   position: absolute;
-  inset: 70% -18%;
-
+  z-index: 1;
+  letter-spacing: .5px;
+  /* background-color: ${props.theme.palette.primary.steel} ; */
   /* animation: slide-open 0.6s forwards; */
-  /* bottom: ${props.toggle ? '0%' : '-100%'}; */
+
+  @media (max-width: ${props.theme.breakpoints.smallTab}) {
+    inset: 12% 58% auto;
+  }
+
+    @media (max-width: ${props.theme.breakpoints.laptop}) {
+
+    }
 
 
-  /* flex: 2 3 4vh; */
-
-  // z-index: 6;
-  /* margin: 5px auto; */
   `,
 );
 
 // eslint-disable-next-line prettier/prettier
 export const NavItem = styled.li<NavBarProps>((props) => `
-  border-top: 2px solid ${props.theme.palette.common.black};
-  padding: 6px 4px 6px 4px;
-  background-color: ${props.theme.palette.primary.steel} ;
   opacity: 0.8;
+  border-top: 1px solid ${props.theme.palette.common.black};
+  list-style: none;
+  background-color: ${props.theme.palette.primary.teal};
+  /* padding: 4px; */
   /* color: rgb(11, 211, 11);
   transition: filter 400ms; */
 `,
@@ -103,68 +110,67 @@ export const NavItem = styled.li<NavBarProps>((props) => `
 
 // eslint-disable-next-line prettier/prettier
 export const ToggleBtn = styled.button<NavBarProps>((props) => `
-  min-width: 10vw;
-  max-width: 12vw
+  min-width: inherit;
+  max-width: inherit;
+  display: inline-block;
   color: ${props.theme.palette.primary.cyan};
   background-color: ${props.theme.palette.secondary.black};
-  border: 2px solid ${props.theme.palette.primary.cyan};
-  border-radius: 4% 4% / 4% 4%;
+  border: 1px solid ${props.theme.palette.primary.cyan};
+  border-radius: 2% / 2%;
   font-family: ${props.theme.fonts.at(2)};
   text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
   font-size: 24px;
-  letter-spacing: 1px;
-  transition: filter 500ms;
-  order: 2;
+  letter-spacing: .8px;
+  transition: filter 360ms ease, color 450ms linear;
 
   &:hover {
     color: ${props.theme.palette.primary.neon};
-    filter: brightness(3);
+    filter: brightness(2);
   }
 
 `,
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NextLink = styled(Link)<NextLinkProps>(
-  (props) => `
+export const NextLink = styled(Link)<NextLinkProps>((props) => `
   /* display: inline-block; */
   color: ${props.theme.palette.secondary.green};
   font-family: ${props.theme.fonts.at(1)};
-  font-size: 18px;
-
+  font-size: 24px;
   text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
 
-  &:hover, {
-    filter: brightness(2.6);
-    color: rgb(12, 205, 160);
+    transition: filter 360ms linear, color 450ms ease;
+
+  &:hover {
+    color: ${props.theme.palette.primary.green};
+    filter: brightness(2);
   }
 
-  &:visited {
+  /* &:visited {
     filter: brightness(0.9);
     color: rgb(44, 8, 250);
-  }
+  } */
 `,
 );
 
 export const NavTxt = styled(MdTxt)`
   order: 1;
-  /* flex: 2 0 auto; */
   text-align: center;
 `;
 
 // eslint-disable-next-line prettier/prettier
 export const NavIcon = styled(Icon)`
-  color: ${({ theme }) => theme.palette.secondary.green};
+  color: ${({ theme }) => theme.palette.primary.blue};
   display: inline-block;
-  font-size: 16px;
-  padding-right: 8px;
-  margin: 4px;
-  /* text-shadow: ${(props) => props.theme.palette.secondary.steel} 3px 2px 3px; */
+  font-size: 22px;
+  /* padding-right: 8px; */
 
-  &:hover,
-  &:focus {
-    filter: brightness(2.6);
-    color: rgb(12, 205, 160);
+  /* text-shadow: ${(props) => props.theme.palette.secondary.steel} 3px 2px 3px; */
+    transition: filter 360ms ease, color 450ms linear;
+
+  &:hover {
+    filter: brightness(2);
+    color: ${({ theme }) => theme.palette.secondary.blue};
   }
 `;
 

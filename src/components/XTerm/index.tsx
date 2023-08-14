@@ -12,14 +12,16 @@ import {
 import useResizeObserver from '@/hooks/useResizeObserver';
 import { type XTermComponent } from '@/interfaces/Component';
 import {
+	type XTermProps,
 	XTForm,
 	XTLabel,
 	XTBtns,
 	XTInput,
 	XTCode,
 	XTxtArea,
-	type XTermProps,
 	XTIcon,
+	XTPrompt,
+	XTCmd,
 } from './XTerm';
 import { BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
 import { printIntrospectionSchema } from 'graphql';
@@ -32,7 +34,7 @@ export default function XTerm(props: XTermProps) {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
-		prompt: '[visitor@bleek.dev]λ->>',
+		prompt: '  [ visitor@bleek.dev]   ﬦ ', //  [visitor@bleek.dev]λ->>
 		stdin: '',
 		stdio: '',
 		stderr: null,
@@ -56,6 +58,90 @@ export default function XTerm(props: XTermProps) {
 		console.log({ onClick: { ...evt } });
 		await router.push('/home');
 	};
+
+
+	return (
+		<XTForm>
+			<XTBtns id="xt-btns">
+				<BtnClose
+					id="xt-close"
+					type="reset"
+					// eslint-disable-next-line no-console
+					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						evt.preventDefault();
+						console.info('xterm-close clicked');
+						console.log({ 'cls-btn': evt.target });
+					}}
+				>
+					{'[ \uf00d ]'}
+				</BtnClose>
+				<BtnMax
+					id="xt-maxmz"
+					type="button"
+					// eslint-disable-next-line no-console
+					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						evt.preventDefault();
+						console.info('xterm-maxmz clicked');
+						console.log({ 'max-btn': evt.target });
+					}}
+				>
+					{'[ \ueb95 ]'}
+				</BtnMax>
+				<BtnMin
+					id="xt-minmz"
+					type="button"
+					// eslint-disable-next-line no-console
+					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
+						evt.preventDefault();
+						console.info('xterm-minmz clicked');
+						console.log({ 'min-btn': evt.target });
+					}}
+				>
+					{'[ \uf2d1 ]'}
+				</BtnMin>
+			</XTBtns>
+			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
+			<XTLabel
+				htmlFor={xterm.id}
+				form={'xt-form'}
+				// eslint-disable-next-line no-console
+				onClick={handleRouteHome}
+				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) => {
+					evt.preventDefault();
+					console.info('xterm-txt submit capture');
+					console.log({ 'xt-submt-capt': evt.currentTarget });
+				}}
+			>
+				<XTIcon
+					size={'40px'}
+					colorPalette={'secondary'}
+					color={'green'}
+					shadow={'black'}
+				>
+					{'\ue683'}
+				</XTIcon>
+				<XTxtArea
+					id={xterm.id}
+					defaultValue={
+						" \n \n Hey there \uf4a2 \n \n I'm Brandon: a Full Stack Web Dev! \n \n \n  \ue736  \ue749  \ue718  \ue69d  \ue7ba  \n \n  \ue662  \ufab2  \ue712  \uebca  \ue702  \n \n \n  Click | Touch here to proceed to . . .  \n \n \n  \uea9c  \ue617  \n \n  bleek.dev/home  "
+					}
+				>
+					{props?.children}
+				</XTxtArea>
+				<XTPrompt>
+					{xterm.prompt}
+					<XTInput
+						id="xt-prompt"
+						name="xt-prompt"
+						value={xterm.name}
+						onChange={handleChange}
+						// defaultValue={'\ue691'}
+					/>
+				</XTPrompt>
+			</XTLabel>
+		</XTForm>
+	);
+}
 
 	// const xtermViewportState: XTermViewportState = {
 	// 	area: 20 * 20,
@@ -139,86 +225,3 @@ export default function XTerm(props: XTermProps) {
 	// console.info({ dimensions });
 	// eslint-disable-next-line no-console
 	// console.info('ref+curr:', ref, ref?.current);
-
-	return (
-		<XTForm>
-			<XTBtns id="xt-btns">
-				<BtnClose
-					id="xt-close"
-					type="reset"
-					// eslint-disable-next-line no-console
-					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
-						evt.preventDefault();
-						console.info('xterm-close clicked');
-						console.log({ 'cls-btn': evt.target });
-					}}
-				>
-					{'[ \uf00d ]'}
-				</BtnClose>
-				<BtnMax
-					id="xt-maxmz"
-					type="button"
-					// eslint-disable-next-line no-console
-					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
-						evt.preventDefault();
-						console.info('xterm-maxmz clicked');
-						console.log({ 'max-btn': evt.target });
-					}}
-				>
-					{'[ \ueb95 ]'}
-				</BtnMax>
-				<BtnMin
-					id="xt-minmz"
-					type="button"
-					// eslint-disable-next-line no-console
-					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
-						evt.preventDefault();
-						console.info('xterm-minmz clicked');
-						console.log({ 'min-btn': evt.target });
-					}}
-				>
-					{'[ \uf2d1 ]'}
-				</BtnMin>
-			</XTBtns>
-			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
-			<XTLabel
-				htmlFor={xterm.id}
-				form={'xt-form'}
-				// eslint-disable-next-line no-console
-				onClick={handleRouteHome}
-				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) => {
-					evt.preventDefault();
-					console.info('xterm-txt submit capture');
-					console.log({ 'xt-submt-capt': evt.currentTarget });
-				}}
-			>
-				<XTIcon
-					size={'40px'}
-					colorPalette={'secondary'}
-					color={'green'}
-					shadow={'black'}
-				>
-					{'\ue683'}
-				</XTIcon>
-				<XTxtArea
-					id={xterm.id}
-					defaultValue={
-						" \n \n Hey there \uf4a2 \n \n I'm Brandon: a Full Stack Web Dev! \n \n \n  \ue736  \ue749  \ue718  \ue69d  \ue7ba  \n \n  \ue662  \ufab2  \ue712  \uebca  \ue702  \n \n \n  Click | Touch here to proceed to . . .  \n \n \n  \uea9c  \ue617  \n \n  bleek.dev/home  "
-					}
-				>
-					{props?.children}
-				</XTxtArea>
-				<XTCode>
-					{xterm.prompt.toString()}
-					<XTInput
-						id="xt-prompt"
-						name="xt-prompt"
-						onChange={handleChange}
-
-						// value={xterm.name}
-					/>
-				</XTCode>
-			</XTLabel>
-		</XTForm>
-	);
-}

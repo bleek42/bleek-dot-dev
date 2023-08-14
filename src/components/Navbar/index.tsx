@@ -15,21 +15,18 @@ export default function Navbar() {
 	return (
 		<NavBar toggle={toggle}>
 			<NavTxt>Menu</NavTxt>
-			{!toggle && (
 				<ToggleBtn
 					toggle={toggle}
-					onMouseOver={toggleMenu}
-					
+					onClick={toggleMenu}
+					// onMouseOver={toggleMenu}
 					/*onTouchStart={toggleMenu}*/
 				>
 					{'\uef65'}
 				</ToggleBtn>
-			)}
-
 			{toggle && (
 				<>
-				
-					<NavList toggle={toggle} onMouseLeave={toggleMenu}>
+				{/* onMouseLeave={toggleMenu} */}
+					<NavList toggle={toggle} >
 						<NavItem>
 							<NavIcon>{' \udb83\udd84 '}</NavIcon>
 							<NextLink href="/home">Home</NextLink>

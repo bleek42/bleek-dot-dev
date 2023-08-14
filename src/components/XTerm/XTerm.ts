@@ -19,12 +19,10 @@ export const XTForm = styled.form.attrs((props: XTermProps) => ({
   id: props.id || 'xt-form',
   name: props.name || 'xt-form',
 }))<XTermProps>`
-  display: inline-block;
-  width: 90vw;
-  height: 96vh;
-  box-shadow: ${(props) => props.theme.palette.secondary.steel} 2em 2em;
-  border: 6px solid ${(props) => props.theme.palette.secondary.blue};
-  margin: 8px 8px 8px 8px;
+  display: block;
+  box-shadow: ${(props) => props.theme.palette.secondary.steel} 2em 1em;
+  border: 3px solid ${(props) => props.theme.palette.secondary.blue};
+  margin: 8px 4px 8px 4px;
   background-color: ${(props) => props.theme.palette.common.black};
 `;
 
@@ -35,28 +33,31 @@ export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
 }))<XTermProps>`
   display: flex;
   flex-flow: column nowrap;
+    
   background-color: ${({ theme }) => theme.palette.common.black};
   margin: 4px;
   padding: 4px;
+  
   border: 1px solid ${({ theme }) => theme.palette.common.white};
   /* border-radius: ${(props) => props.theme.defaultRadius}; */
   /* border-radius: ${(props) => props.theme.defaultRadius}; */
 
   &:hover {
     cursor: text;
-    border: 2px solid ${({ theme }) => theme.palette.secondary.cyan};
+    border: 1px solid ${({ theme }) => theme.palette.secondary.cyan};
   }
 
   &:active {
     cursor: pointer;
-    border: 3px solid ${({ theme }) => theme.palette.primary.neon};
+    border: 2px solid ${({ theme }) => theme.palette.primary.neon};
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
+    max-height: 80vh;
   }
 
-  @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
-    /* flex-flow: column wrap; */
+  @media (max-width: ${(props) => props.theme.breakpoints.smallTab}) {
+    flex-flow: column wrap;
     /* min-height: 16vh; */
     align-content: flex-start;
   }
@@ -182,8 +183,8 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
 }))<XTermProps>`
   resize: none;
   overflow: scroll;
-  flex: 2 1 60vw;
-  min-height: 60vh;
+  flex: 1 1 80vh;
+  
   padding: 4px 2px 2px 2px;
 
   background-color: ${({ theme }) => theme.palette.common.black};
@@ -223,19 +224,21 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
   placeHolder: props.placeHolder || '\uf120',
   // defaultValue: props.defaultValue || 'enter',
 }))<XTermProps>`
-  background-color: ${(props) => props.theme.palette.common.black};
-  color: ${(props) => props.theme.palette.secondary.green};
+  color: ${(props) => props.theme.palette.secondary.neon};
+  background-color: ${({ theme }) => theme.palette.common.black};
+  caret-color: ${({ theme }) => theme.palette.secondary.green};
   padding: 4px 10px 10px 4px;
   font-size: 16px;
-  flex: 2 1 6vh;
-  /* justify-self: end; */
-  caret-color: ${({ theme }) => theme.palette.secondary.neon};
+  flex: 1 1 5vh;
   caret-shape: block;
+  /* justify-self: end; */
+
   border: 0;
-  /*
-  &:after {
-    content: '\ue4096';
-  } */
+  
+  &:before {
+    font-family: ${({ theme }) => theme.fonts.at(3)};
+    content: '\ue691';
+  }
 
   /* accent-color: ${({ theme }) => theme.palette.tertiary.steel}; */
 
@@ -245,31 +248,71 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
   }
 `;
 
-export const XTCode = styled.code<XTermProps>(
-  (props) => `
+export const XTCode = styled.code.attrs((props) => ({
+  contentEditable: props.contentEditable || 'false',
+}))<XTermProps>`
   display: inline-flex;
-  align-items: center;
-  margin: 4px 4px auto;
-  color: ${props.theme.palette.secondary.neon};
+  flex-flow: row nowrap;
+  justify-content: stretch;
+  color: ${({ theme }) => theme.palette.secondary.green};
+  background-color: ${(props) => props.theme.palette.secondary.black};
   font-size: 18px;
   font-weight: 450;
-  text-align: right;
-  text-decoration: underline;
-  text-decoration-color: ${props.theme.palette.secondary.gray};
+  /* text-decoration: underline;
+  text-decoration-color: ${({ theme }) => theme.palette.secondary.gray}; */
+  max-width: 42vw;
+  min-width: fit-content;
+  white-space: pre;
 
-  /* max-width: 60vw;
-     padding: 4px 4px 4px 4px; */
+  &::before {
+    /* white-space: pre; */
+    /* content: '  ' */
+  }
 
-  @media(min-width: ${props.theme.breakpoints.fullDisplay}) {
+  &:after {
+    /* content: ' \n ' */
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
     font-size: 20px;
+    /* flex-flow: row nowrap; */
     /* flex: 2 1 2vw; */
   }
 
-  @media(max-width: ${props.theme.breakpoints.phone}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
     font-size: 16px;
+    flex-flow: row wrap;
   }
-`,
-);
+`;
+
+export const XTPrompt = styled(XTCode)`
+  color: ${({ theme }) => theme.palette.secondary.green};
+  background-color: ${({ theme }) => theme.palette.secondary.steel};
+  margin: 2px 2px;
+  padding: 2px 2px;
+
+  font-size: 16px;
+
+  &::before {
+    /* white-space: pre; */
+    /* content: '  ' */
+  }
+
+  &::after {
+    /* content: ' \n ' */
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+    font-size: 20px;
+    /* flex-flow: row nowrap; */
+    /* flex: 2 1 2vw; */
+  }
+
+  @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
+  }
+`;
+
+
 
 /* text-decoration-color: ${({ theme }) => theme.palette.secondary.gray}; */
 /* text-decoration: underline; */
@@ -296,3 +339,22 @@ export const XTIcon = styled(Icon)`
 //   font-size: 24px;
 //   background-color: yellow;
 // `;
+
+// export const XTCmd = styled(XTCode)`
+//   display: unset;
+//   color: ${({ theme }) => theme.palette.secondary.neon};
+//   background-color: ${({ theme }) => theme.palette.common.black};
+
+//   caret-color: ${({ theme }) => theme.palette.secondary.neon};
+//   caret-shape: block;
+
+//   @media(min-width: ${({ theme }) => theme.breakpoints.fullDisplay}) {
+//     font-size: 20px;
+//     /* flex-flow: row nowrap; */
+//     /* flex: 2 1 2vw; */
+//   }
+
+//   @media(max-width: ${({ theme }) => theme.breakpoints.phone}) {
+//     font-size: 16px;
+//   }
+// `

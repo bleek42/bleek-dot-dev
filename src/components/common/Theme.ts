@@ -35,7 +35,7 @@ export const theme: DefaultTheme = {
       cyan: 'rgb(0, 191, 255)',
       green: 'rgb(77, 197, 12)',
       drab: 'rgb(0, 208, 142)',
-      steel: 'rgb(49, 64, 105)',
+      steel: 'rgba(105, 112, 140, 0.4)',
       tan: 'rgb(199, 178, 178)',
       gray: 'rgb(139, 139, 178)',
       teal: 'rgb(54, 213, 181)',
@@ -43,7 +43,7 @@ export const theme: DefaultTheme = {
       yellow: 'rgb(222, 210, 76)',
       black: 'rgb(5, 5, 5)',
       white: 'rgb(250, 250, 235)',
-      linear: 'linear-gradient(175deg, rgb(10,5,5)  45%, rgb(35,230,45) 55%)',
+      linear: 'linear-gradient(175deg,rgba(10, 5, 20, 0.1) 45%, rgba(35, 230, 45, 0.7) 55%)',
     },
 
     secondary: {
@@ -53,7 +53,7 @@ export const theme: DefaultTheme = {
       cyan: 'rgb(36, 237, 255)',
       green: 'rgb(27, 250, 15)',
       drab: 'rgb(15, 226, 96)',
-      steel: 'rgb(71, 89, 87)',
+      steel: 'rgba(116, 132, 145, 0.47)',
       tan: 'rgb(121, 116, 116)',
       gray: 'rgb(181, 192, 187)',
       teal: 'rgb(40, 171, 145)',
@@ -61,7 +61,7 @@ export const theme: DefaultTheme = {
       yellow: 'rgb(225, 255, 0)',
       black: 'rgb(10, 5, 10)',
       white: 'rgb(255, 255, 255)',
-      linear: 'linear-gradient(25deg, rgb(45, 147, 243) 35%, rgb(23, 240, 193) 65%)',
+      linear: 'linear-gradient(25deg, rgba(45, 147, 243, 0.3) 35%, rgba(23, 240, 193, 0.2) 65%)',
     },
 
     tertiary: {
@@ -71,7 +71,7 @@ export const theme: DefaultTheme = {
       cyan: 'rgb(114, 220, 220)',
       green: 'rgb(43, 230, 33)',
       drab: 'rgb(29, 123, 47)',
-      steel: 'rgb(125, 120, 138)',
+      steel: 'rgba(36, 39, 59, 0.3)',
       tan: 'rgb(196, 157, 157)',
       gray: 'rgb(181, 181, 181)',
       teal: 'rgb(11, 205, 165)',

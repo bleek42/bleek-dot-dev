@@ -1,9 +1,8 @@
 import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
 import { type HeaderComponent } from '@/interfaces/Component';
-import { HeaderLgTxt, HeaderMdTxt, Header } from './Header';
-import { LgTxt, MdTxt, SmTxt } from '@/components/common';
 import Navbar from '@/components/Navbar';
+import { Header, HeaderLgTxt, HeaderMdTxt } from './Header';
 
 type HeaderProps = StyledComponentProps<
 	'header',

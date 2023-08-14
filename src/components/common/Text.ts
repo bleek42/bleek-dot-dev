@@ -64,13 +64,13 @@ import styled, {
 // });
 
 interface TextOptions {
+  $size?: `${string}px` | 'initial' | 'unset';
   $color: keyof Colors;
   $font?: Fonts;
   $colorPalette?: ColorPalettes;
-  $size?: `${string}px`;
   $shadow: keyof Colors;
   $align?: 'center' | 'left' | 'right' | string;
-  $flex?: string | 'auto';
+  $flex?: string | '1 0 auto';
 }
 
 type TextProps = StyledComponentProps<
@@ -83,12 +83,12 @@ type TextProps = StyledComponentProps<
 
 // 'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace'
 export const SmTxt = styled.p.attrs<TextProps>((props) => ({
-  $color: props.color,
-  $shadow: props.shadow || 'inherit',
-  $font: props.font || props.theme.fonts.at(2),
-  $align: props.align || 'initial',
   $size: props.size || 'initial',
-  $flex: props.flex || 'auto',
+  $color: props.color || 'inherit',
+  $font: props.font || props.theme.fonts.at(2),
+  $shadow: props.shadow || 'initial',
+  $align: props.align || 'initial',
+  $flex: props.flex || '1 0 auto',
 }))<TextProps>`
   flex: ${(props) => props.$flex};
   font-size: ${(props) => props.$size};
@@ -101,7 +101,7 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
       ? props.theme.palette.secondary[props.$color]
       : props.colorPalette === 'tertiary' && props.$color in props.theme.palette.tertiary
       ? props.theme.palette.tertiary[props.$color]
-      : props.theme.palette.common.black};
+      : 'initial'};
   text-shadow: ${(props) =>
     props.shadow &&
     props.colorPalette === 'primary' &&
@@ -116,7 +116,7 @@ export const SmTxt = styled.p.attrs<TextProps>((props) => ({
         props.shadow in props.theme.palette.tertiary
       ? `${props.theme.palette.tertiary[props.$shadow]} 2px 1px 2px`
       : props.shadow};
-  text-align: ${(props) => props.$align};
+  text-align: ${(props) => props.$align ?? 'initial'};
   /* text-decoration: underline;
   text-decoration-color: rgb(0, 0, 0);
   text-decoration-style: double; */

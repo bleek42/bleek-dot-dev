@@ -22,8 +22,7 @@ export type NextLinkProps = StyledComponentProps<
   DefaultTheme,
   LinkProps,
   string | number | symbol
-> &
-  NavbarComponent;
+>;
 
 // eslint-disable-next-line prettier/prettier
 const toggleKeyframes = keyframes`
@@ -38,15 +37,15 @@ const toggleKeyframes = keyframes`
 `;
 
 // eslint-disable-next-line prettier/prettier
-export const NavBar = styled.nav<NavBarProps>((props) => `
+export const NavBar = styled.nav<NavBarProps & NavbarComponent>((props) => `
   border: 1px solid rgb(0,0,0);
   border-radius: 2% / 2%;
   background-color: ${props.theme.palette.secondary.gray};
-  min-width: 22vw;
-  max-width: 24vw;
+  min-width: 24vw;
   height: 12vh;
+  min-height: 10vh;
   position: relative;
-  /* min-height: 8vh; */
+  /* max-width: 24vw; */
   /* animation: slide-open 0.6s forwards; */
 
   @media (max-width: ${props.theme.breakpoints.smallTab}) {
@@ -68,19 +67,18 @@ export const NavBar = styled.nav<NavBarProps>((props) => `
     user-select: none; */
     /* align-items: center; */
   }
-`
+`,
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavList = styled.ul<NavBarProps>((props) => `
-  
+export const NavList = styled.ul<NavBarProps & NavbarComponent>((props) => `
+  border: .5px solid ${props.theme.palette.common.black};
   list-style: none;
   /* height: 8vh; */
   display: contents;
   inset: 82% -15% auto;
   position: absolute;
   z-index: 1;
-  letter-spacing: .5px;
   /* background-color: ${props.theme.palette.primary.steel} ; */
   /* animation: slide-open 0.6s forwards; */
 
@@ -97,35 +95,49 @@ export const NavList = styled.ul<NavBarProps>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavItem = styled.li<NavBarProps>((props) => `
-  opacity: 0.8;
-  border-top: 1px solid ${props.theme.palette.common.black};
+export const NavItem = styled.li<NavBarProps & NavbarComponent>((props) => `
   list-style: none;
+  letter-spacing: .5px;
+  border: .8px solid ${props.theme.palette.common.black};
   background-color: ${props.theme.palette.primary.teal};
-  /* padding: 4px; */
+  padding: 4px 4px;
+  margin: .5px;
+
+  &:hover {
+    color: ${props.theme.palette.primary.cyan};
+    filter: brightness(2);
+  }
   /* color: rgb(11, 211, 11);
   transition: filter 400ms; */
 `,
 );
 
 // eslint-disable-next-line prettier/prettier
-export const ToggleBtn = styled.button<NavBarProps>((props) => `
-  min-width: inherit;
-  max-width: inherit;
-  display: inline-block;
-  color: ${props.theme.palette.primary.cyan};
+export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>((props) => `
+  
+  width: stretch;
+  min-height: 4vh;
+  display: block;
+  /* display: inline; */
+  padding: 4px;
+  color: ${props.theme.palette.secondary.cyan};
   background-color: ${props.theme.palette.secondary.black};
-  border: 1px solid ${props.theme.palette.primary.cyan};
+  border: .8px solid ${props.theme.palette.primary.cyan};
   border-radius: 2% / 2%;
   font-family: ${props.theme.fonts.at(2)};
   text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
   font-size: 24px;
   letter-spacing: .8px;
-  transition: filter 360ms ease, color 450ms linear;
+  transition: filter 360ms ease-in-out, color 420ms linear;
 
-  &:hover {
+  /* &:hover {
     color: ${props.theme.palette.primary.neon};
     filter: brightness(2);
+  } */
+
+  &:hover {
+    filter: brightness(2);
+    color: ${props.theme.palette.secondary.blue};
   }
 
 `,
@@ -133,18 +145,12 @@ export const ToggleBtn = styled.button<NavBarProps>((props) => `
 
 // eslint-disable-next-line prettier/prettier
 export const NextLink = styled(Link)<NextLinkProps>((props) => `
-  /* display: inline-block; */
-  color: ${props.theme.palette.secondary.green};
-  font-family: ${props.theme.fonts.at(1)};
+  display: inline;
   font-size: 24px;
-  text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
-
-    transition: filter 360ms linear, color 450ms ease;
-
-  &:hover {
-    color: ${props.theme.palette.primary.green};
-    filter: brightness(2);
-  }
+  color: ${props.theme.palette.secondary.cyan};
+  font-family: ${props.theme.fonts.at(1)};
+  text-shadow: ${props.theme.palette.secondary.steel} 1px 1px .5px;
+  text-align: end;
 
   /* &:visited {
     filter: brightness(0.9);
@@ -154,24 +160,24 @@ export const NextLink = styled(Link)<NextLinkProps>((props) => `
 );
 
 export const NavTxt = styled(MdTxt)`
-  order: 1;
   text-align: center;
 `;
 
 // eslint-disable-next-line prettier/prettier
 export const NavIcon = styled(Icon)`
-  color: ${({ theme }) => theme.palette.primary.blue};
-  display: inline-block;
-  font-size: 22px;
+  display: inline;
+  color: ${({ theme }) => theme.palette.primary.green};
+  font-size: 24px;
+  font-family: ${({ theme }) => theme.fonts.at(2)};
+  text-shadow: ${(props) => props.theme.palette.secondary.steel} 1px 1px .8px;
+  transition: filter 360ms ease-in-out, color 420ms linear;
   /* padding-right: 8px; */
 
-  /* text-shadow: ${(props) => props.theme.palette.secondary.steel} 3px 2px 3px; */
-    transition: filter 360ms ease, color 450ms linear;
-
   &:hover {
-    filter: brightness(2);
-    color: ${({ theme }) => theme.palette.secondary.blue};
+    color: ${({ theme }) => theme.palette.primary.neon};
+    filter: brightnness(1.4);
   }
+  
 `;
 
 //   position: ${(props) => (props.toggle ? 'absolute' : 'fixed')};

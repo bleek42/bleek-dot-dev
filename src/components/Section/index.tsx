@@ -1,4 +1,4 @@
-import { type Key } from 'react';
+import { useId, type Key } from 'react';
 import Image from 'next/image';
 import bleekImg from '/public/images/brandon-mask.png';
 
@@ -12,27 +12,36 @@ import { AssetConnection } from '@/graphql/hygraph-types';
 type SectionProps = SectionComponent;
 
 export default function Section(props: SectionProps) {
-	// console.log({ 'section-component': props });
-
+	console.log({ 'section-component': props });
+	const sectionId = useId();
 	return (
-		<Wrapper key={props.id} id={`${props.id}-section`}>
-			<LgTxt font="Birdman">
-				{props.name ?? 'Section Name'}
+		<Wrapper
+			key={`section-${props.id ?? sectionId}`}
+			id={`section-${props.id ?? sectionId}`}
+		>
+			<LgTxt>
+				{props.name ?? 'No Section Name...'}
 				<Icon>{props.icon ?? '\ue667'}</Icon>
 			</LgTxt>
-
 			{!props.image && props.name === 'about' && (
 				<Image
 					src={bleekImg}
 					alt={'brandon-mask'}
-					width={600}
+					width={400}
 					height={360}
 					priority
 				/>
 			)}
-			{props.content && typeof props.content === 'string' && (
-				<Article>
-					<SmTxt font="MonocraftNF" color="neon">
+			{props.content && (
+				<Article
+					id={`article-${props.id ?? sectionId}`}
+					key={`article-${props.id + sectionId ?? sectionId}`}
+				>
+					<SmTxt
+						$font={'MonocraftNF'}
+						$colorPalette={'tertiary'}
+						$color={'drab'}
+					>
 						{props.content}
 					</SmTxt>
 				</Article>
@@ -41,8 +50,12 @@ export default function Section(props: SectionProps) {
 				Array.isArray(props.content) &&
 				props.content.length >= 1 &&
 				props.content.map((articleContent: string, idx: Key) => (
-					<Article key={idx}>
-						<SmTxt font="MonocraftNF" color="neon">
+					<Article id={`article-idx-${idx}`} key={`article-idx-${idx}`}>
+						<SmTxt
+							$font={'MonocraftNF'}
+							$colorPalette={'tertiary'}
+							$color={'black'}
+						>
 							{articleContent}
 						</SmTxt>
 					</Article>

@@ -1,11 +1,10 @@
 import styled, {
-  keyframes,
   type DefaultTheme,
   type StyledComponentProps,
 } from 'styled-components';
 
 import { type XTermComponent } from '@/interfaces/Component';
-import { Icon } from '../common';
+import { Icon, borderPulse, fadeInBright } from '../common';
 
 export type XTermProps = StyledComponentProps<
   'textarea' | 'form' | 'input' | 'label' | 'code',
@@ -89,93 +88,6 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
   }
 `;
 
-const borderPulse = keyframes`
-  from {
-    border: .3px solid rgb(0, 0, 0);
-    margin: 0;
-    box-shadow:  1px 2px 1px rgba(0, 229, 255, 0.664);
-    /* filter: drop-shadow(2px 4px 2px rgb(125, 5, 45)) invert(75%); */
-  }
-
-  50% {
-    border: .6px solid rgb(40, 225, 31);
-    margin: 1px;
-    box-shadow:  2px 2px 3px rgba(0, 229, 255, 0.838);
-  }
-
-
-  to {
-    border: .8px solid rgb(40, 220, 30);
-    margin: 2px;
-    box-shadow:  2px 3px 3px rgba(0, 229, 255, 0.664);
-    /* box-shadow:;
-    content: '\n \n Hey there, I'm Brandon & I'm a Web Dev! \n \n \n Click/touch anywhere to continue.'; */
-  }
-
-  /* 20% {
-    opacity: 0.15;
-    filter: brightness(20%);
-    box-shadow: 0.5px 0.5px 0.5px rgb(2, 1, 4);
-  }
-
-  40% {
-    opacity: 0.3;
-    filter: brightness(50%);
-    box-shadow: 1px 1px 1px rgb(12, 1, 4);
-  }
-
-  60% {
-    opacity: 0.6;
-    filter: brightness(75%);
-     box-shadow: 1px 1px 1px rgb(16, 5, 10);
-  }
-
-  80% {
-    opacity: 0.8;
-    filter: brightness(110%);
-     box-shadow: 1px 1px 1px rgb(12, 1, 4);
-  } */
-`;
-
-const fadeInBright = keyframes`
-  from {
-    opacity: 0;
-    filter: brightness(8%)
-    /* box-shadow: unset; */
-    /* filter: drop-shadow(2px 4px 2px rgb(125, 5, 45)) invert(75%); */
-  }
-
-  20% {
-    opacity: 0.15;
-    filter: brightness(20%);
-    /* box-shadow: 0.5px 0.5px 0.5px rgb(2, 1, 4); */
-  }
-
-  40% {
-    opacity: 0.3;
-    filter: brightness(42%);
-    /* box-shadow: 1px 1px 1px rgb(12, 1, 4); */
-  }
-
-  60% {
-    opacity: 0.6;
-    filter: brightness(76%);
-    /* box-shadow: 1px 1px 1px rgb(16, 5, 10); */
-  }
-
-  80% {
-    opacity: 0.8;
-    filter: brightness(90%);
-    /* box-shadow: 1px 1px 1px rgb(12, 1, 4); */
-  }
-
-  to {
-    opacity: 1;
-    filter: brightness(100%);
-    /* box-shadow: 1px 1px 1px rgb(26, 8, 12); */
-    /* content: '\n \n Hey there, I'm Brandon & I'm a Web Dev! \n \n \n Click/touch anywhere to continue.'; */
-  }
-`;
 
 export const XTxtArea = styled.textarea.attrs((props) => ({
   name: props.name || 'xt-txt',
@@ -224,21 +136,14 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
   placeHolder: props.placeHolder || '\uf120',
   // defaultValue: props.defaultValue || 'enter',
 }))<XTermProps>`
-  color: ${(props) => props.theme.palette.secondary.neon};
+  color: ${({ theme }) => theme.palette.secondary.neon};
   background-color: ${({ theme }) => theme.palette.common.black};
   caret-color: ${({ theme }) => theme.palette.secondary.green};
   padding: 4px 10px 10px 4px;
-  font-size: 16px;
-  flex: 1 1 5vh;
+  font-size: 18px;
   caret-shape: block;
-  /* justify-self: end; */
 
   border: 0;
-  
-  &:before {
-    font-family: ${({ theme }) => theme.fonts.at(3)};
-    content: '\ue691';
-  }
 
   /* accent-color: ${({ theme }) => theme.palette.tertiary.steel}; */
 
@@ -263,15 +168,16 @@ export const XTCode = styled.code.attrs((props) => ({
   max-width: 42vw;
   min-width: fit-content;
   white-space: pre;
-
+/* 
   &::before {
-    /* white-space: pre; */
-    /* content: '  ' */
+    white-space: pre;
+    content: '  ';
   }
+  */
 
-  &:after {
-    /* content: ' \n ' */
-  }
+  /* &:after {
+     content: ' \n '
+  }  */
 
   @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
     font-size: 20px;
@@ -293,12 +199,12 @@ export const XTPrompt = styled(XTCode)`
 
   font-size: 16px;
 
-  &::before {
+  &:before {
     /* white-space: pre; */
     /* content: '  ' */
   }
 
-  &::after {
+  &:after {
     /* content: ' \n ' */
   }
 

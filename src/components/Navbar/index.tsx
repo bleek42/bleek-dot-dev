@@ -26,26 +26,26 @@ export default function Navbar() {
 			{toggle && (
 				<>
 				{/* onMouseLeave={toggleMenu} */}
-					<NavList toggle={toggle} >
+					<NavList toggle={toggle}>
 						<NavItem>
-							<NavIcon>{' \udb83\udd84 '}</NavIcon>
+							<NavIcon>{'\ue617 '}</NavIcon>
 							<NextLink href="/home">Home</NextLink>
 						</NavItem>
 						<NavItem>
 							<NavIcon>
-								{' \udb84\udcf6 '}
+								{'\uf415 '}
 								<NextLink href="/about">About</NextLink>
 							</NavIcon>
 						</NavItem>
 						<NavItem>
 							<NavIcon>
-								{'\udb84\udcdc'}
+								{'\ueA8A '}
 								<NextLink href="/projects">Projects</NextLink>
 							</NavIcon>
 						</NavItem>
 						<NavItem>
 							<NavIcon>
-								{'\udb84\udcd6'}
+								{'\ueff3 '}
 								<NextLink href="/contact">Contact</NextLink>
 							</NavIcon>
 						</NavItem>

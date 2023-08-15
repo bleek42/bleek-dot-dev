@@ -5,26 +5,39 @@ import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon, NavTxt } from '
 export default function Navbar() {
 	const [toggle, setToggle] = useState<boolean>(false);
 
-	const toggleMenu = (evt: React.SyntheticEvent<HTMLElement>) => {
-		// evt.preventDefault();
-		console.log(evt?.currentTarget, toggle);
-		setToggle(!toggle);
+	const handleHover = (evt: React.SyntheticEvent<HTMLElement>) => {
+		evt.preventDefault();
+		console.log({ toggle, evt });
+		setTimeout(() => {
+			setToggle(!toggle);
+			if (evt.currentTarget) {
+				console.log(evt.currentTarget);
+			}
+		}, 600);
 	};
 
 	return (
-		<NavBar toggle={toggle}>
+		<NavBar toggle={toggle} onMouseLeave={handleHover}>
 			<NavTxt>Menu</NavTxt>
 			<ToggleBtn
 				toggle={toggle}
-				onClick={toggleMenu}
-				onMouseOver={setTimeout(() => toggleMenu, 450)}
+				onClick={(evt: React.SyntheticEvent<HTMLElement>) => {
+					console.log({ 'click': evt });
+					evt.preventDefault();
+					setToggle(!toggle);
+				}}
+				onMouseOver={handleHover}
+				// onMouseLeave={(evt: React.SyntheticEvent<HTMLElement>) => {
+				// 	evt.preventDefault();
+				// 	setTimeout(() => setToggle(false), 450);
+				// }}
 				/*onTouchStart={toggleMenu}*/
 			>
 				{'\uef65'}
 			</ToggleBtn>
 			{toggle && (
 				<Fragment>
-					<NavList toggle={toggle} onMouseLeave={toggleMenu}>
+					<NavList toggle={toggle}>
 						<NavItem>
 							<NavIcon>{'\ue617 '}</NavIcon>
 							<NextLink href="/home">Home</NextLink>

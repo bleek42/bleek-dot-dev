@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-<<<<<<< HEAD
 import {
 	useState,
 	useCallback,
@@ -7,10 +6,7 @@ import {
 	type FormEvent,
 	type SyntheticEvent,
 } from 'react';
-// import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
-// import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
 
-import useResizeObserver from '@/hooks/useResizeObserver';
 import { type XTermComponent } from '@/interfaces/Component';
 import {
 	type XTermProps,
@@ -22,38 +18,17 @@ import {
 	XTxtArea,
 	XTIcon,
 	XTPrompt,
-	XTCmd,
 } from './XTerm';
-import { BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
-import { printIntrospectionSchema } from 'graphql';
-import { Icon } from '../common';
-=======
-import type {
-	ChangeEvent,
-	ComponentType,
-	MutableRefObject,
-	ReactNode,
-	RefObject,
-} from 'react';
-import type {
-	StyledComponentProps,
-	DefaultTheme,
-	StyledComponent,
-	AnyStyledComponent,
-} from 'styled-components';
-
-import useResizeObserver from '@/hooks/useResizeObserver';
-import type { ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
-import type { XTermComponentProps } from '@/props/base.component.props';
-import { XTForm, XTLabel, XTBtns, XTInput, XTCode, XTxtArea } from './XTerm';
-import { Btn, BtnClose, BtnMax, BtnMin } from '@/components/common/Button';
-import { XTermComponent } from '@/interfaces/BaseComponent';
->>>>>>> origin/main
+import { BtnClose, BtnMax, BtnMin, Icon } from '@/components/common';
+// import { printIntrospectionSchema } from 'graphql';
+// import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
+// import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
+// import useResizeObserver from '@/hooks/useResizeObserver';
 
 type XTermState = XTermComponent;
 // type XTermViewportState = ResizeObserverDimensions;
 
-export default function XTerm(props: XTermProps) {
+export default function XTerm() {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
@@ -64,88 +39,9 @@ export default function XTerm(props: XTermProps) {
 		isExec: null,
 	};
 
-<<<<<<< HEAD
 	const [xterm, setXterm] = useState<XTermState>(xtermState); // ? set execute state true, leave landing page to /home
 
 	const router = useRouter();
-=======
-	const handleResize = useCallback(
-		<T extends Element>(target: T | undefined, entry: ResizeObserverEntry) => {
-			console.info({ target });
-			console.info({ entry });
-
-			const { width, height, top, bottom, left, right, x, y } = entry.contentRect;
-
-			const currentWidth = Math.round(width);
-			const currentHeight = Math.round(height);
-
-			if (currentWidth < 481) {
-				setDimensions((prev) => ({
-					...prev,
-					cols: 20,
-					rows: 20,
-					area: 20 * 20,
-					width: currentWidth,
-					height: currentHeight,
-					top,
-					bottom,
-					left,
-					right,
-					x,
-					y,
-				}));
-			}
-			if (currentWidth < 1024 && currentWidth > 480) {
-				setDimensions((prev) => ({
-					...prev,
-					cols: 60,
-					rows: 60,
-					area: 60 * 60,
-					width: currentWidth,
-					height: currentHeight,
-					top,
-					bottom,
-					left,
-					right,
-					x,
-					y,
-				}));
-			}
-
-			if (currentWidth >= 1024) {
-				setDimensions((prev) => ({
-					...prev,
-					cols: 80,
-					rows: 36,
-					area: 80 * 36,
-					width: currentWidth,
-					height: currentHeight,
-					top,
-					bottom,
-					left,
-					right,
-					x,
-					y,
-				}));
-			}
-
-			console.warn('resizing:', currentWidth, currentHeight);
-			// console.table(entry.borderBoxSize);
-			// console.table(entry.contentRect);
-			// console.table(entry.contentBoxSize);
-			// console.table(entry.devicePixelContentBoxSize);
-			// console.table(entry.target);
-			console.info('xt dimensions:', { dimensions });
-		},
-		[dimensions.width, dimensions.height, dimensions.cols, dimensions.rows]
-	);
-
-	const { ref } = useResizeObserver(handleResize);
-
-	// eslint-disable-next-line no-console
-	// eslint-disable-next-line no-console
-	console.info('RO ref:', { ref });
->>>>>>> origin/main
 
 	const handleChange = (
 		evt: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -161,13 +57,8 @@ export default function XTerm(props: XTermProps) {
 		await router.push('/home');
 	};
 
-
 	return (
-<<<<<<< HEAD
 		<XTForm>
-=======
-		<XTForm ref={ref as MutableRefObject<HTMLFormElement>}>
->>>>>>> origin/main
 			<XTBtns id="xt-btns">
 				<BtnClose
 					id="xt-close"
@@ -207,21 +98,6 @@ export default function XTerm(props: XTermProps) {
 				</BtnMin>
 			</XTBtns>
 			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
-<<<<<<< HEAD
-=======
-			<XTxtArea
-				// value={null}
-				cols={dimensions.cols}
-				rows={dimensions.rows}
-				// eslint-disable-next-line no-console
-				onChange={handleChange}
-				onSubmit={(evt: SubmitEvent) => {
-					console.info('xterm-txt submit capture', evt.target);
-					// ! TODO: backlog, execute text input, give output, use for something fun/playful to do on landing page, use in other projects..!
-					setXterm((vals) => ({ ...vals, exec: true }));
-				}}
-			></XTxtArea>
->>>>>>> origin/main
 			<XTLabel
 				htmlFor={xterm.id}
 				form={'xt-form'}
@@ -233,7 +109,6 @@ export default function XTerm(props: XTermProps) {
 					console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
 			>
-<<<<<<< HEAD
 				<XTIcon
 					size={'40px'}
 					colorPalette={'secondary'}
@@ -260,98 +135,90 @@ export default function XTerm(props: XTermProps) {
 						// defaultValue={'\ue691'}
 					/>
 				</XTPrompt>
-=======
-				<XTCode>{xterm.prompt as ReactNode}</XTCode>
-				<XTInput
-					// value={xterm.name}
-					onChange={handleChange}
-					placeholder={'press enter to continue'}
-				/>
->>>>>>> origin/main
 			</XTLabel>
 		</XTForm>
 	);
 }
 
-	// const xtermViewportState: XTermViewportState = {
-	// 	area: 20 * 20,
-	// };
-	// const [dimensions, setDimensions] = useState<XTermViewportState>(xtermViewportState);
+// const xtermViewportState: XTermViewportState = {
+// 	area: 20 * 20,
+// };
+// const [dimensions, setDimensions] = useState<XTermViewportState>(xtermViewportState);
 
-	// const handleResize = useCallback(
-	// 	<T extends HTMLElement>(target: T, entry: ResizeObserverEntry) => {
-	// 		console.info({ target });
-	// 		console.info({ entry });
+// const handleResize = useCallback(
+// 	<T extends HTMLElement>(target: T, entry: ResizeObserverEntry) => {
+// 		console.info({ target });
+// 		console.info({ entry });
 
-	// 		const { width, height, top, bottom, left, right, x, y } = entry.contentRect;
+// 		const { width, height, top, bottom, left, right, x, y } = entry.contentRect;
 
-	// 		const currentWidth = Math.round(width);
-	// 		const currentHeight = Math.round(height);
+// 		const currentWidth = Math.round(width);
+// 		const currentHeight = Math.round(height);
 
-	// 		if (width < 1024 && width >= 481) {
-	// 			setDimensions(
-	// 				(prev): ResizeObserverDimensions => ({
-	// 					...prev,
-	// 					cols: 60,
-	// 					rows: 60,
-	// 					area: 60 * 60,
-	// 					width: currentWidth,
-	// 					height: currentHeight,
-	// 					top,
-	// 					bottom,
-	// 					left,
-	// 					right,
-	// 					x,
-	// 					y,
-	// 				})
-	// 			);
-	// 		}
+// 		if (width < 1024 && width >= 481) {
+// 			setDimensions(
+// 				(prev): ResizeObserverDimensions => ({
+// 					...prev,
+// 					cols: 60,
+// 					rows: 60,
+// 					area: 60 * 60,
+// 					width: currentWidth,
+// 					height: currentHeight,
+// 					top,
+// 					bottom,
+// 					left,
+// 					right,
+// 					x,
+// 					y,
+// 				})
+// 			);
+// 		}
 
-	// 		if (width >= 1024) {
-	// 			setDimensions((prev) => ({
-	// 				...prev,
-	// 				cols: 80,
-	// 				rows: 36,
-	// 				area: 80 * 36,
-	// 				width: currentWidth,
-	// 				height: currentHeight,
-	// 				top,
-	// 				bottom,
-	// 				left,
-	// 				right,
-	// 				x,
-	// 				y,
-	// 			}));
-	// 		}
+// 		if (width >= 1024) {
+// 			setDimensions((prev) => ({
+// 				...prev,
+// 				cols: 80,
+// 				rows: 36,
+// 				area: 80 * 36,
+// 				width: currentWidth,
+// 				height: currentHeight,
+// 				top,
+// 				bottom,
+// 				left,
+// 				right,
+// 				x,
+// 				y,
+// 			}));
+// 		}
 
-	// 		if (width < 481) {
-	// 			setDimensions((prev) => ({
-	// 				...prev,
-	// 				cols: 20,
-	// 				rows: 20,
-	// 				area: 20 * 20,
-	// 				width: currentWidth,
-	// 				height: currentHeight,
-	// 				top,
-	// 				bottom,
-	// 				left,
-	// 				right,
-	// 				x,
-	// 				y,
-	// 			}));
-	// 		}
+// 		if (width < 481) {
+// 			setDimensions((prev) => ({
+// 				...prev,
+// 				cols: 20,
+// 				rows: 20,
+// 				area: 20 * 20,
+// 				width: currentWidth,
+// 				height: currentHeight,
+// 				top,
+// 				bottom,
+// 				left,
+// 				right,
+// 				x,
+// 				y,
+// 			}));
+// 		}
 
-	// 		console.warn('resizing:', currentWidth, currentHeight);
-	// 		console.table(entry.borderBoxSize);
-	// 		console.table(entry.devicePixelContentBoxSize);
-	// 	},
+// 		console.warn('resizing:', currentWidth, currentHeight);
+// 		console.table(entry.borderBoxSize);
+// 		console.table(entry.devicePixelContentBoxSize);
+// 	},
 
-	// 	[dimensions.width, dimensions.height]
-	// );
+// 	[dimensions.width, dimensions.height]
+// );
 
-	// const ref = useResizeObserver(handleResize) as MutableRefObject<HTMLTextAreaElement>;
+// const ref = useResizeObserver(handleResize) as MutableRefObject<HTMLTextAreaElement>;
 
-	// eslint-disable-next-line no-console
-	// console.info({ dimensions });
-	// eslint-disable-next-line no-console
-	// console.info('ref+curr:', ref, ref?.current);
+// eslint-disable-next-line no-console
+// console.info({ dimensions });
+// eslint-disable-next-line no-console
+// console.info('ref+curr:', ref, ref?.current);

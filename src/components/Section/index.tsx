@@ -4,14 +4,8 @@ import bleekImg from '/public/images/brandon-mask.png';
 
 import { type SectionComponent } from '@/interfaces/Component';
 import { Section as Wrapper, Article } from './Section';
-<<<<<<< HEAD
-import { Details, Summary } from '@/components/common/Details';
-import { Icon, LgTxt, MdTxt, SmTxt } from '@/components/common';
-import { AssetWhereUniqueDocument, AssetWhereUniqueQuery } from '@/graphql/queries';
-import { AssetConnection } from '@/graphql/hygraph-types';
-=======
-import { LgTxt, MdTxt, SmTxt } from '@/components/common/Text';
->>>>>>> origin/main
+import { Icon, LgTxt, SmTxt } from '@/components/common';
+// import { Details, Summary } from '@/components/common/Details';
 
 type SectionProps = SectionComponent;
 

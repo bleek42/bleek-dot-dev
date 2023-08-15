@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-=======
-import { useId } from 'react';
-
-import { Main } from '@/components/common/Main';
-import PageLayout from '@/components/common/PageLayout';
->>>>>>> origin/main
 import Section from '@/components/Section';
 
 const contactProps = {};

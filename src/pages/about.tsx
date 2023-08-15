@@ -1,19 +1,10 @@
 import Image from 'next/image';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-<<<<<<< HEAD
 import { type AssetWhereUniqueQuery } from '@/graphql/queries';
 import { assetWhereQuery } from '@/graphql/client';
 import Section from '@/components/Section';
-import { Icon } from '@/components/common';
-=======
-// import Meta from '@/components/common/Meta';
-import Header from '@/components/Header';
-import Section from '@/components/Section';
-import Footer from '@/components/Footer';
-import { Main } from '@/components/common/Main';
-import PageLayout from '@/components/common/PageLayout';
->>>>>>> origin/main
+
 
 const sectionContent = [
 	'I graduated from Thinkfuls Full-Stack Engineering Immersion course in the Summer of 2020 & found an exciting new passion in programming. My continued efforts brought me my first break as a Junior Developer with a data tech start up called ZettaLabs.',

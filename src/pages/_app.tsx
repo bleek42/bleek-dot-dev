@@ -1,16 +1,8 @@
-// import { type NextComponentType, type NextPageContext, type NextPage } from 'next';
-
-import {
-	type AppProps,
-	type AppInitialProps,
-	type AppContext,
-	type AppType,
-} from 'next/app';
+import { type AppProps } from 'next/app';
 
 import { type MetaComponent } from '@/interfaces/Component';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle, theme } from '@/components/common/Theme';
-<<<<<<< HEAD
 import PageLayout from './lib/PageLayout';
 import LandingPage from './index';
 import Meta from '@/components/Meta';
@@ -26,8 +18,6 @@ const defaultMetaProps: MetaComponent = {
 	icons: '\ue553',
 	locale: 'en_US',
 };
-=======
->>>>>>> origin/main
 
 function App({ Component, pageProps }: AppProps) {
 	console.log(Component.displayName);

@@ -1,14 +1,6 @@
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
-<<<<<<< HEAD
 import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon, NavTxt } from './Navbar';
-import { LgTxt } from '@/components/common';
-=======
-import type { NextLinkProps } from '@/props/navbar.props';
-
-import { NavBar, Toggle, ToggleBtn, NavList, NavItem, NextLink, Icon } from './Navbar';
-import { LgTxt } from '@/components/common/Text';
->>>>>>> origin/main
 
 export default function Navbar() {
 	const [toggle, setToggle] = useState<boolean>(false);
@@ -22,18 +14,17 @@ export default function Navbar() {
 	return (
 		<NavBar toggle={toggle}>
 			<NavTxt>Menu</NavTxt>
-				<ToggleBtn
-					toggle={toggle}
-					onClick={toggleMenu}
-					// onMouseOver={toggleMenu}
-					/*onTouchStart={toggleMenu}*/
-				>
-					{'\uef65'}
-				</ToggleBtn>
+			<ToggleBtn
+				toggle={toggle}
+				onClick={toggleMenu}
+				onMouseOver={setTimeout(() => toggleMenu, 450)}
+				/*onTouchStart={toggleMenu}*/
+			>
+				{'\uef65'}
+			</ToggleBtn>
 			{toggle && (
-				<>
-				{/* onMouseLeave={toggleMenu} */}
-					<NavList toggle={toggle}>
+				<Fragment>
+					<NavList toggle={toggle} onMouseLeave={toggleMenu}>
 						<NavItem>
 							<NavIcon>{'\ue617 '}</NavIcon>
 							<NextLink href="/home">Home</NextLink>
@@ -57,7 +48,7 @@ export default function Navbar() {
 							</NavIcon>
 						</NavItem>
 					</NavList>
-				</>
+				</Fragment>
 			)}
 		</NavBar>
 	);

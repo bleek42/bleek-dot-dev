@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import styled, {
   type Fonts,
   type AnyStyledComponent,
@@ -112,11 +113,61 @@ export const SmTxt = styled.p<TextProps & TextOptions>`
       ? `${props.theme.palette.tertiary[props.$shadow]} 2px 1px 2px`
       : 'initial'};
   text-align: ${(props) => props.$align ?? 'initial'};
+=======
+import type {
+  AnyStyledComponent,
+  Colors,
+  DefaultTheme,
+  StyledComponentProps,
+} from 'styled-components';
+
+import styled from 'styled-components';
+
+interface TextOptions {
+  color: keyof Colors | null;
+  shadow?: keyof Colors | null;
+  font?: string | null;
+}
+
+type TextProps = StyledComponentProps<
+  AnyStyledComponent | keyof JSX.IntrinsicElements,
+  DefaultTheme,
+  TextOptions,
+  string | number | symbol
+> &
+  TextOptions;
+
+export const SmTxt = styled.p<TextProps>`
+  text-align: center;
+  font-weight: 450;
+  font-family: ${(props) =>
+    props?.font &&
+    props.theme.fonts.find(([font]) =>
+      props.font === font ? `${font}` : 'Verdana, Geneva, Tahoma, sans-serif'
+    )};
+  color: ${(props) =>
+    props?.color && props.color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.color]
+      : props?.color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.color]
+      : props?.color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.color]
+      : props.theme.palette.common.black};
+  text-shadow: ${(props) =>
+    props?.shadow && props?.shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props?.color]} 3px 1px 3px`
+      : props.color in props.theme.palette.secondary
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 3px 1px 3px`
+      : props.color in props.theme.palette.tertiary
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 3px 1px 3px`
+      : 'none'};
+>>>>>>> origin/main
   /* text-decoration: underline;
   text-decoration-color: rgb(0, 0, 0);
   text-decoration-style: double; */
 `;
 
+<<<<<<< HEAD
 // 'Verdana, Geneva, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont'
 
 export const MdTxt = styled.h2.attrs<TextProps>((props) => ({
@@ -165,11 +216,69 @@ export const LgTxt = styled.h1.attrs<TextProps>((props) => ({
       : props.$color in props.theme.palette.tertiary
       ? `${props.theme.palette.tertiary[props.$shadow]} 1px 1.5px .5px`
       : 'initial'};
+=======
+export const MdTxt = styled.h5<TextProps>`
+  text-align: center;
+  font-weight: 350;
+  font-family: ${(props) =>
+    props?.font &&
+    props.theme.fonts.find(([font]) =>
+      props.font === font
+        ? `${font}`
+        : '"Arial Narrow Bold", Impact, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif'
+    )};
+  color: ${(props) =>
+    props?.color in props.theme.palette.primary
+      ? props.theme.palette.primary[props?.color]
+      : props.color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
+      : props.color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
+      : props.theme.palette.common.white};
+  text-shadow: ${(props) =>
+    props?.shadow && props?.shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props?.shadow]} 2px 1px 2px`
+      : props.color in props.theme.palette.secondary
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
+      : props.color in props.theme.palette.tertiary
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
+      : 'none'};
+  text-decoration: underline;
+  text-decoration-color: ${({ theme }) => theme.palette.secondary.steel};
+  text-decoration-style: solid;
+`;
+
+export const LgTxt = styled.h2<TextProps>`
+  text-align: center;
+  font-weight: 450;
+  font-family: ${(props) =>
+    props?.font &&
+    props.theme.fonts.find(([font]) =>
+      props.font === font ? `${font}` : '"Times New Roman", Times, Haettenschweiler, serif'
+    )};
+  color: ${(props) =>
+    props?.color in props.theme.palette.primary
+      ? props.theme.palette.primary[props?.color]
+      : props.color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
+      : props.color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.shadow as keyof Colors]
+      : props.theme.palette.common.white};
+  text-shadow: ${(props) =>
+    props?.shadow && props.shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props.shadow]} 2px 1px 2px`
+      : props.color in props.theme.palette.secondary
+      ? `${props.theme.palette.secondary[props.shadow as keyof Colors]} 2px 1px 2px`
+      : props.color in props.theme.palette.tertiary
+      ? `${props.theme.palette.tertiary[props.shadow as keyof Colors]} 2px 1px 2px`
+      : 'none'};
+>>>>>>> origin/main
   text-decoration: underline;
   text-decoration-color: ${({ theme }) => theme.palette.secondary.green};
   text-decoration-style: solid;
 `;
 
+<<<<<<< HEAD
 export const Icon = styled.em.attrs<TextProps>((props) => ({
   $font: props.font || props.theme.fonts.at(2),
   $colorPalette: props.colorPalette || 'common',
@@ -198,6 +307,8 @@ export const Icon = styled.em.attrs<TextProps>((props) => ({
 `;
 
 
+=======
+>>>>>>> origin/main
 // export const StlLg = styled.h2`
 //   color: rgb(66, 66, 66);
 //   font-family: Birdman;

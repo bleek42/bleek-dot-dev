@@ -10,7 +10,13 @@ import Document, {
 
 import { ServerStyleSheet } from 'styled-components';
 
+<<<<<<< HEAD
 //@ts-expect-error (known issue with DocumentContext)
+=======
+// import Head from 'next/head';
+import { render } from 'react-dom';
+
+>>>>>>> origin/main
 export default class StyledDocument extends Document {
 	static async getInitialProps(ctx: DocumentContext) {
 		const sheet = new ServerStyleSheet();
@@ -38,6 +44,7 @@ export default class StyledDocument extends Document {
 					</>
 				),
 			};
+<<<<<<< HEAD
 			// eslint-disable-next-line prettier/prettier
 		} catch (err: unknown) {
 			if (err) throw err;
@@ -79,17 +86,41 @@ export default class StyledDocument extends Document {
 				<body>
 					<Main />
 					<NextScript />
+=======
+		}
+
+		// eslint-disable-next-line prettier/prettier
+		catch (err) {
+			if (err) throw err
+		}
+
+		// eslint-disable-next-line prettier/prettier
+		finally {
+			sheet.seal();
+		}
+	}
+	render() {
+		return (
+			<Html lang="en">
+				<Head />
+				<body>
+					{' '}
+					<Main /> <NextScript />{' '}
+>>>>>>> origin/main
 				</body>
 			</Html>
 		);
 	}
 }
 
+<<<<<<< HEAD
 //   @font-face{
 // 	${Birdman.style.fontFamily}
 // 	${Birdman.style.fontStyle}
 // 	${Birdman.style.fontWeight}
 //   }
+=======
+>>>>>>> origin/main
 
 //   @font-face{
 // 	${Oxanium.style.fontFamily}

@@ -30,9 +30,17 @@
 			"@/components/*": [
 				"src/components/*"
 			],
+<<<<<<< HEAD
 
 			"@/interfaces/*": [
 				"src/interfaces/*"
+=======
+			"@/layouts": [
+				"src/appdir/layouts/*"
+			],
+			"@/lib/*": [
+				"src/appdir/lib/*"
+>>>>>>> origin/main
 			],
 			"@/graphql/*": [
 				"src/graphql/*"
@@ -46,10 +54,16 @@
 			"@/images/*": [
 				"public/images/*"
 			],
+<<<<<<< HEAD
 
 			"@/lib/*": [
 				"src/pages/lib/*"
 			],
+=======
+			"@/fonts/*": [
+				"public/fonts/*"
+			]
+>>>>>>> origin/main
 			// "@/app/*": [
 			// 	"src/app/*"
 			// ],
@@ -61,9 +75,15 @@
 			{
 				"name": "@styled/typescript-styled-plugin",
 				"tags": [
+<<<<<<< HEAD
 					"css",
 					"styled",
 					"keyfranes"
+=======
+					"styled",
+					"css",
+					"sty"
+>>>>>>> origin/main
 				]
 			}
 		]

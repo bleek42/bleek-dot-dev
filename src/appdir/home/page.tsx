@@ -1,7 +1,11 @@
 // ? custom styled components
 import Header from '@/components/Header';
 import Navbar from '@/components/Navbar';
+<<<<<<< HEAD
 import { MainPage } from '@/components/common/MainPage';
+=======
+import { Main } from '@/components/common/Main';
+>>>>>>> origin/main
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 

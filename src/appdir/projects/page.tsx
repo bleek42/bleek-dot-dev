@@ -2,7 +2,11 @@ import { GraphQLClient, gql } from 'graphql-request';
 import { ExecutionArgs, ExecutionResult, GraphQLError } from 'graphql';
 
 import Header from '@/components/Header';
+<<<<<<< HEAD
 import { MainPage } from '@/components/common/MainPage';
+=======
+import { Main } from '@/components/common/Main';
+>>>>>>> origin/main
 import Section from '@/components/Section';
 import Footer from '@/components/Footer';
 // import { ProjectWhereUniqueDocument } from '../../types/hygraph.types';

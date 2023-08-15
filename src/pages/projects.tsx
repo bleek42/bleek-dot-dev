@@ -1,9 +1,20 @@
+<<<<<<< HEAD
 import { Fragment, type Key } from 'react';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
 import Section from '@/components/Section';
 import { type AllProjectsWhereQuery } from '@/graphql/queries';
 import { allProjectsQuery } from '@/graphql/client';
+=======
+import { useId } from 'react';
+
+import { Main } from '@/components/common/Main';
+import Header from '@/components/Header';
+import Section from '@/components/Section';
+import Footer from '@/components/Footer';
+import Meta from '@/components/common/Meta';
+import PageLayout from '@/components/common/PageLayout';
+>>>>>>> origin/main
 
 export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	console.table({ ...props });

@@ -1,20 +1,9 @@
-<<<<<<< HEAD
 import { Fragment, type Key } from 'react';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-import Section from '@/components/Section';
+import PageSection from '@/components/PageSection';
 import { type AllProjectsWhereQuery } from '@/graphql/queries';
 import { allProjectsQuery } from '@/graphql/client';
-=======
-import { useId } from 'react';
-
-import { Main } from '@/components/common/Main';
-import Header from '@/components/Header';
-import Section from '@/components/Section';
-import Footer from '@/components/Footer';
-import Meta from '@/components/common/Meta';
-import PageLayout from '@/components/common/PageLayout';
->>>>>>> origin/main
 
 export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	console.table({ ...props });
@@ -22,7 +11,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 	return (
 		<Fragment>
 			{props.result.projects.length <= 0 && (
-				<Section
+				<PageSection
 					id={'projects-loading'}
 					name={'loading...'}
 					description={'please wait...'}
@@ -33,7 +22,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 				props.result.projects.length >= 1 &&
 				props.result.projects.map(
 					(item: AllProjectsWhereQuery['projects'][number]) => (
-						<Section
+						<PageSection
 							key={item.id as Key}
 							id={item.title}
 							name={item.title}
@@ -45,7 +34,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 					),
 				)}
 			{!props.result.projects && (
-				<Section
+				<PageSection
 					key={'err-projects'}
 					id={'err-projects'}
 					name={'err-projects'}
@@ -79,7 +68,7 @@ export const getStaticProps: GetStaticProps<{
 // <Footer id={`projects-footer-${pageId}`} name="Projects" icon={null} />
 // <Header id={`projects-${pageId}`} name="About" content="" icon={null} />
 // {
-// <Section
+// <PageSection
 // 	id="projects-sect-2"
 // 	name="projects_sect_2"
 // 	content="My second web application is a Bookmarks application, that also
@@ -91,7 +80,7 @@ export const getStaticProps: GetStaticProps<{
 // 		access them from any device, as any bookmarks app should!"
 // 	icon={null}
 // />
-// <Section
+// <PageSection
 // 	id="projects-sect-3"
 // 	name="projects_sect_3"
 // 	content="Furthering my skills to full-stack programming with more modern
@@ -108,7 +97,7 @@ export const getStaticProps: GetStaticProps<{
 // 		relative to that state!"
 // 	icon={null}
 // />
-// <Section
+// <PageSection
 // 	id="projects-sect-4"
 // 	name="projects_sect_4"
 // 	content="My next full-stack effort using React and Node explores the learning
@@ -122,7 +111,7 @@ export const getStaticProps: GetStaticProps<{
 // 		this was a joint effort between a fellow student and I."
 // 	icon={null}
 // />
-// <Section
+// <PageSection
 // 	id="projects-sect-5"
 // 	name="projects_sect_5"
 // 	content="My latest project is a travel planner application with a React & SASS

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { AssetWhereUniqueQuery } from '@/graphql/queries';
+import { AssetWhereUniqueQuery, ProjectWhereUniqueQuery } from '@/graphql/queries';
 import { type Metadata } from 'next';
 import {
   TemplateString,
@@ -15,8 +15,8 @@ export interface Component {
   name?: string | unknown;
   title?: string | string[] | unknown;
   description?: string | string[] | unknown;
-  icon?: string | unknown;
-  image?:
+  icons?: string | string[];
+  images?:
     | AssetWhereUniqueQuery['asset']
     | AssetWhereUniqueQuery['asset'][]
     | string
@@ -78,8 +78,17 @@ export interface DetailsComponent extends Component {
 export interface SectionComponent extends Component {
   name: string;
   description: string | string[];
-  id?: Key | null;
-  content?: string | string[] | null;
+  content?: string | string[];
+  title?: string | string[] | unknown;
+  icons?: string | string[];
+  images?:
+    | AssetWhereUniqueQuery['asset']
+    | AssetWhereUniqueQuery['asset'][]
+    | string
+    | URL
+    | Array<URL | string>;
+  locale?: string | 'en' | 'en_US' | 'es_MX';
+  children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
 export interface ListComponent extends Component {}

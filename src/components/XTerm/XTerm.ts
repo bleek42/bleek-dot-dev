@@ -8,10 +8,9 @@ export type XTermProps = StyledComponentProps<
   DefaultTheme,
   object,
   string | number | symbol
-> &
-  XTermComponent;
+>;
 
-export const XTForm = styled.form.attrs((props: XTermProps) => ({
+export const XTForm = styled.form.attrs((props: XTermProps & XTermComponent) => ({
   id: props.id || 'xt-form',
   name: props.name || 'xt-form',
 }))<XTermProps>`
@@ -22,7 +21,7 @@ export const XTForm = styled.form.attrs((props: XTermProps) => ({
   background-color: ${(props) => props.theme.palette.common.black};
 `;
 
-export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
+export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) => ({
   htmlFor: props.htmlFor || 'xt-txt-inputs',
   form: props.form || 'xt-form-id',
   id: props.id || undefined,
@@ -59,10 +58,10 @@ export const XTLabel = styled.label.attrs<XTermProps>((props) => ({
   }
 `;
 
-export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
+export const XTBtns = styled.label.attrs<XTermProps & XTermComponent>((props) => ({
   htmlFor: props.htmlFor || 'xt-btns',
   form: props.form || 'xt-form',
-}))<XTermProps>`
+}))<XTermProps & XTermComponent>`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
@@ -88,7 +87,7 @@ export const XTBtns = styled.label.attrs<XTermProps>((props) => ({
 export const XTxtArea = styled.textarea.attrs((props) => ({
   name: props.name || 'xt-txt',
   placeholder: props.placeholder || '/usr/bin/bash',
-}))<XTermProps>`
+}))<XTermProps & XTermComponent>`
   resize: none;
   overflow: scroll;
   flex: 1 1 80vh;
@@ -123,7 +122,7 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   }
 `;
 
-export const XTInput = styled.input.attrs<XTermProps>((props) => ({
+export const XTInput = styled.input.attrs<XTermProps & XTermComponent>((props) => ({
   htmlFor: props.htmlFor || 'xt-textarea',
   form: props.form || 'xt-form',
   id: props.id || 'xt-prompt',
@@ -149,9 +148,7 @@ export const XTInput = styled.input.attrs<XTermProps>((props) => ({
   }
 `;
 
-export const XTCode = styled.code.attrs((props) => ({
-  contentEditable: props.contentEditable || 'false',
-}))<XTermProps>`
+export const XTCode = styled.code<XTermProps & XTermComponent>`
   display: inline-flex;
   flex-flow: row nowrap;
   justify-content: stretch;

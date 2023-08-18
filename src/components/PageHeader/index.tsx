@@ -2,25 +2,27 @@ import { type DefaultTheme, type StyledComponentProps } from 'styled-components'
 
 import { type HeaderComponent } from '@/interfaces/Component';
 import Navbar from '@/components/Navbar';
-import { Header, HeaderLgTxt, HeaderMdTxt } from './Header';
+import { Header } from './Header';
+import { LgTxt, MdTxt } from '@/components/common';
 
 type HeaderProps = StyledComponentProps<
 	'header',
 	DefaultTheme,
 	object,
 	string | number | symbol
-> &
-	HeaderComponent;
+>;
 
-export default function PageHeader(props: HeaderProps) {
+export default function PageHeader(props: HeaderProps & HeaderComponent) {
 	console.log({ 'Header component': { props } });
 
 	return (
 		<Header>
-			<HeaderLgTxt color="green">Brandon Leek</HeaderLgTxt>
-			<HeaderMdTxt font="Oxanium" color="neon" shadow="steel">
+			<LgTxt $flex="1 0 auto" $colorPalette="primary" $color="green">
+				Brandon Leek
+			</LgTxt>
+			<MdTxt $flex="1 0 auto" $colorPalette="primary" $color="neon" $shadow="steel">
 				bleekDotDev
-			</HeaderMdTxt>
+			</MdTxt>
 			{/* <MdTxt font="MonocraftNF" color="red" shadow="steel">
 				{props.title ?? 'untitled'}
 			</MdTxt> */}

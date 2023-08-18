@@ -14,11 +14,10 @@ export type NavBarProps = StyledComponentProps<
   DefaultTheme,
   object,
   string | number | symbol
-> &
-  NavbarComponent;
+>;
 
 export type NextLinkProps = StyledComponentProps<
-  typeof Link | AnyStyledComponent,
+  typeof Link | 'a' | AnyStyledComponent,
   DefaultTheme,
   LinkProps,
   string | number | symbol
@@ -37,15 +36,17 @@ const toggleKeyframes = keyframes`
 `;
 
 // eslint-disable-next-line prettier/prettier
-export const NavBar = styled.nav<NavBarProps & NavbarComponent>((props) => `
-  border: 1px solid rgb(0,0,0);
-  border-radius: 2% / 2%;
+export const NavBar = styled.nav<NavBarProps & NavbarComponent>(
+  (props) => `
+  border: 1px solid ${props.theme.palette.secondary.black};
+  border-radius: ${props.theme.defaultRadius};
   background-color: ${props.theme.palette.secondary.gray};
-  min-width: 24vw;
+  max-width: 38vw;
+  min-width: 36vw;
   height: 12vh;
   min-height: 10vh;
   position: relative;
-  /* max-width: 24vw; */
+  flex: 3 1 auto;
   /* animation: slide-open 0.6s forwards; */
 
   @media (max-width: ${props.theme.breakpoints.smallTab}) {
@@ -71,37 +72,46 @@ export const NavBar = styled.nav<NavBarProps & NavbarComponent>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavList = styled.ul<NavBarProps & NavbarComponent>((props) => `
+export const NavList = styled.ul<NavBarProps & NavbarComponent>(
+  (props) => `
   border: .5px solid ${props.theme.palette.common.black};
   list-style: none;
-  /* height: 8vh; */
   display: contents;
   inset: 82% -15% auto;
   position: absolute;
   z-index: 1;
-  /* background-color: ${props.theme.palette.primary.steel} ; */
+    /* visibility: collapse; */
+
+  /* &:hover { */
+    /* visibility: visible; */
+  /* } */
   /* animation: slide-open 0.6s forwards; */
 
   @media (max-width: ${props.theme.breakpoints.smallTab}) {
     inset: 12% 58% auto;
   }
 
-    @media (max-width: ${props.theme.breakpoints.laptop}) {
+    /* @media (max-width: ${props.theme.breakpoints.laptop}) {
 
-    }
+    } */
 
 
   `,
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NavItem = styled.li<NavBarProps & NavbarComponent>((props) => `
+export const NavItem = styled.li<NavBarProps & NavbarComponent>(
+  (props) => `
   list-style: none;
   letter-spacing: .5px;
   border: .8px solid ${props.theme.palette.common.black};
   background-color: ${props.theme.palette.primary.teal};
   padding: 4px 4px;
-  margin: .5px;
+  height: 8vh;
+  min-width: 30vw;
+  max-width: 37vw;
+  position: relative;
+  z-index: 1;
 
   &:hover {
     color: ${props.theme.palette.primary.cyan};
@@ -113,22 +123,22 @@ export const NavItem = styled.li<NavBarProps & NavbarComponent>((props) => `
 );
 
 // eslint-disable-next-line prettier/prettier
-export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>((props) => `
-  
+export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>(
+  (props) => `
   width: stretch;
-  min-height: 4vh;
-  display: block;
-  /* display: inline; */
+  height: 5vh;
+  display: inline-block;
   padding: 4px;
-  color: ${props.theme.palette.secondary.cyan};
+  margin: 2px 3px 0 3px;
+  color: ${props.theme.palette.secondary.blue};
+  border: .4px solid ${props.theme.palette.primary.cyan};
   background-color: ${props.theme.palette.secondary.black};
-  border: .8px solid ${props.theme.palette.primary.cyan};
   border-radius: 2% / 2%;
   font-family: ${props.theme.fonts.at(2)};
-  text-shadow: ${props.theme.palette.secondary.steel} 3px 2px 3px;
+  text-shadow: ${props.theme.palette.secondary.steel} 1.5px 1px .5px;
   font-size: 24px;
-  letter-spacing: .8px;
-  transition: filter 360ms ease-in-out, color 420ms linear;
+  letter-spacing: .4px;
+  transition: filter 360ms ease-in, color 420ms linear;
 
   /* &:hover {
     color: ${props.theme.palette.primary.neon};
@@ -136,21 +146,22 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>((props) =>
   } */
 
   &:hover {
-    filter: brightness(2);
-    color: ${props.theme.palette.secondary.blue};
+    filter: brightness(1.8);
+    color: ${props.theme.palette.primary.cyan};
   }
 
 `,
 );
 
 // eslint-disable-next-line prettier/prettier
-export const NextLink = styled(Link)<NextLinkProps>((props) => `
+export const NextLink = styled(Link)<NextLinkProps>(
+  (props) => `
   display: inline;
-  font-size: 24px;
+  font-size: 26px;
   color: ${props.theme.palette.secondary.cyan};
   font-family: ${props.theme.fonts.at(1)};
   text-shadow: ${props.theme.palette.secondary.steel} 1px 1px .5px;
-  text-align: end;
+  text-align: right;
 
   /* &:visited {
     filter: brightness(0.9);
@@ -165,19 +176,19 @@ export const NavTxt = styled(MdTxt)`
 
 // eslint-disable-next-line prettier/prettier
 export const NavIcon = styled(Icon)`
-  display: inline;
+  display: contents;
   color: ${({ theme }) => theme.palette.primary.green};
   font-size: 24px;
   font-family: ${({ theme }) => theme.fonts.at(2)};
-  text-shadow: ${(props) => props.theme.palette.secondary.steel} 1px 1px .8px;
-  transition: filter 360ms ease-in-out, color 420ms linear;
-  /* padding-right: 8px; */
+  text-shadow: ${({ theme }) => theme.palette.secondary.steel} 1.2px 0.9px 0.8px;
+  transition:
+    filter 360ms ease-in-out,
+    color 420ms linear;
 
   &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
     filter: brightnness(1.4);
   }
-  
 `;
 
 //   position: ${(props) => (props.toggle ? 'absolute' : 'fixed')};

@@ -5,7 +5,7 @@
 		"es2023": true
 	},
 	"globals": {
-		"React": "readonly",
+		"react": "readonly",
 		"jest": "readonly"
 	},
 	"parser": "@typescript-eslint/parser",
@@ -16,7 +16,7 @@
 			"jsx": true
 		},
 		"project": "tsconfig.json",
-		"tsconfigRootDir": ".",
+		"tsconfigRootDir": "./",
 		"settings": {
 			"react": {
 				"version": "detect"

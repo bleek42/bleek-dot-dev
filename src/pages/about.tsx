@@ -3,8 +3,7 @@ import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
 import { type AssetWhereUniqueQuery } from '@/graphql/queries';
 import { assetWhereQuery } from '@/graphql/client';
-import Section from '@/components/Section';
-
+import PageSection from '@/components/PageSection';
 
 const sectionContent = [
 	'I graduated from Thinkfuls Full-Stack Engineering Immersion course in the Summer of 2020 & found an exciting new passion in programming. My continued efforts brought me my first break as a Junior Developer with a data tech start up called ZettaLabs.',
@@ -23,7 +22,7 @@ export default function About(props: InferGetStaticPropsType<typeof getStaticPro
 	// 	height={props.result.asset?.height || 40}
 	// />
 	return (
-		<Section
+		<PageSection
 			name="about"
 			description={'about section...'}
 			content={sectionContent.join(' ')}

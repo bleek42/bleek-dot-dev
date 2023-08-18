@@ -46,7 +46,7 @@ declare module 'styled-components' {
     readonly defaultBorder: string;
     readonly defaultRadius: string;
     readonly breakpoints: Breakpoints;
-    readonly fonts: ReadonlyArray<Fonts>;
+    readonly fonts: Array<Fonts>;
 
     palette: {
       common: CommonColors;

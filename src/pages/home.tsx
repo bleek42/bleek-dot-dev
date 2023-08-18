@@ -1,10 +1,10 @@
-import type { NextPage } from 'next';
+import { type NextPage } from 'next';
 
-import Section from '@/components/Section';
+import PageSection from '@/components/PageSection';
 
 export default function Home() {
 	return (
-		<Section
+		<PageSection
 			id="home-section"
 			name="Home"
 			description="bleek.dev/home"

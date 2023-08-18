@@ -78,7 +78,7 @@
 		"node_modules/",
 		"build/",
 		".next/",
-		"src/appdir/"
+		"src/appdir/**/*.{ts,tsx}"
 	],
 
 	// // "ts-node": {

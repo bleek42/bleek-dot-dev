@@ -25,9 +25,8 @@
 		"deps:rm": "rm -rf node_modules/"
 	},
 	"dependencies": {
-		"dotenv": "16.3.1",
-		"graphql": "16.7.1",
-		"graphql-request": "6.1.0",
+		"graphql": "^16.7.1",
+		"graphql-request": "^6.1.0",
 		"graphql-tag": "2.12.6",
 		"next": "^13.4.12",
 		"react": "^18.2.0",
@@ -36,16 +35,21 @@
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "^4.0.1",
-		"@graphql-codegen/client-preset": "^4.0.0",
-		"@graphql-codegen/client-preset-swc-plugin": "0.2.0",
 		"@graphql-codegen/typescript": "^4.0.0",
 		"@graphql-codegen/typescript-graphql-request": "5.0.0",
 		"@graphql-codegen/typescript-operations": "^4.0.0",
 		"@graphql-eslint/eslint-plugin": "3.19.1",
 		"@graphql-typed-document-node/core": "3.2.0",
-		"@types/styled-components": "^5.1.26",
+		"@testing-library/jest-dom": "6.0.0",
+		"@testing-library/react": "14.0.0",
+		"@testing-library/user-event": "14.4.3",
+		"@types/node": "20.5.0",
+		"@types/react": "18.2.20",
+		"@types/react-dom": "18.2.7",
+		"@types/styled-components": "~5.1.26",
 		"@typescript-eslint/eslint-plugin": "^5.59.9",
 		"@typescript-eslint/parser": "^5.59.9",
+		"dotenv": "16.3.1",
 		"eslint-config-prettier": "8.8.0",
 		"eslint-import-resolver-typescript": "^3.5.5",
 		"eslint-plugin-i": "2.27.5",
@@ -58,13 +62,14 @@
 		"jest-environment-jsdom": "29.6.2",
 		"jest-styled-components": "7.1.1",
 		"prettier": "3.0.0",
-		"ts-node": "^10.9.1",
-		"typescript": "^5.1.6"
+		"ts-node": "10.9.1",
+		"typescript": "5.1.6"
 	},
 	"optionalDependencies": {
+		"@graphql-codegen/client-preset": "^4.0.0",
+		"@graphql-codegen/client-preset-swc-plugin": "0.2.0",
 		"@graphql-codegen/introspection": "4.0.0",
 		"@graphql-codegen/schema-ast": "4.0.0",
-		"@graphql-codegen/typed-document-node": "^5.0.1",
-		"@graphql-typed-document-node/core": "3.2.0"
+		"@graphql-codegen/typed-document-node": "^5.0.1"
 	}
 }

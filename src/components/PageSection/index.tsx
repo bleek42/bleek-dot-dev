@@ -1,26 +1,24 @@
-import { useId, type Key } from 'react';
+import { useId, type Key, Fragment } from 'react';
 import Image from 'next/image';
 import bleekImg from '/public/images/brandon-mask.png';
 
 import { type SectionComponent } from '@/interfaces/Component';
-import { Section as Wrapper, Article } from './Section';
-import { Icon, LgTxt, SmTxt } from '@/components/common';
+import { type SectionProps, Section, Article, ContactCard } from './Section';
+import { Icon, LgTxt, MdTxt, SmTxt } from '@/components/common';
 // import { Details, Summary } from '@/components/common/Details';
 
-type SectionProps = SectionComponent;
-
-export default function Section(props: SectionProps) {
+export default function PageSection(props: SectionProps & SectionComponent) {
 	console.log({ 'section-component': props });
 	const sectionId = useId();
 	return (
-		<Wrapper
-			key={`section-${props.id ?? sectionId}`}
-			id={`section-${props.id ?? sectionId}`}
+		<Section
+			key={`section-${props.id ? props.id + sectionId : sectionId}`}
+			id={`section-${props.id ? props.id + sectionId : sectionId}`}
 		>
-			<LgTxt>
-				{props.name ?? 'No Section Name...'}
-				<Icon>{props.icon ?? '\ue667'}</Icon>
-			</LgTxt>
+			<LgTxt>{props.name}</LgTxt>
+			<Icon $colorPalete="tertiary" $color="cyan">
+				{props.icon ?? '\ue667'}
+			</Icon>
 			{!props.image && props.name === 'about' && (
 				<Image
 					src={bleekImg}
@@ -30,25 +28,43 @@ export default function Section(props: SectionProps) {
 					priority
 				/>
 			)}
-			{props.content && (
+			{props.name === 'contact' && props.content && props.icons && (
 				<Article
-					id={`article-${props.id ?? sectionId}`}
-					key={`article-${props.id + sectionId ?? sectionId}`}
+					id={`article-contact-${props.id ? props.id + sectionId : sectionId}`}
 				>
-					<SmTxt
-						$font={'MonocraftNF'}
-						$colorPalette={'tertiary'}
-						$color={'drab'}
-					>
-						{props.content}
-					</SmTxt>
+					<MdTxt>Contact</MdTxt>
+					<ContactCard>
+						<Icon>{props.icons.at(0)} Email:</Icon>
+						<SmTxt $colorPalette="secondary" $color="blue">
+							{props.content.at(0)}
+						</SmTxt>
+						<Icon>{props.icons.at(1)} LinkedIn:</Icon>
+						<SmTxt>{props.content.at(1)}</SmTxt>
+						<Icon>{props.icons.at(2)} GitHub:</Icon>
+						<SmTxt>{props.content.at(2)}</SmTxt>
+					</ContactCard>
 				</Article>
 			)}
-			{props.content &&
+			{typeof props.content === 'string' && (
+				<Article
+					id={`article-${props.id ? props.id + sectionId : sectionId}`}
+					key={`article-${props.id ? props.id + sectionId : sectionId}`}
+				>
+					<SmTxt>{props.content}</SmTxt>
+				</Article>
+			)}
+			{props.name !== 'contact' &&
 				Array.isArray(props.content) &&
 				props.content.length >= 1 &&
 				props.content.map((articleContent: string, idx: Key) => (
-					<Article id={`article-idx-${idx}`} key={`article-idx-${idx}`}>
+					<Article
+						id={`article-num-${idx}-${
+							props.id ? props.id + sectionId : sectionId
+						}`}
+						key={`article-num-${idx}-${
+							props.id ? props.id + sectionId : sectionId
+						}`}
+					>
 						<SmTxt
 							$font={'MonocraftNF'}
 							$colorPalette={'tertiary'}
@@ -59,32 +75,14 @@ export default function Section(props: SectionProps) {
 					</Article>
 				))}
 
-			{/* {props.image && Array.isArray(props.image) && props.image.length >= 1 && (
-				<>
-					{props.image.map(({ asset }: AssetWhereUniqueQuery, idx) => (
-						<Details key={`asset-${asset.id || idx}`}>
-							<Summary>
-								<MdTxt>Details Component: Summary BlkTxt</MdTxt>
-								<Details>
-									<Image
-										src={`${asset?.url}/${asset?.fileName}`}
-										alt={`${asset?.fileName}`}
-										width={200}
-										height={400}
-									/>
-								</Details>
-							</Summary>
-						</Details>
-					))}
-				</>
-			)} */}
-
-			{!props.content && (
-				<Article>
-					<SmTxt>This section has no content to show...</SmTxt>
-				</Article>
-			)}
-		</Wrapper>
+			{/* <Article id="err-article-no-content">
+						<SmTxt id="err-article-txt">
+							No props passed: section/article component has nothing to
+							display...
+						</SmTxt>
+					</Article>
+				 */}
+		</Section>
 	);
 }
 // <section id={`sect-${id}` || 'sect-0'}>
@@ -102,8 +100,10 @@ export default function Section(props: SectionProps) {
 // 		</p>
 // 	</article>
 // </section>
+// <Icon>{props.content?.email?.icon}</Icon>
+// <SmTxt id="">{props.content.email.text}</SmTxt>
 // import "./About.scss";
-// import { Wrapper } from './Section';
+// import { Section } from './Section';
 
 // export default function About() {
 // 	return (

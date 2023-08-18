@@ -1,38 +1,47 @@
-import Section from '@/components/Section';
+import PageSection from '@/components/PageSection';
+import { SectionComponent } from '@/interfaces/Component';
 
-const contactProps = {};
-
+export type ContactRecord = Record<
+	'email' | 'linkedin' | 'github' | string | symbol,
+	{ 'icon': string; 'text': string }
+>;
 export default function Contact() {
 	// const { profile, loading, error, msg } = useRequest()
 
-	const linkedInIcon = ' \uf08c ';
-	const commentIcon = ' \udb80\udd7b ';
-	const githubIcon = ' \uf092 ';
-
 	return (
-		<>
-			<Section
+		<PageSection
+			name="contact"
+			description="contact section"
+			content={[
+				'Email: brandonleek42@yahoo.com',
+				'LinkedIn: https://linkedin.com/in/brandonl42',
+				'GitHub: https://github.com/bleek42',
+			]}
+			icons={[' \uf092 ', ' \udb80\udd7b ', ' \uf08c ']}
+		/>
+	);
+}
+
+{
+	/* <PageSection
 				name="Email"
 				description={'contact section description'}
 				content={'contact section content'}
 				icon={commentIcon}
 			/>
-			<Section
+			<PageSection
 				name="Github"
 				description={'github section description'}
 				content={'github section content'}
 				icon={githubIcon}
 			/>
-			<Section
+			<PageSection
 				name="Linkedin"
 				description={'linkedin section description'}
 				content={'linkedin section content'}
 				icon={linkedInIcon}
-			/>
-		</>
-	);
+			/> */
 }
-
 /* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */
 
 /* {loading && (

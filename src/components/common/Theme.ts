@@ -155,7 +155,7 @@ export const borderPulse = keyframes`
     border: .3px solid rgb(0, 0, 0);
     margin: .5px;
     box-shadow:  1.2px 1.2px .8px rgba(0, 229, 255, 0.664);
-    /* filter: drop-shadow(2px 4px 2px rgb(125, 5, 45)) invert(75%); */
+
   }
 
   50% {
@@ -169,8 +169,7 @@ export const borderPulse = keyframes`
     border: .9px solid rgb(40, 220, 30);
     margin: 1.8px;
     box-shadow:  1.2px 1.5px 1px rgba(0, 229, 255, 0.664);
-    /* box-shadow:;
-    content: '\n \n Hey there, I'm Brandon & I'm a Web Dev! \n \n \n Click/touch anywhere to continue.'; */
+
   }
 
   /* 20% {

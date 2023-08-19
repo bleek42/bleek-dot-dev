@@ -62,6 +62,7 @@ export default function Navbar() {
 				onMouseLeave={handleHoverOut}
 			>
 				{toggle &&
+					portal.current &&
 					createPortal(
 						<Fragment>
 							<NavItem>

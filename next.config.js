@@ -2,7 +2,6 @@
 export default {
   reactStrictMode: true,
   swcMinify: true,
-  outputFileTracing: true,
 
   typescript: {
     tsconfigPath: './tsconfig.json',

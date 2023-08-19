@@ -9,11 +9,7 @@ export default {
   },
 
   compiler: {
-    styledComponents: {
-      cssProp: true,
-      ssr: true,
-      minify: true,
-    },
+    styledComponents: true,
   },
 
   images: {
@@ -32,36 +28,36 @@ export default {
       'src/graphql/**/*.{gql,graphql,ts}',
     ],
   },
-  async headers() {
-    return await Promise.resolve([
-      {
-        source: '/fonts/Birdman/Birdman.ttf',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/fonts/Oxanium/Oxanium.ttf',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-      {
-        source: '/fonts/MonocraftNF/Monocraft-nerd-fonts-patched.ttf',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, immutable',
-          },
-        ],
-      },
-    ]);
-  },
 };
 
+// async headers() {
+//   return await Promise.resolve([
+//     {
+//       source: '/fonts/Birdman/Birdman.ttf',
+//       headers: [
+//         {
+//           key: 'Cache-Control',
+//           value: 'public, max-age=31536000, immutable',
+//         },
+//       ],
+//     },
+//     {
+//       source: '/fonts/Oxanium/Oxanium.ttf',
+//       headers: [
+//         {
+//           key: 'Cache-Control',
+//           value: 'public, max-age=31536000, immutable',
+//         },
+//       ],
+//     },
+//     {
+//       source: '/fonts/MonocraftNF/Monocraft-nerd-fonts-patched.ttf',
+//       headers: [
+//         {
+//           key: 'Cache-Control',
+//           value: 'public, max-age=31536000, immutable',
+//         },
+//       ],
+//     },
+//   ]);
+//  },

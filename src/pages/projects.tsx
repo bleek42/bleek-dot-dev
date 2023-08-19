@@ -6,8 +6,6 @@ import { type AllProjectsWhereQuery } from '@/graphql/queries';
 import { allProjectsQuery } from '@/graphql/client';
 
 export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
-	console.table({ ...props });
-
 	return (
 		<Fragment>
 			{props.result.projects.length <= 0 && (
@@ -50,8 +48,6 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 export const getStaticProps: GetStaticProps<{
 	result: AllProjectsWhereQuery;
 }> = async () => {
-	// console.log(process.env.HYGRAPH_CDN_AUTH, process.env.NEXT_PUBLIC_NEXT_PUBLIC_HYGRAPH_CDN_URL);
-
 	const result: Awaited<AllProjectsWhereQuery> =
 		await allProjectsQuery.AllProjectsWhere({
 			'stage': 'PUBLISHED',

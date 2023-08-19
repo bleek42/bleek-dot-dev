@@ -1,12 +1,10 @@
 import XTerm from '@/components/XTerm';
-import { Main } from '@/components/common/Main';
-
-import hero from '../public/brandon-mask.png';
+import { PageBg } from '@/components/common';
 
 export default function LandingPage() {
 	return (
-		<Main>
+		<PageBg>
 			<XTerm />
-		</Main>
+		</PageBg>
 	);
 }

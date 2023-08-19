@@ -1,20 +1,17 @@
-import {
-	DocumentContext,
-	DocumentInitialProps,
+import Document, {
 	Html,
 	Head,
 	Main,
 	NextScript,
+	type DocumentContext,
+	type DocumentInitialProps,
 } from 'next/document';
 
-import Document from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-// import Head from 'next/head';
-import { render } from 'react-dom';
-
+//@ts-expect-error (known issue with DocumentContext)
 export default class StyledDocument extends Document {
-	static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+	static async getInitialProps(ctx: DocumentContext) {
 		const sheet = new ServerStyleSheet();
 		const originalRenderPage = ctx.renderPage;
 
@@ -25,10 +22,14 @@ export default class StyledDocument extends Document {
 						sheet.collectStyles(<App {...props} />),
 				});
 
-			const initialProps = await Document.getInitialProps(ctx);
-			console.log(initialProps);
+			const initialProps: Awaited<DocumentInitialProps> =
+				await Document.getInitialProps(ctx);
+			// console.log(initialProps);
+			// initialProps.disableVendorPrefixes = true;
+
 			return {
 				...initialProps,
+
 				styles: (
 					<>
 						{initialProps.styles}
@@ -62,21 +63,14 @@ export default class StyledDocument extends Document {
 }
 
 
-// Document.defaultProps = {
-// 	title: 'bleekDotDev',
-// 	description: 'Brandon Leek - Full Stack Web Developer',
-// 	keywords:
-// 		'bleek, dev brandon, leek, js, ts, javascript, typescript, html, css, engineer, usa, nj, nc, mobile, professional, tech, developer, web, development, application, software,   programming,  functional,  object,  oriented,  terminal,  react,  nodejs,  npm, rest,api,ajax,async,  typeorm,  relational,  mapping,  knex,expressjs,  sequelize,  docker,  container,  virtual,  microsoft,  windows,  linux,  wsl,debian,  ubuntu,  arch,android,  ios,sales,  sql,mysql,  postgres,  nosql,  mongodb,  graphql,  open-source,  debugging,  solutions,  shell,  scripting,  bash,zsh,fish,hacker,  crypto,  shopify,  wordpress,  jquery,  json,music,  festivals,  volunteer,  harm,reduction,  advocacy,  management,  ambition,  business,  creator,  maintain,  skateboard,   self,improvement,  growth,  courage,  strength,  open,accepting,  detail,  team, effort',
-// 	image: undefined,
-// };
-// 	// 	return (
-// 	// 		<Html lang="en">
-// 	// 			<Meta />
-// 	// 			<body>
-// 	// 				<Main />
-// 	// 				<NextScript />
-// 	// 			</body>
-// 	// 		</Html>
-// 	// 	);
-// 	// }
-// }
+//   @font-face{
+// 	${Oxanium.style.fontFamily}
+// 	${Oxanium.style.fontStyle}
+// 	${Oxanium.style.fontWeight}
+//   }
+//   @font-face{
+// 	${MonocraftNF.style.fontFamily}
+// 	${MonocraftNF.style.fontStyle}
+// 	${MonocraftNF.style.fontWeight}
+
+//   }

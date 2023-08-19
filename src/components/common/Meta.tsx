@@ -1,25 +1,47 @@
-import type { MetaProps } from '@props/meta.props';
-
 import Head from 'next/head';
 
-export default function Meta({ title, description, keywords, image }: MetaProps) {
+import { type MetaComponent } from '@/interfaces/Component';
+import {
+	DefaultTemplateString,
+	TemplateString,
+} from 'next/dist/lib/metadata/types/metadata-types';
+// import { Birdman, Oxanium, MonocraftNF } from '@/components/common';
+
+type MetaProps = MetaComponent;
+
+export default function Meta(props: MetaProps) {
+	console.log({ 'meta-props': props });
+
 	return (
-		<Head>
-			<title>{title}</title>
-			<meta charSet="utf-8" />
-			<meta name="viewport" content="initial-scale=1, width=device-width" />
-			<meta name="keywords" content={keywords as string} />
-			<meta name="description" content={description} />
-			<meta property="og:title" content={title} />
-			<meta property="og:image" content={image ?? image} />
-		</Head>
+		<>
+			<Head key={'meta-bleek-0'}>
+				<meta charSet="utf-8" />
+				<meta
+					rel="viewport"
+					name="viewport"
+					content="initial-scale=1, width=device-width"
+				/>
+				<meta
+					rel="description"
+					name="description"
+					content={props.description?.toString()}
+				/>
+				<meta
+					rel="keyuwords"
+					name="keywords"
+					content={
+						Array.isArray(props.keywords)
+							? props.keywords.join(' ').toLowerCase()
+							: props.keywords
+					}
+				/>
+				<meta property="og:title" {...props.title} />
+				{props.icons && (
+					<meta property="og:image" content={props.icons as string} />
+				)}
+
+				<title>{props.title.toString()}</title>
+			</Head>
+		</>
 	);
 }
-
-Meta.defaultProps = {
-	title: 'bleekDotDev',
-	description: 'Brandon Leek - Full Stack Web Developer',
-	keywords:
-		'bleek, dev brandon, leek, js, ts, javascript, typescript, html, css, engineer, usa, nj, nc, mobile, professional, tech, developer, web, development, application, software,   programming,  functional,  object,  oriented,  terminal,  react,  nodejs,  npm, rest,api,ajax,async,  typeorm,  relational,  mapping,  knex,expressjs,  sequelize,  docker,  container,  virtual,  microsoft,  windows,  linux,  wsl,debian,  ubuntu,  arch,android,  ios,sales,  sql,mysql,  postgres,  nosql,  mongodb,  graphql,  open-source,  debugging,  solutions,  shell,  scripting,  bash,zsh,fish,hacker,  crypto,  shopify,  wordpress,  jquery,  json,music,  festivals,  volunteer,  harm,reduction,  advocacy,  management,  ambition,  business,  creator,  maintain,  skateboard,   self,improvement,  growth,  courage,  strength,  open,accepting,  detail,  team, effort',
-	image: undefined,
-};

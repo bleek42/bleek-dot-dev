@@ -31,6 +31,8 @@ nav {
 				filter: brightness(3);
 				color: map.get($colors, "neon");
 			}
+
+
 		}
 	}
 
@@ -55,7 +57,7 @@ nav {
 			li {
 				margin: 10px, 3px, 3px, 10px;
 				padding: 6px, 5px, 5px, 6px;
-        color: map.get($colors, "green");
+        		color: map.get($colors, "green");
 				transition: filter 400ms;
 				border-top: 1px solid black;
 
@@ -65,8 +67,8 @@ nav {
 				}
 
 				.icon {
-          color: map.get($colors, "neon");
-          font-family: $MonocraftNF;
+          			color: map.get($colors, "neon");
+          			font-family: $MonocraftNF;
 					font-size: 3rem;
 				}
 

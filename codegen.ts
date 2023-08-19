@@ -1,117 +1,84 @@
 import { type CodegenConfig } from '@graphql-codegen/cli';
-import * as path from 'path';
 import * as dotenv from 'dotenv';
-import { GraphQLID } from 'graphql';
+import * as path from 'path';
 
-dotenv.config({
-  path: path.join(__dirname, '.env.development.local'),
-  encoding: 'UTF-8',
-});
+// dotenv.config({
+//   path: path.join(__dirname, '.env.development.local'),
+//   encoding: 'UTF-8',
+// });
 
 console.log('|=== GENERATING GRAPHQL TYPES ===|');
 
 const config: CodegenConfig = {
   require: ['ts-node/register'],
   overwrite: true,
-  // ignoreNoDocuments: true,
+  ignoreNoDocuments: false,
+  // emitLegacyCommonJSImports: false,
 
-  schema: './schema.json',
+  schema: [process.env.HYGRAPH_CDN_URL, 'schema.json'],
   documents: [
-    // 'ast.gql',
-    'src/types/graphql/ast.gql',
-    'src/types/graphql/queries/*.gql',
-    'src/types/graphql/queries/*.graphql',
-    '!src/types/graphql/gen/*',
-    '!src/types/**/*',
+    // ? these 2 first...
+    'src/graphql/typeDefs.gql',
+    'src/graphql/queries/*.gql',
+    '!src/graphql/**/*.ts',
+    // 'src/graphql/fragments.gql',
+    // 'src/graphql/mutations/*.gql',
   ],
 
   generates: {
-    //   './schema.json': {
-    //     plugins: ['introspection'],
-    //     config: {
-    //       schemaDescription: true,
-    //     },
-    //     schema: {
-    //       'https://api-us-east-1.hygraph.com/v2/cl2jezykc0li901yx24p50f8f/master': {
-    //         headers: {
-    //           'Authorization': `Bearer ${process.env.HYGRAPH_API_AUTH_TOKEN}`,
-    //         },
-    //       },
-    //     },
+    // 'schema.json': {
+    //   plugins: ['introspection'],
+    //   config: {
+    //     descriptions: true,
+    //     schemaDescription: true,
     //   },
+    // },
 
-    'src/types/graphql/ast.gql': {
-      plugins: ['schema-ast'],
-      config: {
-        commentDescriptions: true,
-        includeIntrospectionTypes: true,
-      },
-    },
+    // 'src/graphql/typeDefs.gql': {
+    //   plugins: ['schema-ast'],
+    //   config: {
+    //     commentDescriptions: true,
+    //     includeIntrospectionTypes: true,
+    //   },
+    // },
 
-    'src/types/hygraph-types.ts': {
-      plugins: ['typescript', 'typed-document-node'],
+    'src/graphql/hygraph-types.ts': {
+      plugins: ['typescript'],
       config: {
-        useTypeImports: true,
         futureProofUnions: true,
         enumsAsTypes: true,
         addUnderscoreToArgsType: true,
         useImplementingTypes: true,
+        useTypeImports: true,
         declarationKind: {
           interface: 'interface',
-          type: 'interface',
-          mutation: 'interface',
+          input: 'interface',
+        },
+        defaultScalar: 'string | symbol | number | unknown',
+        scalars: {
+          Date: 'Date | string | symbol | number | unknown',
+          DateTime: 'Date | string | symbol | number | unknown',
+          Long: 'BigInt | number | string | symbol | unknown',
+          Json: 'string[] | string | symbol | unknown',
+          RichTextAST: 'string[] | string | symbol | unknown',
         },
       },
     },
 
-    'src/types/': {
+    'src/graphql/': {
       plugins: ['typescript-operations', 'typescript-graphql-request'],
       preset: 'near-operation-file',
       presetConfig: {
         extension: '.operation.ts',
-        baseTypesPath: 'hygraph-types.ts',
-      },
-      config: {
-        useTypeImports: true,
-        futureProofUnions: true,
-        enumsAsTypes: true,
-        addUnderscoreToArgsType: true,
-        useImplementingTypes: true,
-        declarationKind: {
-          interface: 'interface',
-          type: 'interface',
-          mutation: 'interface',
-        },
-      },
-    },
-
-    'src/types/graphql/gen/': {
-      preset: 'client-preset',
-      presetConfig: {
-        fragmentMasking: { unmaskFunctionName: 'createFragment' },
-      },
-      config: {
-        documentMode: 'string',
-        pureMagicComment: true,
-        experimentalFragmentVariables: true,
+        baseTypesPath: './hygraph-types.ts',
       },
     },
   },
   config: {
-    defaultScalar: 'unknown',
-    scalars: {
-      ID: 'string | number',
-      Date: 'Date | string',
-      DateTime: 'Date | string',
-      Long: 'number | unknown',
-      Hex: 'string | unknown',
-      Json: 'string[] | unknown',
-      RGBAHue: 'string',
-      RGBATransparency: 'string',
-      RichTextAST: 'string[] | unknown',
-    },
+    documentMode: 'string',
   },
-  hooks: { afterAllFileWrite: ['prettier --write'] },
+
+  hooks: { afterAllFileWrite: ['prettier --write ./src/graphql/**/*.ts'] },
 };
 
 export default config;

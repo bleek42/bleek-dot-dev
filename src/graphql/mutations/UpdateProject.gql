@@ -1,0 +1,14 @@
+ mutation UpdateProject($data: ProjectUpdateInput!, $where: ProjectWhereUniqueInput!) {
+ 	updateProject(data: $data, where: $where) {
+ 		id
+		title
+		description
+		link
+		active
+		techStack
+		sourceCode
+		version
+		stage
+		locale
+ 	}
+ }

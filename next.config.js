@@ -1,54 +1,67 @@
 /** @type {import('next').NextConfig} */
 export default {
   reactStrictMode: true,
+  swcMinify: true,
+  outputFileTracing: true,
+
   typescript: {
     tsconfigPath: './tsconfig.json',
   },
 
-  swcMinify: true,
-
   compiler: {
     styledComponents: {
-      displayName: true,
+      cssProp: true,
       ssr: true,
       minify: true,
-      cssProp: true,
     },
+  },
+
+  images: {
+    domains: ['media.graphassets.com', 'drive.google.com', 'photos.google.com'],
+    formats: ['image/webp', 'image/avif'],
   },
 
   eslint: {
     dirs: [
       'src/pages/**/*.{tsx,ts}',
       'src/components/**/*.{tsx,ts}',
-      'src/hooks/**/*.ts',
-      'src/context/**/*.tsx',
-      'src/utils/*.ts',
-      'src/types/**/*.ts',
+      'src/hooks/**/*.{tsx,ts}',
+      'src/context/**/*.{tsx,ts}',
+      'src/utils/*.{tsx,ts}',
+      'src/interfaces/**/*.ts',
+      'src/graphql/**/*.{gql,graphql,ts}',
     ],
   },
-
-  experimental: {
-    // swcPlugins: [
-    //   [
-    //     '@graphql-codegen/client-preset-swc-plugin',
-    //     { artifactDirectory: './src/app/lib/graphql/gen', gqlTagName: 'graphql' },
-    //   ],
-    // ],
+  async headers() {
+    return await Promise.resolve([
+      {
+        source: '/fonts/Birdman/Birdman.ttf',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/fonts/Oxanium/Oxanium.ttf',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/fonts/MonocraftNF/Monocraft-nerd-fonts-patched.ttf',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+    ]);
   },
-
-  // async headers() {
-  //   return await new Promise((res) =>
-  //     res([
-  //       {
-  //         source: '/*',
-  //         headers: [
-  //           {
-  //             key: 'x-origin-locale-datetime',
-  //             value: new Date().toLocaleDateString(),
-  //           },
-  //         ],
-  //       },
-  //     ])
-  //   );
-  // },
 };
+

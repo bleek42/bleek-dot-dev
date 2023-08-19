@@ -1,0 +1,28 @@
+query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage = PUBLISHED, $locales: [Locale!] = [en]) {
+	project(where: $where, stage: $stage, locales: $locales) {
+		id
+		title
+		active
+		description
+		link
+		techStack
+		sourceCode
+		version
+		stage
+		locale
+
+		screenShots(first: 10, forceParentLocale: true) {
+			id
+			url
+			handle
+			fileName
+			mimeType
+			width
+			height
+			size
+			stage
+			locale
+		}
+	}
+}
+

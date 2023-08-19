@@ -1,0 +1,45 @@
+fragment UserFields on User {
+	id
+	name
+	kind
+	isActive
+	picture
+	createdAt
+	updatedAt
+	stage
+}
+
+fragment AssetFields on Asset {
+	id
+	url
+	handle
+	fileName
+	mimeType
+	width
+	height
+	size
+	url
+	locale
+	createdAt
+	updatedAt
+	stage
+}
+
+fragment ProjectFields on Project {
+	id
+	title
+	description
+	active
+	link
+	techStack
+	sourceCode
+	version
+	locale
+	createdAt
+	updatedAt
+	stage
+
+	screenShots(first: 4, forceParentLocale: true) {
+		...AssetFields
+	}
+}

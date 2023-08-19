@@ -1,48 +1,66 @@
-import { useId } from 'react';
+import PageSection from '@/components/PageSection';
+import { SectionComponent } from '@/interfaces/Component';
 
-import { Main } from '@/components/common/Main';
-import PageLayout from '@/components/common/PageLayout';
-import Section from '@/components/Section';
-
+export type ContactRecord = Record<
+	'email' | 'linkedin' | 'github' | string | symbol,
+	{ 'icon': string; 'text': string }
+>;
 export default function Contact() {
-	// const { profile, loading, error, msg } = useRequest();
-	const pageId = useId();
-
-	const linkedInIcon = ' \uf08c ';
-	const commentIcon = ' \udb80\udd7b ';
-	const githubIcon = ' \uf092 ';
+	// const { profile, loading, error, msg } = useRequest()
 
 	return (
-		<PageLayout>
-			<Main>
-				{/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */}
-				<Section
-					id={`contact-1`}
-					name="contact-page-section-1"
-					title="Contact: Email"
-					content={null}
-					icon={commentIcon}
-				/>
-				{/* {loading && (
-					<div className="loading">
-						<progress>loading...</progress>
-					</div>
-				)}
-				{!loading && !error && profile && <List {...profile} />}
-				{error && (
-					<div className="error">
-						<p>
-							Error fetching profile data:{' '}
-							{msg?.toString() || 'an unknown error occurred...'}
-						</p>
-					</div>
-				)} */}
-			</Main>
-		</PageLayout>
+		<PageSection
+			name="contact"
+			description="contact section"
+			content={[
+				'Email: brandonleek42@yahoo.com',
+				'LinkedIn: https://linkedin.com/in/brandonl42',
+				'GitHub: https://github.com/bleek42',
+			]}
+			icons={[' \uf092 ', ' \udb80\udd7b ', ' \uf08c ']}
+		/>
 	);
 }
 
-// {
+{
+	/* <PageSection
+				name="Email"
+				description={'contact section description'}
+				content={'contact section content'}
+				icon={commentIcon}
+			/>
+			<PageSection
+				name="Github"
+				description={'github section description'}
+				content={'github section content'}
+				icon={githubIcon}
+			/>
+			<PageSection
+				name="Linkedin"
+				description={'linkedin section description'}
+				content={'linkedin section content'}
+				icon={linkedInIcon}
+			/> */
+}
+/* <Header id={`contact-header-${pageId}`} name="contact" title="Contact" /> */
+
+/* {loading && (
+				<div className="loading">
+					<progress>loading...</progress>
+				</div>
+			)}
+			{!loading && !error && profile && <List {...profile} />}
+			{error && (
+				<div className="error">
+					<p>
+						Error fetching profile data:{' '}
+						{msg?.toString() || 'an unknown error occurred...'}
+					</p>
+				</div>
+		<PageLayout>
+		</PageLayout>
+			)} */
+
 /* <Footer id={`contact-footer-${pageId}`} name="Contact" icon={null} /> */
 // }
 // {
@@ -75,9 +93,7 @@ export default function Contact() {
 				)}
 				{error && <p>Error fetching profile data: {msg.toString()}</p>}
 			</section> */
-// }
 
-// {
 /* <header>
 				<h4>{<VscCommentDiscussion />} Contact</h4>
 				<p>
@@ -87,4 +103,3 @@ export default function Contact() {
 					LinkedIn or GitHub.
 				</p>
 			</header> */
-// }

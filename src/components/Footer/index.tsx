@@ -1,17 +1,11 @@
-import { Footer as Wrapper } from './Footer';
-import { SmTxt } from '@/components/common/Text';
+import { Footer } from './Footer';
+import { Icon, SmTxt } from '@/components/common/Text';
 
-import type { BaseComponentProps } from '@/props/base.component.props';
-
-type FooterProps = BaseComponentProps<'footer'>;
-
-export default function Footer({ id, name, icon }: FooterProps) {
-	console.log('Footer:', id, name, icon);
-
+export default function PageFooter() {
 	return (
-		<Wrapper>
-			<i>{'<NoIcon />'}</i>
+		<Footer>
+			<Icon>{'\ue987'}</Icon>
 			<SmTxt>version 0.4.4 by bleek42</SmTxt>
-		</Wrapper>
+		</Footer>
 	);
 }

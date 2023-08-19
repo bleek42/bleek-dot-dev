@@ -1,23 +1,27 @@
-import { useEffect, useRef } from 'react';
+import { type MutableRefObject, type RefObject, useEffect, useRef } from 'react';
 
-export default function useResizeObserver<T extends Element>(
-  cb: (target: T | undefined, entry: ResizeObserverEntry) => void
+import { useIsomorphicEffect } from './useIsomorphicEffect';
+
+export default function useResizeObserver<T extends HTMLElement>(
+  cb: (target: T, entry: ResizeObserverEntry) => void,
 ) {
   const ref = useRef<T>();
 
-  useEffect(() => {
-    const observer = new ResizeObserver(([entry]) => {
-      if (!cb) return;
+  useIsomorphicEffect(() => {
+    let element = ref?.current;
 
-      cb(ref.current, entry);
+    const observer = new ResizeObserver(([entry]) => {
+      // console.log({ element, entry });
+      if (element) cb(element, entry);
     });
 
-    if (ref.current) observer.observe(ref.current);
+    if (element) observer.observe(element);
 
     return () => {
+      // console.log('ran useRO effect', { observer, ...ref });
       observer.disconnect();
     };
-  }, [ref.current, ref]);
+  }, [cb, ref.current]);
 
-  return { ref };
+  return ref;
 }

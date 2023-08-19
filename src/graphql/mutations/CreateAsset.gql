@@ -1,0 +1,17 @@
+mutation CreateAsset($data: AssetCreateInput!) {
+  createAsset(
+    data: $data
+  ) {
+    fileName
+    handle
+    mimeType
+    width
+    height
+    size
+    url(transformation: {image: {resize: {fit: scale}}})
+    locale
+	createdAt
+	updatedAt
+	stage
+  }
+}

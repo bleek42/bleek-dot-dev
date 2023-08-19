@@ -1,74 +1,96 @@
-import { useState } from 'react';
+import {
+	Fragment,
+	useState,
+	useRef,
+	type RefObject,
+	type MutableRefObject,
+	useLayoutEffect,
+	useEffect,
+	SyntheticEvent,
+} from 'react';
+import { createPortal } from 'react-dom';
 
-import type { NextLinkProps } from '@/props/navbar.props';
-
-import { NavBar, Toggle, ToggleBtn, NavList, NavItem, NextLink, Icon } from './Navbar';
-import { LgTxt } from '@/components/common/Text';
+import { type Component } from '@/interfaces/Component';
+import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon, NavTxt } from './Navbar';
+import { useIsomorphicEffect } from '@/hooks/useIsomorphicEffect';
+import useToggle from '@/hooks/useToggle';
+// import useTimeout from '@/hooks/useTimeout';
 
 export default function Navbar() {
-	const [toggle, setToggle] = useState<boolean>(false);
+	const { toggle, handleToggle, setToggle } = useToggle();
+	const portal = useRef<Element>();
+	const timeout = useRef<NodeJS.Timeout | null>();
+	useIsomorphicEffect(() => {
+		let elem = document.querySelector('#nav-list');
+		portal.current = elem ?? document.body;
+	}, [portal]);
 
-	const toggleMenu = () => setToggle(!!toggle);
+	const handleHoverIn = (evt: SyntheticEvent<HTMLElement>): void => {
+		console.log(evt);
+		evt.preventDefault();
+		timeout.current = setTimeout(() => {
+			setToggle(true);
+		}, 500);
+	};
+	const handleHoverOut = (evt: SyntheticEvent<HTMLElement>): void => {
+		console.log(evt);
+		evt.preventDefault();
+		timeout.current = setTimeout(() => setToggle(false), 500);
+		console.log(timeout.current);
+
+		if (!timeout.current) {
+			clearTimeout(timeout.current); // cancel scheduled hiding of tooltip
+			timeout.current = null;
+		}
+	};
 
 	return (
-		<NavBar onMouseLeave={toggleMenu}>
-			<LgTxt font="Birdman" color="neon" shadow="steel">
+		<NavBar id="nav-bar">
+			<NavTxt $colorPalette="primary" $color="cyan">
 				Menu
-			</LgTxt>
-			<NavList>
-				<Toggle toggle={toggle}>
-					{toggle && (
-						<>
-							<ToggleBtn
-								onMouseOver={toggleMenu}
-								onTouchStart={toggleMenu}
-							></ToggleBtn>
+			</NavTxt>
+			<ToggleBtn
+				onMouseOver={handleHoverIn}
+				onMouseLeave={handleHoverOut}
+				onClick={handleToggle}
+			>
+				{toggle ? '\uf63B' : '\uf673'}
+			</ToggleBtn>
+			<NavList
+				id="nav-list"
+				onMouseOver={handleHoverIn}
+				onMouseLeave={handleHoverOut}
+			>
+				{toggle &&
+					portal.current &&
+					createPortal(
+						<Fragment>
 							<NavItem>
-								<Icon>
-									{'\udb83\udd84'}
-									<NextLink href="/home">Home</NextLink>
-								</Icon>
+								<NavIcon>{'\ue617 '}</NavIcon>
+								<NextLink href="/home">Home</NextLink>
 							</NavItem>
 							<NavItem>
-								<Icon>
-									{'\udb84\udcf6'}
-									<NextLink href="/about">About</NextLink>
-								</Icon>
+								<NavIcon>{'\uf415 '}</NavIcon>
+								<NextLink href="/about">About</NextLink>
 							</NavItem>
 							<NavItem>
-								<Icon>
-									{'\udb84\udcdc'}
-									<NextLink href="/projects">Projects</NextLink>
-								</Icon>
+								<NavIcon>{'\ueA8A '}</NavIcon>
+								<NextLink href="/projects">Projects</NextLink>
 							</NavItem>
 							<NavItem>
-								<Icon>
-									{'\udb84\udcd6'}
-									<NextLink href="/contact">Contact</NextLink>
-								</Icon>
+								<NavIcon>{'\ueff3 '}</NavIcon>
+								<NextLink href="/contact">Contact</NextLink>
 							</NavItem>
-						</>
+						</Fragment>,
+						portal.current,
 					)}
-					{!toggle && (
-						<>
-							<ToggleBtn
-								onMouseOver={toggleMenu}
-								onTouchStart={toggleMenu}
-							></ToggleBtn>
-						</>
-					)}
-				</Toggle>
 			</NavList>
 		</NavBar>
 	);
 }
 
-{
-	/* {NextpageLinks.map((Nextlink, idx: number) => (
-							<NavItem key={Nextlink.id}>
-								<NextNavLink key={idx} href={Nextlink.href} passHref>
-									{Nextlink.title}
-								</NextNavLink>
-							</NavItem>
-						))} */
-}
+// <Fragment>
+// 	<nav>
+// 		<p>nav-portal</p>
+// 	</nav>
+// </Fragment>

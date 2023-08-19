@@ -1,43 +1,18 @@
-import type { NextPage } from 'next';
+import { type NextPage } from 'next';
 
-import { useId } from 'react';
-
-import { Main } from '@/components/common/Main';
-import Section from '@/components/Section';
-import PageLayout from '../components/common/PageLayout';
+import PageSection from '@/components/PageSection';
 
 export default function Home() {
-	const pageId = useId();
-
 	return (
-		<PageLayout>
-			<Main>
-				<Section
-					id="home-sect-1"
-					name="home"
-					content="Welcome to bleek.dev! My name is Brandon Leek and I'm a full-stack
-			web developer & tech enthusiast. This site is built with React.js in conjunction with other modern solutions including (but never limited to!) custom state management hooks, React Router, React Icons, Syntactically Awesome Style Sheets (SASS/SCSS), and test suites written with Jest & Enzyme."
-					icon={null}
-				/>
-			</Main>
-		</PageLayout>
+		<PageSection
+			id="home-section"
+			name="Home"
+			description="bleek.dev/home"
+			content="Welcome & thanks for visiting! I'm Brandon Leek: a full-stack web developer, Linux enthusiast, & lifelong power user. I hope you find the results of my latest iterations on my portfolio rather unique, yet still modern-contemporary, and of course a pleasure to use as you navigate around! This was create with React via NextJS, GraphQL via Hygraph CMS, custom CSS-in-JS via Styled Components, & full TypeScript integration!"
+		/>
 	);
 }
 
-// <Header
-// 	id={`home-header-${pageId}`}
-// 	name="home"
-// 	title="Home"
-// 	content="bleekDotDev"
-// 	icon={null}
-// />
-// <Footer id={`home-footer-${pageId}`} name="home" icon={null} />
-// <div className="home">
-// 	<header>
-// 		<h1>Brandon Leek</h1>
-// 		<h2>Web Developer & Mobile Tech Enthusiast</h2>
-// 	</header>
-// 	<section>
 // 		<p>
 
 // 			<div className="dwn-icn">
@@ -57,16 +32,7 @@ export default function Home() {
 // 					Portfolio repository on Github.com
 // 				</a>
 // 			</li>
-// 			{/* <li>
-// 				<a
-// 					id="aj"
-// 					target="_blank"
-// 					rel="noopener noreferrer"
-// 					href="https://androidjones-obtain.com/?gclid=CjwKCAjwh7H7BRBBEiwAPXjadhkPGYgKyIHH1PdY8iEVzfSSD0qIDsHL3uevBzcC362xwoY-xJWkFhoCyq8QAvD_BwE"
-// 				>
-// 					Check out more of Android Jones artwork
-// 				</a>
-// 			</li> */}
+
 // 			<li>
 // 				<a
 // 					id="react"

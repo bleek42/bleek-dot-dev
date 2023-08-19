@@ -7,7 +7,7 @@ import { LgTxt, MdTxt } from '@/components/common';
 
 type HeaderProps = HeaderComponent;
 
-export default function PageHeader(props: HeaderProps) {
+export default function PageHeader(props: HeaderComponent) {
 	console.log({ 'Header component': { props } });
 
 	return (
@@ -18,6 +18,9 @@ export default function PageHeader(props: HeaderProps) {
 			<MdTxt $flex="1 0 auto" $colorPalette="primary" $color="neon" $shadow="steel">
 				bleekDotDev
 			</MdTxt>
+			{/* <MdTxt font="MonocraftNF" color="red" shadow="steel">
+				{props.title ?? 'untitled'}
+			</MdTxt> */}
 			<Navbar />
 		</Header>
 	);

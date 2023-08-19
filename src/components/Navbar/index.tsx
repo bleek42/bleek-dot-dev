@@ -5,37 +5,44 @@ import {
 	type RefObject,
 	type MutableRefObject,
 	useLayoutEffect,
+	useEffect,
+	SyntheticEvent,
 } from 'react';
 import { createPortal } from 'react-dom';
 
+import { type Component } from '@/interfaces/Component';
 import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon, NavTxt } from './Navbar';
-import { useEventListener } from '@/hooks/useEventListener';
-import useTimeout from '@/hooks/useTimeout';
+import { useIsomorphicEffect } from '@/hooks/useIsomorphicEffect';
 import useToggle from '@/hooks/useToggle';
-import { Component } from '@/interfaces/Component';
-
-export function NavPortal({ children, id }: Component) {
-	// if (ref.current)
-}
+// import useTimeout from '@/hooks/useTimeout';
 
 export default function Navbar() {
 	const { toggle, handleToggle, setToggle } = useToggle();
+	const portal = useRef<Element>();
+	const timeout = useRef<NodeJS.Timeout | null>();
+	useIsomorphicEffect(() => {
+		let elem = document.querySelector('#nav-list');
+		portal.current = elem ?? document.body;
+	}, [portal]);
 
-	const ref = useRef<HTMLElement>();
-	useLayoutEffect(() => {
-		let elem = document.getElementById('nav-list');
-		if (document && elem) ref.current = elem;
-	}, []);
-	// const documentRef = useRef(document);
+	const handleHoverIn = (evt: SyntheticEvent<HTMLElement>): void => {
+		console.log(evt);
+		evt.preventDefault();
+		timeout.current = setTimeout(() => {
+			setToggle(true);
+		}, 500);
+	};
+	const handleHoverOut = (evt: SyntheticEvent<HTMLElement>): void => {
+		console.log(evt);
+		evt.preventDefault();
+		timeout.current = setTimeout(() => setToggle(false), 500);
+		console.log(timeout.current);
 
-	// const ref = useRef<HTMLUListElement | null>();
-	const handleHoverIn = () => setToggle(true);
-	const handleHoverOut = () => setToggle(false);
-
-	// useEventListener('mouseenter', handleToggle, ref);
-	// useEventListener('mouseleave', handleToggle, ref);
-	// useTimeout(handleHoverIn, 575);
-	// useTimeout(handleHoverOut, 425);
+		if (!timeout.current) {
+			clearTimeout(timeout.current); // cancel scheduled hiding of tooltip
+			timeout.current = null;
+		}
+	};
 
 	return (
 		<NavBar id="nav-bar">
@@ -43,13 +50,17 @@ export default function Navbar() {
 				Menu
 			</NavTxt>
 			<ToggleBtn
-				onMouseOver={() => handleHoverIn}
-				onMouseLeave={() => handleHoverOut}
+				onMouseOver={handleHoverIn}
+				onMouseLeave={handleHoverOut}
 				onClick={handleToggle}
 			>
 				{toggle ? '\uf63B' : '\uf673'}
 			</ToggleBtn>
-			<NavList id="nav-list">
+			<NavList
+				id="nav-list"
+				onMouseOver={handleHoverIn}
+				onMouseLeave={handleHoverOut}
+			>
 				{toggle &&
 					createPortal(
 						<Fragment>
@@ -70,7 +81,7 @@ export default function Navbar() {
 								<NextLink href="/contact">Contact</NextLink>
 							</NavItem>
 						</Fragment>,
-						ref.current,
+						portal.current,
 					)}
 			</NavList>
 		</NavBar>

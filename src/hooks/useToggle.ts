@@ -5,7 +5,7 @@ export default function useToggle(defaultToggle?: boolean) {
 
   const handleToggle = useCallback(
     (evt: React.MouseEvent<HTMLElement>) => {
-      evt.preventDefault();
+      // evt.preventDefault();
       console.log({ 'handleToggle': evt });
       setToggle((prev) => !prev);
     },

@@ -34,7 +34,6 @@
 		}
 	},
 	"extends": [
-		"next/core-web-vitals",
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended",
 		"plugin:@typescript-eslint/recommended",
@@ -46,6 +45,7 @@
 	],
 	// plugins bring in special rules, prettierrc rules you set
 	"plugins": [
+		// "next/core-web-vitals",
 		"@typescript-eslint",
 		"react",
 		"import",

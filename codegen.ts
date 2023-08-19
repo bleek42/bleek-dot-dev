@@ -15,7 +15,7 @@ const config: CodegenConfig = {
   ignoreNoDocuments: false,
   // emitLegacyCommonJSImports: false,
 
-  schema: [process.env.HYGRAPH_CDN_URL, 'schema.json'],
+  schema: [process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL, 'schema.json'],
   documents: [
     // ? these 2 first...
     'src/graphql/typeDefs.gql',

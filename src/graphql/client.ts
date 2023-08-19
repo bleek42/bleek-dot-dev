@@ -6,12 +6,14 @@ export const hygraphReqConfig: Record<string | number | symbol, any> = {
   credentials: 'include',
   mode: 'cors',
   headers: {
-    'Authorization': `Bearer ${process.env.HYGRAPH_CDN_AUTH}`,
+    // 'Authorization': `Bearer ${process.env.HYGRAPH_CDN_AUTH}`,
     'Content-Type': 'application/json',
   },
 };
 
-const client: GraphQLClient = new GraphQLClient(`${process.env.HYGRAPH_CDN_URL}`);
+const client: GraphQLClient = new GraphQLClient(
+  `${process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL}`,
+);
 
 export const allProjectsQuery = getAllProjectsWhereSdk(client);
 

@@ -15,7 +15,10 @@ const config: CodegenConfig = {
   ignoreNoDocuments: false,
   // emitLegacyCommonJSImports: false,
 
-  schema: [process.env.NEXT_PUBLIC_HYGRAPH_CDN_URL, 'schema.json'],
+  schema: [
+    'https://us-east-1.cdn.hygraph.com/content/cl2jezykc0li901yx24p50f8f/master',
+    'schema.json',
+  ],
   documents: [
     // ? these 2 first...
     'src/graphql/typeDefs.gql',

@@ -8,7 +8,10 @@ export default {
   },
 
   compiler: {
-    styledComponents: true,
+    styledComponents: {
+      ssr: true,
+      displayName: true,
+    },
   },
 
   images: {

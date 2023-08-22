@@ -20,6 +20,7 @@ export default function Navbar() {
 	const { toggle, handleToggle, setToggle } = useToggle();
 	const portal = useRef<Element>();
 	const timeout = useRef<NodeJS.Timeout | null>();
+
 	useIsomorphicEffect(() => {
 		let elem = document.querySelector('#nav-list');
 		portal.current = elem ?? document.body;

@@ -39,12 +39,6 @@
 			"@/hooks/*": [
 				"src/hooks/*"
 			],
-			"@/utils/*": [
-				"src/utils/*"
-			],
-			"@/images/*": [
-				"public/images/*"
-			],
 			"@/lib/*": [
 				"src/pages/lib/*"
 			],
@@ -73,7 +67,9 @@
 		"styled.d.ts",
 		"node-env.d.ts",
 		"next.config.js",
-		"public/"
+		"public/",
+		"tests/**/*.ts",
+		"tests/**/*.tsx"
 	],
 	"exclude": [
 		"node_modules/",

@@ -15,12 +15,6 @@ const sectionContent = [
 export default function About(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	console.log('about page:', { props });
 
-	// <Image
-	// 	src={props.result.asset?.url || 'https://'}
-	// 	alt={props.result.asset?.handle || 'bleek42'}
-	// 	width={props.result.asset?.width || 40}
-	// 	height={props.result.asset?.height || 40}
-	// />
 	return (
 		<PageSection
 			name="about"

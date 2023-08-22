@@ -14,7 +14,7 @@ declare namespace NodeJS {
     HYGRAPH_API_URL: string | WithList<string>;
     HYGRAPH_API_AUTH: string;
 
-    NEXT_PUBLIC_HYGRAPH_CDN_URL: string | WithList<string>;
+    HYGRAPH_CDN_URL: string | WithList<string>;
     HYGRAPH_CDN_AUTH: string;
     NEXT_PUBLIC_DOMAIN_NAME?: DomainName;
   }

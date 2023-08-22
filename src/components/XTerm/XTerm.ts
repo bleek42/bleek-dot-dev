@@ -34,8 +34,6 @@ export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) =
   padding: 4px;
 
   border: 1px solid ${({ theme }) => theme.palette.common.white};
-  /* border-radius: ${(props) => props.theme.defaultRadius}; */
-  /* border-radius: ${(props) => props.theme.defaultRadius}; */
 
   &:hover {
     cursor: text;
@@ -44,7 +42,7 @@ export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) =
 
   &:active {
     cursor: pointer;
-    border: 2px solid ${({ theme }) => theme.palette.primary.neon};
+    border: 1.5 solid ${({ theme }) => theme.palette.primary.cyan};
   }
 
   @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
@@ -53,7 +51,6 @@ export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) =
 
   @media (max-width: ${(props) => props.theme.breakpoints.smallTab}) {
     flex-flow: column wrap;
-    /* min-height: 16vh; */
     align-content: flex-start;
   }
 `;
@@ -74,12 +71,12 @@ export const XTBtns = styled.label.attrs<XTermProps & XTermComponent>((props) =>
   background-color: ${(props) => props.theme.palette.secondary.steel};
 
   @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
-    /* flex-flow: row nowrap; */
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
-    /* flex-flow: column wrap;
-    align-items: center; */
     display: none;
   }
 `;

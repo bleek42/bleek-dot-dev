@@ -1,7 +1,8 @@
 import { Fragment, useRef, SyntheticEvent } from 'react';
 import { createPortal } from 'react-dom';
 
-import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon, NavTxt } from './Navbar';
+import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon } from './Navbar';
+import { MdTxt } from '@/components/common';
 import { useIsomorphicEffect } from '@/hooks/useIsomorphicEffect';
 import useToggle from '@/hooks/useToggle';
 
@@ -37,15 +38,21 @@ export default function Navbar() {
 
 	return (
 		<NavBar id="nav-bar">
-			<NavTxt $colorPalette="primary" $color="cyan">
-				Menu
-			</NavTxt>
+			<MdTxt
+				$colorPalette="primary"
+				$color="cyan"
+				$shadow="black"
+				$align="center"
+				$font="MonocraftNf"
+			>
+				Nav{'\uf969'}
+			</MdTxt>
 			<ToggleBtn
 				onMouseOver={handleHoverIn}
 				onMouseLeave={handleHoverOut}
 				onClick={handleToggle}
 			>
-				{toggle ? '\uf63B' : '\uf673'}
+				{toggle ? '\uf63B' : '\uf0c9'}
 			</ToggleBtn>
 			<NavList
 				id="nav-list"

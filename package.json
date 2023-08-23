@@ -1,8 +1,8 @@
 {
 	"name": "bleek-dot-dev",
-	"version": "0.7.4",
+	"version": "1.0.5",
 	"type": "module",
-	"main": "src/_app.tsx",
+	"main": "src/",
 	"author": {
 		"name": "Brandon Leek",
 		"url": "https://github.com/bleek42/bleek-dot-dev"

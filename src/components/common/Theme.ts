@@ -7,7 +7,7 @@ import styled, {
 export const theme: DefaultTheme = {
   name: 'Default',
   defaultBorder: '2px solid rgb(20, 8, 8)',
-  defaultRadius: '4% / 4%',
+  defaultRadius: '2px 4px 2px 4px',
 
   fonts: [
     'Birdman',
@@ -48,7 +48,7 @@ export const theme: DefaultTheme = {
       black: 'rgb(5, 5, 5)',
       white: 'rgb(250, 250, 235)',
       linear:
-        'linear-gradient(95deg, rgba(90, 218, 225, 0.75) 46%, rgba(105, 190, 105, 0.75) 53%)',
+        'linear-gradient(95deg,rgb(59 112 115 / 75%) 46%,rgba(105,190,105,0.75) 53%)',
     },
 
     secondary: {
@@ -151,14 +151,14 @@ export const borderPulse = keyframes`
   }
 
   50% {
-    border: .6px dashed rgb(40, 225, 31);
+    border: .5px dashed rgb(40, 225, 31);
     margin: 1px;
     box-shadow:  2px 2.5px 1.8px rgba(0, 229, 255, 0.838);
   }
 
 
   to {
-    border: .9px dashed rgb(40, 220, 30);
+    border: 1px dashed rgb(40, 220, 30);
     margin: 1.8px;
     box-shadow:  1.2px 1.5px 1px rgba(0, 229, 255, 0.664);
 

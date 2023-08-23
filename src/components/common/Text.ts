@@ -81,7 +81,6 @@ type TextProps = StyledComponentProps<
 > &
   TextOptions;
 
-// 'Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", Verdana, Geneva, Tahoma, Arial, sans-serif, monospace'
 export const SmTxt = styled.p<TextProps>`
   flex: ${(props) => props.$flex ?? 'unset'};
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(1)};
@@ -108,12 +107,9 @@ export const SmTxt = styled.p<TextProps>`
       ? `${props.theme.palette.tertiary[props.$shadow]} 1px .8px .4px`
       : 'unset'};
   text-align: ${(props) => props.$align ?? 'inherit'};
-  /* text-decoration: underline;
-  text-decoration-color: rgb(0, 0, 0);
-  text-decoration-style: double; */
 `;
 
-export const MdTxt = styled.h2<TextProps & TextOptions>`
+export const MdTxt = styled.h2<TextProps>`
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(1)};
   color: ${(props) =>
     props.$colorPalette === 'primary' && props.$color in props.theme.palette.primary
@@ -132,12 +128,11 @@ export const MdTxt = styled.h2<TextProps & TextOptions>`
       : props.$shadow in props.theme.palette.tertiary
       ? `${props.theme.palette.tertiary[props.$shadow]} 1.5px 1.2px 1px`
       : 'inherit'};
-  text-decoration: underline;
-  text-decoration-color: ${({ theme }) => theme.palette.primary.black};
-  text-decoration-style: solid;
+  text-align: ${(props) => props.$align ?? 'inherit'};
+  text-decoration: underline solid ${({ theme }) => theme.palette.primary.black};
 `;
 
-export const LgTxt = styled.h1<TextProps & TextOptions>`
+export const LgTxt = styled.h1<TextProps>`
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(0)};
   color: ${(props) =>
     props.$colorPalette === 'primary' && props.$color in props.theme.palette.primary
@@ -150,20 +145,21 @@ export const LgTxt = styled.h1<TextProps & TextOptions>`
       : 'initial'};
   text-shadow: ${(props) =>
     props.$shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.$shadow]} 1px 1.5px .5px`
+      ? `${props.theme.palette.primary[props.$shadow]} 1.5px 1px .5px`
       : props.$color in props.theme.palette.secondary
-      ? `${props.theme.palette.secondary[props.$shadow]} 1px 1.5px .5px`
+      ? `${props.theme.palette.secondary[props.$shadow]} 1.5px 1px .5px`
       : props.$color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.$shadow]} 1px 1.5px .5px`
-      : 'initial'};
-  text-decoration: underline;
-  text-decoration-color: ${({ theme }) => theme.palette.secondary.green};
-  text-decoration-style: solid;
+      ? `${props.theme.palette.tertiary[props.$shadow]} 1.5px 1px .5px`
+      : 'inherit'};
+  text-align: ${(props) => props.$align ?? 'inherit'};
+  text-decoration: underline solid ${({ theme }) => theme.palette.primary.black};
 `;
 
-export const Icon = styled.em<TextProps & TextOptions>`
+export const Icon = styled.em<TextProps>`
+  display: inline-block;
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(2)};
   font-size: ${(props) => props.$size ?? '24px'};
+  letter-spacing: 0.5px;
   color: ${(props) =>
     props.$colorPalette === 'primary' &&
     props.$color &&
@@ -177,16 +173,18 @@ export const Icon = styled.em<TextProps & TextOptions>`
         props.$color &&
         props.$color in props.theme.palette.tertiary
       ? props.theme.palette.tertiary[props.$color]
-      : 'inherit'};
+      : 'initial'};
   text-shadow: ${(props) =>
     props.$colorPalette === 'primary' && props.$shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.$shadow]} 2px 1.5px 1px`
+      ? `${props.theme.palette.primary[props.$shadow]} 1.5px 1.5px 1px`
       : props.$colorPalette === 'secondary' &&
         props.$color in props.theme.palette.secondary
-      ? `${props.theme.palette.secondary[props.$shadow]} 2px 1.5px 1px`
+      ? `${props.theme.palette.secondary[props.$shadow]} 1.5px 1.5px 1px`
       : props.$colorPalette === 'tertiary' && props.$color in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.$shadow]} 2px 1.5px 1px`
-      : `${props.theme.palette.common.black} 2px 1.5px 1px`};
+      ? `${props.theme.palette.tertiary[props.$shadow]} 1.5px 1.5px 1px`
+      : `initial`};
+  text-align: ${(props) => props.$align ?? 'inherit'};
+  text-decoration: underline solid ${({ theme }) => theme.palette.primary.black};
 `;
 
 // export const StlLg = styled.h2`

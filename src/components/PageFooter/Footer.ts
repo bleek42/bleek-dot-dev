@@ -14,28 +14,27 @@ export type FooterProps = StyledComponentProps<
 >;
 
 // eslint-disable-next-line prettier/prettier
-export const Footer = styled.footer<FooterProps & FooterComponent>((props) => `
+export const Footer = styled.footer<FooterProps & FooterComponent>`
   display: flex;
   flex-flow: row wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  max-height: 12vh;
-  max-width: 120vw;
+  height: 8vh;
+  /* align-items: center; */
+  /* width: 80vw; */
   margin: 4px 4px;
   padding: 4px 4px 4px 4px;
-  color: ${props.theme.palette.secondary.tan};
-  background-color: ${props.theme.palette.secondary.steel};
-  border: 4px solid ${props.theme.palette.secondary.cyan};
-  border-radius: 4% 8% / 8% 4%;
+  color: ${(props) => props.theme.palette.secondary.tan};
+  background-color: ${(props) => props.theme.palette.secondary.steel};
+  border: 4px solid ${(props) => props.theme.palette.secondary.cyan};
+  border-radius: ${(props) => props.theme.defaultRadius};
 
-  /* @media (min-width: ${props.theme.breakpoints.smallTab}) {
+  /* @media (min-width: ${(props) => props.theme.breakpoints.smallTab}) {
   } */
 
-  @media (min-width: ${props.theme.breakpoints.laptop}) {
+  @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
     flex-flow: row nowrap;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     /* flex: 3 4 6vh; */
   }
-
-  `,
-);
+`;

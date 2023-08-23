@@ -40,16 +40,14 @@ export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
   border: 2px solid ${({ theme }) => theme.palette.primary.cyan};
   border-radius: ${({ theme }) => theme.defaultRadius};
   background-color: ${({ theme }) => theme.palette.tertiary.steel};
-  max-width: 38vw;
-  min-width: 36vw;
-  height: 12vh;
-  min-height: 10vh;
+  width: 38vw;
+  min-width: 30vw;
+  height: 10vh;
+  min-height: 8vh;
   position: relative;
-  flex: 3 1 auto;
-  /* animation: slide-open 0.6s forwards; */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
-    /* justify-content: flex-start; */
+    justify-items: center;
     /* flex-flow: column wrap; */
     /* flex: auto; */
     /* align-items: center; */
@@ -119,17 +117,17 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   display: inline-block;
   padding: 4px;
   margin: 2px 3px 0 3px;
-  color: ${({ theme }) => theme.palette.secondary.blue};
-  border: 0.4px solid ${({ theme }) => theme.palette.primary.cyan};
-  background-color: ${({ theme }) => theme.palette.secondary.black};
-  border-radius: 2% / 2%;
+  color: ${({ theme }) => theme.palette.primary.blue};
+  border: 0.8px solid ${({ theme }) => theme.palette.primary.cyan};
+  background-color: ${({ theme }) => theme.palette.primary.black};
+  border-radius: ${({ theme }) => theme.defaultRadius};
   font-family: ${({ theme }) => theme.fonts.at(2)};
-  text-shadow: ${({ theme }) => theme.palette.secondary.steel} 1.5px 1px 0.5px;
-  font-size: 24px;
+  text-shadow: ${({ theme }) => theme.palette.primary.steel} 1px 0.5px 0.5px;
+  font-size: 32px;
   letter-spacing: 0.4px;
   transition:
-    filter 360ms ease-in,
-    color 420ms linear;
+    filter 360ms ease-in-out,
+    color 360ms linear;
 
   /* &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
@@ -137,7 +135,7 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   } */
 
   &:hover {
-    filter: brightness(1.8);
+    filter: brightness(1.2);
     color: ${({ theme }) => theme.palette.primary.cyan};
   }
 `;
@@ -157,14 +155,10 @@ export const NextLink = styled(Link)<NextLinkProps>`
   }
 `;
 
-export const NavTxt = styled(MdTxt)`
-  text-align: center;
-`;
-
 // eslint-disable-next-line prettier/prettier
 export const NavIcon = styled(Icon)`
   display: contents;
-  color: ${({ theme }) => theme.palette.primary.green};
+  color: ${({ theme }) => theme.palette.secondary.green};
   font-size: 32px;
   font-family: ${({ theme }) => theme.fonts.at(2)};
   text-shadow: ${({ theme }) => theme.palette.secondary.steel} 1.2px 1px 1px;

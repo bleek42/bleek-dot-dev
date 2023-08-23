@@ -15,9 +15,16 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 			key={`section-${props.id ? props.id + sectionId : sectionId}`}
 			id={`section-${props.id ? props.id + sectionId : sectionId}`}
 		>
-			<LgTxt $colorPalette="tertiary" $color="neon" $shadow="black">
-				{props.name}
-			</LgTxt>
+			{props.name !== 'contact' && (
+				<LgTxt
+					$colorPalette="tertiary"
+					$color="neon"
+					$shadow="black"
+					$size="1.5em"
+				>
+					{props.name}
+				</LgTxt>
+			)}
 			<Icon $colorPalette="primary" $color="neon" $shadow="drab">
 				{props.icon ?? '\ue667'}
 			</Icon>
@@ -32,50 +39,63 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 			)}
 
 			{props.name === 'contact' && props.content && props.icons && (
-				<Article
+				<ContactCard
 					id={`article-contact${
 						props.id ? `_id-${props.id}-${sectionId}` : sectionId
 					}`}
 				>
-					<MdTxt $colorPalette="secondary" $color="yellow" $shadow="black">
+					<LgTxt $colorPalette="secondary" $color="yellow" $shadow="black">
 						{props.name}
-					</MdTxt>
-					<ContactCard>
-						<Icon
-							$colorPalette="tertiary"
-							$color="green"
-							$shadow="black"
-							$size="1.5em"
-						>
-							{props.icons.at(0)} Email:
-							<SmTxt $colorPalette="secondary" $color="blue" $size="1em">
-								{props.content.at(0)}
-							</SmTxt>
-						</Icon>
-						<Icon
-							$colorPalette="tertiary"
-							$color="green"
-							$shadow="black"
-							$size="1.5em"
-						>
-							{props.icons.at(1)} LinkedIn:
-							<SmTxt $colorPalette="secondary" $color="blue" $size="1em">
-								{props.content.at(1)}
-							</SmTxt>
-						</Icon>
-						<Icon
-							$colorPalette="tertiary"
-							$color="green"
-							$shadow="black"
-							$size="1.5em"
-						>
-							{props.icons.at(2)} GitHub:
-							<SmTxt $colorPalette="secondary" $color="blue" $size="1em">
-								{props.content.at(2)}
-							</SmTxt>
-						</Icon>
-					</ContactCard>
-				</Article>
+					</LgTxt>
+					<Icon
+						$colorPalette="tertiary"
+						$color="green"
+						$shadow="black"
+						$size="1.7em"
+					>
+						{props.icons.at(0)} Email:
+					</Icon>
+					<SmTxt
+						$colorPalette="primary"
+						$color="blue"
+						$size="1.5em"
+						$shadow="black"
+					>
+						{props.content.at(0)}
+					</SmTxt>
+					<Icon
+						$colorPalette="tertiary"
+						$color="green"
+						$shadow="black"
+						$size="1.7em"
+					>
+						{props.icons.at(1)} LinkedIn:
+					</Icon>
+					<SmTxt
+						$colorPalette="primary"
+						$color="blue"
+						$shadow="black"
+						$size="1.5em"
+					>
+						{props.content.at(1)}
+					</SmTxt>
+					<Icon
+						$colorPalette="tertiary"
+						$color="green"
+						$shadow="black"
+						$size="1.7em"
+					>
+						{props.icons.at(2)} GitHub:
+					</Icon>
+					<SmTxt
+						$colorPalette="primary"
+						$color="blue"
+						$shadow="black"
+						$size="1.5em"
+					>
+						{props.content.at(2)}
+					</SmTxt>
+				</ContactCard>
 			)}
 			{props.name && typeof props.content === 'string' && (
 				<Article
@@ -84,11 +104,11 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 					}`}
 				>
 					<SmTxt
-					// $colorPalette="primary"
-					// $color="black"
-					// $shadow="gray"
-					// $font="Oxanium"
-					// $size="20px"
+						$colorPalette="primary"
+						$color="black"
+						$shadow="gray"
+						$font="Oxanium"
+						$size="20px"
 					>
 						{props.content}
 					</SmTxt>

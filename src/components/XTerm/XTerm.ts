@@ -82,27 +82,25 @@ export const XTBtns = styled.label.attrs<XTermProps & XTermComponent>((props) =>
 `;
 
 export const XTxtArea = styled.textarea.attrs((props) => ({
+  id: props.id || 'xt-txt-tty0',
   name: props.name || 'xt-txt',
   placeholder: props.placeholder || '/usr/bin/bash',
 }))<XTermProps & XTermComponent>`
   resize: none;
-  overflow: scroll;
+  overflow: hidden;
   flex: 1 1 80vh;
-
+  border: 0;
+  opacity: 0;
   padding: 4px 2px 2px 2px;
-
   background-color: ${({ theme }) => theme.palette.common.black};
   color: ${({ theme }) => theme.palette.secondary.cyan};
   font-family: ${({ theme }) => theme.fonts.at(2)};
   font-size: 32px;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   caret-shape: block;
   text-align: center;
-  text-transform: full-size-kana;
-  border: 0;
-  opacity: 0;
   animation:
-    ${fadeInBright} 1850ms steps(30, end) 450ms 1 normal both,
+    ${fadeInBright} 1850ms steps(35) 400ms 1 normal both,
     ${borderPulse} 980ms linear 2000ms infinite;
 
   /*
@@ -121,7 +119,7 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
 
 export const XTInput = styled.input.attrs<XTermProps & XTermComponent>((props) => ({
   form: props.form || 'xt-form',
-  id: props.id || 'xt-prompt',
+  id: props.id || 'xt-prompt-tty0',
   name: props.name || 'xt-prompt',
   type: props.type || 'text',
   placeHolder: props.placeHolder || '\uf120',
@@ -130,9 +128,6 @@ export const XTInput = styled.input.attrs<XTermProps & XTermComponent>((props) =
   color: ${({ theme }) => theme.palette.secondary.neon};
   background-color: ${({ theme }) => theme.palette.common.black};
   caret-color: ${({ theme }) => theme.palette.secondary.green};
-
-  /* flex: 1 1 auto; */
-  /* max-width: 40vw; */
   width: 50vw;
   max-height: 4vh;
   font-size: 18px;
@@ -158,8 +153,7 @@ export const XTCode = styled.code<XTermProps & XTermComponent>`
   font-weight: 450;
   white-space: pre;
   min-width: fit-content;
-  /* text-decoration: underline;
-  text-decoration-color: ${({ theme }) => theme.palette.secondary.gray}; */
+  text-decoration: underline solid ${({ theme }) => theme.palette.primary.black};
 
   /* @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
     font-size: 20px;

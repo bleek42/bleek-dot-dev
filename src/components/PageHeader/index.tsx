@@ -12,16 +12,10 @@ export default function PageHeader(props: HeaderProps) {
 	// console.log({ 'Header component': { props } });
 	return (
 		<Header>
-			<LgTxt $flex="1 1 auto" $colorPalette="primary" $color="neon" $shadow="black">
+			<LgTxt $colorPalette="primary" $color="neon" $shadow="black">
 				Brandon Leek
 			</LgTxt>
-			<MdTxt
-				$font="MonocraftNF"
-				$flex="1 1 auto"
-				$colorPalette="secondary"
-				$color="neon"
-				$shadow="black"
-			>
+			<MdTxt $colorPalette="secondary" $color="neon" $shadow="black">
 				bleekDotDev
 			</MdTxt>
 			{props.children ? props.children : <Navbar />}

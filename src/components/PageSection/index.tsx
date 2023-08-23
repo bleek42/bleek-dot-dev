@@ -15,8 +15,10 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 			key={`section-${props.id ? props.id + sectionId : sectionId}`}
 			id={`section-${props.id ? props.id + sectionId : sectionId}`}
 		>
-			<LgTxt>{props.name}</LgTxt>
-			<Icon $colorPalete="tertiary" $color="cyan">
+			<LgTxt $colorPalette="tertiary" $color="neon" $shadow="black">
+				{props.name}
+			</LgTxt>
+			<Icon $colorPalette="primary" $color="neon" $shadow="drab">
 				{props.icon ?? '\ue667'}
 			</Icon>
 			{!props.image && props.name === 'about' && (
@@ -28,29 +30,68 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 					priority
 				/>
 			)}
+
 			{props.name === 'contact' && props.content && props.icons && (
 				<Article
-					id={`article-contact-${props.id ? props.id + sectionId : sectionId}`}
+					id={`article-contact${
+						props.id ? `_id-${props.id}-${sectionId}` : sectionId
+					}`}
 				>
-					<MdTxt>Contact</MdTxt>
+					<MdTxt $colorPalette="secondary" $color="yellow" $shadow="black">
+						{props.name}
+					</MdTxt>
 					<ContactCard>
-						<Icon>{props.icons.at(0)} Email:</Icon>
-						<SmTxt $colorPalette="secondary" $color="blue">
-							{props.content.at(0)}
-						</SmTxt>
-						<Icon>{props.icons.at(1)} LinkedIn:</Icon>
-						<SmTxt>{props.content.at(1)}</SmTxt>
-						<Icon>{props.icons.at(2)} GitHub:</Icon>
-						<SmTxt>{props.content.at(2)}</SmTxt>
+						<Icon
+							$colorPalette="tertiary"
+							$color="green"
+							$shadow="black"
+							$size="1.5em"
+						>
+							{props.icons.at(0)} Email:
+							<SmTxt $colorPalette="secondary" $color="blue" $size="1em">
+								{props.content.at(0)}
+							</SmTxt>
+						</Icon>
+						<Icon
+							$colorPalette="tertiary"
+							$color="green"
+							$shadow="black"
+							$size="1.5em"
+						>
+							{props.icons.at(1)} LinkedIn:
+							<SmTxt $colorPalette="secondary" $color="blue" $size="1em">
+								{props.content.at(1)}
+							</SmTxt>
+						</Icon>
+						<Icon
+							$colorPalette="tertiary"
+							$color="green"
+							$shadow="black"
+							$size="1.5em"
+						>
+							{props.icons.at(2)} GitHub:
+							<SmTxt $colorPalette="secondary" $color="blue" $size="1em">
+								{props.content.at(2)}
+							</SmTxt>
+						</Icon>
 					</ContactCard>
 				</Article>
 			)}
-			{typeof props.content === 'string' && (
+			{props.name && typeof props.content === 'string' && (
 				<Article
-					id={`article-${props.id ? props.id + sectionId : sectionId}`}
-					key={`article-${props.id ? props.id + sectionId : sectionId}`}
+					id={`article-${props.name}${
+						props.id ? `_id-${props.id}-${sectionId}` : sectionId
+					}`}
 				>
-					<SmTxt>{props.content}</SmTxt>
+					<SmTxt
+					// $colorPalette="primary"
+					// $color="black"
+					// $shadow="gray"
+					// $font="Oxanium"
+					// $size="20px"
+					>
+						{props.content}
+					</SmTxt>
 				</Article>
 			)}
 			{props.name !== 'contact' &&
@@ -58,11 +99,11 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 				props.content.length >= 1 &&
 				props.content.map((articleContent: string, idx: Key) => (
 					<Article
-						id={`article-num-${idx}-${
-							props.id ? props.id + sectionId : sectionId
+						id={`article-${
+							props.id ? `_id-${props.id}-${sectionId}` : sectionId
 						}`}
-						key={`article-num-${idx}-${
-							props.id ? props.id + sectionId : sectionId
+						key={`article-${
+							props.id ? props.id + sectionId : sectionId + idx
 						}`}
 					>
 						<SmTxt

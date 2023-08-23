@@ -22,10 +22,11 @@ declare module 'styled-components' {
     readonly blue: string;
     readonly cyan: string;
     readonly green: string;
+    readonly purple: string;
     readonly drab: string;
     readonly neon: string;
-    readonly steel: string;
     readonly tan: string;
+    readonly steel: string;
     readonly gray: string;
     readonly teal: string;
     readonly yellow: string;

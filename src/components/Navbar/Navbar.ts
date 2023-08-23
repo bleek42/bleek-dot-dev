@@ -37,9 +37,9 @@ const toggleKeyframes = keyframes`
 
 // eslint-disable-next-line prettier/prettier
 export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
-  border: 1px solid ${({ theme }) => theme.palette.secondary.black};
+  border: 2px solid ${({ theme }) => theme.palette.primary.cyan};
   border-radius: ${({ theme }) => theme.defaultRadius};
-  background-color: ${({ theme }) => theme.palette.secondary.gray};
+  background-color: ${({ theme }) => theme.palette.tertiary.steel};
   max-width: 38vw;
   min-width: 36vw;
   height: 12vh;
@@ -69,7 +69,7 @@ export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
 
 // eslint-disable-next-line prettier/prettier
 export const NavList = styled.ul<NavBarProps & NavbarComponent>`
-  border: 0.5px solid ${({ theme }) => theme.palette.common.black};
+  border: 0.8px solid ${({ theme }) => theme.palette.common.black};
   list-style: none;
   display: contents;
   inset: 82% -15% auto;
@@ -96,7 +96,7 @@ export const NavItem = styled.li<NavBarProps & NavbarComponent>`
   list-style: none;
   letter-spacing: 0.5px;
   border: 0.8px solid ${({ theme }) => theme.palette.secondary.neon};
-  background-color: ${({ theme }) => theme.palette.secondary.teal};
+  background-color: ${({ theme }) => theme.palette.primary.gray};
   padding: 4px 4px;
   height: 8vh;
   min-width: 30vw;

@@ -110,10 +110,10 @@ export default function XTerm() {
 				}}
 			>
 				<XTIcon
-					size={'40px'}
-					colorPalette={'secondary'}
-					color={'green'}
-					shadow={'black'}
+					$size={'40px'}
+					$colorPalette={'secondary'}
+					$color={'green'}
+					$shadow={'black'}
 				>
 					{'\ue683'}
 				</XTIcon>

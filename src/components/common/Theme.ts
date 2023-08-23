@@ -6,7 +6,7 @@ import styled, {
 
 export const theme: DefaultTheme = {
   name: 'Default',
-  defaultBorder: '2px solid rgb(8, 8, 8)',
+  defaultBorder: '2px solid rgb(20, 8, 8)',
   defaultRadius: '4% / 4%',
 
   fonts: [
@@ -33,71 +33,71 @@ export const theme: DefaultTheme = {
     },
     primary: {
       red: 'rgb(226, 49, 0)',
-      blue: 'rgb(13, 0, 201)',
-      orange: 'rgb(237, 172, 88)',
+      blue: 'rgb(7, 52, 228)',
       cyan: 'rgb(21, 245, 245)',
       green: 'rgb(77, 197, 12)',
-      drab: 'rgba(0, 208, 142, 0.9)',
-      steel: 'rgba(105, 112, 140, 0.4)',
-      tan: 'rgb(199, 178, 178)',
-      gray: 'rgb(139, 139, 178)',
+      neon: 'rgba(20, 255, 0, 0.95)',
+      drab: 'rgb(13, 139, 80)',
+      gray: 'rgba(125, 135, 165, 0.95)',
+      steel: 'rgba(132, 165, 184, 0.85)',
+      purple: 'rgb(255, 0, 255)',
       teal: 'rgba(54, 213, 181, 0.9)',
-      neon: 'rgb(0, 255, 30)',
+      orange: 'rgb(237, 172, 88)',
       yellow: 'rgb(222, 210, 76)',
+      tan: 'rgb(199, 178, 178)',
       black: 'rgb(5, 5, 5)',
       white: 'rgb(250, 250, 235)',
       linear:
-        'linear-gradient(175deg,rgba(10, 5, 20, 0.7) 45%, rgba(35, 230, 45, 0.7) 55%)',
+        'linear-gradient(95deg, rgba(90, 218, 225, 0.75) 46%, rgba(105, 190, 105, 0.75) 53%)',
     },
 
     secondary: {
       red: 'rgb(214, 30, 30)',
       blue: 'rgb(52, 105, 249)',
-      orange: 'rgb(240, 135, 0)',
-      cyan: 'rgb(36, 237, 255)',
-      green: 'rgb(55, 175, 101)',
-      drab: 'rgb(15, 226, 96)',
-      steel: 'rgba(116, 132, 145, 0.57)',
-      tan: 'rgb(121, 116, 116)',
-      gray: 'rgb(181, 192, 187)',
-      teal: 'rgba(40, 171, 145, 0.91)',
+      green: 'rgb(38, 229, 22)',
       neon: 'rgb(89, 255, 0)',
+      drab: 'rgb(15, 226, 96)',
+      cyan: 'rgb(36, 237, 255)',
+      gray: 'rgb(181, 192, 187)',
+      steel: 'rgba(116, 132, 145, 0.8)',
+      purple: 'rgba(220, 106, 220, 0.85)',
+      teal: 'rgba(27, 185, 153, 0.9)',
+      orange: 'rgb(240, 135, 0)',
       yellow: 'rgb(225, 255, 0)',
-      black: 'rgb(10, 5, 10)',
+      tan: 'rgb(121, 116, 116)',
+      black: 'rgba(39, 32, 32, 0.9)',
       white: 'rgb(255, 255, 255)',
       linear:
-        'linear-gradient(25deg, rgba(45, 147, 243, 0.7) 35%, rgba(23, 240, 193, 0.8) 65%)',
+        'linear-gradient(100deg, rgba(45, 147, 243, 0.75) 35%, rgba(23, 240, 193, 0.8) 65%)',
     },
 
     tertiary: {
       red: 'rgb(214, 30, 30)',
       blue: 'rgb(0, 55, 207)',
-      orange: 'rgb(200, 45, 45)',
-      cyan: 'rgb(114, 220, 220)',
       green: 'rgb(43, 230, 33)',
-      drab: 'rgb(29, 123, 47)',
-      steel: 'rgba(36, 39, 59, 0.3)',
-      tan: 'rgb(196, 157, 157)',
-      gray: 'rgb(181, 181, 181)',
-      teal: 'rgba(11, 205, 165, 0.9)',
       neon: 'rgb(135, 255, 0)',
+      drab: 'rgb(29, 123, 47)',
+      cyan: 'rgb(114, 220, 220)',
+      gray: 'rgb(181, 181, 181)',
+      steel: 'rgba(36, 39, 59, 0.5)',
+      purple: 'rgb(229, 54, 229)',
+      teal: 'rgba(11, 205, 165, 0.9)',
+      orange: 'rgb(200, 45, 45)',
       yellow: 'rgb(252, 231, 0)',
+      tan: 'rgb(196, 157, 157)',
       black: 'rgb(15, 8, 10)',
       white: 'rgb(234, 255, 241)',
       linear:
-        'linear-gradient(45deg, rgba(132, 255, 0.8) 35%, rgba(22, 247, 135, 0.9) 35%)',
+        'linear-gradient(105deg, rgba(132, 255, 0.85) 35%, rgba(22, 247, 135, 0.9) 35%)',
     },
   },
 };
 
-export const PageBg = styled.main(
-  ({ theme }) => `
-  display: block;
-  min-width: 100vw;
-  min-height: 100vh;
-  background: ${theme.palette.primary.linear};
-`,
-);
+export const PageBg = styled.main`
+  min-width: 90vw;
+  min-height: 90vh;
+  background: ${({ theme }) => theme.palette.primary.linear};
+`;
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -123,15 +123,7 @@ export const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
-  /* :root {
-    Birdman: 'Birdman';
-    Oxanium: 'Oxanium';
-    MonocraftNF: 'MonocraftNF';
-  } */
-
-  *,
-  *:before,
-  *:after {
+  * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -139,34 +131,34 @@ export const GlobalStyle = createGlobalStyle`
 
 
   body {
-    background: rgb(5, 5, 5);
+    background: linear-gradient(100deg, rgba(10, 5, 20, 0.9) 45%, rgba(35, 230, 45, 0.9) 55%);
     font-family: 'Ubuntu, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont';
   }
 
   code, i, em {
     font-family: 'MonocraftNF';
-    font-size: 16px;
+    font-size: 20px;
   }
 
 `;
 
 export const borderPulse = keyframes`
   from {
-    border: .3px solid rgb(0, 0, 0);
+    border: .3px dashed rgb(0, 0, 0);
     margin: .5px;
     box-shadow:  1.2px 1.2px .8px rgba(0, 229, 255, 0.664);
 
   }
 
   50% {
-    border: .6px solid rgb(40, 225, 31);
+    border: .6px dashed rgb(40, 225, 31);
     margin: 1px;
     box-shadow:  2px 2.5px 1.8px rgba(0, 229, 255, 0.838);
   }
 
 
   to {
-    border: .9px solid rgb(40, 220, 30);
+    border: .9px dashed rgb(40, 220, 30);
     margin: 1.8px;
     box-shadow:  1.2px 1.5px 1px rgba(0, 229, 255, 0.664);
 

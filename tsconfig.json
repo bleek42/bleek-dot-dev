@@ -58,18 +58,16 @@
 		]
 	},
 	"include": [
-		"src/**/*.ts",
-		"src/**/*.tsx",
-		"tests/**/*.ts",
-		"codegen.ts",
+		"src/",
+		"tests/",
+		"next.config.js",
 		"next-env.d.ts",
-		"node-env.d.ts",
+		"jest.config.ts",
 		"styled.d.ts",
 		"node-env.d.ts",
-		"next.config.js",
+		"node-env.d.ts",
+		"codegen.ts",
 		"public/",
-		"tests/**/*.ts",
-		"tests/**/*.tsx"
 	],
 	"exclude": [
 		"node_modules/",

@@ -1,5 +1,5 @@
 import PageSection from '@/components/PageSection';
-import { SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from '@/interfaces/Component';
 
 export type ContactRecord = Record<
 	'email' | 'linkedin' | 'github' | string | symbol,

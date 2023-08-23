@@ -1,4 +1,4 @@
-import type { Config } from 'jest';
+import { type Config } from 'jest';
 import nextJest from 'next/jest';
 
 const createJestConfig = nextJest({
@@ -8,7 +8,6 @@ const createJestConfig = nextJest({
 
 // * Add any custom config to be passed to Jest
 // & Add more setup options before each test is run
-// & setupFilesAfterEnv: ['tests/jest.setup.js'],
 const config = async (): Promise<Config> =>
   await Promise.resolve({
     testEnvironment: 'jest-environment-jsdom',

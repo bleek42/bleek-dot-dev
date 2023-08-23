@@ -120,7 +120,6 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
 `;
 
 export const XTInput = styled.input.attrs<XTermProps & XTermComponent>((props) => ({
-  htmlFor: props.htmlFor || 'xt-textarea',
   form: props.form || 'xt-form',
   id: props.id || 'xt-prompt',
   name: props.name || 'xt-prompt',
@@ -131,49 +130,43 @@ export const XTInput = styled.input.attrs<XTermProps & XTermComponent>((props) =
   color: ${({ theme }) => theme.palette.secondary.neon};
   background-color: ${({ theme }) => theme.palette.common.black};
   caret-color: ${({ theme }) => theme.palette.secondary.green};
-  padding: 4px 10px 10px 4px;
+
+  /* flex: 1 1 auto; */
+  /* max-width: 40vw; */
+  width: 50vw;
+  max-height: 4vh;
   font-size: 18px;
   caret-shape: block;
-
+  margin-left: 4px;
   border: 0;
 
   /* accent-color: ${({ theme }) => theme.palette.tertiary.steel}; */
 
-  @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
+  /* @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
     font-size: 16px;
-    /* padding-bottom: 5px; */
-  }
+    padding-bottom: 5px;
+  } */
 `;
 
 export const XTCode = styled.code<XTermProps & XTermComponent>`
-  display: inline-flex;
+  display: flex;
   flex-flow: row nowrap;
   justify-content: stretch;
-  color: ${({ theme }) => theme.palette.secondary.green};
-  background-color: ${(props) => props.theme.palette.secondary.black};
-  font-size: 18px;
+  color: ${({ theme }) => theme.palette.tertiary.green};
+  background-color: ${(props) => props.theme.palette.secondary.steel};
+  font-size: 24px;
   font-weight: 450;
+  white-space: pre;
+  min-width: fit-content;
   /* text-decoration: underline;
   text-decoration-color: ${({ theme }) => theme.palette.secondary.gray}; */
-  max-width: 42vw;
-  min-width: fit-content;
-  white-space: pre;
-  /*
-  &::before {
-    white-space: pre;
-    content: '  ';
-  }
-  */
 
-  /* &:after {
-     content: ' \n '
-  }  */
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+  /* @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
     font-size: 20px;
-    /* flex-flow: row nowrap; */
-    /* flex: 2 1 2vw; */
-  }
+    flex: 1 1 4vw;
+    flex-flow: row nowrap;
+    flex: 2 1 2vw;
+  } */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
     font-size: 16px;
@@ -182,12 +175,11 @@ export const XTCode = styled.code<XTermProps & XTermComponent>`
 `;
 
 export const XTPrompt = styled(XTCode)`
-  color: ${({ theme }) => theme.palette.secondary.green};
-  background-color: ${({ theme }) => theme.palette.secondary.steel};
-  margin: 2px 2px;
-  padding: 2px 2px;
-
+  color: ${({ theme }) => theme.palette.primary.green};
+  background-color: ${({ theme }) => theme.palette.primary.black};
   font-size: 16px;
+  margin: 2px;
+  padding: 4px;
 
   &:before {
     /* white-space: pre; */
@@ -199,7 +191,7 @@ export const XTPrompt = styled(XTCode)`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
-    font-size: 20px;
+    /* font-size: 20px; */
     /* flex-flow: row nowrap; */
     /* flex: 2 1 2vw; */
   }
@@ -211,44 +203,12 @@ export const XTPrompt = styled(XTCode)`
 /* text-decoration-color: ${({ theme }) => theme.palette.secondary.gray}; */
 /* text-decoration: underline; */
 export const XTIcon = styled(Icon)`
-  display: unset;
   align-items: unset;
+  display: inline-block;
   position: absolute;
   object-position: left top;
   text-align: left;
   margin: 2px 2px 2px 2px;
   padding: 3px 3px;
-  position: absolute;
   z-index: 2;
 `;
-
-
-
-
-
-// export const Minmz = styled.button`
-//   /* flex: 0 2 10%; */
-//   width: 10vh;
-//   font-family: 'MonocraftNF';
-//   font-size: 24px;
-//   background-color: yellow;
-// `;
-
-// export const XTCmd = styled(XTCode)`
-//   display: unset;
-//   color: ${({ theme }) => theme.palette.secondary.neon};
-//   background-color: ${({ theme }) => theme.palette.common.black};
-
-//   caret-color: ${({ theme }) => theme.palette.secondary.neon};
-//   caret-shape: block;
-
-//   @media(min-width: ${({ theme }) => theme.breakpoints.fullDisplay}) {
-//     font-size: 20px;
-//     /* flex-flow: row nowrap; */
-//     /* flex: 2 1 2vw; */
-//   }
-
-//   @media(max-width: ${({ theme }) => theme.breakpoints.phone}) {
-//     font-size: 16px;
-//   }
-// `

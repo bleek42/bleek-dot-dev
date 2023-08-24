@@ -6,7 +6,9 @@
 	},
 	"globals": {
 		"react": "readonly",
-		"jest": "readonly"
+		"jest": "readonly",
+		"describe": "readonly",
+		"render": "writable"
 	},
 	"parser": "@typescript-eslint/parser",
 	"parserOptions": {

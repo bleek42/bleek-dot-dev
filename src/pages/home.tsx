@@ -8,7 +8,8 @@ export default function Home() {
 			id="home-section"
 			name="Home"
 			description="bleek.dev/home"
-			content="Welcome & thanks for visiting! I'm Brandon Leek: a full-stack web developer, Linux enthusiast, & lifelong power user. I hope you find the results of my latest iterations on my portfolio rather unique, yet still modern-contemporary, and of course a pleasure to use as you navigate around! This was create with React via NextJS, GraphQL via Hygraph CMS, custom CSS-in-JS via Styled Components, & full TypeScript integration!"
+			content="Welcome & thanks for visiting! I'm Brandon Leek: a full-stack web developer, Linux enthusiast, & lifelong power user. I hope you find the results of my latest iterations here rather unique, yet still modern-contemporary, and not to mention a pleasure to use as you navigate around using the toggle menu above!
+			Tech stack includes React/NextJS, GraphQL, Hygraph CMS CSS-in-JS Styled Components with all custom animations & props fully typed, among others!"
 		/>
 	);
 }

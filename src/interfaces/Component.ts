@@ -45,7 +45,8 @@ export interface XTermComponent extends Component {
 }
 
 export interface MetaComponent extends Metadata {
-  title: DefaultTemplateString | TemplateString;
+  id: Key | 'meta-bleek_0';
+  title: string;
   description?: string | null;
   keywords: string | string[];
   icons?: IconURL | Icons | null;

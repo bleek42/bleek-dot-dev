@@ -37,19 +37,17 @@ const toggleKeyframes = keyframes`
 
 // eslint-disable-next-line prettier/prettier
 export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
-  border: 1px solid ${({ theme }) => theme.palette.secondary.black};
+  border: 2px solid ${({ theme }) => theme.palette.primary.cyan};
   border-radius: ${({ theme }) => theme.defaultRadius};
-  background-color: ${({ theme }) => theme.palette.secondary.gray};
-  max-width: 38vw;
-  min-width: 36vw;
-  height: 12vh;
-  min-height: 10vh;
+  background-color: ${({ theme }) => theme.palette.tertiary.steel};
+  width: 38vw;
+  min-width: 30vw;
+  height: 10vh;
+  min-height: 8vh;
   position: relative;
-  flex: 3 1 auto;
-  /* animation: slide-open 0.6s forwards; */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
-    /* justify-content: flex-start; */
+    justify-items: center;
     /* flex-flow: column wrap; */
     /* flex: auto; */
     /* align-items: center; */
@@ -69,7 +67,7 @@ export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
 
 // eslint-disable-next-line prettier/prettier
 export const NavList = styled.ul<NavBarProps & NavbarComponent>`
-  border: 0.5px solid ${({ theme }) => theme.palette.common.black};
+  border: 0.8px solid ${({ theme }) => theme.palette.common.black};
   list-style: none;
   display: contents;
   inset: 82% -15% auto;
@@ -96,7 +94,7 @@ export const NavItem = styled.li<NavBarProps & NavbarComponent>`
   list-style: none;
   letter-spacing: 0.5px;
   border: 0.8px solid ${({ theme }) => theme.palette.secondary.neon};
-  background-color: ${({ theme }) => theme.palette.secondary.teal};
+  background-color: ${({ theme }) => theme.palette.primary.gray};
   padding: 4px 4px;
   height: 8vh;
   min-width: 30vw;
@@ -108,28 +106,25 @@ export const NavItem = styled.li<NavBarProps & NavbarComponent>`
     border: 1.2px solid ${({ theme }) => theme.palette.secondary.cyan};
     filter: brightness(1.2);
   }
-  /* color: rgb(11, 211, 11);
-  transition: filter 400ms; */
 `;
 
-// eslint-disable-next-line prettier/prettier
 export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   width: stretch;
   height: 5vh;
   display: inline-block;
   padding: 4px;
   margin: 2px 3px 0 3px;
-  color: ${({ theme }) => theme.palette.secondary.blue};
-  border: 0.4px solid ${({ theme }) => theme.palette.primary.cyan};
-  background-color: ${({ theme }) => theme.palette.secondary.black};
-  border-radius: 2% / 2%;
+  color: ${({ theme }) => theme.palette.primary.blue};
+  border: 0.8px solid ${({ theme }) => theme.palette.primary.cyan};
+  background-color: ${({ theme }) => theme.palette.primary.black};
+  border-radius: ${({ theme }) => theme.defaultRadius};
   font-family: ${({ theme }) => theme.fonts.at(2)};
-  text-shadow: ${({ theme }) => theme.palette.secondary.steel} 1.5px 1px 0.5px;
-  font-size: 24px;
+  text-shadow: ${({ theme }) => theme.palette.primary.steel} 1px 0.5px 0.5px;
+  font-size: 32px;
   letter-spacing: 0.4px;
   transition:
     filter 360ms ease-in,
-    color 420ms linear;
+    color 360ms ease-in;
 
   /* &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
@@ -137,19 +132,27 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   } */
 
   &:hover {
-    filter: brightness(1.8);
+    filter: brightness(1.2);
     color: ${({ theme }) => theme.palette.primary.cyan};
   }
 `;
 
 // eslint-disable-next-line prettier/prettier
 export const NextLink = styled(Link)<NextLinkProps>`
-  display: inline-block;
-  font-size: 30px;
+  display: contents;
+  font-size: 1.5em;
   color: ${({ theme }) => theme.palette.secondary.neon};
   font-family: ${({ theme }) => theme.fonts.at(1)};
-  text-shadow: ${({ theme }) => theme.palette.secondary.black} 1px 1px 0.5px;
-  text-align: right;
+  text-shadow: ${({ theme }) => theme.palette.secondary.black} 1px 0.5px 0.5px;
+  text-align: center;
+  transition:
+    filter 360ms ease-in,
+    color 360ms ease-in;
+
+  &:hover {
+    color: ${({ theme }) => theme.palette.primary.neon};
+    filter: brightnness(1.1);
+  }
 
   &:visited {
     filter: brightness(0.8);
@@ -157,25 +160,21 @@ export const NextLink = styled(Link)<NextLinkProps>`
   }
 `;
 
-export const NavTxt = styled(MdTxt)`
-  text-align: center;
-`;
-
 // eslint-disable-next-line prettier/prettier
 export const NavIcon = styled(Icon)`
   display: contents;
-  color: ${({ theme }) => theme.palette.primary.green};
-  font-size: 32px;
+  color: ${({ theme }) => theme.palette.secondary.green};
+  font-size: 1.8em;
   font-family: ${({ theme }) => theme.fonts.at(2)};
   text-shadow: ${({ theme }) => theme.palette.secondary.steel} 1.2px 1px 1px;
   text-align: left;
   transition:
     filter 360ms ease-in-out,
-    color 420ms linear;
+    color 360ms ease-in-out;
 
   &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
-    filter: brightnness(1.2);
+    filter: brightnness(1.1);
   }
 `;
 

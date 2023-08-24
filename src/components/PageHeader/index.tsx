@@ -4,24 +4,21 @@ import { type HeaderComponent } from '@/interfaces/Component';
 import { Header } from './Header';
 import Navbar from '@/components/Navbar';
 import { LgTxt, MdTxt } from '@/components/common';
+import { Fragment } from 'react';
 
 type HeaderProps = HeaderComponent;
 
-export default function PageHeader(props: HeaderComponent) {
-	console.log({ 'Header component': { props } });
-
+export default function PageHeader(props: HeaderProps) {
+	// console.log({ 'Header component': { props } });
 	return (
 		<Header>
-			<LgTxt $flex="1 0 auto" $colorPalette="primary" $color="green">
+			<LgTxt $colorPalette="primary" $color="neon" $shadow="black">
 				Brandon Leek
 			</LgTxt>
-			<MdTxt $flex="1 0 auto" $colorPalette="primary" $color="neon" $shadow="steel">
+			<MdTxt $colorPalette="secondary" $color="neon" $shadow="black">
 				bleekDotDev
 			</MdTxt>
-			{/* <MdTxt font="MonocraftNF" color="red" shadow="steel">
-				{props.title ?? 'untitled'}
-			</MdTxt> */}
-			<Navbar />
+			{props.children ? props.children : <Navbar />}
 		</Header>
 	);
 }

@@ -7,11 +7,11 @@ import Meta from '@/components/common/Meta';
 import PageLayout from '@/lib/PageLayout';
 import LandingPage from './index';
 
-function App({ Component, pageProps }: AppProps) {
-	console.log(Component.displayName);
+function App({ Component, pageProps }: AppProps<MetaComponent>) {
+	console.log();
 	return (
 		<ThemeProvider theme={theme}>
-			<Meta />
+			<Meta id={pageProps.id} />
 			<GlobalStyle />
 			{Component !== LandingPage ? (
 				<PageLayout>

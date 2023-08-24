@@ -1,5 +1,5 @@
 import PageSection from '@/components/PageSection';
-import { SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from '@/interfaces/Component';
 
 export type ContactRecord = Record<
 	'email' | 'linkedin' | 'github' | string | symbol,
@@ -13,11 +13,11 @@ export default function Contact() {
 			name="contact"
 			description="contact section"
 			content={[
-				'Email: brandonleek42@yahoo.com',
-				'LinkedIn: https://linkedin.com/in/brandonl42',
-				'GitHub: https://github.com/bleek42',
+				'brandonleek42@yahoo.com',
+				'https://linkedin.com/in/brandonl42',
+				'https://github.com/bleek42',
 			]}
-			icons={[' \uf092 ', ' \udb80\udd7b ', ' \uf08c ']}
+			icons={[' \uf092 ', ' \uf08c ', ' \ue708 ']}
 		/>
 	);
 }

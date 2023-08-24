@@ -5,8 +5,8 @@ import { type AnyStyledComponent } from 'styled-components';
 
 // import { describe, it } from 'node:test';
 
-describe('Text', () => {
-	it('should render the styled Text', () => {
+describe('Text Components', () => {
+	it('should render one each of the styled Text components', () => {
 		const { container } = render(<MdTxt />);
 		// console.log(container);
 		expect(container.style).toBeTruthy();

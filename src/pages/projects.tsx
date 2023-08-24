@@ -25,7 +25,7 @@ export default function Projects(props: InferGetStaticPropsType<typeof getStatic
 							id={item.title}
 							name={item.title}
 							description={item.description}
-							content={item.description}
+							content={[...item.sourceCode]}
 							icon={null}
 							image={item.screenShots}
 						/>

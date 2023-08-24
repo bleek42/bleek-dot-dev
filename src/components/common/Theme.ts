@@ -144,24 +144,25 @@ export const GlobalStyle = createGlobalStyle`
 
 export const borderPulse = keyframes`
   from {
-    border: .3px dashed rgb(0, 0, 0);
-    margin: .5px;
+    border: 0.3px groove rgb(0, 0, 0);
+    margin: 1px;
     box-shadow:  1.2px 1.2px .8px rgba(0, 229, 255, 0.664);
-
+    /* filter: brightness(1); */
   }
 
   50% {
-    border: .5px dashed rgb(40, 225, 31);
-    margin: 1px;
+    border: 0.5px groove rgb(40, 225, 31);
+    margin: 1.5px;
     box-shadow:  2px 2.5px 1.8px rgba(0, 229, 255, 0.838);
+    /* filter: brightness(1.2); */
   }
 
 
   to {
-    border: 1px dashed rgb(40, 220, 30);
+    border: 0.8px groove rgb(40, 220, 30);
     margin: 1.8px;
     box-shadow:  1.2px 1.5px 1px rgba(0, 229, 255, 0.664);
-
+    /* filter: brightness(1); */
   }
 
   /* 20% {
@@ -192,38 +193,38 @@ export const borderPulse = keyframes`
 export const fadeInBright = keyframes`
   from {
     opacity: 0;
-    filter: brightness(8%)
+    filter: brightness(0.1);
     /* box-shadow: unset; */
     /* filter: drop-shadow(2px 4px 2px rgb(125, 5, 45)) invert(75%); */
   }
 
   20% {
     opacity: 0.15;
-    filter: brightness(20%);
+    filter: brightness(0.2);
     /* box-shadow: 0.5px 0.5px 0.5px rgb(2, 1, 4); */
   }
 
   40% {
     opacity: 0.3;
-    filter: brightness(42%);
+    filter: brightness(0.4);
     /* box-shadow: 1px 1px 1px rgb(12, 1, 4); */
   }
 
   60% {
     opacity: 0.6;
-    filter: brightness(76%);
+    filter: brightness(0.8);
     /* box-shadow: 1px 1px 1px rgb(16, 5, 10); */
   }
 
   80% {
     opacity: 0.8;
-    filter: brightness(90%);
+    filter: brightness(1);
     /* box-shadow: 1px 1px 1px rgb(12, 1, 4); */
   }
 
   to {
     opacity: 1;
-    filter: brightness(100%);
+    filter: brightness(1.1);
     /* box-shadow: 1px 1px 1px rgb(26, 8, 12); */
     /* content: '\n \n Hey there, I'm Brandon & I'm a Web Dev! \n \n \n Click/touch anywhere to continue.'; */
   }

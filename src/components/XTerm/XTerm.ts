@@ -100,8 +100,8 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   text-align: center;
 
   animation:
-    ${fadeInBright} 1850ms steps(35) 400ms 1 normal both,
-    ${borderPulse} 980ms linear 2000ms infinite;
+    ${fadeInBright} 1850ms steps(30) 360ms 1 normal both,
+    ${borderPulse} 670ms linear 2000ms infinite;
 
   @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
     font-size: 1.8em;

@@ -46,6 +46,7 @@ export const Article = styled.article<SectionProps & SectionComponent>`
   border: 2px inset ${({ theme }) => theme.palette.primary.cyan};
   border-radius: ${({ theme }) => theme.defaultRadius};
   flex: 1 1 auto;
+  align-self: center;
   min-height: 16vh;
   max-width: 60vw;
   min-width: 40vw;
@@ -57,7 +58,7 @@ export const Article = styled.article<SectionProps & SectionComponent>`
     filter 450ms ease-in-out;
 
   &:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.15);
     border: 2.8px outset ${({ theme }) => theme.palette.secondary.cyan};
   }
 
@@ -65,8 +66,7 @@ export const Article = styled.article<SectionProps & SectionComponent>`
   } */
 
   @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
-    text-align: center;
-    margin: 12px 8px 8px 18px;
+    /* margin: 12px 8px 8px 18px; */
   }
 `;
 

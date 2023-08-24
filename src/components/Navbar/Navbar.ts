@@ -106,11 +106,8 @@ export const NavItem = styled.li<NavBarProps & NavbarComponent>`
     border: 1.2px solid ${({ theme }) => theme.palette.secondary.cyan};
     filter: brightness(1.2);
   }
-  /* color: rgb(11, 211, 11);
-  transition: filter 400ms; */
 `;
 
-// eslint-disable-next-line prettier/prettier
 export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   width: stretch;
   height: 5vh;
@@ -126,8 +123,8 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   font-size: 32px;
   letter-spacing: 0.4px;
   transition:
-    filter 360ms ease-in-out,
-    color 360ms linear;
+    filter 360ms ease-in,
+    color 360ms ease-in;
 
   /* &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
@@ -142,12 +139,20 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
 
 // eslint-disable-next-line prettier/prettier
 export const NextLink = styled(Link)<NextLinkProps>`
-  display: inline-block;
-  font-size: 30px;
+  display: contents;
+  font-size: 1.5em;
   color: ${({ theme }) => theme.palette.secondary.neon};
   font-family: ${({ theme }) => theme.fonts.at(1)};
-  text-shadow: ${({ theme }) => theme.palette.secondary.black} 1px 1px 0.5px;
-  text-align: right;
+  text-shadow: ${({ theme }) => theme.palette.secondary.black} 1px 0.5px 0.5px;
+  text-align: center;
+  transition:
+    filter 360ms ease-in,
+    color 360ms ease-in;
+
+  &:hover {
+    color: ${({ theme }) => theme.palette.primary.neon};
+    filter: brightnness(1.1);
+  }
 
   &:visited {
     filter: brightness(0.8);
@@ -159,17 +164,17 @@ export const NextLink = styled(Link)<NextLinkProps>`
 export const NavIcon = styled(Icon)`
   display: contents;
   color: ${({ theme }) => theme.palette.secondary.green};
-  font-size: 32px;
+  font-size: 1.8em;
   font-family: ${({ theme }) => theme.fonts.at(2)};
   text-shadow: ${({ theme }) => theme.palette.secondary.steel} 1.2px 1px 1px;
   text-align: left;
   transition:
     filter 360ms ease-in-out,
-    color 420ms linear;
+    color 360ms ease-in-out;
 
   &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
-    filter: brightnness(1.2);
+    filter: brightnness(1.1);
   }
 `;
 

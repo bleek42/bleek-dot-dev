@@ -97,7 +97,7 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 					</SmTxt>
 				</ContactCard>
 			)}
-			{props.name && typeof props.content === 'string' && (
+			{props.name !== 'contact' && typeof props.content === 'string' && (
 				<Article
 					id={`article-${props.name}${
 						props.id ? `_id-${props.id}-${sectionId}` : sectionId
@@ -106,9 +106,8 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 					<SmTxt
 						$colorPalette="primary"
 						$color="black"
-						$shadow="gray"
-						$font="Oxanium"
-						$size="20px"
+						$shadow="cyan"
+						$size="1.2em"
 					>
 						{props.content}
 					</SmTxt>

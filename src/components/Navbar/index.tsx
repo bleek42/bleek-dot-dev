@@ -39,15 +39,17 @@ export default function Navbar() {
 	return (
 		<NavBar id="nav-bar">
 			<MdTxt
-				$colorPalette="primary"
-				$color="cyan"
+				$colorPalette="secondary"
+				$color="green"
 				$shadow="black"
 				$align="center"
 				$font="MonocraftNf"
 			>
-				Nav{'\uf969'}
+				Menu {'\uf969'}
 			</MdTxt>
 			<ToggleBtn
+				id="toggle-btn"
+				tabIndex={0}
 				onMouseOver={handleHoverIn}
 				onMouseLeave={handleHoverOut}
 				onClick={handleToggle}
@@ -63,19 +65,19 @@ export default function Navbar() {
 					portal.current &&
 					createPortal(
 						<Fragment>
-							<NavItem>
+							<NavItem id="nav-home" tabIndex={0}>
 								<NavIcon>{'\ue617 '}</NavIcon>
 								<NextLink href="/home">Home</NextLink>
 							</NavItem>
-							<NavItem>
+							<NavItem id="nav-about" tabIndex={0}>
 								<NavIcon>{'\uf415 '}</NavIcon>
 								<NextLink href="/about">About</NextLink>
 							</NavItem>
-							<NavItem>
+							<NavItem id="nav-about" tabIndex={0}>
 								<NavIcon>{'\ueA8A '}</NavIcon>
 								<NextLink href="/projects">Projects</NextLink>
 							</NavItem>
-							<NavItem>
+							<NavItem id="nav-about" tabIndex={0}>
 								<NavIcon>{'\ueff3 '}</NavIcon>
 								<NextLink href="/contact">Contact</NextLink>
 							</NavItem>
@@ -86,9 +88,3 @@ export default function Navbar() {
 		</NavBar>
 	);
 }
-
-// <Fragment>
-// 	<nav>
-// 		<p>nav-portal</p>
-// 	</nav>
-// </Fragment>

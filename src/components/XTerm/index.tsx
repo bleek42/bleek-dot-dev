@@ -1,15 +1,8 @@
 import { useRouter } from 'next/router';
-import {
-	useState,
-	useCallback,
-	type ChangeEvent,
-	type FormEvent,
-	type SyntheticEvent,
-} from 'react';
+import { useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
 
 import { type XTermComponent } from '@/interfaces/Component';
 import {
-	type XTermProps,
 	XTForm,
 	XTLabel,
 	XTBtns,
@@ -109,22 +102,18 @@ export default function XTerm() {
 					console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
 			>
-				<XTIcon
-					$size={'40px'}
-					$colorPalette={'secondary'}
-					$color={'green'}
-					$shadow={'black'}
-				>
+				<XTIcon $colorPalette={'secondary'} $color={'green'} $shadow={'black'}>
 					{'\ue683'}
 				</XTIcon>
 				<XTxtArea
 					id={xterm.id}
 					defaultValue={
-						" \n \n Hey there \uf4a2 \n \n I'm Brandon: a Full Stack Web Dev! \n \n \n  \ue736  \ue749  \ue718  \ue69d  \ue7ba  \n \n  \ue662  \ufab2  \ue712  \uebca  \ue702  \n \n \n  Click | Touch here to proceed to . . .  \n \n \n  \uea9c  \ue617  \n \n  bleek.dev/home  "
+						" \n \n Hey there \uf4a2 \n \n I'm Brandon: a Full Stack Web Dev! \n \n \n  \ue736  \ue749  \ue718  \ue69d  \ue7ba  \n \n  \ue662  \ufab2  \ue712  \uebca  \ue702  \n \n \n  Click | Touch to proceed to...  \n \n \n  \uea9c  \ue617  \n \n  bleek.dev/home  "
 					}
 				/>
 				<XTPrompt>
 					{xterm.prompt}
+
 					<XTInput
 						id="xt-prompt"
 						name="xt-prompt"

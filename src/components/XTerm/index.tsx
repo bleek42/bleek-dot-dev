@@ -20,7 +20,7 @@ export default function XTerm() {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
-		prompt: '  [ visitor@bleek.dev]   ﬦ ',
+		prompt: '  [ visitor@bleek.dev]   ﬦ',
 		stdin: '',
 		stdio: '',
 		stderr: null,
@@ -126,13 +126,11 @@ export default function XTerm() {
 				/>
 				<XTPrompt>
 					{xterm.prompt}
-
 					<XTInput
-						id="xt-prompt"
+						id={`xt-prompt-${xterm.id}`}
 						name="xt-prompt"
-						value={xterm.name}
 						onChange={handleChange}
-						// defaultValue={'\ue691'}
+						defaultValue={'  '}
 					/>
 				</XTPrompt>
 			</XTLabel>

@@ -151,7 +151,7 @@ export const NextLink = styled(Link)<NextLinkProps>`
 
   &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
-    filter: brightnness(1.1);
+    filter: brightness(1.1);
   }
 
   &:visited {
@@ -166,16 +166,16 @@ export const NavIcon = styled(Icon)`
   color: ${({ theme }) => theme.palette.secondary.green};
   font-size: 1.8em;
   font-family: ${({ theme }) => theme.fonts.at(2)};
-  text-shadow: ${({ theme }) => theme.palette.secondary.steel} 1.2px 1px 1px;
+  text-shadow: ${({ theme }) => theme.palette.secondary.black} 1.2px 1.2px 0.8px;
   text-align: left;
-  transition:
-    filter 360ms ease-in-out,
-    color 360ms ease-in-out;
+  /* transition:
+    filter 360ms ease-in,
+    color 360ms ease-in;
 
   &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
     filter: brightnness(1.1);
-  }
+  } */
 `;
 
 //   position: ${(props) => (props.toggle ? 'absolute' : 'fixed')};

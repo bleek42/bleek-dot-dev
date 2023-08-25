@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
 
-import { type XTermComponent } from '@/interfaces/Component';
 import {
 	XTForm,
 	XTLabel,
@@ -12,20 +11,16 @@ import {
 	XTIcon,
 	XTPrompt,
 } from './XTerm';
-import { BtnClose, BtnMax, BtnMin, Icon } from '@/components/common';
-// import { printIntrospectionSchema } from 'graphql';
-// import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
-// import { type ResizeObserverDimensions } from '@/interfaces/ResizeObserverDimensions';
-// import useResizeObserver from '@/hooks/useResizeObserver';
+import { Btn } from '@/components/common';
+import { type XTermComponent } from '@/interfaces/Component';
 
 type XTermState = XTermComponent;
-// type XTermViewportState = ResizeObserverDimensions;
 
 export default function XTerm() {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
-		prompt: '  [ visitor@bleek.dev]   ﬦ ', //  [visitor@bleek.dev]λ->>
+		prompt: '  [ visitor@bleek.dev]   ﬦ',
 		stdin: '',
 		stdio: '',
 		stderr: null,
@@ -44,7 +39,9 @@ export default function XTerm() {
 	};
 
 	const handleRouteHome = async (
-		evt: FormEvent<HTMLTextAreaElement> | SyntheticEvent<HTMLElement>,
+		evt:
+			| FormEvent<HTMLFormElement | HTMLTextAreaElement>
+			| SyntheticEvent<HTMLElement>,
 	) => {
 		console.log({ onClick: { ...evt } });
 		await router.push('/home');
@@ -53,9 +50,15 @@ export default function XTerm() {
 	return (
 		<XTForm>
 			<XTBtns id="xt-btns">
-				<BtnClose
-					id="xt-close"
+				<Btn
+					id="xt-close-tty0"
+					name="xt-close"
 					type="reset"
+					$colorPalette="secondary"
+					$color="orange"
+					$shadow="black"
+					$align="center"
+					$size="2.4em"
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
 						evt.preventDefault();
@@ -64,10 +67,15 @@ export default function XTerm() {
 					}}
 				>
 					{'[ \uf00d ]'}
-				</BtnClose>
-				<BtnMax
-					id="xt-maxmz"
-					type="button"
+				</Btn>
+				<Btn
+					id="xt-maxmz-tty0"
+					name="xt-maxmz"
+					$colorPalette="secondary"
+					$color="cyan"
+					$shadow="black"
+					$align="center"
+					$size="2.4em"
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
 						evt.preventDefault();
@@ -76,10 +84,15 @@ export default function XTerm() {
 					}}
 				>
 					{'[ \ueb95 ]'}
-				</BtnMax>
-				<BtnMin
+				</Btn>
+				<Btn
 					id="xt-minmz"
 					type="button"
+					$colorPalette="secondary"
+					$color="green"
+					$shadow="black"
+					$align="center"
+					$size="2.4em"
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
 						evt.preventDefault();
@@ -87,8 +100,8 @@ export default function XTerm() {
 						console.log({ 'min-btn': evt.target });
 					}}
 				>
-					{'[ \uf2d1 ]'}
-				</BtnMin>
+					{'[ \ueacc ]'}
+				</Btn>
 			</XTBtns>
 			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
 			<XTLabel
@@ -113,13 +126,11 @@ export default function XTerm() {
 				/>
 				<XTPrompt>
 					{xterm.prompt}
-
 					<XTInput
-						id="xt-prompt"
+						id={`xt-prompt-${xterm.id}`}
 						name="xt-prompt"
-						value={xterm.name}
 						onChange={handleChange}
-						// defaultValue={'\ue691'}
+						defaultValue={'  '}
 					/>
 				</XTPrompt>
 			</XTLabel>

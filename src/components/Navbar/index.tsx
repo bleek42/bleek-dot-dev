@@ -18,7 +18,7 @@ export default function Navbar() {
 
 	const handleHoverIn = (evt: SyntheticEvent<HTMLElement>): void => {
 		console.log(evt);
-		evt.preventDefault();
+		// evt.preventDefault();
 		timeout.current = setTimeout(() => {
 			setToggle(true);
 		}, 500);
@@ -26,7 +26,7 @@ export default function Navbar() {
 
 	const handleHoverOut = (evt: SyntheticEvent<HTMLElement>): void => {
 		console.log(evt);
-		evt.preventDefault();
+		// evt.preventDefault();
 		timeout.current = setTimeout(() => setToggle(false), 500);
 		console.log(timeout.current);
 
@@ -43,9 +43,10 @@ export default function Navbar() {
 				$color="green"
 				$shadow="black"
 				$align="center"
-				$font="MonocraftNf"
+				$font="MonocraftNF"
+				$size="2em"
 			>
-				Menu {'\uf969'}
+				{'\uf969'} Menu
 			</MdTxt>
 			<ToggleBtn
 				id="toggle-btn"
@@ -78,8 +79,8 @@ export default function Navbar() {
 								<NextLink href="/projects">Projects</NextLink>
 							</NavItem>
 							<NavItem id="nav-about" tabIndex={0}>
-								<NavIcon>{'\ueff3 '}</NavIcon>
-								<NextLink href="/contact">Contact</NextLink>
+								<NavIcon>{'\uf2bc '}</NavIcon>
+								<NextLink href="/contact"> Contact</NextLink>
 							</NavItem>
 						</Fragment>,
 						portal.current,

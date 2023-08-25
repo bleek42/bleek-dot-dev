@@ -6,83 +6,19 @@ import styled, {
   type DefaultTheme,
   type StyledComponentProps,
 } from 'styled-components';
-// import localFont from 'next/font/local';
-
-// export const Birdman = localFont<'Birdman'>({
-//   src: [
-//     {
-//       path: '../../../public/fonts/birdman/BIRDMAN_REG.ttf',
-//       style: 'regular',
-//       weight: '400',
-//     },
-//     {
-//       path: '../../../public/fonts/birdman/BIRDMAN_LT.ttf',
-//       style: 'light',
-//       weight: '300',
-//     },
-//     {
-//       path: '../../../public/fonts/birdman/BIRDMAN_BD.ttf',
-//       style: 'bold',
-//       weight: '600',
-//     },
-//     {
-//       path: '../../../public/fonts/birdman/BIRDMAN_OBL.ttf',
-//       style: 'oblique',
-//       weight: '750',
-//     },
-//   ],
-
-//   variable: 'Birdman',
-// });
-
-// export const Oxanium = localFont<'Oxanium'>({
-//   src: [
-//     {
-//       path: '../../../public/fonts/Oxanium/Oxanium-Regular.ttf',
-//       style: 'regular',
-//     },
-//     {
-//       path: '../../../public/fonts/Oxanium/Oxanium-Light.ttf',
-//       style: 'light',
-//     },
-//     {
-//       path: '../../../public/fonts/Oxanium/Oxanium-Bold.ttf',
-//       style: 'bold',
-//     },
-//     {
-//       path: '../../../public/fonts/Oxanium/Oxanium-SemiBold.ttf',
-//       style: 'semi-bold',
-//     },
-//   ],
-
-//   variable: 'Oxanium',
-// });
-
-// export const MonocraftNF = localFont<'MonocraftNF'>({
-//   src: '../../../public/fonts/Monocraft-NerdFont/Monocraft-nerd-fonts-patched.ttf',
-//   variable: 'MonocraftNF',
-// });
-
-interface TextOptions {
-  $colorPalette: ColorPalettes;
-  $color: keyof Colors;
-  $shadow: keyof Colors;
-  $font: Fonts;
-  $size: `${string}px` | `${string}em` | `${string}rem` | 'initial' | 'inherit' | 'unset';
-  $align: 'center' | 'left' | 'right' | string;
-  $flex: string | '1 1 auto';
-}
+import { type StyledOptions } from '@/interfaces/StyledOptions';
 
 type TextProps = StyledComponentProps<
-  'h4' | 'h2' | 'p' | AnyStyledComponent,
+  AnyStyledComponent | keyof JSX.Element,
   DefaultTheme,
-  object,
+  StyledOptions,
   string | number | symbol
 > &
-  TextOptions;
+  StyledOptions;
 
 export const SmTxt = styled.p<TextProps>`
   flex: ${(props) => props.$flex ?? 'unset'};
+  font-size: ${(props) => props.$size ?? 'inherit'};
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(1)};
   font-size: ${(props) => props.$size ?? 'inherit'};
   color: ${(props) =>
@@ -114,6 +50,7 @@ export const SmTxt = styled.p<TextProps>`
 export const MdTxt = styled.h2<TextProps>`
   flex: ${(props) => props.$flex ?? 'unset'};
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(1)};
+  font-size: ${(props) => props.$size ?? 'inherit'};
   color: ${(props) =>
     props.$color &&
     props.$colorPalette === 'primary' &&
@@ -143,6 +80,7 @@ export const MdTxt = styled.h2<TextProps>`
 
 export const LgTxt = styled.h1<TextProps>`
   flex: ${(props) => props.$flex ?? 'unset'};
+  font-size: ${(props) => props.$size ?? 'inherit'};
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(0)};
   color: ${(props) =>
     props.$colorPalette === 'primary' && props.$color in props.theme.palette.primary
@@ -167,9 +105,9 @@ export const LgTxt = styled.h1<TextProps>`
 
 export const Icon = styled.em<TextProps>`
   /* flex: ${(props) => props.$flex ?? 'unset'}; */
-  display: inline-block;
+  display: contents;
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(2)};
-  font-size: ${(props) => props.$size ?? '28px'};
+  font-size: ${(props) => props.$size ?? 'inherit'};
   letter-spacing: 0.5px;
   color: ${(props) =>
     props.$color &&

@@ -8,7 +8,7 @@ import { Icon, LgTxt, MdTxt, SmTxt } from '@/components/common';
 // import { Details, Summary } from '@/components/common/Details';
 
 export default function PageSection(props: SectionProps & SectionComponent) {
-	// console.log({ 'section-component': props });
+	// console.log({ 'page-section-props': props });
 	const sectionId = useId();
 	return (
 		<Section
@@ -20,12 +20,13 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 					$colorPalette="tertiary"
 					$color="neon"
 					$shadow="black"
-					$size="1.5em"
+					$size="2.2em"
+					$flex="0 1 2vh"
 				>
 					{props.name}
 				</LgTxt>
 			)}
-			<Icon $colorPalette="primary" $color="neon" $shadow="drab">
+			<Icon $colorPalette="primary" $color="drab" $shadow="black" $size="2em">
 				{props.icon ?? '\ue667'}
 			</Icon>
 			{!props.image && props.name === 'about' && (
@@ -38,65 +39,73 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 				/>
 			)}
 
-			{props.name === 'contact' && props.content && props.icons && (
-				<ContactCard
-					id={`article-contact${
-						props.id ? `_id-${props.id}-${sectionId}` : sectionId
-					}`}
-				>
-					<LgTxt $colorPalette="secondary" $color="yellow" $shadow="black">
-						{props.name}
-					</LgTxt>
-					<Icon
-						$colorPalette="tertiary"
-						$color="green"
-						$shadow="black"
-						$size="1.7em"
+			{props.name === 'contact' &&
+				props.content &&
+				Array.isArray(props.icons) &&
+				props.icons.length === 3 && (
+					<ContactCard
+						id={`article-contact${
+							props.id ? `_id-${props.id}-${sectionId}` : sectionId
+						}`}
 					>
-						{props.icons.at(0)} Email:
-					</Icon>
-					<SmTxt
-						$colorPalette="primary"
-						$color="blue"
-						$size="1.5em"
-						$shadow="black"
-					>
-						{props.content.at(0)}
-					</SmTxt>
-					<Icon
-						$colorPalette="tertiary"
-						$color="green"
-						$shadow="black"
-						$size="1.7em"
-					>
-						{props.icons.at(1)} LinkedIn:
-					</Icon>
-					<SmTxt
-						$colorPalette="primary"
-						$color="blue"
-						$shadow="black"
-						$size="1.5em"
-					>
-						{props.content.at(1)}
-					</SmTxt>
-					<Icon
-						$colorPalette="tertiary"
-						$color="green"
-						$shadow="black"
-						$size="1.7em"
-					>
-						{props.icons.at(2)} GitHub:
-					</Icon>
-					<SmTxt
-						$colorPalette="primary"
-						$color="blue"
-						$shadow="black"
-						$size="1.5em"
-					>
-						{props.content.at(2)}
-					</SmTxt>
-				</ContactCard>
-			)}
+						<LgTxt
+							$colorPalette="secondary"
+							$color="yellow"
+							$shadow="black"
+							$size="2.2em"
+						>
+							{props.name}
+						</LgTxt>
+						<Icon
+							$colorPalette="tertiary"
+							$color="green"
+							$shadow="black"
+							$size="1.7em"
+						>
+							{props.icons.at(0)} Email:
+						</Icon>
+						<SmTxt
+							$colorPalette="secondary"
+							$color="blue"
+							$shadow="black"
+							$size="1.7em"
+						>
+							{props.content.at(0)}
+						</SmTxt>
+						<Icon
+							$colorPalette="tertiary"
+							$color="green"
+							$shadow="black"
+							$size="1.7em"
+						>
+							{props.icons.at(1)} LinkedIn:
+						</Icon>
+						<SmTxt
+							$colorPalette="secondary"
+							$color="blue"
+							$shadow="black"
+							$size="1.7em"
+						>
+							{props.content.at(1)}
+						</SmTxt>
+						<Icon
+							$colorPalette="tertiary"
+							$color="green"
+							$shadow="black"
+							$size="1.7em"
+						>
+							{props.icons.at(2)} GitHub:
+						</Icon>
+						<SmTxt
+							$colorPalette="secondary"
+							$color="blue"
+							$shadow="black"
+							$size="1.7em"
+						>
+							{props.content.at(2)}
+						</SmTxt>
+					</ContactCard>
+				)}
 			{props.name !== 'contact' && typeof props.content === 'string' && (
 				<Article
 					id={`article-${props.name}${
@@ -104,7 +113,7 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 					}`}
 				>
 					<SmTxt
-						$colorPalette="primary"
+						$colorPalette="tertiary"
 						$color="black"
 						$shadow="cyan"
 						$size="1.2em"

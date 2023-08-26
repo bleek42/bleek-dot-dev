@@ -6,7 +6,7 @@ import Image from 'next/image';
 export type SectionProps = StyledComponentProps<
   'section' | 'article' | keyof JSX.IntrinsicElements,
   DefaultTheme,
-  object,
+  SectionComponent,
   string | number | symbol
 >;
 

@@ -1,7 +1,14 @@
+// ! what is wrong with my styled component setup for testing?
+
 import '@testing-library/jest-dom';
 import 'jest-styled-components';
 import { type RenderOptions, configure, render } from '@testing-library/react';
-import { ThemeProvider, type ThemeProviderComponent } from 'styled-components';
+import {
+	AnyStyledComponent,
+	DefaultTheme,
+	ThemeProvider,
+	type ThemeProviderComponent,
+} from 'styled-components';
 
 import Meta from '@/components/common/Meta';
 import PageLayout from '@/pages/lib/PageLayout';
@@ -25,10 +32,12 @@ export const PageProviders = ({ children }: { children: ReactNode }) => {
 	);
 };
 
-const customRender = (ui: ReactElement, options?: Omit<RenderOptions, 'wrapper'>) =>
-	render(ui, { wrapper: PageProviders, ...options });
+const styledRender = (
+	ui: ReactElement<DefaultTheme>,
+	options?: Omit<RenderOptions, 'wrapper'>,
+) => render(ui, { wrapper: PageProviders, ...options });
 
-export { customRender as render };
+export { styledRender as render };
 export * from '@testing-library/react';
 
 export default setupConfig;

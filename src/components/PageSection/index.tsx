@@ -5,11 +5,10 @@ import bleekImg from '/public/images/brandon-mask.png';
 import { type SectionComponent } from '@/interfaces/Component';
 import { type SectionProps, Section, Article, ContactCard } from './Section';
 import { Icon, LgTxt, MdTxt, ExtLink, SmTxt } from '@/components/common';
-// import { Details, Summary } from '@/components/common/Details';
 
 export default function PageSection(props: SectionProps & SectionComponent) {
-	console.log({ 'page-section-props': props });
 	const sectionId = useId();
+	console.log({ sectionId, 'page-section-props': props });
 	return (
 		<Section
 			key={`section-${props.id ? props.id + sectionId : sectionId}`}

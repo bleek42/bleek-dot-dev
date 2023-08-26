@@ -1,6 +1,7 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 import { type SectionComponent } from '@/interfaces/Component';
 import { borderPulse, fadeInBright } from '../common';
+import Image from 'next/image';
 
 export type SectionProps = StyledComponentProps<
   'section' | 'article' | keyof JSX.IntrinsicElements,
@@ -8,37 +9,6 @@ export type SectionProps = StyledComponentProps<
   object,
   string | number | symbol
 >;
-
-export const Section = styled.section<SectionProps & SectionComponent>`
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: flex-start;
-  border: 4px groove ${(props) => props.theme.palette.secondary.neon};
-  border-spacing: 4px;
-  border-radius: 12px 12px 12px 12px;
-  padding: 4px 8px 4px 8px;
-  margin: 8px 8px;
-  background-color: ${(props) => props.theme.palette.secondary.steel};
-  min-height: 40vh;
-
-  transition:
-    border 400ms ease-in-out,
-    filter 400ms ease-in-out;
-
-  &:hover {
-    filter: brightness(1.2);
-    border: 5px groove ${({ theme }) => theme.palette.primary.neon};
-  }
-
-  @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
-    flex-flow: row wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 0;
-    padding: 16px 8px 4px 16px;
-  }
-`;
 
 export const Article = styled.article<SectionProps & SectionComponent>`
   color: ${({ theme }) => theme.palette.secondary.steel};
@@ -77,14 +47,21 @@ export const ContactCard = styled.address<SectionProps & SectionComponent>`
   border-radius: ${({ theme }) => theme.defaultRadius};
   margin: 8px 4px 8px 16px;
   padding: 16px 8px 16px 8px;
-  min-height: 24vh;
-  min-width: 52vw;
+  min-height: 28vh;
+  max-width: 60vw;
+  min-width: fit-content;
+  display: inline-flex;
+  flex-flow: column wrap;
+  justify-content: flex-start;
+
+  /* flex: 1 1 auto; */
+  /* min-width: 52vw; */
   transition:
     border 400ms ease-in-out,
     filter 400ms ease-in-out;
 
   &:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.15);
     border: 2.8px outset ${({ theme }) => theme.palette.secondary.cyan};
   }
 
@@ -92,6 +69,42 @@ export const ContactCard = styled.address<SectionProps & SectionComponent>`
   } */
 
   @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
-    /* justify-self: center; */
+    align-items: center;
+  }
+`;
+
+export const Section = styled.section<SectionProps & SectionComponent>`
+  display: flex;
+  flex-flow: column wrap;
+  /* ${ContactCard} > & {
+    columns: 1;
+    flex-flow: column wrap;
+  } */
+
+  justify-content: flex-start;
+  align-items: stretch;
+  border: 4px groove ${(props) => props.theme.palette.secondary.neon};
+  border-spacing: 4px;
+  border-radius: 12px 12px 12px 12px;
+  padding: 4px 8px 4px 8px;
+  margin: 8px 8px;
+  background-color: ${(props) => props.theme.palette.secondary.steel};
+  min-height: 40vh;
+  transition:
+    border 400ms ease-in-out,
+    filter 400ms ease-in-out;
+
+  &:hover {
+    filter: brightness(1.15);
+    border: 5px groove ${({ theme }) => theme.palette.primary.neon};
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    /* align-items: flex-start; */
+    margin: 0;
+    padding: 16px 8px 4px 16px;
   }
 `;

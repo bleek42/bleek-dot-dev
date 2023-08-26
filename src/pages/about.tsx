@@ -1,43 +1,55 @@
 import Image from 'next/image';
-import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-import { type AssetWhereUniqueQuery } from '@/graphql/queries';
-import { assetWhereQuery } from '@/graphql/client';
 import PageSection from '@/components/PageSection';
+import { SectionComponent } from '@/interfaces/Component';
 
-const sectionContent = [
-	'I graduated from Thinkfuls Full-Stack Engineering Immersion course in the Summer of 2020 & found an exciting new passion in programming. My continued efforts brought me my first break as a Junior Developer with a data tech start up called ZettaLabs.',
-	'I have been using computers since the days of AOL dialup, and I only regret not being exposed to a programming language sooner..! Luckily though, this means I have always been rather tech saavy when it comes to the userland space. I have spent much time modding & playing PC games, flashing different operating systems, rooting cellphones, & otherwise tinkering & troubleshooting all types of digital interfaces with a swiftness & accuracy that I can attribute to the excellent keyboard muscle memory & shortcut memorization I have gained through all this I have time spent using computers in work & leisure, well before my first "print hello world" program. I can confidently say this serves me well, after the growing pains of the initial year working with modern-contemporary HTML, CSS, & JS! I am going on 4 years of ongoing experience now, and I have even discovered just recently that I have a great knack for teaching new developers as well!',
-	'Outside of work, I am (still) a bit of a nerd one might say, when it comes to history & music anyway! If it has anything to do with technological, military, & political developments of the past 3 centuries, I can probably tell you all about it! I have also been an avid (if opinionated, at times) fan of all sorts of different sub-genres of music, ranging from punk rock to hip-hop to electronic music since I was barely a teenager & have always had a deep appreciation for the sub-cultures & counter-cultures within.',
-	'The latter has culminated in what has been 100+ live acts I have seen over the years, as I have been to tons of different concerts & music festivals on both a local & national scale, and I hope to take this to the next level with international experiences, someday soon! I was regularly involved with an event promoter in the local Philadelphia scenes, and I even volunteer at a few annual festivals in their efforts towards ensuring attendees have a lucid friend nearby that is not afraid to intervene when someone is in trouble, always has cold water on hand, & ensures lost valuables are once again found by their owners - those sorts of things that maximize safety & fun in an entirely wholesome way. The former is perhaps less exciting, yet probably more important but I have always been considered the "worldly & knowledgable" one amongst my close friend groups when it comes to an assortment of historical topics & how they relate to current events. If I really think about it, I suppose I have always prided myself on all of these things and consider myself an intelligent, conscientious, analytical, empathetic, & self-aware person that still strives to maintain a capacity for humility & open-mindedness.',
-];
+// import { type AssetWhereUniqueQuery } from '@/graphql/queries';
+// import { assetWhereQuery } from '@/graphql/client';
+// import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-export default function About(props: InferGetStaticPropsType<typeof getStaticProps>) {
+type AboutProps = SectionComponent;
+
+export default function About(props: AboutProps) {
 	console.log('about page:', { props });
 
 	return (
 		<PageSection
-			name="about"
-			description={'about section...'}
-			content={sectionContent.join(' ')}
+			name={props.name}
+			description={props.description}
+			content={props.content}
 		/>
 	);
 }
 
-export const getStaticProps: GetStaticProps<{
-	result: AssetWhereUniqueQuery;
-}> = async () => {
-	const result: Awaited<AssetWhereUniqueQuery> =
-		await assetWhereQuery.AssetWhereUnique();
-
-	console.log('/about result', { result });
-
-	return {
-		props: {
-			result,
-		},
-	};
+About.defaultProps = {
+	name: 'about',
+	description: 'about section...',
+	icons: ['\uf667'],
+	content: [
+		'Coming from an increasingly common, if unconventional background in a professional sense, I grew up in New Jersey, USA, graduated High School in 2010, and went straight to the work force rather than college. Despite being a good student, I simply was unsure of what career path I wanted to take, and apprehensive about going for the pure sake of it as others I knew had. As the years went on, I found myself in a comfortable role, but couldn\'t help but feel like I had peeked when I was with Verizon Wireless in Consumer/B2B sales, and just wanting something more, I guess! I started seeking out career change paths that would put this untapped potential I knew I had to better use, and started to think about what I could do that, in some  indirect way, leverage the knowledge & experience I already had. I discovered "Thinkful Schools - Full-Stack Software Engineering Immersion" course, full-time & fully remote mere months before COVID-19 hit the world, which was an incredibly lucky choice on my part over in-person options I also considered! Successfully completing in Summer of 2020, I found an exciting new passion in programming, got my first Junior Developer role, and have been self-teaching & expanding my capabilites ever since!',
+		'I have been using computers the early days of the internet with AOL & Windows 98 when I was 9-years-old, and I only regret not being exposed to a programming language sooner..! I think back and wonder why High Schools like mine did not have some elective that introduced students to this! Fortunately though, this means I have always been pretty saavy when it comes to the "userland" part of it all, and have always been considered extremely "tech-literate" amongst peers. I have spent much time doing things like modifying & playing PC games, rooting old cellphones & flashing different software to repurpose them, tinkering with old computers & reviving them with different Linux distributions, and just generally being an effective troubleshooter that can produce desired results, whether working on something solo, or working on something with a diverse range of people and the interpersonal dynamics that come with any given scenario.',
+		'I am zealous about fostering competent user/developer habits: keyboard shortcuts, terminal/shell usage, using the mouse less, anything that multiplies efficiency while not harming accuracy is vital! I have excellent keyboard muscle memory & shortcut memorization skills that I have gained throughout the years I have time spent using computers in both work & leisure. After the growing pains of the initial year learning modern-contemporary HTML/CSS/JS, I can say with confidence that I have an advanced understanding of the fundamentals, and can pick up new tools, libraries, and even other programming languages besides JavaScript at a relatively rapid pace, thanks to the struggles initial struggle I went through at times but crucially embraced and recognizing when I needed to ask for help. Going on a consistent 4 years now with a commit history to assert it, I found that I got a thing for a good development environment setup centered around the shell with Bash/ZSH or Fish, a huge appreciation for the concept of type-safety through replacing JavaScript with TypeScript, and an excellent knack for connecting with & tutoring student developers 1-on-1! While I certainly enjoy this, I recognize that I myself must continue to push my own professional development further, working on another large-scale project in the real-world with senior developers that are able to guide me sometimes, elevating me to the next level!',
+		'Outside of work, I am (still) a bit of a nerd one might say, specifically when it comes to history & music anyway! If it has anything to do with technological, cultural, military, or political developments of the past 3 centuries, whether in or outside of my own USA, I can probably tell you something interesting about it, at the very least! I am also an avid (if opinionated, at times) fan of all sorts of different sub-genres of music, ranging from hardcore punk rock, to hip-hop, to all types of electronic music since I was barely a teenager. I love the assorted counter-cultures & sub-cultures that formed behind these sounds, and being a part of them at different moments in time has been a defining, positive influence on who I am today.',
+		'The latter has culminated in 100+ live acts I have seen over the years, as I have been to tons of different concerts & music festivals on local, regional, & national scales, which I hope to take the next step up to international experiences someday soon! I was regularly involved with an event promoter in the local Philadelphia & NYC music scenes, and I even volunteer at a few annual festivals in their harm reduction efforts. Not afraid of large crowds, I took part in ensuring attendees have a completely lucid & sober friend nearby that is not afraid to intervene when someone is in trouble, always has cold water on hand, ensures lost valuables are once again found by their owners - those sorts of things that maximize safety & fun in an entirely wholesome way.',
+		'The former is perhaps less exciting yet probably more important, but I have always been considered the "worldly & knowledgable" one amongst friends & co-workers when it comes to an assortment of historical topics, current events, and how they relate to one another. I suppose I have always prided myself on being all of these things: an intelligent, conscientious, analytical, empathetic, & self-aware person that can connect with just about anyone, while still maintaining a capacity for humility & open-mindedness.',
+	],
 };
+
+// export const getStaticProps: GetStaticProps<{
+// 	result: AssetWhereUniqueQuery;
+// }> = async () => {
+// 	const result: Awaited<AssetWhereUniqueQuery> =
+// 		await assetWhereQuery.AssetWhereUnique();
+
+// 	console.log('/about result', { result });
+
+// 	return {
+// 		props: {
+// 			result,
+
+// 		},
+// 	};
+// };
 
 /*
 	return (

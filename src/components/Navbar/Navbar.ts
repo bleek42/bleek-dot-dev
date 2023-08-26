@@ -7,7 +7,8 @@ import styled, {
 import Link, { type LinkProps } from 'next/link';
 
 import { type NavbarComponent } from '@/interfaces/Component';
-import { Icon, MdTxt } from '../common';
+import { Icon } from '../common';
+import { type StyledOptions } from '@/interfaces/StyledOptions';
 
 export type NavBarProps = StyledComponentProps<
   'nav' | 'button' | 'ul' | 'li',
@@ -16,24 +17,12 @@ export type NavBarProps = StyledComponentProps<
   string | number | symbol
 >;
 
-export type NextLinkProps = StyledComponentProps<
+export type NavLinkProps = StyledComponentProps<
   typeof Link | 'a',
   DefaultTheme,
   LinkProps,
   string | number | symbol
 >;
-
-// eslint-disable-next-line prettier/prettier
-const toggleKeyframes = keyframes`
-  to {
-
-  }
-
-  from {
-
-  }
-
-`;
 
 // eslint-disable-next-line prettier/prettier
 export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
@@ -138,7 +127,7 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
 `;
 
 // eslint-disable-next-line prettier/prettier
-export const NextLink = styled(Link)<NextLinkProps>`
+export const NavLink = styled(Link)<NavLinkProps>`
   display: contents;
   font-size: 1.5em;
   color: ${({ theme }) => theme.palette.secondary.neon};

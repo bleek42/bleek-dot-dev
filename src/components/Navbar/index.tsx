@@ -1,7 +1,7 @@
 import { Fragment, useRef, SyntheticEvent } from 'react';
 import { createPortal } from 'react-dom';
 
-import { NavBar, ToggleBtn, NavList, NavItem, NextLink, NavIcon } from './Navbar';
+import { NavBar, ToggleBtn, NavList, NavItem, NavIcon, NavLink } from './Navbar';
 import { MdTxt } from '@/components/common';
 import { useIsomorphicEffect } from '@/hooks/useIsomorphicEffect';
 import useToggle from '@/hooks/useToggle';
@@ -68,19 +68,19 @@ export default function Navbar() {
 						<Fragment>
 							<NavItem id="nav-home" tabIndex={0}>
 								<NavIcon>{'\ue617 '}</NavIcon>
-								<NextLink href="/home">Home</NextLink>
+								<NavLink href="/home">Home</NavLink>
 							</NavItem>
 							<NavItem id="nav-about" tabIndex={0}>
 								<NavIcon>{'\uf415 '}</NavIcon>
-								<NextLink href="/about">About</NextLink>
+								<NavLink href="/about">About</NavLink>
 							</NavItem>
 							<NavItem id="nav-about" tabIndex={0}>
 								<NavIcon>{'\ueA8A '}</NavIcon>
-								<NextLink href="/projects">Projects</NextLink>
+								<NavLink href="/projects">Projects</NavLink>
 							</NavItem>
 							<NavItem id="nav-about" tabIndex={0}>
 								<NavIcon>{'\uf2bc '}</NavIcon>
-								<NextLink href="/contact"> Contact</NextLink>
+								<NavLink href="/contact"> Contact</NavLink>
 							</NavItem>
 						</Fragment>,
 						portal.current,

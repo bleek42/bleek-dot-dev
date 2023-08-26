@@ -36,13 +36,13 @@ export const SmTxt = styled.p<TextProps>`
     props.$shadow &&
     props.$colorPalette === 'primary' &&
     props.$shadow in props.theme.palette.primary
-      ? `${props.theme.palette.primary[props.$shadow]} 0.6px 0.5px 0.3px`
+      ? `${props.theme.palette.primary[props.$shadow]} 0.8px 0.6px 0.4px`
       : props.$colorPalette === 'secondary' &&
         props.$shadow in props.theme.palette.secondary
-      ? `${props.theme.palette.tertiary[props.$shadow]} 0.6px 0.5px 0.3px`
+      ? `${props.theme.palette.tertiary[props.$shadow]} 0.8px 0.6px 0.4px`
       : props.$colorPalette === 'tertiary' &&
         props.$shadow in props.theme.palette.tertiary
-      ? `${props.theme.palette.tertiary[props.$shadow]} 0.6px 0.5px 0.3px`
+      ? `${props.theme.palette.tertiary[props.$shadow]} 0.8px 0.6px 0.4px`
       : 'unset'};
   text-align: ${(props) => props.$align ?? 'inherit'};
 `;
@@ -148,4 +148,71 @@ export const Icon = styled.em<TextProps>`
           props.$color in props.theme.palette.tertiary
         ? `${props.theme.palette.tertiary[props.$shadow]}`
         : 'inherit'};
+`;
+
+export const ExtLink = styled.a<TextProps>`
+  display: inline;
+  font-size: ${(props) => props.$size ?? 'inherit'};
+  color: ${(props) =>
+    props.$color &&
+    props.$colorPalette === 'primary' &&
+    props.$color in props.theme.palette.primary
+      ? props.theme.palette.primary[props.$color]
+      : props.$colorPalette === 'secondary' &&
+        props.$color &&
+        props.$color in props.theme.palette.secondary
+      ? props.theme.palette.tertiary[props.$color]
+      : props.$colorPalette === 'tertiary' &&
+        props.$color &&
+        props.$color in props.theme.palette.tertiary
+      ? props.theme.palette.tertiary[props.$color]
+      : props.theme.palette.common.black};
+  text-shadow: ${(props) =>
+    props.$shadow &&
+    props.$colorPalette === 'primary' &&
+    props.$shadow in props.theme.palette.primary
+      ? `${props.theme.palette.primary[props.$shadow]} 1.5px 1.5px 1px`
+      : props.$colorPalette === 'secondary' &&
+        props.$color in props.theme.palette.secondary
+      ? `${props.theme.palette.secondary[props.$shadow]} 1.5px 1.5px 1px`
+      : props.$colorPalette === 'tertiary' && props.$color in props.theme.palette.tertiary
+      ? `${props.theme.palette.tertiary[props.$shadow]} 1.5px 1.5px 1px`
+      : 'unset'};
+  text-align: ${(props) => props.$align ?? 'inherit'};
+  text-decoration: underline solid
+    ${(props) =>
+      props.$shadow &&
+      props.$colorPalette === 'primary' &&
+      props.$shadow in props.theme.palette.primary
+        ? `${props.theme.palette.primary[props.$shadow]}`
+        : props.$colorPalette === 'secondary' &&
+          props.$color in props.theme.palette.secondary
+        ? `${props.theme.palette.secondary[props.$shadow]}`
+        : props.$colorPalette === 'tertiary' &&
+          props.$color in props.theme.palette.tertiary
+        ? `${props.theme.palette.tertiary[props.$shadow]}`
+        : 'inherit'};
+
+  transition:
+    filter 360ms ease-in,
+    color 360ms ease-in;
+
+  &:hover {
+    color: ${({ theme }) => theme.palette.primary.neon};
+    filter: brightness(1.15);
+  }
+
+  &:visited {
+    filter: brightness(0.9);
+    color: ${({ theme }) => theme.palette.secondary.purple};
+  }
+
+  @media (max-width: ${(props) => props.theme.breakpoints.smallTab}) {
+    font-size: 1em;
+  }
+
+  @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
+    flex-flow: column wrap;
+    justify-content: flex-start;
+  }
 `;

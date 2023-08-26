@@ -42,7 +42,7 @@ export const theme: DefaultTheme = {
       steel: 'rgba(132, 165, 184, 0.85)',
       purple: 'rgb(255, 0, 255)',
       teal: 'rgba(54, 213, 181, 0.9)',
-      orange: 'rgb(237, 172, 88)',
+      orange: 'rgb(237, 169, 38)',
       yellow: 'rgb(222, 210, 76)',
       tan: 'rgb(199, 178, 178)',
       black: 'rgb(5, 5, 5)',
@@ -63,7 +63,7 @@ export const theme: DefaultTheme = {
       purple: 'rgba(220, 106, 220, 0.85)',
       teal: 'rgba(27, 185, 153, 0.9)',
       orange: 'rgb(240, 135, 0)',
-      yellow: 'rgb(225, 255, 0)',
+      yellow: 'rgba(242, 162, 10, 0.91)',
       tan: 'rgb(121, 116, 116)',
       black: 'rgba(39, 32, 32, 0.9)',
       white: 'rgb(255, 255, 255)',
@@ -135,9 +135,9 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Ubuntu, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont';
   }
 
-  code, i, em {
+  code, i, em, a {
     font-family: 'MonocraftNF';
-    font-size: 20px;
+    font-size: 1.5em;
   }
 
 `;

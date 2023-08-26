@@ -2,39 +2,38 @@ import { useId, type Key, Fragment } from 'react';
 import Image from 'next/image';
 import bleekImg from '/public/images/brandon-mask.png';
 
-import { type SectionComponent } from '@/interfaces/Component';
+import { SectionContent, type SectionComponent } from '@/interfaces/Component';
 import { type SectionProps, Section, Article, ContactCard } from './Section';
-import { Icon, LgTxt, MdTxt, SmTxt } from '@/components/common';
+import { Icon, LgTxt, MdTxt, ExtLink, SmTxt } from '@/components/common';
 // import { Details, Summary } from '@/components/common/Details';
 
 export default function PageSection(props: SectionProps & SectionComponent) {
-	// console.log({ 'page-section-props': props });
+	console.log({ 'page-section-props': props });
 	const sectionId = useId();
 	return (
 		<Section
 			key={`section-${props.id ? props.id + sectionId : sectionId}`}
 			id={`section-${props.id ? props.id + sectionId : sectionId}`}
 		>
-			{props.name !== 'contact' && (
-				<LgTxt
-					$colorPalette="tertiary"
-					$color="neon"
-					$shadow="black"
-					$size="2.2em"
-					$flex="0 1 2vh"
-				>
-					{props.name}
-				</LgTxt>
-			)}
-			<Icon $colorPalette="primary" $color="drab" $shadow="black" $size="2em">
-				{props.icon ?? '\ue667'}
+			<LgTxt
+				$colorPalette="tertiary"
+				$color="neon"
+				$shadow="black"
+				$size="2.2em"
+				$flex="0 1 2vh"
+			>
+				{props.name}
+			</LgTxt>
+
+			<Icon $colorPalette="primary" $color="cyan" $shadow="black" $size="4em">
+				{props.icon ?? '\uebc6'}
 			</Icon>
 			{!props.image && props.name === 'about' && (
 				<Image
 					src={bleekImg}
 					alt={'brandon-mask'}
 					width={400}
-					height={360}
+					height={400}
 					priority
 				/>
 			)}
@@ -42,68 +41,59 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 			{props.name === 'contact' &&
 				props.content &&
 				Array.isArray(props.icons) &&
-				props.icons.length === 3 && (
+				props.icons.length === props.content.length && (
 					<ContactCard
 						id={`article-contact${
 							props.id ? `_id-${props.id}-${sectionId}` : sectionId
 						}`}
 					>
-						<LgTxt
-							$colorPalette="secondary"
-							$color="yellow"
+						<Icon
+							$colorPalette="tertiary"
+							$color="neon"
 							$shadow="black"
-							$size="2.2em"
+							$size="1.6em"
 						>
-							{props.name}
-						</LgTxt>
+							{`${props.icons.at(0)}Email:`}
+							<ExtLink
+								$colorPalette="secondary"
+								$color="blue"
+								$shadow="black"
+							>
+								{props.content.at(0)}
+							</ExtLink>
+						</Icon>
+						<Icon
+							$colorPalette="secondary"
+							$color="teal"
+							$shadow="black"
+							$size="1.6em"
+						>
+							{`${props.icons.at(1)}LinkedIn:`}
+							<ExtLink
+								$colorPalette="secondary"
+								$color="blue"
+								$shadow="black"
+								$size="1em"
+							>
+								{props.content.at(1)}
+							</ExtLink>
+						</Icon>
 						<Icon
 							$colorPalette="tertiary"
 							$color="green"
 							$shadow="black"
-							$size="1.7em"
+							$size="1.6em"
 						>
-							{props.icons.at(0)} Email:
+							{`${props.icons.at(2)}GitHub:`}
+							<ExtLink
+								$colorPalette="secondary"
+								$color="blue"
+								$shadow="black"
+								$size="1em"
+							>
+								{props.content.at(2)}
+							</ExtLink>
 						</Icon>
-						<SmTxt
-							$colorPalette="secondary"
-							$color="blue"
-							$shadow="black"
-							$size="1.7em"
-						>
-							{props.content.at(0)}
-						</SmTxt>
-						<Icon
-							$colorPalette="tertiary"
-							$color="green"
-							$shadow="black"
-							$size="1.7em"
-						>
-							{props.icons.at(1)} LinkedIn:
-						</Icon>
-						<SmTxt
-							$colorPalette="secondary"
-							$color="blue"
-							$shadow="black"
-							$size="1.7em"
-						>
-							{props.content.at(1)}
-						</SmTxt>
-						<Icon
-							$colorPalette="tertiary"
-							$color="green"
-							$shadow="black"
-							$size="1.7em"
-						>
-							{props.icons.at(2)} GitHub:
-						</Icon>
-						<SmTxt
-							$colorPalette="secondary"
-							$color="blue"
-							$shadow="black"
-							$size="1.7em"
-						>
-							{props.content.at(2)}
-						</SmTxt>
 					</ContactCard>
 				)}
 			{props.name !== 'contact' && typeof props.content === 'string' && (
@@ -125,7 +115,7 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 			{props.name !== 'contact' &&
 				Array.isArray(props.content) &&
 				props.content.length >= 1 &&
-				props.content.map((articleContent: string, idx: Key) => (
+				props.content.map((articleContent: string, idx: number) => (
 					<Article
 						id={`article-${
 							props.id ? `_id-${props.id}-${sectionId}` : sectionId
@@ -135,9 +125,9 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 						}`}
 					>
 						<SmTxt
-							$font={'MonocraftNF'}
 							$colorPalette={'tertiary'}
 							$color={'black'}
+							$size={'1.3em'}
 						>
 							{articleContent}
 						</SmTxt>

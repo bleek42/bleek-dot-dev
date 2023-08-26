@@ -20,8 +20,7 @@ export const Footer = styled.footer<FooterProps & FooterComponent>`
   justify-content: space-between;
   align-items: center;
   height: 8vh;
-  /* align-items: center; */
-  /* width: 80vw; */
+  /* width: 96vw; */
   margin: 4px 4px;
   padding: 4px 4px 4px 4px;
   color: ${(props) => props.theme.palette.secondary.tan};
@@ -33,8 +32,7 @@ export const Footer = styled.footer<FooterProps & FooterComponent>`
   } */
 
   @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
-    flex-flow: row nowrap;
-    /* justify-content: space-between; */
-    /* flex: 3 4 6vh; */
+    flex-flow: column wrap;
+    justify-content: flex-start;
   }
 `;

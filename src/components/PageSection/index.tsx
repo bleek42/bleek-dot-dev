@@ -2,7 +2,7 @@ import { useId, type Key, Fragment } from 'react';
 import Image from 'next/image';
 import bleekImg from '/public/images/brandon-mask.png';
 
-import { SectionContent, type SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from '@/interfaces/Component';
 import { type SectionProps, Section, Article, ContactCard } from './Section';
 import { Icon, LgTxt, MdTxt, ExtLink, SmTxt } from '@/components/common';
 // import { Details, Summary } from '@/components/common/Details';

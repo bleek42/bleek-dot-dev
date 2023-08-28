@@ -8,7 +8,7 @@ import { Icon, LgTxt, MdTxt, ExtLink, SmTxt } from '@/components/common';
 
 export default function PageSection(props: SectionProps & SectionComponent) {
 	const sectionId = useId();
-	console.log({ sectionId, 'page-section-props': props });
+	// console.log({ sectionId, 'page-section-props': props });
 	return (
 		<Section
 			key={`section-${props.id ? props.id + sectionId : sectionId}`}
@@ -23,7 +23,6 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 			>
 				{props.name}
 			</LgTxt>
-
 			<Icon $colorPalette="primary" $color="cyan" $shadow="black" $size="4em">
 				{props.icon ?? '\uebc6'}
 			</Icon>
@@ -123,13 +122,29 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 							props.id ? props.id + sectionId : sectionId + idx
 						}`}
 					>
-						<SmTxt
-							$colorPalette={'tertiary'}
-							$color={'black'}
-							$size={'1.3em'}
-						>
-							{articleContent}
-						</SmTxt>
+						{articleContent.startsWith('https://' || 'http://') ? (
+							<ExtLink
+								href={articleContent}
+								target="_blank"
+								$colorPalette="primary"
+								$color="teal"
+								$shadow="black"
+								$size="1.2em"
+							>
+								{articleContent
+									.replace('https://', '')
+									.replace('http://', '')}
+							</ExtLink>
+						) : (
+							<SmTxt
+								$colorPalette={'tertiary'}
+								$color={'black'}
+								$size={'1.3em'}
+								$shadow={'cyan'}
+							>
+								{articleContent}
+							</SmTxt>
+						)}
 					</Article>
 				))}
 		</Section>

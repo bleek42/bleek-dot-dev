@@ -7,7 +7,7 @@ export default function printAsciiImg() {
   for (const [idx, code] of charCodes) {
     const codeNum: number = Number.parseInt(code);
 
-    console.log(String.fromCharCode(codeNum));
+    // console.log(String.fromCharCode(codeNum));
   }
 }
 /*

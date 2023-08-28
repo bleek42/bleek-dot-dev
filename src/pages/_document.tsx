@@ -61,16 +61,3 @@ export default class StyledDocument extends Document {
 		);
 	}
 }
-
-
-//   @font-face{
-// 	${Oxanium.style.fontFamily}
-// 	${Oxanium.style.fontStyle}
-// 	${Oxanium.style.fontWeight}
-//   }
-//   @font-face{
-// 	${MonocraftNF.style.fontFamily}
-// 	${MonocraftNF.style.fontStyle}
-// 	${MonocraftNF.style.fontWeight}
-
-//   }

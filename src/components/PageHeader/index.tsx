@@ -9,7 +9,7 @@ import { Fragment } from 'react';
 type HeaderProps = HeaderComponent;
 
 export default function PageHeader(props: HeaderProps) {
-	// console.log({ 'Header component': { props } });
+	// // console.log({ 'Header component': { props } });
 	return (
 		<Header>
 			<LgTxt $colorPalette="primary" $color="neon" $shadow="black" $size="2em">
@@ -18,7 +18,7 @@ export default function PageHeader(props: HeaderProps) {
 			<MdTxt $colorPalette="secondary" $color="neon" $shadow="black" $size="1.8em">
 				bleekDotDev
 			</MdTxt>
-			{props.children ? props.children : <Navbar />}
+			{props.children ?? <Navbar />}
 		</Header>
 	);
 }

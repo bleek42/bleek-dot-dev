@@ -167,26 +167,22 @@ export const borderPulse = keyframes`
 
   /* 20% {
     opacity: 0.15;
-    filter: brightness(20%);
-    box-shadow: 0.5px 0.5px 0.5px rgb(2, 1, 4);
+    filter: brightness(20)
   }
 
   40% {
     opacity: 0.3;
-    filter: brightness(50%);
-    box-shadow: 1px 1px 1px rgb(12, 1, 4);
+    )
   }
 
   60% {
     opacity: 0.6;
-    filter: brightness(75%);
-     box-shadow: 1px 1px 1px rgb(16, 5, 10);
+    )
   }
 
   80% {
     opacity: 0.8;
-    filter: brightness(110%);
-     box-shadow: 1px 1px 1px rgb(12, 1, 4);
+    )
   } */
 `;
 
@@ -194,38 +190,34 @@ export const fadeInBright = keyframes`
   from {
     opacity: 0;
     filter: brightness(0.1);
-    /* box-shadow: unset; */
+
     /* filter: drop-shadow(2px 4px 2px rgb(125, 5, 45)) invert(75%); */
   }
 
   20% {
     opacity: 0.15;
-    filter: brightness(0.2);
-    /* box-shadow: 0.5px 0.5px 0.5px rgb(2, 1, 4); */
+    filter: brightness(0.2)
   }
 
   40% {
     opacity: 0.3;
     filter: brightness(0.4);
-    /* box-shadow: 1px 1px 1px rgb(12, 1, 4); */
+
   }
 
   60% {
     opacity: 0.6;
-    filter: brightness(0.8);
-    /* box-shadow: 1px 1px 1px rgb(16, 5, 10); */
+    filter: brightness(0.6)
   }
 
   80% {
     opacity: 0.8;
-    filter: brightness(1);
-    /* box-shadow: 1px 1px 1px rgb(12, 1, 4); */
+    filter: brightness(0.9);
+
   }
 
   to {
     opacity: 1;
-    filter: brightness(1.1);
-    /* box-shadow: 1px 1px 1px rgb(26, 8, 12); */
-    /* content: '\n \n Hey there, I'm Brandon & I'm a Web Dev! \n \n \n Click/touch anywhere to continue.'; */
+    filter: brightness(1.15);
   }
 `;

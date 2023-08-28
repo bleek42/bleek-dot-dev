@@ -8,7 +8,7 @@ import PageLayout from '@/lib/PageLayout';
 import LandingPage from './index';
 
 function App({ Component, pageProps }: AppProps<MetaComponent>) {
-	console.log();
+	// console.log();
 	return (
 		<ThemeProvider theme={theme}>
 			<Meta id={pageProps.id} />

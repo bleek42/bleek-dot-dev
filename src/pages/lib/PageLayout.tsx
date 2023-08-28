@@ -7,7 +7,7 @@ import PageFooter from '@/components/PageFooter';
 import { NavBar } from '@/components/Navbar/Navbar';
 
 export default function PageLayout(props: LayoutComponent) {
-	console.log({ 'page-layout': props });
+	// console.log({ 'page-layout': props });
 
 	return (
 		<Fragment key={props.id}>

@@ -1,13 +1,19 @@
-import { render, within, fireEvent, screen } from '@testing-library/react';
+import { within, fireEvent, screen } from '@testing-library/react';
 
 import { theme } from '@/components/common';
 import PageHeader from '@/components/PageFooter';
+import styled from 'styled-components';
+import { styledRender } from '../setupTests';
+// import { styledRender } from '../utils/styedRender';
 
 describe('PageHeader Component', () => {
-	it('should render a PageHeader styled component instance', () => {
-		const { container } = render(<PageHeader theme={theme} />);
-		console.log(container.style);
+	beforeEach(() => {
+		styledRender(<PageHeader />);
+	});
 
-		expect(container.style).toBeTruthy();
+	it('should render a PageHeader styled component instance', () => {
+		// const { container } = styledRender(<PageHeader />);
+		screen.debug();
+		screen.queryByTitle('bleekDotDev');
 	});
 });

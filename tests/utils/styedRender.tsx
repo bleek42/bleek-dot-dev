@@ -1,7 +1,5 @@
-import '@testing-library/jest-dom';
-import 'jest-styled-components';
+import { render, type RenderOptions } from '@testing-library/react';
 
-import { type RenderOptions, configure, render } from '@testing-library/react';
 import {
 	ThemeProvider,
 	type ThemeProviderComponent,
@@ -9,18 +7,13 @@ import {
 	type DefaultTheme,
 	type StyledComponentProps,
 } from 'styled-components';
+// import {  } from '@testing-library/react';
 
 import Meta from '@/components/common/Meta';
 import PageLayout from '@/pages/lib/PageLayout';
 import { theme, GlobalStyle } from '@/components/common';
 
 import { ReactElement, ReactNode } from 'react';
-// import { Component } from '@/interfaces/Component';
-const setupConfig = configure({
-	computedStyleSupportsPseudoElements: true,
-	throwSuggestions: true,
-	showOriginalStackTrace: true,
-});
 
 export const PageProviders = ({ children }: { children: ReactNode }) => {
 	return (
@@ -32,7 +25,7 @@ export const PageProviders = ({ children }: { children: ReactNode }) => {
 	);
 };
 
-const styledRender = (
+export const styledRender = (
 	ui: ReactElement<
 		StyledComponentProps<
 			AnyStyledComponent,
@@ -45,6 +38,3 @@ const styledRender = (
 ) => render(ui, { wrapper: PageProviders, ...options });
 
 export * from '@testing-library/react';
-export { styledRender as render };
-
-export default setupConfig;

@@ -1,5 +1,6 @@
 import { type Config } from 'jest';
 import nextJest from 'next/jest';
+import { styledRender } from './tests/utils/styedRender';
 
 const createNextJestConfig = nextJest({
   // * Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -12,10 +13,13 @@ const config: Config = {
   preset: 'ts-jest',
   verbose: true,
   injectGlobals: true,
+  // globals: {
+  //   styledRender,
+  // },
   // testEnvironmentOptions: {},
   testEnvironment: 'jest-environment-jsdom',
-  watchPathIgnorePatterns: ['<rootDir>/pages/'],
-  setupFilesAfterEnv: ['<rootDir>/tests/setupTests.tsx'],
+  watchPathIgnorePatterns: ['<rootDir>/tests/pages/'],
+  setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
   moduleNameMapper: {
     '^@/interfaces/(.*)$': '<rootDir>/src/interfaces/$1',
     '^@/graphql/(.*)$': '<rootDir>/src/graphql/$1',

@@ -7,7 +7,7 @@ import { SmTxt, Icon } from '@/components/common';
 // type FooterProps = FooterComponent;
 
 export default function PageFooter(props: FooterProps & FooterComponent) {
-	console.log({ 'FooterProps': { props } });
+	// console.log({ 'FooterProps': { props } });
 
 	return (
 		<Footer>

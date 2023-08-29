@@ -8,7 +8,7 @@ import { AbsoluteTemplateString } from 'next/dist/lib/metadata/types/metadata-ty
 type MetaProps = MetaComponent;
 
 export default function Meta(props: MetaProps) {
-	// console.log({ 'meta-props': props });
+	// // console.log({ 'meta-props': props });
 
 	return (
 		<Fragment key={props.id}>

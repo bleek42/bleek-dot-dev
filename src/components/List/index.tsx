@@ -11,7 +11,7 @@
 // };
 
 // export default function List(props: ListProps) {
-// 	console.log('List:', props);
+// 	// console.log('List:', props);
 
 // 	return (
 // 		<Wrapper>

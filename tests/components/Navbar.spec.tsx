@@ -1,13 +1,15 @@
-import { type AnyStyledComponent } from 'styled-components';
 import { render, within, fireEvent, screen } from '@testing-library/react';
-
+// import { } from '../setupTests';
 import Navbar from '@/components/Navbar';
 // import { describe, it } from 'node:test';
 
 describe('Navbar', () => {
-	it('should render the styled Navbar component', () => {
+	// beforeAll(() => {
+
+	// })
+	it('should render a Navbar styled component instance', () => {
 		const { container } = render(<Navbar />);
-		console.log(container);
-		expect(container).toBeTruthy();
+		console.log(container.style);
+		expect(container.style).toBeTruthy();
 	});
 });

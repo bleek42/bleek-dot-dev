@@ -76,30 +76,26 @@ export const ContactCard = styled.address<SectionProps & SectionComponent>`
 export const Section = styled.section<SectionProps & SectionComponent>`
   display: flex;
   flex-flow: column wrap;
-  /* ${ContactCard} > & {
-    columns: 1;
-    flex-flow: column wrap;
-  } */
 
   justify-content: flex-start;
   align-items: stretch;
-  border: 4px groove ${(props) => props.theme.palette.secondary.neon};
+  border: 4px groove ${({ theme }) => theme.palette.secondary.neon};
   border-spacing: 4px;
   border-radius: 12px 12px 12px 12px;
   padding: 4px 8px 4px 8px;
   margin: 8px 8px;
-  background-color: ${(props) => props.theme.palette.secondary.steel};
+  background-color: ${({ theme }) => theme.palette.secondary.steel};
   min-height: 40vh;
   transition:
-    border 400ms ease-in-out,
-    filter 400ms ease-in-out;
+    border 360ms ease-in,
+    filter 400ms ease-in;
 
   &:hover {
     filter: brightness(1.15);
     border: 5px groove ${({ theme }) => theme.palette.primary.neon};
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.laptop}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: center;
@@ -108,3 +104,8 @@ export const Section = styled.section<SectionProps & SectionComponent>`
     padding: 16px 8px 4px 16px;
   }
 `;
+
+  /* ${ContactCard} > & {
+    columns: 1;
+    flex-flow: column wrap;
+  } */

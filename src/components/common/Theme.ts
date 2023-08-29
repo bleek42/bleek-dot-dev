@@ -55,15 +55,15 @@ export const theme: DefaultTheme = {
       red: 'rgb(214, 30, 30)',
       blue: 'rgb(52, 105, 249)',
       green: 'rgb(38, 229, 22)',
-      neon: 'rgb(89, 255, 0)',
-      drab: 'rgb(15, 226, 96)',
-      cyan: 'rgb(36, 237, 255)',
-      gray: 'rgb(181, 192, 187)',
-      steel: 'rgba(116, 132, 145, 0.8)',
-      purple: 'rgba(220, 106, 220, 0.85)',
-      teal: 'rgba(27, 185, 153, 0.9)',
       orange: 'rgb(240, 135, 0)',
       yellow: 'rgba(242, 162, 10, 0.91)',
+      purple: 'rgba(220, 106, 220, 0.85)',
+      cyan: 'rgb(36, 237, 255)',
+      neon: 'rgb(89, 255, 0)',
+      drab: 'rgb(15, 226, 96)',
+      gray: 'rgb(181, 192, 187)',
+      steel: 'rgba(116, 132, 145, 0.65)',
+      teal: 'rgba(27, 185, 153, 0.9)',
       tan: 'rgb(121, 116, 116)',
       black: 'rgba(39, 32, 32, 0.9)',
       white: 'rgb(255, 255, 255)',
@@ -75,15 +75,15 @@ export const theme: DefaultTheme = {
       red: 'rgb(214, 30, 30)',
       blue: 'rgb(0, 55, 207)',
       green: 'rgb(43, 230, 33)',
-      neon: 'rgb(135, 255, 0)',
-      drab: 'rgb(29, 123, 47)',
-      cyan: 'rgb(114, 220, 220)',
-      gray: 'rgb(181, 181, 181)',
-      steel: 'rgba(36, 39, 59, 0.5)',
-      purple: 'rgb(229, 54, 229)',
-      teal: 'rgba(11, 205, 165, 0.9)',
       orange: 'rgb(200, 45, 45)',
-      yellow: 'rgb(252, 231, 0)',
+      yellow: 'rgb(252, 231, 0, 0.85)',
+      purple: 'rgba(229, 54, 229, 0.8)',
+      cyan: 'rgb(114, 220, 220)',
+      neon: 'rgba(135, 255, 0, 0.9)',
+      drab: 'rgb(29, 123, 47)',
+      gray: 'rgb(181, 181, 181)',
+      steel: 'rgba(36, 39, 59, 0.75)',
+      teal: 'rgba(11, 205, 165, 0.9)',
       tan: 'rgb(196, 157, 157)',
       black: 'rgb(15, 8, 10)',
       white: 'rgb(234, 255, 241)',
@@ -144,88 +144,57 @@ export const GlobalStyle = createGlobalStyle`
 
 export const borderPulse = keyframes`
   from {
-    border: 0.3px groove rgb(0, 0, 0);
+    border: 0.3px inset rgb(0, 0, 0);
     margin: 1px;
-    box-shadow:  1.2px 1.2px .8px rgba(0, 229, 255, 0.664);
-    /* filter: brightness(1); */
   }
 
   50% {
-    border: 0.5px groove rgb(40, 225, 31);
+    border: 0.5px outset rgb(40, 225, 31);
     margin: 1.5px;
-    box-shadow:  2px 2.5px 1.8px rgba(0, 229, 255, 0.838);
-    /* filter: brightness(1.2); */
+  }
+
+  75% {
+    border: 0.8px inset rgb(40, 225, 31);
+    margin: 1.5px;
   }
 
 
   to {
-    border: 0.8px groove rgb(40, 220, 30);
+    border: 1px outset rgb(40, 220, 30);
     margin: 1.8px;
-    box-shadow:  1.2px 1.5px 1px rgba(0, 229, 255, 0.664);
-    /* filter: brightness(1); */
   }
 
-  /* 20% {
-    opacity: 0.15;
-    filter: brightness(20%);
-    box-shadow: 0.5px 0.5px 0.5px rgb(2, 1, 4);
-  }
-
-  40% {
-    opacity: 0.3;
-    filter: brightness(50%);
-    box-shadow: 1px 1px 1px rgb(12, 1, 4);
-  }
-
-  60% {
-    opacity: 0.6;
-    filter: brightness(75%);
-     box-shadow: 1px 1px 1px rgb(16, 5, 10);
-  }
-
-  80% {
-    opacity: 0.8;
-    filter: brightness(110%);
-     box-shadow: 1px 1px 1px rgb(12, 1, 4);
-  } */
 `;
 
 export const fadeInBright = keyframes`
   from {
     opacity: 0;
-    filter: brightness(0.1);
-    /* box-shadow: unset; */
-    /* filter: drop-shadow(2px 4px 2px rgb(125, 5, 45)) invert(75%); */
+    filter: brightness(0.1) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
   }
 
   20% {
     opacity: 0.15;
-    filter: brightness(0.2);
-    /* box-shadow: 0.5px 0.5px 0.5px rgb(2, 1, 4); */
+    filter: brightness(0.2) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
   }
 
   40% {
     opacity: 0.3;
-    filter: brightness(0.4);
-    /* box-shadow: 1px 1px 1px rgb(12, 1, 4); */
+    filter: brightness(0.4) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+
   }
 
   60% {
     opacity: 0.6;
-    filter: brightness(0.8);
-    /* box-shadow: 1px 1px 1px rgb(16, 5, 10); */
+    filter: brightness(0.6) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
   }
 
   80% {
     opacity: 0.8;
-    filter: brightness(1);
-    /* box-shadow: 1px 1px 1px rgb(12, 1, 4); */
+    filter: brightness(0.9) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
   }
 
   to {
     opacity: 1;
-    filter: brightness(1.1);
-    /* box-shadow: 1px 1px 1px rgb(26, 8, 12); */
-    /* content: '\n \n Hey there, I'm Brandon & I'm a Web Dev! \n \n \n Click/touch anywhere to continue.'; */
+    filter: brightness(1.15) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
   }
 `;

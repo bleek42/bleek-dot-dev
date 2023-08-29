@@ -20,7 +20,7 @@ export default function XTerm() {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
-		prompt: '  [ visitor@bleek.dev]   ﬦ',
+		prompt: ' [ visitor@bleek.dev]  ﬦ',
 		stdin: '',
 		stdio: '',
 		stderr: null,
@@ -43,7 +43,7 @@ export default function XTerm() {
 			| FormEvent<HTMLFormElement | HTMLTextAreaElement>
 			| SyntheticEvent<HTMLElement>,
 	) => {
-		console.log({ onClick: { ...evt } });
+		// console.log({ onClick: { ...evt } });
 		await router.push('/home');
 	};
 
@@ -62,8 +62,8 @@ export default function XTerm() {
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
 						evt.preventDefault();
-						console.info('xterm-close clicked');
-						console.log({ 'cls-btn': evt.target });
+						// console.info('xterm-close clicked');
+						// console.log({ 'cls-btn': evt.target });
 					}}
 				>
 					{'[ \uf00d ]'}
@@ -79,8 +79,8 @@ export default function XTerm() {
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
 						evt.preventDefault();
-						console.info('xterm-maxmz clicked');
-						console.log({ 'max-btn': evt.target });
+						// console.info('xterm-maxmz clicked');
+						// console.log({ 'max-btn': evt.target });
 					}}
 				>
 					{'[ \ueb95 ]'}
@@ -96,8 +96,8 @@ export default function XTerm() {
 					// eslint-disable-next-line no-console
 					onClick={(evt: SyntheticEvent<HTMLButtonElement>) => {
 						evt.preventDefault();
-						console.info('xterm-minmz clicked');
-						console.log({ 'min-btn': evt.target });
+						// console.info('xterm-minmz clicked');
+						// console.log({ 'min-btn': evt.target });
 					}}
 				>
 					{'[ \ueacc ]'}
@@ -111,8 +111,8 @@ export default function XTerm() {
 				onClick={handleRouteHome}
 				onSubmitCapture={(evt: SyntheticEvent<HTMLLabelElement>) => {
 					evt.preventDefault();
-					console.info('xterm-txt submit capture');
-					console.log({ 'xt-submt-capt': evt.currentTarget });
+					// console.info('xterm-txt submit capture');
+					// console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
 			>
 				<XTIcon $colorPalette={'secondary'} $color={'green'} $shadow={'black'}>
@@ -145,8 +145,8 @@ export default function XTerm() {
 
 // const handleResize = useCallback(
 // 	<T extends HTMLElement>(target: T, entry: ResizeObserverEntry) => {
-// 		console.info({ target });
-// 		console.info({ entry });
+// 		// console.info({ target });
+// 		// console.info({ entry });
 
 // 		const { width, height, top, bottom, left, right, x, y } = entry.contentRect;
 
@@ -206,9 +206,9 @@ export default function XTerm() {
 // 			}));
 // 		}
 
-// 		console.warn('resizing:', currentWidth, currentHeight);
-// 		console.table(entry.borderBoxSize);
-// 		console.table(entry.devicePixelContentBoxSize);
+// 		// console.warn('resizing:', currentWidth, currentHeight);
+// 		// console.table(entry.borderBoxSize);
+// 		// console.table(entry.devicePixelContentBoxSize);
 // 	},
 
 // 	[dimensions.width, dimensions.height]
@@ -217,6 +217,6 @@ export default function XTerm() {
 // const ref = useResizeObserver(handleResize) as MutableRefObject<HTMLTextAreaElement>;
 
 // eslint-disable-next-line no-console
-// console.info({ dimensions });
+// // console.info({ dimensions });
 // eslint-disable-next-line no-console
-// console.info('ref+curr:', ref, ref?.current);
+// // console.info('ref+curr:', ref, ref?.current);

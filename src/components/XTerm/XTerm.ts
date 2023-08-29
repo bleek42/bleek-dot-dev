@@ -14,10 +14,12 @@ export const XTForm = styled.form.attrs((props: XTermProps & XTermComponent) => 
   id: props.id || 'xt-form',
   name: props.name || 'xt-form',
 }))<XTermProps>`
-  display: block;
-  box-shadow: ${(props) => props.theme.palette.secondary.steel} 2em 1em;
-  border: 3px solid ${(props) => props.theme.palette.secondary.blue};
-  margin: 8px 4px 8px 4px;
+  display: inline-block;
+  max-width: 98vw;
+  max-height: 96vh;
+  box-shadow: ${(props) => props.theme.palette.secondary.steel} 1.5em 1.25em;
+  border: 4px groove ${(props) => props.theme.palette.secondary.blue};
+  margin: 8px 8px 8px 8px;
   background-color: ${(props) => props.theme.palette.common.black};
 `;
 
@@ -43,10 +45,10 @@ export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) =
     border: 1.5 solid ${({ theme }) => theme.palette.primary.cyan};
   }
 
-  @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
+  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
   }
 
-  @media (max-width: ${(props) => props.theme.breakpoints.smallTab}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
     flex-flow: column wrap;
     /* align-content: flex-start; */
   }
@@ -159,7 +161,8 @@ export const XTPrompt = styled(XTLabel)`
   font-family: ${({ theme }) => theme.fonts.at(2)};
   min-width: 52vw;
   min-height: 2vw;
-  border: 0.5px outset ${({ theme }) => theme.palette.secondary.cyan};
+  max-width: 90vw;
+  border: 0.8px groove ${({ theme }) => theme.palette.secondary.cyan};
 
   /* justify-content: stretch; */
   color: ${({ theme }) => theme.palette.secondary.green};
@@ -170,7 +173,7 @@ export const XTPrompt = styled(XTLabel)`
 
   @media (min-width: ${({ theme }) => theme.breakpoints.fullDisplay}) {
     font-size: 1.5em;
-    align-self: center;
+    align-self: stretch;
   }
 
   @media (max-width: ${({ theme }) => theme.breakpoints.phone}) {

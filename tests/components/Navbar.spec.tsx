@@ -1,5 +1,5 @@
-import { within, fireEvent, screen } from '@testing-library/react';
-import { render } from '../setupTests';
+import { render, within, fireEvent, screen } from '@testing-library/react';
+// import { } from '../setupTests';
 import Navbar from '@/components/Navbar';
 // import { describe, it } from 'node:test';
 

@@ -12,7 +12,7 @@ const config: Config = {
   preset: 'ts-jest',
   verbose: true,
   injectGlobals: true,
-  testEnvironmentOptions: {},
+  // testEnvironmentOptions: {},
   testEnvironment: 'jest-environment-jsdom',
   watchPathIgnorePatterns: ['<rootDir>/pages/'],
   setupFilesAfterEnv: ['<rootDir>/tests/setupTests.tsx'],

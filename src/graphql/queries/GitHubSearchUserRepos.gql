@@ -1,0 +1,34 @@
+query GitHubSearchUserRepos($query: String = "bleek42", $type: SearchType = REPOSITORY, $last: Int = 100) {
+	search(query: $query, type: $type, last: $last) {
+    nodes {
+      ... on Repository {
+        name
+        defaultBranchRef {
+		  id
+          name
+          target {
+            ... on Commit {
+              history(
+                last: $last
+                since: "2021-12-31T00:00:00"
+                author: {id: "MDQ6VXNlcjU4MjM3NDM2"}
+              ) {
+                totalCount
+                nodes {
+                  ... on Commit {
+                    committedDate
+                    additions
+                    author {
+                      name
+                      email
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

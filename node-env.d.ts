@@ -9,10 +9,11 @@ declare namespace NodeJS {
   export interface ProcessEnv {
     NODE_ENV: NodeJSEnv;
     NODE_PATH?: string | unknown;
-    // PORT?: number | 3000;
-    // HOST?: 'http://localhost' | 'http://127.0.0.1' | string | unknown;
+    PORT?: number | 3000;
+    HOST?: 'http://localhost' | 'http://127.0.0.1' | string | unknown;
     HYGRAPH_API_URL: string | WithList<string>;
     HYGRAPH_API_AUTH: string;
+    GH_TOKEN: string;
 
     HYGRAPH_CDN_URL: string | WithList<string>;
     HYGRAPH_CDN_AUTH: string;

@@ -1,0 +1,40 @@
+query GithubUserStats($login: String = "bleek42") {
+  user(login: $login) {
+    id
+    avatarUrl
+    followers {
+      totalCount
+    }
+    following {
+      totalCount
+    }
+    organizations {
+      totalCount
+    }
+    gists {
+      totalCount
+    }
+    repositories(first: 100) {
+      totalCount
+      edges {
+        cursor
+        node {
+          name
+          id
+          defaultBranchRef {
+            id
+            name
+            target {
+              ... on Commit {
+                id
+                history(first: 100, since: "2020-12-31T00:00:00", author: {id: "MDQ6VXNlcjU4MjM3NDM2"}) {
+                  totalCount
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

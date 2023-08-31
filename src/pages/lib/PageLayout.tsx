@@ -11,12 +11,12 @@ export default function PageLayout(props: LayoutComponent) {
 	// console.log({ 'page-layout': props });
 
 	return (
-		<Fragment key={props.id}>
+		<Fragment key={props.id ?? 'meta-bleek_0'}>
 			<GlobalStyle />
-			<Meta id={props.id} />
+			<Meta id={props.id ?? 'meta-bleek_0'} />
 			<PageHeader />
 			<PageBg>{props.children}</PageBg>
-			<PageFooter />
+			<PageFooter name="page-footer" description="bleekDotDev base page footer" />
 		</Fragment>
 	);
 }

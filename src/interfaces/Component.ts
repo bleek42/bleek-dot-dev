@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
+import { GlobalStyle } from '@/components/common';
 import { AssetWhereUniqueQuery, ProjectWhereUniqueQuery } from '@/graphql/queries';
 import { type Metadata } from 'next';
 import {
@@ -94,7 +95,14 @@ export interface SectionComponent extends Component {
 
 export interface ListComponent extends Component {}
 
-export interface FooterComponent extends Component {}
+export interface FooterComponent extends Component {
+  name: string;
+  description: string | string[];
+  icons?: string | string[];
+  content?: string | string[];
+  title?: string | string[] | unknown;
+  children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
+}
 
 export type PageID = 1 | 2 | 3 | 4 | 5 | number;
 export type Title = 'Home' | 'About' | 'Contact' | 'Projects' | 'Resume';

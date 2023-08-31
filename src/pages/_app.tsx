@@ -11,14 +11,16 @@ function App({ Component, pageProps }: AppProps<MetaComponent>) {
 	// console.log();
 	return (
 		<ThemeProvider theme={theme}>
-			<Meta id={pageProps.id} />
-			<GlobalStyle />
 			{Component !== LandingPage ? (
-				<PageLayout>
+				<PageLayout id={pageProps.id}>
 					<Component {...pageProps} />
 				</PageLayout>
 			) : (
-				<Component {...pageProps} />
+				<>
+					<Meta id={pageProps.id} />
+					<GlobalStyle />
+					<Component {...pageProps} />
+				</>
 			)}
 		</ThemeProvider>
 	);

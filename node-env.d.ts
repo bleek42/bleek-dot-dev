@@ -13,7 +13,7 @@ declare namespace NodeJS {
     HOST?: 'http://localhost' | 'http://127.0.0.1' | string | unknown;
     HYGRAPH_API_URL: string | WithList<string>;
     HYGRAPH_API_AUTH: string;
-    GH_TOKEN: string;
+    GH_AUTH: string;
 
     HYGRAPH_CDN_URL: string | WithList<string>;
     HYGRAPH_CDN_AUTH: string;

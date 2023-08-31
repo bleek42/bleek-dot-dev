@@ -69,7 +69,7 @@
     "styled.d.ts",
     "node-env.d.ts",
     "node-env.d.ts",
-    "codegen.ts",
+	"src/graphql/mutations/codegen.ts",
 	"public/**/*"
   ],
   "exclude": [

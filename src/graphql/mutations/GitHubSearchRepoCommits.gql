@@ -1,4 +1,4 @@
-query GitHubSearchUserRepos($query: String = "bleek42", $type: SearchType = REPOSITORY, $last: Int = 100) {
+query GitHubSearchRepoCommits($query: String = "bleek42", $type: SearchType = REPOSITORY, $last: Int = 100) {
 	search(query: $query, type: $type, last: $last) {
     nodes {
       ... on Repository {
@@ -10,7 +10,7 @@ query GitHubSearchUserRepos($query: String = "bleek42", $type: SearchType = REPO
             ... on Commit {
               history(
                 last: $last
-                since: "2021-12-31T00:00:00"
+                since: "2022-01-01T00:00:00"
                 author: {id: "MDQ6VXNlcjU4MjM3NDM2"}
               ) {
                 totalCount

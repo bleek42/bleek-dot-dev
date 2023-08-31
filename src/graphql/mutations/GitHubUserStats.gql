@@ -1,4 +1,4 @@
-query GithubUserStats($login: String = "bleek42") {
+query GitHubUserStats($login: String = "bleek42") {
   user(login: $login) {
     id
     avatarUrl

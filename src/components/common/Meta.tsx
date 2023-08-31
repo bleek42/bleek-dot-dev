@@ -2,14 +2,11 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 
 import { type MetaComponent } from '@/interfaces/Component';
-import { AbsoluteTemplateString } from 'next/dist/lib/metadata/types/metadata-types';
-// import { Birdman, Oxanium, MonocraftNF } from '@/components/common';
+import { GlobalStyle } from './Theme';
 
 type MetaProps = MetaComponent;
 
 export default function Meta(props: MetaProps) {
-	// // console.log({ 'meta-props': props });
-
 	return (
 		<Fragment key={props.id}>
 			<Head>
@@ -34,10 +31,10 @@ export default function Meta(props: MetaProps) {
 					}
 				/>
 				<meta property="og:title" title={props.title} />
+				<meta property="og:locale" content={props.locale} />
 				{props.icons && (
 					<meta property="og:image" content={props.icons.toString()} />
 				)}
-
 				<title>{props.title}</title>
 			</Head>
 		</Fragment>

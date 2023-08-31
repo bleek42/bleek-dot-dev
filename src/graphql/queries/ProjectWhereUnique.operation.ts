@@ -1,7 +1,8 @@
-import * as Types from '../typeDefs/typeDefs/hygraph-types.js';
+import * as Types from '../typeDefs/hygraph';
 
 import { GraphQLClient } from 'graphql-request';
-import { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types.js';
+import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
+import gql from 'graphql-tag';
 export type ProjectWhereUniqueQueryVariables = Types.Exact<{
   where: Types.ProjectWhereUniqueInput;
   stage?: Types.InputMaybe<Types.Stage>;
@@ -38,34 +39,38 @@ export type ProjectWhereUniqueQuery = {
   } | null;
 };
 
-export const ProjectWhereUniqueDocument = `
-    query ProjectWhereUnique($where: ProjectWhereUniqueInput!, $stage: Stage = PUBLISHED, $locales: [Locale!] = [en]) {
-  project(where: $where, stage: $stage, locales: $locales) {
-    id
-    title
-    active
-    description
-    link
-    techStack
-    sourceCode
-    version
-    stage
-    locale
-    screenShots(first: 10, forceParentLocale: true) {
+export const ProjectWhereUniqueDocument = gql`
+  query ProjectWhereUnique(
+    $where: ProjectWhereUniqueInput!
+    $stage: Stage = PUBLISHED
+    $locales: [Locale!] = [en]
+  ) {
+    project(where: $where, stage: $stage, locales: $locales) {
       id
-      url
-      handle
-      fileName
-      mimeType
-      width
-      height
-      size
+      title
+      active
+      description
+      link
+      techStack
+      sourceCode
+      version
       stage
       locale
+      screenShots(first: 10, forceParentLocale: true) {
+        id
+        url
+        handle
+        fileName
+        mimeType
+        width
+        height
+        size
+        stage
+        locale
+      }
     }
   }
-}
-    `;
+`;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,

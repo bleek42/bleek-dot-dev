@@ -1,7 +1,8 @@
-import * as Types from '../typeDefs/typeDefs/hygraph-types.js';
+import * as Types from '../typeDefs/hygraph';
 
 import { GraphQLClient } from 'graphql-request';
-import { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types.js';
+import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
+import gql from 'graphql-tag';
 export type AllProjectsWhereQueryVariables = Types.Exact<{
   where?: Types.InputMaybe<Types.ProjectWhereInput>;
   stage?: Types.InputMaybe<Types.Stage>;
@@ -40,40 +41,46 @@ export type AllProjectsWhereQuery = {
   }>;
 };
 
-export const AllProjectsWhereDocument = `
-    query AllProjectsWhere($where: ProjectWhereInput, $stage: Stage = PUBLISHED, $orderBy: ProjectOrderByInput = active_ASC, $first: Int = 20, $locales: [Locale!] = [en]) {
-  projects(
-    where: $where
-    stage: $stage
-    orderBy: $orderBy
-    first: $first
-    locales: $locales
+export const AllProjectsWhereDocument = gql`
+  query AllProjectsWhere(
+    $where: ProjectWhereInput
+    $stage: Stage = PUBLISHED
+    $orderBy: ProjectOrderByInput = active_ASC
+    $first: Int = 20
+    $locales: [Locale!] = [en]
   ) {
-    id
-    title
-    active
-    link
-    description
-    version
-    sourceCode
-    techStack
-    stage
-    locale
-    screenShots(first: $first, forceParentLocale: true) {
+    projects(
+      where: $where
+      stage: $stage
+      orderBy: $orderBy
+      first: $first
+      locales: $locales
+    ) {
       id
-      url
-      handle
-      fileName
-      mimeType
-      width
-      height
-      size
+      title
+      active
+      link
+      description
+      version
+      sourceCode
+      techStack
       stage
       locale
+      screenShots(first: $first, forceParentLocale: true) {
+        id
+        url
+        handle
+        fileName
+        mimeType
+        width
+        height
+        size
+        stage
+        locale
+      }
     }
   }
-}
-    `;
+`;
 
 export type SdkFunctionWrapper = <T>(
   action: (requestHeaders?: Record<string, string>) => Promise<T>,

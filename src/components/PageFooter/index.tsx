@@ -11,12 +11,14 @@ export default function PageFooter(props?: FooterComponent) {
 
 	return (
 		<Footer>
-			<Icon $colorPalette="primary" $color="neon" $shadow="black" $size="32px">
-				{'\ue5fb \ue5fa'}
-				<SmTxt $colorPalette="primary" $color="green">
-					by:bleek42 (v1.0.5)
-				</SmTxt>
-			</Icon>
+			<ExtLink href={props?.content}>
+				<Icon $colorPalette="primary" $color="neon" $shadow="black" $size="32px">
+					{'\ue5fb \ue5fa'}
+					<SmTxt $colorPalette="primary" $color="green">
+						by:bleek42 (v1.0.5)
+					</SmTxt>
+				</Icon>
+			</ExtLink>
 		</Footer>
 	);
 }

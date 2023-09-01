@@ -51,8 +51,10 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 							$shadow="black"
 							$size="1.6em"
 						>
-							{`${props.icons.at(0)}Email:`}
+							{`${props.icons.at(0)}Email: `}
 							<ExtLink
+								id="contact-email"
+								href={`mailto:${props.content.at(0)}`}
 								$colorPalette="secondary"
 								$color="blue"
 								$shadow="black"
@@ -66,14 +68,16 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 							$shadow="black"
 							$size="1.6em"
 						>
-							{`${props.icons.at(1)}LinkedIn:`}
+							{`${props.icons.at(1)}LinkedIn: `}
 							<ExtLink
+								id="contact-linkedin"
+								href={props.content.at(1)}
 								$colorPalette="secondary"
 								$color="blue"
 								$shadow="black"
 								$size="1em"
 							>
-								{props.content.at(1)}
+								{props.content.at(1)?.replace('https://', '')}
 							</ExtLink>
 						</Icon>
 						<Icon
@@ -82,14 +86,16 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 							$shadow="black"
 							$size="1.6em"
 						>
-							{`${props.icons.at(2)}GitHub:`}
+							{`${props.icons.at(2)}GitHub: `}
 							<ExtLink
+								id="contact-github"
+								href={props.content.at(2)}
 								$colorPalette="secondary"
 								$color="blue"
 								$shadow="black"
 								$size="1em"
 							>
-								{props.content.at(2)}
+								{props.content.at(2)?.replace('https://', '')}
 							</ExtLink>
 						</Icon>
 					</ContactCard>
@@ -112,41 +118,56 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 			)}
 			{props.name !== 'contact' &&
 				Array.isArray(props.content) &&
-				props.content.length >= 1 &&
-				props.content.map((articleContent: string, idx: number) => (
-					<Article
-						id={`article-${
-							props.id ? `_id-${props.id}-${sectionId}` : sectionId
-						}`}
-						key={`article-${
-							props.id ? props.id + sectionId : sectionId + idx
-						}`}
-					>
-						{articleContent.startsWith('https://' || 'http://') ? (
-							<ExtLink
-								href={articleContent}
-								target="_blank"
-								$colorPalette="primary"
-								$color="teal"
-								$shadow="black"
-								$size="1.2em"
-							>
-								{articleContent
-									.replace('https://', '')
-									.replace('http://', '')}
-							</ExtLink>
-						) : (
-							<SmTxt
-								$colorPalette={'tertiary'}
-								$color={'black'}
-								$size={'1.3em'}
-								$shadow={'cyan'}
-							>
-								{articleContent}
-							</SmTxt>
+				props.content.length >= 1 && (
+					<Fragment>
+						{props.description && (
+							<Article>
+								<SmTxt
+									$colorPalette="secondary"
+									$color="grey"
+									$shadow="cyan"
+									$size="1.6em"
+								>
+									{props.description}
+								</SmTxt>
+							</Article>
 						)}
-					</Article>
-				))}
+						{props.content.map((articleContent: string, idx: number) => (
+							<Article
+								id={`article-${
+									props.id ? `_id-${props.id}-${sectionId}` : sectionId
+								}`}
+								key={`article-${
+									props.id ? props.id + sectionId : sectionId + idx
+								}`}
+							>
+								{articleContent.startsWith('https://' || 'http://') ? (
+									<ExtLink
+										href={articleContent}
+										target="_blank"
+										$colorPalette="primary"
+										$color="teal"
+										$shadow="black"
+										$size="1.3em"
+									>
+										{articleContent
+											.replace('https://', '')
+											.replace('http://', '')}
+									</ExtLink>
+								) : (
+									<SmTxt
+										$colorPalette={'tertiary'}
+										$color={'black'}
+										$size={'1.3em'}
+										$shadow={'cyan'}
+									>
+										{articleContent}
+									</SmTxt>
+								)}
+							</Article>
+						))}
+					</Fragment>
+				)}
 		</Section>
 	);
 }

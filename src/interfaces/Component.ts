@@ -79,7 +79,7 @@ export interface DetailsComponent extends Component {
 
 export interface SectionComponent extends Component {
   name: string;
-  description: string | string[];
+  description: string | string[] | null;
   content?: string | string[];
   title?: string | string[] | unknown;
   icons?: string | string[];

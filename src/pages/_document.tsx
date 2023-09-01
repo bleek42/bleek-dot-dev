@@ -1,10 +1,10 @@
 import Document, {
+	type DocumentContext,
+	type DocumentInitialProps,
 	Html,
 	Head,
 	Main,
 	NextScript,
-	type DocumentContext,
-	type DocumentInitialProps,
 } from 'next/document';
 
 import { ServerStyleSheet } from 'styled-components';
@@ -24,8 +24,6 @@ export default class StyledDocument extends Document {
 
 			const initialProps: Awaited<DocumentInitialProps> =
 				await Document.getInitialProps(ctx);
-			// console.log(initialProps);
-			// initialProps.disableVendorPrefixes = true;
 
 			return {
 				...initialProps,
@@ -54,8 +52,8 @@ export default class StyledDocument extends Document {
 			<Html lang="en">
 				<Head />
 				<body>
-					{' '}
-					<Main /> <NextScript />{' '}
+					<Main />
+					<NextScript />
 				</body>
 			</Html>
 		);

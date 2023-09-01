@@ -16,7 +16,11 @@ export default function PageLayout(props: LayoutComponent) {
 			<Meta id={props.id ?? 'meta-bleek_0'} />
 			<PageHeader />
 			<PageBg>{props.children}</PageBg>
-			<PageFooter name="page-footer" description="bleekDotDev base page footer" />
+			<PageFooter
+				name="page-footer"
+				description="bleekDotDev base page footer"
+				content="https://github.com/bleek42/bleek-dot-dev"
+			/>
 		</Fragment>
 	);
 }

@@ -17,7 +17,7 @@ type TextProps = StyledComponentProps<
   StyledOptions;
 
 export const SmTxt = styled.p<TextProps>`
-  flex: ${(props) => props.$flex ?? 'unset'};
+  flex: ${(props) => props.$flex ?? 'initial'};
   font-size: ${(props) => props.$size ?? 'inherit'};
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(1)};
   font-size: ${(props) => props.$size ?? 'inherit'};
@@ -48,7 +48,7 @@ export const SmTxt = styled.p<TextProps>`
 `;
 
 export const MdTxt = styled.h2<TextProps>`
-  flex: ${(props) => props.$flex ?? 'unset'};
+  flex: ${(props) => props.$flex ?? 'initial'};
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(1)};
   font-size: ${(props) => props.$size ?? 'inherit'};
   color: ${(props) =>
@@ -79,7 +79,7 @@ export const MdTxt = styled.h2<TextProps>`
 `;
 
 export const LgTxt = styled.h1<TextProps>`
-  flex: ${(props) => props.$flex ?? 'unset'};
+  flex: ${(props) => props.$flex ?? 'initial'};
   font-size: ${(props) => props.$size ?? 'inherit'};
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(0)};
   color: ${(props) =>
@@ -105,7 +105,7 @@ export const LgTxt = styled.h1<TextProps>`
 
 export const Icon = styled.em<TextProps>`
   /* flex: ${(props) => props.$flex ?? 'unset'}; */
-  display: contents;
+  display: inline-block;
   font-family: ${(props) => props.$font ?? props.theme.fonts.at(2)};
   font-size: ${(props) => props.$size ?? 'inherit'};
   letter-spacing: 0.5px;
@@ -150,7 +150,10 @@ export const Icon = styled.em<TextProps>`
         : 'inherit'};
 `;
 
-export const ExtLink = styled.a<TextProps>`
+export const ExtLink = styled.a.attrs<TextProps>((props) => ({
+  rel: 'noopener noreferrer',
+  target: '_blank',
+}))<TextProps>`
   display: inline;
   font-size: ${(props) => props.$size ?? 'inherit'};
   color: ${(props) =>

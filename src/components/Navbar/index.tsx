@@ -1,19 +1,22 @@
-import { Fragment, useRef, SyntheticEvent } from 'react';
+import { Fragment, useRef, useLayoutEffect, type SyntheticEvent } from 'react';
 import { createPortal } from 'react-dom';
+
+import useToggle from '@/hooks/useToggle';
 
 import { NavBar, ToggleBtn, NavList, NavItem, NavIcon, NavLink } from './Navbar';
 import { MdTxt } from '@/components/common';
-import { useIsomorphicEffect } from '@/hooks/useIsomorphicEffect';
-import useToggle from '@/hooks/useToggle';
 
 export default function Navbar() {
 	const { toggle, handleToggle, setToggle } = useToggle();
 	const portal = useRef<Element | DocumentFragment>();
 	const timeout = useRef<NodeJS.Timeout | null>();
 
-	useIsomorphicEffect(() => {
-		let elem = document.querySelector('#nav-list');
-		portal.current = elem ?? document.body;
+	useLayoutEffect(() => {
+		// let elem = document.querySelector('#nav-list');
+		if (typeof window !== undefined) {
+			const navListElem = document.querySelector('#nav-list');
+			portal.current = navListElem ?? portal.current;
+		}
 	}, [portal.current]);
 
 	const handleHoverIn = (evt: SyntheticEvent<HTMLElement>): void => {
@@ -59,6 +62,7 @@ export default function Navbar() {
 			</ToggleBtn>
 			<NavList
 				id="nav-list"
+				ref={portal}
 				onMouseOver={handleHoverIn}
 				onMouseLeave={handleHoverOut}
 			>
@@ -74,11 +78,11 @@ export default function Navbar() {
 								<NavIcon>{'\uf415 '}</NavIcon>
 								<NavLink href="/about">About</NavLink>
 							</NavItem>
-							<NavItem id="nav-about" tabIndex={0}>
+							<NavItem id="nav-projects" tabIndex={0}>
 								<NavIcon>{'\ueA8A '}</NavIcon>
 								<NavLink href="/projects">Projects</NavLink>
 							</NavItem>
-							<NavItem id="nav-about" tabIndex={0}>
+							<NavItem id="nav-contact" tabIndex={0}>
 								<NavIcon>{'\uf2bc '}</NavIcon>
 								<NavLink href="/contact"> Contact</NavLink>
 							</NavItem>

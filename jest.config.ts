@@ -14,9 +14,7 @@ const config = async (): Promise<Config> => ({
   verbose: true,
   injectGlobals: true,
   globalSetup: './tests/setupTests.ts',
-  globals: {
-    styledRender,
-  },
+
   moduleDirectories: ['node_modules', 'src'],
 
   // testEnvironmentOptions: {},

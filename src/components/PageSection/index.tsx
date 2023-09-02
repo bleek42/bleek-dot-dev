@@ -135,10 +135,14 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 						{props.content.map((articleContent: string, idx: number) => (
 							<Article
 								id={`article-${
-									props.id ? `_id-${props.id}-${sectionId}` : sectionId
+									props.id
+										? `_id-${props.id}-${sectionId}`
+										: `_idx-${sectionId}_${idx}`
 								}`}
 								key={`article-${
-									props.id ? props.id + sectionId : sectionId + idx
+									props.id
+										? `${props.id}_${sectionId}`
+										: `${sectionId}_${idx}`
 								}`}
 							>
 								{articleContent.startsWith('https://' || 'http://') ? (

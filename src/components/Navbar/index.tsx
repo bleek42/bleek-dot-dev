@@ -18,7 +18,7 @@ export default function Navbar() {
 
 	const handleHoverIn = (evt: SyntheticEvent<HTMLElement>): void => {
 		// console.log(evt);
-		// evt.preventDefault();
+		evt.preventDefault();
 		timeout.current = setTimeout(() => {
 			setToggle(true);
 		}, 500);
@@ -26,7 +26,7 @@ export default function Navbar() {
 
 	const handleHoverOut = (evt: SyntheticEvent<HTMLElement>): void => {
 		// console.log(evt);
-		// evt.preventDefault();
+		evt.preventDefault();
 		timeout.current = setTimeout(() => setToggle(false), 500);
 		// console.log(timeout.current);
 

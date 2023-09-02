@@ -48,7 +48,7 @@ export default function XTerm() {
 	};
 
 	return (
-		<XTForm>
+		<XTForm id={xtermState.id}>
 			<XTBtns id="xt-btns">
 				<Btn
 					id="xt-close-tty0"

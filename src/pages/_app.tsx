@@ -6,9 +6,11 @@ import { GlobalStyle, theme } from '@/components/common/Theme';
 import Meta from '@/components/common/Meta';
 import PageLayout from '@/lib/PageLayout';
 import LandingPage from './index';
+import { Fragment } from 'react';
 
 function App({ Component, pageProps }: AppProps<MetaComponent>) {
 	// console.log();
+
 	return (
 		<ThemeProvider theme={theme}>
 			{Component !== LandingPage ? (
@@ -16,11 +18,11 @@ function App({ Component, pageProps }: AppProps<MetaComponent>) {
 					<Component {...pageProps} />
 				</PageLayout>
 			) : (
-				<>
+				<Fragment>
 					<Meta id={pageProps.id} />
 					<GlobalStyle />
 					<Component {...pageProps} />
-				</>
+				</Fragment>
 			)}
 		</ThemeProvider>
 	);

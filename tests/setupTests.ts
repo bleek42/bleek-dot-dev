@@ -16,7 +16,6 @@ const setupConfig = configure({
   showOriginalStackTrace: true,
 });
 
-export * from '@testing-library/react';
 
 export { styledRender };
 

@@ -1,13 +1,13 @@
+import Link, { type LinkProps } from 'next/link';
 import styled, {
   keyframes,
   type AnyStyledComponent,
   type DefaultTheme,
   type StyledComponentProps,
 } from 'styled-components';
-import Link, { type LinkProps } from 'next/link';
 
+import { Icon, shimmer } from '@/components/common';
 import { type NavbarComponent } from '@/interfaces/Component';
-import { Icon } from '../common';
 import { type StyledOptions } from '@/interfaces/StyledOptions';
 
 export type NavBarProps = StyledComponentProps<
@@ -81,21 +81,29 @@ export const NavList = styled.ul<NavBarProps & NavbarComponent>`
 // eslint-disable-next-line prettier/prettier
 export const NavItem = styled.li<NavBarProps & NavbarComponent>`
   list-style: none;
-  letter-spacing: 0.5px;
-  border: 0.8px solid ${({ theme }) => theme.palette.secondary.neon};
-  background-color: ${({ theme }) => theme.palette.primary.gray};
+  border: 0.8px solid ${({ theme }) => theme.palette.secondary.cyan};
+  background-color: ${({ theme }) => theme.palette.tertiary.steel};
   padding: 4px 4px;
   height: 8vh;
   min-width: 30vw;
   max-width: 37vw;
   position: relative;
+
+  mask-image: ${({ theme }) => theme.palette.secondary.linear},
+    ${({ theme }) => theme.palette.tertiary.linear};
+  -webkit-mask-image: ${({ theme }) => theme.palette.secondary.linear},
+    ${({ theme }) => theme.palette.tertiary.linear};
   z-index: 1;
 
   &:hover {
-    border: 1.2px solid ${({ theme }) => theme.palette.secondary.cyan};
-    filter: brightness(1.2);
+    mask-size: 200%;
+    -webkit-mask-size: 200%;
+    animation: ${shimmer} 2000ms infinite;
   }
 `;
+/* color: ${({ theme }) => theme.palette.primary.neon}; */
+/* border: 1.2px solid ${({ theme }) => theme.palette.secondary.neon}; */
+/* filter: brightness(1.1); */
 
 export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   width: stretch;
@@ -112,8 +120,8 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   font-size: 32px;
   letter-spacing: 0.4px;
   transition:
-    filter 360ms ease-in,
-    color 360ms ease-in;
+    filter 300ms ease-in,
+    color 300ms ease-in;
 
   /* &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
@@ -121,7 +129,7 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   } */
 
   &:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.1);
     color: ${({ theme }) => theme.palette.primary.cyan};
   }
 `;
@@ -130,29 +138,40 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
 export const NavLink = styled(Link)<NavLinkProps>`
   display: contents;
   font-size: 1.5em;
-  color: ${({ theme }) => theme.palette.secondary.neon};
+  letter-spacing: 0.5px;
+  /* background: ;
+  background-size:
+    100% 3px,
+    0 3px;
+  background-position:
+    100% 100%,
+    0 100%; */
+  text-decoration: none;
+  color: ${({ theme }) => theme.palette.primary.cyan};
   font-family: ${({ theme }) => theme.fonts.at(1)};
-  text-shadow: ${({ theme }) => theme.palette.secondary.black} 1px 0.5px 0.5px;
+  text-shadow: ${({ theme }) => theme.palette.secondary.black} 0.7px 0.6px 0.4px;
   text-align: center;
-  transition:
-    filter 360ms ease-in,
-    color 360ms ease-in;
+  /* transition: background-size 300ms; */
+  /* filter 300ms ease-in,
+    color 200ms ease-in; */
 
-  &:hover {
+  /* &:focus-visible {
     color: ${({ theme }) => theme.palette.primary.neon};
     filter: brightness(1.1);
-  }
-
+    background-size:
+      0 3px,
+      100% 3px;
+  } */
+  /*
   &:visited {
-    filter: brightness(0.8);
-    color: ${({ theme }) => theme.palette.secondary.drab};
-  }
+    filter: brightness(0.9);
+  } */
 `;
 
 // eslint-disable-next-line prettier/prettier
 export const NavIcon = styled(Icon)`
   display: contents;
-  color: ${({ theme }) => theme.palette.secondary.green};
+  color: ${({ theme }) => theme.palette.primary.green};
   font-size: 1.8em;
   font-family: ${({ theme }) => theme.fonts.at(2)};
   text-shadow: ${({ theme }) => theme.palette.secondary.black} 1.2px 1.2px 0.8px;
@@ -160,11 +179,17 @@ export const NavIcon = styled(Icon)`
   /* transition:
     filter 360ms ease-in,
     color 360ms ease-in;
+*/
 
   &:hover {
     color: ${({ theme }) => theme.palette.primary.neon};
     filter: brightnness(1.1);
-  } */
+  }
+
+  &:focus-visible {
+    color: ${({ theme }) => theme.palette.primary.neon};
+    filter: brightness(1.1);
+  }
 `;
 
 //   position: ${(props) => (props.toggle ? 'absolute' : 'fixed')};

@@ -1,9 +1,8 @@
-import { Fragment, useRef, SyntheticEvent } from 'react';
+import { Fragment, useRef, useEffect, type SyntheticEvent } from 'react';
 import { createPortal } from 'react-dom';
 
 import { NavBar, ToggleBtn, NavList, NavItem, NavIcon, NavLink } from './Navbar';
-import { MdTxt } from '@/components/common';
-import { useIsomorphicEffect } from '@/hooks/useIsomorphicEffect';
+import { Icon, MdTxt } from '@/components/common';
 import useToggle from '@/hooks/useToggle';
 
 export default function Navbar() {
@@ -11,14 +10,18 @@ export default function Navbar() {
 	const portal = useRef<Element | DocumentFragment>();
 	const timeout = useRef<NodeJS.Timeout | null>();
 
-	useIsomorphicEffect(() => {
-		let elem = document.querySelector('#nav-list');
-		portal.current = elem ?? document.body;
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			let elem = document.querySelector('#nav-list');
+			portal.current = elem ?? document.body;
+		}
 	}, [portal.current]);
 
 	const handleHoverIn = (evt: SyntheticEvent<HTMLElement>): void => {
 		// console.log(evt);
 		evt.preventDefault();
+		const { currentTarget } = evt;
+		console.log({ currentTarget });
 		timeout.current = setTimeout(() => {
 			setToggle(true);
 		}, 500);
@@ -27,6 +30,8 @@ export default function Navbar() {
 	const handleHoverOut = (evt: SyntheticEvent<HTMLElement>): void => {
 		// console.log(evt);
 		evt.preventDefault();
+		const { currentTarget } = evt;
+		console.log({ currentTarget });
 		timeout.current = setTimeout(() => setToggle(false), 500);
 		// console.log(timeout.current);
 
@@ -38,7 +43,7 @@ export default function Navbar() {
 
 	return (
 		<NavBar id="nav-bar">
-			<MdTxt
+			<Icon
 				$colorPalette="secondary"
 				$color="green"
 				$shadow="black"
@@ -46,7 +51,17 @@ export default function Navbar() {
 				$font="MonocraftNF"
 				$size="2em"
 			>
-				{'\uf969'} Menu
+				{'\uf969'}
+			</Icon>
+			<MdTxt
+				$colorPalette="secondary"
+				$color="green"
+				$shadow="black"
+				$align="center"
+				$font="MonocraftNF"
+				$size="1.8em"
+			>
+				Menu
 			</MdTxt>
 			<ToggleBtn
 				id="toggle-btn"

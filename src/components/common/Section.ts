@@ -1,6 +1,6 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 import { type SectionComponent } from '@/interfaces/Component';
-import { borderPulse, fadeInBright } from '@/components/common/animations';
+import { borderPulse, render } from '@/components/common/animations';
 import Image from 'next/image';
 
 export type SectionProps = StyledComponentProps<
@@ -25,10 +25,10 @@ export const Article = styled.article<SectionProps & SectionComponent>`
 
   transition:
     border 450ms ease-in-out,
-    filter 450ms ease-in-out;
+    filter 450ms ease-in;
 
   &:hover {
-    filter: brightness(1.15);
+    filter: brightness(1.05);
     border: 2.8px outset ${({ theme }) => theme.palette.secondary.cyan};
   }
 
@@ -105,7 +105,7 @@ export const Section = styled.section<SectionProps & SectionComponent>`
   }
 `;
 
-  /* ${ContactCard} > & {
+/* ${ContactCard} > & {
     columns: 1;
     flex-flow: column wrap;
   } */

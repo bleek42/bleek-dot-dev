@@ -41,12 +41,12 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 				Array.isArray(props.icons) &&
 				props.icons.length === props.content.length && (
 					<ContactCard
-						id={`contact-card_${
-							props.id ? `id-${props.id}_${sectionId}` : `${sectionId}`
+						id={`article-contact${
+							props.id ? `_id-${props.id}-${sectionId}` : sectionId
 						}`}
 					>
 						<Icon
-							$colorPalette="primary"
+							$colorPalette="tertiary"
 							$color="neon"
 							$shadow="black"
 							$size="1.6em"
@@ -56,17 +56,16 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 								id="contact-email"
 								href={`mailto:${props.content.at(0)}`}
 								$colorPalette="secondary"
-								$color="black"
-								$shadow="neon"
-								$size="1em"
+								$color="blue"
+								$shadow="black"
 							>
 								{props.content.at(0)}
 							</ExtLink>
 						</Icon>
 						<Icon
 							$colorPalette="secondary"
-							$color="blue"
-							$shadow="cyan"
+							$color="teal"
+							$shadow="black"
 							$size="1.6em"
 						>
 							{`${props.icons.at(1)}LinkedIn: `}
@@ -74,17 +73,17 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 								id="contact-linkedin"
 								href={props.content.at(1)}
 								$colorPalette="secondary"
-								$color="black"
-								$shadow="cyan"
+								$color="blue"
+								$shadow="black"
 								$size="1em"
 							>
 								{props.content.at(1)?.replace('https://', '')}
 							</ExtLink>
 						</Icon>
 						<Icon
-							$colorPalette="primary"
-							$color="purple"
-							$shadow="steel"
+							$colorPalette="tertiary"
+							$color="green"
+							$shadow="black"
 							$size="1.6em"
 						>
 							{`${props.icons.at(2)}GitHub: `}
@@ -92,8 +91,8 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 								id="contact-github"
 								href={props.content.at(2)}
 								$colorPalette="secondary"
-								$color="black"
-								$shadow="purple"
+								$color="blue"
+								$shadow="black"
 								$size="1em"
 							>
 								{props.content.at(2)?.replace('https://', '')}
@@ -103,8 +102,8 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 				)}
 			{props.name !== 'contact' && typeof props.content === 'string' && (
 				<Article
-					id={`article-${props.name}_${
-						props.id ? `id-${props.id}_${sectionId}` : `${sectionId}`
+					id={`article-${props.name}${
+						props.id ? `_id-${props.id}-${sectionId}` : sectionId
 					}`}
 				>
 					<SmTxt
@@ -122,13 +121,7 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 				props.content.length >= 1 && (
 					<Fragment>
 						{props.description && (
-							<Article
-								id={`article-desc_${
-									props.id
-										? `id-${props.id}_${sectionId}`
-										: `${sectionId}`
-								}`}
-							>
+							<Article>
 								<SmTxt
 									$colorPalette="secondary"
 									$color="grey"
@@ -141,10 +134,10 @@ export default function PageSection(props: SectionProps & SectionComponent) {
 						)}
 						{props.content.map((articleContent: string, idx: number) => (
 							<Article
-								id={`article-content_${
+								id={`article-${
 									props.id
-										? `id-${props.id}_${sectionId}`
-										: `idx-${idx}_${sectionId}`
+										? `_id-${props.id}-${sectionId}`
+										: `_idx-${sectionId}_${idx}`
 								}`}
 								key={`article-${
 									props.id

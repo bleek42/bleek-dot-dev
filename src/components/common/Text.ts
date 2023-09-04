@@ -90,7 +90,7 @@ export const LgTxt = styled.h1<TextProps>`
       ? props.theme.palette.tertiary[props.$color]
       : props.$colorPalette === 'tertiary' && props.$color in props.theme.palette.tertiary
       ? props.theme.palette.tertiary[props.$color]
-      : 'inherit'};
+      : 'initial'};
   text-shadow: ${(props) =>
     props.$shadow in props.theme.palette.primary
       ? `${props.theme.palette.primary[props.$shadow]} 1.5px 1px .5px`
@@ -135,13 +135,26 @@ export const Icon = styled.em<TextProps>`
       ? `${props.theme.palette.tertiary[props.$shadow]} 1.5px 1.5px 1px`
       : 'unset'};
   text-align: ${(props) => props.$align ?? 'inherit'};
+  text-decoration: underline solid
+    ${(props) =>
+      props.$shadow &&
+      props.$colorPalette === 'primary' &&
+      props.$shadow in props.theme.palette.primary
+        ? `${props.theme.palette.primary[props.$shadow]}`
+        : props.$colorPalette === 'secondary' &&
+          props.$color in props.theme.palette.secondary
+        ? `${props.theme.palette.secondary[props.$shadow]}`
+        : props.$colorPalette === 'tertiary' &&
+          props.$color in props.theme.palette.tertiary
+        ? `${props.theme.palette.tertiary[props.$shadow]}`
+        : 'inherit'};
 `;
 
 export const ExtLink = styled.a.attrs<TextProps>((props) => ({
   rel: 'noopener noreferrer',
   target: '_blank',
 }))<TextProps>`
-  display: inline-block;
+  display: inline;
   font-size: ${(props) => props.$size ?? 'inherit'};
   color: ${(props) =>
     props.$color &&
@@ -156,7 +169,7 @@ export const ExtLink = styled.a.attrs<TextProps>((props) => ({
         props.$color &&
         props.$color in props.theme.palette.tertiary
       ? props.theme.palette.tertiary[props.$color]
-      : props.theme.palette.primary.cyan};
+      : props.theme.palette.common.black};
   text-shadow: ${(props) =>
     props.$shadow &&
     props.$colorPalette === 'primary' &&
@@ -169,7 +182,7 @@ export const ExtLink = styled.a.attrs<TextProps>((props) => ({
       ? `${props.theme.palette.tertiary[props.$shadow]} 1.5px 1.5px 1px`
       : 'unset'};
   text-align: ${(props) => props.$align ?? 'inherit'};
-  text-decoration: 0.1px underline solid
+  text-decoration: underline solid
     ${(props) =>
       props.$shadow &&
       props.$colorPalette === 'primary' &&
@@ -188,8 +201,13 @@ export const ExtLink = styled.a.attrs<TextProps>((props) => ({
     color 360ms ease-in;
 
   &:hover {
-    color: ${({ theme }) => theme.palette.primary.blue};
-    filter: brightness(1.05);
+    color: ${({ theme }) => theme.palette.primary.neon};
+    filter: brightness(1.15);
+  }
+
+  &:visited {
+    filter: brightness(0.9);
+    color: ${({ theme }) => theme.palette.secondary.purple};
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.smallTab}) {

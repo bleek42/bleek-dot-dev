@@ -28,7 +28,7 @@ Contact.defaultProps = {
 		'https://linkedin.com/in/brandonl42',
 		'https://github.com/bleek42',
 	],
-	icons: [' \uf42f ', ' \uf08c ', ' \ue708 '],
+	icons: [' \uf092 ', ' \uf08c ', ' \ue708 '],
 };
 
 

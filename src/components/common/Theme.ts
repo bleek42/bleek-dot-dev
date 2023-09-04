@@ -35,7 +35,7 @@ export const theme: DefaultTheme = {
       red: 'rgb(226, 49, 0)',
       blue: 'rgb(7, 52, 228)',
       cyan: 'rgb(21, 245, 245)',
-      green: 'rgba(20, 241, 75, 0.95)',
+      green: 'rgb(77, 197, 12)',
       neon: 'rgba(20, 255, 0, 0.95)',
       drab: 'rgb(13, 139, 80)',
       gray: 'rgba(125, 135, 165, 0.95)',
@@ -48,7 +48,7 @@ export const theme: DefaultTheme = {
       black: 'rgb(5, 5, 5)',
       white: 'rgb(250, 250, 235)',
       linear:
-        'linear-gradient(95deg, rgb(59, 112, 115, 0.75) 46%, rgba(105, 190, 105, 0.75) 53%)',
+        'linear-gradient(95deg,rgb(59 112 115 / 75%) 46%,rgba(105,190,105,0.75) 53%)',
     },
 
     secondary: {
@@ -67,7 +67,8 @@ export const theme: DefaultTheme = {
       tan: 'rgb(121, 116, 116)',
       black: 'rgba(39, 32, 32, 0.9)',
       white: 'rgb(255, 255, 255)',
-      linear: 'linear-gradient(to right, rgba(89, 255, 0, 0.8) rgb(36, 237, 255, 0.7))',
+      linear:
+        'linear-gradient(100deg, rgba(45, 147, 243, 0.75) 35%, rgba(23, 240, 193, 0.8) 65%)',
     },
 
     tertiary: {
@@ -76,7 +77,7 @@ export const theme: DefaultTheme = {
       green: 'rgb(43, 230, 33)',
       orange: 'rgb(200, 45, 45)',
       yellow: 'rgb(252, 231, 0, 0.85)',
-      purple: 'rgba(230, 3, 230, 0.94)',
+      purple: 'rgba(229, 54, 229, 0.8)',
       cyan: 'rgb(114, 220, 220)',
       neon: 'rgba(135, 255, 0, 0.9)',
       drab: 'rgb(29, 123, 47)',
@@ -87,7 +88,7 @@ export const theme: DefaultTheme = {
       black: 'rgb(15, 8, 10)',
       white: 'rgb(234, 255, 241)',
       linear:
-        'linear-gradient(to left, rgba(43, 255, 40, 0.85), rgba(114, 220, 220, 0.7))',
+        'linear-gradient(105deg, rgba(132, 255, 0.85) 35%, rgba(22, 247, 135, 0.9) 35%)',
     },
   },
 };
@@ -139,4 +140,61 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 1.5em;
   }
 
+`;
+
+export const borderPulse = keyframes`
+  from {
+    border: 0.3px inset rgb(0, 0, 0);
+    margin: 1px;
+  }
+
+  50% {
+    border: 0.5px outset rgb(40, 225, 31);
+    margin: 1.5px;
+  }
+
+  75% {
+    border: 0.8px inset rgb(40, 225, 31);
+    margin: 1.5px;
+  }
+
+
+  to {
+    border: 1px outset rgb(40, 220, 30);
+    margin: 1.8px;
+  }
+
+`;
+
+export const fadeInBright = keyframes`
+  from {
+    opacity: 0;
+    filter: brightness(0.1) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+  }
+
+  20% {
+    opacity: 0.15;
+    filter: brightness(0.2) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+  }
+
+  40% {
+    opacity: 0.3;
+    filter: brightness(0.4) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+
+  }
+
+  60% {
+    opacity: 0.6;
+    filter: brightness(0.6) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+  }
+
+  80% {
+    opacity: 0.8;
+    filter: brightness(0.9) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+  }
+
+  to {
+    opacity: 1;
+    filter: brightness(1.15) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
+  }
 `;

@@ -5,7 +5,7 @@ import { styledRender } from '@/tests/utils/styedRender';
 
 describe('Navbar component', () => {
 	// ! Render the Navbar component before all tests
-	beforeAll(() => {
+	beforeEach(() => {
 		styledRender(<Navbar />);
 	});
 
@@ -18,7 +18,7 @@ describe('Navbar component', () => {
 
 	it('should render Navbar styled component with default props', () => {
 		// ! Assert that the NavBar is rendered
-		expect(screen.getByTestId('navbar')).toBeInTheDocument();
+		expect(screen.findByText('navbar')).toBeInTheDocument();
 
 		// ! Assert that the ToggleBtn is rendered
 		expect(screen.getByTestId('toggle-btn')).toBeInTheDocument();

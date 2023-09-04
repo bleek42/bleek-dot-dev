@@ -1,8 +1,4 @@
-// ;
-
-// import type { BaseComponentProps } from '@/props/base.component.props';
-
-// import { MdTxt } from '@/components/common/Text';
+// import { MdTxt } from '@/components/common';
 
 // import { List as Wrapper, Item } from './List';
 

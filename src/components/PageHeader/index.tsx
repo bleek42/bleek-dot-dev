@@ -1,17 +1,20 @@
-import { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 import { type HeaderComponent } from '@/interfaces/Component';
 
-import { Header } from './Header';
+import { Header, LambdaSVG } from './Header';
 import Navbar from '@/components/Navbar';
 import { LgTxt, MdTxt } from '@/components/common';
-import { Fragment } from 'react';
 
 type HeaderProps = HeaderComponent;
-
 export default function PageHeader(props: HeaderProps) {
 	// // console.log({ 'Header component': { props } });
 	return (
 		<Header>
+			<LambdaSVG
+				src="/svgs/green_lambda.svg"
+				alt="green_lambda.svg"
+				width={100}
+				height={100}
+			/>
 			<LgTxt $colorPalette="primary" $color="neon" $shadow="black" $size="2em">
 				Brandon Leek
 			</LgTxt>

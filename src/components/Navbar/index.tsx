@@ -40,7 +40,10 @@ export default function Navbar() {
 	};
 
 	return (
-		<NavBar id="nav-bar">
+		<NavBar
+			id="nav-bar"
+			// onMouseLeave={handleHoverOut}
+		>
 			<MdTxt
 				$colorPalette="secondary"
 				$color="green"
@@ -55,7 +58,6 @@ export default function Navbar() {
 				id="toggle-btn"
 				tabIndex={0}
 				onMouseOver={handleHoverIn}
-				onMouseLeave={handleHoverOut}
 				onClick={handleToggle}
 			>
 				{toggle ? '\uf63B' : '\uf0c9'}

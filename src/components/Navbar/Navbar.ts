@@ -7,7 +7,7 @@ import styled, {
 import Link, { type LinkProps } from 'next/link';
 
 import { type NavbarComponent } from '@/interfaces/Component';
-import { Icon } from '../common';
+import { Icon, shimmerUnderline } from '../common';
 import { type StyledOptions } from '@/interfaces/StyledOptions';
 
 export type NavBarProps = StyledComponentProps<
@@ -29,14 +29,16 @@ export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
   border: 2px solid ${({ theme }) => theme.palette.primary.cyan};
   border-radius: ${({ theme }) => theme.defaultRadius};
   background-color: ${({ theme }) => theme.palette.tertiary.steel};
-  width: 38vw;
-  min-width: 30vw;
   height: 10vh;
+  width: 32vw;
+  display: inline-flex;
+  flex-flow: row wrap;
   min-height: 8vh;
   position: relative;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
     justify-items: center;
+    min-width: 48vw;
     /* flex-flow: column wrap; */
     /* flex: auto; */
     /* align-items: center; */
@@ -56,13 +58,15 @@ export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
 
 // eslint-disable-next-line prettier/prettier
 export const NavList = styled.ul<NavBarProps & NavbarComponent>`
-  border: 0.8px solid ${({ theme }) => theme.palette.common.black};
+  /* border: 0.8px solid ${({ theme }) => theme.palette.common.black}; */
   list-style: none;
-  display: contents;
-  inset: 82% -15% auto;
+  display: inline-block;
+  /* inset: 82% -15% auto; */
+  inset: 89% -1% auto;
   position: absolute;
+  /* width: 28vw; */
   z-index: 1;
-
+  /* flex: 1 1 2vw; */
   /* animation: slide-open 0.6s forwards; */
 
   /* &:hover { */
@@ -70,7 +74,6 @@ export const NavList = styled.ul<NavBarProps & NavbarComponent>`
   /* } */
 
   @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
-    inset: 12% 58% auto;
   }
 
   /* @media (max-width: ${({ theme }) => theme.breakpoints.laptop}) {
@@ -82,18 +85,16 @@ export const NavList = styled.ul<NavBarProps & NavbarComponent>`
 export const NavItem = styled.li<NavBarProps & NavbarComponent>`
   list-style: none;
   letter-spacing: 0.5px;
-  border: 0.8px solid ${({ theme }) => theme.palette.secondary.neon};
+  border: 1px inset ${({ theme }) => theme.palette.primary.cyan};
   background-color: ${({ theme }) => theme.palette.primary.gray};
   padding: 4px 4px;
   height: 8vh;
-  min-width: 30vw;
-  max-width: 37vw;
+
   position: relative;
   z-index: 1;
 
   &:hover {
-    border: 1.2px solid ${({ theme }) => theme.palette.secondary.cyan};
-    filter: brightness(1.2);
+    animation: ${shimmerUnderline} 600ms steps(40) infinite;
   }
 `;
 
@@ -104,7 +105,7 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   padding: 4px;
   margin: 2px 3px 0 3px;
   color: ${({ theme }) => theme.palette.primary.blue};
-  border: 0.8px solid ${({ theme }) => theme.palette.primary.cyan};
+  border: 0.8px inset ${({ theme }) => theme.palette.primary.blue};
   background-color: ${({ theme }) => theme.palette.primary.black};
   border-radius: ${({ theme }) => theme.defaultRadius};
   font-family: ${({ theme }) => theme.fonts.at(2)};
@@ -112,16 +113,12 @@ export const ToggleBtn = styled.button<NavBarProps & NavbarComponent>`
   font-size: 32px;
   letter-spacing: 0.4px;
   transition:
-    filter 360ms ease-in,
-    color 360ms ease-in;
-
-  /* &:hover {
-    color: ${({ theme }) => theme.palette.primary.neon};
-    filter: brightness(2);
-  } */
+    color 360ms ease-in-out,
+    border 450ms ease-in,
+    filter 450ms ease-in;
 
   &:hover {
-    filter: brightness(1.2);
+    border: 1.2px outset ${({ theme }) => theme.palette.primary.cyan};
     color: ${({ theme }) => theme.palette.primary.cyan};
   }
 `;
@@ -134,18 +131,18 @@ export const NavLink = styled(Link)<NavLinkProps>`
   font-family: ${({ theme }) => theme.fonts.at(1)};
   text-shadow: ${({ theme }) => theme.palette.secondary.black} 1px 0.5px 0.5px;
   text-align: center;
-  transition:
-    filter 360ms ease-in,
-    color 360ms ease-in;
+  opacity: 0.5;
 
-  &:hover {
+  transition:
+    transform 360ms,
+    color 450ms ease-in-out,
+    filter 450ms ease-in-out;
+
+  &:hover,
+  &:active,
+  &:focus-visible {
     color: ${({ theme }) => theme.palette.primary.neon};
     filter: brightness(1.1);
-  }
-
-  &:visited {
-    filter: brightness(0.8);
-    color: ${({ theme }) => theme.palette.secondary.drab};
   }
 `;
 

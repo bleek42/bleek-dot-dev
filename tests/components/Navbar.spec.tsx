@@ -5,7 +5,7 @@ import { styledRender } from '@/tests/utils/styedRender';
 
 describe('Navbar component', () => {
 	// ! Render the Navbar component before all tests
-	beforeAll(() => {
+	beforeEach(() => {
 		styledRender(<Navbar />);
 	});
 
@@ -13,12 +13,12 @@ describe('Navbar component', () => {
 		screen.debug();
 		screen.queryByDisplayValue('form');
 
-		expect(screen.getByDisplayValue('form')).toBeInTheDocument();
+		expect(screen.getByDisplayValue('tty0')).toBeInTheDocument();
 	});
 
-	it('should render Navbar component styled component with default props', () => {
+	it('should render Navbar styled component with default props', () => {
 		// ! Assert that the NavBar is rendered
-		expect(screen.getByTestId('navbar')).toBeInTheDocument();
+		expect(screen.findByText('navbar')).toBeInTheDocument();
 
 		// ! Assert that the ToggleBtn is rendered
 		expect(screen.getByTestId('toggle-btn')).toBeInTheDocument();
@@ -81,6 +81,22 @@ describe('Navbar component', () => {
 	it('should render menu items when the toggle is true', () => {
 		// Render the Navbar component with toggle set to true
 
+		// Assert that the menu items are rendered
+		expect(screen.getByTestId('nav-home')).toBeInTheDocument();
+		expect(screen.getByTestId('nav-about')).toBeInTheDocument();
+		expect(screen.getByTestId('nav-projects')).toBeInTheDocument();
+		expect(screen.getByTestId('nav-contact')).toBeInTheDocument();
+	});
+
+	it('should not render menu items when the toggle is false', () => {
+		// Assert that the menu items are not rendered
+		expect(screen.queryByTestId('nav-home')).not.toBeInTheDocument();
+		expect(screen.queryByTestId('nav-about')).not.toBeInTheDocument();
+		expect(screen.queryByTestId('nav-projects')).not.toBeInTheDocument();
+		expect(screen.queryByTestId('nav-contact')).not.toBeInTheDocument();
+	});
+
+	it('should render menu items when the toggle is true', () => {
 		// Assert that the menu items are rendered
 		expect(screen.getByTestId('nav-home')).toBeInTheDocument();
 		expect(screen.getByTestId('nav-about')).toBeInTheDocument();

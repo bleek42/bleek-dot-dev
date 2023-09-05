@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { Fragment } from 'react';
 
 import { type MetaComponent } from '@/interfaces/Component';
-import { GlobalStyle } from './Theme';
+import { GlobalStyle } from './theme';
 
 type MetaProps = MetaComponent;
 

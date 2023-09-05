@@ -1,8 +1,4 @@
-import styled, {
-  createGlobalStyle,
-  keyframes,
-  type DefaultTheme,
-} from 'styled-components';
+import styled, { createGlobalStyle, type DefaultTheme } from 'styled-components';
 
 export const theme: DefaultTheme = {
   name: 'Default',
@@ -142,59 +138,3 @@ export const GlobalStyle = createGlobalStyle`
 
 `;
 
-export const borderPulse = keyframes`
-  from {
-    border: 0.3px inset rgb(0, 0, 0);
-    margin: 1px;
-  }
-
-  50% {
-    border: 0.5px outset rgb(40, 225, 31);
-    margin: 1.5px;
-  }
-
-  75% {
-    border: 0.8px inset rgb(40, 225, 31);
-    margin: 1.5px;
-  }
-
-
-  to {
-    border: 1px outset rgb(40, 220, 30);
-    margin: 1.8px;
-  }
-
-`;
-
-export const fadeInBright = keyframes`
-  from {
-    opacity: 0;
-    filter: brightness(0.1) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
-  }
-
-  20% {
-    opacity: 0.15;
-    filter: brightness(0.2) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
-  }
-
-  40% {
-    opacity: 0.3;
-    filter: brightness(0.4) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
-
-  }
-
-  60% {
-    opacity: 0.6;
-    filter: brightness(0.6) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
-  }
-
-  80% {
-    opacity: 0.8;
-    filter: brightness(0.9) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
-  }
-
-  to {
-    opacity: 1;
-    filter: brightness(1.15) drop-shadow(0 0 0.5rem rgb(0, 0, 0));
-  }
-`;

@@ -1,5 +1,6 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 import { type HeaderComponent } from '@/interfaces/Component';
+import Image from 'next/image';
 
 export type HeaderProps = StyledComponentProps<
   'header',
@@ -8,32 +9,38 @@ export type HeaderProps = StyledComponentProps<
   string | number | symbol
 >;
 
-export const Header = styled.header<HeaderProps & HeaderComponent>((props) => `
+export const Header = styled.header<HeaderProps & HeaderComponent>`
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  height: 24vh;
   align-items: center;
-  justify-content: space-between;
-  color: ${props.theme.palette.primary.yellow};
-  background-color: ${props.theme.palette.secondary.steel};
-  border: 4px solid ${props.theme.palette.secondary.cyan};
-  border-radius: 10% 10% / 10% 10%;
-  height: 20vh;
+  color: ${({ theme }) => theme.palette.primary.yellow};
+  background-color: ${({ theme }) => theme.palette.secondary.steel};
+  border: 4px solid ${({ theme }) => theme.palette.secondary.cyan};
+  border-radius: ${({ theme }) => theme.defaultRadius};
 
   margin: 6px 6px;
   padding: 4px 8px 4px 8px;
 
-  @media (max-width: ${props.theme.breakpoints.laptop}) {
+  /* @media (max-width: ${({ theme }) => theme.breakpoints.laptop}) {
+  } */
 
-  }
-
-  @media (max-width: ${props.theme.breakpoints.smallTab}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
+    justify-content: space-between;
+    min-height: 32vh;
     flex-flow: column nowrap;
-    justify-conent: space-around;
   }
-`,
-);
+`;
+
+export const LambdaSVG = styled(Image)`
+  /* flex: 1 1 1vw; */
+
+  background: ${({ theme }) => theme.palette.primary.black};
+  border: 1.5px groove ${({ theme }) => theme.palette.primary.cyan};
+`;
 
 
-/* @media (min-width: ${props.theme.breakpoints.fullDisplay}) {
+/* @media (min-width: ${({ theme }) => theme.breakpoints.fullDisplay}) {
 
   } */

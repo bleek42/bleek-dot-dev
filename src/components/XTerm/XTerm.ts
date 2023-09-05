@@ -103,7 +103,7 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
 
   animation:
     ${fadeInBright} 1850ms steps(30) 360ms 1 normal both,
-    ${borderPulse} 670ms linear 2000ms infinite;
+    ${borderPulse} 900ms steps(45) 2000ms infinite;
 
   @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
     justify-content: space-around;
@@ -150,7 +150,9 @@ export const XTCode = styled.code<XTermProps & XTermComponent>`
   background-color: ${(props) => props.theme.palette.secondary.steel};
   font-size: 1.65em;
   white-space: pre;
-  margin: 2px auto;
+  padding: 0 8px;
+  margin: 0 0 12px 12px;
+  border: 0.5px solid ${({ theme }) => theme.palette.secondary.cyan};
 `;
 
 export const XTPrompt = styled(XTLabel)`

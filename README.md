@@ -4,7 +4,7 @@
 
 #### Description
 
-My latest & greatest personal website & developer portfolio: total conversion of, yet stylistically similar to my previous major version, formerly https://bleek.tech but, old source code can still be found right here on [github.com](https://github.com/bleek42/bleek-dot-dev-og "bleek42/bleek-dot-dev-og").
+My latest & greatest personal website & developer portfolio: near total refactor/conversion of, yet stylistically similar to my previous major version, formerly https://bleek.tech but, old source code can still be found right here on [github.com](https://github.com/bleek42/bleek-dot-dev-og "bleek42/bleek-dot-dev-og").
 Built with React, NextJS, TypeScript, Styled Components, GraphQL, HygraphCMS, & more listed in full below.
 
 #### Technology Stack

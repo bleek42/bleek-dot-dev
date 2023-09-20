@@ -10,6 +10,38 @@ export type SectionProps = StyledComponentProps<
   string | number | symbol
 >;
 
+export const Section = styled.section<SectionProps & SectionComponent>`
+  display: flex;
+  flex-flow: column wrap;
+
+  justify-content: flex-start;
+  align-items: stretch;
+  border: 4px groove ${({ theme }) => theme.palette.secondary.neon};
+  border-spacing: 4px;
+  border-radius: 12px 12px 12px 12px;
+  padding: 4px 8px 4px 8px;
+  margin: 8px 8px;
+  background-color: ${({ theme }) => theme.palette.secondary.steel};
+  min-height: 40vh;
+  transition:
+    border 360ms ease-in,
+    filter 400ms ease-in;
+
+  &:hover {
+    filter: brightness(1.15);
+    border: 5px groove ${({ theme }) => theme.palette.primary.neon};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
+    flex-flow: column nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    /* align-items: flex-start; */
+    margin: 4px;
+    padding: 16px 8px 4px 16px;
+  }
+`;
+
 export const Article = styled.article<SectionProps & SectionComponent>`
   color: ${({ theme }) => theme.palette.secondary.steel};
   background-color: ${({ theme }) => theme.palette.secondary.gray};
@@ -20,17 +52,31 @@ export const Article = styled.article<SectionProps & SectionComponent>`
   min-height: 16vh;
   max-width: 60vw;
   min-width: 40vw;
-  margin: 0 16px 2px 0;
+  margin: 2px 16px 2px 2px;
   padding: 16px 8px 16px 8px;
 
   transition:
     border 450ms ease-in-out,
     filter 450ms ease-in-out;
 
-  &:hover {
+  &:hover, &:focus {
     filter: brightness(1.15);
-    border: 2.8px outset ${({ theme }) => theme.palette.secondary.cyan};
+    border: 3px outset ${({ theme }) => theme.palette.secondary.cyan};
   }
+
+
+    /* transform: skewX(35deg); */
+    
+    
+    /* &::before {
+      content: '';
+      transform: skewX(0deg);
+    }
+
+    &::after {
+      content: '';
+      transform: skewX(25deg);
+    } */
 
   /* @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
   } */
@@ -73,39 +119,8 @@ export const ContactCard = styled.address<SectionProps & SectionComponent>`
   }
 `;
 
-export const Section = styled.section<SectionProps & SectionComponent>`
-  display: flex;
+
+/* ${ContactCard} > & {
+  columns: 1;
   flex-flow: column wrap;
-
-  justify-content: flex-start;
-  align-items: stretch;
-  border: 4px groove ${({ theme }) => theme.palette.secondary.neon};
-  border-spacing: 4px;
-  border-radius: 12px 12px 12px 12px;
-  padding: 4px 8px 4px 8px;
-  margin: 8px 8px;
-  background-color: ${({ theme }) => theme.palette.secondary.steel};
-  min-height: 40vh;
-  transition:
-    border 360ms ease-in,
-    filter 400ms ease-in;
-
-  &:hover {
-    filter: brightness(1.15);
-    border: 5px groove ${({ theme }) => theme.palette.primary.neon};
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
-    flex-flow: column nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    /* align-items: flex-start; */
-    margin: 0;
-    padding: 16px 8px 4px 16px;
-  }
-`;
-
-  /* ${ContactCard} > & {
-    columns: 1;
-    flex-flow: column wrap;
-  } */
+} */

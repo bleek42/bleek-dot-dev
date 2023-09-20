@@ -1,5 +1,4 @@
 {
-	"$schema": "https://json.schemastore.org/prettierrc",
 	"editorconfig": true,
 	"parser": "typescript",
 	"bracketSameLine": false,

@@ -1,15 +1,14 @@
 import * as dotenv from 'dotenv';
 import { type IGraphQLConfig } from 'graphql-config';
 
-dotenv.config({ path: '.env.development.local' });
+dotenv.config({ path: '.env.development' });
 
-console.log(process.env.GH_TOKEN);
+console.log(process.env.GH_JWT);
 
 console.log('|=== GENERATING GRAPHQL TYPES ===|');
 
 const config: IGraphQLConfig = {
   // ignoreNoDocuments: true,
-  // emitLegacyCommonJSImports: false,
   // schema: ['schema.json'],
 
   // documents: [
@@ -18,6 +17,58 @@ const config: IGraphQLConfig = {
   // ],
 
   projects: {
+
+    // githubSchema: {
+    //   schema: [
+    //     {
+    //       'https://api.github.com/graphql': {
+    //         headers: {
+    //           'User-Agent': 'graphql-codegen',
+    //           'Authorization': `Bearer ${process.env.GH_JWT}`,
+    //         },
+    //       },
+    //     },
+    //   ],
+
+    //   extensions: {
+    //     codegen: {
+    //       overwrite: true,
+    //       ignoreNoDocuments: true,
+
+    //       generates: {
+    //         'src/graphql/gh-api.schema.json': {
+    //           plugins: ['introspection'],
+    //           config: {
+    //             descriptions: true,
+    //             schemaDescription: true,
+    //           },
+    //         },
+    //       },
+    //     },
+    //   },
+    // },
+
+    githubDefs: {
+      schema: 'src/graphql/gh-api.schema.json',
+
+      extensions: {
+        codegen: {
+          overwrite: true,
+          ignoreNoDocuments: true,
+
+          generates: {
+            'src/graphql/typeDefs/gh-api.defs.gql': {
+              plugins: ['schema-ast'],
+              config: {
+                commentDescriptions: true,
+                includeIntrospectionTypes: true,
+              },
+            },
+          },
+        },
+      },
+    },
+
     hygraphSchema: {
       schema:
         'https://us-east-1.cdn.hygraph.com/content/cl2jezykc0li901yx24p50f8f/master',
@@ -26,37 +77,9 @@ const config: IGraphQLConfig = {
         codegen: {
           overwrite: true,
           ignoreNoDocuments: true,
+
           generates: {
             'src/graphql/hygraph.schema.json': {
-              plugins: ['introspection'],
-              config: {
-                descriptions: true,
-                schemaDescription: true,
-              },
-            },
-          },
-        },
-      },
-    },
-
-    githubSchema: {
-      schema: [
-        {
-          'https://api.github.com/graphql': {
-            headers: {
-              'User-Agent': 'graphql-codegen',
-              'Authorization': `Bearer ${process.env.GH_TOKEN}`,
-            },
-          },
-        },
-      ],
-
-      extensions: {
-        codegen: {
-          overwrite: true,
-          ignoreNoDocuments: true,
-          generates: {
-            'src/graphql/gh-api.schema.json': {
               plugins: ['introspection'],
               config: {
                 descriptions: true,
@@ -89,29 +112,8 @@ const config: IGraphQLConfig = {
       },
     },
 
-    githubDefs: {
-      schema: 'src/graphql/gh-api.schema.json',
-
-      extensions: {
-        codegen: {
-          overwrite: true,
-          ignoreNoDocuments: true,
-
-          generates: {
-            'src/graphql/typeDefs/gh-api.defs.gql': {
-              plugins: ['schema-ast'],
-              config: {
-                commentDescriptions: true,
-                includeIntrospectionTypes: true,
-              },
-            },
-          },
-        },
-      },
-    },
-
     hygraphTypes: {
-      schema: ['src/graphql/hygraph.schema.json'],
+      schema: 'src/graphql/hygraph.schema.json',
       documents: [
         'src/graphql/fragments/*.gql',
         'src/graphql/typeDefs/*.gql',
@@ -124,9 +126,12 @@ const config: IGraphQLConfig = {
         codegen: {
           overwrite: true,
           ignoreNoDocuments: false,
+          emitLegacyCommonJSImports: false,
+
           generates: {
             'src/graphql/typeDefs/hygraph.ts': {
               plugins: ['typescript'],
+
               config: {
                 futureProofUnions: true,
                 enumsAsTypes: true,
@@ -156,9 +161,9 @@ const config: IGraphQLConfig = {
       schema: 'src/graphql/hygraph.schema.json',
       documents: [
         'src/graphql/typeDefs/hygraph.defs.gql',
-        'src/graphql/fragments/*.gql',
-        'src/graphql/typeDefs/*.gql',
-        'src/graphql/queries/*.gql',
+        'src/graphql/fragments/hygraph-frags.gql',
+        'src/graphql/typeDefs/hygraph.defs.gql',
+        'src/graphql/queries/hygraph/*.gql',
         '!src/graphql/**/*.ts',
         '!src/graphql/mutations/*.gql',
       ],
@@ -167,11 +172,13 @@ const config: IGraphQLConfig = {
         codegen: {
           overwrite: true,
           ignoreNoDocuments: false,
+          emitLegacyCommonJSImports: false,
 
           generates: {
             'src/graphql/': {
               plugins: ['typescript-operations', 'typescript-graphql-request'],
               preset: 'near-operation-file',
+
               presetConfig: {
                 documentMode: 'string',
                 extension: '.operation.ts',
@@ -183,19 +190,6 @@ const config: IGraphQLConfig = {
       },
     },
   },
-
-  // generates: {
-  //   'src/graphql/gh-api.schema.json': {
-  //     plugins: ['introspection'],
-  //     config: {
-  //       descriptions: true,
-  //       schemaDescription: true,
-  //     },
-  //   },
-
-  // 'src/graphql/typeDefs/types.ts': {
-  //   schema: 'src/graphql/typeDefs/*.gql',
-  // },
 
   // hooks: { afterAllFileWrite: ['prettier --write ./src/graphql/**/*.ts'] },
 };

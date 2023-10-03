@@ -5,7 +5,7 @@ import PageSection from '@/components/PageSection';
 import { type AllProjectsWhereQuery } from '@/graphql/queries/hygraph';
 import { allProjectsQuery } from '@/graphql/client';
 
-export default function Projects(props: InferGe0tStaticPropsType<typeof getStaticProps>) {
+export default function Projects(props: InferGetStaticPropsType<typeof getStaticProps>) {
 	return (
 		<Fragment>
 			{props.result.projects.length <= 0 && (

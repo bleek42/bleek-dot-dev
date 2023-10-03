@@ -15,10 +15,9 @@ import { theme, GlobalStyle } from '@/components/common';
 
 import { ReactElement, ReactNode } from 'react';
 
-export const PageProviders = ({ children }: { children: ReactNode }) => {
+export const StyledThemeProvider = ({ children }: { children: ReactNode }) => {
 	return (
 		<ThemeProvider theme={theme}>
-			<Meta />
 			<GlobalStyle />
 			<PageLayout>{children}</PageLayout>
 		</ThemeProvider>

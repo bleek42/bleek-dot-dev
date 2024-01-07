@@ -59,16 +59,15 @@ export const Article = styled.article<SectionProps & SectionComponent>`
     border 450ms ease-in-out,
     filter 450ms ease-in-out;
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     filter: brightness(1.15);
     border: 3px outset ${({ theme }) => theme.palette.secondary.cyan};
   }
 
+  /* transform: skewX(35deg); */
 
-    /* transform: skewX(35deg); */
-    
-    
-    /* &::before {
+  /* &::before {
       content: '';
       transform: skewX(0deg);
     }
@@ -118,7 +117,6 @@ export const ContactCard = styled.address<SectionProps & SectionComponent>`
     align-items: center;
   }
 `;
-
 
 /* ${ContactCard} > & {
   columns: 1;

@@ -10,7 +10,8 @@ type StyledDetailsProps = StyledComponentProps<
 > &
   DetailsComponent;
 
-export const Details = styled.details<StyledDetailsProps>((props) => `
+export const Details = styled.details<StyledDetailsProps>(
+  (props) => `
   margin: 4px 4px auto;
 
   background-color: ${props.theme.palette.secondary.gray};
@@ -31,7 +32,8 @@ export const Details = styled.details<StyledDetailsProps>((props) => `
 `,
 );
 
-export const Summary = styled.summary((props) => `
+export const Summary = styled.summary(
+  (props) => `
   
   color: ${props.theme.palette.secondary.blue};
   font-family: ${props.theme.fonts.at(1)};;

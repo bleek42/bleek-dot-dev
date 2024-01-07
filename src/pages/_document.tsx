@@ -35,15 +35,11 @@ export default class StyledDocument extends Document {
 					</>
 				),
 			};
-		}
-
-		// eslint-disable-next-line prettier/prettier
-		catch (err) {
-			if (err) throw err
-		}
-
-		// eslint-disable-next-line prettier/prettier
-		finally {
+		} catch (err) {
+			// eslint-disable-next-line prettier/prettier
+			if (err) throw err;
+		} finally {
+			// eslint-disable-next-line prettier/prettier
 			sheet.seal();
 		}
 	}

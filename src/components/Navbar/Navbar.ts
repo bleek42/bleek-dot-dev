@@ -37,8 +37,8 @@ export const NavBar = styled.nav<NavBarProps & NavbarComponent>`
   position: relative;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
-    justify-items: center;
-    min-width: 48vw;
+    /* justify-items: center; */
+    /* min-width: 48vw; */
     /* flex-flow: column wrap; */
     /* flex: auto; */
     /* align-items: center; */
@@ -62,9 +62,9 @@ export const NavList = styled.ul<NavBarProps & NavbarComponent>`
   list-style: none;
   display: inline-block;
   /* inset: 82% -15% auto; */
-  inset: 89% -1% auto;
+  inset: 89% 3% auto;
   position: absolute;
-  /* width: 28vw; */
+  width: 30vw;
   z-index: 1;
   /* flex: 1 1 2vw; */
   /* animation: slide-open 0.6s forwards; */
@@ -89,7 +89,7 @@ export const NavItem = styled.li<NavBarProps & NavbarComponent>`
   background-color: ${({ theme }) => theme.palette.primary.gray};
   padding: 4px 4px;
   height: 8vh;
-
+  min-width: 30vw;
   position: relative;
   z-index: 1;
 

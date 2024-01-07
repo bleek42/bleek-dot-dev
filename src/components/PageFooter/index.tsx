@@ -22,4 +22,3 @@ export default function PageFooter(props?: FooterComponent) {
 		</Footer>
 	);
 }
-

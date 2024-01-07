@@ -193,6 +193,6 @@ export const XTIcon = styled(Icon)`
   font-size: 2em;
 `;
 
-    // ${XTLabel} > & {
-    //   flex-flow: row wrap;
-    // }
+// ${XTLabel} > & {
+//   flex-flow: row wrap;
+// }

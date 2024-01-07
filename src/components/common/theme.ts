@@ -44,7 +44,7 @@ export const theme: DefaultTheme = {
       black: 'rgb(5, 5, 5)',
       white: 'rgb(250, 250, 235)',
       linear:
-        'linear-gradient(95deg,rgb(59 112 115 / 75%) 46%,rgba(105,190,105,0.75) 53%)',
+        'linear-gradient(-45deg, rgb(11, 236, 224) 23%, rgb(0, 0, 0) 44%, rgb(33, 241, 59) 100%)',
     },
 
     secondary: {
@@ -57,7 +57,7 @@ export const theme: DefaultTheme = {
       cyan: 'rgb(36, 237, 255)',
       neon: 'rgb(89, 255, 0)',
       drab: 'rgb(15, 226, 96)',
-      gray: 'rgb(181, 192, 187)',
+      gray: 'rgba(224, 235, 230, 0.8)',
       steel: 'rgba(116, 132, 145, 0.65)',
       teal: 'rgba(27, 185, 153, 0.9)',
       tan: 'rgb(121, 116, 116)',
@@ -127,7 +127,7 @@ export const GlobalStyle = createGlobalStyle`
 
 
   body {
-    background: linear-gradient(100deg, rgba(10, 5, 20, 0.9) 45%, rgba(35, 230, 45, 0.9) 55%);
+    background: linear-gradient(100deg,rgba(10,5,20,0.6) 24%, rgba(70, 213, 213, 0.8) 58%, rgba(35, 230, 45, 0.8) 34%);
     font-family: 'Ubuntu, Tahoma, Arial, sans-serif, monospace, system-ui, -apple-system, BlinkMacSystemFont';
   }
 
@@ -137,4 +137,3 @@ export const GlobalStyle = createGlobalStyle`
   }
 
 `;
-

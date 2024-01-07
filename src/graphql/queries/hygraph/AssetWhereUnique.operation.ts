@@ -1,7 +1,7 @@
-import * as Types from '../typeDefs/hygraph';
+import * as Types from '../../typeDefs/hygraph.js';
 
 import { GraphQLClient } from 'graphql-request';
-import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
+import { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types.js';
 import gql from 'graphql-tag';
 export type AssetWhereUniqueQueryVariables = Types.Exact<{
   where?: Types.InputMaybe<Types.AssetWhereUniqueInput>;

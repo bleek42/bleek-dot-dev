@@ -40,7 +40,6 @@ export const LambdaSVG = styled(Image)`
   border: 1.5px groove ${({ theme }) => theme.palette.primary.cyan};
 `;
 
-
 /* @media (min-width: ${({ theme }) => theme.breakpoints.fullDisplay}) {
 
   } */

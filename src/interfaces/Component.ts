@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
-import { GlobalStyle } from '@/components/common';
-import { AssetWhereUniqueQuery, ProjectWhereUniqueQuery } from '@/graphql/queries';
+import { type AssetWhereUniqueQuery, type ProjectWhereUniqueQuery } from '@/graphql/queries/hygraph';
 import { type Metadata } from 'next';
 import {
-  TemplateString,
-  type DefaultTemplateString,
+  // type TemplateString,
+  // type DefaultTemplateString,
   type Icons,
   type IconURL,
 } from 'next/dist/lib/metadata/types/metadata-types';
@@ -13,17 +12,17 @@ import { type AnyStyledComponent } from 'styled-components';
 export interface Component {
   id?: Key | null;
   // className?: string | null;
-  name?: string | unknown;
-  title?: string | string[] | unknown;
-  description?: string | string[] | unknown;
+  name?: string;
+  title?: string | string[];
+  description?: string | string[];
   icons?: string | string[];
   images?:
-    | AssetWhereUniqueQuery['asset']
-    | AssetWhereUniqueQuery['asset'][]
-    | string
-    | URL
-    | Array<URL | string>;
-  locale?: string | 'en' | 'en_US' | 'es_MX';
+  | AssetWhereUniqueQuery['asset']
+  | AssetWhereUniqueQuery['asset'][]
+  | string
+  | URL
+  | Array<URL | string>;
+  locale?: 'en' | 'en_US' | 'es_MX';
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
@@ -36,9 +35,9 @@ export interface Component {
 // styleProps: StyledComponentProps<'form' | 'input' | 'textarea', DefaultTheme, object, string | number | symbol>;
 // >; <'form' | 'input' | 'textarea'>
 export interface XTermComponent extends Component {
-  id: string | 'tty0';
-  name: string | '/dev/tty0';
-  prompt: string | symbol | '[visitor@bleek.dev]λ->>';
+  id: 'tty0' | 'tty1' | 'tty2' | 'tty3';
+  name: '/dev/tty0' | '/dev/tty1' | '/dev/tty2' | '/dev/tty3';
+  prompt: symbol | '[visitor@bleek.dev]λ->>';
   isExec: boolean | null;
   stdin: string | null;
   stdio: string | null;
@@ -46,12 +45,12 @@ export interface XTermComponent extends Component {
 }
 
 export interface MetaComponent extends Metadata {
-  id: Key | 'meta-bleek_0';
+  id: Key;
   title: string;
   description?: string | null;
   keywords: string | string[];
   icons?: IconURL | Icons | null;
-  locale: string | 'en_US' | 'en' | 'es';
+  locale: 'en_US' | 'en' | 'es';
 }
 
 export interface LayoutComponent extends Component {
@@ -69,42 +68,42 @@ export interface DetailsComponent extends Component {
   title: string;
   description?: string | string[];
   images?:
-    | AssetWhereUniqueQuery['asset']
-    | AssetWhereUniqueQuery['asset'][]
-    | string
-    | URL
-    | Array<URL | string>;
+  | AssetWhereUniqueQuery['asset']
+  | AssetWhereUniqueQuery['asset'][]
+  | string
+  | URL
+  | Array<URL | string>;
   children: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
 export interface SectionComponent extends Component {
   name: string;
-  description: string | string[] | null;
+  description: string | string[];
   content?: string | string[];
-  title?: string | string[] | unknown;
+  title?: string | string[];
   icons?: string | string[];
   images?:
-    | AssetWhereUniqueQuery['asset']
-    | AssetWhereUniqueQuery['asset'][]
-    | string
-    | URL
-    | Array<URL | string>;
-  locale?: string | 'en' | 'en_US' | 'es_MX';
+  | AssetWhereUniqueQuery['asset']
+  | AssetWhereUniqueQuery['asset'][]
+  | string
+  | URL
+  | Array<URL | string>;
+  locale?: 'en' | 'en_US' | 'es_MX';
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
-export interface ListComponent extends Component {}
+export interface ListComponent extends Component { }
 
 export interface FooterComponent extends Component {
   name: string;
   description: string | string[];
   icons?: string | string[];
   content?: string | string[];
-  title?: string | string[] | unknown;
+  title?: string | string[];
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
-export type PageID = 1 | 2 | 3 | 4 | 5 | number;
+export type PageID = 1 | 2 | 3 | 4 | 5;
 export type Title = 'Home' | 'About' | 'Contact' | 'Projects' | 'Resume';
 export type Href = '/' | '/home' | '/about' | '/contact' | '/projects' | '/resume';
 export type Icon =

@@ -20,7 +20,7 @@ export default function XTerm() {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
-		prompt: ' [ visitor@bleek.dev]  ﬦ',
+		prompt: Symbol(' [ visitor@bleek.dev]  ﬦ'),
 		stdin: '',
 		stdio: '',
 		stderr: null,

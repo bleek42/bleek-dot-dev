@@ -64,18 +64,18 @@
 		"module": "esnext"
 	},
 	"include": [
-		"src/**/*",
-		"tests/**/*",
+		"src/",
+		"public/",
 		"next.config.js",
 		"next-env.d.ts",
-		"jest.config.ts",
 		"styled.d.ts",
 		"node-env.d.ts",
-		"node-env.d.ts",
-		"src/graphql/mutations/codegen.ts",
-		"public/**/*"
+		"node-env.d.ts"
 	],
 	"exclude": [
+		"codegen.ts",
+		"jest.config.ts",
+		"tests/",
 		"node_modules/",
 		"build/",
 		".next/"

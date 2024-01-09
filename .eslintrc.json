@@ -37,7 +37,7 @@
 	"extends": [
 		"plugin:react/recommended",
 		"plugin:react-hooks/recommended",
-		"plugin:next/next",
+		// "plugin:next/next",
 		"plugin:@typescript-eslint/recommended",
 		"plugin:@typescript-eslint/recommended-requiring-type-checking",
 		"plugin:import/recommended",
@@ -61,6 +61,7 @@
 		"@typescript-eslint/no-non-null-assertion": "off",
 		"@typescript-eslint/no-inferrable-types": "off",
 		"@typescript-eslint/no-use-before-define": "off",
+		"@typescript-eslint/no-unused-vars": "warn",
 		"@typescript-eslint/restrict-template-expressions": "off",
 		"@typescript-eslint/consistent-type-imports": [
 			"error",

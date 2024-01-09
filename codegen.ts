@@ -1,10 +1,4 @@
-import * as dotenv from 'dotenv';
-import { type IGraphQLConfig } from 'graphql-config';
-
-dotenv.config({ path: '.env.development' });
-
-console.log(process.env.GH_JWT);
-
+console.log({ env: process.env });
 console.log('|=== GENERATING GRAPHQL TYPES ===|');
 
 const config: IGraphQLConfig = {

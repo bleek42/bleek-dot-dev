@@ -1,6 +1,7 @@
 import { type Config } from 'jest';
 import nextJest from 'next/jest';
-import { styledRender } from './tests/utils/styedRender';
+
+// import { styledRender } from './tests/utils/styedRender';
 
 const createNextJestConfig = nextJest({
   // * Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -10,10 +11,10 @@ const createNextJestConfig = nextJest({
 // * Add any custom config to be passed to Jest
 // & Add more setup options before each test is run
 const config = async (): Promise<Config> => ({
-  preset: 'ts-jest',
+  preset: 'jsdom',
   verbose: true,
   injectGlobals: true,
-  globalSetup: './tests/setupTests.ts',
+  globalSetup: './tests/setup.ts',
 
   moduleDirectories: ['node_modules', 'src'],
 

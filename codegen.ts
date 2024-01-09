@@ -1,3 +1,5 @@
+import { type IGraphQLConfig } from "graphql-config";
+
 console.log({ env: process.env });
 console.log('|=== GENERATING GRAPHQL TYPES ===|');
 

@@ -1,7 +1,7 @@
+import { styledRender } from '../setup';
 import { render, within, fireEvent, screen } from '@testing-library/react';
 import PageSection from '@/components/PageSection';
 import { theme } from '@/components/common';
-import { styledRender } from '../setupTests';
 
 describe('PageSection', () => {
 	beforeEach(() =>

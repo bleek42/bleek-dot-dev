@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import Document, {
 	type DocumentContext,
 	type DocumentInitialProps,
@@ -35,11 +36,13 @@ export default class StyledDocument extends Document {
 					</>
 				),
 			};
-		} catch (err) {
-			// eslint-disable-next-line prettier/prettier
+		} 
+		// eslint-disable-next-line prettier/prettier
+		catch (err) {
 			if (err) throw err;
-		} finally {
-			// eslint-disable-next-line prettier/prettier
+		} 
+		// eslint-disable-next-line prettier/prettier
+		finally {
 			sheet.seal();
 		}
 	}

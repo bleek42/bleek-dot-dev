@@ -1,7 +1,6 @@
-import Image from 'next/image';
+import { type SectionComponent } from '@/interfaces/Component';
 
 import PageSection from '@/components/PageSection';
-import { SectionComponent } from '@/interfaces/Component';
 
 type AboutProps = SectionComponent;
 
@@ -28,48 +27,3 @@ About.defaultProps = {
 		'The former is perhaps less exciting yet probably more important, but I have always been considered the "worldly & knowledgable" one amongst friends & co-workers when it comes to an assortment of historical topics, current events, and how they relate to one another. I suppose I have always prided myself on being all of these things: an intelligent, conscientious, analytical, empathetic, & self-aware person that can connect with just about anyone, while still maintaining a capacity for humility & open-mindedness.',
 	],
 };
-
-// export const getStaticProps: GetStaticProps<{
-// 	result: AssetWhereUniqueQuery;
-// }> = async () => {
-// 	const result: Awaited<AssetWhereUniqueQuery> =
-// 		await assetWhereQuery.AssetWhereUnique();
-
-// 	console.log('/about result', { result });
-
-// 	return {
-// 		props: {
-// 			result,
-
-// 		},
-// 	};
-// };
-
-/*
-	return (
-		<div className="about">
-			<section>
-				<h3>{<VscSymbolArray />} About</h3>
-				<p>
-					My name is Brandon Leek and I'm Junior Full-Stack Web Developer,
-					experienced salesman and avid live music fan!
-				</p>
-				<p>
-
-				</p>
-				<p>
-					My primary skills reside in React front-end applications & Node.js
-					back-end applications, but I'm always learning something new and very
-					active in helping others in my Slack & Discord groups. Some libraries
-					& frameworks I've been tinkering with include TypeScript, React
-					Native, Angular, NestJS, MongoDB, & GraphQL.
-				</p>
-				<p>
-
-				</p>
-				<p>
-				</p>
-			</section>
-		</div>
-
-*/

@@ -26,6 +26,9 @@
 			"@/pages/*": [
 				"src/pages/*"
 			],
+			"@/app/*": [
+				"app/*"
+			],
 			"@/components/*": [
 				"src/components/*"
 			],
@@ -43,6 +46,12 @@
 			],
 			"@/tests/*": [
 				"tests/*"
+			],
+			"@/fonts/*": [
+				"public/fonts/*"
+			],
+			"@/images/*": [
+				"public/images/*"
 			],
 			"@/svgs/*": [
 				"public/svgs/*"
@@ -64,15 +73,17 @@
 		"module": "esnext"
 	},
 	"include": [
-		"src/",
 		"public/",
+		"src/",
 		"next.config.js",
 		"next-env.d.ts",
-		"styled.d.ts",
 		"node-env.d.ts",
-		"node-env.d.ts"
+		"styled.d.ts",
+		".next/types/**/*.ts",
+		"app"
 	],
 	"exclude": [
+		"app/**/*",
 		"codegen.ts",
 		"jest.config.ts",
 		"tests/",

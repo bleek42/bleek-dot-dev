@@ -1,6 +1,6 @@
 import { useId, type Key, Fragment } from 'react';
 import Image from 'next/image';
-import bleekImg from '/public/images/brandon-mask.png';
+import bleekImg from '@/images/brandon-mask.png';
 
 import { type SectionComponent } from '@/interfaces/Component';
 import { type SectionProps, Section, Article, ContactCard } from './Section';

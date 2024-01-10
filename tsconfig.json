@@ -27,7 +27,7 @@
 				"src/pages/*"
 			],
 			"@/app/*": [
-				"app/*"
+				"src/app/*"
 			],
 			"@/components/*": [
 				"src/components/*"
@@ -75,18 +75,18 @@
 	"include": [
 		"public/",
 		"src/",
+		// "app/**/*",
+		"tests/",
 		"next.config.js",
 		"next-env.d.ts",
 		"node-env.d.ts",
 		"styled.d.ts",
 		".next/types/**/*.ts",
-		"app"
+		"src/app"
 	],
 	"exclude": [
-		"app/**/*",
 		"codegen.ts",
 		"jest.config.ts",
-		"tests/",
 		"node_modules/",
 		"build/",
 		".next/"

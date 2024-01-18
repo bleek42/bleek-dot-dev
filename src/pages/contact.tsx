@@ -7,7 +7,18 @@ import { type NextPage } from 'next';
 // >;
 
 type ContactProps = SectionComponent;
-export default function Contact(props: ContactProps) {
+
+const contactPageProps: ContactProps = {
+	name: 'contact',
+	description: 'contact section',
+	content: [
+		'brandonleek42@yahoo.com',
+		'https://linkedin.com/in/brandonl42',
+		'https://github.com/bleek42',
+	],
+	icons: [' \uf092 ', ' \uf08c ', ' \ue708 '],
+};
+export default function Contact(props: ContactProps = contactPageProps) {
 	// const { profile, loading, error, msg } = useRequest()
 
 	return (
@@ -19,14 +30,3 @@ export default function Contact(props: ContactProps) {
 		/>
 	);
 }
-
-Contact.defaultProps = {
-	name: 'contact',
-	description: 'contact section',
-	content: [
-		'brandonleek42@yahoo.com',
-		'https://linkedin.com/in/brandonl42',
-		'https://github.com/bleek42',
-	],
-	icons: [' \uf092 ', ' \uf08c ', ' \ue708 '],
-};

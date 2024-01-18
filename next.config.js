@@ -30,6 +30,10 @@ export default {
       'src/graphql/**/*.{gql,graphql,ts}',
     ],
   },
+
+  experimental: {
+    appDir: false,
+  },
 };
 
 // async headers() {

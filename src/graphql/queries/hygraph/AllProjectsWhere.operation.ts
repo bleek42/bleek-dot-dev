@@ -1,8 +1,8 @@
-import * as Types from '../../typeDefs/hygraph.js';
+import type * as Types from '../../typeDefs/hygraph.js';
 
-import { GraphQLClient } from 'graphql-request';
-import { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types.js';
-import gql from 'graphql-tag';
+import type { GraphQLClient } from 'graphql-request';
+import type { GraphQLClientRequestHeaders } from 'graphql-request/build/esm/types.js';
+import { gql } from 'graphql-tag';
 export type AllProjectsWhereQueryVariables = Types.Exact<{
   where?: Types.InputMaybe<Types.ProjectWhereInput>;
   stage?: Types.InputMaybe<Types.Stage>;

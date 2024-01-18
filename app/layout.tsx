@@ -1,14 +1,14 @@
-import { type Metadata } from 'next';
-import { type Component } from '@/interfaces/Component';
+// import { type Metadata } from 'next';
+import { type MetaComponent } from '@/interfaces/Component';
 
 import Meta from '@/components/common/Meta';
 
-type RootLayoutProps = Component & Metadata;
+type RootLayoutProps = MetaComponent;
 
-export const metadata: RootLayoutProps = {
+export const defaultProps: RootLayoutProps = {
 	id: 'meta-bleek_0',
-	name: 'bleekDotDev',
-	title: '[bleekDotDev]',
+	// name: 'bleekDotDev',
+	title: '{ bleekDotDev }',
 	description: 'Brandon Leek: Web/Mobile Apps, DevSecOps, SysAdmin',
 	keywords: [
 		'bleek',
@@ -119,38 +119,19 @@ export const metadata: RootLayoutProps = {
 	locale: 'en_US',
 };
 
-export default function RootLayout(props: RootLayoutProps) {
+export default function RootLayout(props: RootLayoutProps = defaultProps) {
 	console.log({ rootLayoutProps: { ...props } }, props.metadataBase?.toJSON());
 	return (
-		<html lang="en">
-			<head>
-				<meta charSet="utf-8" />
-				<meta
-					name="viewport"
-					rel="viewport"
-					content="width=device-width, initial-scale=1.0"
-				/>
-				<meta
-					rel="description"
-					name="description"
-					content={props.description ?? 'no description...'}
-				/>
-				<meta
-					rel="keyuwords"
-					name="keywords"
-					content={
-						props.keywords && Array.isArray(props.keywords)
-							? props.keywords.join('')
-							: undefined
-					}
-				/>
-				{props.icons && (
-					<meta property="og:image" content={props.icons.toString()} />
-				)}
-				<meta property="og:title" title={props.title?.toString()} />
-				<meta property="og:locale" content={props.locale} />
-				<title>Document</title>
-			</head>
+		<html lang={props.locale ?? 'en_US'}>
+			<Meta
+				id={props.id}
+				locale={props.locale}
+				title={props.title}
+				description={props.description}
+				keywords={props.keywords}
+				icons={props.icons}
+			/>
+
 			<body>{props.children}</body>
 		</html>
 	);

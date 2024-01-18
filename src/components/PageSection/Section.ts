@@ -1,12 +1,12 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 import { type SectionComponent } from '@/interfaces/Component';
-import { borderPulse, fadeInBright } from '../common';
-import Image from 'next/image';
+// import { borderPulse, fadeInBright } from '../common';
+// import Image from 'next/image';
 
-export type SectionProps = StyledComponentProps<
+export type SectionProps = SectionComponent & StyledComponentProps<
   'section' | 'article' | keyof JSX.IntrinsicElements,
   DefaultTheme,
-  SectionComponent,
+  object,
   string | number | symbol
 >;
 

@@ -12,8 +12,8 @@ import { type AnyStyledComponent } from 'styled-components';
 export interface Component {
   id?: Key | null;
   // className?: string | null;
-  name?: string;
-  title?: string | string[];
+  name: string;
+  title?: string;
   description?: string | string[];
   icons?: string | string[];
   images?:
@@ -22,7 +22,7 @@ export interface Component {
   | string
   | URL
   | Array<URL | string>;
-  locale?: 'en' | 'en_US' | 'es_MX';
+  locale?: 'en' | 'en_US' | 'es';
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
@@ -49,11 +49,12 @@ export interface MetaComponent extends Metadata {
   title: string;
   description?: string | null;
   keywords: string | string[];
-  icons?: IconURL | Icons | null;
   locale: 'en_US' | 'en' | 'es';
+  children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
 export interface LayoutComponent extends Component {
+  icons?: string | string[];
   children: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[] | null;
 }
 export interface HeaderComponent extends Component {
@@ -78,9 +79,9 @@ export interface DetailsComponent extends Component {
 
 export interface SectionComponent extends Component {
   name: string;
+  title?: string;
   description: string | string[];
   content?: string | string[];
-  title?: string | string[];
   icons?: string | string[];
   images?:
   | AssetWhereUniqueQuery['asset']
@@ -88,7 +89,7 @@ export interface SectionComponent extends Component {
   | string
   | URL
   | Array<URL | string>;
-  locale?: 'en' | 'en_US' | 'es_MX';
+  locale?: 'en' | 'en_US' | 'es';
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 
@@ -96,10 +97,10 @@ export interface ListComponent extends Component { }
 
 export interface FooterComponent extends Component {
   name: string;
+  title?: string;
   description: string | string[];
   icons?: string | string[];
   content?: string | string[];
-  title?: string | string[];
   children?: ReactNode | ReactNode[] | AnyStyledComponent | AnyStyledComponent[];
 }
 

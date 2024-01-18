@@ -1,5 +1,6 @@
-import { Fragment, Suspense, type Key } from 'react';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
+
+import { Fragment, Suspense, type Key } from 'react';
 
 import PageSection from '@/components/PageSection';
 import { type AllProjectsWhereQuery } from '@/graphql/queries/hygraph';

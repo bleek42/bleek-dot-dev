@@ -4,19 +4,10 @@ import PageSection from '@/components/PageSection';
 
 type AboutProps = SectionComponent;
 
-export default function About(props: AboutProps) {
-	return (
-		<PageSection
-			name={props.name}
-			description={props.description}
-			content={props.content}
-		/>
-	);
-}
-
-About.defaultProps = {
+const aboutPageProps: AboutProps = {
+	id: 'bldev-about-pg_0',
 	name: 'about',
-	description: null,
+	description: 'bleekDotDev: About Page',
 	content: [
 		'Coming from an increasingly common, if unconventional background in a professional sense, I grew up in New Jersey, USA, graduated High School in 2010, and went straight to the work force rather than college. Despite being a good student, I simply was unsure of what career path I wanted to take, and apprehensive about going for the pure sake of it as others I knew had. As the years went on, I found myself in a comfortable role, but couldn\'t help but feel like I had peeked when I was with Verizon Wireless in Consumer/B2B sales, and just wanting something more! I started seeking out career change paths that would put this untapped potential I knew I had to better use, and started to think about what I could do that, in some  indirect way, leverage the knowledge & experience I already had. I discovered "Thinkful Schools - Full-Stack Software Engineering Immersion" course, full-time & fully remote mere months before COVID-19 hit the world, which was an incredibly lucky choice on my part over in-person options I also considered! Successfully completing in Summer of 2020, I found an exciting new passion in programming, got my first Junior Developer role, and have been expanding my capabilites without pause ever since!',
 
@@ -26,4 +17,16 @@ About.defaultProps = {
 		'The latter has culminated in 100+ live acts I have seen over the years, as I have been to tons of different concerts & music festivals on local, regional, & national scales, which I hope to take the next step up to international experiences someday soon! I was regularly involved with an event promoter in the local Philadelphia & NYC music scenes, and I even volunteer at a few annual festivals in their harm reduction efforts. Not afraid of large crowds, I took part in ensuring attendees have a completely lucid & sober friend nearby that is not afraid to intervene when someone is in trouble, always has cold water on hand, ensures lost valuables are once again found by their owners - those sorts of things that maximize safety & fun in an entirely wholesome way.',
 		'The former is perhaps less exciting yet probably more important, but I have always been considered the "worldly & knowledgable" one amongst friends & co-workers when it comes to an assortment of historical topics, current events, and how they relate to one another. I suppose I have always prided myself on being all of these things: an intelligent, conscientious, analytical, empathetic, & self-aware person that can connect with just about anyone, while still maintaining a capacity for humility & open-mindedness.',
 	],
+	icons: [],
 };
+
+export default function About(props: AboutProps) {
+	return (
+		<PageSection
+			name={props.name}
+			description={props.description}
+			content={props.content}
+			icons={props.icons}
+		/>
+	);
+}

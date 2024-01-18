@@ -75,18 +75,16 @@
 	"include": [
 		"public/",
 		"src/",
-		// "app/**/*",
 		"tests/",
 		"next.config.js",
 		"next-env.d.ts",
 		"node-env.d.ts",
 		"styled.d.ts",
 		".next/types/**/*.ts",
-		"src/app"
-	],
-	"exclude": [
 		"codegen.ts",
 		"jest.config.ts",
+	],
+	"exclude": [
 		"node_modules/",
 		"build/",
 		".next/"

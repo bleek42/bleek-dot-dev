@@ -1,4 +1,7 @@
-import { type IGraphQLConfig } from "graphql-config";
+import { type IGraphQLConfig } from 'graphql-config';
+import * as dotenv from 'dotenv';
+
+dotenv.config();
 
 console.log({ env: process.env });
 console.log('|=== GENERATING GRAPHQL TYPES ===|');
@@ -13,57 +16,6 @@ const config: IGraphQLConfig = {
   // ],
 
   projects: {
-
-    // githubSchema: {
-    //   schema: [
-    //     {
-    //       'https://api.github.com/graphql': {
-    //         headers: {
-    //           'User-Agent': 'graphql-codegen',
-    //           'Authorization': `Bearer ${process.env.GH_JWT}`,
-    //         },
-    //       },
-    //     },
-    //   ],
-
-    //   extensions: {
-    //     codegen: {
-    //       overwrite: true,
-    //       ignoreNoDocuments: true,
-
-    //       generates: {
-    //         'src/graphql/gh-api.schema.json': {
-    //           plugins: ['introspection'],
-    //           config: {
-    //             descriptions: true,
-    //             schemaDescription: true,
-    //           },
-    //         },
-    //       },
-    //     },
-    //   },
-    // },
-
-    githubDefs: {
-      schema: 'src/graphql/gh-api.schema.json',
-
-      extensions: {
-        codegen: {
-          overwrite: true,
-          ignoreNoDocuments: true,
-
-          generates: {
-            'src/graphql/typeDefs/gh-api.defs.gql': {
-              plugins: ['schema-ast'],
-              config: {
-                commentDescriptions: true,
-                includeIntrospectionTypes: true,
-              },
-            },
-          },
-        },
-      },
-    },
 
     hygraphSchema: {
       schema:

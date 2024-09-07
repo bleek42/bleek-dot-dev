@@ -95,6 +95,13 @@ export const PageBg = styled.main`
   background: ${({ theme }) => theme.palette.primary.linear};
 `;
 
+  // @font-face {
+	//   font-family: 'TerminessNF';
+	//   src: url('/fonts/TerminessNF/Terminess-Nerd-Font.ttf') format('truetype');
+  //   font-display: swap;
+  //   font-style: normal;
+  // }
+
 export const GlobalStyle = createGlobalStyle`
 
   @font-face {
@@ -109,7 +116,6 @@ export const GlobalStyle = createGlobalStyle`
     src: url('/fonts/Oxanium/Oxanium.ttf') format('truetype');
     font-display: swap;
     font-style: normal;
-
   }
 
   @font-face {
@@ -118,6 +124,7 @@ export const GlobalStyle = createGlobalStyle`
     font-display: swap;
     font-style: normal;
   }
+
 
   * {
     margin: 0;

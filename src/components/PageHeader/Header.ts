@@ -1,5 +1,5 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
-import { type HeaderComponent } from '@/interfaces/Component';
+import { type HeaderComponent } from 'interfaces/Component';
 import Image from 'next/image';
 
 export type HeaderProps = StyledComponentProps<

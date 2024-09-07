@@ -1,7 +1,8 @@
 // import { type Metadata } from 'next';
 import { type MetaComponent } from '@/interfaces/Component';
-
+import StyledComponentsRegistry from './registry';
 import Meta from '@/components/common/Meta';
+import React from 'react';
 
 type RootLayoutProps = MetaComponent;
 
@@ -130,9 +131,14 @@ export default function RootLayout(props: RootLayoutProps = defaultProps) {
 				description={props.description}
 				keywords={props.keywords}
 				icons={props.icons}
-			/>
+				>
+			</Meta>
 
-			<body>{props.children}</body>
+			<body>
+				<StyledComponentsRegistry>
+					{props.children}
+				</StyledComponentsRegistry>
+			</body>
 		</html>
 	);
 }

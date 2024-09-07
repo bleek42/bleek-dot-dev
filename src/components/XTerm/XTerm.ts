@@ -1,6 +1,6 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
-import { type XTermComponent } from '@/interfaces/Component';
+import { type XTermComponent } from 'interfaces/Component';
 import { Icon, borderPulse, fadeInBright } from '@/components/common';
 
 export type XTermProps = StyledComponentProps<

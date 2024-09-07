@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 
 import { type AppProps } from 'next/app';
-import { type MetaComponent } from '@/interfaces/Component';
+import { type MetaComponent } from 'interfaces/Component';
 
 import { ThemeProvider } from 'styled-components';
 import { theme, GlobalStyle } from '@/components/common';

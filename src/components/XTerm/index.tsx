@@ -12,7 +12,7 @@ import {
 	XTPrompt,
 } from './XTerm';
 import { Btn } from '@/components/common';
-import { type XTermComponent } from '@/interfaces/Component';
+import { type XTermComponent } from 'interfaces/Component';
 
 type XTermState = XTermComponent;
 

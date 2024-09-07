@@ -1,4 +1,4 @@
-import { type SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from 'interfaces/Component';
 
 import PageSection from '@/components/PageSection';
 

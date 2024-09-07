@@ -1,5 +1,5 @@
 import PageSection from '@/components/PageSection';
-import { type SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from 'interfaces/Component';
 import { type NextPage } from 'next';
 // export type ContactRecord = Record<
 // 	'email' | 'linkedin' | 'github' | string | symbol,

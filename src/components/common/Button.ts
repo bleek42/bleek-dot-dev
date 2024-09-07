@@ -3,7 +3,7 @@ import styled, {
   type DefaultTheme,
   type StyledComponentProps,
 } from 'styled-components';
-import { type StyledOptions } from '@/interfaces/StyledOptions';
+import { type StyledOptions } from 'interfaces/StyledOptions';
 
 type ButtonProps = StyledComponentProps<
   AnyStyledComponent | keyof JSX.Element,

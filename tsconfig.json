@@ -1,7 +1,7 @@
 {
 	"compilerOptions": {
 		"strict": true,
-		"target": "ES2022",
+		"target": "ES2023",
 		"lib": [
 			"DOM",
 			"DOM.Iterable",
@@ -19,15 +19,12 @@
 		"incremental": true,
 		"allowImportingTsExtensions": true,
 		"allowUmdGlobalAccess": true,
-		"allowJs": true,
+		"allowJs": false,
 		"skipLibCheck": true,
 		"baseUrl": "./",
 		"paths": {
-			"@/pages/*": [
-				"src/pages/*"
-			],
 			"@/app/*": [
-				"app/*"
+				"src/app/*"
 			],
 			"@/components/*": [
 				"src/components/*"
@@ -40,9 +37,6 @@
 			],
 			"@/hooks/*": [
 				"src/hooks/*"
-			],
-			"@/lib/*": [
-				"src/pages/lib/*"
 			],
 			"@/tests/*": [
 				"tests/*"
@@ -84,6 +78,8 @@
 		"codegen.ts",
 		"jest.config.ts",
 		"app",
+		"interfaces",
+		"graphql",
 	],
 	"exclude": [
 		"app/",

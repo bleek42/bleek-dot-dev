@@ -20,20 +20,19 @@ const config = async (): Promise<Config> => ({
 
   // testEnvironmentOptions: {},
   testEnvironment: 'jest-environment-jsdom',
-  watchPathIgnorePatterns: ['<rootDir>/tests/pages/'],
-  setupFilesAfterEnv: ['<rootDir>/tests/setupTests.ts'],
+  // watchPathIgnorePatterns: ['<rootDir>/tests/'],
+  setupFilesAfterEnv: ['<rootDir>/tests/setup.ts'],
   moduleNameMapper: {
-    '^@/interfaces/(.*)$': '<rootDir>/src/interfaces/$1',
-    '^@/graphql/(.*)$': '<rootDir>/src/graphql/$1',
-    '^@/components/(.*)$': '<rootDir>/src/components/$1',
+    '^@/app/(.*)$': '<rootDir>/src/app/$1',
     '^@/hooks/(.*)$': '<rootDir>/src/hooks/$1',
-    '^@/pages/(.*)$': '<rootDir>/src/pages/$1',
-    '^@/lib/(.*)$': '<rootDir>/src/pages/lib/$1',
+    '^@/components/(.*)$': '<rootDir>/src/components/$1',
+    '^@/interfaces/(.*)$': '<rootDir>/src/interfaces/$1',
+    '^@/graphql/(.*)$': '<rootDir>/src/graphql/$1'
   },
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
-    '<rootDir>/.next/',
-    '<rootDir>/src/app/',
+    '<rootDir>/.next/'
+    // '<rootDir>/src/app/',
   ],
 });
 

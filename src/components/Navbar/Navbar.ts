@@ -6,9 +6,9 @@ import styled, {
 } from 'styled-components';
 import Link, { type LinkProps } from 'next/link';
 
-import { type NavbarComponent } from '@/interfaces/Component';
+import { type NavbarComponent } from 'interfaces/Component';
 import { Icon, shimmerUnderline } from '../common';
-import { type StyledOptions } from '@/interfaces/StyledOptions';
+import { type StyledOptions } from 'interfaces/StyledOptions';
 
 export type NavBarProps = StyledComponentProps<
   'nav' | 'button' | 'ul' | 'li',

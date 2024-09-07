@@ -1,6 +1,6 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
 
-import { type DetailsComponent } from '@/interfaces/Component';
+import { type DetailsComponent } from 'interfaces/Component';
 
 type StyledDetailsProps = StyledComponentProps<
   'details' | keyof JSX.IntrinsicElements,
@@ -34,7 +34,7 @@ export const Details = styled.details<StyledDetailsProps>(
 
 export const Summary = styled.summary(
   (props) => `
-  
+
   color: ${props.theme.palette.secondary.blue};
   font-family: ${props.theme.fonts.at(1)};;
   border: 1px solid ${props.theme.palette.primary.cyan};

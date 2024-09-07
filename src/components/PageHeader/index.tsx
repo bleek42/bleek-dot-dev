@@ -1,4 +1,4 @@
-import { type HeaderComponent } from '@/interfaces/Component';
+import { type HeaderComponent } from 'interfaces/Component';
 
 import { Header, LambdaSVG } from './Header';
 import Navbar from '@/components/Navbar';

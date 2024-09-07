@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { type LayoutComponent, type MetaComponent } from '@/interfaces/Component';
+import { type LayoutComponent, type MetaComponent } from 'interfaces/Component';
 import { GlobalStyle, PageBg } from '@/components/common';
 import Meta from '@/components/common/Meta';
 import PageHeader from '@/components/PageHeader';

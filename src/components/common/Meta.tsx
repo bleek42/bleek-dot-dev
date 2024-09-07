@@ -6,6 +6,21 @@ import { GlobalStyle } from './theme';
 
 type MetaProps = MetaComponent;
 
+/**
+ * This component generates the meta tags for the page in the document head.
+ *
+ * If `description` is not provided, it defaults to 'no description...'.
+ * If `keywords` is an array, it is joined with a space and set to lowercase.
+ * If `keywords` is not an array, it is set to lowercase.
+ *
+ * The `title` is set as the page title.
+ *
+ * @param props - The properties for the component.
+ * @param props.description - The description of the page.
+ * @param props.keywords - The keywords for the page.
+ * @param props.title - The title of the page.
+ * @param props.locale - The locale of the page.
+ */
 export default function Meta(props: MetaProps) {
 	return (
 		// <head>
@@ -33,7 +48,7 @@ export default function Meta(props: MetaProps) {
 				/>
 				<meta property="og:title" title={props.title} />
 				<meta property="og:locale" content={props.locale} />
-				{/* <GlobalStyle /> */}
+				<GlobalStyle />
 				<title>{props.title}</title>
 			</Head>
 		</Fragment>

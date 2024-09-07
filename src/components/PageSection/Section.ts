@@ -1,5 +1,5 @@
 import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
-import { type SectionComponent } from '@/interfaces/Component';
+import { type SectionComponent } from 'interfaces/Component';
 // import { borderPulse, fadeInBright } from '../common';
 // import Image from 'next/image';
 

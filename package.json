@@ -7,13 +7,9 @@
 		"name": "Brandon Leek",
 		"url": "https://github.com/bleek42/bleek-dot-dev"
 	},
-	"engines": {
-		"node": "^22",
-		"pnpm": "^9"
-	},
 	"scripts": {
 		"dev": "next dev",
-		"dev:debug": "NODE_OPTIONS='--inspect-port=9229' next dev",
+		"dev:debug": "NODE_OPTIONS=--inspect-port=9229 next dev",
 		"start": "next start",
 		"build": "next build",
 		"ngrok": "concurrently 'next dev'  'ngrok http 3000'",

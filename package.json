@@ -28,11 +28,17 @@
 		"deps:rm": "rm -rf node_modules/"
 	},
 	"dependencies": {
+		"@tanstack/react-query": "5.71.1",
+		"@trpc/client": "11.0.1",
+		"@trpc/next": "11.0.1",
+		"@trpc/react-query": "11.0.1",
+		"@trpc/server": "11.0.1",
 		"graphql-tag": "2.12.6",
-		"next": "14.2.8",
+		"next": "15.2.4",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
-		"styled-components": "6.1.13"
+		"styled-components": "6.1.13",
+		"zod": "3.24.2"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
@@ -56,24 +62,9 @@
 		"prettier": "3.3.3",
 		"ts-jest": "29.2.5",
 		"ts-node": "10.9.2",
-		"typescript": "5.5.4"
+		"typescript": "5.8.2"
 	},
 	"optionalDependencies": {
-		"graphql": "16.9.0",
-		"graphql-request": "6.1.0",
-		"concurrently": "8.2.2",
-		"eslint-config-biome": "1.7.3",
-		"eslint-config-next": "14.2.8",
-		"eslint-config-prettier": "9.1.0",
-		"eslint-import-resolver-typescript": "3.6.3",
-		"eslint-plugin-n": "17.10.2",
-		"eslint-plugin-prettier": "5.2.1",
-		"eslint-plugin-react": "7.35.2",
-		"eslint-plugin-react-hooks": "4.6.2",
-		"@next/eslint-plugin-next": "14.2.8",
-		"graphql-config": "5.1.2",
-		"graphql-scalars": "1.23.0",
-		"next-router-mock": "0.9.13",
 		"@graphql-codegen/cli": "5.0.2",
 		"@graphql-codegen/introspection": "4.0.3",
 		"@graphql-codegen/near-operation-file-preset": "3.0.0",
@@ -83,6 +74,21 @@
 		"@graphql-codegen/typescript-graphql-request": "6.2.0",
 		"@graphql-codegen/typescript-operations": "4.2.3",
 		"@graphql-eslint/eslint-plugin": "3.20.1",
-		"@graphql-typed-document-node/core": "3.2.0"
+		"@graphql-typed-document-node/core": "3.2.0",
+		"@next/eslint-plugin-next": "14.2.8",
+		"concurrently": "8.2.2",
+		"eslint-config-biome": "1.7.3",
+		"eslint-config-next": "14.2.8",
+		"eslint-config-prettier": "9.1.0",
+		"eslint-import-resolver-typescript": "3.6.3",
+		"eslint-plugin-n": "17.10.2",
+		"eslint-plugin-prettier": "5.2.1",
+		"eslint-plugin-react": "7.35.2",
+		"eslint-plugin-react-hooks": "4.6.2",
+		"graphql": "16.9.0",
+		"graphql-config": "5.1.2",
+		"graphql-request": "6.1.0",
+		"graphql-scalars": "1.23.0",
+		"next-router-mock": "0.9.13"
 	}
 }

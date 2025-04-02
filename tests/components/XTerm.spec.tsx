@@ -1,6 +1,6 @@
 import { within, fireEvent, screen } from '@testing-library/react';
 import { styledRender } from '@/tests/utils/styedRender';
-import XTerm from '@/components/XTerm';
+import XTerm from '@/components/Form/UXTerm';
 import { routerMock } from '@/tests/mocks/router.mock';
 
 describe('XTerm Component', () => {

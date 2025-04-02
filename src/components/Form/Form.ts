@@ -1,19 +1,19 @@
-import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
+import styled, { type DefaultTheme } from 'styled-components';
 
-import { type XTermComponent } from 'interfaces/Component';
+import { type XTermComponent } from '@/interfaces/Component';
 import { Icon, borderPulse, fadeInBright } from '@/components/common';
 
-export type XTermProps = StyledComponentProps<
+export type FormProps = StyledComponentProps<
   'textarea' | 'form' | 'input' | 'label' | 'code',
   DefaultTheme,
   XTermComponent,
   string | number | symbol
 >;
 
-export const XTForm = styled.form.attrs((props: XTermProps & XTermComponent) => ({
+export const Form = styled.form.attrs((props: FormProps & XTermComponent) => ({
   id: props.id || 'xt-form',
   name: props.name || 'xt-form',
-}))<XTermProps>`
+}))<FormProps>`
   display: inline-block;
   max-width: 98vw;
   max-height: 96vh;
@@ -23,11 +23,11 @@ export const XTForm = styled.form.attrs((props: XTermProps & XTermComponent) => 
   background-color: ${(props) => props.theme.palette.common.black};
 `;
 
-export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) => ({
+export const Label = styled.label.attrs<FormProps & XTermComponent>((props) => ({
   htmlFor: props.htmlFor || 'xt-txt-inputs',
   form: props.form || 'xt-form-id',
   id: props.id || undefined,
-}))<XTermProps>`
+}))<FormProps>`
   display: flex;
   justify-content: stretch;
   align-items: stretch;
@@ -54,10 +54,10 @@ export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) =
   }
 `;
 
-export const XTBtns = styled.label.attrs<XTermProps & XTermComponent>((props) => ({
+export const BtnLabel = styled.label.attrs<FormProps & XTermComponent>((props) => ({
   htmlFor: props.htmlFor || 'xt-btns',
   form: props.form || 'xt-form',
-}))<XTermProps & XTermComponent>`
+}))<FormProps & XTermComponent>`
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
@@ -80,11 +80,11 @@ export const XTBtns = styled.label.attrs<XTermProps & XTermComponent>((props) =>
   }
 `;
 
-export const XTxtArea = styled.textarea.attrs((props) => ({
+export const TextArea = styled.textarea.attrs((props) => ({
   id: props.id || 'xt-txt-tty0',
   name: props.name || 'xt-txt',
-  placeholder: props.placeholder || '/usr/bin/bash',
-}))<XTermProps & XTermComponent>`
+  placeholder: props.placeholder || '/usr/bin/zsh',
+}))<FormProps & XTermComponent>`
   resize: none;
   overflow: hidden;
   flex: 2 1 72vh;
@@ -115,13 +115,13 @@ export const XTxtArea = styled.textarea.attrs((props) => ({
   }
 `;
 
-export const XTInput = styled.input.attrs<XTermProps & XTermComponent>((props) => ({
+export const Input = styled.input.attrs((props) => ({
   form: props.form || 'xt-form',
   id: props.id || 'xt-prompt-tty0',
   name: props.name || 'xt-prompt',
   type: props.type || 'text',
   // placeHolder: props.placeHolder || '\uf120',
-}))<XTermProps>`
+}))<FormProps & XTermComponent>`
   caret-shape: block;
   caret-color: ${({ theme }) => theme.palette.secondary.green};
   color: ${({ theme }) => theme.palette.secondary.neon};
@@ -145,7 +145,7 @@ export const XTInput = styled.input.attrs<XTermProps & XTermComponent>((props) =
 //   flex-flow: row nowrap;
 // }
 
-export const XTCode = styled.code<XTermProps & XTermComponent>`
+export const Code = styled.code<FormProps & XTermComponent>`
   color: ${({ theme }) => theme.palette.tertiary.green};
   background-color: ${(props) => props.theme.palette.secondary.steel};
   font-size: 1.65em;
@@ -155,7 +155,7 @@ export const XTCode = styled.code<XTermProps & XTermComponent>`
   border: 0.5px solid ${({ theme }) => theme.palette.secondary.cyan};
 `;
 
-export const XTPrompt = styled(XTLabel)`
+export const Prompt = styled(Label)`
   display: inline-flex;
   flex-flow: row wrap;
   align-items: stretch;
@@ -184,7 +184,7 @@ export const XTPrompt = styled(XTLabel)`
   }
 `;
 
-export const XTIcon = styled(Icon)`
+export const FormIcon = styled(Icon)`
   display: inline-block;
   position: absolute;
   margin: 4px;

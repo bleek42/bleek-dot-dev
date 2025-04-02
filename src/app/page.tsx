@@ -1,4 +1,4 @@
-import XTerm from '@/components/XTerm';
+import XTerm from '@/components/Form/UXTerm';
 import { PageBg } from '@/components/common';
 
 export default function Page() {

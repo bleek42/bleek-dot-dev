@@ -32,14 +32,17 @@
 			"@/interfaces/*": [
 				"src/interfaces/*"
 			],
-			"@/graphql/*": [
-				"src/graphql/*"
+			"@/api/*": [
+				"src/app/api/*"
 			],
 			"@/hooks/*": [
 				"src/hooks/*"
 			],
 			"@/server/*": [
 				"src/server/*"
+			],
+			"@/trpc/*": [
+				"src/trpc/*"
 			],
 			"@/tests/*": [
 				"tests/*"

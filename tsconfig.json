@@ -47,13 +47,13 @@
 			"@/images/*": [
 				"public/images/*"
 			],
-			"@context/*": [
+			"@/context/*": [
 				"context/*"
 			],
-			"@utils/*": [
+			"@/utils/*": [
 				"utils/*"
 			],
-			"@server/*": [
+			"@/server/*": [
 				"server/*"
 			]
 		},

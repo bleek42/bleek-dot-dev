@@ -38,6 +38,9 @@
 			"@/hooks/*": [
 				"src/hooks/*"
 			],
+			"@/server/*": [
+				"src/server/*"
+			],
 			"@/tests/*": [
 				"tests/*"
 			],

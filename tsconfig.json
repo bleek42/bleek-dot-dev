@@ -47,8 +47,14 @@
 			"@/images/*": [
 				"public/images/*"
 			],
-			"@/svgs/*": [
-				"public/svgs/*"
+			"@context/*": [
+				"context/*"
+			],
+			"@utils/*": [
+				"utils/*"
+			],
+			"@server/*": [
+				"server/*"
 			]
 		},
 		"plugins": [

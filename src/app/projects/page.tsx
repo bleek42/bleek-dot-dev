@@ -1,7 +1,7 @@
 import { Fragment, Suspense, type Key } from 'react';
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
-import PageSection from '@/components/PageSection';
+import Section from '@/components/Section';
 import { type AllProjectsWhereQuery } from '@/graphql/queries/hygraph';
 import { allProjectsQuery } from '@/graphql/client';
 
@@ -9,7 +9,7 @@ export default function Page(props: InferGetStaticPropsType<typeof getStaticProp
 	return (
 		<Fragment>
 			{props.result.projects.length <= 0 && (
-				<PageSection
+				<Section
 					id={'projects-loading'}
 					name={'loading...'}
 					description={'please wait...'}
@@ -20,7 +20,7 @@ export default function Page(props: InferGetStaticPropsType<typeof getStaticProp
 				props.result.projects.length >= 1 &&
 				props.result.projects.map(
 					(item: AllProjectsWhereQuery['projects'][number]) => (
-						<PageSection
+						<Section
 							key={item.id as Key}
 							id={item.title}
 							name={item.title}
@@ -32,7 +32,7 @@ export default function Page(props: InferGetStaticPropsType<typeof getStaticProp
 					),
 				)}
 			{!props.result.projects && (
-				<PageSection
+				<Section
 					key={'err-projects'}
 					id={'err-projects'}
 					name={'err-projects'}

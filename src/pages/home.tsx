@@ -1,12 +1,23 @@
-import { type SectionComponent } from 'interfaces/Component';
-import PageSection from '@/components/PageSection';
+import { type SectionComponent } from '@/interfaces/Component';
+import Section from '@/components/Section';
+
+// ? global Meta, Main Background components
+import Meta from '@/components/universal/Meta';
+import { Main } from '@/components/universal/Main';
+
+// ? custom styled components
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import { useId } from 'react';
 
 type HomeProps = SectionComponent;
 
+export default function Home() {
+	const pageId = useId();
 
 export default function Home(props: HomeProps) {
 	return (
-		<PageSection
+		<Section
 			id={props.id}
 			name={props.name}
 			description={props.description}

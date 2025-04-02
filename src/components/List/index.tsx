@@ -1,6 +1,6 @@
 // import { MdTxt } from '@/components/common';
 
-// import { List as Wrapper, Item } from './List';
+// import { BlkTxt } from '@/components/universal/Text';
 
 // type ListProps = BaseComponentProps<'ul'> & {
 // 	items?: Array<string | Record<string, unknown>>;

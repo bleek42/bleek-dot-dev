@@ -2,21 +2,21 @@ import { useRouter } from 'next/router';
 import { useState, type ChangeEvent, type FormEvent, type SyntheticEvent } from 'react';
 
 import {
-	XTForm,
-	XTLabel,
-	XTBtns,
-	XTInput,
-	XTCode,
-	XTxtArea,
-	XTIcon,
-	XTPrompt,
-} from './XTerm';
+	Form,
+	Label,
+	BtnLabel,
+	Input,
+	Code,
+	TextArea,
+	FormIcon,
+	Prompt,
+} from './Form';
 import { Btn } from '@/components/common';
-import { type XTermComponent } from 'interfaces/Component';
+import { type XTermComponent } from '@/interfaces/Component';
 
 type XTermState = XTermComponent;
 
-export default function XTerm() {
+export default function UXTerm() {
 	const xtermState: XTermState = {
 		id: 'tty0',
 		name: '/dev/tty0',
@@ -24,7 +24,7 @@ export default function XTerm() {
 		stdin: '',
 		stdio: '',
 		stderr: null,
-		isExec: null,
+		isExec: false,
 	};
 
 	const [xterm, setXterm] = useState<XTermState>(xtermState); // ? set execute state true, leave landing page to /home
@@ -48,8 +48,8 @@ export default function XTerm() {
 	};
 
 	return (
-		<XTForm id={xtermState.id}>
-			<XTBtns id="xt-btns">
+		<Form id={xtermState.id}>
+			<BtnLabel id="xt-btns">
 				<Btn
 					id="xt-close-tty0"
 					name="xt-close"
@@ -102,9 +102,9 @@ export default function XTerm() {
 				>
 					{'[ \ueacc ]'}
 				</Btn>
-			</XTBtns>
-			<XTCode>{'[#!/usr/bin/bleek]'}</XTCode>
-			<XTLabel
+			</BtnLabel>
+			<Code>{'[#!/usr/bin/bleek]'}</Code>
+			<Label
 				htmlFor={xterm.id}
 				form={'xt-form'}
 				// eslint-disable-next-line no-console
@@ -115,26 +115,26 @@ export default function XTerm() {
 					console.log({ 'xt-submt-capt': evt.currentTarget });
 				}}
 			>
-				<XTIcon $colorPalette={'secondary'} $color={'green'} $shadow={'black'}>
+				<FormIcon $colorPalette={'secondary'} $color={'green'} $shadow={'black'}>
 					{'\ue683'}
-				</XTIcon>
-				<XTxtArea
+				</FormIcon>
+				<TextArea
 					id={xterm.id}
 					defaultValue={
 						" \n \n Hey there \uf4a2 \n \n  I'm Brandon: a Full Stack Web Developer!  \n \n \n  \ue736  \ue749  \ue718  \ue69d  \ue7ba  \n \n  \ue662  \ufab2  \ue712  \uebca  \ue702  \n \n \n  Click | Touch to proceed to...  \n \n \n \ue617  \uea9c  bleek.dev/home"
 					}
 				/>
-				<XTPrompt>
+				<Prompt>
 					{xterm.prompt}
-					<XTInput
+					<Input
 						id={`xt-prompt-${xterm.id}`}
 						name="xt-prompt"
 						onChange={handleChange}
 						defaultValue={'  '}
 					/>
-				</XTPrompt>
-			</XTLabel>
-		</XTForm>
+				</Prompt>
+			</Label>
+		</Form>
 	);
 }
 

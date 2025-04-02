@@ -3,8 +3,13 @@ import { createPortal } from 'react-dom';
 
 import useToggle from '@/hooks/useToggle';
 
+<<<<<<< HEAD
 import { NavBar, ToggleBtn, NavList, NavItem, NavIcon, NavLink } from './Navbar';
 import { MdTxt } from '@/components/common';
+=======
+import { Nav, Toggle, ToggleBtn, NavList, NavItem, NextLink, Icon } from './Navbar';
+import { LgTxt } from '@components/universal/Text';
+>>>>>>> 7f40928 (renamed xterm to form component; changed components/globol to univversal; updated & moved deps to opt install block;)
 
 export default function Navbar() {
 	const { toggle, handleToggle, setToggle } = useToggle();

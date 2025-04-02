@@ -1,23 +1,22 @@
 import styled, {
-  keyframes,
-  type AnyStyledComponent,
+  keyframes,,
   type DefaultTheme,
-  type StyledComponentProps,
+  type StyledObject,
 } from 'styled-components';
 import Link, { type LinkProps } from 'next/link';
 
-import { type NavbarComponent } from 'interfaces/Component';
+import { type NavbarComponent } from '@/interfaces/Component';
 import { Icon, shimmerUnderline } from '../common';
-import { type StyledOptions } from 'interfaces/StyledOptions';
+import { type StyledOptions } from '@/interfaces/StyledOptions';
 
-export type NavBarProps = StyledComponentProps<
+export type NavBarProps = StyledObject<
   'nav' | 'button' | 'ul' | 'li',
   DefaultTheme,
   object,
   string | number | symbol
 >;
 
-export type NavLinkProps = StyledComponentProps<
+export type NavLinkProps = StyledObject<
   typeof Link | 'a',
   DefaultTheme,
   LinkProps,

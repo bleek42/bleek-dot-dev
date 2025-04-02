@@ -1,12 +1,11 @@
 import styled, {
-  type StyledComponentProps,
+  type StyledObject,
   type DefaultTheme,
-  type AnyStyledComponent,
 } from 'styled-components';
 
-import { type FooterComponent } from 'interfaces/Component';
+import { type FooterComponent } from '@/interfaces/Component';
 
-export type FooterProps = StyledComponentProps<
+export type FooterProps = StyledObject<
   'footer' | AnyStyledComponent,
   DefaultTheme,
   object,

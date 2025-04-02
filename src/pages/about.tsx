@@ -1,6 +1,9 @@
-import { type SectionComponent } from 'interfaces/Component';
+import { type SectionComponent } from '@/interfaces/Component';
 
-import PageSection from '@/components/PageSection';
+import Meta from '@/components/universal/Meta';
+import Header from '@/components/Header';
+import Section from '@/components/Section';
+import Footer from '@/components/Footer';
 
 type AboutProps = SectionComponent;
 
@@ -22,7 +25,7 @@ const aboutPageProps: AboutProps = {
 
 export default function About(props: AboutProps) {
 	return (
-		<PageSection
+		<Section
 			name={props.name}
 			description={props.description}
 			content={props.content}

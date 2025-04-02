@@ -1,9 +1,9 @@
-import styled, { type DefaultTheme, type StyledComponentProps } from 'styled-components';
+import styled, { type DefaultTheme, type StyledObject } from 'styled-components';
 
-import { type XTermComponent } from 'interfaces/Component';
+import { type XTermComponent } from '@/interfaces/Component';
 import { Icon, borderPulse, fadeInBright } from '@/components/common';
 
-export type XTermProps = StyledComponentProps<
+export type XTermProps = StyledObject<
   'textarea' | 'form' | 'input' | 'label' | 'code',
   DefaultTheme,
   XTermComponent,
@@ -23,6 +23,18 @@ export const XTForm = styled.form.attrs((props: XTermProps & XTermComponent) => 
   background-color: ${(props) => props.theme.palette.common.black};
 `;
 
+export const Form = styled.form`
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  box-shadow: 3em 3em rgb(66, 166, 66);
+  border: 2px solid blue;
+  margin: 10px 4px 4px 10px;
+  padding: 8px 8px 8px 8px;
+  /* border-radius: 20% 20% / 20% 20%; */
+  background-color: rgb(5, 5, 5);
+`;
+
 export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) => ({
   htmlFor: props.htmlFor || 'xt-txt-inputs',
   form: props.form || 'xt-form-id',
@@ -38,56 +50,94 @@ export const XTLabel = styled.label.attrs<XTermProps & XTermComponent>((props) =
   &:hover {
     cursor: text;
     border: 1px solid ${({ theme }) => theme.palette.secondary.cyan};
+`;
+
+export const Label = styled.label`
+  /* display: inline-flex;
+  justify-content: flex-start; */
+  font-size: 26px;
+  color: rgb(12, 205, 165);
+  background-color: rgb(0, 0, 0);
+
+  &:hover {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: te;
   }
 
   &:active {
-    cursor: pointer;
-    border: 1.5 solid ${({ theme }) => theme.palette.primary.cyan};
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoints.laptop}) {
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.smallTab}) {
-    flex-flow: column wrap;
-    /* align-content: flex-start; */
+    border: 2px solid rgb(136, 255, 0);
+    cursor: te;
   }
 `;
 
-export const XTBtns = styled.label.attrs<XTermProps & XTermComponent>((props) => ({
-  htmlFor: props.htmlFor || 'xt-btns',
-  form: props.form || 'xt-form',
-}))<XTermProps & XTermComponent>`
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  align-items: space-around;
-  margin: 4px 6px 4px 6px;
-  padding: 4px 4px 4px 4px;
-  border: ${(props) => `4px solid  ${props.theme.palette.common.black}`};
-  border-radius: ${(props) => props.theme.defaultRadius};
-  font-family: ${(props) => props.theme.fonts.at(2)};
-  background-color: ${(props) => props.theme.palette.secondary.steel};
+export const Input = styled.input`
+  background-color: rgb(0, 0, 0);
+  color: rgb(35, 230, 45);
+  font-size: 18px;
+  padding: 4px 4px;
+  flex: 1 auto;
+  font-family: 'MonocraftNF';
+`;
 
-  @media (min-width: ${(props) => props.theme.breakpoints.fullDisplay}) {
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
+export const Code = styled.code`
+  /* font-family: 'Courier New', Courier, monospace; */
+  font-family: 'MonocraftNF';
+  font-size: 28px;
+  font-weight: 650;
+  color: rgb(160, 85, 132);
+  text-align: left;
+  text-decoration: underline;
+  text-decoration-color: rgb(225, 75, 15);
+`;
+
+export const Btns = styled.label`
+  /* display: inline-flex; */
+  flex: 2 2 50px;
+  margin: 2px 4px 4px 2px;
+  padding: 8px 4px 4px 8px;
+  width: 100vh;
+  font-family: 'MonocraftNF';
+  color: rgb(66, 66, 66);
+  background-color: rgb(66, 66, 66);
+  border: 2px solid rgb(175, 175, 165);
+`;
+
+export const TextArea = styled.textarea`
+  background-color: rgb(0, 0, 0);
+  font-family: 'MonocraftNF';
+  color: rgb(15, 95, 150);
+  font-size: 18px;
+  &:hover {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: te;
   }
-
-  @media (max-width: ${(props) => props.theme.breakpoints.phone}) {
-    display: none;
+  &:active {
+    border: 2px solid rgb(136, 255, 0);
+    cursor: te;
   }
 `;
+
+// // export const Btn = styled.button`
+// //   background-color: ${(props) =>
+// //     props?.close
+// //       ? 'rgb(215, 30, 30)'
+// //       : props?.max
+// //       ? 'rgb(15, 95, 150)'
+// //       : props?.min
+// //       ? 'yellow'
+// //       : 'grey'};
+// // `;
 
 export const XTxtArea = styled.textarea.attrs((props) => ({
   id: props.id || 'xt-txt-tty0',
   name: props.name || 'xt-txt',
   placeholder: props.placeholder || '/usr/bin/bash',
 }))<XTermProps & XTermComponent>`
+
   resize: none;
   overflow: hidden;
   flex: 2 1 72vh;
+
 
   min-width: 96vw;
   border: 0;

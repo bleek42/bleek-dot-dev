@@ -1,6 +1,6 @@
-import { type HeaderComponent } from 'interfaces/Component';
+import { type HeaderComponent } from '@/interfaces/Component';
 
-import { Header, LambdaSVG } from './Header';
+import { Header, LambdaSVG } from '../Header/Header';
 import Navbar from '@/components/Navbar';
 import { LgTxt, MdTxt } from '@/components/common';
 

@@ -1,6 +1,13 @@
 import { type GetStaticProps, type InferGetStaticPropsType } from 'next';
 
+<<<<<<< HEAD
 import { Fragment, Suspense, type Key } from 'react';
+=======
+import Header from "../components/Header";
+import Section from "../components/Section";
+import Footer from "../components/Footer";
+import Meta from "../components/universal/Meta";
+>>>>>>> 7f40928 (renamed xterm to form component; changed components/globol to univversal; updated & moved deps to opt install block;)
 
 import PageSection from '@/components/PageSection';
 import { type AllProjectsWhereQuery } from '@/graphql/queries/hygraph';

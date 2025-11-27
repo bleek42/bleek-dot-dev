@@ -1,0 +1,14 @@
+{
+	"editorconfig": true,
+	"parser": "typescript",
+	"bracketSameLine": false,
+	"singleAttributePerLine": false,
+	"arrowParens": "always",
+	"bracketSpacing": true,
+	"endOfLine": "lf",
+	"printWidth": 90,
+	"jsxSingleQuote": false,
+	"semi": true,
+	"singleQuote": true,
+	"quoteProps": "preserve"
+}
